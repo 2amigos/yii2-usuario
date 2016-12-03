@@ -1,0 +1,31 @@
+{
+    "name": "vendor_name/package_name",
+    "description": "description_text",
+    "license": "proprietary",
+    "authors": [
+        {
+            "name": "author's name",
+            "email": "email@example.com"
+        }
+    ],
+    "require-dev": {
+        "squizlabs/php_codesniffer": "^2.7",
+        "fabpot/php-cs-fixer": "^1.12",
+        "phpmd/phpmd": "^2.4"
+    },
+    "autoload": {
+        "psr-4": {
+            "Da\\" : ["./lib", "./tests/lib"]
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Da\\": ["./lib", "./tests/lib"]
+        }
+    },
+    "require": {
+        "dektrium/yii2-user": "^0.9.9",
+        "dektrium/yii2-rbac": "^0.3.0"
+    },
+    "minimum-stability": "dev"
+}
