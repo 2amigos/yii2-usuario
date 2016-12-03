@@ -33,17 +33,17 @@ class Bootstrap implements BootstrapInterface
     {
         $di = Yii::$container;
         // helpers
-        $di->set('\Da\User\Helper\AuthHelper');
+        $di->set('Da\User\Helper\AuthHelper');
 
         // email change strategy
-        $di->set('\Da\User\Strategy\DefaultEmailChangeStrategy');
-        $di->set('\Da\User\Strategy\InsecureEmailChangeStrategy');
-        $di->set('\Da\User\Strategy\SecureEmailChangeStrategy');
+        $di->set('Da\User\Strategy\DefaultEmailChangeStrategy');
+        $di->set('Da\User\Strategy\InsecureEmailChangeStrategy');
+        $di->set('Da\User\Strategy\SecureEmailChangeStrategy');
 
         // active query classes
-        Yii::$container->set('\Da\User\Query\AccountQuery');
-        Yii::$container->set('\Da\User\Query\ProfileQuery');
-        Yii::$container->set('\Da\User\Query\TokenQuery');
-        Yii::$container->set('\Da\User\Query\UserQuery');
+        Yii::$container->set('Da\User\Query\AccountQuery');
+        Yii::$container->set('Da\User\Query\ProfileQuery');
+        Yii::$container->set('Da\User\Query\TokenQuery');
+        Yii::$container->set('Da\User\Query\UserQuery');
     }
 }
