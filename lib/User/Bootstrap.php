@@ -69,7 +69,7 @@ class Bootstrap implements BootstrapInterface
 
         // helpers
         $di->set('Da\User\Helper\AuthHelper');
-        $di->setSingleton(ClassMapHelper::class, 'Da\User\Helper\ModelClassMapHelper', [$modelClassMap]);
+        $di->setSingleton(ClassMapHelper::class, ClassMapHelper::class, [$modelClassMap]);
 
         if (php_sapi_name() !== 'cli') {
             // override Yii
