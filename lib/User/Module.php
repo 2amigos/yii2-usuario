@@ -1,16 +1,9 @@
 <?php
+
 namespace Da\User;
 
 use Da\User\Strategy\DefaultEmailChangeStrategy;
 
-/**
- *
- * Module.php
- *
- * Date: 3/12/16
- * Time: 15:15
- * @author Antonio Ramirez <hola@2amigos.us>
- */
 class Module extends \yii\base\Module
 {
     /**
@@ -64,12 +57,12 @@ class Module extends \yii\base\Module
      * @var array the url rules (routes)
      */
     public $routes = [
-        '<id:\d+>'                               => 'profile/show',
-        '<action:(login|logout)>'                => 'security/<action>',
-        '<action:(register|resend)>'             => 'registration/<action>',
+        '<id:\d+>' => 'profile/show',
+        '<action:(login|logout)>' => 'auth/<action>',
+        '<action:(register|resend)>' => 'registration/<action>',
         'confirm/<id:\d+>/<code:[A-Za-z0-9_-]+>' => 'registration/confirm',
-        'forgot'                                 => 'recovery/request',
+        'forgot' => 'recovery/request',
         'recover/<id:\d+>/<code:[A-Za-z0-9_-]+>' => 'recovery/reset',
-        'settings/<action:\w+>'                  => 'settings/<action>'
+        'settings/<action:\w+>' => 'settings/<action>'
     ];
 }
