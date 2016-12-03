@@ -31,13 +31,19 @@ class Bootstrap implements BootstrapInterface
 
     protected function setContainer()
     {
+        $di = Yii::$container;
         // helpers
-        Yii::$container->set(AuthHelper::class);
+        $di->set('\Da\User\Helper\AuthHelper');
+
+        // email change strategy
+        $di->set('\Da\User\Strategy\DefaultEmailChangeStrategy');
+        $di->set('\Da\User\Strategy\InsecureEmailChangeStrategy');
+        $di->set('\Da\User\Strategy\SecureEmailChangeStrategy');
 
         // active query classes
-        Yii::$container->set(AccountQuery::class);
-        Yii::$container->set(ProfileQuery::class);
-        Yii::$container->set(TokenQuery::class);
-        Yii::$container->set(UserQuery::class);
+        Yii::$container->set('\Da\User\Query\AccountQuery');
+        Yii::$container->set('\Da\User\Query\ProfileQuery');
+        Yii::$container->set('\Da\User\Query\TokenQuery');
+        Yii::$container->set('\Da\User\Query\UserQuery');
     }
 }

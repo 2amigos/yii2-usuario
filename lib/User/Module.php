@@ -1,6 +1,8 @@
 <?php
 namespace Da\User;
 
+use Da\User\Strategy\DefaultEmailChangeStrategy;
+
 /**
  *
  * Module.php
@@ -11,11 +13,34 @@ namespace Da\User;
  */
 class Module extends \yii\base\Module
 {
-    public $token
+    /**
+     * @var bool whether to allow registration process or not.
+     */
+    public $allowRegistration = true;
+    /**
+     * @var bool whether to force email confirmation to.
+     */
+    public $forceEmailConfirmation = true;
+    /**
+     * @var bool whether to allow login accounts with unconfirmed emails.
+     */
+    public $allowUnconfirmedEmailLogin = false;
+    /**
+     * @var string the class name of the strategy class to handle user's email change.
+     */
+    public $emailChangeStrategy = DefaultEmailChangeStrategy::class;
+    /**
+     * @var int the time user will be auto logged in.
+     */
+    public $rememberLoginLifespan = 1209600;
+    /**
+     * @var int the time before the confirmation token becomes invalid. Defaults to 24 hours.
+     */
+    public $tokenConfirmationLifespan = 86400;
     /**
      * @var int the time before a recovery token is invalid. Defaults to 6 hours.
      */
-    public $tokenRecoveryWithin = 21600;
+    public $tokenRecoveryLifespan = 21600;
     /**
      * @var array a list of admin usernames
      */
