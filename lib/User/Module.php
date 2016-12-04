@@ -60,6 +60,10 @@ class Module extends \yii\base\Module
      * @var string the route prefix
      */
     public $prefix = 'user';
+    /**
+     * @var array MailService configuration
+     */
+    public $mailParams = [];
 
     /**
      * @var array the url rules (routes)

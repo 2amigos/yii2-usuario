@@ -6,25 +6,20 @@ use Da\User\Helper\SecurityHelper;
 use Da\User\Model\User;
 use yii\base\InvalidCallException;
 use Exception;
+use yii\db\ActiveRecord;
 use yii\log\Logger;
 
-/**
- *
- * UserCreateService.php
- *
- * Date: 4/12/16
- * Time: 2:55
- * @author Antonio Ramirez <hola@2amigos.us>
- */
 class UserCreateService implements ServiceInterface
 {
     protected $model;
     protected $securityHelper;
+    protected $mailService;
     protected $logger;
 
-    public function __construct(User $model, SecurityHelper $securityHelper, Logger $logger)
+    public function __construct(User $model, MailService $mailService, SecurityHelper $securityHelper, Logger $logger)
     {
         $this->model = $model;
+        $this->mailService = $mailService;
         $this->securityHelper = $securityHelper;
         $this->logger = $logger;
     }
@@ -48,7 +43,7 @@ class UserCreateService implements ServiceInterface
                 ? $model->password
                 : $this->securityHelper->generatePassword(8);
 
-            // TODO: Trigger BEFORE CREATE EVENT
+            $model->trigger(ActiveRecord::EVENT_BEFORE_INSERT);
 
             if (!$model->save()) {
                 $transaction->rollBack();
@@ -56,8 +51,9 @@ class UserCreateService implements ServiceInterface
                 return false;
             }
 
-            // TODO: Send welcome message
+            $model->trigger(ActiveRecord::EVENT_AFTER_INSERT);
 
+            $this->mailService->run();
             $transaction->commit();
 
             return true;

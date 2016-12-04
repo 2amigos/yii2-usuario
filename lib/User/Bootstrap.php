@@ -23,6 +23,7 @@ class Bootstrap implements BootstrapInterface
             $classMap = $this->buildClassMap();
             $this->initContainer($classMap);
             $this->initTranslations($app);
+            $this->initMailServiceConfiguration($app, $app->getModule('user'));
 
             if ($app instanceof WebApplication) {
                 $this->initUrlRoutes($app);
@@ -44,9 +45,9 @@ class Bootstrap implements BootstrapInterface
         $di = Yii::$container;
 
         // email change strategy
-        $di->set('Da\User\Strategy\DefaultEmailChangeStrategy');
-        $di->set('Da\User\Strategy\InsecureEmailChangeStrategy');
-        $di->set('Da\User\Strategy\SecureEmailChangeStrategy');
+        $di->set(Strategy\DefaultEmailChangeStrategy::class);
+        $di->set(Strategy\InsecureEmailChangeStrategy::class);
+        $di->set(Strategy\SecureEmailChangeStrategy::class);
 
         // models + active query classes
         $modelClassMap = [];
@@ -68,7 +69,7 @@ class Bootstrap implements BootstrapInterface
         }
 
         // helpers
-        $di->set('Da\User\Helper\AuthHelper');
+        $di->set(Helper\AuthHelper::class);
         $di->setSingleton(ClassMapHelper::class, ClassMapHelper::class, [$modelClassMap]);
 
         if (php_sapi_name() !== 'cli') {
@@ -82,6 +83,20 @@ class Bootstrap implements BootstrapInterface
                 ]
             );
         }
+
+        // services
+        $di->set(Service\UserCreateService::class);
+
+        // events
+        $di->set(Event\FormEvent::class);
+        $di->set(Event\ProfileEvent::class);
+        $di->set(Event\ResetPasswordEvent::class);
+        $di->set(Event\SocialNetworkAuthEvent::class);
+        $di->set(Event\SocialNetworkConnectEvent::class);
+        $di->set(Event\UserEvent::class);
+
+        // validators
+        $di->set(Validator\AjaxRequestModelValidator::class);
     }
 
     /**
@@ -94,7 +109,7 @@ class Bootstrap implements BootstrapInterface
         if (!isset($app->get('i18n')->translations['user*'])) {
             $app->get('i18n')->translations['user*'] = [
                 'class' => PhpMessageSource::class,
-                'basePath' => __DIR__ . '/../i18n',
+                'basePath' => __DIR__ . '/resources/i18n',
                 'sourceLanguage' => 'en-US'
             ];
         }
@@ -121,6 +136,24 @@ class Bootstrap implements BootstrapInterface
 
         $rule = Yii::createObject($config);
         $app->getUrlManager()->addRules([$rule], false);
+    }
+
+    /**
+     * Ensures required mail parameters needed for the mail service.
+     *
+     * @param Application $app
+     * @param Module $module
+     */
+    protected function initMailServiceConfiguration(Application $app, Module $module)
+    {
+        $defaults = [
+            'welcomeMailSubject' => Yii::t('user', 'Welcome to {0}', $app->name),
+            'confirmationMailSubject' => Yii::t('user', 'Confirm account on {0}', $app->name),
+            'reconfirmationMailSubject' => Yii::t('user', 'Confirm email change on {0}', $app->name),
+            'recoveryMailSubject' => Yii::t('user', 'Complete password reset on {0}', $app->name)
+        ];
+
+        $module->mailParams = array_merge($defaults, $module->mailParams);
     }
 
     /**

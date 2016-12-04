@@ -11,7 +11,7 @@ use Da\User\Contracts\StrategyInterface;
  * Time: 16:21
  * @author Antonio Ramirez <hola@2amigos.us>
  */
-class InsecuredEmailChangeStrategy implements StrategyInterface
+class InsecureEmailChangeStrategy implements StrategyInterface
 {
 
 }
