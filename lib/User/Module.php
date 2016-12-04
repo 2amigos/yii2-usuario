@@ -9,15 +9,15 @@ class Module extends \yii\base\Module
     /**
      * @var bool whether to allow registration process or not.
      */
-    public $allowRegistration = true;
+    public $enableRegistration = true;
+    /**
+     * @var bool whether to force email confirmation to.
+     */
+    public $enableEmailConfirmation = true;
     /**
      * @var bool whether to generate passwords automatically and remove the password field from the registration form.
      */
     public $generatePasswords = false;
-    /**
-     * @var bool whether to force email confirmation to.
-     */
-    public $forceEmailConfirmation = true;
     /**
      * @var bool whether to allow login accounts with unconfirmed emails.
      */
@@ -50,12 +50,6 @@ class Module extends \yii\base\Module
      * @var string the administrator permission name
      */
     public $administratorPermissionName;
-    /**
-     * @var array the class map used by the module.
-     *
-     * @see Bootstrap
-     */
-    public $classmap = [];
     /**
      * @var string the route prefix
      */

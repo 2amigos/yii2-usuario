@@ -1,0 +1,98 @@
+<?php
+
+namespace Da\User\Search;
+
+use Da\User\Query\UserQuery;
+use Yii;
+use yii\base\Model;
+use yii\data\ActiveDataProvider;
+
+class UserSearch extends Model
+{
+    /**
+     * @var string
+     */
+    public $username;
+    /**
+     * @var string
+     */
+    public $email;
+    /**
+     * @var int
+     */
+    public $created_at;
+    /**
+     * @var string
+     */
+    public $registration_ip;
+    /**
+     * @var UserQuery
+     */
+    protected $query;
+
+    /**
+     * UserSearch constructor.
+     *
+     * @param UserQuery $query
+     * @param array $config
+     */
+    public function __construct(UserQuery $query, $config = [])
+    {
+        $this->query = $query;
+        parent::__construct($config);
+    }
+
+    /**
+     * @return array
+     */
+    public function rules()
+    {
+        return [
+            'safeFields' => [['username', 'email', 'registration_ip', 'created_at'], 'safe'],
+            'createdDefault' => ['created_at', 'default', 'value' => null],
+        ];
+    }
+
+    /**
+     * @return array
+     */
+    public function attributeLabels()
+    {
+        return [
+            'username'        => Yii::t('user', 'Username'),
+            'email'           => Yii::t('user', 'Email'),
+            'created_at'      => Yii::t('user', 'Registration time'),
+            'registration_ip' => Yii::t('user', 'Registration ip'),
+        ];
+    }
+
+    /**
+     * @param $params
+     *
+     * @return ActiveDataProvider
+     */
+    public function search($params)
+    {
+        $query = $this->query;
+
+        $dataProvider = new ActiveDataProvider([
+            'query' => $query,
+        ]);
+
+        if (!($this->load($params) && $this->validate())) {
+            return $dataProvider;
+        }
+
+        if ($this->created_at !== null) {
+            $date = strtotime($this->created_at);
+            $query->andFilterWhere(['between', 'created_at', $date, $date + 3600 * 24]);
+        }
+
+        $query
+            ->andFilterWhere(['like', 'username', $this->username])
+            ->andFilterWhere(['like', 'email', $this->email])
+            ->andFilterWhere(['registration_ip' => $this->registration_ip]);
+
+        return $dataProvider;
+    }
+}

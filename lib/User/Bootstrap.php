@@ -3,6 +3,7 @@
 namespace Da\User;
 
 use Da\User\Helper\ClassMapHelper;
+use Da\User\Model\Profile;
 use Yii;
 use yii\authclient\Collection;
 use yii\base\Application;
@@ -49,7 +50,7 @@ class Bootstrap implements BootstrapInterface
         $di->set(Strategy\InsecureEmailChangeStrategy::class);
         $di->set(Strategy\SecureEmailChangeStrategy::class);
 
-        // models + active query classes
+        // models + classMap
         $modelClassMap = [];
         foreach ($map as $class => $definition) {
 
@@ -57,16 +58,36 @@ class Bootstrap implements BootstrapInterface
             $model = is_array($definition) ? $definition['class'] : $definition;
             $name = (substr($class, strrpos($class, '\\') + 1));
             $modelClassMap[$name] = $model;
-
-            if (in_array($name, ['User', 'Profile', 'Token', 'Account'])) {
-                $di->set(
-                    $name . 'Query',
-                    function () use ($model) {
-                        return $model->find();
-                    }
-                );
-            }
         }
+
+        // query classes
+        $di->set(
+            Query\ProfileQuery::class,
+            function () {
+                return Model\Profile::find();
+            }
+        );
+        $di->set(
+            Query\SocialNetworkAccountQuery::class,
+            function () {
+                return Model\SocialNetworkAccount::find();
+            }
+        );
+        $di->set(
+            Query\TokenQuery::class,
+            function () {
+                return Model\Token::find();
+            }
+        );
+        $di->set(
+            Query\UserQuery::class,
+            function () {
+                return Model\User::find();
+            }
+        );
+
+        // search class
+        $di->set(Search\UserSearch::class, [$di->get('UserQuery')]);
 
         // helpers
         $di->set(Helper\AuthHelper::class);
@@ -86,6 +107,8 @@ class Bootstrap implements BootstrapInterface
 
         // services
         $di->set(Service\UserCreateService::class);
+        $di->set(Service\UserRegisterService::class);
+        $di->set(Service\UserConfirmationService::class);
 
         // events
         $di->set(Event\FormEvent::class);
@@ -147,6 +170,7 @@ class Bootstrap implements BootstrapInterface
     protected function initMailServiceConfiguration(Application $app, Module $module)
     {
         $defaults = [
+            'fromEmail' => 'no-reply@example.com',
             'welcomeMailSubject' => Yii::t('user', 'Welcome to {0}', $app->name),
             'confirmationMailSubject' => Yii::t('user', 'Confirm account on {0}', $app->name),
             'reconfirmationMailSubject' => Yii::t('user', 'Confirm email change on {0}', $app->name),

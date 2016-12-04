@@ -8,6 +8,12 @@ class UserEvent extends Event
 {
     const EVENT_BEFORE_CREATE = 'beforeCreate';
     const EVENT_AFTER_CREATE = 'afterCreate';
+    const EVENT_BEFORE_REGISTER = 'beforeRegister';
+    const EVENT_AFTER_REGISTER = 'afterRegister';
+    const EVENT_BEFORE_PROFILE_UPDATE = 'beforeProfileUpdate';
+    const EVENT_AFTER_PROFILE_UPDATE = 'afterProfileUpdate';
+    const EVENT_BEFORE_CONFIRMATION = 'beforeConfirmation';
+    const EVENT_AFTER_CONFIRMATION = 'afterConfirmation';
 
     protected $user;
 

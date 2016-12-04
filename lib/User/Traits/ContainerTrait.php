@@ -8,8 +8,11 @@ use Yii;
 use yii\di\Container;
 
 /**
+ *
  * @property-read Container $di
- * @property-ready Da\User\Helper\AuthHelper $authHelper
+ * @property-ready Da\User\Helper\AuthHelper $auth
+ * @property-ready Da\User\Helper\ClassMapHelper $classMap
+ *
  */
 trait ContainerTrait
 {
@@ -38,17 +41,17 @@ trait ContainerTrait
     /**
      * @return \Da\User\Helper\AuthHelper
      */
-    public function getAuthHelper()
+    public function getAuth()
     {
-        return Yii::$container->get(AuthHelper::class);
+        return $this->getDi()->get(AuthHelper::class);
     }
 
     /**
      * @return \Da\User\Helper\ClassMapHelper
      */
-    public function getClassMapHelper()
+    public function getClassMap()
     {
-        return Yii::$container->get(ClassMapHelper::class);
+        return $this->getDi()->get(ClassMapHelper::class);
     }
 
 }

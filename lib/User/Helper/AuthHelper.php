@@ -32,6 +32,11 @@ class AuthHelper
         return false;
     }
 
+    /**
+     * @param $username
+     *
+     * @return bool
+     */
     public function isAdmin($username)
     {
         /** @var Module $module */

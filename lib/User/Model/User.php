@@ -1,15 +1,15 @@
 <?php
 namespace Da\User\Model;
 
-use Da\User\Helper\AuthHelper;
-use Da\User\Traits\ModuleTrait;
+use Da\User\Query\UserQuery;
 use Da\User\Traits\ContainerTrait;
+use Da\User\Traits\ModuleTrait;
+use Yii;
 use yii\base\NotSupportedException;
 use yii\behaviors\TimestampBehavior;
 use yii\db\ActiveRecord;
 use yii\helpers\ArrayHelper;
 use yii\web\IdentityInterface;
-use Yii;
 
 /**
  * User ActiveRecord model.
@@ -47,6 +47,10 @@ class User extends ActiveRecord implements IdentityInterface
      * @var string Plain password. Used for model validation.
      */
     public $password;
+    /**
+     * @var array connected account list
+     */
+    protected $connectedAccounts;
 
     /**
      * @inheritdoc
@@ -178,7 +182,7 @@ class User extends ActiveRecord implements IdentityInterface
      */
     public function getIsAdmin()
     {
-        return $this->getAuthHelper()->isAdmin($this->username);
+        return $this->getAuth()->isAdmin($this->username);
     }
 
     /**
@@ -190,7 +194,7 @@ class User extends ActiveRecord implements IdentityInterface
      */
     public function hasRole($role)
     {
-        return $this->getAuthHelper()->hasRole($this->id, $role);
+        return $this->getAuth()->hasRole($this->id, $role);
     }
 
     /**
@@ -198,10 +202,8 @@ class User extends ActiveRecord implements IdentityInterface
      */
     public function getProfile()
     {
-        return $this->hasOne($this->getClassMapHelper()->get('Profile'), ['user_id' => 'id']);
+        return $this->hasOne($this->getClassMap()->get('Profile'), ['user_id' => 'id']);
     }
-
-    protected $connectedAccounts;
 
     /**
      * @return SocialNetworkAccount[] social connected accounts [ 'providerName' => socialAccountModel ]
@@ -209,14 +211,21 @@ class User extends ActiveRecord implements IdentityInterface
     public function getSocialNetworkAccounts()
     {
         if ($this->connectedAccounts == null) {
-            $accounts = $this->connectedAccounts = $this
-                ->hasMany($this->getClassMapHelper()->get('Account'), ['user_id' => 'id'])
-                ->all();
+            /** @var SocialNetworkAccount[] $accounts */
+            $accounts = $this->hasMany($this->getClassMap()->get('Account'), ['user_id' => 'id'])->all();
 
             foreach($accounts as $account) {
                 $this->connectedAccounts[$account->provider] = $account;
             }
         }
         return $this->connectedAccounts;
+    }
+
+    /**
+     * @return UserQuery
+     */
+    public static function find()
+    {
+        return new UserQuery(static::class);
     }
 }
