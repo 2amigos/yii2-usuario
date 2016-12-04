@@ -14,6 +14,11 @@ class UserEvent extends Event
     const EVENT_AFTER_PROFILE_UPDATE = 'afterProfileUpdate';
     const EVENT_BEFORE_CONFIRMATION = 'beforeConfirmation';
     const EVENT_AFTER_CONFIRMATION = 'afterConfirmation';
+    const EVENT_BEFORE_UNBLOCK = 'beforeUnblock';
+    const EVENT_AFTER_UNBLOCK = 'afterUnblock';
+    const EVENT_BEFORE_BLOCK = 'beforeBlock';
+    const EVENT_AFTER_BLOCK = 'afterBlock';
+
 
     protected $user;
 

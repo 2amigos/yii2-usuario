@@ -255,7 +255,7 @@ class AdminController extends Controller
             /** @var UserEvent $event */
             $event = $this->make(UserEvent::class, [$user]);
 
-            if ($this->make(UserBlockService::class, [$user, $event])->run()) {
+            if ($this->make(UserBlockService::class, [$user, $event, $this])->run()) {
                 Yii::$app->getSession()->setFlash('success', Yii::t('user', 'User block status has been updated.'));
             } else {
                 Yii::$app->getSession()->setFlash('danger', Yii::t('user', 'Unable to update block status.'));

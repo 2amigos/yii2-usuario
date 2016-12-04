@@ -29,6 +29,11 @@ class SecurityHelper
         return $this->security->generatePasswordHash($password, $cost);
     }
 
+    public function generateRandomString($length = 32)
+    {
+        return $this->security->generateRandomString($length);
+    }
+
     public function validatePassword($password, $hash)
     {
         return $this->security->validatePassword($password, $hash);
