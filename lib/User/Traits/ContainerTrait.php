@@ -2,6 +2,8 @@
 
 namespace Da\User\Traits;
 
+use Da\User\Helper\AuthHelper;
+use Da\User\Helper\ClassMapHelper;
 use Yii;
 use yii\di\Container;
 
@@ -38,7 +40,7 @@ trait ContainerTrait
      */
     public function getAuthHelper()
     {
-        return Yii::$container->get('Da\User\Helper\AuthHelper');
+        return Yii::$container->get(AuthHelper::class);
     }
 
     /**
@@ -46,7 +48,7 @@ trait ContainerTrait
      */
     public function getClassMapHelper()
     {
-        return Yii::$container->get('Da\User\Helper\ClassMapHelper');
+        return Yii::$container->get(ClassMapHelper::class);
     }
 
 }
