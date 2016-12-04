@@ -11,6 +11,10 @@ class Module extends \yii\base\Module
      */
     public $allowRegistration = true;
     /**
+     * @var bool whether to generate passwords automatically and remove the password field from the registration form.
+     */
+    public $generatePasswords = false;
+    /**
      * @var bool whether to force email confirmation to.
      */
     public $forceEmailConfirmation = true;
@@ -18,6 +22,10 @@ class Module extends \yii\base\Module
      * @var bool whether to allow login accounts with unconfirmed emails.
      */
     public $allowUnconfirmedEmailLogin = false;
+    /**
+     * @var bool whether to enable password recovery or not.
+     */
+    public $allowPasswordRecovery = true;
     /**
      * @var string the class name of the strategy class to handle user's email change.
      */

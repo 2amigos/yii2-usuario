@@ -1,6 +1,7 @@
 <?php
 namespace Da\User\Helper;
 
+use Da\User\Module;
 use Yii;
 
 /**
@@ -22,12 +23,24 @@ class AuthHelper
      */
     public function hasRole($userId, $role)
     {
-        if (Yii::$app->authManager) {
-            $roles = array_keys(Yii::$app->authManager->getRolesByUser($userId));
+        if (Yii::$app->getAuthManager()) {
+            $roles = array_keys(Yii::$app->getAuthManager()->getRolesByUser($userId));
 
             return in_array($role, $roles, true);
         }
 
         return false;
     }
+
+    public function isAdmin($username)
+    {
+        /** @var Module $module */
+        $module = Yii::$app->getModule('user');
+        $hasAdministratorPermissionName = Yii::$app->getAuthManager() && $module->administratorPermissionName
+            ? Yii::$app->getUser()->can($module->administratorPermissionName)
+            : false;
+
+        return $hasAdministratorPermissionName || in_array($username, $module->administrators);
+    }
+
 }
