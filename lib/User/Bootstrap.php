@@ -4,6 +4,7 @@ namespace Da\User;
 
 use Da\User\Helper\ClassMapHelper;
 use Da\User\Model\Profile;
+use Da\User\Validator\TimeZoneValidator;
 use Yii;
 use yii\authclient\Collection;
 use yii\base\Application;
@@ -50,47 +51,26 @@ class Bootstrap implements BootstrapInterface
         $di->set(Strategy\InsecureEmailChangeStrategy::class);
         $di->set(Strategy\SecureEmailChangeStrategy::class);
 
-        // models + classMap
+        // class map + query models
         $modelClassMap = [];
         foreach ($map as $class => $definition) {
-
             $di->set($class, $definition);
             $model = is_array($definition) ? $definition['class'] : $definition;
             $name = (substr($class, strrpos($class, '\\') + 1));
             $modelClassMap[$name] = $model;
+            if(in_array($name, ['User', 'Profile', 'Token', 'Account'])) {
+                $di->set("Da\\User\\Query\\{$name}Query", function() use ($model) {
+                    return $model::find();
+                });
+            }
         }
 
-        // query classes
-        $di->set(
-            Query\ProfileQuery::class,
-            function () {
-                return Model\Profile::find();
-            }
-        );
-        $di->set(
-            Query\SocialNetworkAccountQuery::class,
-            function () {
-                return Model\SocialNetworkAccount::find();
-            }
-        );
-        $di->set(
-            Query\TokenQuery::class,
-            function () {
-                return Model\Token::find();
-            }
-        );
-        $di->set(
-            Query\UserQuery::class,
-            function () {
-                return Model\User::find();
-            }
-        );
-
         // search class
-        $di->set(Search\UserSearch::class, [$di->get('UserQuery')]);
+        $di->set(Search\UserSearch::class, [$di->get(Query\UserQuery::class)]);
 
         // helpers
         $di->set(Helper\AuthHelper::class);
+        $di->set(Helper\GravatarHelper::class);
         $di->setSingleton(ClassMapHelper::class, ClassMapHelper::class, [$modelClassMap]);
 
         if (php_sapi_name() !== 'cli') {
@@ -120,6 +100,7 @@ class Bootstrap implements BootstrapInterface
 
         // validators
         $di->set(Validator\AjaxRequestModelValidator::class);
+        $di->set(TimeZoneValidator::class);
     }
 
     /**

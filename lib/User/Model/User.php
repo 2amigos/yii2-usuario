@@ -1,6 +1,7 @@
 <?php
 namespace Da\User\Model;
 
+use Da\User\Helper\SecurityHelper;
 use Da\User\Query\UserQuery;
 use Da\User\Traits\ContainerTrait;
 use Da\User\Traits\ModuleTrait;
@@ -9,6 +10,7 @@ use yii\base\NotSupportedException;
 use yii\behaviors\TimestampBehavior;
 use yii\db\ActiveRecord;
 use yii\helpers\ArrayHelper;
+use yii\web\Application;
 use yii\web\IdentityInterface;
 
 /**
@@ -51,6 +53,38 @@ class User extends ActiveRecord implements IdentityInterface
      * @var array connected account list
      */
     protected $connectedAccounts;
+
+    /**
+     * @inheritdoc
+     */
+    public function beforeSave($insert)
+    {
+        /** @var SecurityHelper $security */
+        $security = $this->make(SecurityHelper::class);
+        if ($insert) {
+            $this->setAttribute('auth_key', $security->generateRandomString());
+            if (Yii::$app instanceof Application) {
+                $this->setAttribute('registration_ip', Yii::$app->request->getUserIP());
+            }
+        }
+
+        if (!empty($this->password)) {
+            $this->setAttribute(
+                'password_hash',
+                $security->generatePasswordHash($this->password, $this->getModule()->blowfishCost)
+            );
+        }
+
+        return parent::beforeSave($insert);
+    }
+
+    /**
+     * @inheritdoc
+     */
+    public static function tableName()
+    {
+        return '{{%user}}';
+    }
 
     /**
      * @inheritdoc
@@ -162,14 +196,6 @@ class User extends ActiveRecord implements IdentityInterface
     }
 
     /**
-     * @inheritdoc
-     */
-    public static function findIdentityByAccessToken($token, $type = null)
-    {
-        throw new NotSupportedException('Method "' . __CLASS__ . '::' . __METHOD__ . '" is not implemented.');
-    }
-
-    /**
      * @return bool whether is blocked or not.
      */
     public function getIsBlocked()
@@ -183,6 +209,14 @@ class User extends ActiveRecord implements IdentityInterface
     public function getIsAdmin()
     {
         return $this->getAuth()->isAdmin($this->username);
+    }
+
+    /**
+     * @return bool
+     */
+    public function getIsConfirmed()
+    {
+        return $this->confirmed_at !== null;
     }
 
     /**
@@ -214,10 +248,11 @@ class User extends ActiveRecord implements IdentityInterface
             /** @var SocialNetworkAccount[] $accounts */
             $accounts = $this->hasMany($this->getClassMap()->get('Account'), ['user_id' => 'id'])->all();
 
-            foreach($accounts as $account) {
+            foreach ($accounts as $account) {
                 $this->connectedAccounts[$account->provider] = $account;
             }
         }
+
         return $this->connectedAccounts;
     }
 
@@ -227,5 +262,13 @@ class User extends ActiveRecord implements IdentityInterface
     public static function find()
     {
         return new UserQuery(static::class);
+    }
+
+    /**
+     * @inheritdoc
+     */
+    public static function findIdentityByAccessToken($token, $type = null)
+    {
+        throw new NotSupportedException('Method "' . __CLASS__ . '::' . __METHOD__ . '" is not implemented.');
     }
 }

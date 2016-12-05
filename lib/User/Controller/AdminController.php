@@ -28,6 +28,9 @@ class AdminController extends Controller
     use ModuleTrait;
     use ContainerTrait;
 
+    /**
+     * @var UserQuery
+     */
     protected $userQuery;
 
     /**
