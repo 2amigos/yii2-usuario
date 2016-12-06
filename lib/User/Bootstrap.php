@@ -3,7 +3,6 @@
 namespace Da\User;
 
 use Da\User\Helper\ClassMapHelper;
-use Da\User\Model\Profile;
 use Da\User\Validator\TimeZoneValidator;
 use Yii;
 use yii\authclient\Collection;
@@ -22,8 +21,8 @@ class Bootstrap implements BootstrapInterface
     public function bootstrap($app)
     {
         if ($app->hasModule('user') && $app->getModule('user') instanceof Module) {
-            $classMap = $this->buildClassMap();
-            $this->initContainer($classMap);
+            $map = $this->buildClassMap($app->getModule('user')->classMap);
+            $this->initContainer($map);
             $this->initTranslations($app);
             $this->initMailServiceConfiguration($app, $app->getModule('user'));
 
@@ -184,22 +183,25 @@ class Bootstrap implements BootstrapInterface
     }
 
     /**
-     * Builds class map according to use configuration
+     * Builds class map according to user configuration
+     *
+     * @param array $userClassMap user configuration on the module
      *
      * @return array
      */
-    protected function buildClassMap()
+    protected function buildClassMap(array $userClassMap)
     {
         $map = [];
 
         $defaults = [
+            // --- models
             'User' => 'Da\User\Model\User',
             'Account' => 'Da\User\Model\Account',
             'Profile' => 'Da\User\Model\Profile',
             'Token' => 'Da\User\Model\Token',
-            // ---
+            // --- search
             'UserSearch' => 'Da\User\Search\UserSearch',
-            // ---
+            // --- forms
             'RegistrationForm' => 'Da\User\Form\RegistrationForm',
             'ResendForm' => 'Da\User\Form\ResendForm',
             'LoginForm' => 'Da\User\Form\LoginForm',
@@ -226,7 +228,9 @@ class Bootstrap implements BootstrapInterface
             ]
         ];
 
-        foreach ($defaults as $name => $definition) {
+        $mapping = array_merge($defaults, $userClassMap);
+
+        foreach ($mapping as $name => $definition) {
             $map[$this->getRoute($routes, $name) . "\\$name"] = $definition;
         }
 

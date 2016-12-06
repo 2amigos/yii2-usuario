@@ -1,15 +1,31 @@
 <?php
 namespace Da\User\Service;
 
-/**
- *
- * ResetPasswordService.php
- *
- * Date: 5/12/16
- * Time: 14:17
- * @author Antonio Ramirez <hola@2amigos.us>
- */
-class ResetPasswordService
+
+use Da\User\Contracts\ServiceInterface;
+use Da\User\Helper\SecurityHelper;
+use Da\User\Model\User;
+
+class ResetPasswordService implements ServiceInterface
 {
+    protected $password;
+    protected $model;
+    protected $securityHelper;
+
+    public function __construct($password, User $model, SecurityHelper $securityHelper)
+    {
+        $this->password;
+        $this->model = $model;
+        $this->securityHelper = $securityHelper;
+    }
+
+    public function run()
+    {
+        return (bool)$this->model->updateAttributes(
+            [
+                'password_hash' => $this->securityHelper->generatePasswordHash($this->password)
+            ]
+        );
+    }
 
 }

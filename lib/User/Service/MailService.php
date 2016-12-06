@@ -39,6 +39,19 @@ class MailService implements ServiceInterface
     }
 
     /**
+     * @param $name
+     * @param $value
+     *
+     * @return $this
+     */
+    public function setViewParam($name, $value)
+    {
+        $this->params[$name] = $value;
+
+        return $this;
+    }
+
+    /**
      * @return bool
      */
     public function run()

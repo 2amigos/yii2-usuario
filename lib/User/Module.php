@@ -67,6 +67,10 @@ class Module extends \yii\base\Module
      * compute the hash doubles for every increment by one of $cost.
      */
     public $blowfishCost = 10;
+    /**
+     * @var array the class map. How the container should load specific classes.
+     */
+    public $classMap = [];
 
     /**
      * @var array the url rules (routes)

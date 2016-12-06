@@ -8,6 +8,11 @@ use yii\base\Event;
 
 class ResetPasswordEvent extends Event
 {
+    const EVENT_BEFORE_TOKEN_VALIDATE = 'beforeTokenValidate';
+    const EVENT_AFTER_TOKEN_VALIDATE = 'afterTokenValidate';
+    const EVENT_BEFORE_RESET = 'beforeReset';
+    const EVENT_AFTER_RESET = 'afterReset';
+
     protected $form;
     protected $token;
 

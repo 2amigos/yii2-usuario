@@ -54,7 +54,7 @@ class AdminController extends Controller
      */
     public function beforeAction($action)
     {
-        if (in_array($action->id, ['index', 'update', 'update-profile', 'info', 'assingments'])) {
+        if (in_array($action->id, ['index', 'update', 'update-profile', 'info', 'assignments'])) {
             Url::remember('', 'actions-redirect');
         }
 
@@ -120,11 +120,13 @@ class AdminController extends Controller
 
             $mailService = MailFactory::makeWelcomeMailerService($user);
 
-            $this->make(UserCreateService::class, [$user, $mailService])->run();
+            if ($this->make(UserCreateService::class, [$user, $mailService])->run()) {
 
-            $this->trigger(UserEvent::EVENT_AFTER_CREATE, $event);
+                Yii::$app->getSession()->setFlash('success', Yii::t('user', 'User has been created'));
+                $this->trigger(UserEvent::EVENT_AFTER_CREATE, $event);
 
-            return $this->redirect(['update', 'id' => $user->id]);
+                return $this->redirect(['update', 'id' => $user->id]);
+            }
         }
 
         return $this->render('create', ['user' => $user]);
