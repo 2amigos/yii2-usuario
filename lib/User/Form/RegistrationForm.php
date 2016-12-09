@@ -1,38 +1,27 @@
 <?php
 
-/*
- * This file is part of the Dektrium project.
- *
- * (c) Dektrium project <http://github.com/dektrium/>
- *
- * For the full copyright and license information, please view the LICENSE
- * file that was distributed with this source code.
- */
+namespace Da\User\Form;
 
-namespace dektrium\user\models;
-
+use Da\User\Model\User;
+use Da\User\Traits\ContainerTrait;
 use dektrium\user\traits\ModuleTrait;
 use Yii;
 use yii\base\Model;
 
-/**
- * Registration form collects user input on registration process, validates it and creates new User model.
- *
- * @author Dmitry Erofeev <dmeroff@gmail.com>
- */
+
 class RegistrationForm extends Model
 {
     use ModuleTrait;
+    use ContainerTrait;
+
     /**
      * @var string User email address
      */
     public $email;
-
     /**
      * @var string Username
      */
     public $username;
-
     /**
      * @var string Password
      */
@@ -43,25 +32,26 @@ class RegistrationForm extends Model
      */
     public function rules()
     {
-        $user = $this->module->modelMap['User'];
+        /** @var User $user */
+        $user = $this->getClassMap()->get(User::class);
 
         return [
             // username rules
-            'usernameLength'   => ['username', 'string', 'min' => 3, 'max' => 255],
-            'usernameTrim'     => ['username', 'filter', 'filter' => 'trim'],
-            'usernamePattern'  => ['username', 'match', 'pattern' => $user::$usernameRegexp],
+            'usernameLength' => ['username', 'string', 'min' => 3, 'max' => 255],
+            'usernameTrim' => ['username', 'filter', 'filter' => 'trim'],
+            'usernamePattern' => ['username', 'match', 'pattern' => $user->usernameRegex],
             'usernameRequired' => ['username', 'required'],
-            'usernameUnique'   => [
+            'usernameUnique' => [
                 'username',
                 'unique',
                 'targetClass' => $user,
                 'message' => Yii::t('user', 'This username has already been taken')
             ],
             // email rules
-            'emailTrim'     => ['email', 'filter', 'filter' => 'trim'],
+            'emailTrim' => ['email', 'filter', 'filter' => 'trim'],
             'emailRequired' => ['email', 'required'],
-            'emailPattern'  => ['email', 'email'],
-            'emailUnique'   => [
+            'emailPattern' => ['email', 'email'],
+            'emailUnique' => [
                 'email',
                 'unique',
                 'targetClass' => $user,
@@ -69,7 +59,7 @@ class RegistrationForm extends Model
             ],
             // password rules
             'passwordRequired' => ['password', 'required', 'skipOnEmpty' => $this->module->enableGeneratingPassword],
-            'passwordLength'   => ['password', 'string', 'min' => 6, 'max' => 72],
+            'passwordLength' => ['password', 'string', 'min' => 6, 'max' => 72],
         ];
     }
 
@@ -79,18 +69,10 @@ class RegistrationForm extends Model
     public function attributeLabels()
     {
         return [
-            'email'    => Yii::t('user', 'Email'),
+            'email' => Yii::t('user', 'Email'),
             'username' => Yii::t('user', 'Username'),
             'password' => Yii::t('user', 'Password'),
         ];
-    }
-
-    /**
-     * @inheritdoc
-     */
-    public function formName()
-    {
-        return 'register-form';
     }
 
     /**

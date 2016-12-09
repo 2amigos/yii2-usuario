@@ -2,6 +2,7 @@
 namespace Da\User\Service;
 
 use Da\User\Contracts\ServiceInterface;
+use Da\User\Factory\TokenFactory;
 use Da\User\Model\Token;
 use Da\User\Model\User;
 use Da\User\Query\UserQuery;
@@ -31,16 +32,10 @@ class PasswordRecoveryService implements ServiceInterface
         try {
             /** @var User $user */
             $user = $this->query->whereEmail($this->email)->one();
-            /** @var Token $token */
-            $token = Yii::createObject(
-                [
-                    'class' => Token::class,
-                    'user_id' => $user->id,
-                    'type' => Token::TYPE_RECOVERY
-                ]
-            );
 
-            if (!$token->save(false)) {
+            $token = TokenFactory::makeRecoveryToken($user->id);
+
+            if (!$token) {
                 return false;
             }
 

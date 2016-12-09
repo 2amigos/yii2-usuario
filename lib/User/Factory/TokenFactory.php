@@ -17,7 +17,7 @@ class TokenFactory
      */
     public static function makeConfirmationToken($userId)
     {
-        $token =  self::make(Token::class, ['user_id' => $userId, 'type' => Token::TYPE_CONFIRMATION]);
+        $token = self::make($userId, Token::TYPE_CONFIRMATION);
 
         $token->save(false);
 
@@ -25,9 +25,43 @@ class TokenFactory
 
     }
 
-    protected static function make($class, $params = [])
+    /**
+     * @param $userId
+     *
+     * @return Token
+     */
+    public static function makeConfirmNewMailToken($userId)
     {
-        return Yii::$container->get($class, $params);
+        $token = self::make($userId, Token::TYPE_CONFIRM_NEW_EMAIL);
+
+        $token->save(false);
+
+        return $token;
+    }
+
+    /**
+     * @param $userId
+     *
+     * @return Token
+     */
+    public static function makeRecoveryToken($userId)
+    {
+        $token = self::make($userId, Token::TYPE_RECOVERY);
+
+        $token->save(false);
+
+        return $token;
+    }
+
+    /**
+     * @param $userId
+     * @param $type
+     *
+     * @return Token
+     */
+    protected static function make($userId, $type)
+    {
+        return Yii::$container->get(Token::class, ['user_id' => $userId, 'type' => $type]);
     }
 
 }

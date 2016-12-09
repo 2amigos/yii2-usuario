@@ -112,9 +112,9 @@ class AdminController extends Controller
 
         $this->make(AjaxRequestModelValidator::class, [$user])->validate();
 
-        $this->trigger(UserEvent::EVENT_BEFORE_CREATE, $event);
-
         if ($user->load(Yii::$app->request->post())) {
+
+            $this->trigger(UserEvent::EVENT_BEFORE_CREATE, $event);
 
             $mailService = MailFactory::makeWelcomeMailerService($user);
 
@@ -139,13 +139,15 @@ class AdminController extends Controller
 
         $this->make(AjaxRequestModelValidator::class, [$user])->validate();
 
-        $this->trigger(ActiveRecord::EVENT_BEFORE_UPDATE, $event);
+        if ($user->load(Yii::$app->request->post())) {
+            $this->trigger(ActiveRecord::EVENT_BEFORE_UPDATE, $event);
 
-        if ($user->load(Yii::$app->request->post()) && $user->save()) {
-            Yii::$app->getSession()->setFlash('success', Yii::t('user', 'Account details have been updated'));
-            $this->trigger(ActiveRecord::EVENT_AFTER_UPDATE, $event);
+            if ($user->save()) {
+                Yii::$app->getSession()->setFlash('success', Yii::t('user', 'Account details have been updated'));
+                $this->trigger(ActiveRecord::EVENT_AFTER_UPDATE, $event);
 
-            return $this->refresh();
+                return $this->refresh();
+            }
         }
 
         return $this->render('_account', ['user' => $user]);
@@ -162,15 +164,17 @@ class AdminController extends Controller
         }
         /** @var UserEvent $event */
         $event = $this->make(UserEvent::class, [$user]);
+
         $this->make(AjaxRequestModelValidator::class, [$user])->validate();
 
-        $this->trigger(UserEvent::EVENT_BEFORE_PROFILE_UPDATE, $event);
+        if ($profile->load(Yii::$app->request->post())) {
+            if($profile->save()) {
+                $this->trigger(UserEvent::EVENT_BEFORE_PROFILE_UPDATE, $event);
+                Yii::$app->getSession()->setFlash('success', Yii::t('user', 'Profile details have been updated'));
+                $this->trigger(UserEvent::EVENT_AFTER_PROFILE_UPDATE, $event);
 
-        if ($profile->load(Yii::$app->request->post()) && $profile->save()) {
-            Yii::$app->getSession()->setFlash('success', Yii::t('user', 'Profile details have been updated'));
-            $this->trigger(UserEvent::EVENT_AFTER_PROFILE_UPDATE, $event);
-
-            return $this->refresh();
+                return $this->refresh();
+            }
         }
 
         return $this->render(
@@ -216,9 +220,11 @@ class AdminController extends Controller
         $event = $this->make(UserEvent::class, [$user]);
 
         $this->trigger(UserEvent::EVENT_BEFORE_CONFIRMATION, $event);
+
         if ($this->make(UserConfirmationService::class, [$user])->run()) {
             Yii::$app->getSession()->setFlash('success', Yii::t('user', 'User has been confirmed'));
             $this->trigger(UserEvent::EVENT_AFTER_CONFIRMATION, $event);
+
         } else {
             Yii::$app->getSession()->setFlash('warning', Yii::t('user', 'Unable to confirm user. Please, try again.'));
         }
@@ -236,9 +242,11 @@ class AdminController extends Controller
             /** @var UserEvent $event */
             $event = $this->make(UserEvent::class, [$user]);
             $this->trigger(ActiveRecord::EVENT_BEFORE_DELETE, $event);
+
             if ($user->delete()) {
                 Yii::$app->getSession()->setFlash('success', \Yii::t('user', 'User has been deleted'));
                 $this->trigger(ActiveRecord::EVENT_AFTER_DELETE, $event);
+
             } else {
                 Yii::$app->getSession()->setFlash(
                     'warning',

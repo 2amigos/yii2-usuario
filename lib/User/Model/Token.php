@@ -74,7 +74,7 @@ class Token extends ActiveRecord
      */
     public function getUser()
     {
-        return $this->hasOne($this->getClassMap()->get('User'), ['id' => 'user_id']);
+        return $this->hasOne($this->getClassMap()->get(User::class), ['id' => 'user_id']);
     }
 
     /**

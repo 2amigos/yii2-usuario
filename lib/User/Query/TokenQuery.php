@@ -10,4 +10,9 @@ class TokenQuery extends ActiveQuery
     {
         return $this->andWhere(['user_id' => $userId, 'code' => $code, 'type' => Token::TYPE_RECOVERY]);
     }
+
+    public function whereIsConfirmationType($userId, $code)
+    {
+        return $this->andWhere(['user_id' => $userId, 'code' => $code, 'type' => Token::TYPE_CONFIRM_NEW_EMAIL]);
+    }
 }

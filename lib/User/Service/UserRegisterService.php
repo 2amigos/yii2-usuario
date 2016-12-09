@@ -3,6 +3,7 @@ namespace Da\User\Service;
 
 use Da\User\Contracts\ServiceInterface;
 use Da\User\Event\UserEvent;
+use Da\User\Factory\TokenFactory;
 use Da\User\Helper\SecurityHelper;
 use Da\User\Model\Token;
 use Da\User\Model\User;
@@ -50,10 +51,12 @@ class UserRegisterService implements ServiceInterface
             }
 
             if($model->module->enableEmailConfirmation) {
-                $token = $model->make(Token::class, ['type' => Token::TYPE_CONFIRMATION]);
-                $token->link('user', $model);
+                $token = TokenFactory::makeConfirmationToken($model->id);
             }
 
+            if(isset($token)) {
+                $this->mailService->setViewParam('token', $token);
+            }
             $this->mailService->run();
 
             $model->trigger(UserEvent::EVENT_AFTER_REGISTER);

@@ -5,13 +5,17 @@ use Da\User\Event\FormEvent;
 use Da\User\Event\SocialNetworkConnectEvent;
 use Da\User\Event\UserEvent;
 use Da\User\Factory\MailFactory;
+use Da\User\Form\RegistrationForm;
 use Da\User\Form\ResendForm;
 use Da\User\Model\SocialNetworkAccount;
 use Da\User\Model\User;
 use Da\User\Query\SocialNetworkAccountQuery;
 use Da\User\Query\UserQuery;
+use Da\User\Service\EmailConfirmationService;
 use Da\User\Service\ResendConfirmationService;
+use Da\User\Service\UserConfirmationService;
 use Da\User\Service\UserCreateService;
+use Da\User\Service\UserRegisterService;
 use Da\User\Traits\ContainerTrait;
 use Da\User\Traits\ModuleTrait;
 use Da\User\Validator\AjaxRequestModelValidator;
@@ -75,6 +79,45 @@ class RegistrationController extends Controller
         ];
     }
 
+    public function actionRegister()
+    {
+        if(!$this->module->enableRegistration) {
+            throw new NotFoundHttpException();
+        }
+        /** @var RegistrationForm $form */
+        $form = $this->make(RegistrationForm::class);
+        /** @var FormEvent $event */
+        $event = $this->make(FormEvent::class, [$form]);
+
+        $this->make(AjaxRequestModelValidator::class, [$form])->validate();
+
+        if($form->load(Yii::$app->request->post()) && $form->validate()) {
+            $this->trigger(UserEvent::EVENT_BEFORE_REGISTER, $event);
+
+            $user = $this->make(User::class, [$form->attributes]);
+            $user->setScenario('register');
+            $mailService = MailFactory::makeWelcomeMailerService($user);
+
+            if($this->make(UserRegisterService::class, [$user, $mailService])->run()) {
+                Yii::$app->session->setFlash(
+                    'info',
+                    Yii::t(
+                        'user',
+                        'Your account has been created and a message with further instructions has been sent to your email'
+                    )
+                );
+                return $this->render('message', [
+                    'title' => Yii::t('user', 'Your account has been created')
+                ]);
+            }
+
+            return $this->render('register', [
+                'model'  => $form,
+                'module' => $this->module,
+            ]);
+        }
+    }
+
     public function actionConnect($code)
     {
         /** @var SocialNetworkAccount $account */
@@ -92,9 +135,10 @@ class RegistrationController extends Controller
 
         $this->make(AjaxRequestModelValidator::class, [$user])->validate();
 
-        $this->trigger(SocialNetworkConnectEvent::EVENT_BEFORE_CONNECT, $event);
-
         if ($user->load(Yii::$app->request->post())) {
+
+            $this->trigger(SocialNetworkConnectEvent::EVENT_BEFORE_CONNECT, $event);
+
             $mailService = MailFactory::makeWelcomeMailerService($user);
             if ($this->make(UserCreateService::class, [$user, $mailService])->run()) {
                 $account->connect($user);
@@ -125,12 +169,21 @@ class RegistrationController extends Controller
 
         /** @var UserEvent $event */
         $event = $this->make(UserEvent::class, [$user]);
+        $userConfirmationService = $this->make(UserConfirmationService::class, [$user]);
 
         $this->trigger(UserEvent::EVENT_BEFORE_CONFIRMATION, $event);
 
-        // TODO ATTEMPT CONFIRMATION
+        if ($this->make(EmailConfirmationService::class, [$code, $user, $userConfirmationService])->run()) {
+            Yii::$app->user->login($user, $this->module->rememberLoginLifespan);
+            Yii::$app->session->setFlash('success', Yii::t('user', 'Thank you, registration is now complete.'));
 
-        $this->trigger(UserEvent::EVENT_AFTER_CONFIRMATION, $event);
+            $this->trigger(UserEvent::EVENT_AFTER_CONFIRMATION, $event);
+        } else {
+            Yii::$app->session->setFlash(
+                'danger',
+                Yii::t('user', 'The confirmation link is invalid or expired. Please try requesting a new one.')
+            );
+        }
 
         return $this->render(
             'message',
@@ -152,8 +205,8 @@ class RegistrationController extends Controller
 
         $this->make(AjaxRequestModelValidator::class, [$form])->validate();
 
-        $this->trigger(FormEvent::EVENT_BEFORE_RESEND, $event);
         if ($form->load(Yii::$app->request->post()) && $form->validate()) {
+            $this->trigger(FormEvent::EVENT_BEFORE_RESEND, $event);
             /** @var User $user */
             $user = $this->userQuery->whereEmail($form->email)->one();
             $mailService = MailFactory::makeConfirmationMailerService($user);

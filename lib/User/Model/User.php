@@ -236,7 +236,7 @@ class User extends ActiveRecord implements IdentityInterface
      */
     public function getProfile()
     {
-        return $this->hasOne($this->getClassMap()->get('Profile'), ['user_id' => 'id']);
+        return $this->hasOne($this->getClassMap()->get(Profile::class), ['user_id' => 'id']);
     }
 
     /**
@@ -246,7 +246,9 @@ class User extends ActiveRecord implements IdentityInterface
     {
         if ($this->connectedAccounts == null) {
             /** @var SocialNetworkAccount[] $accounts */
-            $accounts = $this->hasMany($this->getClassMap()->get('Account'), ['user_id' => 'id'])->all();
+            $accounts = $this->hasMany($this->getClassMap()
+                ->get(SocialNetworkAccount::class), ['user_id' => 'id'])
+                ->all();
 
             foreach ($accounts as $account) {
                 $this->connectedAccounts[$account->provider] = $account;

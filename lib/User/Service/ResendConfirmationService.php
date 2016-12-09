@@ -4,10 +4,7 @@ namespace Da\User\Service;
 
 use Da\User\Contracts\ServiceInterface;
 use Da\User\Factory\TokenFactory;
-use Da\User\Helper\SecurityHelper;
-use Da\User\Model\Token;
 use Da\User\Model\User;
-use Da\User\Query\UserQuery;
 use yii\log\Logger;
 
 class ResendConfirmationService implements ServiceInterface

@@ -11,6 +11,7 @@
 
 namespace dektrium\user\models;
 
+use Da\User\Factory\TokenFactory;
 use dektrium\user\helpers\Password;
 use dektrium\user\Mailer;
 use dektrium\user\Module;
@@ -160,12 +161,8 @@ class SettingsForm extends Model
     {
         $this->user->unconfirmed_email = $this->email;
         /** @var Token $token */
-        $token = Yii::createObject([
-            'class'   => Token::className(),
-            'user_id' => $this->user->id,
-            'type'    => Token::TYPE_CONFIRM_NEW_EMAIL,
-        ]);
-        $token->save(false);
+        $token = TokenFactory::makeConfirmNewMailToken($this->user->id);
+
         $this->mailer->sendReconfirmationMessage($this->user, $token);
         Yii::$app->session->setFlash(
             'info',
