@@ -8,6 +8,9 @@ use yii\base\Event;
 
 class SocialNetworkConnectEvent extends Event
 {
+    const EVENT_BEFORE_CONNECT = 'beforeConnect';
+    const EVENT_AFTER_CONNECT = 'afterConnect';
+
     protected $user;
     protected $account;
 

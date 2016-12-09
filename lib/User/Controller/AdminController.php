@@ -12,7 +12,6 @@ use Da\User\Service\UserBlockService;
 use Da\User\Service\UserConfirmationService;
 use Da\User\Service\UserCreateService;
 use Da\User\Traits\ContainerTrait;
-use Da\User\Traits\ModuleTrait;
 use Da\User\Validator\AjaxRequestModelValidator;
 use Yii;
 use yii\base\Module;
@@ -25,7 +24,6 @@ use yii\web\Controller;
 
 class AdminController extends Controller
 {
-    use ModuleTrait;
     use ContainerTrait;
 
     /**
@@ -165,6 +163,7 @@ class AdminController extends Controller
         /** @var UserEvent $event */
         $event = $this->make(UserEvent::class, [$user]);
         $this->make(AjaxRequestModelValidator::class, [$user])->validate();
+
         $this->trigger(UserEvent::EVENT_BEFORE_PROFILE_UPDATE, $event);
 
         if ($profile->load(Yii::$app->request->post()) && $profile->save()) {
@@ -215,6 +214,7 @@ class AdminController extends Controller
         $user = $this->userQuery->where(['id' => $id])->one();
         /** @var UserEvent $event */
         $event = $this->make(UserEvent::class, [$user]);
+
         $this->trigger(UserEvent::EVENT_BEFORE_CONFIRMATION, $event);
         if ($this->make(UserConfirmationService::class, [$user])->run()) {
             Yii::$app->getSession()->setFlash('success', Yii::t('user', 'User has been confirmed'));

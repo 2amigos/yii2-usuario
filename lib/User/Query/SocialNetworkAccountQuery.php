@@ -15,4 +15,9 @@ class SocialNetworkAccountQuery extends ActiveQuery
             ]
         );
     }
+
+    public function whereCode($code)
+    {
+        return $this->andWhere(['code' => md5($code)]);
+    }
 }

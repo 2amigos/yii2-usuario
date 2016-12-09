@@ -11,17 +11,15 @@ use Da\User\Query\UserQuery;
 use Da\User\Service\PasswordRecoveryService;
 use Da\User\Service\ResetPasswordService;
 use Da\User\Traits\ContainerTrait;
-use Da\User\Traits\ModuleTrait;
 use Da\User\Validator\AjaxRequestModelValidator;
 use Yii;
-use yii\base\Module;
+use Da\User\Module;
 use yii\filters\AccessControl;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 
 class RecoveryController extends Controller
 {
-    use ModuleTrait;
     use ContainerTrait;
 
     protected $userQuery;
@@ -70,7 +68,8 @@ class RecoveryController extends Controller
      */
     public function actionRequest()
     {
-        if (!$this->getModule()->allowPasswordRecovery) {
+
+        if (!$this->module->allowPasswordRecovery) {
             throw new NotFoundHttpException();
         }
 
@@ -93,7 +92,7 @@ class RecoveryController extends Controller
                     'message',
                     [
                         'title' => Yii::t('user', 'Recovery message sent'),
-                        'module' => $this->getModule(),
+                        'module' => $this->module,
                     ]
                 );
             }
@@ -113,7 +112,7 @@ class RecoveryController extends Controller
      */
     public function actionReset($id, $code)
     {
-        if (!$this->getModule()->allowPasswordRecovery) {
+        if (!$this->module->allowPasswordRecovery) {
             throw new NotFoundHttpException();
         }
         /** @var Token $token */
@@ -133,7 +132,7 @@ class RecoveryController extends Controller
                 'message',
                 [
                     'title' => Yii::t('user', 'Invalid or expired link'),
-                    'module' => $this->getModule(),
+                    'module' => $this->module,
                 ]
             );
         }
@@ -152,7 +151,7 @@ class RecoveryController extends Controller
                     'message',
                     [
                         'title' => Yii::t('user', 'Password has been changed'),
-                        'module' => $this->getModule(),
+                        'module' => $this->module,
                     ]
                 );
             }

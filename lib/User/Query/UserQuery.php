@@ -22,4 +22,9 @@ class UserQuery extends ActiveQuery
     {
         return $this->andWhere(['username' => $username]);
     }
+
+    public function whereId($id)
+    {
+        return $this->andWhere(['id' => $id]);
+    }
 }

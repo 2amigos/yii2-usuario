@@ -1,52 +1,28 @@
 <?php
+namespace Da\User\Form;
 
-/*
- * This file is part of the Dektrium project.
- *
- * (c) Dektrium project <http://github.com/dektrium/>
- *
- * For the full copyright and license information, please view the LICENSE
- * file that was distributed with this source code.
- */
-
-namespace dektrium\user\models;
-
-use dektrium\user\Finder;
-use dektrium\user\Mailer;
+use Da\User\Query\UserQuery;
+use Yii;
 use yii\base\Model;
 
-/**
- * ResendForm gets user email address and if user with given email is registered it sends new confirmation message
- * to him in case he did not validate his email.
- *
- * @author Dmitry Erofeev <dmeroff@gmail.com>
- */
 class ResendForm extends Model
 {
     /**
      * @var string
      */
     public $email;
-
     /**
-     * @var Mailer
+     * @var UserQuery
      */
-    protected $mailer;
+    protected $userQuery;
 
     /**
-     * @var Finder
-     */
-    protected $finder;
-
-    /**
-     * @param Mailer $mailer
-     * @param Finder $finder
+     * @param UserQuery $userQuery
      * @param array  $config
      */
-    public function __construct(Mailer $mailer, Finder $finder, $config = [])
+    public function __construct(UserQuery $userQuery, $config = [])
     {
-        $this->mailer = $mailer;
-        $this->finder = $finder;
+        $this->userQuery = $userQuery;
         parent::__construct($config);
     }
 
@@ -67,16 +43,8 @@ class ResendForm extends Model
     public function attributeLabels()
     {
         return [
-            'email' => \Yii::t('user', 'Email'),
+            'email' => Yii::t('user', 'Email'),
         ];
-    }
-
-    /**
-     * @inheritdoc
-     */
-    public function formName()
-    {
-        return 'resend-form';
     }
 
     /**
@@ -89,6 +57,8 @@ class ResendForm extends Model
         if (!$this->validate()) {
             return false;
         }
+
+        $user = $this->userQuery->whereEmail($this->email)->one();
 
         $user = $this->finder->findUserByEmail($this->email);
 
