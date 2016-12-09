@@ -2,8 +2,6 @@
 namespace Da\User\Factory;
 
 use Da\User\Model\Token;
-use Da\User\Model\User;
-use Da\User\Traits\ContainerTrait;
 use Yii;
 
 

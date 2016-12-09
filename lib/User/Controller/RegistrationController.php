@@ -27,7 +27,6 @@ use yii\web\NotFoundHttpException;
 
 class RegistrationController extends Controller
 {
-    use ModuleTrait;
     use ContainerTrait;
 
     protected $userQuery;
