@@ -10,6 +10,8 @@ class FormEvent extends Event
     const EVENT_AFTER_REQUEST = 'afterRequest';
     const EVENT_BEFORE_RESEND = 'beforeResend';
     const EVENT_AFTER_RESEND = 'afterResend';
+    const EVENT_BEFORE_LOGIN = 'beforeLogin';
+    const EVENT_AFTER_LOGIN = 'afterLogin';
 
     protected $form;
 
