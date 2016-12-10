@@ -6,6 +6,11 @@ use yii\db\ActiveQuery;
 
 class SocialNetworkAccountQuery extends ActiveQuery
 {
+    public function whereId($id)
+    {
+        return $this->andWhere(['id' => $id]);
+    }
+
     public function whereClient(AuthClientInterface $client)
     {
         return $this->andWhere(

@@ -10,6 +10,8 @@ class SocialNetworkConnectEvent extends Event
 {
     const EVENT_BEFORE_CONNECT = 'beforeConnect';
     const EVENT_AFTER_CONNECT = 'afterConnect';
+    const EVENT_BEFORE_DISCONNECT = 'beforeDisconnect';
+    const EVENT_AFTER_DISCONNECT = 'afterDisconnect';
 
     protected $user;
     protected $account;
