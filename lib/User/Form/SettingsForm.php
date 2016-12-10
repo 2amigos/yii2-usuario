@@ -1,113 +1,107 @@
 <?php
 
-/*
- * This file is part of the Dektrium project.
- *
- * (c) Dektrium project <http://github.com/dektrium/>
- *
- * For the full copyright and license information, please view the LICENSE
- * file that was distributed with this source code.
- */
-
-namespace dektrium\user\models;
+namespace Da\User\Form;
 
 use Da\User\Factory\TokenFactory;
-use dektrium\user\helpers\Password;
-use dektrium\user\Mailer;
-use dektrium\user\Module;
-use dektrium\user\traits\ModuleTrait;
+use Da\User\Helper\SecurityHelper;
+use Da\User\Model\User;
+use Da\User\Traits\ContainerTrait;
+use Da\User\Traits\ModuleTrait;
 use Yii;
 use yii\base\Model;
 
-/**
- * SettingsForm gets user's username, email and password and changes them.
- *
- * @property User $user
- *
- * @author Dmitry Erofeev <dmeroff@gmail.com>
- */
 class SettingsForm extends Model
 {
     use ModuleTrait;
+    use ContainerTrait;
 
-    /** @var string */
+    /**
+     * @var string
+     */
     public $email;
-
-    /** @var string */
+    /**
+     * @var string
+     */
     public $username;
-
-    /** @var string */
+    /**
+     * @var string
+     */
     public $new_password;
-
-    /** @var string */
+    /**
+     * @var string
+     */
     public $current_password;
-
-    /** @var Mailer */
-    protected $mailer;
+    /**
+     * @var SecurityHelper
+     */
+    protected $securityHelper;
 
     /** @var User */
-    private $_user;
+    private $user;
 
-    /** @return User */
-    public function getUser()
+    public function __construct(SecurityHelper $securityHelper, array $config)
     {
-        if ($this->_user == null) {
-            $this->_user = Yii::$app->user->identity;
-        }
-
-        return $this->_user;
-    }
-
-    /** @inheritdoc */
-    public function __construct(Mailer $mailer, $config = [])
-    {
-        $this->mailer = $mailer;
-        $this->setAttributes([
-            'username' => $this->user->username,
-            'email'    => $this->user->unconfirmed_email ?: $this->user->email,
-        ], false);
+        $this->securityHelper = $securityHelper;
         parent::__construct($config);
     }
 
-    /** @inheritdoc */
+    /**
+     * @return array
+     */
     public function rules()
     {
         return [
             'usernameRequired' => ['username', 'required'],
             'usernameTrim' => ['username', 'filter', 'filter' => 'trim'],
-            'usernameLength'   => ['username', 'string', 'min' => 3, 'max' => 255],
+            'usernameLength' => ['username', 'string', 'min' => 3, 'max' => 255],
             'usernamePattern' => ['username', 'match', 'pattern' => '/^[-a-zA-Z0-9_\.@]+$/'],
             'emailRequired' => ['email', 'required'],
             'emailTrim' => ['email', 'filter', 'filter' => 'trim'],
             'emailPattern' => ['email', 'email'],
-            'emailUsernameUnique' => [['email', 'username'], 'unique', 'when' => function ($model, $attribute) {
-                return $this->user->$attribute != $model->$attribute;
-            }, 'targetClass' => $this->module->modelMap['User']],
+            'emailUsernameUnique' => [
+                ['email', 'username'],
+                'unique',
+                'when' => function ($model, $attribute) {
+                    return $this->user->$attribute != $model->$attribute;
+                },
+                'targetClass' => $this->getClassMap()[User::class]
+            ],
             'newPasswordLength' => ['new_password', 'string', 'max' => 72, 'min' => 6],
             'currentPasswordRequired' => ['current_password', 'required'],
-            'currentPasswordValidate' => ['current_password', function ($attr) {
-                if (!Password::validate($this->$attr, $this->user->password_hash)) {
-                    $this->addError($attr, Yii::t('user', 'Current password is not valid'));
+            'currentPasswordValidate' => [
+                'current_password',
+                function ($attribute) {
+                    if (!$this->securityHelper->validatePassword($this->$attribute, $this->user->password_hash)) {
+                        $this->addError($attribute, Yii::t('user', 'Current password is not valid'));
+                    }
                 }
-            }],
+            ],
         ];
     }
 
-    /** @inheritdoc */
+    /**
+     * @inheritdoc
+     */
     public function attributeLabels()
     {
         return [
-            'email'            => Yii::t('user', 'Email'),
-            'username'         => Yii::t('user', 'Username'),
-            'new_password'     => Yii::t('user', 'New password'),
+            'email' => Yii::t('user', 'Email'),
+            'username' => Yii::t('user', 'Username'),
+            'new_password' => Yii::t('user', 'New password'),
             'current_password' => Yii::t('user', 'Current password'),
         ];
     }
 
-    /** @inheritdoc */
-    public function formName()
+    /**
+     * @return User|null|\yii\web\IdentityInterface
+     */
+    public function getUser()
     {
-        return 'settings-form';
+        if ($this->user == null) {
+            $this->user = Yii::$app->user->identity;
+        }
+
+        return $this->user;
     }
 
     /**
@@ -179,11 +173,13 @@ class SettingsForm extends Model
     {
         $this->defaultEmailChange();
         /** @var Token $token */
-        $token = Yii::createObject([
-            'class'   => Token::className(),
-            'user_id' => $this->user->id,
-            'type'    => Token::TYPE_CONFIRM_OLD_EMAIL,
-        ]);
+        $token = Yii::createObject(
+            [
+                'class' => Token::className(),
+                'user_id' => $this->user->id,
+                'type' => Token::TYPE_CONFIRM_OLD_EMAIL,
+            ]
+        );
         $token->save(false);
         $this->mailer->sendReconfirmationMessage($this->user, $token);
 

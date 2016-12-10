@@ -8,7 +8,7 @@ use Da\User\Model\Token;
 use Da\User\Model\User;
 use Da\User\Query\TokenQuery;
 
-class EmailConfirmationService implements ServiceInterface
+class AccountConfirmationService implements ServiceInterface
 {
     protected $model;
     protected $code;
@@ -29,7 +29,11 @@ class EmailConfirmationService implements ServiceInterface
 
     public function run()
     {
-        $token = $this->tokenQuery->whereIsConfirmationType($this->model->id, $this->code)->one();
+        $token = $this->tokenQuery
+            ->whereUserId($this->model->id)
+            ->whereCode($this->code)
+            ->whereIsConfirmationType()
+            ->one();
 
         if ($token instanceof Token && !$token->getIsExpired()) {
             $token->delete();

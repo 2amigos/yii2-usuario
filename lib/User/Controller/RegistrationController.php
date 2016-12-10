@@ -11,6 +11,7 @@ use Da\User\Model\SocialNetworkAccount;
 use Da\User\Model\User;
 use Da\User\Query\SocialNetworkAccountQuery;
 use Da\User\Query\UserQuery;
+use Da\User\Service\AccountConfirmationService;
 use Da\User\Service\EmailConfirmationService;
 use Da\User\Service\ResendConfirmationService;
 use Da\User\Service\UserConfirmationService;
@@ -172,7 +173,7 @@ class RegistrationController extends Controller
 
         $this->trigger(UserEvent::EVENT_BEFORE_CONFIRMATION, $event);
 
-        if ($this->make(EmailConfirmationService::class, [$code, $user, $userConfirmationService])->run()) {
+        if ($this->make(AccountConfirmationService::class, [$code, $user, $userConfirmationService])->run()) {
             Yii::$app->user->login($user, $this->module->rememberLoginLifespan);
             Yii::$app->session->setFlash('success', Yii::t('user', 'Thank you, registration is now complete.'));
 

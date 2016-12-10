@@ -24,11 +24,13 @@ use yii\web\IdentityInterface;
  * @property integer $id
  * @property string $username
  * @property string $email
+ * @property string $unconfirmed_email
  * @property string $password_hash
  * @property string $auth_key
  * @property integer $registration_ip
  * @property integer $confirmed_at
  * @property integer $blocked_at
+ * @property integer $flags
  * @property integer $created_at
  * @property integer $updated_at
  *
@@ -40,6 +42,10 @@ class User extends ActiveRecord implements IdentityInterface
 {
     use ModuleTrait;
     use ContainerTrait;
+
+    // following constants are used on secured email changing process
+    const OLD_EMAIL_CONFIRMED = 0b1;
+    const NEW_EMAIL_CONFIRMED = 0b10;
 
     /**
      * @var string default user name regular expression.

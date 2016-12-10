@@ -42,6 +42,20 @@ class TokenFactory
      *
      * @return Token
      */
+    public static function makeConfirmOldMailToken($userId)
+    {
+        $token = self::make($userId, Token::TYPE_CONFIRM_OLD_EMAIL);
+
+        $token->save(false);
+
+        return $token;
+    }
+
+    /**
+     * @param $userId
+     *
+     * @return Token
+     */
     public static function makeRecoveryToken($userId)
     {
         $token = self::make($userId, Token::TYPE_RECOVERY);

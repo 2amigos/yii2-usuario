@@ -1,17 +1,23 @@
 <?php
 namespace Da\User\Strategy;
 
-use Da\User\Contracts\StrategyInterface;
+use Da\User\Contracts\MailChangeStrategyInterface;
+use Da\User\Form\SettingsForm;
 
-/**
- *
- * InsecuredEmailChangeStrategy.php
- *
- * Date: 3/12/16
- * Time: 16:21
- * @author Antonio Ramirez <hola@2amigos.us>
- */
-class InsecureEmailChangeStrategy implements StrategyInterface
+
+class InsecureEmailChangeStrategy implements MailChangeStrategyInterface
 {
+    protected $form;
+
+    public function __construct(SettingsForm $form)
+    {
+        $this->form = $form;
+    }
+
+    public function run()
+    {
+        $this->form->getUser()->email = $this->form->email;
+        return $this->form->getUser()->save();
+    }
 
 }

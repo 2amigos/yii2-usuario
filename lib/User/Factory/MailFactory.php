@@ -52,6 +52,12 @@ class MailFactory
         return static::makeMailerService($from, $to, $subject, 'recovery', $params);
     }
 
+    /**
+     * @param User $user
+     * @param Token|null $token
+     *
+     * @return MailService
+     */
     public static function makeConfirmationMailerService(User $user, Token $token = null)
     {
         /** @var Module $module */
@@ -59,6 +65,29 @@ class MailFactory
         $to = $user->email;
         $from = $module->mailParams['fromEmail'];
         $subject = $module->mailParams['confirmationMailSubject'];
+        $params = [
+            'user' => $token && $token->user ? $token->user : null,
+            'token' => $token
+        ];
+
+        return static::makeMailerService($from, $to, $subject, 'recovery', $params);
+    }
+
+    /**
+     * @param User $user
+     * @param Token $token
+     *
+     * @return MailService
+     */
+    public static function makeReconfirmationMailerService(User $user, Token $token) {
+        /** @var Module $module */
+        $module = Yii::$app->getModule('user');
+        $to = $token->type === Token::TYPE_CONFIRM_NEW_EMAIL
+            ? $user->unconfirmed_email
+            : $user->email;
+
+        $from = $module->mailParams['fromEmail'];
+        $subject = $module->mailParams['reconfirmationMailSubject'];
         $params = [
             'user' => $token && $token->user ? $token->user : null,
             'token' => $token

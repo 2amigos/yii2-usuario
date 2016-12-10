@@ -117,7 +117,7 @@ class RecoveryController extends Controller
             throw new NotFoundHttpException();
         }
         /** @var Token $token */
-        $token = $this->tokenQuery->whereIsRecoveryType($id, $code)->one();
+        $token = $this->tokenQuery->whereUserId($id)->whereCode($code)->whereIsRecoveryType()->one();
         /** @var ResetPasswordEvent $event */
         $event = $this->make(ResetPasswordEvent::class, [$token]);
 

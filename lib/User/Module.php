@@ -2,7 +2,7 @@
 
 namespace Da\User;
 
-use Da\User\Strategy\DefaultEmailChangeStrategy;
+use Da\User\Contracts\MailChangeStrategyInterface;
 
 class Module extends \yii\base\Module
 {
@@ -29,7 +29,7 @@ class Module extends \yii\base\Module
     /**
      * @var string the class name of the strategy class to handle user's email change.
      */
-    public $emailChangeStrategy = DefaultEmailChangeStrategy::class;
+    public $emailChangeStrategy = MailChangeStrategyInterface::TYPE_DEFAULT;
     /**
      * @var int the time user will be auto logged in.
      */
