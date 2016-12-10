@@ -1,37 +1,30 @@
 <?php
 
-/*
- * This file is part of the Dektrium project
- *
- * (c) Dektrium project <http://github.com/dektrium>
- *
- * For the full copyright and license information, please view the LICENSE.md
- * file that was distributed with this source code.
- */
-
 use yii\bootstrap\ActiveForm;
 use yii\helpers\Html;
 
 /**
- * @var yii\web\View                    $this
- * @var dektrium\user\models\User       $user
- * @var dektrium\user\models\Profile    $profile
+ * @var yii\web\View $this
+ * @var \Da\User\Model\User $user
+ * @var \Da\User\Model\Profile $profile
  */
 
 ?>
 
-<?php $this->beginContent('@dektrium/user/views/admin/update.php', ['user' => $user]) ?>
+<?php $this->beginContent('@Da/User/resources/views/admin/update.php', ['user' => $user]) ?>
 
-<?php $form = ActiveForm::begin([
-    'layout' => 'horizontal',
-    'enableAjaxValidation' => true,
-    'enableClientValidation' => false,
-    'fieldConfig' => [
-        'horizontalCssClasses' => [
-            'wrapper' => 'col-sm-9',
+<?php $form = ActiveForm::begin(
+    [
+        'layout' => 'horizontal',
+        'enableAjaxValidation' => true,
+        'enableClientValidation' => false,
+        'fieldConfig' => [
+            'horizontalCssClasses' => [
+                'wrapper' => 'col-sm-9',
+            ],
         ],
-    ],
-]); ?>
+    ]
+); ?>
 
 <?= $form->field($profile, 'name') ?>
 <?= $form->field($profile, 'public_email') ?>
