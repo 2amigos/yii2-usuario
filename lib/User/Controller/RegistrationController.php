@@ -106,7 +106,7 @@ class RegistrationController extends Controller
                         'Your account has been created and a message with further instructions has been sent to your email'
                     )
                 );
-                return $this->render('message', [
+                return $this->render('/user/shared/message', [
                     'title' => Yii::t('user', 'Your account has been created')
                 ]);
             }
@@ -186,7 +186,7 @@ class RegistrationController extends Controller
         }
 
         return $this->render(
-            'message',
+            '/user/shared/message',
             [
                 'title' => Yii::t('user', 'Account confirmation'),
                 'module' => $this->module,
