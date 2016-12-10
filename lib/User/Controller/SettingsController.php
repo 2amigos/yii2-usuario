@@ -199,7 +199,7 @@ class SettingsController extends Controller
 
     public function actionDelete()
     {
-        if (!$this->module->enableAccountDelete) {
+        if (!$this->module->allowAccountDelete) {
             throw new NotFoundHttpException(\Yii::t('user', 'Not found'));
         }
 

@@ -1,20 +1,12 @@
 <?php
 
-/*
- * This file is part of the Dektrium project.
- *
- * (c) Dektrium project <http://github.com/dektrium>
- *
- * For the full copyright and license information, please view the LICENSE.md
- * file that was distributed with this source code.
- */
-
-use dektrium\user\widgets\Connect;
+use Da\User\Widget\ConnectWidget;
 use yii\helpers\Html;
 
-/*
+/**
  * @var yii\web\View $this
  * @var yii\widgets\ActiveForm $form
+ * @var \Da\User\Model\User $user
  */
 
 $this->title = Yii::t('user', 'Networks');
@@ -36,9 +28,9 @@ $this->params['breadcrumbs'][] = $this->title;
                 <div class="alert alert-info">
                     <p><?= Yii::t('user', 'You can connect multiple accounts to be able to log in using them') ?>.</p>
                 </div>
-                <?php $auth = Connect::begin([
+                <?php $auth = ConnectWidget::begin([
                     'baseAuthUrl' => ['/user/security/auth'],
-                    'accounts'    => $user->accounts,
+                    'accounts'    => $user->socialNetworkAccounts,
                     'autoRender'  => false,
                     'popupMode'   => false,
                 ]) ?>
@@ -65,7 +57,7 @@ $this->params['breadcrumbs'][] = $this->title;
                         </tr>
                     <?php endforeach; ?>
                 </table>
-                <?php Connect::end() ?>
+                <?php ConnectWidget::end() ?>
             </div>
         </div>
     </div>

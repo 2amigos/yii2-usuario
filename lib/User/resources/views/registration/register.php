@@ -13,9 +13,10 @@ use yii\helpers\Html;
 use yii\widgets\ActiveForm;
 
 /**
- * @var yii\web\View              $this
- * @var dektrium\user\models\User $user
- * @var dektrium\user\Module      $module
+ * @var yii\web\View $this
+ * @var \Da\User\Form\RegistrationForm $model
+ * @var \Da\User\Model\User $user
+ * @var \Da\User\Module $module
  */
 
 $this->title = Yii::t('user', 'Sign up');
@@ -28,17 +29,19 @@ $this->params['breadcrumbs'][] = $this->title;
                 <h3 class="panel-title"><?= Html::encode($this->title) ?></h3>
             </div>
             <div class="panel-body">
-                <?php $form = ActiveForm::begin([
-                    'id'                     => 'registration-form',
-                    'enableAjaxValidation'   => true,
-                    'enableClientValidation' => false,
-                ]); ?>
+                <?php $form = ActiveForm::begin(
+                    [
+                        'id' => $model->formName(),
+                        'enableAjaxValidation' => true,
+                        'enableClientValidation' => false,
+                    ]
+                ); ?>
 
                 <?= $form->field($model, 'email') ?>
 
                 <?= $form->field($model, 'username') ?>
 
-                <?php if ($module->enableGeneratingPassword == false): ?>
+                <?php if ($module->generatePasswords == false): ?>
                     <?= $form->field($model, 'password')->passwordInput() ?>
                 <?php endif ?>
 

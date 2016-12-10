@@ -1,22 +1,13 @@
 <?php
 
-/*
- * This file is part of the Dektrium project.
- *
- * (c) Dektrium project <http://github.com/dektrium>
- *
- * For the full copyright and license information, please view the LICENSE.md
- * file that was distributed with this source code.
- */
-
 use dektrium\user\widgets\Connect;
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
 
 /**
- * @var yii\web\View                   $this
- * @var dektrium\user\models\LoginForm $model
- * @var dektrium\user\Module           $module
+ * @var yii\web\View $this
+ * @var \Da\User\Form\LoginForm $model
+ * @var \Da\User\Module $module
  */
 
 $this->title = Yii::t('user', 'Sign in');
@@ -32,14 +23,16 @@ $this->params['breadcrumbs'][] = $this->title;
                 <h3 class="panel-title"><?= Html::encode($this->title) ?></h3>
             </div>
             <div class="panel-body">
-                <?php $form = ActiveForm::begin([
-                    'id'                     => 'login-form',
-                    'enableAjaxValidation'   => true,
-                    'enableClientValidation' => false,
-                    'validateOnBlur'         => false,
-                    'validateOnType'         => false,
-                    'validateOnChange'       => false,
-                ]) ?>
+                <?php $form = ActiveForm::begin(
+                    [
+                        'id' => $model->formName(),
+                        'enableAjaxValidation' => true,
+                        'enableClientValidation' => false,
+                        'validateOnBlur' => false,
+                        'validateOnType' => false,
+                        'validateOnChange' => false,
+                    ]
+                ) ?>
 
                 <?= $form->field(
                     $model,
@@ -56,7 +49,7 @@ $this->params['breadcrumbs'][] = $this->title;
                     ->passwordInput()
                     ->label(
                         Yii::t('user', 'Password')
-                        .($module->enablePasswordRecovery ?
+                        . ($module->allowPasswordRecovery ?
                             ' (' . Html::a(
                                 Yii::t('user', 'Forgot password?'),
                                 ['/user/recovery/request'],
@@ -75,7 +68,7 @@ $this->params['breadcrumbs'][] = $this->title;
                 <?php ActiveForm::end(); ?>
             </div>
         </div>
-        <?php if ($module->enableConfirmation): ?>
+        <?php if ($module->enableEmailConfirmation): ?>
             <p class="text-center">
                 <?= Html::a(Yii::t('user', 'Didn\'t receive confirmation message?'), ['/user/registration/resend']) ?>
             </p>
@@ -85,8 +78,10 @@ $this->params['breadcrumbs'][] = $this->title;
                 <?= Html::a(Yii::t('user', 'Don\'t have an account? Sign up!'), ['/user/registration/register']) ?>
             </p>
         <?php endif ?>
-        <?= Connect::widget([
-            'baseAuthUrl' => ['/user/security/auth'],
-        ]) ?>
+        <?= Connect::widget(
+            [
+                'baseAuthUrl' => ['/user/security/auth'],
+            ]
+        ) ?>
     </div>
 </div>

@@ -27,6 +27,10 @@ class Module extends \yii\base\Module
      */
     public $allowPasswordRecovery = true;
     /**
+     * @var bool Whether user can remove his account
+     */
+    public $allowAccountDelete = false;
+    /**
      * @var string the class name of the strategy class to handle user's email change.
      */
     public $emailChangeStrategy = MailChangeStrategyInterface::TYPE_DEFAULT;

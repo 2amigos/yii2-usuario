@@ -135,7 +135,8 @@ class SecurityController extends Controller
         $this->make(SocialNetworkAuthenticateService::class, [$this, $this->action, $client])->run();
     }
 
-    public function connect(AuthClientInterface $client) {
+    public function connect(AuthClientInterface $client)
+    {
         if (Yii::$app->user->isGuest) {
             Yii::$app->session->setFlash('danger', Yii::t('user', 'Something went wrong'));
 
