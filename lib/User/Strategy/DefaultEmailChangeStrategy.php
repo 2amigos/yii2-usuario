@@ -33,7 +33,7 @@ class DefaultEmailChangeStrategy implements MailChangeStrategyInterface
                 ->session
                 ->setFlash('info', Yii::t('user', 'A confirmation message has been sent to your new email address'));
 
-            return true;
+            return $this->form->getUser()->save();
         }
 
         return false;
