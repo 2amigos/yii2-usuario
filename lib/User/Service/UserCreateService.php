@@ -2,6 +2,7 @@
 namespace Da\User\Service;
 
 use Da\User\Contracts\ServiceInterface;
+use Da\User\Event\UserEvent;
 use Da\User\Helper\SecurityHelper;
 use Da\User\Model\User;
 use yii\base\InvalidCallException;
@@ -43,7 +44,7 @@ class UserCreateService implements ServiceInterface
                 ? $model->password
                 : $this->securityHelper->generatePassword(8);
 
-            $model->trigger(ActiveRecord::EVENT_BEFORE_INSERT);
+            $model->trigger(UserEvent::EVENT_BEFORE_CREATE);
 
             if (!$model->save()) {
                 $transaction->rollBack();
@@ -51,7 +52,7 @@ class UserCreateService implements ServiceInterface
                 return false;
             }
 
-            $model->trigger(ActiveRecord::EVENT_AFTER_INSERT);
+            $model->trigger(UserEvent::EVENT_AFTER_CREATE);
 
             $this->mailService->run();
             $transaction->commit();
