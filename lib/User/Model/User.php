@@ -48,10 +48,6 @@ class User extends ActiveRecord implements IdentityInterface
     const NEW_EMAIL_CONFIRMED = 0b10;
 
     /**
-     * @var string default user name regular expression.
-     */
-    public $usernameRegex = '/^[-a-zA-Z0-9_\.@]+$/';
-    /**
      * @var string Plain password. Used for model validation.
      */
     public $password;
@@ -143,7 +139,7 @@ class User extends ActiveRecord implements IdentityInterface
         return [
             // username rules
             'usernameRequired' => ['username', 'required', 'on' => ['register', 'create', 'connect', 'update']],
-            'usernameMatch' => ['username', 'match', 'pattern' => $this->usernameRegex],
+            'usernameMatch' => ['username', 'match', 'pattern' => '/^[-a-zA-Z0-9_\.@]+$/'],
             'usernameLength' => ['username', 'string', 'min' => 3, 'max' => 255],
             'usernameTrim' => ['username', 'trim'],
             'usernameUnique' => [
@@ -242,7 +238,7 @@ class User extends ActiveRecord implements IdentityInterface
      */
     public function getProfile()
     {
-        return $this->hasOne($this->getClassMap()->get(Profile::class), ['user_id' => 'id']);
+        return $this->hasOne($this->getClassMap()->get('Profile'), ['user_id' => 'id']);
     }
 
     /**

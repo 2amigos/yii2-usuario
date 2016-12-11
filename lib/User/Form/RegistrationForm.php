@@ -4,7 +4,7 @@ namespace Da\User\Form;
 
 use Da\User\Model\User;
 use Da\User\Traits\ContainerTrait;
-use dektrium\user\traits\ModuleTrait;
+use Da\User\Traits\ModuleTrait;
 use Yii;
 use yii\base\Model;
 
@@ -33,13 +33,13 @@ class RegistrationForm extends Model
     public function rules()
     {
         /** @var User $user */
-        $user = $this->getClassMap()->get(User::class);
+        $user = $this->getClassMap()->get('User');
 
         return [
             // username rules
             'usernameLength' => ['username', 'string', 'min' => 3, 'max' => 255],
             'usernameTrim' => ['username', 'filter', 'filter' => 'trim'],
-            'usernamePattern' => ['username', 'match', 'pattern' => $user->usernameRegex],
+            'usernamePattern' => ['username', 'match', 'pattern' => '/^[-a-zA-Z0-9_\.@]+$/'],
             'usernameRequired' => ['username', 'required'],
             'usernameUnique' => [
                 'username',
@@ -58,7 +58,7 @@ class RegistrationForm extends Model
                 'message' => Yii::t('user', 'This email address has already been taken')
             ],
             // password rules
-            'passwordRequired' => ['password', 'required', 'skipOnEmpty' => $this->module->enableGeneratingPassword],
+            'passwordRequired' => ['password', 'required', 'skipOnEmpty' => $this->module->generatePasswords],
             'passwordLength' => ['password', 'string', 'min' => 6, 'max' => 72],
         ];
     }

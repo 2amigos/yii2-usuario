@@ -45,31 +45,64 @@ class Bootstrap implements BootstrapInterface
     {
         $di = Yii::$container;
 
+        // events
+        $di->set(Event\FormEvent::class);
+        $di->set(Event\ProfileEvent::class);
+        $di->set(Event\ResetPasswordEvent::class);
+        $di->set(Event\SocialNetworkAuthEvent::class);
+        $di->set(Event\SocialNetworkConnectEvent::class);
+        $di->set(Event\UserEvent::class);
+
+        // forms
+        $di->set(Form\LoginForm::class);
+        $di->set(Form\RecoveryForm::class);
+        $di->set(Form\RegistrationForm::class);
+        $di->set(Form\ResendForm::class);
+        $di->set(Form\SettingsForm::class);
+
+        // helpers
+        $di->set(Helper\AuthHelper::class);
+        $di->set(Helper\GravatarHelper::class);
+        $di->set(Helper\SecurityHelper::class);
+
+        // search class
+        $di->set(Search\UserSearch::class, [$di->get(Query\UserQuery::class)]);
+
+        // services
+        $di->set(Service\AccountConfirmationService::class);
+        $di->set(Service\EmailChangeService::class);
+        $di->set(Service\PasswordRecoveryService::class);
+        $di->set(Service\ResendConfirmationService::class);
+        $di->set(Service\ResetPasswordService::class);
+        $di->set(Service\SocialNetworkAccountConnectService::class);
+        $di->set(Service\SocialNetworkAuthenticateService::class);
+        $di->set(Service\UserBlockService::class);
+        $di->set(Service\UserCreateService::class);
+        $di->set(Service\UserRegisterService::class);
+        $di->set(Service\UserConfirmationService::class);
+
         // email change strategy
         $di->set(Strategy\DefaultEmailChangeStrategy::class);
         $di->set(Strategy\InsecureEmailChangeStrategy::class);
         $di->set(Strategy\SecureEmailChangeStrategy::class);
 
-        // class map + query models
+        // validators
+        $di->set(Validator\AjaxRequestModelValidator::class);
+        $di->set(TimeZoneValidator::class);
+
+        // class map models + query classes
         $modelClassMap = [];
         foreach ($map as $class => $definition) {
             $di->set($class, $definition);
             $model = is_array($definition) ? $definition['class'] : $definition;
             $name = (substr($class, strrpos($class, '\\') + 1));
-            $modelClassMap[$name] = $model;
-            if(in_array($name, ['User', 'Profile', 'Token', 'Account'])) {
+            $modelClassMap[$class] = $model;
+            if(in_array($name, ['User', 'Profile', 'Token', 'SocialNetworkAccount'])) {
                 $di->set("Da\\User\\Query\\{$name}Query", function() use ($model) {
                     return $model::find();
                 });
             }
         }
-
-        // search class
-        $di->set(Search\UserSearch::class, [$di->get(Query\UserQuery::class)]);
-
-        // helpers
-        $di->set(Helper\AuthHelper::class);
-        $di->set(Helper\GravatarHelper::class);
         $di->setSingleton(ClassMapHelper::class, ClassMapHelper::class, [$modelClassMap]);
 
         if (php_sapi_name() !== 'cli') {
@@ -83,23 +116,6 @@ class Bootstrap implements BootstrapInterface
                 ]
             );
         }
-
-        // services
-        $di->set(Service\UserCreateService::class);
-        $di->set(Service\UserRegisterService::class);
-        $di->set(Service\UserConfirmationService::class);
-
-        // events
-        $di->set(Event\FormEvent::class);
-        $di->set(Event\ProfileEvent::class);
-        $di->set(Event\ResetPasswordEvent::class);
-        $di->set(Event\SocialNetworkAuthEvent::class);
-        $di->set(Event\SocialNetworkConnectEvent::class);
-        $di->set(Event\UserEvent::class);
-
-        // validators
-        $di->set(Validator\AjaxRequestModelValidator::class);
-        $di->set(TimeZoneValidator::class);
     }
 
     /**
