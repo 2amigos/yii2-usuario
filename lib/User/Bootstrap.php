@@ -20,6 +20,7 @@ class Bootstrap implements BootstrapInterface
      */
     public function bootstrap($app)
     {
+
         if ($app->hasModule('user') && $app->getModule('user') instanceof Module) {
             $map = $this->buildClassMap($app->getModule('user')->classMap);
             $this->initContainer($map);
@@ -27,6 +28,7 @@ class Bootstrap implements BootstrapInterface
             $this->initMailServiceConfiguration($app, $app->getModule('user'));
 
             if ($app instanceof WebApplication) {
+                $this->initControllerNamespace($app);
                 $this->initUrlRoutes($app);
                 $this->initAuthCollection($app);
             } else {
@@ -44,6 +46,8 @@ class Bootstrap implements BootstrapInterface
     protected function initContainer($map)
     {
         $di = Yii::$container;
+try{
+
 
         // events
         $di->set(Event\FormEvent::class);
@@ -64,9 +68,6 @@ class Bootstrap implements BootstrapInterface
         $di->set(Helper\AuthHelper::class);
         $di->set(Helper\GravatarHelper::class);
         $di->set(Helper\SecurityHelper::class);
-
-        // search class
-        $di->set(Search\UserSearch::class, [$di->get(Query\UserQuery::class)]);
 
         // services
         $di->set(Service\AccountConfirmationService::class);
@@ -105,6 +106,9 @@ class Bootstrap implements BootstrapInterface
         }
         $di->setSingleton(ClassMapHelper::class, ClassMapHelper::class, [$modelClassMap]);
 
+        // search class
+        $di->set(Search\UserSearch::class, [$di->get(Query\UserQuery::class)]);
+
         if (php_sapi_name() !== 'cli') {
             // override Yii
             $di->set(
@@ -116,6 +120,9 @@ class Bootstrap implements BootstrapInterface
                 ]
             );
         }
+}catch(Exception $e) {
+    die($e);
+}
     }
 
     /**
@@ -196,6 +203,16 @@ class Bootstrap implements BootstrapInterface
     protected function initConsoleCommands(ConsoleApplication $app)
     {
         $app->getModule('user')->controllerNamespace = 'Da\User\Command';
+    }
+
+    /**
+     * Registers controllers
+     *
+     * @param WebApplication $app
+     */
+    protected function initControllerNamespace(WebApplication $app)
+    {
+        $app->getModule('user')->controllerNamespace = 'Da\User\Controller';
     }
 
     /**

@@ -1,6 +1,6 @@
 <?php
 
-use dektrium\user\widgets\Connect;
+use Da\User\Widget\ConnectWidget;
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
 
@@ -78,7 +78,7 @@ $this->params['breadcrumbs'][] = $this->title;
                 <?= Html::a(Yii::t('user', 'Don\'t have an account? Sign up!'), ['/user/registration/register']) ?>
             </p>
         <?php endif ?>
-        <?= Connect::widget(
+        <?= ConnectWidget::widget(
             [
                 'baseAuthUrl' => ['/user/security/auth'],
             ]

@@ -1,6 +1,6 @@
 <?php
 
-use dektrium\rbac\widgets\Assignments;
+use AssignmentsWidget;
 
 /**
  * @var yii\web\View $this

@@ -4,7 +4,7 @@ namespace Da\User\AuthClient;
 use Da\User\Contracts\AuthClientInterface;
 
 
-class Twitter extends \dektrium\user\clients\Twitter implements AuthClientInterface
+class Twitter extends \yii\authclient\clients\Twitter implements AuthClientInterface
 {
     /**
      * @return string
