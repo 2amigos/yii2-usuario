@@ -19,7 +19,7 @@ class ResendPage extends BasePage
      */
     public function resend($email)
     {
-        $this->actor->fillField('#resend-form-email', $email);
+        $this->actor->fillField('#resendform-email', $email);
         $this->actor->click('Continue');
     }
 }

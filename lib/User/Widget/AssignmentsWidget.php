@@ -38,7 +38,7 @@ class AssignmentsWidget extends Widget
             $model->updateAssignments();
         }
 
-        return $this->render('form', [
+        return $this->render('/widgets/assignments/form', [
             'model' => $model,
         ]);
     }

@@ -30,7 +30,7 @@ class RecoveryForm extends Model
      * @param UserQuery $query
      * @param array $config
      */
-    public function __construct(UserQuery $query, array $config)
+    public function __construct(UserQuery $query, array $config = [])
     {
         $this->query = $query;
         parent::__construct($config);

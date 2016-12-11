@@ -74,7 +74,7 @@ class RecoveryController extends Controller
         }
 
         /** @var RecoveryForm $form */
-        $form = $this->make(RecoveryForm::class, ['scenario' => RecoveryForm::SCENARIO_REQUEST]);
+        $form = $this->make(RecoveryForm::class, [], ['scenario' => RecoveryForm::SCENARIO_REQUEST]);
 
         $event = $this->make(FormEvent::class, [$form]);
 
@@ -87,6 +87,7 @@ class RecoveryController extends Controller
             $mailService = MailFactory::makeRecoveryMailerService($form->email);
 
             if ($this->make(PasswordRecoveryService::class, [$form->email, $mailService])->run()) {
+
                 $this->trigger(FormEvent::EVENT_AFTER_REQUEST, $event);
 
                 return $this->render(
@@ -139,7 +140,7 @@ class RecoveryController extends Controller
         }
 
         /** @var RecoveryForm $form */
-        $form = $this->make(RecoveryForm::class, ['scenario' => RecoveryForm::SCENARIO_RESET]);
+        $form = $this->make(RecoveryForm::class, [], ['scenario' => RecoveryForm::SCENARIO_RESET]);
         $event = $event->updateForm($form);
 
         $this->make(AjaxRequestModelValidator::class, [$form])->validate();

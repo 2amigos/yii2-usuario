@@ -13,7 +13,7 @@ $this->title = Yii::t('user', 'Networks');
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 
-<?= $this->render('/_alert', ['module' => Yii::$app->getModule('user')]) ?>
+<?= $this->render('/shared/_alert', ['module' => Yii::$app->getModule('user')]) ?>
 
 <div class="row">
     <div class="col-md-3">

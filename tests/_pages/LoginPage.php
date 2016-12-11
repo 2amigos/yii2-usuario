@@ -20,8 +20,8 @@ class LoginPage extends BasePage
      */
     public function login($login, $password)
     {
-        $this->actor->fillField('#login-form-login', $login);
-        $this->actor->fillField('#login-form-password', $password);
+        $this->actor->fillField('#loginform-login', $login);
+        $this->actor->fillField('#loginform-password', $password);
         $this->actor->click('Sign in');
     }
 }

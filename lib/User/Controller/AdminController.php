@@ -105,7 +105,7 @@ class AdminController extends Controller
     public function actionCreate()
     {
         /** @var User $user */
-        $user = $this->make(User::class, ['scenario' => 'create']);
+        $user = $this->make(User::class, [], ['scenario' => 'create']);
 
         /** @var UserEvent $event */
         $event = $this->make(UserEvent::class, [$user]);
@@ -168,7 +168,7 @@ class AdminController extends Controller
         $this->make(AjaxRequestModelValidator::class, [$user])->validate();
 
         if ($profile->load(Yii::$app->request->post())) {
-            if($profile->save()) {
+            if ($profile->save()) {
                 $this->trigger(UserEvent::EVENT_BEFORE_PROFILE_UPDATE, $event);
                 Yii::$app->getSession()->setFlash('success', Yii::t('user', 'Profile details have been updated'));
                 $this->trigger(UserEvent::EVENT_AFTER_PROFILE_UPDATE, $event);

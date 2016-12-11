@@ -16,7 +16,7 @@ $this->params['breadcrumbs'][] = $this->title;
 ?>
 
 <?= $this->render(
-    '/_alert',
+    '/shared/_alert',
     [
         'module' => Yii::$app->getModule('user'),
     ]

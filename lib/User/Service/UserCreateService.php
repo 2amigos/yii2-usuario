@@ -60,6 +60,7 @@ class UserCreateService implements ServiceInterface
             return true;
 
         } catch (Exception $e) {
+
             $transaction->rollBack();
             $this->logger->log($e->getMessage(), Logger::LEVEL_ERROR);
 

@@ -37,9 +37,9 @@ class SettingsForm extends Model
     protected $securityHelper;
 
     /** @var User */
-    private $user;
+    protected $user;
 
-    public function __construct(SecurityHelper $securityHelper, array $config)
+    public function __construct(SecurityHelper $securityHelper, array $config = [])
     {
         $this->securityHelper = $securityHelper;
         parent::__construct($config);
@@ -62,16 +62,16 @@ class SettingsForm extends Model
                 ['email', 'username'],
                 'unique',
                 'when' => function ($model, $attribute) {
-                    return $this->user->$attribute != $model->$attribute;
+                    return $this->getUser()->$attribute != $model->$attribute;
                 },
-                'targetClass' => $this->getClassMap()[User::class]
+                'targetClass' => $this->getClassMap()->get(User::class)
             ],
             'newPasswordLength' => ['new_password', 'string', 'max' => 72, 'min' => 6],
             'currentPasswordRequired' => ['current_password', 'required'],
             'currentPasswordValidate' => [
                 'current_password',
                 function ($attribute) {
-                    if (!$this->securityHelper->validatePassword($this->$attribute, $this->user->password_hash)) {
+                    if (!$this->securityHelper->validatePassword($this->$attribute, $this->getUser()->password_hash)) {
                         $this->addError($attribute, Yii::t('user', 'Current password is not valid'));
                     }
                 }
@@ -118,8 +118,6 @@ class SettingsForm extends Model
             if ($this->email == $this->user->email && $this->user->unconfirmed_email != null) {
                 $this->user->unconfirmed_email = null;
 
-                return $this->user->save();
-
             } elseif ($this->email != $this->user->email) {
                 $strategy = EmailChangeStrategyFactory::makeByStrategyType(
                     $this->getModule()->emailChangeStrategy,
@@ -129,6 +127,7 @@ class SettingsForm extends Model
                 return $strategy->run();
             }
 
+            return $this->user->save();
         }
 
         return false;

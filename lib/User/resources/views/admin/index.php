@@ -18,7 +18,7 @@ $this->params['breadcrumbs'][] = $this->title;
 ?>
 
 <?= $this->render(
-    '/_alert',
+    '/shared/_alert',
     [
         'module' => Yii::$app->getModule('user'),
     ]
@@ -75,7 +75,7 @@ $this->params['breadcrumbs'][] = $this->title;
                     }
                 },
                 'format' => 'raw',
-                'visible' => Yii::$app->getModule('user')->enableConfirmation,
+                'visible' => Yii::$app->getModule('user')->enableEmailConfirmation,
             ],
             [
                 'header' => Yii::t('user', 'Block status'),

@@ -22,10 +22,10 @@ class SettingsPage extends BasePage
      */
     public function update($email, $username, $currentPassword, $password = null)
     {
-        $this->actor->fillField('#settings-form-email', $email);
-        $this->actor->fillField('#settings-form-username', $username);
-        $this->actor->fillField('#settings-form-new_password', $password);
-        $this->actor->fillField('#settings-form-current_password', $currentPassword);
+        $this->actor->fillField('#settingsform-email', $email);
+        $this->actor->fillField('#settingsform-username', $username);
+        $this->actor->fillField('#settingsform-new_password', $password);
+        $this->actor->fillField('#settingsform-current_password', $currentPassword);
         $this->actor->click('Save');
     }
 }

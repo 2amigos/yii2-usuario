@@ -29,7 +29,7 @@ class EmailChangeStrategyFactory
     public static function makeByStrategyType($strategy, SettingsForm $form)
     {
         if (array_key_exists($strategy, static::$map)) {
-            return Yii::createObject(static::$map[$strategy], [$form]);
+            return Yii::$container->get(static::$map[$strategy], [$form]);
         }
 
         throw new Exception('Unknown strategy type');
@@ -42,7 +42,7 @@ class EmailChangeStrategyFactory
      */
     public static function makeDefaultEmailChangeStrategy(SettingsForm $form)
     {
-        return Yii::createObject(static::$map[MailChangeStrategyInterface::TYPE_DEFAULT], [$form]);
+        return Yii::$container->get(static::$map[MailChangeStrategyInterface::TYPE_DEFAULT], [$form]);
     }
 
     /**
@@ -52,7 +52,7 @@ class EmailChangeStrategyFactory
      */
     public static function makeInsecureEmailChangeStrategy(SettingsForm $form)
     {
-        return Yii::createObject(static::$map[MailChangeStrategyInterface::TYPE_INSECURE], [$form]);
+        return Yii::$container->get(static::$map[MailChangeStrategyInterface::TYPE_INSECURE], [$form]);
     }
 
     /**
@@ -62,6 +62,6 @@ class EmailChangeStrategyFactory
      */
     public static function makeSecureEmailChangeStrategy(SettingsForm $form)
     {
-        return Yii::createObject(static::$map[MailChangeStrategyInterface::TYPE_SECURE], [$form]);
+        return Yii::$container->get(static::$map[MailChangeStrategyInterface::TYPE_SECURE], [$form]);
     }
 }

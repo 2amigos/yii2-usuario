@@ -45,7 +45,10 @@ $page->login('new_user@example.com', 'qwerty');
 $I->see('Invalid login or password');
 
 $I->amGoingTo('log in using new email address after clicking the confirmation link');
-$user->attemptEmailChange($token->code);
+
+$emailChangeService = Yii::createObject(\Da\User\Service\EmailChangeService::class, [$token->code, $user]);
+$emailChangeService->run();
+
 $page->login('new_user@example.com', 'qwerty');
 $I->see('Logout');
 $I->seeRecord(User::className(), [

@@ -126,6 +126,7 @@ class SettingsController extends Controller
 
     public function actionAccount()
     {
+        /** @var SettingsForm $form */
         $form = $this->make(SettingsForm::class);
         $event = $this->make(FormEvent::class, [$form]);
 
@@ -133,8 +134,9 @@ class SettingsController extends Controller
 
         if ($form->load(Yii::$app->request->post())) {
             $this->trigger(UserEvent::EVENT_BEFORE_ACCOUNT_UPDATE, $event);
+
             if ($form->save()) {
-                Yii::$app->getSession()->setFlash('success', Yii::t('user', 'Your account details have been updated-'));
+                Yii::$app->getSession()->setFlash('success', Yii::t('user', 'Your account details have been updated'));
                 $this->trigger(UserEvent::EVENT_AFTER_ACCOUNT_UPDATE, $event);
 
                 return $this->refresh();

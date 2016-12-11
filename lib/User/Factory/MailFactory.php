@@ -109,6 +109,6 @@ class MailFactory
      */
     public static function makeMailerService($from, $to, $subject, $view, array $params = [])
     {
-        return Yii::$container->get(MailService::class, [$from, $to, $subject, $view, $params]);
+        return Yii::$container->get(MailService::class, [$from, $to, $subject, $view, $params, Yii::$app->getMailer()]);
     }
 }

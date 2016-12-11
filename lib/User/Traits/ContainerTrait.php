@@ -29,13 +29,15 @@ trait ContainerTrait
      *
      * @param string $class he class name or an alias name (e.g. `foo`) that was previously registered via [[set()]]
      * or [[setSingleton()]].
-     * @param array $params
+     *
+     * @param array $params constructor parameters
+     * @param array $config attributes
      *
      * @return object
      */
-    public function make($class, $params = [])
+    public function make($class, $params = [], $config = [])
     {
-        return $this->getDi()->get($class, $params);
+        return $this->getDi()->get($class, $params, $config);
     }
 
     /**

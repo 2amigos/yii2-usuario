@@ -39,7 +39,7 @@ class TokenQuery extends ActiveQuery
      */
     public function whereIsConfirmationType()
     {
-        return $this->andWhere(['type' => Token::TYPE_CONFIRM_NEW_EMAIL]);
+        return $this->andWhere(['type' => Token::TYPE_CONFIRMATION]);
     }
 
     /**

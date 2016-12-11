@@ -41,10 +41,14 @@ class PasswordRecoveryService implements ServiceInterface
 
             $this->mailService->setViewParam('user', $user);
             $this->mailService->setViewParam('token', $token);
-
             if (!$this->mailService->run()) {
                 return false;
             }
+
+            Yii::$app->session->setFlash(
+                'info',
+                Yii::t('user', 'An email has been sent with instructions for resetting your password')
+            );
 
             return true;
 

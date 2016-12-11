@@ -12,7 +12,7 @@ class LoginWidget extends Widget
     public function run()
     {
         return $this->render(
-            'login',
+            '/widgets/login',
             [
                 'model' => Yii::createObject(LoginForm::class)
             ]

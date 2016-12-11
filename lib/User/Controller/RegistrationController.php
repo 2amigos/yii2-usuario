@@ -12,13 +12,11 @@ use Da\User\Model\User;
 use Da\User\Query\SocialNetworkAccountQuery;
 use Da\User\Query\UserQuery;
 use Da\User\Service\AccountConfirmationService;
-use Da\User\Service\EmailConfirmationService;
 use Da\User\Service\ResendConfirmationService;
 use Da\User\Service\UserConfirmationService;
 use Da\User\Service\UserCreateService;
 use Da\User\Service\UserRegisterService;
 use Da\User\Traits\ContainerTrait;
-use Da\User\Traits\ModuleTrait;
 use Da\User\Validator\AjaxRequestModelValidator;
 use Yii;
 use yii\base\Module;
@@ -81,7 +79,7 @@ class RegistrationController extends Controller
 
     public function actionRegister()
     {
-        if(!$this->module->enableRegistration) {
+        if (!$this->module->enableRegistration) {
             throw new NotFoundHttpException();
         }
         /** @var RegistrationForm $form */
@@ -91,14 +89,15 @@ class RegistrationController extends Controller
 
         $this->make(AjaxRequestModelValidator::class, [$form])->validate();
 
-        if($form->load(Yii::$app->request->post()) && $form->validate()) {
+        if ($form->load(Yii::$app->request->post()) && $form->validate()) {
             $this->trigger(UserEvent::EVENT_BEFORE_REGISTER, $event);
 
-            $user = $this->make(User::class, [$form->attributes]);
+            $user = $this->make(User::class, [], $form->attributes);
             $user->setScenario('register');
             $mailService = MailFactory::makeWelcomeMailerService($user);
 
-            if($this->make(UserRegisterService::class, [$user, $mailService])->run()) {
+            if ($this->make(UserRegisterService::class, [$user, $mailService])->run()) {
+
                 Yii::$app->session->setFlash(
                     'info',
                     Yii::t(
@@ -106,16 +105,24 @@ class RegistrationController extends Controller
                         'Your account has been created and a message with further instructions has been sent to your email'
                     )
                 );
-                return $this->render('/shared/message', [
-                    'title' => Yii::t('user', 'Your account has been created')
-                ]);
-            }
 
-            return $this->render('register', [
-                'model'  => $form,
-                'module' => $this->module,
-            ]);
+                return $this->render(
+                    '/shared/message',
+                    [
+                        'title' => Yii::t('user', 'Your account has been created'),
+                        'module' => $this->module
+                    ]
+                );
+            }
         }
+
+        return $this->render(
+            'register',
+            [
+                'model' => $form,
+                'module' => $this->module,
+            ]
+        );
     }
 
     public function actionConnect($code)
@@ -206,29 +213,48 @@ class RegistrationController extends Controller
         $this->make(AjaxRequestModelValidator::class, [$form])->validate();
 
         if ($form->load(Yii::$app->request->post()) && $form->validate()) {
-            $this->trigger(FormEvent::EVENT_BEFORE_RESEND, $event);
             /** @var User $user */
             $user = $this->userQuery->whereEmail($form->email)->one();
-            $mailService = MailFactory::makeConfirmationMailerService($user);
-            if ($this->make(ResendConfirmationService::class, [$user, $mailService])->run()) {
-                $this->trigger(FormEvent::EVENT_AFTER_RESEND, $event);
-                Yii::$app->session->setFlash(
-                    'info',
-                    Yii::t(
-                        'user',
-                        'A message has been sent to your email address. It contains a confirmation link that you must 
-                        click to complete registration.'
-                    )
-                );
-            } else {
+            $success = true;
+            if ($user !== null) {
+                $this->trigger(FormEvent::EVENT_BEFORE_RESEND, $event);
+                $mailService = MailFactory::makeConfirmationMailerService($user);
+                if ($success = $this->make(ResendConfirmationService::class, [$user, $mailService])->run()) {
+                    $this->trigger(FormEvent::EVENT_AFTER_RESEND, $event);
+                    Yii::$app->session->setFlash(
+                        'info',
+                        Yii::t(
+                            'user',
+                            'A message has been sent to your email address. ' .
+                            'It contains a confirmation link that you must click to complete registration.'
+                        )
+                    );
+                }
+            }
+            if ($user === null || $success === false) {
                 Yii::$app->session->setFlash(
                     'danger',
                     Yii::t(
                         'user',
-                        'We couldn\'t re-send the mail to confirm your address. Please, verify is the correct email.'
+                        'We couldn\'t re-send the mail to confirm your address. ' .
+                        'Please, verify is the correct email or if it has been confirmed already.'
                     )
                 );
             }
+
+            return $this->render('/shared/message', [
+                'title'  => $success
+                    ? Yii::t('user', 'A new confirmation link has been sent')
+                    : Yii::t('user', 'Unable to send confirmation link'),
+                'module' => $this->module,
+            ]);
         }
+
+        return $this->render(
+            'resend',
+            [
+                'model' => $form,
+            ]
+        );
     }
 }

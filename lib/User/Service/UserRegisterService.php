@@ -7,12 +7,14 @@ use Da\User\Factory\TokenFactory;
 use Da\User\Helper\SecurityHelper;
 use Da\User\Model\Token;
 use Da\User\Model\User;
+use Da\User\Traits\ModuleTrait;
 use yii\base\InvalidCallException;
 use yii\log\Logger;
 use Exception;
 
 class UserRegisterService implements ServiceInterface
 {
+    use ModuleTrait;
 
     protected $model;
     protected $securityHelper;
@@ -38,8 +40,8 @@ class UserRegisterService implements ServiceInterface
         $transaction = $model->getDb()->beginTransaction();
 
         try {
-            $model->confirmed_at = $this->model->module->enableEmailConfirmation ? null : time();
-            $model->password = $this->model->module->generatePasswords
+            $model->confirmed_at = $this->getModule()->enableEmailConfirmation ? null : time();
+            $model->password = $this->getModule()->generatePasswords
                 ? $this->securityHelper->generatePassword(8)
                 : $model->password;
 
@@ -50,7 +52,7 @@ class UserRegisterService implements ServiceInterface
                 return false;
             }
 
-            if($model->module->enableEmailConfirmation) {
+            if($this->getModule()->enableEmailConfirmation) {
                 $token = TokenFactory::makeConfirmationToken($model->id);
             }
 

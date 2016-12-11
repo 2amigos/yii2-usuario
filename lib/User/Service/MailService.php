@@ -2,8 +2,8 @@
 namespace Da\User\Service;
 
 use Da\User\Contracts\ServiceInterface;
-use yii\swiftmailer\Mailer;
 use Yii;
+use yii\mail\BaseMailer;
 
 class MailService implements ServiceInterface
 {
@@ -24,9 +24,9 @@ class MailService implements ServiceInterface
      * @param string $subject
      * @param string $view
      * @param array $params
-     * @param Mailer $mailer
+     * @param MailerInterface $mailer
      */
-    public function __construct($from, $to, $subject, $view, array $params, Mailer $mailer)
+    public function __construct($from, $to, $subject, $view, array $params, BaseMailer $mailer)
     {
         $this->from = $from;
         $this->to = $to;
@@ -56,7 +56,8 @@ class MailService implements ServiceInterface
      */
     public function run()
     {
-        return $this->mailer->compose(['html' => $this->view, 'text' => "text/{$this->view}"], $this->params)
+        return $this->mailer
+            ->compose(['html' => $this->view, 'text' => "text/{$this->view}"], $this->params)
             ->setFrom($this->from)
             ->setTo($this->to)
             ->setSubject($this->subject)

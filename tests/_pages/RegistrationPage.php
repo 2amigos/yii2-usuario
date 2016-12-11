@@ -21,10 +21,10 @@ class RegistrationPage extends BasePage
      */
     public function register($email, $username = null, $password = null)
     {
-        $this->actor->fillField('#register-form-email', $email);
-        $this->actor->fillField('#register-form-username', $username);
+        $this->actor->fillField('#registrationform-email', $email);
+        $this->actor->fillField('#registrationform-username', $username);
         if ($password !== null) {
-            $this->actor->fillField('#register-form-password', $password);
+            $this->actor->fillField('#registrationform-password', $password);
         }
         $this->actor->click('Sign up');
     }

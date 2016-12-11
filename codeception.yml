@@ -17,19 +17,4 @@ modules:
             dump: tests/_data/schema.sql
         Yii2:
             configFile: 'tests/_app/config/test.php'
-coverage:
-    enabled: true
-    include:
-            - ../lib/User/AuthClient/*
-            - ../controllers/*
-            - ../events/*
-            - ../filters/*
-            - ../helpers/*
-            - ../models/*
-            - ../traits/*
-            - ../views/*
-            - ../widgets/*
-            - ../Bootstrap.php
-            - ../Module.php
-            - ../Mailer.php
-            - ../Finder.php
+            cleanup: false
