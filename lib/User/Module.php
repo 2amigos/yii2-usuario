@@ -15,6 +15,10 @@ class Module extends \yii\base\Module
      */
     public $enableEmailConfirmation = true;
     /**
+     * @var bool whether to display flash messages or not
+     */
+    public $enableFlashMessages = true;
+    /**
      * @var bool whether to generate passwords automatically and remove the password field from the registration form.
      */
     public $generatePasswords = false;
@@ -88,4 +92,6 @@ class Module extends \yii\base\Module
         'recover/<id:\d+>/<code:[A-Za-z0-9_-]+>' => 'recovery/reset',
         'settings/<action:\w+>' => 'settings/<action>'
     ];
+
+    public $viewPath = '@Da/User/resources/views';
 }

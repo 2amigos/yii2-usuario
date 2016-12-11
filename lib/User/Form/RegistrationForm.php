@@ -33,7 +33,7 @@ class RegistrationForm extends Model
     public function rules()
     {
         /** @var User $user */
-        $user = $this->getClassMap()->get('User');
+        $user = $this->getClassMap()->get(User::class);
 
         return [
             // username rules

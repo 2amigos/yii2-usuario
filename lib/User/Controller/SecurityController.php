@@ -36,7 +36,7 @@ class SecurityController extends Controller
         $id,
         Module $module,
         SocialNetworkAccountQuery $socialNetworkAccountQuery,
-        array $config
+        array $config = []
     ) {
         $this->socialNetworkAccountQuery = $socialNetworkAccountQuery;
         parent::__construct($id, $module, $config);

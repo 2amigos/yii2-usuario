@@ -20,7 +20,7 @@ class ProfileController extends Controller
      * @param ProfileQuery $profileQuery
      * @param array $config
      */
-    public function __construct($id, Module $module, ProfileQuery $profileQuery, array $config)
+    public function __construct($id, Module $module, ProfileQuery $profileQuery, array $config = [])
     {
         $this->profileQuery = $profileQuery;
         parent::__construct($id, $module, $config);

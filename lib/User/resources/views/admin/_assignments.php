@@ -1,6 +1,6 @@
 <?php
 
-use AssignmentsWidget;
+use Da\User\Widget\AssignmentsWidget;
 
 /**
  * @var yii\web\View $this
@@ -20,6 +20,6 @@ use AssignmentsWidget;
     ]
 ) ?>
 
-<?= Assignments::widget(['userId' => $user->id]) ?>
+<?= AssignmentsWidget::widget(['userId' => $user->id]) ?>
 
 <?php $this->endContent() ?>

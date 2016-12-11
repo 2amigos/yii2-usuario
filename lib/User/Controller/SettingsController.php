@@ -54,7 +54,7 @@ class SettingsController extends Controller
         ProfileQuery $profileQuery,
         UserQuery $userQuery,
         SocialNetworkAccountQuery $socialNetworkAccountQuery,
-        array $config
+        array $config = []
     ) {
         $this->profileQuery = $profileQuery;
         $this->userQuery = $userQuery;

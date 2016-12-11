@@ -18,13 +18,13 @@ class AccountConfirmationService implements ServiceInterface
     public function __construct(
         $code,
         User $model,
-        TokenQuery $tokenQuery,
-        UserConfirmationService $userConfirmationService
+        UserConfirmationService $userConfirmationService,
+        TokenQuery $tokenQuery
     ) {
         $this->code = $code;
         $this->model = $model;
-        $this->tokenQuery = $tokenQuery;
         $this->userConfirmationService = $userConfirmationService;
+        $this->tokenQuery = $tokenQuery;
     }
 
     public function run()

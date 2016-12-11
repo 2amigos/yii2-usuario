@@ -34,7 +34,7 @@ class RecoveryController extends Controller
      * @param TokenQuery $tokenQuery
      * @param array $config
      */
-    public function __construct($id, Module $module, UserQuery $userQuery, TokenQuery $tokenQuery, array $config)
+    public function __construct($id, Module $module, UserQuery $userQuery, TokenQuery $tokenQuery, array $config = [])
     {
         $this->userQuery = $userQuery;
         $this->tokenQuery = $tokenQuery;
@@ -90,7 +90,7 @@ class RecoveryController extends Controller
                 $this->trigger(FormEvent::EVENT_AFTER_REQUEST, $event);
 
                 return $this->render(
-                    '/user/shared/message',
+                    '/shared/message',
                     [
                         'title' => Yii::t('user', 'Recovery message sent'),
                         'module' => $this->module,
@@ -130,7 +130,7 @@ class RecoveryController extends Controller
             );
 
             return $this->render(
-                '/user/shared/message',
+                '/shared/message',
                 [
                     'title' => Yii::t('user', 'Invalid or expired link'),
                     'module' => $this->module,
@@ -149,7 +149,7 @@ class RecoveryController extends Controller
                 $this->trigger(ResetPasswordEvent::EVENT_AFTER_RESET, $event);
 
                 return $this->render(
-                    '/user/shared/message',
+                    '/shared/message',
                     [
                         'title' => Yii::t('user', 'Password has been changed'),
                         'module' => $this->module,

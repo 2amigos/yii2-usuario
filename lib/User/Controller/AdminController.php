@@ -39,7 +39,7 @@ class AdminController extends Controller
      * @param UserQuery $userQuery
      * @param array $config
      */
-    public function __construct($id, Module $module, UserQuery $userQuery, array $config)
+    public function __construct($id, Module $module, UserQuery $userQuery, array $config = [])
     {
         $this->userQuery = $userQuery;
         parent::__construct($id, $module, $config);

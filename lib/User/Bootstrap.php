@@ -3,6 +3,7 @@
 namespace Da\User;
 
 use Da\User\Helper\ClassMapHelper;
+use Da\User\Model\User;
 use Da\User\Validator\TimeZoneValidator;
 use Yii;
 use yii\authclient\Collection;
@@ -23,7 +24,7 @@ class Bootstrap implements BootstrapInterface
 
         if ($app->hasModule('user') && $app->getModule('user') instanceof Module) {
             $map = $this->buildClassMap($app->getModule('user')->classMap);
-            $this->initContainer($map);
+            $this->initContainer($app,$map);
             $this->initTranslations($app);
             $this->initMailServiceConfiguration($app, $app->getModule('user'));
 
@@ -41,88 +42,93 @@ class Bootstrap implements BootstrapInterface
     /**
      * Initialize container with module classes
      *
+     * @param \yii\base\Application $app
      * @param array $map the previously built class map list
      */
-    protected function initContainer($map)
+    protected function initContainer($app, $map)
     {
         $di = Yii::$container;
-try{
+        try {
 
 
-        // events
-        $di->set(Event\FormEvent::class);
-        $di->set(Event\ProfileEvent::class);
-        $di->set(Event\ResetPasswordEvent::class);
-        $di->set(Event\SocialNetworkAuthEvent::class);
-        $di->set(Event\SocialNetworkConnectEvent::class);
-        $di->set(Event\UserEvent::class);
+            // events
+            $di->set(Event\FormEvent::class);
+            $di->set(Event\ProfileEvent::class);
+            $di->set(Event\ResetPasswordEvent::class);
+            $di->set(Event\SocialNetworkAuthEvent::class);
+            $di->set(Event\SocialNetworkConnectEvent::class);
+            $di->set(Event\UserEvent::class);
 
-        // forms
-        $di->set(Form\LoginForm::class);
-        $di->set(Form\RecoveryForm::class);
-        $di->set(Form\RegistrationForm::class);
-        $di->set(Form\ResendForm::class);
-        $di->set(Form\SettingsForm::class);
+            // forms
+            $di->set(Form\LoginForm::class);
+            $di->set(Form\RecoveryForm::class);
+            $di->set(Form\RegistrationForm::class);
+            $di->set(Form\ResendForm::class);
+            $di->set(Form\SettingsForm::class);
 
-        // helpers
-        $di->set(Helper\AuthHelper::class);
-        $di->set(Helper\GravatarHelper::class);
-        $di->set(Helper\SecurityHelper::class);
+            // helpers
+            $di->set(Helper\AuthHelper::class);
+            $di->set(Helper\GravatarHelper::class);
+            $di->set(Helper\SecurityHelper::class);
 
-        // services
-        $di->set(Service\AccountConfirmationService::class);
-        $di->set(Service\EmailChangeService::class);
-        $di->set(Service\PasswordRecoveryService::class);
-        $di->set(Service\ResendConfirmationService::class);
-        $di->set(Service\ResetPasswordService::class);
-        $di->set(Service\SocialNetworkAccountConnectService::class);
-        $di->set(Service\SocialNetworkAuthenticateService::class);
-        $di->set(Service\UserBlockService::class);
-        $di->set(Service\UserCreateService::class);
-        $di->set(Service\UserRegisterService::class);
-        $di->set(Service\UserConfirmationService::class);
+            // services
+            $di->set(Service\AccountConfirmationService::class);
+            $di->set(Service\EmailChangeService::class);
+            $di->set(Service\PasswordRecoveryService::class);
+            $di->set(Service\ResendConfirmationService::class);
+            $di->set(Service\ResetPasswordService::class);
+            $di->set(Service\SocialNetworkAccountConnectService::class);
+            $di->set(Service\SocialNetworkAuthenticateService::class);
+            $di->set(Service\UserBlockService::class);
+            $di->set(Service\UserCreateService::class);
+            $di->set(Service\UserRegisterService::class);
+            $di->set(Service\UserConfirmationService::class);
 
-        // email change strategy
-        $di->set(Strategy\DefaultEmailChangeStrategy::class);
-        $di->set(Strategy\InsecureEmailChangeStrategy::class);
-        $di->set(Strategy\SecureEmailChangeStrategy::class);
+            // email change strategy
+            $di->set(Strategy\DefaultEmailChangeStrategy::class);
+            $di->set(Strategy\InsecureEmailChangeStrategy::class);
+            $di->set(Strategy\SecureEmailChangeStrategy::class);
 
-        // validators
-        $di->set(Validator\AjaxRequestModelValidator::class);
-        $di->set(TimeZoneValidator::class);
+            // validators
+            $di->set(Validator\AjaxRequestModelValidator::class);
+            $di->set(TimeZoneValidator::class);
 
-        // class map models + query classes
-        $modelClassMap = [];
-        foreach ($map as $class => $definition) {
-            $di->set($class, $definition);
-            $model = is_array($definition) ? $definition['class'] : $definition;
-            $name = (substr($class, strrpos($class, '\\') + 1));
-            $modelClassMap[$class] = $model;
-            if(in_array($name, ['User', 'Profile', 'Token', 'SocialNetworkAccount'])) {
-                $di->set("Da\\User\\Query\\{$name}Query", function() use ($model) {
-                    return $model::find();
-                });
+            // class map models + query classes
+            $modelClassMap = [];
+            foreach ($map as $class => $definition) {
+                $di->set($class, $definition);
+                $model = is_array($definition) ? $definition['class'] : $definition;
+                $name = (substr($class, strrpos($class, '\\') + 1));
+                $modelClassMap[$class] = $model;
+                if (in_array($name, ['User', 'Profile', 'Token', 'SocialNetworkAccount'])) {
+                    $di->set(
+                        "Da\\User\\Query\\{$name}Query",
+                        function () use ($model) {
+                            return $model::find();
+                        }
+                    );
+                }
             }
-        }
-        $di->setSingleton(ClassMapHelper::class, ClassMapHelper::class, [$modelClassMap]);
+            $di->setSingleton(ClassMapHelper::class, ClassMapHelper::class, [$modelClassMap]);
 
-        // search class
-        $di->set(Search\UserSearch::class, [$di->get(Query\UserQuery::class)]);
+            // search class
+            $di->set(Search\UserSearch::class, [$di->get(Query\UserQuery::class)]);
 
-        if (php_sapi_name() !== 'cli') {
-            // override Yii
-            $di->set(
-                'yii\web\User',
-                [
-                    'enableAutoLogin' => true,
-                    'loginUrl' => ['/user/auth/login'],
-                    'identityClass' => $di->get(ClassMapHelper::class)->get('User')
-                ]
-            );
+            if ($app instanceof WebApplication) {
+
+                // override Yii
+                $di->set(
+                    'yii\web\User',
+                    [
+                        'enableAutoLogin' => true,
+                        'loginUrl' => ['/user/auth/login'],
+                        'identityClass' => $di->get(ClassMapHelper::class)->get(User::class)
+                    ]
+                );
+            }
+        } catch (Exception $e) {
+            die($e);
         }
-}catch(Exception $e) {
-    die($e);
-}
     }
 
     /**
@@ -213,6 +219,7 @@ try{
     protected function initControllerNamespace(WebApplication $app)
     {
         $app->getModule('user')->controllerNamespace = 'Da\User\Controller';
+        $app->getModule('user')->setViewPath('@Da/User/resources/views');
     }
 
     /**
@@ -229,7 +236,7 @@ try{
         $defaults = [
             // --- models
             'User' => 'Da\User\Model\User',
-            'Account' => 'Da\User\Model\Account',
+            'SocialNetworkAccount' => 'Da\User\Model\SocialNetworkAccount',
             'Profile' => 'Da\User\Model\Profile',
             'Token' => 'Da\User\Model\Token',
             // --- search
@@ -245,7 +252,7 @@ try{
         $routes = [
             'Da\User\Model' => [
                 'User',
-                'Account',
+                'SocialNetworkAccount',
                 'Profile',
                 'Token'
             ],
@@ -286,7 +293,7 @@ try{
                 return $route;
             }
         }
-        throw new Exception('Unknown configuration class name');
+        throw new Exception("Unknown configuration class name '{$name}'");
     }
 
 }
