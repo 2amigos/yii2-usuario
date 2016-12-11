@@ -4,3 +4,7 @@ modules:
         - Filesystem
         - Yii2
         - Asserts
+        - Db:
+            populate: true
+            cleanup: true
+            reconnect: false

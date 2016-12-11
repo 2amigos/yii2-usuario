@@ -10,6 +10,11 @@ settings:
     memory_limit: 1024M
 modules:
     config:
+        Db:
+            dsn: 'mysql:host=localhost;dbname=test'
+            user: 'root'
+            password:
+            dump: tests/_data/schema.sql
         Yii2:
             configFile: 'tests/_app/config/test.php'
 coverage:
