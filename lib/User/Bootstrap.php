@@ -1,5 +1,4 @@
 <?php
-
 namespace Da\User;
 
 use Da\User\Helper\ClassMapHelper;
@@ -21,7 +20,6 @@ class Bootstrap implements BootstrapInterface
      */
     public function bootstrap($app)
     {
-
         if ($app->hasModule('user') && $app->getModule('user') instanceof Module) {
             $map = $this->buildClassMap($app->getModule('user')->classMap);
             $this->initContainer($app,$map);
@@ -49,8 +47,6 @@ class Bootstrap implements BootstrapInterface
     {
         $di = Yii::$container;
         try {
-
-
             // events
             $di->set(Event\FormEvent::class);
             $di->set(Event\ProfileEvent::class);
