@@ -1,7 +1,9 @@
 <?php
+namespace Da\User\Migration;
 
+use yii\db\Migration;
 
-class m000000_000003_create_social_account_table extends \yii\db\Migration
+class m000000_000003_create_social_account_table extends Migration
 {
     public function up()
     {
