@@ -1,5 +1,4 @@
 <?php
-
 namespace Da\User;
 
 use Da\User\Contracts\MailChangeStrategyInterface;
