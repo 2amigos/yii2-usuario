@@ -39,3 +39,6 @@ Vagrantfile
 /node_modules
 tests/_support/_generated
 tests/_output/*
+
+# temporary directory for various purposes
+/temp
