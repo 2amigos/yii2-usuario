@@ -1,30 +1,31 @@
 <?php
 namespace Da\User\Helper;
 
+use Da\User\Model\AbstractAuthItem;
 use Da\User\Module;
+use Da\User\Traits\AuthManagerTrait;
 use Yii;
+use yii\helpers\ArrayHelper;
+use yii\rbac\Permission;
+use yii\rbac\Role;
+use yii\rbac\Rule;
 
-/**
- *
- * RoleHelper.php
- *
- * Date: 3/12/16
- * Time: 15:11
- * @author Antonio Ramirez <hola@2amigos.us>
- */
 class AuthHelper
 {
+    use AuthManagerTrait;
+
     /**
-     * Checks whether
+     * Checks whether a user has certain role
      *
+     * @param $userId
      * @param $role
      *
      * @return bool
      */
     public function hasRole($userId, $role)
     {
-        if (Yii::$app->getAuthManager()) {
-            $roles = array_keys(Yii::$app->getAuthManager()->getRolesByUser($userId));
+        if ($this->getAuthManager()) {
+            $roles = array_keys($this->getAuthManager()->getRolesByUser($userId));
 
             return in_array($role, $roles, true);
         }
@@ -41,11 +42,61 @@ class AuthHelper
     {
         /** @var Module $module */
         $module = Yii::$app->getModule('user');
-        $hasAdministratorPermissionName = Yii::$app->getAuthManager() && $module->administratorPermissionName
+        $hasAdministratorPermissionName = $this->getAuthManager() && $module->administratorPermissionName
             ? Yii::$app->getUser()->can($module->administratorPermissionName)
             : false;
 
         return $hasAdministratorPermissionName || in_array($username, $module->administrators);
     }
 
+    /**
+     * @param $name
+     *
+     * @return null|\yii\rbac\Item|Permission
+     */
+    public function getPermission($name)
+    {
+        return $this->getAuthManager()->getPermission($name);
+    }
+
+    /**
+     * @param $name
+     *
+     * @return null|\yii\rbac\Item|Role
+     */
+    public function getRole($name)
+    {
+        return $this->getAuthManager()->getRole($name);
+    }
+
+    /**
+     * Removes a role, permission or rule from the RBAC system.
+     *
+     * @param Role|Permission|Rule $object
+     *
+     * @return bool whether the role, permission or rule is successfully removed
+     */
+    public function remove($object)
+    {
+        return $this->getAuthManager()->remove($object);
+    }
+
+    /**
+     * @param AbstractAuthItem $model
+     *
+     * @return array
+     */
+    public function getUnassignedItems(AbstractAuthItem $model)
+    {
+        $excludeItems = $model->item !== null ? [$model->item->name] : [];
+        $items = $this->getAuthManager()->getItems($model->getType(), $excludeItems);
+
+        return ArrayHelper::map(
+            $items,
+            'name',
+            function ($item) {
+                return empty($item->description) ? $item->name : "{$item->name} ({$item->description})";
+            }
+        );
+    }
 }

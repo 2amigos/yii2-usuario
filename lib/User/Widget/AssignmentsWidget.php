@@ -2,44 +2,68 @@
 
 namespace Da\User\Widget;
 
-use dektrium\rbac\components\DbManager;
-use dektrium\rbac\models\Assignment;
-use Yii;
+use Da\User\Model\Assignment;
+use Da\User\Service\UpdateAuthAssignmentsService;
+use Da\User\Traits\AuthManagerTrait;
+use Da\User\Traits\ContainerTrait;
 use yii\base\InvalidConfigException;
 use yii\base\Widget;
+use yii\helpers\ArrayHelper;
 
 class AssignmentsWidget extends Widget
 {
-    /** @var integer ID of the user to whom auth items will be assigned. */
+    use AuthManagerTrait;
+    use ContainerTrait;
+
+    /**
+     * @var integer ID of the user to whom auth items will be assigned.
+     */
     public $userId;
+    /**
+     * @var string[] the post parameters
+     */
+    public $params = [];
 
-    /** @var DbManager */
-    protected $manager;
-
-    /** @inheritdoc */
+    /**
+     * @inheritdoc
+     * @throws InvalidConfigException
+     */
     public function init()
     {
         parent::init();
-        $this->manager = Yii::$app->authManager;
         if ($this->userId === null) {
-            throw new InvalidConfigException('You should set ' . __CLASS__ . '::$userId');
+            throw new InvalidConfigException( __CLASS__ . '::$userId is required');
         }
     }
 
-    /** @inheritdoc */
+    /**
+     * @inheritdoc
+     */
     public function run()
     {
-        $model = Yii::createObject([
-            'class'   => Assignment::className(),
-            'user_id' => $this->userId,
-        ]);
+        $model = $this->make(Assignment::class, [], ['user_id' => $this->userId]);
 
-        if ($model->load(\Yii::$app->request->post())) {
-            $model->updateAssignments();
+        if ($model->load($this->params)) {
+            $this->make(UpdateAuthAssignmentsService::class, [$model])->run();
         }
 
         return $this->render('/widgets/assignments/form', [
             'model' => $model,
+            'availableItems' => $this->getAvailableItems()
         ]);
+    }
+
+    /**
+     * Returns all available auth items to be attached to the user
+     *
+     * @return array
+     */
+    protected function getAvailableItems()
+    {
+        return ArrayHelper::map($this->getAuthManager()->getItems(), 'name', function ($item) {
+            return empty($item->description)
+                ? $item->name
+                : $item->name . ' (' . $item->description . ')';
+        });
     }
 }

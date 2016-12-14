@@ -14,7 +14,7 @@ $this->params['breadcrumbs'][] = ['label' => Yii::t('user', 'Users'), 'url' => [
 $this->params['breadcrumbs'][] = $this->title;
 
 ?>
-
+<div class="clearfix"></div>
 <?= $this->render(
     '/shared/_alert',
     [
@@ -22,69 +22,86 @@ $this->params['breadcrumbs'][] = $this->title;
     ]
 ) ?>
 
-<?= $this->render('_menu') ?>
-
 <div class="row">
-    <div class="col-md-3">
+    <div class="col-md-12">
         <div class="panel panel-default">
-            <div class="panel-body">
-                <?= Nav::widget(
-                    [
-                        'options' => [
-                            'class' => 'nav-pills nav-stacked',
-                        ],
-                        'items' => [
-                            ['label' => Yii::t('user', 'Account details'), 'url' => ['/user/admin/create']],
-                            [
-                                'label' => Yii::t('user', 'Profile details'),
-                                'options' => [
-                                    'class' => 'disabled',
-                                    'onclick' => 'return false;',
-                                ]
-                            ],
-                            [
-                                'label' => Yii::t('user', 'Information'),
-                                'options' => [
-                                    'class' => 'disabled',
-                                    'onclick' => 'return false;',
-                                ]
-                            ],
-                        ],
-                    ]
-                ) ?>
+            <div class="panel-heading">
+                <h3 class="panel-title"><?= Html::encode($this->title) ?></h3>
             </div>
-        </div>
-    </div>
-    <div class="col-md-9">
-        <div class="panel panel-default">
             <div class="panel-body">
-                <div class="alert alert-info">
-                    <?= Yii::t('user', 'Credentials will be sent to the user by email') ?>.
-                    <?= Yii::t('user', 'A password will be generated automatically if not provided') ?>.
-                </div>
-                <?php $form = ActiveForm::begin(
-                    [
-                        'layout' => 'horizontal',
-                        'enableAjaxValidation' => true,
-                        'enableClientValidation' => false,
-                        'fieldConfig' => [
-                            'horizontalCssClasses' => [
-                                'wrapper' => 'col-sm-9',
-                            ],
-                        ],
-                    ]
-                ); ?>
+                <?= $this->render('/shared/_menu') ?>
+                <div class="row">
+                    <div class="col-md-3">
+                        <div class="panel panel-default">
+                            <div class="panel-body">
+                                <?= Nav::widget(
+                                    [
+                                        'options' => [
+                                            'class' => 'nav-pills nav-stacked',
+                                        ],
+                                        'items' => [
+                                            [
+                                                'label' => Yii::t('user', 'Account details'),
+                                                'url' => ['/user/admin/create']
+                                            ],
+                                            [
+                                                'label' => Yii::t('user', 'Profile details'),
+                                                'options' => [
+                                                    'class' => 'disabled',
+                                                    'onclick' => 'return false;',
+                                                ]
+                                            ],
+                                            [
+                                                'label' => Yii::t('user', 'Information'),
+                                                'options' => [
+                                                    'class' => 'disabled',
+                                                    'onclick' => 'return false;',
+                                                ]
+                                            ],
+                                        ],
+                                    ]
+                                ) ?>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-9">
+                        <div class="panel panel-default">
+                            <div class="panel-body">
+                                <div class="alert alert-info">
+                                    <?= Yii::t('user', 'Credentials will be sent to the user by email') ?>.
+                                    <?= Yii::t('user', 'A password will be generated automatically if not provided') ?>.
+                                </div>
+                                <?php $form = ActiveForm::begin(
+                                    [
+                                        'layout' => 'horizontal',
+                                        'enableAjaxValidation' => true,
+                                        'enableClientValidation' => false,
+                                        'fieldConfig' => [
+                                            'horizontalCssClasses' => [
+                                                'wrapper' => 'col-sm-9',
+                                            ],
+                                        ],
+                                    ]
+                                ); ?>
 
-                <?= $this->render('_user', ['form' => $form, 'user' => $user]) ?>
+                                <?= $this->render('_user', ['form' => $form, 'user' => $user]) ?>
 
-                <div class="form-group">
-                    <div class="col-lg-offset-3 col-lg-9">
-                        <?= Html::submitButton(Yii::t('user', 'Save'), ['class' => 'btn btn-block btn-success']) ?>
+                                <div class="form-group">
+                                    <div class="col-lg-offset-3 col-lg-9">
+                                        <?= Html::submitButton(
+                                            Yii::t('user', 'Save'),
+                                            ['class' => 'btn btn-block btn-success']
+                                        ) ?>
+                                    </div>
+                                </div>
+
+                                <?php ActiveForm::end(); ?>
+                            </div>
+                        </div>
                     </div>
                 </div>
-
-                <?php ActiveForm::end(); ?>
             </div>
         </div>
     </div>
 </div>
+

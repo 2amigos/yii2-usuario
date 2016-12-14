@@ -208,6 +208,7 @@ class AdminController extends Controller
             '_assignments',
             [
                 'user' => $user,
+                'params' => Yii::$app->request->post()
             ]
         );
     }

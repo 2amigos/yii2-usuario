@@ -12,6 +12,7 @@ use yii\widgets\ActiveForm;
 $this->title = Yii::t('user', 'Account settings');
 $this->params['breadcrumbs'][] = $this->title;
 ?>
+<div class="clearfix"></div>
 
 <?= $this->render('/shared/_alert', ['module' => Yii::$app->getModule('user')]) ?>
 

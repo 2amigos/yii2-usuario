@@ -13,6 +13,8 @@ $this->title = Yii::t('user', 'Networks');
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 
+<div class="clearfix"></div>
+
 <?= $this->render('/shared/_alert', ['module' => Yii::$app->getModule('user')]) ?>
 
 <div class="row">
@@ -28,12 +30,14 @@ $this->params['breadcrumbs'][] = $this->title;
                 <div class="alert alert-info">
                     <p><?= Yii::t('user', 'You can connect multiple accounts to be able to log in using them') ?>.</p>
                 </div>
-                <?php $auth = ConnectWidget::begin([
-                    'baseAuthUrl' => ['/user/security/auth'],
-                    'accounts'    => $user->socialNetworkAccounts,
-                    'autoRender'  => false,
-                    'popupMode'   => false,
-                ]) ?>
+                <?php $auth = ConnectWidget::begin(
+                    [
+                        'baseAuthUrl' => ['/user/security/auth'],
+                        'accounts' => $user->socialNetworkAccounts,
+                        'autoRender' => false,
+                        'popupMode' => false,
+                    ]
+                ) ?>
                 <table class="table">
                     <?php foreach ($auth->getClients() as $client): ?>
                         <tr>
@@ -45,13 +49,21 @@ $this->params['breadcrumbs'][] = $this->title;
                             </td>
                             <td style="width: 120px">
                                 <?= $auth->isConnected($client) ?
-                                    Html::a(Yii::t('user', 'Disconnect'), $auth->createClientUrl($client), [
-                                        'class' => 'btn btn-danger btn-block',
-                                        'data-method' => 'post',
-                                    ]) :
-                                    Html::a(Yii::t('user', 'Connect'), $auth->createClientUrl($client), [
-                                        'class' => 'btn btn-success btn-block',
-                                    ])
+                                    Html::a(
+                                        Yii::t('user', 'Disconnect'),
+                                        $auth->createClientUrl($client),
+                                        [
+                                            'class' => 'btn btn-danger btn-block',
+                                            'data-method' => 'post',
+                                        ]
+                                    ) :
+                                    Html::a(
+                                        Yii::t('user', 'Connect'),
+                                        $auth->createClientUrl($client),
+                                        [
+                                            'class' => 'btn btn-success btn-block',
+                                        ]
+                                    )
                                 ?>
                             </td>
                         </tr>

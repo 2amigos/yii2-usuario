@@ -17,11 +17,11 @@ use yii\bootstrap\Nav;
             ],
             [
                 'label' => Yii::t('user', 'Roles'),
-                'url' => ['/rbac/role/index']
+                'url' => ['/user/role/index']
             ],
             [
                 'label' => Yii::t('user', 'Permissions'),
-                'url' => ['/rbac/permission/index']
+                'url' => ['/user/permission/index']
             ],
             [
                 'label' => Yii::t('user', 'Create'),
@@ -32,11 +32,11 @@ use yii\bootstrap\Nav;
                     ],
                     [
                         'label' => Yii::t('user', 'New role'),
-                        'url' => ['/rbac/role/create']
+                        'url' => ['/user/role/create']
                     ],
                     [
                         'label' => Yii::t('user', 'New permission'),
-                        'url' => ['/rbac/permission/create']
+                        'url' => ['/user/permission/create']
                     ],
                 ],
             ],

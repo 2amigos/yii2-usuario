@@ -58,6 +58,7 @@ class ProfileController extends Controller
     public function actionShow($id)
     {
         $profile = $this->profileQuery->whereId($id)->one();
+
         if ($profile === null) {
             throw new NotFoundHttpException();
         }

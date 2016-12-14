@@ -1,6 +1,8 @@
 <?php
 namespace Da\User;
 
+use Da\User\Component\AuthDbManagerComponent;
+use Da\User\Contracts\AuthManagerInterface;
 use Da\User\Helper\ClassMapHelper;
 use Da\User\Model\User;
 use Da\User\Validator\TimeZoneValidator;
@@ -22,7 +24,7 @@ class Bootstrap implements BootstrapInterface
     {
         if ($app->hasModule('user') && $app->getModule('user') instanceof Module) {
             $map = $this->buildClassMap($app->getModule('user')->classMap);
-            $this->initContainer($app,$map);
+            $this->initContainer($app, $map);
             $this->initTranslations($app);
             $this->initMailServiceConfiguration($app, $app->getModule('user'));
 
@@ -30,6 +32,7 @@ class Bootstrap implements BootstrapInterface
                 $this->initControllerNamespace($app);
                 $this->initUrlRoutes($app);
                 $this->initAuthCollection($app);
+                $this->initAuthManager($app);
             } else {
                 /** @var $app ConsoleApplication */
                 $this->initConsoleCommands($app);
@@ -66,6 +69,7 @@ class Bootstrap implements BootstrapInterface
             $di->set(Helper\AuthHelper::class);
             $di->set(Helper\GravatarHelper::class);
             $di->set(Helper\SecurityHelper::class);
+            $di->set(Helper\TimezoneHelper::class);
 
             // services
             $di->set(Service\AccountConfirmationService::class);
@@ -144,6 +148,23 @@ class Bootstrap implements BootstrapInterface
     }
 
     /**
+     * Ensures the auth manager is the one provided by the library.
+     *
+     * @param Application $app
+     */
+    protected function initAuthModule(Application $app)
+    {
+        if (!($app->getAuthManager() instanceof AuthManagerInterface)) {
+            $app->set(
+                'authManager',
+                [
+                    'class' => AuthDbManagerComponent::class
+                ]
+            );
+        }
+    }
+
+    /**
      * Initializes web url routes (rules in Yii2)
      *
      * @param WebApplication $app
@@ -170,7 +191,7 @@ class Bootstrap implements BootstrapInterface
      * Ensures required mail parameters needed for the mail service.
      *
      * @param Application $app
-     * @param Module $module
+     * @param Module|\yii\base\Module $module
      */
     protected function initMailServiceConfiguration(Application $app, Module $module)
     {

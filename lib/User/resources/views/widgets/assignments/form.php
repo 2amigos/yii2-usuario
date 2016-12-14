@@ -1,22 +1,13 @@
 <?php
 
-/*
- * This file is part of the Dektrium project
- *
- * (c) Dektrium project <http://github.com/dektrium>
- *
- * For the full copyright and license information, please view the LICENSE.md
- * file that was distributed with this source code.
- */
-
-use dektrium\rbac\models\Assignment;
 use kartik\select2\Select2;
 use yii\bootstrap\Alert;
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
 
 /**
- * @var $model Assignment
+ * @var $model \Da\User\Model\Assignment
+ * @var $availableItems string[]
  */
 
 ?>
@@ -27,7 +18,7 @@ use yii\widgets\ActiveForm;
     'options' => [
         'class' => 'alert-success'
     ],
-    'body' => Yii::t('rbac', 'Assignments have been updated'),
+    'body' => Yii::t('user', 'Assignments have been updated'),
 ]) ?>
 
 <?php endif ?>
@@ -40,14 +31,14 @@ use yii\widgets\ActiveForm;
 <?= Html::activeHiddenInput($model, 'user_id') ?>
 
 <?= $form->field($model, 'items')->widget(Select2::className(), [
-    'data' => $model->getAvailableItems(),
+    'data' => $availableItems,
     'options' => [
         'id' => 'items',
         'multiple' => true
     ],
 ]) ?>
 
-<?= Html::submitButton(Yii::t('rbac', 'Update assignments'), ['class' => 'btn btn-success btn-block']) ?>
+<?= Html::submitButton(Yii::t('user', 'Update assignments'), ['class' => 'btn btn-success btn-block']) ?>
 
 <?php ActiveForm::end() ?>
 

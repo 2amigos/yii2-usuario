@@ -17,14 +17,7 @@ $this->title = Yii::t('user', 'Manage users');
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 
-<?= $this->render(
-    '/shared/_alert',
-    [
-        'module' => Yii::$app->getModule('user'),
-    ]
-) ?>
-
-<?= $this->render('/admin/_menu') ?>
+<?php $this->beginContent('@Da/User/resources/views/shared/admin_layout.php') ?>
 
 <?php Pjax::begin() ?>
 
@@ -113,3 +106,5 @@ $this->params['breadcrumbs'][] = $this->title;
 ); ?>
 
 <?php Pjax::end() ?>
+
+<?php $this->endContent() ?>
