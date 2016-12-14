@@ -83,6 +83,8 @@ class Bootstrap implements BootstrapInterface
             $di->set(Service\UserCreateService::class);
             $di->set(Service\UserRegisterService::class);
             $di->set(Service\UserConfirmationService::class);
+            $di->set(Service\AuthItemEditionService::class);
+            $di->set(Service\UpdateAuthAssignmentsService::class);
 
             // email change strategy
             $di->set(Strategy\DefaultEmailChangeStrategy::class);
@@ -111,11 +113,18 @@ class Bootstrap implements BootstrapInterface
             }
             $di->setSingleton(ClassMapHelper::class, ClassMapHelper::class, [$modelClassMap]);
 
-            // search class
-            $di->set(Search\UserSearch::class, [$di->get(Query\UserQuery::class)]);
+            // search classes
+            if (!$di->has(Search\UserSearch::class)) {
+                $di->set(Search\UserSearch::class, [$di->get(Query\UserQuery::class)]);
+            }
+            if (!$di->has(Search\PermissionSearch::class)) {
+                $di->set(Search\PermissionSearch::class);
+            }
+            if (!$di->has(Search\RoleSearch::class)) {
+                $di->set(Search\RoleSearch::class);
+            }
 
             if ($app instanceof WebApplication) {
-
                 // override Yii
                 $di->set(
                     'yii\web\User',
@@ -152,7 +161,7 @@ class Bootstrap implements BootstrapInterface
      *
      * @param Application $app
      */
-    protected function initAuthModule(Application $app)
+    protected function initAuthManager(Application $app)
     {
         if (!($app->getAuthManager() instanceof AuthManagerInterface)) {
             $app->set(
@@ -256,8 +265,13 @@ class Bootstrap implements BootstrapInterface
             'SocialNetworkAccount' => 'Da\User\Model\SocialNetworkAccount',
             'Profile' => 'Da\User\Model\Profile',
             'Token' => 'Da\User\Model\Token',
+            'Assignment' => 'Da\User\Model\Assignment',
+            'Permission' => 'Da\User\Model\Permission',
+            'Role' => 'Da\User\Model\Role',
             // --- search
             'UserSearch' => 'Da\User\Search\UserSearch',
+            'PermissionSearch' => 'Da\User\Search\PermissionSearch',
+            'RoleSearch' => 'Da\User\Search\RoleSearch',
             // --- forms
             'RegistrationForm' => 'Da\User\Form\RegistrationForm',
             'ResendForm' => 'Da\User\Form\ResendForm',
@@ -271,10 +285,15 @@ class Bootstrap implements BootstrapInterface
                 'User',
                 'SocialNetworkAccount',
                 'Profile',
-                'Token'
+                'Token',
+                'Assignment',
+                'Permission',
+                'Role'
             ],
             'Da\User\Search' => [
-                'UserSearch'
+                'UserSearch',
+                'PermissionSearch',
+                'RoleSearch'
             ],
             'Da\UserForm' => [
                 'RegistrationForm',
