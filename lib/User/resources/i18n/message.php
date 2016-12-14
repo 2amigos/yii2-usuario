@@ -1,7 +1,7 @@
 <?php
 
 return [
-    'sourcePath' => __DIR__ . '/../User',
+    'sourcePath' => __DIR__.'/../User',
     'messagePath' => __DIR__,
     'languages' => [
         'ca',
@@ -40,7 +40,7 @@ return [
         '.gitignore',
         '.gitkeep',
         '.hgignore',
-        '.hgkeep'
+        '.hgkeep',
     ],
     'format' => 'php',
 ];

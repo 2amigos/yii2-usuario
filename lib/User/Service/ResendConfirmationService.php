@@ -1,6 +1,6 @@
 <?php
-namespace Da\User\Service;
 
+namespace Da\User\Service;
 
 use Da\User\Contracts\ServiceInterface;
 use Da\User\Factory\TokenFactory;
@@ -22,7 +22,7 @@ class ResendConfirmationService implements ServiceInterface
 
     public function run()
     {
-        if($this->model && !$this->model->getIsConfirmed()) {
+        if ($this->model && !$this->model->getIsConfirmed()) {
             $token = TokenFactory::makeConfirmationToken($this->model->id);
             $this->mailService->setViewParam('token', $token);
 
@@ -31,5 +31,4 @@ class ResendConfirmationService implements ServiceInterface
 
         return false;
     }
-
 }

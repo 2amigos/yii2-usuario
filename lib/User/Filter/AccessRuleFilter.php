@@ -5,11 +5,10 @@ namespace Da\User\Filter;
 use Da\User\Model\User;
 use yii\filters\AccessRule;
 
-
 class AccessRuleFilter extends AccessRule
 {
     /**
-     * @inheritdoc
+     * {@inheritdoc}
      * */
     protected function matchRole($user)
     {

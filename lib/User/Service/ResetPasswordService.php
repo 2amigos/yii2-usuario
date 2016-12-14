@@ -1,6 +1,6 @@
 <?php
-namespace Da\User\Service;
 
+namespace Da\User\Service;
 
 use Da\User\Contracts\ServiceInterface;
 use Da\User\Helper\SecurityHelper;
@@ -21,12 +21,10 @@ class ResetPasswordService implements ServiceInterface
 
     public function run()
     {
-
-        return $this->model && (bool)$this->model->updateAttributes(
+        return $this->model && (bool) $this->model->updateAttributes(
                 [
-                    'password_hash' => $this->securityHelper->generatePasswordHash($this->password)
+                    'password_hash' => $this->securityHelper->generatePasswordHash($this->password),
                 ]
             );
     }
-
 }

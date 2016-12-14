@@ -1,4 +1,5 @@
 <?php
+
 namespace Da\User\Strategy;
 
 use Da\User\Contracts\MailChangeStrategyInterface;
@@ -17,7 +18,6 @@ class DefaultEmailChangeStrategy implements MailChangeStrategyInterface
     public function __construct(SettingsForm $form)
     {
         $this->form = $form;
-
     }
 
     public function run()
@@ -37,7 +37,5 @@ class DefaultEmailChangeStrategy implements MailChangeStrategyInterface
         }
 
         return false;
-
     }
-
 }

@@ -1,4 +1,5 @@
 <?php
+
 namespace Da\User\Model;
 
 use Da\User\Helper\SecurityHelper;
@@ -21,18 +22,18 @@ use yii\web\IdentityInterface;
  * @property bool $isConfirmed
  *
  * Database fields:
- * @property integer $id
+ * @property int $id
  * @property string $username
  * @property string $email
  * @property string $unconfirmed_email
  * @property string $password_hash
  * @property string $auth_key
- * @property integer $registration_ip
- * @property integer $confirmed_at
- * @property integer $blocked_at
- * @property integer $flags
- * @property integer $created_at
- * @property integer $updated_at
+ * @property int $registration_ip
+ * @property int $confirmed_at
+ * @property int $blocked_at
+ * @property int $flags
+ * @property int $created_at
+ * @property int $updated_at
  *
  * Defined relations:
  * @property SocialNetworkAccount[] $socialNetworkAccounts
@@ -48,7 +49,7 @@ class User extends ActiveRecord implements IdentityInterface
     const NEW_EMAIL_CONFIRMED = 0b10;
 
     /**
-     * @var string Plain password. Used for model validation.
+     * @var string Plain password. Used for model validation
      */
     public $password;
     /**
@@ -57,7 +58,7 @@ class User extends ActiveRecord implements IdentityInterface
     protected $connectedAccounts;
 
     /**
-     * @inheritdoc
+     * {@inheritdoc}
      */
     public function beforeSave($insert)
     {
@@ -81,7 +82,7 @@ class User extends ActiveRecord implements IdentityInterface
     }
 
     /**
-     * @inheritdoc
+     * {@inheritdoc}
      */
     public static function tableName()
     {
@@ -89,7 +90,7 @@ class User extends ActiveRecord implements IdentityInterface
     }
 
     /**
-     * @inheritdoc
+     * {@inheritdoc}
      */
     public function behaviors()
     {
@@ -99,7 +100,7 @@ class User extends ActiveRecord implements IdentityInterface
     }
 
     /**
-     * @inheritdoc
+     * {@inheritdoc}
      */
     public function attributeLabels()
     {
@@ -115,7 +116,7 @@ class User extends ActiveRecord implements IdentityInterface
     }
 
     /**
-     * @inheritdoc
+     * {@inheritdoc}
      */
     public function scenarios()
     {
@@ -132,7 +133,7 @@ class User extends ActiveRecord implements IdentityInterface
     }
 
     /**
-     * @inheritdoc
+     * {@inheritdoc}
      */
     public function rules()
     {
@@ -145,7 +146,7 @@ class User extends ActiveRecord implements IdentityInterface
             'usernameUnique' => [
                 'username',
                 'unique',
-                'message' => Yii::t('user', 'This username has already been taken')
+                'message' => Yii::t('user', 'This username has already been taken'),
             ],
 
             // email rules
@@ -155,7 +156,7 @@ class User extends ActiveRecord implements IdentityInterface
             'emailUnique' => [
                 'email',
                 'unique',
-                'message' => Yii::t('user', 'This email address has already been taken')
+                'message' => Yii::t('user', 'This email address has already been taken'),
             ],
             'emailTrim' => ['email', 'trim'],
 
@@ -166,7 +167,7 @@ class User extends ActiveRecord implements IdentityInterface
     }
 
     /**
-     * @inheritdoc
+     * {@inheritdoc}
      */
     public function validateAuthKey($authKey)
     {
@@ -174,7 +175,7 @@ class User extends ActiveRecord implements IdentityInterface
     }
 
     /**
-     * @inheritdoc
+     * {@inheritdoc}
      */
     public function getId()
     {
@@ -182,7 +183,7 @@ class User extends ActiveRecord implements IdentityInterface
     }
 
     /**
-     * @inheritdoc
+     * {@inheritdoc}
      */
     public function getAuthKey()
     {
@@ -190,7 +191,7 @@ class User extends ActiveRecord implements IdentityInterface
     }
 
     /**
-     * @inheritdoc
+     * {@inheritdoc}
      */
     public static function findIdentity($id)
     {
@@ -198,7 +199,7 @@ class User extends ActiveRecord implements IdentityInterface
     }
 
     /**
-     * @return bool whether is blocked or not.
+     * @return bool whether is blocked or not
      */
     public function getIsBlocked()
     {
@@ -222,7 +223,7 @@ class User extends ActiveRecord implements IdentityInterface
     }
 
     /**
-     * Checks whether a user has a specific role
+     * Checks whether a user has a specific role.
      *
      * @param string $role
      *
@@ -269,10 +270,10 @@ class User extends ActiveRecord implements IdentityInterface
     }
 
     /**
-     * @inheritdoc
+     * {@inheritdoc}
      */
     public static function findIdentityByAccessToken($token, $type = null)
     {
-        throw new NotSupportedException('Method "' . __CLASS__ . '::' . __METHOD__ . '" is not implemented.');
+        throw new NotSupportedException('Method "'.__CLASS__.'::'.__METHOD__.'" is not implemented.');
     }
 }

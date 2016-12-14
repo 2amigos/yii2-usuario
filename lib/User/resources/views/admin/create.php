@@ -4,7 +4,7 @@ use yii\bootstrap\ActiveForm;
 use yii\bootstrap\Nav;
 use yii\helpers\Html;
 
-/**
+/*
  * @var yii\web\View $this
  * @var \Da\User\Model\User $user
  */
@@ -42,21 +42,21 @@ $this->params['breadcrumbs'][] = $this->title;
                                         'items' => [
                                             [
                                                 'label' => Yii::t('user', 'Account details'),
-                                                'url' => ['/user/admin/create']
+                                                'url' => ['/user/admin/create'],
                                             ],
                                             [
                                                 'label' => Yii::t('user', 'Profile details'),
                                                 'options' => [
                                                     'class' => 'disabled',
                                                     'onclick' => 'return false;',
-                                                ]
+                                                ],
                                             ],
                                             [
                                                 'label' => Yii::t('user', 'Information'),
                                                 'options' => [
                                                     'class' => 'disabled',
                                                     'onclick' => 'return false;',
-                                                ]
+                                                ],
                                             ],
                                         ],
                                     ]

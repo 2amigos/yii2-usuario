@@ -1,4 +1,5 @@
 <?php
+
 namespace Da\User\AuthClient;
 
 use Da\User\Contracts\AuthClientInterface;
@@ -7,12 +8,12 @@ use Yii;
 class VKontakte extends \yii\authclient\clients\VKontakte implements AuthClientInterface
 {
     /**
-     * @inheritdoc
+     * {@inheritdoc}
      */
     public $scope = 'email';
 
     /**
-     * @inheritdoc
+     * {@inheritdoc}
      */
     public function getEmail()
     {
@@ -20,7 +21,7 @@ class VKontakte extends \yii\authclient\clients\VKontakte implements AuthClientI
     }
 
     /**
-     * @inheritdoc
+     * {@inheritdoc}
      */
     public function getUsername()
     {
@@ -30,7 +31,7 @@ class VKontakte extends \yii\authclient\clients\VKontakte implements AuthClientI
     }
 
     /**
-     * @inheritdoc
+     * {@inheritdoc}
      */
     protected function defaultTitle()
     {

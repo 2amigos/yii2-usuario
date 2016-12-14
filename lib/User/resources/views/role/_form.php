@@ -1,8 +1,8 @@
 <?php
 
 /**
- * @var $this  yii\web\View
- * @var $model \Da\User\Model\Role
+ * @var yii\web\View
+ * @var $model       \Da\User\Model\Role
  */
 use Da\User\Helper\AuthHelper;
 use kartik\select2\Select2;
@@ -31,7 +31,7 @@ $unassignedItems = Yii::$container->get(AuthHelper::class)->getUnassignedItems($
         'data' => $unassignedItems,
         'options' => [
             'id' => 'children',
-            'multiple' => true
+            'multiple' => true,
         ],
     ]
 ) ?>

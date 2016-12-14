@@ -8,7 +8,6 @@ use Da\User\Traits\ModuleTrait;
 use Yii;
 use yii\base\Model;
 
-
 class RegistrationForm extends Model
 {
     use ModuleTrait;
@@ -28,7 +27,7 @@ class RegistrationForm extends Model
     public $password;
 
     /**
-     * @inheritdoc
+     * {@inheritdoc}
      */
     public function rules()
     {
@@ -45,7 +44,7 @@ class RegistrationForm extends Model
                 'username',
                 'unique',
                 'targetClass' => $user,
-                'message' => Yii::t('user', 'This username has already been taken')
+                'message' => Yii::t('user', 'This username has already been taken'),
             ],
             // email rules
             'emailTrim' => ['email', 'filter', 'filter' => 'trim'],
@@ -55,7 +54,7 @@ class RegistrationForm extends Model
                 'email',
                 'unique',
                 'targetClass' => $user,
-                'message' => Yii::t('user', 'This email address has already been taken')
+                'message' => Yii::t('user', 'This email address has already been taken'),
             ],
             // password rules
             'passwordRequired' => ['password', 'required', 'skipOnEmpty' => $this->module->generatePasswords],
@@ -64,7 +63,7 @@ class RegistrationForm extends Model
     }
 
     /**
-     * @inheritdoc
+     * {@inheritdoc}
      */
     public function attributeLabels()
     {

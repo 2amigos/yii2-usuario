@@ -3,12 +3,11 @@ use yii\grid\ActionColumn;
 use yii\grid\GridView;
 use yii\helpers\Url;
 
-/**
+/*
  * @var $dataProvider array
  * @var $searchModel  \Da\User\Search\RoleSearch
  * @var $this         yii\web\View
  */
-
 
 $this->title = Yii::t('user', 'Roles');
 $this->params['breadcrumbs'][] = $this->title;
@@ -27,33 +26,33 @@ $this->params['breadcrumbs'][] = $this->title;
                 'attribute' => 'name',
                 'header' => Yii::t('user', 'Name'),
                 'options' => [
-                    'style' => 'width: 20%'
+                    'style' => 'width: 20%',
                 ],
             ],
             [
                 'attribute' => 'description',
                 'header' => Yii::t('user', 'Description'),
                 'options' => [
-                    'style' => 'width: 55%'
+                    'style' => 'width: 55%',
                 ],
             ],
             [
                 'attribute' => 'rule_name',
                 'header' => Yii::t('user', 'Rule name'),
                 'options' => [
-                    'style' => 'width: 20%'
+                    'style' => 'width: 20%',
                 ],
             ],
             [
                 'class' => ActionColumn::className(),
                 'template' => '{update} {delete}',
                 'urlCreator' => function ($action, $model) {
-                    return Url::to(['/user/role/' . $action, 'name' => $model['name']]);
+                    return Url::to(['/user/role/'.$action, 'name' => $model['name']]);
                 },
                 'options' => [
-                    'style' => 'width: 5%'
+                    'style' => 'width: 5%',
                 ],
-            ]
+            ],
         ],
     ]
 ) ?>

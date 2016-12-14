@@ -7,7 +7,7 @@ use yii\helpers\Html;
 use yii\web\View;
 use yii\widgets\Pjax;
 
-/**
+/*
  * @var View $this
  * @var ActiveDataProvider $dataProvider
  * @var UserSearch $searchModel
@@ -33,7 +33,7 @@ $this->params['breadcrumbs'][] = $this->title;
                 'attribute' => 'registration_ip',
                 'value' => function ($model) {
                     return $model->registration_ip == null
-                        ? '<span class="not-set">' . Yii::t('user', '(not set)') . '</span>'
+                        ? '<span class="not-set">'.Yii::t('user', '(not set)').'</span>'
                         : $model->registration_ip;
                 },
                 'format' => 'html',
@@ -53,7 +53,7 @@ $this->params['breadcrumbs'][] = $this->title;
                 'value' => function ($model) {
                     if ($model->isConfirmed) {
                         return '<div class="text-center">
-                                <span class="text-success">' . Yii::t('user', 'Confirmed') . '</span>
+                                <span class="text-success">' .Yii::t('user', 'Confirmed').'</span>
                             </div>';
                     } else {
                         return Html::a(

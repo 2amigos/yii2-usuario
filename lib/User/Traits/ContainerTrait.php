@@ -8,11 +8,9 @@ use Yii;
 use yii\di\Container;
 
 /**
- *
  * @property-read Container $di
  * @property-ready Da\User\Helper\AuthHelper $auth
  * @property-ready Da\User\Helper\ClassMapHelper $classMap
- *
  */
 trait ContainerTrait
 {
@@ -27,11 +25,10 @@ trait ContainerTrait
     /**
      * Gets a class from the container.
      *
-     * @param string $class he class name or an alias name (e.g. `foo`) that was previously registered via [[set()]]
-     * or [[setSingleton()]].
-     *
-     * @param array $params constructor parameters
-     * @param array $config attributes
+     * @param string $class  he class name or an alias name (e.g. `foo`) that was previously registered via [[set()]]
+     *                       or [[setSingleton()]]
+     * @param array  $params constructor parameters
+     * @param array  $config attributes
      *
      * @return object
      */
@@ -55,5 +52,4 @@ trait ContainerTrait
     {
         return $this->getDi()->get(ClassMapHelper::class);
     }
-
 }

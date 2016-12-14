@@ -1,4 +1,5 @@
 <?php
+
 namespace Da\User\Controller;
 
 use Da\User\Contracts\MailChangeStrategyInterface;
@@ -24,7 +25,6 @@ use Yii;
 use yii\web\ForbiddenHttpException;
 use yii\web\NotFoundHttpException;
 
-
 class SettingsController extends Controller
 {
     use ContainerTrait;
@@ -34,19 +34,19 @@ class SettingsController extends Controller
     protected $socialNetworkAccountQuery;
 
     /**
-     * @inheritdoc
+     * {@inheritdoc}
      */
     public $defaultAction = 'profile';
 
     /**
      * SettingsController constructor.
      *
-     * @param string $id
-     * @param Module $module
-     * @param ProfileQuery $profileQuery
-     * @param UserQuery $userQuery
+     * @param string                    $id
+     * @param Module                    $module
+     * @param ProfileQuery              $profileQuery
+     * @param UserQuery                 $userQuery
      * @param SocialNetworkAccountQuery $socialNetworkAccountQuery
-     * @param array $config
+     * @param array                     $config
      */
     public function __construct(
         $id,
@@ -63,7 +63,7 @@ class SettingsController extends Controller
     }
 
     /**
-     * @inheritdoc
+     * {@inheritdoc}
      */
     public function behaviors()
     {
@@ -196,7 +196,6 @@ class SettingsController extends Controller
         $this->trigger(SocialNetworkConnectEvent::EVENT_AFTER_DISCONNECT, $event);
 
         return $this->redirect(['networks']);
-
     }
 
     public function actionDelete()

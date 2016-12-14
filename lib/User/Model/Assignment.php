@@ -1,4 +1,5 @@
 <?php
+
 namespace Da\User\Model;
 
 use Da\User\Traits\AuthManagerTrait;
@@ -16,14 +17,15 @@ class Assignment extends Model
     public $updated = false;
 
     /**
-     * @inheritdoc
+     * {@inheritdoc}
+     *
      * @throws InvalidConfigException
      */
     public function init()
     {
         parent::init();
 
-        if($this->user_id === null) {
+        if ($this->user_id === null) {
             throw new InvalidConfigException('"user_id" must be set.');
         }
 
@@ -31,24 +33,24 @@ class Assignment extends Model
     }
 
     /**
-     * @inheritdoc
+     * {@inheritdoc}
      */
     public function attributeLabels()
     {
         return [
-            'items' => Yii::t('user', 'Items')
+            'items' => Yii::t('user', 'Items'),
         ];
     }
 
     /**
-     * @inheritdoc
+     * {@inheritdoc}
      */
     public function rules()
     {
         return [
             ['user_id', 'required'],
             ['items', RbacItemsValidator::class],
-            ['user_id', 'integer']
+            ['user_id', 'integer'],
         ];
     }
 }

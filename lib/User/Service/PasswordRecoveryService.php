@@ -1,4 +1,5 @@
 <?php
+
 namespace Da\User\Service;
 
 use Da\User\Contracts\ServiceInterface;
@@ -51,12 +52,10 @@ class PasswordRecoveryService implements ServiceInterface
             );
 
             return true;
-
         } catch (Exception $e) {
             $this->logger->log($e->getMessage(), Logger::LEVEL_ERROR);
 
             return false;
         }
     }
-
 }

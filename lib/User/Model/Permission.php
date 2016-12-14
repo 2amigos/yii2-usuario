@@ -1,4 +1,5 @@
 <?php
+
 namespace Da\User\Model;
 
 use yii\rbac\Item;

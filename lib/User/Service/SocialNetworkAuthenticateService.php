@@ -1,6 +1,6 @@
 <?php
-namespace Da\User\Service;
 
+namespace Da\User\Service;
 
 use Da\User\Contracts\AuthClientInterface;
 use Da\User\Contracts\ServiceInterface;
@@ -17,7 +17,6 @@ use yii\helpers\Url;
 
 class SocialNetworkAuthenticateService implements ServiceInterface
 {
-
     protected $controller;
     protected $authAction;
     protected $client;
@@ -37,7 +36,6 @@ class SocialNetworkAuthenticateService implements ServiceInterface
         $this->socialNetworkAccountQuery = $socialNetworkAccountQuery;
         $this->userQuery = $userQuery;
     }
-
 
     public function run()
     {
@@ -87,7 +85,7 @@ class SocialNetworkAuthenticateService implements ServiceInterface
                 'client_id' => $data['id'],
                 'data' => json_encode($data),
                 'username' => $this->client->getUserName(),
-                'email' => $this->client->getEmail()
+                'email' => $this->client->getEmail(),
             ]
         );
 
@@ -113,7 +111,7 @@ class SocialNetworkAuthenticateService implements ServiceInterface
             [
                 'scenario' => 'connect',
                 'username' => $account->username,
-                'email' => $account->email
+                'email' => $account->email,
             ]
         );
 

@@ -1,4 +1,5 @@
 <?php
+
 namespace Da\User\Query;
 
 use Da\User\Contracts\AuthClientInterface;
@@ -16,7 +17,7 @@ class SocialNetworkAccountQuery extends ActiveQuery
         return $this->andWhere(
             [
                 'provider' => $client->getId(),
-                'client_id' => $client->getUserAttributes()['id']
+                'client_id' => $client->getUserAttributes()['id'],
             ]
         );
     }

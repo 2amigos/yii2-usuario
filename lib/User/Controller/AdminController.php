@@ -1,4 +1,5 @@
 <?php
+
 namespace Da\User\Controller;
 
 use Da\User\Event\UserEvent;
@@ -21,7 +22,6 @@ use yii\filters\VerbFilter;
 use yii\helpers\Url;
 use yii\web\Controller;
 
-
 class AdminController extends Controller
 {
     use ContainerTrait;
@@ -34,10 +34,10 @@ class AdminController extends Controller
     /**
      * AdminController constructor.
      *
-     * @param string $id
-     * @param Module $module
+     * @param string    $id
+     * @param Module    $module
      * @param UserQuery $userQuery
-     * @param array $config
+     * @param array     $config
      */
     public function __construct($id, Module $module, UserQuery $userQuery, array $config = [])
     {
@@ -60,7 +60,7 @@ class AdminController extends Controller
     }
 
     /**
-     * @inheritdoc
+     * {@inheritdoc}
      */
     public function behaviors()
     {
@@ -97,7 +97,7 @@ class AdminController extends Controller
             'index',
             [
                 'dataProvider' => $dataProvider,
-                'searchModel' => $searchModel
+                'searchModel' => $searchModel,
             ]
         );
     }
@@ -113,13 +113,11 @@ class AdminController extends Controller
         $this->make(AjaxRequestModelValidator::class, [$user])->validate();
 
         if ($user->load(Yii::$app->request->post())) {
-
             $this->trigger(UserEvent::EVENT_BEFORE_CREATE, $event);
 
             $mailService = MailFactory::makeWelcomeMailerService($user);
 
             if ($this->make(UserCreateService::class, [$user, $mailService])->run()) {
-
                 Yii::$app->getSession()->setFlash('success', Yii::t('user', 'User has been created'));
                 $this->trigger(UserEvent::EVENT_AFTER_CREATE, $event);
 
@@ -181,7 +179,7 @@ class AdminController extends Controller
             '_profile',
             [
                 'user' => $user,
-                'profile' => $profile
+                'profile' => $profile,
             ]
         );
     }
@@ -208,7 +206,7 @@ class AdminController extends Controller
             '_assignments',
             [
                 'user' => $user,
-                'params' => Yii::$app->request->post()
+                'params' => Yii::$app->request->post(),
             ]
         );
     }
@@ -225,7 +223,6 @@ class AdminController extends Controller
         if ($this->make(UserConfirmationService::class, [$user])->run()) {
             Yii::$app->getSession()->setFlash('success', Yii::t('user', 'User has been confirmed'));
             $this->trigger(UserEvent::EVENT_AFTER_CONFIRMATION, $event);
-
         } else {
             Yii::$app->getSession()->setFlash('warning', Yii::t('user', 'Unable to confirm user. Please, try again.'));
         }
@@ -247,7 +244,6 @@ class AdminController extends Controller
             if ($user->delete()) {
                 Yii::$app->getSession()->setFlash('success', \Yii::t('user', 'User has been deleted'));
                 $this->trigger(ActiveRecord::EVENT_AFTER_DELETE, $event);
-
             } else {
                 Yii::$app->getSession()->setFlash(
                     'warning',
@@ -279,4 +275,3 @@ class AdminController extends Controller
         return $this->redirect(Url::previous('actions-redirect'));
     }
 }
-

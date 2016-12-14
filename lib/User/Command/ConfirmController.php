@@ -1,4 +1,5 @@
 <?php
+
 namespace Da\User\Command;
 
 use Da\User\Query\UserQuery;
@@ -26,16 +27,13 @@ class ConfirmController extends Controller
     {
         $user = $this->userQuery->whereUsernameOrEmail($usernameOrEmail)->one();
         if ($user === null) {
-            $this->stdout(Yii::t('user', 'User is not found') . "\n", Console::FG_RED);
+            $this->stdout(Yii::t('user', 'User is not found')."\n", Console::FG_RED);
         } else {
-
             if ($this->make(UserConfirmationService::class, [$user])->run()) {
-                $this->stdout(Yii::t('user', 'User has been confirmed') . "\n", Console::FG_GREEN);
+                $this->stdout(Yii::t('user', 'User has been confirmed')."\n", Console::FG_GREEN);
             } else {
-                $this->stdout(Yii::t('user', 'Error occurred while confirming user') . "\n", Console::FG_RED);
+                $this->stdout(Yii::t('user', 'Error occurred while confirming user')."\n", Console::FG_RED);
             }
         }
     }
 }
-
-

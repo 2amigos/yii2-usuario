@@ -5,7 +5,7 @@ use yii\bootstrap\Alert;
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
 
-/**
+/*
  * @var $model \Da\User\Model\Assignment
  * @var $availableItems string[]
  */
@@ -16,7 +16,7 @@ use yii\widgets\ActiveForm;
 
 <?= Alert::widget([
     'options' => [
-        'class' => 'alert-success'
+        'class' => 'alert-success',
     ],
     'body' => Yii::t('user', 'Assignments have been updated'),
 ]) ?>
@@ -25,7 +25,7 @@ use yii\widgets\ActiveForm;
 
 <?php $form = ActiveForm::begin([
     'enableClientValidation' => false,
-    'enableAjaxValidation'   => false,
+    'enableAjaxValidation' => false,
 ]) ?>
 
 <?= Html::activeHiddenInput($model, 'user_id') ?>
@@ -34,7 +34,7 @@ use yii\widgets\ActiveForm;
     'data' => $availableItems,
     'options' => [
         'id' => 'items',
-        'multiple' => true
+        'multiple' => true,
     ],
 ]) ?>
 

@@ -1,4 +1,5 @@
 <?php
+
 namespace Da\User\Widget;
 
 use Da\User\Form\LoginForm;
@@ -14,7 +15,7 @@ class LoginWidget extends Widget
         return $this->render(
             '/widgets/login',
             [
-                'model' => Yii::createObject(LoginForm::class)
+                'model' => Yii::createObject(LoginForm::class),
             ]
         );
     }

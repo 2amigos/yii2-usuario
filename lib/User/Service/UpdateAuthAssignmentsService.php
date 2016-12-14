@@ -1,6 +1,6 @@
 <?php
-namespace Da\User\Service;
 
+namespace Da\User\Service;
 
 use Da\User\Contracts\ServiceInterface;
 use Da\User\Model\Assignment;
@@ -39,6 +39,5 @@ class UpdateAuthAssignmentsService implements ServiceInterface
         }
 
         return $this->model->updated = true;
-
     }
 }

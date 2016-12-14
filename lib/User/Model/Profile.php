@@ -1,4 +1,5 @@
 <?php
+
 namespace Da\User\Model;
 
 use Da\User\Helper\GravatarHelper;
@@ -13,8 +14,7 @@ use DateTimeZone;
 use DateTime;
 
 /**
- *
- * @property integer $user_id
+ * @property int $user_id
  * @property string $name
  * @property string $public_email
  * @property string $gravatar_email
@@ -23,7 +23,6 @@ use DateTime;
  * @property string $website
  * @property string $bio
  * @property string $timezone
- *
  * @property User $user
  */
 class Profile extends ActiveRecord
@@ -32,12 +31,11 @@ class Profile extends ActiveRecord
     use ContainerTrait;
 
     /**
-     * @inheritdoc
+     * {@inheritdoc}
      */
     public function beforeSave($insert)
     {
         if ($this->isAttributeChanged('gravatar_email')) {
-
             $this->setAttribute(
                 'gravatar_id',
                 $this->make(GravatarHelper::class)->buildId(trim($this->getAttribute('gravatar_email')))
@@ -48,7 +46,7 @@ class Profile extends ActiveRecord
     }
 
     /**
-     * @inheritdoc
+     * {@inheritdoc}
      */
     public static function tableName()
     {
@@ -56,7 +54,7 @@ class Profile extends ActiveRecord
     }
 
     /**
-     * @inheritdoc
+     * {@inheritdoc}
      */
     public function rules()
     {
@@ -68,7 +66,7 @@ class Profile extends ActiveRecord
                     if ($this->make(TimeZoneValidator::class, [$attribute])->validate()) {
                         $this->addError($attribute, Yii::t('user', 'Time zone is not valid'));
                     }
-                }
+                },
             ],
             'publicEmailPattern' => ['public_email', 'email'],
             'gravatarEmailPattern' => ['gravatar_email', 'email'],
@@ -82,7 +80,7 @@ class Profile extends ActiveRecord
     }
 
     /**
-     * @inheritdoc
+     * {@inheritdoc}
      */
     public function attributeLabels()
     {
@@ -112,7 +110,7 @@ class Profile extends ActiveRecord
     }
 
     /**
-     * Set the User's timezone
+     * Set the User's timezone.
      *
      * @param DateTimeZone $timezone
      */
@@ -122,7 +120,7 @@ class Profile extends ActiveRecord
     }
 
     /**
-     * Get User's local time
+     * Get User's local time.
      *
      * @param DateTime|null $dateTime
      *

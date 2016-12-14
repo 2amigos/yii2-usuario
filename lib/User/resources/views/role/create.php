@@ -1,11 +1,10 @@
 <?php
 
 /**
- * @var $model \Da\User\Model\Role
- * @var $this  yii\web\View
- * @var $unassignedItems string[]
+ * @var \Da\User\Model\Role
+ * @var $this               yii\web\View
+ * @var $unassignedItems    string[]
  */
-
 $this->title = Yii::t('user', 'Create new role');
 $this->params['breadcrumbs'][] = $this->title;
 
@@ -17,7 +16,7 @@ $this->params['breadcrumbs'][] = $this->title;
     '_form',
     [
         'model' => $model,
-        'unassignedItems' => $unassignedItems
+        'unassignedItems' => $unassignedItems,
     ]
 ) ?>
 

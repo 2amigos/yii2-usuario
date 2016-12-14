@@ -1,4 +1,5 @@
 <?php
+
 namespace Da\User\Search;
 
 use Da\User\Traits\AuthManagerTrait;
@@ -26,7 +27,7 @@ abstract class AbstractAuthItemSearch extends Model
     public $rule_name;
 
     /**
-     * @return integer
+     * @return int
      */
     abstract public function getType();
 
@@ -60,6 +61,5 @@ abstract class AbstractAuthItemSearch extends Model
         $dataProvider->allModels = $query->all($this->getAuthManager()->db);
 
         return $dataProvider;
-
     }
 }

@@ -1,4 +1,5 @@
 <?php
+
 namespace Da\User;
 
 use Da\User\Component\AuthDbManagerComponent;
@@ -18,7 +19,7 @@ use yii\web\Application as WebApplication;
 class Bootstrap implements BootstrapInterface
 {
     /**
-     * @inheritdoc
+     * {@inheritdoc}
      */
     public function bootstrap($app)
     {
@@ -34,17 +35,17 @@ class Bootstrap implements BootstrapInterface
                 $this->initAuthCollection($app);
                 $this->initAuthManager($app);
             } else {
-                /** @var $app ConsoleApplication */
+                /* @var $app ConsoleApplication */
                 $this->initConsoleCommands($app);
             }
         }
     }
 
     /**
-     * Initialize container with module classes
+     * Initialize container with module classes.
      *
      * @param \yii\base\Application $app
-     * @param array $map the previously built class map list
+     * @param array                 $map the previously built class map list
      */
     protected function initContainer($app, $map)
     {
@@ -131,7 +132,7 @@ class Bootstrap implements BootstrapInterface
                     [
                         'enableAutoLogin' => true,
                         'loginUrl' => ['/user/auth/login'],
-                        'identityClass' => $di->get(ClassMapHelper::class)->get(User::class)
+                        'identityClass' => $di->get(ClassMapHelper::class)->get(User::class),
                     ]
                 );
             }
@@ -141,7 +142,7 @@ class Bootstrap implements BootstrapInterface
     }
 
     /**
-     * Registers module translation messages
+     * Registers module translation messages.
      *
      * @param Application $app
      */
@@ -150,8 +151,8 @@ class Bootstrap implements BootstrapInterface
         if (!isset($app->get('i18n')->translations['user*'])) {
             $app->get('i18n')->translations['user*'] = [
                 'class' => PhpMessageSource::class,
-                'basePath' => __DIR__ . '/resources/i18n',
-                'sourceLanguage' => 'en-US'
+                'basePath' => __DIR__.'/resources/i18n',
+                'sourceLanguage' => 'en-US',
             ];
         }
     }
@@ -167,14 +168,14 @@ class Bootstrap implements BootstrapInterface
             $app->set(
                 'authManager',
                 [
-                    'class' => AuthDbManagerComponent::class
+                    'class' => AuthDbManagerComponent::class,
                 ]
             );
         }
     }
 
     /**
-     * Initializes web url routes (rules in Yii2)
+     * Initializes web url routes (rules in Yii2).
      *
      * @param WebApplication $app
      */
@@ -199,7 +200,7 @@ class Bootstrap implements BootstrapInterface
     /**
      * Ensures required mail parameters needed for the mail service.
      *
-     * @param Application $app
+     * @param Application             $app
      * @param Module|\yii\base\Module $module
      */
     protected function initMailServiceConfiguration(Application $app, Module $module)
@@ -209,7 +210,7 @@ class Bootstrap implements BootstrapInterface
             'welcomeMailSubject' => Yii::t('user', 'Welcome to {0}', $app->name),
             'confirmationMailSubject' => Yii::t('user', 'Confirm account on {0}', $app->name),
             'reconfirmationMailSubject' => Yii::t('user', 'Confirm email change on {0}', $app->name),
-            'recoveryMailSubject' => Yii::t('user', 'Complete password reset on {0}', $app->name)
+            'recoveryMailSubject' => Yii::t('user', 'Complete password reset on {0}', $app->name),
         ];
 
         $module->mailParams = array_merge($defaults, $module->mailParams);
@@ -238,7 +239,7 @@ class Bootstrap implements BootstrapInterface
     }
 
     /**
-     * Registers controllers
+     * Registers controllers.
      *
      * @param WebApplication $app
      */
@@ -249,7 +250,7 @@ class Bootstrap implements BootstrapInterface
     }
 
     /**
-     * Builds class map according to user configuration
+     * Builds class map according to user configuration.
      *
      * @param array $userClassMap user configuration on the module
      *
@@ -288,12 +289,12 @@ class Bootstrap implements BootstrapInterface
                 'Token',
                 'Assignment',
                 'Permission',
-                'Role'
+                'Role',
             ],
             'Da\User\Search' => [
                 'UserSearch',
                 'PermissionSearch',
-                'RoleSearch'
+                'RoleSearch',
             ],
             'Da\UserForm' => [
                 'RegistrationForm',
@@ -301,25 +302,26 @@ class Bootstrap implements BootstrapInterface
                 'LoginForm',
                 'SettingsForm',
                 'RecoveryForm',
-            ]
+            ],
         ];
 
         $mapping = array_merge($defaults, $userClassMap);
 
         foreach ($mapping as $name => $definition) {
-            $map[$this->getRoute($routes, $name) . "\\$name"] = $definition;
+            $map[$this->getRoute($routes, $name)."\\$name"] = $definition;
         }
 
         return $map;
     }
 
     /**
-     * Returns the parent class name route of a short class name
+     * Returns the parent class name route of a short class name.
      *
-     * @param array $routes class name routes
+     * @param array  $routes class name routes
      * @param string $name
      *
      * @return int|string
+     *
      * @throws Exception
      */
     protected function getRoute(array $routes, $name)
@@ -331,5 +333,4 @@ class Bootstrap implements BootstrapInterface
         }
         throw new Exception("Unknown configuration class name '{$name}'");
     }
-
 }

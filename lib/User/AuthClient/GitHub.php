@@ -1,4 +1,5 @@
 <?php
+
 namespace Da\User\AuthClient;
 
 use Da\User\Contracts\AuthClientInterface;
@@ -6,7 +7,7 @@ use Da\User\Contracts\AuthClientInterface;
 class GitHub extends \yii\authclient\clients\GitHub implements AuthClientInterface
 {
     /**
-     * @inheritdoc
+     * {@inheritdoc}
      */
     public function getEmail()
     {
@@ -16,7 +17,7 @@ class GitHub extends \yii\authclient\clients\GitHub implements AuthClientInterfa
     }
 
     /**
-     * @inheritdoc
+     * {@inheritdoc}
      */
     public function getUsername()
     {

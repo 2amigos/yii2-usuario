@@ -1,8 +1,8 @@
 <?php
+
 namespace Da\User\AuthClient;
 
 use Da\User\Contracts\AuthClientInterface;
-
 
 class Twitter extends \yii\authclient\clients\Twitter implements AuthClientInterface
 {
@@ -16,9 +16,6 @@ class Twitter extends \yii\authclient\clients\Twitter implements AuthClientInter
             : null;
     }
 
-    /**
-     * @return null Twitter does not provide user's email address
-     */
     public function getEmail()
     {
         return null;

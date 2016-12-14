@@ -2,7 +2,7 @@
 
 use yii\bootstrap\Alert;
 
-/**
+/*
  * @var \Da\User\Module $module
  */
 ?>
@@ -14,7 +14,7 @@ use yii\bootstrap\Alert;
                 <?php if (in_array($type, ['success', 'danger', 'warning', 'info'])): ?>
                     <?= Alert::widget([
                             'options' => ['class' => 'alert-dismissible alert-'.$type],
-                            'body' => $message
+                            'body' => $message,
                     ]) ?>
                 <?php endif ?>
             <?php endforeach ?>

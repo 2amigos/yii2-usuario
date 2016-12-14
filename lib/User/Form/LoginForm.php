@@ -39,9 +39,9 @@ class LoginForm extends Model
     protected $securityHelper;
 
     /**
-     * @param UserQuery $query
+     * @param UserQuery      $query
      * @param SecurityHelper $securityHelper
-     * @param array $config
+     * @param array          $config
      */
     public function __construct(UserQuery $query, SecurityHelper $securityHelper, $config = [])
     {
@@ -51,7 +51,7 @@ class LoginForm extends Model
     }
 
     /**
-     * @inheritdoc
+     * {@inheritdoc}
      */
     public function attributeLabels()
     {
@@ -63,7 +63,7 @@ class LoginForm extends Model
     }
 
     /**
-     * @inheritdoc
+     * {@inheritdoc}
      */
     public function rules()
     {
@@ -78,7 +78,7 @@ class LoginForm extends Model
                     ) {
                         $this->addError($attribute, Yii::t('user', 'Invalid login or password'));
                     }
-                }
+                },
             ],
             'confirmationValidate' => [
                 'login',
@@ -93,7 +93,7 @@ class LoginForm extends Model
                             $this->addError($attribute, Yii::t('user', 'Your account has been blocked'));
                         }
                     }
-                }
+                },
             ],
             'rememberMe' => ['rememberMe', 'boolean'],
         ];
@@ -108,6 +108,7 @@ class LoginForm extends Model
     {
         if ($this->validate()) {
             $duration = $this->rememberMe ? $this->module->rememberLoginLifespan : 0;
+
             return Yii::$app->getUser()->login($this->user, $duration);
         } else {
             return false;
@@ -115,14 +116,16 @@ class LoginForm extends Model
     }
 
     /**
-     * @inheritdoc
+     * {@inheritdoc}
      */
     public function beforeValidate()
     {
         if (parent::beforeValidate()) {
             $this->user = $this->query->whereUsernameOrEmail(trim($this->login))->one();
+
             return true;
         }
+
         return false;
     }
 }

@@ -1,6 +1,6 @@
 <?php
-namespace Da\User\Controller;
 
+namespace Da\User\Controller;
 
 use Da\User\Model\Permission;
 use Da\User\Search\PermissionSearch;
@@ -9,7 +9,7 @@ use yii\web\NotFoundHttpException;
 class PermissionController extends AbstractAuthItemController
 {
     /**
-     * @inheritdoc
+     * {@inheritdoc}
      */
     protected function getModelClass()
     {
@@ -17,7 +17,7 @@ class PermissionController extends AbstractAuthItemController
     }
 
     /**
-     * @inheritdoc
+     * {@inheritdoc}
      */
     protected function getSearchModelClass()
     {
@@ -25,7 +25,7 @@ class PermissionController extends AbstractAuthItemController
     }
 
     /**
-     * @inheritdoc
+     * {@inheritdoc}
      */
     protected function getItem($name)
     {
@@ -37,5 +37,4 @@ class PermissionController extends AbstractAuthItemController
 
         throw new NotFoundHttpException();
     }
-
 }

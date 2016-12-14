@@ -2,7 +2,7 @@
 
 use Da\User\Widget\AssignmentsWidget;
 
-/**
+/*
  * @var yii\web\View $this
  * @var \Da\User\Model\User $user
  * @var string[] $params

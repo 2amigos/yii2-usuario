@@ -1,4 +1,5 @@
 <?php
+
 namespace Da\User\Validator;
 
 use Da\User\Traits\AuthManagerTrait;
@@ -21,5 +22,4 @@ class RbacItemsValidator extends Validator
             }
         }
     }
-
 }

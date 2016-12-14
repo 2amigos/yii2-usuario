@@ -1,10 +1,10 @@
 <?php
+
 namespace Da\User\Event;
 
 use Da\User\Model\SocialNetworkAccount;
 use yii\authclient\ClientInterface;
 use yii\base\Event;
-
 
 class SocialNetworkAuthEvent extends Event
 {

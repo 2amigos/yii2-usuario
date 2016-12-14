@@ -1,4 +1,5 @@
 <?php
+
 namespace Da\User\Controller;
 
 use Da\User\Event\FormEvent;
@@ -28,11 +29,11 @@ class RecoveryController extends Controller
     /**
      * RecoveryController constructor.
      *
-     * @param string $id
-     * @param Module $module
-     * @param UserQuery $userQuery
+     * @param string     $id
+     * @param Module     $module
+     * @param UserQuery  $userQuery
      * @param TokenQuery $tokenQuery
-     * @param array $config
+     * @param array      $config
      */
     public function __construct($id, Module $module, UserQuery $userQuery, TokenQuery $tokenQuery, array $config = [])
     {
@@ -42,7 +43,7 @@ class RecoveryController extends Controller
     }
 
     /**
-     * @inheritdoc
+     * {@inheritdoc}
      */
     public function behaviors()
     {
@@ -53,7 +54,7 @@ class RecoveryController extends Controller
                     [
                         'allow' => true,
                         'actions' => ['request', 'reset'],
-                        'roles' => ['?']
+                        'roles' => ['?'],
                     ],
                 ],
             ],
@@ -64,11 +65,11 @@ class RecoveryController extends Controller
      * Displays / handles user password recovery request.
      *
      * @return string
+     *
      * @throws NotFoundHttpException
      */
     public function actionRequest()
     {
-
         if (!$this->module->allowPasswordRecovery) {
             throw new NotFoundHttpException();
         }
@@ -81,13 +82,11 @@ class RecoveryController extends Controller
         $this->make(AjaxRequestModelValidator::class, $form)->validate();
 
         if ($form->load(Yii::$app->request->post())) {
-
             $this->trigger(FormEvent::EVENT_BEFORE_REQUEST, $event);
 
             $mailService = MailFactory::makeRecoveryMailerService($form->email);
 
             if ($this->make(PasswordRecoveryService::class, [$form->email, $mailService])->run()) {
-
                 $this->trigger(FormEvent::EVENT_AFTER_REQUEST, $event);
 
                 return $this->render(
@@ -100,7 +99,7 @@ class RecoveryController extends Controller
             }
         }
 
-        return $this->render('request', ['model' => $form,]);
+        return $this->render('request', ['model' => $form]);
     }
 
     /**
@@ -110,6 +109,7 @@ class RecoveryController extends Controller
      * @param $code
      *
      * @return string
+     *
      * @throws NotFoundHttpException
      */
     public function actionReset($id, $code)
@@ -159,6 +159,6 @@ class RecoveryController extends Controller
             }
         }
 
-        return $this->render('reset', ['model' => $form,]);
+        return $this->render('reset', ['model' => $form]);
     }
 }

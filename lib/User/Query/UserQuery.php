@@ -48,7 +48,6 @@ class UserQuery extends ActiveQuery
         return $this->andWhere(['id' => $id]);
     }
 
-
     /**
      * @param $id
      *

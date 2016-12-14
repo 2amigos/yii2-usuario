@@ -1,6 +1,6 @@
 <?php
-namespace Da\User\Widget;
 
+namespace Da\User\Widget;
 
 use Yii;
 use yii\authclient\ClientInterface;
@@ -17,20 +17,20 @@ class ConnectWidget extends AuthChoice
     public $accounts;
 
     /**
-     * @inheritdoc
+     * {@inheritdoc}
      */
     public function init()
     {
         AuthChoiceAsset::register(Yii::$app->view);
         if ($this->popupMode) {
-            Yii::$app->view->registerJs("\$('#" . $this->getId() . "').authchoice();");
+            Yii::$app->view->registerJs("\$('#".$this->getId()."').authchoice();");
         }
         $this->options['id'] = $this->getId();
         echo Html::beginTag('div', $this->options);
     }
 
     /**
-     * @inheritdoc
+     * {@inheritdoc}
      */
     public function createClientUrl($provider)
     {

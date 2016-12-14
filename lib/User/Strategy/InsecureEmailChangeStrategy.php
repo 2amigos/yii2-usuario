@@ -1,9 +1,9 @@
 <?php
+
 namespace Da\User\Strategy;
 
 use Da\User\Contracts\MailChangeStrategyInterface;
 use Da\User\Form\SettingsForm;
-
 
 class InsecureEmailChangeStrategy implements MailChangeStrategyInterface
 {
@@ -17,7 +17,7 @@ class InsecureEmailChangeStrategy implements MailChangeStrategyInterface
     public function run()
     {
         $this->form->getUser()->email = $this->form->email;
+
         return $this->form->getUser()->save();
     }
-
 }

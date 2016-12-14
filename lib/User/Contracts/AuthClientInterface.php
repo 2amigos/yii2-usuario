@@ -1,4 +1,5 @@
 <?php
+
 namespace Da\User\Contracts;
 
 use yii\authclient\ClientInterface;

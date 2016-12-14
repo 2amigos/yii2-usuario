@@ -1,4 +1,5 @@
 <?php
+
 namespace Da\User\Controller;
 
 use Da\User\Query\ProfileQuery;
@@ -15,10 +16,10 @@ class ProfileController extends Controller
     /**
      * ProfileController constructor.
      *
-     * @param string $id
-     * @param Module $module
+     * @param string       $id
+     * @param Module       $module
      * @param ProfileQuery $profileQuery
-     * @param array $config
+     * @param array        $config
      */
     public function __construct($id, Module $module, ProfileQuery $profileQuery, array $config = [])
     {
@@ -27,7 +28,7 @@ class ProfileController extends Controller
     }
 
     /**
-     * @inheritdoc
+     * {@inheritdoc}
      */
     public function behaviors()
     {
@@ -38,12 +39,12 @@ class ProfileController extends Controller
                     [
                         'allow' => true,
                         'actions' => ['index'],
-                        'roles' => ['@']
+                        'roles' => ['@'],
                     ],
                     [
                         'allow' => true,
                         'actions' => ['show'],
-                        'roles' => ['?', '@']
+                        'roles' => ['?', '@'],
                     ],
                 ],
             ],
@@ -70,5 +71,4 @@ class ProfileController extends Controller
             ]
         );
     }
-
 }

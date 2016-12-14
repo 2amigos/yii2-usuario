@@ -1,10 +1,10 @@
 <?php
+
 namespace Da\User\Event;
 
 use Da\User\Model\SocialNetworkAccount;
 use Da\User\Model\User;
 use yii\base\Event;
-
 
 class SocialNetworkConnectEvent extends Event
 {

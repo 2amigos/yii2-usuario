@@ -2,7 +2,7 @@
 
 use yii\helpers\Html;
 
-/**
+/*
  * @var \Da\User\Model\User  $user
  * @var \Da\User\Model\Token $token
  */

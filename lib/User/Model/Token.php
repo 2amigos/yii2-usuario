@@ -1,4 +1,5 @@
 <?php
+
 namespace Da\User\Model;
 
 use Da\User\Helper\SecurityHelper;
@@ -8,18 +9,16 @@ use Da\User\Traits\ModuleTrait;
 use yii\db\ActiveRecord;
 use yii\helpers\Url;
 use RuntimeException;
-use Yii;
 
 /**
  * Token Active Record model.
  *
- * @property integer $user_id
+ * @property int $user_id
  * @property string $code
- * @property integer $type
+ * @property int $type
  * @property string $url
  * @property bool $isExpired
- * @property integer $created_at
- *
+ * @property int $created_at
  * @property User $user
  */
 class Token extends ActiveRecord
@@ -36,11 +35,11 @@ class Token extends ActiveRecord
         self::TYPE_CONFIRMATION => '/user/registration/confirm',
         self::TYPE_RECOVERY => '/usr/recovery/reset',
         self::TYPE_CONFIRM_NEW_EMAIL => '/user/settings/confirm',
-        self::TYPE_CONFIRM_OLD_EMAIL => '/usr/settings/confirm'
+        self::TYPE_CONFIRM_OLD_EMAIL => '/usr/settings/confirm',
     ];
 
     /**
-     * @inheritdoc
+     * {@inheritdoc}
      */
     public function beforeSave($insert)
     {
@@ -54,7 +53,7 @@ class Token extends ActiveRecord
     }
 
     /**
-     * @inheritdoc
+     * {@inheritdoc}
      */
     public static function tableName()
     {
@@ -62,7 +61,7 @@ class Token extends ActiveRecord
     }
 
     /**
-     * @inheritdoc
+     * {@inheritdoc}
      */
     public static function primaryKey()
     {
@@ -86,7 +85,7 @@ class Token extends ActiveRecord
     }
 
     /**
-     * @return bool Whether token has expired.
+     * @return bool Whether token has expired
      */
     public function getIsExpired()
     {

@@ -1,4 +1,5 @@
 <?php
+
 namespace Da\User\Form;
 
 use Da\User\Query\UserQuery;
@@ -28,7 +29,7 @@ class RecoveryForm extends Model
 
     /**
      * @param UserQuery $query
-     * @param array $config
+     * @param array     $config
      */
     public function __construct(UserQuery $query, array $config = [])
     {
@@ -37,18 +38,18 @@ class RecoveryForm extends Model
     }
 
     /**
-     * @inheritdoc
+     * {@inheritdoc}
      */
     public function attributeLabels()
     {
         return [
-            'email'    => Yii::t('user', 'Email'),
+            'email' => Yii::t('user', 'Email'),
             'password' => Yii::t('user', 'Password'),
         ];
     }
 
     /**
-     * @inheritdoc
+     * {@inheritdoc}
      */
     public function scenarios()
     {
@@ -59,7 +60,7 @@ class RecoveryForm extends Model
     }
 
     /**
-     * @inheritdoc
+     * {@inheritdoc}
      */
     public function rules()
     {

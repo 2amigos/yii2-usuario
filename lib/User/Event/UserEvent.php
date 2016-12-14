@@ -1,4 +1,5 @@
 <?php
+
 namespace Da\User\Event;
 
 use Da\User\Model\User;
@@ -24,7 +25,6 @@ class UserEvent extends Event
     const EVENT_AFTER_BLOCK = 'afterBlock';
     const EVENT_BEFORE_LOGOUT = 'beforeLogout';
     const EVENT_AFTER_LOGOUT = 'afterLogout';
-
 
     protected $user;
 

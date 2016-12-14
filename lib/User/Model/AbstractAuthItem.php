@@ -1,4 +1,5 @@
 <?php
+
 namespace Da\User\Model;
 
 use Da\User\Traits\AuthManagerTrait;
@@ -38,7 +39,7 @@ abstract class AbstractAuthItem extends Model
     public $item;
 
     /**
-     * @inheritdoc
+     * {@inheritdoc}
      */
     public function init()
     {
@@ -56,7 +57,7 @@ abstract class AbstractAuthItem extends Model
     }
 
     /**
-     * @inheritdoc
+     * {@inheritdoc}
      */
     public function attributeLabels()
     {
@@ -69,7 +70,7 @@ abstract class AbstractAuthItem extends Model
     }
 
     /**
-     * @inheritdoc
+     * {@inheritdoc}
      */
     public function scenarios()
     {
@@ -80,7 +81,7 @@ abstract class AbstractAuthItem extends Model
     }
 
     /**
-     * @inheritdoc
+     * {@inheritdoc}
      */
     public function rules()
     {
@@ -98,7 +99,7 @@ abstract class AbstractAuthItem extends Model
                 },
                 'when' => function () {
                     return $this->scenario == 'create' || $this->item->name != $this->name;
-                }
+                },
             ],
             ['children', RbacItemsValidator::class],
             ['rule', RbacRuleValidator::class],

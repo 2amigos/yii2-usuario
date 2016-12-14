@@ -1,4 +1,5 @@
 <?php
+
 namespace Da\User\Validator;
 
 use ReflectionClass;

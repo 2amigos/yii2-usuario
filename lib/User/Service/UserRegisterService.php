@@ -1,4 +1,5 @@
 <?php
+
 namespace Da\User\Service;
 
 use Da\User\Contracts\ServiceInterface;
@@ -47,16 +48,17 @@ class UserRegisterService implements ServiceInterface
 
             $model->trigger(UserEvent::EVENT_BEFORE_REGISTER);
 
-            if(!$model->save()) {
+            if (!$model->save()) {
                 $transaction->rollBack();
+
                 return false;
             }
 
-            if($this->getModule()->enableEmailConfirmation) {
+            if ($this->getModule()->enableEmailConfirmation) {
                 $token = TokenFactory::makeConfirmationToken($model->id);
             }
 
-            if(isset($token)) {
+            if (isset($token)) {
                 $this->mailService->setViewParam('token', $token);
             }
             $this->mailService->run();
@@ -66,13 +68,11 @@ class UserRegisterService implements ServiceInterface
             $transaction->commit();
 
             return true;
-
-        } catch(Exception $e) {
+        } catch (Exception $e) {
             $transaction->rollBack();
             $this->logger->log($e->getMessage(), Logger::LEVEL_WARNING);
 
             return false;
         }
     }
-
 }

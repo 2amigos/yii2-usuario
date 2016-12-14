@@ -1,6 +1,6 @@
 <?php
 /**
- * @var \Da\User\Model\Token $token
+ * @var \Da\User\Model\Token
  */
 ?>
 <?= Yii::t('user', 'Hello') ?>,

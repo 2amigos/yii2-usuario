@@ -1,4 +1,5 @@
 <?php
+
 namespace Da\User\Service;
 
 use Da\User\Contracts\MailChangeStrategyInterface;
@@ -44,9 +45,7 @@ class EmailChangeService implements ServiceInterface
             $token->delete();
             if (empty($this->model->unconfirmed_email)) {
                 Yii::$app->session->setFlash('danger', Yii::t('user', 'An error occurred processing your request'));
-
             } elseif ($this->userQuery->whereEmail($this->model->unconfirmed_email)->exists() === false) {
-
                 if ($this->getModule()->emailChangeStrategy === MailChangeStrategyInterface::TYPE_SECURE) {
                     if ($token->type === Token::TYPE_CONFIRM_NEW_EMAIL) {
                         $this->model->flags |= User::NEW_EMAIL_CONFIRMED;
@@ -54,7 +53,7 @@ class EmailChangeService implements ServiceInterface
                             'success',
                             Yii::t(
                                 'user',
-                                'Awesome, almost there. ' .
+                                'Awesome, almost there. '.
                                 'Now you need to click the confirmation link sent to your old email address.'
                             )
                         );
@@ -64,7 +63,7 @@ class EmailChangeService implements ServiceInterface
                             'success',
                             Yii::t(
                                 'user',
-                                'Awesome, almost there. ' .
+                                'Awesome, almost there. '.
                                 'Now you need to click the confirmation link sent to your new email address.'
                             )
                         );
@@ -81,7 +80,7 @@ class EmailChangeService implements ServiceInterface
                 return $this->model->save(false);
             }
         }
+
         return false;
     }
-
 }

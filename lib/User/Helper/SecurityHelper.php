@@ -19,7 +19,7 @@ class SecurityHelper
     /**
      * Generates a secure hash from a password and a random salt.
      *
-     * @param string $password
+     * @param string   $password
      * @param null|int $cost
      *
      * @return string
@@ -54,7 +54,7 @@ class SecurityHelper
         }
 
         $all = str_split($all);
-        for ($i = 0; $i < $length - count($sets); $i++) {
+        for ($i = 0; $i < $length - count($sets); ++$i) {
             $password .= $all[array_rand($all)];
         }
 

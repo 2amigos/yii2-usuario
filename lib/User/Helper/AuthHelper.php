@@ -1,4 +1,5 @@
 <?php
+
 namespace Da\User\Helper;
 
 use Da\User\Model\AbstractAuthItem;
@@ -15,7 +16,7 @@ class AuthHelper
     use AuthManagerTrait;
 
     /**
-     * Checks whether a user has certain role
+     * Checks whether a user has certain role.
      *
      * @param $userId
      * @param $role

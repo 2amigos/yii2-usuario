@@ -1,4 +1,5 @@
 <?php
+
 namespace Da\User\Event;
 
 use yii\base\Event;
@@ -26,4 +27,3 @@ class FormEvent extends Event
         return $this->form;
     }
 }
-

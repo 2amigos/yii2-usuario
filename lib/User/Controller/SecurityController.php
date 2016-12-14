@@ -1,4 +1,5 @@
 <?php
+
 namespace Da\User\Controller;
 
 use Da\User\Contracts\AuthClientInterface;
@@ -10,11 +11,9 @@ use Da\User\Service\SocialNetworkAccountConnectService;
 use Da\User\Service\SocialNetworkAuthenticateService;
 use Da\User\Traits\ContainerTrait;
 use yii\authclient\AuthAction;
-use yii\authclient\ClientInterface;
 use yii\base\Module;
 use yii\filters\AccessControl;
 use yii\filters\VerbFilter;
-use yii\helpers\Url;
 use yii\web\Controller;
 use Yii;
 
@@ -27,10 +26,10 @@ class SecurityController extends Controller
     /**
      * SecurityController constructor.
      *
-     * @param string $id
-     * @param Module $module
+     * @param string                    $id
+     * @param Module                    $module
      * @param SocialNetworkAccountQuery $socialNetworkAccountQuery
-     * @param array $config
+     * @param array                     $config
      */
     public function __construct(
         $id,
@@ -43,7 +42,7 @@ class SecurityController extends Controller
     }
 
     /**
-     * @inheritdoc
+     * {@inheritdoc}
      */
     public function behaviors()
     {
@@ -54,12 +53,12 @@ class SecurityController extends Controller
                     [
                         'allow' => true,
                         'actions' => ['login', 'auth', 'blocked'],
-                        'roles' => ['?']
+                        'roles' => ['?'],
                     ],
                     [
                         'allow' => true,
                         'actions' => ['login', 'auth', 'logout'],
-                        'roles' => ['@']
+                        'roles' => ['@'],
                     ],
                 ],
             ],
@@ -73,7 +72,7 @@ class SecurityController extends Controller
     }
 
     /**
-     * @inheritdoc
+     * {@inheritdoc}
      */
     public function actions()
     {

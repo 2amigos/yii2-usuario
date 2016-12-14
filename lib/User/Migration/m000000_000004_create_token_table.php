@@ -1,4 +1,5 @@
 <?php
+
 namespace Da\User\Migration;
 
 use yii\db\Migration;
@@ -13,7 +14,7 @@ class m000000_000004_create_token_table extends Migration
                 'user_id' => $this->integer(),
                 'code' => $this->string(32)->notNull(),
                 'type' => $this->smallInteger(6)->notNull(),
-                'created_at' => $this->integer()->notNull()
+                'created_at' => $this->integer()->notNull(),
             ]
         );
 

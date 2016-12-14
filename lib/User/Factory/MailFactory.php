@@ -1,4 +1,5 @@
 <?php
+
 namespace Da\User\Factory;
 
 use Da\User\Model\Token;
@@ -25,7 +26,7 @@ class MailFactory
             'user' => $user,
             'token' => null,
             'module' => $module,
-            'showPassword' => false
+            'showPassword' => false,
         ];
 
         return static::makeMailerService($from, $to, $subject, 'welcome', $params);
@@ -33,7 +34,7 @@ class MailFactory
 
     /**
      * @param string $email
-     * @param Token $token
+     * @param Token  $token
      *
      * @return MailService
      */
@@ -46,14 +47,14 @@ class MailFactory
         $subject = $module->mailParams['recoveryMailSubject'];
         $params = [
             'user' => $token && $token->user ? $token->user : null,
-            'token' => $token
+            'token' => $token,
         ];
 
         return static::makeMailerService($from, $to, $subject, 'recovery', $params);
     }
 
     /**
-     * @param User $user
+     * @param User       $user
      * @param Token|null $token
      *
      * @return MailService
@@ -67,19 +68,20 @@ class MailFactory
         $subject = $module->mailParams['confirmationMailSubject'];
         $params = [
             'user' => $token && $token->user ? $token->user : null,
-            'token' => $token
+            'token' => $token,
         ];
 
         return static::makeMailerService($from, $to, $subject, 'recovery', $params);
     }
 
     /**
-     * @param User $user
+     * @param User  $user
      * @param Token $token
      *
      * @return MailService
      */
-    public static function makeReconfirmationMailerService(User $user, Token $token) {
+    public static function makeReconfirmationMailerService(User $user, Token $token)
+    {
         /** @var Module $module */
         $module = Yii::$app->getModule('user');
         $to = $token->type === Token::TYPE_CONFIRM_NEW_EMAIL
@@ -90,20 +92,20 @@ class MailFactory
         $subject = $module->mailParams['reconfirmationMailSubject'];
         $params = [
             'user' => $token && $token->user ? $token->user : null,
-            'token' => $token
+            'token' => $token,
         ];
 
         return static::makeMailerService($from, $to, $subject, 'recovery', $params);
     }
 
     /**
-     * Builds a MailerService
+     * Builds a MailerService.
      *
      * @param string $from
      * @param string $to
      * @param string $subject
      * @param string $view
-     * @param array $params
+     * @param array  $params
      *
      * @return MailService
      */

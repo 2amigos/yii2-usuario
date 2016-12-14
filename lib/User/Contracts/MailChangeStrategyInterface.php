@@ -1,4 +1,5 @@
 <?php
+
 namespace Da\User\Contracts;
 
 interface MailChangeStrategyInterface extends StrategyInterface

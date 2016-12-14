@@ -1,4 +1,5 @@
 <?php
+
 namespace Da\User\Service;
 
 use Da\User\Contracts\ServiceInterface;
@@ -17,11 +18,12 @@ class UserConfirmationService implements ServiceInterface
     public function run()
     {
         $this->model->trigger(UserEvent::EVENT_BEFORE_CONFIRMATION);
-        if ((bool)$this->model->updateAttributes(['confirmed_at' => time()])) {
+        if ((bool) $this->model->updateAttributes(['confirmed_at' => time()])) {
             $this->model->trigger(UserEvent::EVENT_AFTER_CONFIRMATION);
 
             return true;
         }
+
         return false;
     }
 }

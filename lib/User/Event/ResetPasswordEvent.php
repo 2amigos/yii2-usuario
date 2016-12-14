@@ -1,6 +1,6 @@
 <?php
-namespace Da\User\Event;
 
+namespace Da\User\Event;
 
 use Da\User\Form\RecoveryForm;
 use Da\User\Model\Token;

@@ -1,4 +1,5 @@
 <?php
+
 namespace Da\User\Service;
 
 use Da\User\Contracts\ServiceInterface;
@@ -7,7 +8,6 @@ use Da\User\Helper\SecurityHelper;
 use Da\User\Model\User;
 use yii\base\InvalidCallException;
 use Exception;
-use yii\db\ActiveRecord;
 use yii\log\Logger;
 
 class UserCreateService implements ServiceInterface
@@ -58,14 +58,11 @@ class UserCreateService implements ServiceInterface
             $transaction->commit();
 
             return true;
-
         } catch (Exception $e) {
-
             $transaction->rollBack();
             $this->logger->log($e->getMessage(), Logger::LEVEL_ERROR);
 
             return false;
         }
     }
-
 }

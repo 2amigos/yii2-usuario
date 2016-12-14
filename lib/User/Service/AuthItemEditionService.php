@@ -1,4 +1,5 @@
 <?php
+
 namespace Da\User\Service;
 
 use Da\User\Contracts\ServiceInterface;
@@ -55,14 +56,13 @@ class AuthItemEditionService implements ServiceInterface
             $this->model->item = $item;
 
             return $this->updateChildren();
-
         } catch (Exception $e) {
             return false;
         }
     }
 
     /**
-     * Updates Auth Item children
+     * Updates Auth Item children.
      *
      * @return bool
      */
@@ -78,7 +78,6 @@ class AuthItemEditionService implements ServiceInterface
                 if (!$this->getAuthManager()->removeChild($this->model->item, $children[$item])) {
                     return false;
                 }
-
             }
             // add new children
             foreach (array_diff($this->model->children, $childrenNames) as $item) {

@@ -1,4 +1,5 @@
 <?php
+
 namespace Da\User\Factory;
 
 use Yii;
@@ -9,7 +10,7 @@ class AuthItemFactory
 {
     protected static $map = [
         Item::TYPE_ROLE => 'makeRole',
-        Item::TYPE_PERMISSION => 'makePermission'
+        Item::TYPE_PERMISSION => 'makePermission',
     ];
 
     /**
@@ -37,6 +38,7 @@ class AuthItemFactory
      * @param $name
      *
      * @return \yii\rbac\Role|\yii\rbac\Permission
+     *
      * @throws Exception
      */
     public static function makeByType($type, $name)

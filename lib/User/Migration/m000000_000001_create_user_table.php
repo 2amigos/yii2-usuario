@@ -1,4 +1,5 @@
 <?php
+
 namespace Da\User\Migration;
 
 use yii\db\Migration;
@@ -19,7 +20,7 @@ class m000000_000001_create_user_table extends Migration
             'confirmed_at' => $this->integer(),
             'blocked_at' => $this->integer(),
             'updated_at' => $this->integer()->notNull(),
-            'created_at' => $this->integer()->notNull()
+            'created_at' => $this->integer()->notNull(),
         ]);
 
         $this->createIndex('idx_user_username', '{{%user}}', 'username', true);

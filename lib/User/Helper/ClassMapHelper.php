@@ -3,11 +3,11 @@
 namespace Da\User\Helper;
 
 /**
- *
- * ModelMapHelper.php
+ * ModelMapHelper.php.
  *
  * Date: 3/12/16
  * Time: 18:10
+ *
  * @author Antonio Ramirez <hola@2amigos.us>
  */
 class ClassMapHelper
@@ -37,13 +37,14 @@ class ClassMapHelper
      * @param $key
      *
      * @return mixed
+     *
      * @throws \Exception
      */
     public function get($key)
     {
         if (array_key_exists($key, $this->map)) {
             return $this->map[$key];
-        };
-        throw new \Exception('Unknown model map key: ' . $key);
+        }
+        throw new \Exception('Unknown model map key: '.$key);
     }
 }

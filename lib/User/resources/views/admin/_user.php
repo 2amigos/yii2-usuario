@@ -1,7 +1,7 @@
 <?php
 /**
- * @var yii\widgets\ActiveForm $form
- * @var \Da\User\Model\User $user
+ * @var yii\widgets\ActiveForm
+ * @var \Da\User\Model\User    $user
  */
 ?>
 

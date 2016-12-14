@@ -1,6 +1,6 @@
 <?php
 /**
- * @var \yii\web\View        $this
+ * @var \yii\web\View
  * @var yii\mail\BaseMessage $content
  */
 ?>

@@ -1,4 +1,5 @@
 <?php
+
 namespace Da\User\Controller;
 
 use Da\User\Filter\AccessRuleFilter;
@@ -23,10 +24,10 @@ abstract class AbstractAuthItemController extends Controller
     /**
      * AbstractAuthItemController constructor.
      *
-     * @param string $id
-     * @param Module $module
+     * @param string     $id
+     * @param Module     $module
      * @param AuthHelper $authHelper
-     * @param array $config
+     * @param array      $config
      */
     public function __construct($id, Module $module, AuthHelper $authHelper, array $config = [])
     {
@@ -35,7 +36,7 @@ abstract class AbstractAuthItemController extends Controller
     }
 
     /**
-     * @inheritdoc
+     * {@inheritdoc}
      */
     public function behaviors()
     {
@@ -63,7 +64,7 @@ abstract class AbstractAuthItemController extends Controller
             'index',
             [
                 'searchModel' => $searchModel,
-                'dataProvider' => $searchModel->search(Yii::$app->request->get())
+                'dataProvider' => $searchModel->search(Yii::$app->request->get()),
             ]
         );
     }
@@ -82,7 +83,6 @@ abstract class AbstractAuthItemController extends Controller
                     ->setFlash('success', Yii::t('user', 'Authorization item successfully created.'));
 
                 return $this->redirect(['index']);
-
             } else {
                 Yii::$app->getSession()->setFlash('danger', Yii::t('user', 'Unable to create authorization item.'));
             }
@@ -92,7 +92,7 @@ abstract class AbstractAuthItemController extends Controller
             'create',
             [
                 'model' => $model,
-                'unassignedItems' => $this->authHelper->getUnassignedItems($model)
+                'unassignedItems' => $this->authHelper->getUnassignedItems($model),
             ]
         );
     }
@@ -107,14 +107,12 @@ abstract class AbstractAuthItemController extends Controller
         $this->make(AjaxRequestModelValidator::class, [$model])->validate();
 
         if ($model->load(Yii::$app->request->post())) {
-
             if ($this->make(AuthItemEditionService::class, [$model])->run()) {
                 Yii::$app
                     ->getSession()
                     ->setFlash('success', Yii::t('user', 'Authorization item successfully updated.'));
 
                 return $this->redirect(['index']);
-
             } else {
                 Yii::$app->getSession()->setFlash('danger', Yii::t('user', 'Unable to update authorization item.'));
             }
@@ -124,7 +122,7 @@ abstract class AbstractAuthItemController extends Controller
             'update',
             [
                 'model' => $model,
-                'unassignedItems' => $this->authHelper->getUnassignedItems($model)
+                'unassignedItems' => $this->authHelper->getUnassignedItems($model),
             ]
         );
     }
@@ -143,26 +141,25 @@ abstract class AbstractAuthItemController extends Controller
     }
 
     /**
-     * The fully qualified class name of the model
+     * The fully qualified class name of the model.
      *
      * @return string
      */
     abstract protected function getModelClass();
 
     /**
-     * The fully qualified class name of the search model
+     * The fully qualified class name of the search model.
      *
      * @return string
      */
     abstract protected function getSearchModelClass();
 
     /**
-     * Returns the an auth item
+     * Returns the an auth item.
      *
      * @param string $name
      *
      * @return \yii\rbac\Role|\yii\rbac\Permission|\yii\rbac\Rule
      */
     abstract protected function getItem($name);
-
 }

@@ -1,4 +1,5 @@
 <?php
+
 namespace Da\User\Controller;
 
 use Da\User\Event\FormEvent;
@@ -34,11 +35,11 @@ class RegistrationController extends Controller
     /**
      * RegistrationController constructor.
      *
-     * @param string $id
-     * @param Module $module
-     * @param UserQuery $userQuery
+     * @param string                    $id
+     * @param Module                    $module
+     * @param UserQuery                 $userQuery
      * @param SocialNetworkAccountQuery $socialNetworkAccountQuery
-     * @param array $config
+     * @param array                     $config
      */
     public function __construct(
         $id,
@@ -47,14 +48,13 @@ class RegistrationController extends Controller
         SocialNetworkAccountQuery $socialNetworkAccountQuery,
         array $config = []
     ) {
-
         $this->userQuery = $userQuery;
         $this->socialNetworkAccountQuery = $socialNetworkAccountQuery;
         parent::__construct($id, $module, $config);
     }
 
     /**
-     * @inheritdoc
+     * {@inheritdoc}
      */
     public function behaviors()
     {
@@ -65,12 +65,12 @@ class RegistrationController extends Controller
                     [
                         'allow' => true,
                         'actions' => ['register', 'connect'],
-                        'roles' => ['?']
+                        'roles' => ['?'],
                     ],
                     [
                         'allow' => true,
                         'actions' => ['confirm', 'resend'],
-                        'roles' => ['?', '@']
+                        'roles' => ['?', '@'],
                     ],
                 ],
             ],
@@ -97,7 +97,6 @@ class RegistrationController extends Controller
             $mailService = MailFactory::makeWelcomeMailerService($user);
 
             if ($this->make(UserRegisterService::class, [$user, $mailService])->run()) {
-
                 Yii::$app->session->setFlash(
                     'info',
                     Yii::t(
@@ -110,7 +109,7 @@ class RegistrationController extends Controller
                     '/shared/message',
                     [
                         'title' => Yii::t('user', 'Your account has been created'),
-                        'module' => $this->module
+                        'module' => $this->module,
                     ]
                 );
             }
@@ -143,7 +142,6 @@ class RegistrationController extends Controller
         $this->make(AjaxRequestModelValidator::class, [$user])->validate();
 
         if ($user->load(Yii::$app->request->post())) {
-
             $this->trigger(SocialNetworkConnectEvent::EVENT_BEFORE_CONNECT, $event);
 
             $mailService = MailFactory::makeWelcomeMailerService($user);
@@ -225,7 +223,7 @@ class RegistrationController extends Controller
                         'info',
                         Yii::t(
                             'user',
-                            'A message has been sent to your email address. ' .
+                            'A message has been sent to your email address. '.
                             'It contains a confirmation link that you must click to complete registration.'
                         )
                     );
@@ -236,14 +234,14 @@ class RegistrationController extends Controller
                     'danger',
                     Yii::t(
                         'user',
-                        'We couldn\'t re-send the mail to confirm your address. ' .
+                        'We couldn\'t re-send the mail to confirm your address. '.
                         'Please, verify is the correct email or if it has been confirmed already.'
                     )
                 );
             }
 
             return $this->render('/shared/message', [
-                'title'  => $success
+                'title' => $success
                     ? Yii::t('user', 'A new confirmation link has been sent')
                     : Yii::t('user', 'Unable to send confirmation link'),
                 'module' => $this->module,

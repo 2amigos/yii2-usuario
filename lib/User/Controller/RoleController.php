@@ -1,4 +1,5 @@
 <?php
+
 namespace Da\User\Controller;
 
 use Da\User\Model\Role;
@@ -8,7 +9,7 @@ use yii\web\NotFoundHttpException;
 class RoleController extends AbstractAuthItemController
 {
     /**
-     * @inheritdoc
+     * {@inheritdoc}
      */
     protected function getModelClass()
     {
@@ -16,7 +17,7 @@ class RoleController extends AbstractAuthItemController
     }
 
     /**
-     * @inheritdoc
+     * {@inheritdoc}
      */
     protected function getSearchModelClass()
     {
@@ -24,7 +25,7 @@ class RoleController extends AbstractAuthItemController
     }
 
     /**
-     * @inheritdoc
+     * {@inheritdoc}
      */
     protected function getItem($name)
     {
@@ -36,5 +37,4 @@ class RoleController extends AbstractAuthItemController
 
         throw new NotFoundHttpException();
     }
-
 }

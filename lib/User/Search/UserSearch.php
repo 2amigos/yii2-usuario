@@ -34,7 +34,7 @@ class UserSearch extends Model
      * UserSearch constructor.
      *
      * @param UserQuery $query
-     * @param array $config
+     * @param array     $config
      */
     public function __construct(UserQuery $query, $config = [])
     {
@@ -59,9 +59,9 @@ class UserSearch extends Model
     public function attributeLabels()
     {
         return [
-            'username'        => Yii::t('user', 'Username'),
-            'email'           => Yii::t('user', 'Email'),
-            'created_at'      => Yii::t('user', 'Registration time'),
+            'username' => Yii::t('user', 'Username'),
+            'email' => Yii::t('user', 'Email'),
+            'created_at' => Yii::t('user', 'Registration time'),
             'registration_ip' => Yii::t('user', 'Registration ip'),
         ];
     }

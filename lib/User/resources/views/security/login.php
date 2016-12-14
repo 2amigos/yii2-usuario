@@ -4,7 +4,7 @@ use Da\User\Widget\ConnectWidget;
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
 
-/**
+/*
  * @var yii\web\View $this
  * @var \Da\User\Form\LoginForm $model
  * @var \Da\User\Module $module
@@ -49,13 +49,13 @@ $this->params['breadcrumbs'][] = $this->title;
                     ->passwordInput()
                     ->label(
                         Yii::t('user', 'Password')
-                        . ($module->allowPasswordRecovery ?
-                            ' (' . Html::a(
+                        .($module->allowPasswordRecovery ?
+                            ' ('.Html::a(
                                 Yii::t('user', 'Forgot password?'),
                                 ['/user/recovery/request'],
                                 ['tabindex' => '5']
                             )
-                            . ')' : '')
+                            .')' : '')
                     ) ?>
 
                 <?= $form->field($model, 'rememberMe')->checkbox(['tabindex' => '4']) ?>

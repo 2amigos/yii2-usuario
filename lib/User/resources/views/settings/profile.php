@@ -5,7 +5,7 @@ use yii\widgets\ActiveForm;
 use yii\helpers\ArrayHelper;
 use Da\User\Helper\TimezoneHelper;
 
-/**
+/*
  * @var yii\web\View $this
  * @var yii\widgets\ActiveForm $form
  * @var \Da\User\Model\Profile $model
@@ -55,7 +55,7 @@ $timezoneHelper = $model->make(TimezoneHelper::class);
 
                 <?= $form
                     ->field($model, 'timezone')
-                    ->dropDownList(ArrayHelper::map($timezoneHelper->getAll(),'timezone','name'));
+                    ->dropDownList(ArrayHelper::map($timezoneHelper->getAll(), 'timezone', 'name'));
                 ?>
                 <?= $form
                     ->field($model, 'gravatar_email')

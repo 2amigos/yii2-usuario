@@ -1,4 +1,5 @@
 <?php
+
 namespace Da\User\AuthClient;
 
 use Da\User\Contracts\AuthClientInterface;
@@ -6,7 +7,7 @@ use Da\User\Contracts\AuthClientInterface;
 class Facebook extends \yii\authclient\clients\Facebook implements AuthClientInterface
 {
     /**
-     * @inheritdoc
+     * {@inheritdoc}
      */
     public function getEmail()
     {
@@ -16,7 +17,7 @@ class Facebook extends \yii\authclient\clients\Facebook implements AuthClientInt
     }
 
     /**
-     * @inheritdoc
+     * {@inheritdoc}
      */
     public function getUsername()
     {

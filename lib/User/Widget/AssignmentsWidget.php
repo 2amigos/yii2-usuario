@@ -16,7 +16,7 @@ class AssignmentsWidget extends Widget
     use ContainerTrait;
 
     /**
-     * @var integer ID of the user to whom auth items will be assigned.
+     * @var int ID of the user to whom auth items will be assigned
      */
     public $userId;
     /**
@@ -25,19 +25,20 @@ class AssignmentsWidget extends Widget
     public $params = [];
 
     /**
-     * @inheritdoc
+     * {@inheritdoc}
+     *
      * @throws InvalidConfigException
      */
     public function init()
     {
         parent::init();
         if ($this->userId === null) {
-            throw new InvalidConfigException( __CLASS__ . '::$userId is required');
+            throw new InvalidConfigException(__CLASS__.'::$userId is required');
         }
     }
 
     /**
-     * @inheritdoc
+     * {@inheritdoc}
      */
     public function run()
     {
@@ -49,12 +50,12 @@ class AssignmentsWidget extends Widget
 
         return $this->render('/widgets/assignments/form', [
             'model' => $model,
-            'availableItems' => $this->getAvailableItems()
+            'availableItems' => $this->getAvailableItems(),
         ]);
     }
 
     /**
-     * Returns all available auth items to be attached to the user
+     * Returns all available auth items to be attached to the user.
      *
      * @return array
      */
@@ -63,7 +64,7 @@ class AssignmentsWidget extends Widget
         return ArrayHelper::map($this->getAuthManager()->getItems(), 'name', function ($item) {
             return empty($item->description)
                 ? $item->name
-                : $item->name . ' (' . $item->description . ')';
+                : $item->name.' ('.$item->description.')';
         });
     }
 }

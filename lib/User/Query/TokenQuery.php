@@ -1,4 +1,5 @@
 <?php
+
 namespace Da\User\Query;
 
 use Da\User\Model\Token;

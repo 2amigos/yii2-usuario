@@ -1,4 +1,5 @@
 <?php
+
 namespace Da\User\AuthClient;
 
 use Da\User\Contracts\AuthClientInterface;
@@ -7,7 +8,7 @@ use Yii;
 class Yandex extends \yii\authclient\clients\Yandex implements AuthClientInterface
 {
     /**
-     * @inheritdoc
+     * {@inheritdoc}
      */
     public function getEmail()
     {
@@ -23,7 +24,7 @@ class Yandex extends \yii\authclient\clients\Yandex implements AuthClientInterfa
     }
 
     /**
-     * @inheritdoc
+     * {@inheritdoc}
      */
     public function getUsername()
     {
@@ -33,7 +34,7 @@ class Yandex extends \yii\authclient\clients\Yandex implements AuthClientInterfa
     }
 
     /**
-     * @inheritdoc
+     * {@inheritdoc}
      */
     protected function defaultTitle()
     {

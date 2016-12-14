@@ -2,7 +2,7 @@
 
 use yii\helpers\Html;
 
-/**
+/*
  * @var \yii\web\View $this
  * @var \Da\User\Model\Profile $profile
  */
@@ -16,7 +16,7 @@ $this->params['breadcrumbs'][] = $this->title;
             <div class="col-sm-6 col-md-4">
                 <?= Html::img($profile->getAvatarUrl(230), [
                     'class' => 'img-rounded img-responsive',
-                    'alt'   => $profile->user->username,
+                    'alt' => $profile->user->username,
                 ]) ?>
             </div>
             <div class="col-sm-6 col-md-8">
@@ -37,7 +37,7 @@ $this->params['breadcrumbs'][] = $this->title;
                     <?php if (!empty($profile->public_email)): ?>
                         <li>
                             <i class="glyphicon glyphicon-envelope text-muted"></i>
-                            <?= Html::a(Html::encode($profile->public_email), 'mailto:' .
+                            <?= Html::a(Html::encode($profile->public_email), 'mailto:'.
                                 Html::encode($profile->public_email))
                             ?>
                         </li>

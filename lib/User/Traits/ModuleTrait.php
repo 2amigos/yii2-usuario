@@ -2,7 +2,6 @@
 
 namespace Da\User\Traits;
 
-use Da\User\Helper\AuthHelper;
 use Da\User\Module;
 use Yii;
 

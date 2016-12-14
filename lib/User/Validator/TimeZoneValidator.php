@@ -1,4 +1,5 @@
 <?php
+
 namespace Da\User\Validator;
 
 use Da\User\Contracts\ValidatorInterface;
@@ -16,5 +17,4 @@ class TimeZoneValidator implements ValidatorInterface
     {
         return in_array($this->timezone, timezone_identifiers_list());
     }
-
 }

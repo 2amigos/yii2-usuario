@@ -1,8 +1,8 @@
 <?php
+
 namespace Da\User\Factory;
 
 use Da\User\Contracts\MailChangeStrategyInterface;
-use Da\User\Contracts\StrategyInterface;
 use Da\User\Form\SettingsForm;
 use Da\User\Strategy\DefaultEmailChangeStrategy;
 use Da\User\Strategy\InsecureEmailChangeStrategy;
@@ -12,11 +12,10 @@ use Exception;
 
 class EmailChangeStrategyFactory
 {
-
     protected static $map = [
         MailChangeStrategyInterface::TYPE_INSECURE => InsecureEmailChangeStrategy::class,
         MailChangeStrategyInterface::TYPE_DEFAULT => DefaultEmailChangeStrategy::class,
-        MailChangeStrategyInterface::TYPE_SECURE => SecureEmailChangeStrategy::class
+        MailChangeStrategyInterface::TYPE_SECURE => SecureEmailChangeStrategy::class,
     ];
 
     /**
@@ -24,6 +23,7 @@ class EmailChangeStrategyFactory
      * @param SettingsForm $form
      *
      * @return MailChangeStrategyInterface
+     *
      * @throws Exception
      */
     public static function makeByStrategyType($strategy, SettingsForm $form)

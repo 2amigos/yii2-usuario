@@ -1,4 +1,5 @@
 <?php
+
 namespace Da\User\Command;
 
 use Da\User\Model\User;
@@ -28,12 +29,12 @@ class PasswordController extends Controller
         $user = $this->userQuery->whereUsernameOrEmail($usernameOrEmail)->one();
 
         if ($user === null) {
-            $this->stdout(Yii::t('user', 'User is not found') . "\n", Console::FG_RED);
+            $this->stdout(Yii::t('user', 'User is not found')."\n", Console::FG_RED);
         } else {
             if ($this->make(ResetPasswordService::class, [$password, $user])->run()) {
-                $this->stdout(Yii::t('user', 'Password has been changed') . "\n", Console::FG_GREEN);
+                $this->stdout(Yii::t('user', 'Password has been changed')."\n", Console::FG_GREEN);
             } else {
-                $this->stdout(Yii::t('user', 'Error occurred while changing password') . "\n", Console::FG_RED);
+                $this->stdout(Yii::t('user', 'Error occurred while changing password')."\n", Console::FG_RED);
             }
         }
     }

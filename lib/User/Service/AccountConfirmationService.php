@@ -1,9 +1,8 @@
 <?php
+
 namespace Da\User\Service;
 
-
 use Da\User\Contracts\ServiceInterface;
-use Da\User\Event\UserEvent;
 use Da\User\Model\Token;
 use Da\User\Model\User;
 use Da\User\Query\TokenQuery;
@@ -43,5 +42,4 @@ class AccountConfirmationService implements ServiceInterface
 
         return false;
     }
-
 }

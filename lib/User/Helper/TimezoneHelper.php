@@ -1,15 +1,15 @@
 <?php
+
 namespace Da\User\Helper;
 
 use DateTimeZone;
 use yii\helpers\ArrayHelper;
 use DateTime;
 
-
 class TimezoneHelper
 {
     /**
-     * Get all of the time zones with the offsets sorted by their offset
+     * Get all of the time zones with the offsets sorted by their offset.
      *
      * @return array
      */
@@ -23,8 +23,8 @@ class TimezoneHelper
             $offset = $date->getOffset() / 60 / 60;
             $timeZones[] = [
                 'timezone' => $timeZone,
-                'name' => "{$timeZone} (UTC " . ($offset > 0 ? '+' : '') . "{$offset})",
-                'offset' => $offset
+                'name' => "{$timeZone} (UTC ".($offset > 0 ? '+' : '')."{$offset})",
+                'offset' => $offset,
             ];
         }
 

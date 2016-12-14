@@ -64,7 +64,7 @@ class SettingsForm extends Model
                 'when' => function ($model, $attribute) {
                     return $this->getUser()->$attribute != $model->$attribute;
                 },
-                'targetClass' => $this->getClassMap()->get(User::class)
+                'targetClass' => $this->getClassMap()->get(User::class),
             ],
             'newPasswordLength' => ['new_password', 'string', 'max' => 72, 'min' => 6],
             'currentPasswordRequired' => ['current_password', 'required'],
@@ -74,13 +74,13 @@ class SettingsForm extends Model
                     if (!$this->securityHelper->validatePassword($this->$attribute, $this->getUser()->password_hash)) {
                         $this->addError($attribute, Yii::t('user', 'Current password is not valid'));
                     }
-                }
+                },
             ],
         ];
     }
 
     /**
-     * @inheritdoc
+     * {@inheritdoc}
      */
     public function attributeLabels()
     {
@@ -117,7 +117,6 @@ class SettingsForm extends Model
             $this->user->password = $this->new_password;
             if ($this->email == $this->user->email && $this->user->unconfirmed_email != null) {
                 $this->user->unconfirmed_email = null;
-
             } elseif ($this->email != $this->user->email) {
                 $strategy = EmailChangeStrategyFactory::makeByStrategyType(
                     $this->getModule()->emailChangeStrategy,

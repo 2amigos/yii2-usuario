@@ -1,4 +1,5 @@
 <?php
+
 namespace Da\User\Traits;
 
 use Da\User\Component\AuthDbManagerComponent;
@@ -9,8 +10,8 @@ trait AuthManagerTrait
     /**
      * @return AuthDbManagerComponent|\yii\rbac\ManagerInterface
      */
-    public function getAuthManager() {
-
+    public function getAuthManager()
+    {
         return Yii::$app->getAuthManager();
     }
 }

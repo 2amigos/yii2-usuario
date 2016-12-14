@@ -3,7 +3,7 @@
 use Da\User\Widget\ConnectWidget;
 use yii\helpers\Html;
 
-/**
+/*
  * @var yii\web\View $this
  * @var yii\widgets\ActiveForm $form
  * @var \Da\User\Model\User $user
@@ -42,7 +42,7 @@ $this->params['breadcrumbs'][] = $this->title;
                     <?php foreach ($auth->getClients() as $client): ?>
                         <tr>
                             <td style="width: 32px; vertical-align: middle">
-                                <?= Html::tag('span', '', ['class' => 'auth-icon ' . $client->getName()]) ?>
+                                <?= Html::tag('span', '', ['class' => 'auth-icon '.$client->getName()]) ?>
                             </td>
                             <td style="vertical-align: middle">
                                 <strong><?= $client->getTitle() ?></strong>

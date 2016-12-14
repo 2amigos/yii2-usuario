@@ -1,6 +1,6 @@
 <?php
-namespace Da\User\Component;
 
+namespace Da\User\Component;
 
 use Da\User\Contracts\AuthManagerInterface;
 use yii\db\Query;
@@ -9,8 +9,8 @@ use yii\rbac\DbManager;
 class AuthDbManagerComponent extends DbManager implements AuthManagerInterface
 {
     /**
-     * @param int|null $type If null will return all auth items.
-     * @param array $excludeItems Items that should be excluded from result array.
+     * @param int|null $type         If null will return all auth items
+     * @param array    $excludeItems Items that should be excluded from result array
      *
      * @return array
      */
@@ -40,7 +40,7 @@ class AuthDbManagerComponent extends DbManager implements AuthManagerInterface
     /**
      * Returns both roles and permissions assigned to user.
      *
-     * @param  integer $userId
+     * @param int $userId
      *
      * @return array
      */
@@ -54,7 +54,7 @@ class AuthDbManagerComponent extends DbManager implements AuthManagerInterface
             ->select('b.*')
             ->from(['a' => $this->assignmentTable, 'b' => $this->itemTable])
             ->where('{{a}}.[[item_name]]={{b}}.[[name]]')
-            ->andWhere(['a.user_id' => (string)$userId]);
+            ->andWhere(['a.user_id' => (string) $userId]);
 
         $roles = [];
         foreach ($query->all($this->db) as $row) {
@@ -66,7 +66,7 @@ class AuthDbManagerComponent extends DbManager implements AuthManagerInterface
     }
 
     /**
-     * @inheritdoc
+     * {@inheritdoc}
      */
     public function getItem($name)
     {

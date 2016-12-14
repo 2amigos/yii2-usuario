@@ -1,8 +1,8 @@
 <?php
+
 namespace Da\User\Model;
 
 use yii\rbac\Item;
-
 
 class Role extends AbstractAuthItem
 {

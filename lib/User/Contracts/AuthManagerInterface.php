@@ -1,4 +1,5 @@
 <?php
+
 namespace Da\User\Contracts;
 
 use yii\rbac\ManagerInterface;
@@ -6,22 +7,22 @@ use yii\rbac\ManagerInterface;
 interface AuthManagerInterface extends ManagerInterface
 {
     /**
-     * @param  integer|null $type
-     * @param  array $excludeItems
+     * @param int|null $type
+     * @param array    $excludeItems
      *
      * @return mixed
      */
     public function getItems($type = null, $excludeItems = []);
 
     /**
-     * @param  integer $userId
+     * @param int $userId
      *
      * @return mixed
      */
     public function getItemsByUser($userId);
 
     /**
-     * @param  string $name
+     * @param string $name
      *
      * @return mixed
      */

@@ -1,4 +1,5 @@
 <?php
+
 namespace Da\User\Strategy;
 
 use Da\User\Contracts\MailChangeStrategyInterface;
@@ -18,13 +19,11 @@ class SecureEmailChangeStrategy implements MailChangeStrategyInterface
     public function __construct(SettingsForm $form)
     {
         $this->form = $form;
-
     }
 
     public function run()
     {
         if ($this->make(DefaultEmailChangeStrategy::class, [$this->form])->run()) {
-
             $token = TokenFactory::makeConfirmOldMailToken($this->form->getUser()->id);
             $mailService = MailFactory::makeReconfirmationMailerService($this->form->getUser(), $token);
 
@@ -39,7 +38,7 @@ class SecureEmailChangeStrategy implements MailChangeStrategyInterface
                             'info',
                             Yii::t(
                                 'user',
-                                'We have sent confirmation links to both old and new email addresses. ' .
+                                'We have sent confirmation links to both old and new email addresses. '.
                                 'You must click both links to complete your request.'
                             )
                         );
@@ -51,5 +50,4 @@ class SecureEmailChangeStrategy implements MailChangeStrategyInterface
 
         return false;
     }
-
 }

@@ -1,6 +1,6 @@
 <?php
-namespace Da\User\Service;
 
+namespace Da\User\Service;
 
 use Da\User\Contracts\AuthClientInterface;
 use Da\User\Contracts\ServiceInterface;
@@ -11,7 +11,6 @@ use Da\User\Model\User;
 use Da\User\Query\SocialNetworkAccountQuery;
 use Da\User\Traits\ContainerTrait;
 use Yii;
-
 
 class SocialNetworkAccountConnectService implements ServiceInterface
 {
@@ -24,8 +23,8 @@ class SocialNetworkAccountConnectService implements ServiceInterface
     /**
      * SocialNetworkAccountUserLinkService constructor.
      *
-     * @param SecurityController $controller
-     * @param AuthClientInterface $client
+     * @param SecurityController        $controller
+     * @param AuthClientInterface       $client
      * @param SocialNetworkAccountQuery $socialNetworkAccountQuery
      */
     public function __construct(
@@ -54,7 +53,6 @@ class SocialNetworkAccountConnectService implements ServiceInterface
             $this->controller->trigger(SocialNetworkAuthEvent::EVENT_AFTER_CONNECT, $event);
 
             return true;
-
         } else {
             Yii::$app->session->setFlash(
                 'danger',
@@ -77,7 +75,7 @@ class SocialNetworkAccountConnectService implements ServiceInterface
                 [
                     'provider' => $this->client->getId(),
                     'client_id' => $data['id'],
-                    'data' => json_encode($data)
+                    'data' => json_encode($data),
                 ]
             );
 

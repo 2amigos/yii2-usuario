@@ -1,4 +1,5 @@
 <?php
+
 namespace Da\User\Form;
 
 use Da\User\Query\UserQuery;
@@ -18,7 +19,7 @@ class ResendForm extends Model
 
     /**
      * @param UserQuery $userQuery
-     * @param array  $config
+     * @param array     $config
      */
     public function __construct(UserQuery $userQuery, $config = [])
     {
@@ -27,7 +28,7 @@ class ResendForm extends Model
     }
 
     /**
-     * @inheritdoc
+     * {@inheritdoc}
      */
     public function rules()
     {
@@ -38,7 +39,7 @@ class ResendForm extends Model
     }
 
     /**
-     * @inheritdoc
+     * {@inheritdoc}
      */
     public function attributeLabels()
     {

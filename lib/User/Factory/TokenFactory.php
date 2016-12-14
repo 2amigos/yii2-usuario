@@ -1,13 +1,12 @@
 <?php
+
 namespace Da\User\Factory;
 
 use Da\User\Model\Token;
 use Yii;
 
-
 class TokenFactory
 {
-
     /**
      * @param $userId
      *
@@ -20,7 +19,6 @@ class TokenFactory
         $token->save(false);
 
         return $token;
-
     }
 
     /**
@@ -75,5 +73,4 @@ class TokenFactory
     {
         return Yii::createObject(['class' => Token::class, 'user_id' => $userId, 'type' => $type]);
     }
-
 }
