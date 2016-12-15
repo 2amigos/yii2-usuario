@@ -11,7 +11,7 @@ use yii\codeception\BasePage;
  */
 class SettingsPage extends BasePage
 {
-    /** @inheritdoc */
+    /** {@inheritdoc} */
     public $route = '/user/settings/account';
 
     /**

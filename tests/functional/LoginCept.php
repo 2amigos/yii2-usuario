@@ -1,9 +1,8 @@
 <?php
 
 /**
- * @var Codeception\Scenario $scenario
+ * @var Codeception\Scenario
  */
-
 use tests\_fixtures\UserFixture;
 use tests\_pages\LoginPage;
 

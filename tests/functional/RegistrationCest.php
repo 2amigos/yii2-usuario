@@ -19,19 +19,20 @@ class RegistrationCest
     public function _after(FunctionalTester $I)
     {
         \Yii::$container->set(Module::className(), [
-            'enableEmailConfirmation'       => true,
+            'enableEmailConfirmation' => true,
             'generatePasswords' => false,
         ]);
     }
 
     /**
      * Tests registration with email, username and password without any confirmation.
+     *
      * @param FunctionalTester $I
      */
     public function testRegistration(FunctionalTester $I)
     {
         \Yii::$container->set(Module::className(), [
-            'enableEmailConfirmation'       => false,
+            'enableEmailConfirmation' => false,
             'generatePasswords' => false,
         ]);
 
@@ -62,6 +63,7 @@ class RegistrationCest
 
     /**
      * Tests registration when confirmation message is sent.
+     *
      * @param FunctionalTester $I
      */
     public function testRegistrationWithConfirmation(FunctionalTester $I)
@@ -72,7 +74,7 @@ class RegistrationCest
         $page = RegistrationPage::openBy($I);
         $page->register('tester@example.com', 'tester', 'tester');
         $I->see('Your account has been created and a message with further instructions has been sent to your email');
-        $user  = $I->grabRecord(User::className(), ['email' => 'tester@example.com']);
+        $user = $I->grabRecord(User::className(), ['email' => 'tester@example.com']);
         $token = $I->grabRecord(Token::className(), ['user_id' => $user->id, 'type' => Token::TYPE_CONFIRMATION]);
         /** @var yii\swiftmailer\Message $message */
         $message = $I->grabLastSentEmail();
@@ -83,12 +85,13 @@ class RegistrationCest
 
     /**
      * Tests registration when password is generated automatically and sent to user.
+     *
      * @param FunctionalTester $I
      */
     public function testRegistrationWithoutPassword(FunctionalTester $I)
     {
         \Yii::$container->set(Module::className(), [
-            'enableEmailConfirmation'       => false,
+            'enableEmailConfirmation' => false,
             'generatePasswords' => true,
         ]);
         $page = RegistrationPage::openBy($I);

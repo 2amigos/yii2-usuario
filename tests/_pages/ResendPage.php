@@ -11,7 +11,7 @@ use yii\codeception\BasePage;
  */
 class ResendPage extends BasePage
 {
-    /** @inheritdoc */
+    /** {@inheritdoc} */
     public $route = '/user/registration/resend';
 
     /**

@@ -1,9 +1,8 @@
 <?php
 
 /**
- * @var Codeception\Scenario $scenario
+ * @var Codeception\Scenario
  */
-
 use tests\_fixtures\TokenFixture;
 use yii\helpers\Url;
 

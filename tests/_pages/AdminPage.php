@@ -11,6 +11,6 @@ use yii\codeception\BasePage;
  */
 class AdminPage extends BasePage
 {
-    /** @inheritdoc */
+    /** {@inheritdoc} */
     public $route = '/user/admin/index';
 }

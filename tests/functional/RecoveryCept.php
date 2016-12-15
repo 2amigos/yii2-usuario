@@ -1,9 +1,8 @@
 <?php
 
 /**
- * @var Codeception\Scenario $scenario
+ * @var Codeception\Scenario
  */
-
 use tests\_fixtures\TokenFixture;
 use tests\_fixtures\UserFixture;
 use tests\_pages\RecoveryPage;
@@ -40,7 +39,7 @@ $message = $I->grabLastSentEmail();
 //$token = $I->grabRecord(Token::className(), ['user_id' => $user->id, 'type' => Token::TYPE_RECOVERY]);
 //$I->amOnPage(Url::toRoute(['/user/recovery/reset', 'id' => $user->id, 'code' => $token->code]));
 //$I->see('Recovery link is invalid or expired. Please try requesting a new one.');
-//
+
 //$I->amGoingTo('reset password');
 //$user = $I->grabFixture('user', 'user_with_recovery_token');
 //$token = $I->grabRecord(Token::className(), ['user_id' => $user->id, 'type' => Token::TYPE_RECOVERY]);
@@ -48,7 +47,7 @@ $message = $I->grabLastSentEmail();
 //$I->fillField('#recoveryform-password', 'newpass');
 //$I->click('Finish');
 //$I->see('Your password has been changed successfully.');
-//
+
 //$page = LoginPage::openBy($I);
 //$page->login($user->email, 'qwerty');
 //$I->see('Invalid login or password');

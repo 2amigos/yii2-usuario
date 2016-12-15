@@ -5,10 +5,10 @@ return [
     'basePath' => dirname(__DIR__),
     'language' => 'en-US',
     'aliases' => [
-        '@Da/User' => dirname(dirname(dirname(__DIR__))) . '/lib/User',
+        '@Da/User' => dirname(dirname(dirname(__DIR__))).'/lib/User',
         '@tests' => dirname(dirname(__DIR__)),
         '@vendor' => VENDOR_DIR,
-        '@bower' => VENDOR_DIR . '/bower-asset',
+        '@bower' => VENDOR_DIR.'/bower-asset',
     ],
     'bootstrap' => ['Da\User\Bootstrap'],
     'modules' => [
@@ -19,9 +19,9 @@ return [
     ],
     'components' => [
         'assetManager' => [
-            'basePath' => __DIR__ . '/../assets'
+            'basePath' => __DIR__.'/../assets',
         ],
-        'db' => require __DIR__ . '/db.php',
+        'db' => require __DIR__.'/db.php',
         'mailer' => [
             'useFileTransport' => true,
         ],
