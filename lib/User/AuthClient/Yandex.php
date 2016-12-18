@@ -4,8 +4,9 @@ namespace Da\User\AuthClient;
 
 use Da\User\Contracts\AuthClientInterface;
 use Yii;
+use yii\authclient\clients\Yandex as BaseYandex;
 
-class Yandex extends \yii\authclient\clients\Yandex implements AuthClientInterface
+class Yandex extends BaseYandex implements AuthClientInterface
 {
     /**
      * {@inheritdoc}

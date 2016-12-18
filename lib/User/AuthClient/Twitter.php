@@ -3,8 +3,9 @@
 namespace Da\User\AuthClient;
 
 use Da\User\Contracts\AuthClientInterface;
+use yii\authclient\clients\Twitter as BaseTwitter;
 
-class Twitter extends \yii\authclient\clients\Twitter implements AuthClientInterface
+class Twitter extends BaseTwitter implements AuthClientInterface
 {
     /**
      * @return string

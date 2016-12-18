@@ -3,8 +3,9 @@
 namespace Da\User\AuthClient;
 
 use Da\User\Contracts\AuthClientInterface;
+use yii\authclient\clients\Google as BaseGoogle;
 
-class Google extends \yii\authclient\clients\Google implements AuthClientInterface
+class Google extends BaseGoogle implements AuthClientInterface
 {
     /**
      * {@inheritdoc}
@@ -21,6 +22,6 @@ class Google extends \yii\authclient\clients\Google implements AuthClientInterfa
      */
     public function getUsername()
     {
-        return;
+        return null;
     }
 }

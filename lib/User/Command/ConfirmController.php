@@ -5,9 +5,9 @@ namespace Da\User\Command;
 use Da\User\Query\UserQuery;
 use Da\User\Service\UserConfirmationService;
 use Da\User\Traits\ContainerTrait;
+use Yii;
 use yii\base\Module;
 use yii\console\Controller;
-use Yii;
 use yii\helpers\Console;
 
 class ConfirmController extends Controller

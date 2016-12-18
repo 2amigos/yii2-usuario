@@ -3,8 +3,9 @@
 namespace Da\User\AuthClient;
 
 use Da\User\Contracts\AuthClientInterface;
+use yii\authclient\clients\LinkedIn as BaseLinkedIn;
 
-class LinkedIn extends \yii\authclient\clients\LinkedIn implements AuthClientInterface
+class LinkedIn extends BaseLinkedIn implements AuthClientInterface
 {
     /**
      * {@inheritdoc}
@@ -21,6 +22,6 @@ class LinkedIn extends \yii\authclient\clients\LinkedIn implements AuthClientInt
      */
     public function getUsername()
     {
-        return;
+        return null;
     }
 }

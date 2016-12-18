@@ -3,8 +3,9 @@
 namespace Da\User\AuthClient;
 
 use Da\User\Contracts\AuthClientInterface;
+use yii\authclient\clients\GitHub as BaseGitHub;
 
-class GitHub extends \yii\authclient\clients\GitHub implements AuthClientInterface
+class GitHub extends BaseGitHub implements AuthClientInterface
 {
     /**
      * {@inheritdoc}

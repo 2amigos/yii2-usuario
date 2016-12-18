@@ -6,8 +6,8 @@ use Da\User\Factory\MailFactory;
 use Da\User\Model\User;
 use Da\User\Service\UserCreateService;
 use Da\User\Traits\ContainerTrait;
-use yii\console\Controller;
 use Yii;
+use yii\console\Controller;
 use yii\helpers\Console;
 
 class CreateController extends Controller

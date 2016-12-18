@@ -3,8 +3,9 @@
 namespace Da\User\AuthClient;
 
 use Da\User\Contracts\AuthClientInterface;
+use yii\authclient\clients\Facebook as BaseFacebook;
 
-class Facebook extends \yii\authclient\clients\Facebook implements AuthClientInterface
+class Facebook extends BaseFacebook implements AuthClientInterface
 {
     /**
      * {@inheritdoc}
@@ -21,6 +22,6 @@ class Facebook extends \yii\authclient\clients\Facebook implements AuthClientInt
      */
     public function getUsername()
     {
-        return;
+        return null;
     }
 }

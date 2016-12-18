@@ -4,8 +4,9 @@ namespace Da\User\AuthClient;
 
 use Da\User\Contracts\AuthClientInterface;
 use Yii;
+use yii\authclient\clients\VKontakte as BaseVKontakte;
 
-class VKontakte extends \yii\authclient\clients\VKontakte implements AuthClientInterface
+class VKontakte extends BaseVKontakte implements AuthClientInterface
 {
     /**
      * {@inheritdoc}
