@@ -14,7 +14,7 @@ File `cogs.svg`:
 
 File `user-secret.svg:  
 [Github project: encharm/Font-Awesome-SVG-PNG](https://github.com/encharm/Font-Awesome-SVG-PNG/blob/master/black/svg/user-secret.svg)  
-![](./yii-logo.svg "")
+![](./user-secret.svg "")
 
 File `wrench.svg`:  
 [Github project: encharm/Font-Awesome-SVG-PNG](https://github.com/encharm/Font-Awesome-SVG-PNG/blob/master/black/svg/wrench.svg)  
