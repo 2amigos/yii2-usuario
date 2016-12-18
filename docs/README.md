@@ -1,6 +1,11 @@
 Yii2 User Module Documentation
 ==============================
 
+![](./media/yii-logo.svg "")
+![](./media/user-secret.svg "")
+![](./media/wrench.svg "")
+![](./media/cogs.svg "")
+
 © [2amigos](http://www.2amigos.us/) 2016
 
 Installation
