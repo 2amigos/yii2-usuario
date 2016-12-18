@@ -10,6 +10,11 @@ Installation
 - [Advanced Application Template](installation/advanced-application-template.md)
 - [Basic Application Template](installation/basic-application-template.md)
 
+Helpful Guides
+--------------
+
+- [Separate Frontend and Backend Sessions](helpful-guides/separate-frontend-and-backend-sessions.md)
+
 Other
 -----
 
