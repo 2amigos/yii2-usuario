@@ -8,12 +8,3 @@ tools:
     # and a huge bunch of false-positives
     php_sim: false
     php_cpd: false
-
-build:
-    environment:
-        php:
-            version: 7.1.0
-
-    dependencies:
-        before:
-            - 'composer global require "fxp/composer-asset-plugin:^1.2.0" --no-plugins'

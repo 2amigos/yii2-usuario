@@ -29,7 +29,7 @@ install:
         phpenv config-rm xdebug.ini || echo "xdebug is not installed"
     fi
   - travis_retry composer self-update && composer --version
-  - travis_retry composer global require "fxp/composer-asset-plugin:^1.2.0" --no-plugins
+  #- travis_retry composer global require "fxp/composer-asset-plugin:^1.2.0" --no-plugins
   - export PATH="$HOME/.composer/vendor/bin:$PATH"
   - travis_retry composer install --prefer-dist --no-interaction
 
