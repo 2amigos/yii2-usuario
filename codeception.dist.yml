@@ -18,3 +18,11 @@ modules:
         Yii2:
             configFile: 'tests/_app/config/test.php'
             cleanup: false
+coverage:
+    enabled: true
+    whitelist:
+        include:
+            - lib/*
+        exclude:
+            - lib/User/Migration/*
+            - lib/User/resources/*
