@@ -1,41 +1,71 @@
 {
-    "name": "vendor_name/package_name",
-    "description": "description_text",
-    "license": "proprietary",
+    "name": "2amigos/yii2-usuario",
+    "description": "Highly customizable and extensible user management, authentication, and authorization Yii2 extension",
+    "type": "yii2-extension",
+    "license": "BSD-3-Clause",
+    "support": {
+        "issues": "https://github.com/2amigos/yii2-usuario/issues?state=open",
+        "forum": "https://gitter.im/2amigos/yii2-usuario",
+        "source": "https://github.com/2amigos/yii2-usuario"
+    },
+    "keywords": [
+        "2amigos",
+        "yii",
+        "yii2",
+        "yii 2",
+        "yii framework",
+        "user",
+        "access",
+        "rbac",
+        "acl",
+        "backend",
+        "yii2-user",
+        "yii2 user",
+        "user management"
+    ],
     "authors": [
         {
-            "name": "author's name",
-            "email": "email@example.com"
+            "name": "2amigOS! Consulting Group",
+            "email": "hola@2amigos.us",
+            "homepage": "http://2amigos.us",
+            "role": "Developer"
+        },
+        {
+            "name": "Antonio Ramirez Cobos",
+            "email": "hola@2amigos.us",
+            "homepage": "http://2amigos.us",
+            "role": "Developer"
+        },
+        {
+            "name": "Timur Ruziev",
+            "email": "resurtm@gmail.com",
+            "homepage": "http://resurtm.com",
+            "role": "Developer"
         }
     ],
     "require": {
-        "php": ">=5.5"
+        "php": ">=5.5",
+        "yiisoft/yii2": "~2.0.0"
     },
     "require-dev": {
         "squizlabs/php_codesniffer": "^2.7",
-        "fabpot/php-cs-fixer": "^1.12",
+        "friendsofphp/php-cs-fixer": "^2.0",
         "phpmd/phpmd": "^2.4",
-        "dektrium/yii2-user": "^0.9.9",
-        "dektrium/yii2-rbac": "^0.3.0",
         "yiisoft/yii2-codeception": "^2.0.0",
         "codeception/specify": "^0.4.3",
         "codeception/verify": "^0.3.1"
     },
     "autoload": {
         "psr-4": {
-            "Da\\": [
-                "./lib",
-                "./tests/lib"
-            ]
+            "Da\\": "./lib"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "Da\\": [
-                "./lib",
-                "./tests/lib"
-            ]
+            "Da\\": "./lib"
         }
     },
-    "minimum-stability": "dev"
+    "extra": {
+        "bootstrap": "Da\\User\\Bootstrap"
+    }
 }
