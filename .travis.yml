@@ -11,6 +11,9 @@ php:
   - 7.1
   - nightly
 
+services:
+  - mysql
+
 matrix:
   fast_finish: true
   allow_failures:
@@ -35,9 +38,9 @@ before_script:
 
   # initialize database
   - mysql -e 'CREATE DATABASE `yii2-usuario-test`;';
-  - mysql -e "CREATE USER 'travis'@'localhost' IDENTIFIED WITH mysql_native_password;";
-  - mysql -e "GRANT ALL PRIVILEGES ON *.* TO 'travis'@'localhost' WITH GRANT OPTION;";
-  - mysql -u travis -p "yii2-usuario-test" < tests/data/schema.sql
+  #- mysql -e "CREATE USER 'travis'@'localhost' IDENTIFIED WITH mysql_native_password;";
+  #- mysql -e "GRANT ALL PRIVILEGES ON *.* TO 'travis'@'localhost' WITH GRANT OPTION;";
+  - mysql -u root "yii2-usuario-test" < tests/data/schema.sql
 
 script:
   - composer validate --no-check-lock
