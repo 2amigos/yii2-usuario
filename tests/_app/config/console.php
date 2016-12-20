@@ -12,4 +12,13 @@ return [
         'cache' => null,
         'db' => require __DIR__.'/db.php',
     ],
+    'controllerMap' => [
+        'migrate' => [
+            'class' => \yii\console\controllers\MigrateController::class,
+            'migrationPath' => null,
+            'migrationNamespaces' => [
+                'Da\User\Migration',
+            ],
+        ],
+    ],
 ];
