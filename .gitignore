@@ -42,3 +42,6 @@ tests/_output/*
 
 # temporary directory for various purposes
 /temp
+
+# ignore local codeception settings
+codeception.yml
