@@ -25,6 +25,10 @@ use yii\console\Application as ConsoleApplication;
 use yii\i18n\PhpMessageSource;
 use yii\web\Application as WebApplication;
 
+/**
+ * Bootstrap class of the yii2-usuario extension. Configures container services, initializes translations,
+ * builds class map, and does the other setup actions participating in the application bootstrap process.
+ */
 class Bootstrap implements BootstrapInterface
 {
     /**
@@ -317,7 +321,7 @@ class Bootstrap implements BootstrapInterface
         $mapping = array_merge($defaults, $userClassMap);
 
         foreach ($mapping as $name => $definition) {
-            $map[$this->getRoute($routes, $name)."\\$name"] = $definition;
+            $map[$this->getRoute($routes, $name) . "\\$name"] = $definition;
         }
 
         return $map;

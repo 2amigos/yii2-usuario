@@ -47,7 +47,8 @@
         "php": ">=5.5",
         "yiisoft/yii2": "~2.0.0",
         "yiisoft/yii2-authclient": "^2.1.0",
-        "yiisoft/yii2-bootstrap": "^2.0.0"
+        "yiisoft/yii2-bootstrap": "^2.0.0",
+        "yiisoft/yii2-swiftmailer": "^2.0.0"
     },
     "require-dev": {
         "squizlabs/php_codesniffer": "^2.7",

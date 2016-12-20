@@ -12,8 +12,12 @@
 namespace Da\User;
 
 use Da\User\Contracts\MailChangeStrategyInterface;
+use Da\User\Service\MailService;
 use yii\base\Module as BaseModule;
 
+/**
+ * This is the main module class of the yii2-usuario extension.
+ */
 class Module extends BaseModule
 {
     /**
@@ -41,7 +45,7 @@ class Module extends BaseModule
      */
     public $allowPasswordRecovery = true;
     /**
-     * @var bool Whether user can remove his account
+     * @var bool whether user can remove his account
      */
     public $allowAccountDelete = false;
     /**
@@ -87,6 +91,7 @@ class Module extends BaseModule
     public $blowfishCost = 10;
     /**
      * @var array the class map. How the container should load specific classes
+     * @see Bootstrap::buildClassMap() for more details
      */
     public $classMap = [];
 
@@ -103,5 +108,8 @@ class Module extends BaseModule
         'settings/<action:\w+>' => 'settings/<action>',
     ];
 
+    /**
+     * @var string
+     */
     public $viewPath = '@Da/User/resources/views';
 }
