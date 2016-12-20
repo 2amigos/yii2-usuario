@@ -1,0 +1,43 @@
+# faster builds on new travis setup not using sudo
+sudo: false
+
+language: php
+
+php:
+  - 5.4
+  - 5.5
+  - 5.6
+  - 7.0
+  - 7.1
+  - nightly
+
+matrix:
+  fast_finish: true
+  allow_failures:
+    - php: nightly
+
+# cache vendor dirs
+cache:
+  directories:
+    - vendor
+    - $HOME/.composer/cache
+
+install:
+  - travis_retry composer self-update && composer --version
+  - export PATH="$HOME/.composer/vendor/bin:$PATH"
+  - travis_retry composer install --prefer-dist --no-interaction
+
+before_script:
+  - php -r "echo INTL_ICU_VERSION . \"\n\";"
+  - php -r "echo INTL_ICU_DATA_VERSION . \"\n\";"
+  - mysql --version
+
+  # initialize database
+  - mysql -e 'CREATE DATABASE `yii2-usuario-test`;';
+  - mysql -e "CREATE USER 'user'@'localhost' IDENTIFIED WITH mysql_native_password;";
+  - mysql -e "GRANT ALL PRIVILEGES ON *.* TO 'user'@'localhost' WITH GRANT OPTION;";
+  - mysql -u user -p "yii2-usuario-test" < tests/data/schema.sql
+
+script:
+  - composer validate --no-check-lock
+  - vendor/bin/codecept run

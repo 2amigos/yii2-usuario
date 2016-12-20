@@ -56,7 +56,8 @@
         "phpmd/phpmd": "^2.4",
         "yiisoft/yii2-codeception": "^2.0.0",
         "codeception/specify": "^0.4.3",
-        "codeception/verify": "^0.3.1"
+        "codeception/verify": "^0.3.1",
+        "codeception/codeception": "*"
     },
     "autoload": {
         "psr-4": {
