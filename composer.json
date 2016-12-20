@@ -45,12 +45,12 @@
     ],
     "require": {
         "php": ">=5.5",
-        "cebe/assetfree-yii2": "~2.0.0",
         "yiisoft/yii2-authclient": "^2.1.0",
         "yiisoft/yii2-bootstrap": "^2.0.0",
         "yiisoft/yii2-swiftmailer": "^2.0.0"
     },
     "require-dev": {
+        "cebe/assetfree-yii2": "~2.0.0",
         "squizlabs/php_codesniffer": "^2.7",
         "friendsofphp/php-cs-fixer": "^2.0",
         "phpmd/phpmd": "^2.4",
