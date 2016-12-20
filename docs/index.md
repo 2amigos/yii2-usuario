@@ -1,6 +1,11 @@
 Yii2 User Module Documentation
 ==============================
 
+[![Latest Stable Version](https://poser.pugx.org/2amigos/yii2-usuario/version)](https://packagist.org/packages/2amigos/yii2-usuario)
+[![Total Downloads](https://poser.pugx.org/2amigos/yii2-usuario/downloads)](https://packagist.org/packages/2amigos/yii2-usuario)
+[![Latest Unstable Version](https://poser.pugx.org/2amigos/yii2-usuario/v/unstable)](//packagist.org/packages/2amigos/yii2-usuario)
+[![Docs](http://yii2-usuario.readthedocs.io/en/latest/?badge=latest)](http://yii2-usuario.readthedocs.io/en/latest/)
+
 ![Yii Framework](media/yii-logo.png "Yii Framework")
 ![User Secret](media/user-secret.png "User Secret")
 ![Wrench](media/wrench.png "Wrench")
