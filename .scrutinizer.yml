@@ -3,7 +3,7 @@ imports:
 
 tools:
     external_code_coverage:
-        timeout: 2100 # Timeout in seconds.
+        timeout: 2100
     # disable copy paste detector and similarity analyzer as they have no real value
     # and a huge bunch of false-positives
     php_sim: false
@@ -11,5 +11,4 @@ tools:
 
 build:
     environment:
-        php:
-            version: 5.5
+        php: '5.6.29'
