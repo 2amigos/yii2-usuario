@@ -24,6 +24,7 @@ cache:
 
 install:
   - travis_retry composer self-update && composer --version
+  - travis_retry composer global require "fxp/composer-asset-plugin:^1.2.0" --no-plugins
   - export PATH="$HOME/.composer/vendor/bin:$PATH"
   - travis_retry composer install --prefer-dist --no-interaction
 
@@ -41,3 +42,7 @@ before_script:
 script:
   - composer validate --no-check-lock
   - vendor/bin/codecept run
+
+notifications:
+  email:
+    - resurtm+travis-ci@gmail.com
