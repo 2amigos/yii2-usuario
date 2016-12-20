@@ -41,7 +41,7 @@ before_script:
 
 script:
   - composer validate --no-check-lock
-  - vendor/bin/codecept run
+  - vendor/bin/codecept run --coverage --coverage-xml --coverage-html
 
 notifications:
   email:
