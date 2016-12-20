@@ -1,5 +1,5 @@
-Yii2 User
-=========
+Yii2 Usuario Extension
+======================
 
 ![Yii Framework](docs/media/yii-logo.png "Yii Framework")
 ![User Secret](docs/media/user-secret.png "User Secret")

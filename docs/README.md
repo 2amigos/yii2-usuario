@@ -1,10 +1,10 @@
 Yii2 User Module Documentation
 ==============================
 
-![](./media/yii-logo.svg "")
-![](./media/user-secret.svg "")
-![](./media/wrench.svg "")
-![](./media/cogs.svg "")
+![Yii Framework](media/yii-logo.png "Yii Framework")
+![User Secret](media/user-secret.png "User Secret")
+![Wrench](media/wrench.png "Wrench")
+![Cogs](media/cogs.png "Cogs")
 
 © [2amigos](http://www.2amigos.us/) 2016
 
