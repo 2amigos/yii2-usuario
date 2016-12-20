@@ -10,9 +10,6 @@ php:
   - 7.1
   - nightly
 
-services:
-  - mysql
-
 matrix:
   fast_finish: true
   allow_failures:
@@ -25,6 +22,12 @@ cache:
     - $HOME/.composer/cache
 
 install:
+  - |
+    if [[ $TRAVIS_PHP_VERSION != '7.1' && $TRAVIS_PHP_VERSION != hhv* ]]; then
+        # disable xdebug for performance reasons when code coverage is not needed
+        # note: xdebug on hhvm is disabled by default
+        phpenv config-rm xdebug.ini || echo "xdebug is not installed"
+    fi
   - travis_retry composer self-update && composer --version
   - travis_retry composer global require "fxp/composer-asset-plugin:^1.2.0" --no-plugins
   - export PATH="$HOME/.composer/vendor/bin:$PATH"
@@ -39,14 +42,23 @@ before_script:
   - mysql -e 'CREATE DATABASE `yii2-usuario-test`;';
   - php tests/_app/yii.php migrate/up --interactive=0
 
+  # enable code coverage on PHP 7.1, only one PHP version needs to generate coverage data
+  - |
+    if [ $TRAVIS_PHP_VERSION = '7.1' ]; then
+      CODECEPTION_FLAGS="--coverage-xml"
+    fi
+
 script:
   - composer validate --no-check-lock
-  - vendor/bin/codecept run --coverage --coverage-xml --coverage-html
+  - vendor/bin/codecept run $CODECEPTION_FLAGS
 
 notifications:
   email:
     - resurtm+travis-ci@gmail.com
 
 after_script:
-  - travis_retry wget https://scrutinizer-ci.com/ocular.phar
-  - php ocular.phar code-coverage:upload --format=php-clover tests/_output/coverage.xml
+  - |
+    if [ $TRAVIS_PHP_VERSION = '7.1' ]; then
+      travis_retry wget https://scrutinizer-ci.com/ocular.phar
+      php ocular.phar code-coverage:upload --format=php-clover tests/_output/coverage.xml
+    fi
