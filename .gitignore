@@ -20,8 +20,6 @@ Thumbs.db
 
 # no need in composer distribution
 /composer.phar
-# no need to provide lock file with extensions
-/composer.lock
 
 # Mac DS_Store Files
 .DS_Store
