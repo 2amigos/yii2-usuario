@@ -16,4 +16,4 @@ build:
 
     dependencies:
         before:
-            - 'travis_retry composer global require "fxp/composer-asset-plugin:^1.2.0" --no-plugins'
+            - 'composer global require "fxp/composer-asset-plugin:^1.2.0" --no-plugins'
