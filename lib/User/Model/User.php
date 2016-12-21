@@ -28,7 +28,7 @@ use yii\web\IdentityInterface;
  *
  * @property bool $isAdmin
  * @property bool $isBlocked
- * @property bool $isConfirmed
+ * @property bool $isConfirmed whether user account has been confirmed or not
  *
  * Database fields:
  * @property int $id
@@ -224,7 +224,8 @@ class User extends ActiveRecord implements IdentityInterface
     }
 
     /**
-     * @return bool
+     * Returns whether user account has been confirmed or not.
+     * @return bool whether user account has been confirmed or not
      */
     public function getIsConfirmed()
     {

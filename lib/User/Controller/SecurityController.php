@@ -19,13 +19,14 @@ use Da\User\Query\SocialNetworkAccountQuery;
 use Da\User\Service\SocialNetworkAccountConnectService;
 use Da\User\Service\SocialNetworkAuthenticateService;
 use Da\User\Traits\ContainerAwareTrait;
+use Yii;
 use yii\authclient\AuthAction;
 use yii\base\Module;
 use yii\filters\AccessControl;
 use yii\filters\VerbFilter;
 use yii\web\Controller;
-use Yii;
-use \yii\web\Response;
+use yii\web\Response;
+use yii\widgets\ActiveForm;
 
 class SecurityController extends Controller
 {
@@ -112,6 +113,11 @@ class SecurityController extends Controller
         $form = $this->make(LoginForm::class);
         /** @var FormEvent $event */
         $event = $this->make(FormEvent::class, [$form]);
+
+        if (Yii::$app->request->isAjax && $form->load(Yii::$app->request->post())) {
+            Yii::$app->response->format = Response::FORMAT_JSON;
+            return ActiveForm::validate($form);
+        }
 
         if ($form->load(Yii::$app->request->post())) {
             $this->trigger(FormEvent::EVENT_BEFORE_LOGIN, $event);

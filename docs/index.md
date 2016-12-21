@@ -22,6 +22,11 @@ Installation
 - [Advanced Application Template](installation/advanced-application-template.md)
 - [Basic Application Template](installation/basic-application-template.md)
 
+Enhancing and Overriding
+------------------------
+
+- [How to Enhance a User Model](enhancing-and-overriding/how-to-enhance-a-user-model.md)
+
 Helpful Guides
 --------------
 
