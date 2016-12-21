@@ -10,11 +10,12 @@
  */
 
 /**
- * @var yii\web\View
- * @var $model       \Da\User\Model\Role
+ * @var $this  yii\web\View
+ * @var $model \Da\User\Model\Role
  */
+
 use Da\User\Helper\AuthHelper;
-use kartik\select2\Select2;
+use dosamigos\selectize\SelectizeDropDownList;
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
 
@@ -34,16 +35,13 @@ $unassignedItems = Yii::$container->get(AuthHelper::class)->getUnassignedItems($
 
 <?= $form->field($model, 'rule') ?>
 
-<?= $form->field($model, 'children')->widget(
-    Select2::className(),
-    [
-        'data' => $unassignedItems,
-        'options' => [
-            'id' => 'children',
-            'multiple' => true,
-        ],
-    ]
-) ?>
+<?= $form->field($model, 'children')->widget(SelectizeDropDownList::class, [
+    'items' => $unassignedItems,
+    'options' => [
+        'id' => 'children',
+        'multiple' => true,
+    ],
+]) ?>
 
 <?= Html::submitButton(Yii::t('user', 'Save'), ['class' => 'btn btn-success btn-block']) ?>
 

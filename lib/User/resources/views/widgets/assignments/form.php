@@ -9,13 +9,14 @@
  * the LICENSE file that was distributed with this source code.
  */
 
-use kartik\select2\Select2;
+use dosamigos\selectize\SelectizeDropDownList;
 use yii\bootstrap\Alert;
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
 
-/*
- * @var $model \Da\User\Model\Assignment
+/**
+ * @var $this           yii\web\View
+ * @var $model          Da\User\Model\Assignment
  * @var $availableItems string[]
  */
 
@@ -39,10 +40,10 @@ use yii\widgets\ActiveForm;
 
 <?= Html::activeHiddenInput($model, 'user_id') ?>
 
-<?= $form->field($model, 'items')->widget(Select2::className(), [
-    'data' => $availableItems,
+<?= $form->field($model, 'items')->widget(SelectizeDropDownList::class, [
+    'items' => $availableItems,
     'options' => [
-        'id' => 'items',
+        'id' => 'children',
         'multiple' => true,
     ],
 ]) ?>
@@ -50,4 +51,3 @@ use yii\widgets\ActiveForm;
 <?= Html::submitButton(Yii::t('user', 'Update assignments'), ['class' => 'btn btn-success btn-block']) ?>
 
 <?php ActiveForm::end() ?>
-

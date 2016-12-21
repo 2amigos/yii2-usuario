@@ -9,15 +9,15 @@
  * the LICENSE file that was distributed with this source code.
  */
 
+use dosamigos\selectize\SelectizeDropDownList;
+use yii\helpers\Html;
+use yii\widgets\ActiveForm;
+
 /**
- * @var yii\web\View
- * @var $model           \Da\User\Model\Permission
+ * @var $this            yii\web\View
+ * @var $model           Da\User\Model\Permission
  * @var $unassignedItems string[]
  */
-
-use kartik\select2\Select2;
-use yii\widgets\ActiveForm;
-use yii\helpers\Html;
 
 ?>
 
@@ -32,8 +32,8 @@ use yii\helpers\Html;
 
 <?= $form->field($model, 'rule') ?>
 
-<?= $form->field($model, 'children')->widget(Select2::className(), [
-    'data' => $unassignedItems,
+<?= $form->field($model, 'children')->widget(SelectizeDropDownList::class, [
+    'items' => $unassignedItems,
     'options' => [
         'id' => 'children',
         'multiple' => true,
