@@ -40,6 +40,7 @@ before_script:
   # initialize database
   - mysql -e 'CREATE DATABASE `yii2-usuario-test`;';
   - php tests/_app/yii.php migrate/up --interactive=0
+  - php tests/_app/yii.php migrate/up --interactive=0 --migrationPath=@yii/rbac/migrations
 
   # enable code coverage on PHP 7.1, only one PHP version needs to generate coverage data
   - |

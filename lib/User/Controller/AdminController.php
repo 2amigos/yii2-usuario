@@ -61,7 +61,7 @@ class AdminController extends Controller
      */
     public function beforeAction($action)
     {
-        if (in_array($action->id, ['index', 'update', 'update-profile', 'info', 'assignments'])) {
+        if (in_array($action->id, ['index', 'update', 'update-profile', 'info', 'assignments'], true)) {
             Url::remember('', 'actions-redirect');
         }
 
@@ -75,7 +75,7 @@ class AdminController extends Controller
     {
         return [
             'verbs' => [
-                'class' => VerbFilter::className(),
+                'class' => VerbFilter::class,
                 'actions' => [
                     'delete' => ['post'],
                     'confirm' => ['post'],
@@ -83,9 +83,9 @@ class AdminController extends Controller
                 ],
             ],
             'access' => [
-                'class' => AccessControl::className(),
+                'class' => AccessControl::class,
                 'ruleConfig' => [
-                    'class' => AccessRuleFilter::className(),
+                    'class' => AccessRuleFilter::class,
                 ],
                 'rules' => [
                     [

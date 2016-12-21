@@ -50,6 +50,7 @@ class Bootstrap implements BootstrapInterface
             } else {
                 /* @var $app ConsoleApplication */
                 $this->initConsoleCommands($app);
+                $this->initAuthManager($app);
             }
         }
     }

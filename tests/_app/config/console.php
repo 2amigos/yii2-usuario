@@ -11,10 +11,13 @@ return [
         'log' => null,
         'cache' => null,
         'db' => require __DIR__.'/db.php',
+        'authManager' => [
+            'class' => Da\User\Component\AuthDbManagerComponent::class,
+        ],
     ],
     'controllerMap' => [
         'migrate' => [
-            'class' => \yii\console\controllers\MigrateController::class,
+            'class' => yii\console\controllers\MigrateController::class,
             'migrationPath' => null,
             'migrationNamespaces' => [
                 'Da\User\Migration',
