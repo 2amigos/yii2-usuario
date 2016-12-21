@@ -12,7 +12,7 @@
 namespace Da\User\Model;
 
 use Da\User\Query\SocialNetworkAccountQuery;
-use Da\User\Traits\ContainerTrait;
+use Da\User\Traits\ContainerAwareTrait;
 use Da\User\Traits\ModuleTrait;
 use Yii;
 use yii\db\ActiveRecord;
@@ -35,7 +35,7 @@ use yii\helpers\Url;
 class SocialNetworkAccount extends ActiveRecord
 {
     use ModuleTrait;
-    use ContainerTrait;
+    use ContainerAwareTrait;
 
     /**
      * @var array json decoded properties

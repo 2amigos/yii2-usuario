@@ -12,13 +12,13 @@
 namespace Da\User\Form;
 
 use Da\User\Query\UserQuery;
-use Da\User\Traits\ContainerTrait;
+use Da\User\Traits\ContainerAwareTrait;
 use Yii;
 use yii\base\Model;
 
 class RecoveryForm extends Model
 {
-    use ContainerTrait;
+    use ContainerAwareTrait;
 
     const SCENARIO_REQUEST = 'request';
     const SCENARIO_RESET = 'reset';

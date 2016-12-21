@@ -13,7 +13,7 @@ namespace Da\User\Command;
 
 use Da\User\Query\UserQuery;
 use Da\User\Service\UserConfirmationService;
-use Da\User\Traits\ContainerTrait;
+use Da\User\Traits\ContainerAwareTrait;
 use Yii;
 use yii\base\Module;
 use yii\console\Controller;
@@ -21,7 +21,7 @@ use yii\helpers\Console;
 
 class ConfirmController extends Controller
 {
-    use ContainerTrait;
+    use ContainerAwareTrait;
 
     protected $userQuery;
 

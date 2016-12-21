@@ -15,12 +15,12 @@ use Da\User\Contracts\MailChangeStrategyInterface;
 use Da\User\Factory\MailFactory;
 use Da\User\Factory\TokenFactory;
 use Da\User\Form\SettingsForm;
-use Da\User\Traits\ContainerTrait;
+use Da\User\Traits\ContainerAwareTrait;
 use Yii;
 
 class DefaultEmailChangeStrategy implements MailChangeStrategyInterface
 {
-    use ContainerTrait;
+    use ContainerAwareTrait;
 
     protected $form;
 

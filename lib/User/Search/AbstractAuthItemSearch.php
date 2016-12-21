@@ -12,7 +12,7 @@
 namespace Da\User\Search;
 
 use Da\User\Traits\AuthManagerTrait;
-use Da\User\Traits\ContainerTrait;
+use Da\User\Traits\ContainerAwareTrait;
 use yii\base\Model;
 use yii\data\ArrayDataProvider;
 use yii\db\Query;
@@ -20,7 +20,7 @@ use yii\db\Query;
 abstract class AbstractAuthItemSearch extends Model
 {
     use AuthManagerTrait;
-    use ContainerTrait;
+    use ContainerAwareTrait;
 
     /**
      * @var string

@@ -13,7 +13,7 @@ namespace Da\User\Model;
 
 use Da\User\Helper\SecurityHelper;
 use Da\User\Query\UserQuery;
-use Da\User\Traits\ContainerTrait;
+use Da\User\Traits\ContainerAwareTrait;
 use Da\User\Traits\ModuleTrait;
 use Yii;
 use yii\base\NotSupportedException;
@@ -51,7 +51,7 @@ use yii\web\IdentityInterface;
 class User extends ActiveRecord implements IdentityInterface
 {
     use ModuleTrait;
-    use ContainerTrait;
+    use ContainerAwareTrait;
 
     // following constants are used on secured email changing process
     const OLD_EMAIL_CONFIRMED = 0b1;

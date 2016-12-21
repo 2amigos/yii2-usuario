@@ -12,7 +12,7 @@
 namespace Da\User\Form;
 
 use Da\User\Model\User;
-use Da\User\Traits\ContainerTrait;
+use Da\User\Traits\ContainerAwareTrait;
 use Da\User\Traits\ModuleTrait;
 use Yii;
 use yii\base\Model;
@@ -20,7 +20,7 @@ use yii\base\Model;
 class RegistrationForm extends Model
 {
     use ModuleTrait;
-    use ContainerTrait;
+    use ContainerAwareTrait;
 
     /**
      * @var string User email address

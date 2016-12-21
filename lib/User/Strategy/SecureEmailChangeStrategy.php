@@ -16,12 +16,12 @@ use Da\User\Factory\MailFactory;
 use Da\User\Factory\TokenFactory;
 use Da\User\Form\SettingsForm;
 use Da\User\Model\User;
-use Da\User\Traits\ContainerTrait;
+use Da\User\Traits\ContainerAwareTrait;
 use Yii;
 
 class SecureEmailChangeStrategy implements MailChangeStrategyInterface
 {
-    use ContainerTrait;
+    use ContainerAwareTrait;
 
     protected $form;
 

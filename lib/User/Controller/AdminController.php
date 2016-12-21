@@ -21,7 +21,7 @@ use Da\User\Search\UserSearch;
 use Da\User\Service\UserBlockService;
 use Da\User\Service\UserConfirmationService;
 use Da\User\Service\UserCreateService;
-use Da\User\Traits\ContainerTrait;
+use Da\User\Traits\ContainerAwareTrait;
 use Da\User\Validator\AjaxRequestModelValidator;
 use Yii;
 use yii\base\Module;
@@ -33,7 +33,7 @@ use yii\web\Controller;
 
 class AdminController extends Controller
 {
-    use ContainerTrait;
+    use ContainerAwareTrait;
 
     /**
      * @var UserQuery

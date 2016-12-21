@@ -21,7 +21,7 @@ use yii\di\Container;
  * @property-ready Da\User\Helper\AuthHelper $auth
  * @property-ready Da\User\Helper\ClassMapHelper $classMap
  */
-trait ContainerTrait
+trait ContainerAwareTrait
 {
     /**
      * @return Container

@@ -18,12 +18,12 @@ use Da\User\Event\SocialNetworkAuthEvent;
 use Da\User\Model\SocialNetworkAccount;
 use Da\User\Model\User;
 use Da\User\Query\SocialNetworkAccountQuery;
-use Da\User\Traits\ContainerTrait;
+use Da\User\Traits\ContainerAwareTrait;
 use Yii;
 
 class SocialNetworkAccountConnectService implements ServiceInterface
 {
-    use ContainerTrait;
+    use ContainerAwareTrait;
 
     protected $controller;
     protected $client;

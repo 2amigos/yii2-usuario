@@ -13,7 +13,7 @@ namespace Da\User\Model;
 
 use Da\User\Helper\GravatarHelper;
 use Da\User\Query\ProfileQuery;
-use Da\User\Traits\ContainerTrait;
+use Da\User\Traits\ContainerAwareTrait;
 use Da\User\Traits\ModuleTrait;
 use Da\User\Validator\TimeZoneValidator;
 use Yii;
@@ -37,7 +37,7 @@ use DateTime;
 class Profile extends ActiveRecord
 {
     use ModuleTrait;
-    use ContainerTrait;
+    use ContainerAwareTrait;
 
     /**
      * {@inheritdoc}

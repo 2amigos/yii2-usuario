@@ -25,7 +25,7 @@ use Da\User\Query\ProfileQuery;
 use Da\User\Query\SocialNetworkAccountQuery;
 use Da\User\Query\UserQuery;
 use Da\User\Service\EmailChangeService;
-use Da\User\Traits\ContainerTrait;
+use Da\User\Traits\ContainerAwareTrait;
 use Da\User\Validator\AjaxRequestModelValidator;
 use yii\filters\AccessControl;
 use yii\filters\VerbFilter;
@@ -36,7 +36,7 @@ use yii\web\NotFoundHttpException;
 
 class SettingsController extends Controller
 {
-    use ContainerTrait;
+    use ContainerAwareTrait;
 
     protected $profileQuery;
     protected $userQuery;

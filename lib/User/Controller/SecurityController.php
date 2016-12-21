@@ -18,17 +18,18 @@ use Da\User\Form\LoginForm;
 use Da\User\Query\SocialNetworkAccountQuery;
 use Da\User\Service\SocialNetworkAccountConnectService;
 use Da\User\Service\SocialNetworkAuthenticateService;
-use Da\User\Traits\ContainerTrait;
+use Da\User\Traits\ContainerAwareTrait;
 use yii\authclient\AuthAction;
 use yii\base\Module;
 use yii\filters\AccessControl;
 use yii\filters\VerbFilter;
 use yii\web\Controller;
 use Yii;
+use \yii\web\Response;
 
 class SecurityController extends Controller
 {
-    use ContainerTrait;
+    use ContainerAwareTrait;
 
     protected $socialNetworkAccountQuery;
 
@@ -97,11 +98,16 @@ class SecurityController extends Controller
         ];
     }
 
+    /**
+     * Controller action responsible for handling login page and actions.
+     * @return string|Response
+     */
     public function actionLogin()
     {
         if (!Yii::$app->user->getIsGuest()) {
             return $this->goHome();
         }
+
         /** @var LoginForm $form */
         $form = $this->make(LoginForm::class);
         /** @var FormEvent $event */

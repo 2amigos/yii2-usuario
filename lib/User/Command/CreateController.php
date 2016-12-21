@@ -14,14 +14,14 @@ namespace Da\User\Command;
 use Da\User\Factory\MailFactory;
 use Da\User\Model\User;
 use Da\User\Service\UserCreateService;
-use Da\User\Traits\ContainerTrait;
+use Da\User\Traits\ContainerAwareTrait;
 use Yii;
 use yii\console\Controller;
 use yii\helpers\Console;
 
 class CreateController extends Controller
 {
-    use ContainerTrait;
+    use ContainerAwareTrait;
 
     public function actionIndex($email, $username, $password = null)
     {

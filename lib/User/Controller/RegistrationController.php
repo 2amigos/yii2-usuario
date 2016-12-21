@@ -26,7 +26,7 @@ use Da\User\Service\ResendConfirmationService;
 use Da\User\Service\UserConfirmationService;
 use Da\User\Service\UserCreateService;
 use Da\User\Service\UserRegisterService;
-use Da\User\Traits\ContainerTrait;
+use Da\User\Traits\ContainerAwareTrait;
 use Da\User\Validator\AjaxRequestModelValidator;
 use Yii;
 use yii\base\Module;
@@ -36,7 +36,7 @@ use yii\web\NotFoundHttpException;
 
 class RegistrationController extends Controller
 {
-    use ContainerTrait;
+    use ContainerAwareTrait;
 
     protected $userQuery;
     protected $socialNetworkAccountQuery;
