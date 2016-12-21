@@ -11,8 +11,8 @@
 
 use yii\bootstrap\Alert;
 
-/*
- * @var \Da\User\Module $module
+/**
+ * @var $module Da\User\Module
  */
 ?>
 
@@ -20,7 +20,7 @@ use yii\bootstrap\Alert;
     <div class="row">
         <div class="col-xs-12">
             <?php foreach (Yii::$app->session->getAllFlashes() as $type => $message): ?>
-                <?php if (in_array($type, ['success', 'danger', 'warning', 'info'])): ?>
+                <?php if (in_array($type, ['success', 'danger', 'warning', 'info'], true)): ?>
                     <?= Alert::widget([
                             'options' => ['class' => 'alert-dismissible alert-'.$type],
                             'body' => $message,

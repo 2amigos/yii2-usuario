@@ -9,17 +9,15 @@
  * the LICENSE file that was distributed with this source code.
  */
 
-use Da\User\Search\UserSearch;
-use yii\data\ActiveDataProvider;
 use yii\grid\GridView;
 use yii\helpers\Html;
 use yii\web\View;
 use yii\widgets\Pjax;
 
-/*
- * @var View $this
- * @var ActiveDataProvider $dataProvider
- * @var UserSearch $searchModel
+/**
+ * @var $this         yii\web\View
+ * @var $dataProvider yii\data\ActiveDataProvider
+ * @var $searchModel  Da\User\Search\UserSearch
  */
 
 $this->title = Yii::t('user', 'Manage users');

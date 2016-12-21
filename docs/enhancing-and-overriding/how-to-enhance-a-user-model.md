@@ -46,6 +46,9 @@ feature. This is good approach too:
 ],
 ```
 
+> Please note, the method above works only starting from Yii 2.0.10 and upper. In version 2.0.9 and lower you can
+> use explicit calls to DI container from application `bootstrap.php` file.
+
 Finally you can now add new methods, properties, and other things to your new `User` model class:
 
 ```php
