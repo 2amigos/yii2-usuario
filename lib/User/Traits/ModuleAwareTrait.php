@@ -11,16 +11,19 @@
 
 namespace Da\User\Traits;
 
-use Da\User\Component\AuthDbManagerComponent;
+use Da\User\Module;
 use Yii;
 
-trait AuthManagerTrait
+/**
+ * @property-read Module $module
+ */
+trait ModuleAwareTrait
 {
     /**
-     * @return AuthDbManagerComponent|\yii\rbac\ManagerInterface
+     * @return Module
      */
-    public function getAuthManager()
+    public function getModule()
     {
-        return Yii::$app->getAuthManager();
+        return Yii::$app->getModule('user');
     }
 }

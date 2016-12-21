@@ -13,11 +13,11 @@ namespace Da\User\Service;
 
 use Da\User\Contracts\ServiceInterface;
 use Da\User\Model\Assignment;
-use Da\User\Traits\AuthManagerTrait;
+use Da\User\Traits\AuthManagerAwareTrait;
 
 class UpdateAuthAssignmentsService implements ServiceInterface
 {
-    use AuthManagerTrait;
+    use AuthManagerAwareTrait;
 
     protected $model;
 

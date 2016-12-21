@@ -15,16 +15,15 @@ use Da\User\Contracts\ServiceInterface;
 use Da\User\Event\UserEvent;
 use Da\User\Factory\TokenFactory;
 use Da\User\Helper\SecurityHelper;
-use Da\User\Model\Token;
 use Da\User\Model\User;
-use Da\User\Traits\ModuleTrait;
+use Da\User\Traits\ModuleAwareTrait;
+use Exception;
 use yii\base\InvalidCallException;
 use yii\log\Logger;
-use Exception;
 
 class UserRegisterService implements ServiceInterface
 {
-    use ModuleTrait;
+    use ModuleAwareTrait;
 
     protected $model;
     protected $securityHelper;

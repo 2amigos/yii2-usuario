@@ -13,7 +13,7 @@ namespace Da\User\Helper;
 
 use Da\User\Model\AbstractAuthItem;
 use Da\User\Module;
-use Da\User\Traits\AuthManagerTrait;
+use Da\User\Traits\AuthManagerAwareTrait;
 use Yii;
 use yii\helpers\ArrayHelper;
 use yii\rbac\Permission;
@@ -22,7 +22,7 @@ use yii\rbac\Rule;
 
 class AuthHelper
 {
-    use AuthManagerTrait;
+    use AuthManagerAwareTrait;
 
     /**
      * Checks whether a user has certain role.

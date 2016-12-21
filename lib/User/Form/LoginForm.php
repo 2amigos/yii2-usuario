@@ -14,13 +14,13 @@ namespace Da\User\Form;
 use Da\User\Helper\SecurityHelper;
 use Da\User\Model\User;
 use Da\User\Query\UserQuery;
-use Da\User\Traits\ModuleTrait;
+use Da\User\Traits\ModuleAwareTrait;
 use Yii;
 use yii\base\Model;
 
 class LoginForm extends Model
 {
-    use ModuleTrait;
+    use ModuleAwareTrait;
 
     /**
      * @var string login User's email or username

@@ -14,13 +14,13 @@ namespace Da\User\Service;
 use Da\User\Contracts\ServiceInterface;
 use Da\User\Factory\AuthItemFactory;
 use Da\User\Model\AbstractAuthItem;
-use Da\User\Traits\AuthManagerTrait;
+use Da\User\Traits\AuthManagerAwareTrait;
 use Da\User\Traits\ContainerAwareTrait;
 use Exception;
 
 class AuthItemEditionService implements ServiceInterface
 {
-    use AuthManagerTrait;
+    use AuthManagerAwareTrait;
     use ContainerAwareTrait;
 
     protected $model;

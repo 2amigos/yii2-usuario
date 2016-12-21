@@ -14,10 +14,10 @@ namespace Da\User\Model;
 use Da\User\Helper\SecurityHelper;
 use Da\User\Query\TokenQuery;
 use Da\User\Traits\ContainerAwareTrait;
-use Da\User\Traits\ModuleTrait;
+use Da\User\Traits\ModuleAwareTrait;
+use RuntimeException;
 use yii\db\ActiveRecord;
 use yii\helpers\Url;
-use RuntimeException;
 
 /**
  * Token Active Record model.
@@ -32,7 +32,7 @@ use RuntimeException;
  */
 class Token extends ActiveRecord
 {
-    use ModuleTrait;
+    use ModuleAwareTrait;
     use ContainerAwareTrait;
 
     const TYPE_CONFIRMATION = 0;

@@ -11,13 +11,13 @@
 
 namespace Da\User\Validator;
 
-use Da\User\Traits\AuthManagerTrait;
+use Da\User\Traits\AuthManagerAwareTrait;
 use Yii;
 use yii\validators\Validator;
 
 class RbacItemsValidator extends Validator
 {
-    use AuthManagerTrait;
+    use AuthManagerAwareTrait;
 
     protected function validateValue($value)
     {

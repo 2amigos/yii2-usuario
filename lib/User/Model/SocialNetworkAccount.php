@@ -13,7 +13,7 @@ namespace Da\User\Model;
 
 use Da\User\Query\SocialNetworkAccountQuery;
 use Da\User\Traits\ContainerAwareTrait;
-use Da\User\Traits\ModuleTrait;
+use Da\User\Traits\ModuleAwareTrait;
 use Yii;
 use yii\db\ActiveRecord;
 use yii\helpers\Url;
@@ -34,7 +34,7 @@ use yii\helpers\Url;
  */
 class SocialNetworkAccount extends ActiveRecord
 {
-    use ModuleTrait;
+    use ModuleAwareTrait;
     use ContainerAwareTrait;
 
     /**

@@ -15,13 +15,13 @@ use Da\User\Factory\EmailChangeStrategyFactory;
 use Da\User\Helper\SecurityHelper;
 use Da\User\Model\User;
 use Da\User\Traits\ContainerAwareTrait;
-use Da\User\Traits\ModuleTrait;
+use Da\User\Traits\ModuleAwareTrait;
 use Yii;
 use yii\base\Model;
 
 class SettingsForm extends Model
 {
-    use ModuleTrait;
+    use ModuleAwareTrait;
     use ContainerAwareTrait;
 
     /**

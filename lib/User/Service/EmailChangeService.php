@@ -8,12 +8,12 @@ use Da\User\Model\Token;
 use Da\User\Model\User;
 use Da\User\Query\TokenQuery;
 use Da\User\Query\UserQuery;
-use Da\User\Traits\ModuleTrait;
+use Da\User\Traits\ModuleAwareTrait;
 use Yii;
 
 class EmailChangeService implements ServiceInterface
 {
-    use ModuleTrait;
+    use ModuleAwareTrait;
 
     protected $code;
     protected $model;

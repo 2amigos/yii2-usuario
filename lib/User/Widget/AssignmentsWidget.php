@@ -13,7 +13,7 @@ namespace Da\User\Widget;
 
 use Da\User\Model\Assignment;
 use Da\User\Service\UpdateAuthAssignmentsService;
-use Da\User\Traits\AuthManagerTrait;
+use Da\User\Traits\AuthManagerAwareTrait;
 use Da\User\Traits\ContainerAwareTrait;
 use yii\base\InvalidConfigException;
 use yii\base\Widget;
@@ -21,7 +21,7 @@ use yii\helpers\ArrayHelper;
 
 class AssignmentsWidget extends Widget
 {
-    use AuthManagerTrait;
+    use AuthManagerAwareTrait;
     use ContainerAwareTrait;
 
     /**
