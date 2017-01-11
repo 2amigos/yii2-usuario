@@ -30,7 +30,7 @@ class RbacRuleValidator extends Validator
             return [Yii::t('usuario', 'Rule class can not be instantiated'), []];
         }
         if ($class->isSubclassOf('\yii\rbac\Rule') == false) {
-            return [Yii::t('usuario', 'Rule class must extend "yii\rbac\Rule"'), []];
+            return [Yii::t('usuario', 'Rule class must extend "yii\\rbac\\Rule"'), []];
         }
     }
 }

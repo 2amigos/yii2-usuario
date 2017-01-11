@@ -62,12 +62,12 @@
     },
     "autoload": {
         "psr-4": {
-            "Da\\": "./lib"
+            "Da\\User\\": "./src/User"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "Da\\": "./lib"
+            "Da\\User\\": "./src/User"
         }
     },
     "extra": {
