@@ -21,7 +21,7 @@ use Da\User\Helper\TimezoneHelper;
  * @var TimezoneHelper $timezoneHelper
  */
 
-$this->title = Yii::t('user', 'Profile settings');
+$this->title = Yii::t('usuario', 'Profile settings');
 $this->params['breadcrumbs'][] = $this->title;
 $timezoneHelper = $model->make(TimezoneHelper::class);
 ?>
@@ -70,7 +70,7 @@ $timezoneHelper = $model->make(TimezoneHelper::class);
                     ->field($model, 'gravatar_email')
                     ->hint(
                         Html::a(
-                            Yii::t('user', 'Change your avatar at Gravatar.com'),
+                            Yii::t('usuario', 'Change your avatar at Gravatar.com'),
                             'http://gravatar.com'
                         )
                     ) ?>
@@ -79,7 +79,7 @@ $timezoneHelper = $model->make(TimezoneHelper::class);
 
                 <div class="form-group">
                     <div class="col-lg-offset-3 col-lg-9">
-                        <?= Html::submitButton(Yii::t('user', 'Save'), ['class' => 'btn btn-block btn-success']) ?>
+                        <?= Html::submitButton(Yii::t('usuario', 'Save'), ['class' => 'btn btn-block btn-success']) ?>
                         <br>
                     </div>
                 </div>

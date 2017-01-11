@@ -40,6 +40,6 @@ use yii\widgets\ActiveForm;
     ],
 ]) ?>
 
-<?= Html::submitButton(Yii::t('user', 'Save'), ['class' => 'btn btn-success btn-block']) ?>
+<?= Html::submitButton(Yii::t('usuario', 'Save'), ['class' => 'btn btn-success btn-block']) ?>
 
 <?php ActiveForm::end() ?>

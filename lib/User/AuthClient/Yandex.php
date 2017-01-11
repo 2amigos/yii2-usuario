@@ -48,6 +48,6 @@ class Yandex extends BaseYandex implements AuthClientInterface
      */
     protected function defaultTitle()
     {
-        return Yii::t('user', 'Yandex');
+        return Yii::t('usuario', 'Yandex');
     }
 }

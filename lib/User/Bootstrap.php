@@ -162,8 +162,8 @@ class Bootstrap implements BootstrapInterface
      */
     protected function initTranslations(Application $app)
     {
-        if (!isset($app->get('i18n')->translations['user*'])) {
-            $app->get('i18n')->translations['user*'] = [
+        if (!isset($app->get('i18n')->translations['usuario*'])) {
+            $app->get('i18n')->translations['usuario*'] = [
                 'class' => PhpMessageSource::class,
                 'basePath' => __DIR__.'/resources/i18n',
                 'sourceLanguage' => 'en-US',
@@ -221,10 +221,10 @@ class Bootstrap implements BootstrapInterface
     {
         $defaults = [
             'fromEmail' => 'no-reply@example.com',
-            'welcomeMailSubject' => Yii::t('user', 'Welcome to {0}', $app->name),
-            'confirmationMailSubject' => Yii::t('user', 'Confirm account on {0}', $app->name),
-            'reconfirmationMailSubject' => Yii::t('user', 'Confirm email change on {0}', $app->name),
-            'recoveryMailSubject' => Yii::t('user', 'Complete password reset on {0}', $app->name),
+            'welcomeMailSubject' => Yii::t('usuario', 'Welcome to {0}', $app->name),
+            'confirmationMailSubject' => Yii::t('usuario', 'Confirm account on {0}', $app->name),
+            'reconfirmationMailSubject' => Yii::t('usuario', 'Confirm email change on {0}', $app->name),
+            'recoveryMailSubject' => Yii::t('usuario', 'Complete password reset on {0}', $app->name),
         ];
 
         $module->mailParams = array_merge($defaults, $module->mailParams);

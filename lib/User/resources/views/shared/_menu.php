@@ -21,30 +21,30 @@ use yii\bootstrap\Nav;
         ],
         'items' => [
             [
-                'label' => Yii::t('user', 'Users'),
+                'label' => Yii::t('usuario', 'Users'),
                 'url' => ['/user/admin/index'],
             ],
             [
-                'label' => Yii::t('user', 'Roles'),
+                'label' => Yii::t('usuario', 'Roles'),
                 'url' => ['/user/role/index'],
             ],
             [
-                'label' => Yii::t('user', 'Permissions'),
+                'label' => Yii::t('usuario', 'Permissions'),
                 'url' => ['/user/permission/index'],
             ],
             [
-                'label' => Yii::t('user', 'Create'),
+                'label' => Yii::t('usuario', 'Create'),
                 'items' => [
                     [
-                        'label' => Yii::t('user', 'New user'),
+                        'label' => Yii::t('usuario', 'New user'),
                         'url' => ['/user/admin/create'],
                     ],
                     [
-                        'label' => Yii::t('user', 'New role'),
+                        'label' => Yii::t('usuario', 'New role'),
                         'url' => ['/user/role/create'],
                     ],
                     [
-                        'label' => Yii::t('user', 'New permission'),
+                        'label' => Yii::t('usuario', 'New permission'),
                         'url' => ['/user/permission/create'],
                     ],
                 ],

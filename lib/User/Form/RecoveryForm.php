@@ -52,8 +52,8 @@ class RecoveryForm extends Model
     public function attributeLabels()
     {
         return [
-            'email' => Yii::t('user', 'Email'),
-            'password' => Yii::t('user', 'Password'),
+            'email' => Yii::t('usuario', 'Email'),
+            'password' => Yii::t('usuario', 'Password'),
         ];
     }
 

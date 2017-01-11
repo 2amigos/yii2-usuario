@@ -109,7 +109,7 @@ class RegistrationController extends Controller
                 Yii::$app->session->setFlash(
                     'info',
                     Yii::t(
-                        'user',
+                        'usuario',
                         'Your account has been created and a message with further instructions has been sent to your email'
                     )
                 );
@@ -117,7 +117,7 @@ class RegistrationController extends Controller
                 return $this->render(
                     '/shared/message',
                     [
-                        'title' => Yii::t('user', 'Your account has been created'),
+                        'title' => Yii::t('usuario', 'Your account has been created'),
                         'module' => $this->module,
                     ]
                 );
@@ -189,20 +189,20 @@ class RegistrationController extends Controller
 
         if ($this->make(AccountConfirmationService::class, [$code, $user, $userConfirmationService])->run()) {
             Yii::$app->user->login($user, $this->module->rememberLoginLifespan);
-            Yii::$app->session->setFlash('success', Yii::t('user', 'Thank you, registration is now complete.'));
+            Yii::$app->session->setFlash('success', Yii::t('usuario', 'Thank you, registration is now complete.'));
 
             $this->trigger(UserEvent::EVENT_AFTER_CONFIRMATION, $event);
         } else {
             Yii::$app->session->setFlash(
                 'danger',
-                Yii::t('user', 'The confirmation link is invalid or expired. Please try requesting a new one.')
+                Yii::t('usuario', 'The confirmation link is invalid or expired. Please try requesting a new one.')
             );
         }
 
         return $this->render(
             '/shared/message',
             [
-                'title' => Yii::t('user', 'Account confirmation'),
+                'title' => Yii::t('usuario', 'Account confirmation'),
                 'module' => $this->module,
             ]
         );
@@ -231,7 +231,7 @@ class RegistrationController extends Controller
                     Yii::$app->session->setFlash(
                         'info',
                         Yii::t(
-                            'user',
+                            'usuario',
                             'A message has been sent to your email address. '.
                             'It contains a confirmation link that you must click to complete registration.'
                         )
@@ -242,7 +242,7 @@ class RegistrationController extends Controller
                 Yii::$app->session->setFlash(
                     'danger',
                     Yii::t(
-                        'user',
+                        'usuario',
                         'We couldn\'t re-send the mail to confirm your address. '.
                         'Please, verify is the correct email or if it has been confirmed already.'
                     )
@@ -251,8 +251,8 @@ class RegistrationController extends Controller
 
             return $this->render('/shared/message', [
                 'title' => $success
-                    ? Yii::t('user', 'A new confirmation link has been sent')
-                    : Yii::t('user', 'Unable to send confirmation link'),
+                    ? Yii::t('usuario', 'A new confirmation link has been sent')
+                    : Yii::t('usuario', 'Unable to send confirmation link'),
                 'module' => $this->module,
             ]);
         }

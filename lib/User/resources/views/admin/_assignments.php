@@ -26,7 +26,7 @@ use Da\User\Widget\AssignmentsWidget;
         'options' => [
             'class' => 'alert-info alert-dismissible',
         ],
-        'body' => Yii::t('user', 'You can assign multiple roles or permissions to user by using the form below'),
+        'body' => Yii::t('usuario', 'You can assign multiple roles or permissions to user by using the form below'),
     ]
 ) ?>
 

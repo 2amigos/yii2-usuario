@@ -44,3 +44,8 @@ tests/_output/*
 
 # ignore local codeception settings
 codeception.yml
+
+# Code Style Checkers and Mess Detectors
+/phpcs.xml
+/.php_cs.cache
+/.php_cs

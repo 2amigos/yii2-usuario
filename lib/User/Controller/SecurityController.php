@@ -158,7 +158,7 @@ class SecurityController extends Controller
     public function connect(AuthClientInterface $client)
     {
         if (Yii::$app->user->isGuest) {
-            Yii::$app->session->setFlash('danger', Yii::t('user', 'Something went wrong'));
+            Yii::$app->session->setFlash('danger', Yii::t('usuario', 'Something went wrong'));
 
             return;
         }

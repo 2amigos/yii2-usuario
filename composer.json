@@ -52,9 +52,9 @@
     },
     "require-dev": {
         "cebe/assetfree-yii2": "~2.0.0",
-        "squizlabs/php_codesniffer": "^2.7",
         "friendsofphp/php-cs-fixer": "^2.0",
-        "phpmd/phpmd": "^2.4",
+        "squizlabs/php_codesniffer": "*",
+        "phpmd/phpmd": "@stable",
         "yiisoft/yii2-codeception": "^2.0.0",
         "codeception/specify": "^0.4.3",
         "codeception/verify": "^0.3.1",

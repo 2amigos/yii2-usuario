@@ -73,7 +73,7 @@ class Profile extends ActiveRecord
                 'timezone',
                 function ($attribute) {
                     if ($this->make(TimeZoneValidator::class, [$attribute])->validate()) {
-                        $this->addError($attribute, Yii::t('user', 'Time zone is not valid'));
+                        $this->addError($attribute, Yii::t('usuario', 'Time zone is not valid'));
                     }
                 },
             ],
@@ -94,13 +94,13 @@ class Profile extends ActiveRecord
     public function attributeLabels()
     {
         return [
-            'name' => Yii::t('user', 'Name'),
-            'public_email' => Yii::t('user', 'Email (public)'),
-            'gravatar_email' => Yii::t('user', 'Gravatar email'),
-            'location' => Yii::t('user', 'Location'),
-            'website' => Yii::t('user', 'Website'),
-            'bio' => Yii::t('user', 'Bio'),
-            'timezone' => Yii::t('user', 'Time zone'),
+            'name' => Yii::t('usuario', 'Name'),
+            'public_email' => Yii::t('usuario', 'Email (public)'),
+            'gravatar_email' => Yii::t('usuario', 'Gravatar email'),
+            'location' => Yii::t('usuario', 'Location'),
+            'website' => Yii::t('usuario', 'Website'),
+            'bio' => Yii::t('usuario', 'Bio'),
+            'timezone' => Yii::t('usuario', 'Time zone'),
         ];
     }
 

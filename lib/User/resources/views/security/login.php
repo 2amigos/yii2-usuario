@@ -19,7 +19,7 @@ use yii\widgets\ActiveForm;
  * @var \Da\User\Module $module
  */
 
-$this->title = Yii::t('user', 'Sign in');
+$this->title = Yii::t('usuario', 'Sign in');
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 
@@ -57,10 +57,10 @@ $this->params['breadcrumbs'][] = $this->title;
                     )
                     ->passwordInput()
                     ->label(
-                        Yii::t('user', 'Password')
+                        Yii::t('usuario', 'Password')
                         .($module->allowPasswordRecovery ?
                             ' ('.Html::a(
-                                Yii::t('user', 'Forgot password?'),
+                                Yii::t('usuario', 'Forgot password?'),
                                 ['/user/recovery/request'],
                                 ['tabindex' => '5']
                             )
@@ -70,7 +70,7 @@ $this->params['breadcrumbs'][] = $this->title;
                 <?= $form->field($model, 'rememberMe')->checkbox(['tabindex' => '4']) ?>
 
                 <?= Html::submitButton(
-                    Yii::t('user', 'Sign in'),
+                    Yii::t('usuario', 'Sign in'),
                     ['class' => 'btn btn-primary btn-block', 'tabindex' => '3']
                 ) ?>
 
@@ -79,12 +79,12 @@ $this->params['breadcrumbs'][] = $this->title;
         </div>
         <?php if ($module->enableEmailConfirmation): ?>
             <p class="text-center">
-                <?= Html::a(Yii::t('user', 'Didn\'t receive confirmation message?'), ['/user/registration/resend']) ?>
+                <?= Html::a(Yii::t('usuario', 'Didn\'t receive confirmation message?'), ['/user/registration/resend']) ?>
             </p>
         <?php endif ?>
         <?php if ($module->enableRegistration): ?>
             <p class="text-center">
-                <?= Html::a(Yii::t('user', 'Don\'t have an account? Sign up!'), ['/user/registration/register']) ?>
+                <?= Html::a(Yii::t('usuario', 'Don\'t have an account? Sign up!'), ['/user/registration/register']) ?>
             </p>
         <?php endif ?>
         <?= ConnectWidget::widget(

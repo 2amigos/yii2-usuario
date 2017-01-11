@@ -18,8 +18,8 @@ use yii\helpers\Html;
  * @var \Da\User\Model\User $user
  */
 
-$this->title = Yii::t('user', 'Create a user account');
-$this->params['breadcrumbs'][] = ['label' => Yii::t('user', 'Users'), 'url' => ['index']];
+$this->title = Yii::t('usuario', 'Create a user account');
+$this->params['breadcrumbs'][] = ['label' => Yii::t('usuario', 'Users'), 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 
 ?>
@@ -50,18 +50,18 @@ $this->params['breadcrumbs'][] = $this->title;
                                         ],
                                         'items' => [
                                             [
-                                                'label' => Yii::t('user', 'Account details'),
+                                                'label' => Yii::t('usuario', 'Account details'),
                                                 'url' => ['/user/admin/create'],
                                             ],
                                             [
-                                                'label' => Yii::t('user', 'Profile details'),
+                                                'label' => Yii::t('usuario', 'Profile details'),
                                                 'options' => [
                                                     'class' => 'disabled',
                                                     'onclick' => 'return false;',
                                                 ],
                                             ],
                                             [
-                                                'label' => Yii::t('user', 'Information'),
+                                                'label' => Yii::t('usuario', 'Information'),
                                                 'options' => [
                                                     'class' => 'disabled',
                                                     'onclick' => 'return false;',
@@ -77,8 +77,8 @@ $this->params['breadcrumbs'][] = $this->title;
                         <div class="panel panel-default">
                             <div class="panel-body">
                                 <div class="alert alert-info">
-                                    <?= Yii::t('user', 'Credentials will be sent to the user by email') ?>.
-                                    <?= Yii::t('user', 'A password will be generated automatically if not provided') ?>.
+                                    <?= Yii::t('usuario', 'Credentials will be sent to the user by email') ?>.
+                                    <?= Yii::t('usuario', 'A password will be generated automatically if not provided') ?>.
                                 </div>
                                 <?php $form = ActiveForm::begin(
                                     [
@@ -98,7 +98,7 @@ $this->params['breadcrumbs'][] = $this->title;
                                 <div class="form-group">
                                     <div class="col-lg-offset-3 col-lg-9">
                                         <?= Html::submitButton(
-                                            Yii::t('user', 'Save'),
+                                            Yii::t('usuario', 'Save'),
                                             ['class' => 'btn btn-block btn-success']
                                         ) ?>
                                     </div>

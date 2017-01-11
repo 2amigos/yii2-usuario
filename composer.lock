@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "c5d975a6e617b48ce160709adc44e2e8",
-    "content-hash": "7fdd28c9923beb31bca84e428ae41146",
+    "hash": "a3487c38850210a1f70ecbd47629a680",
+    "content-hash": "2a2695eba4d025ba76be8783e6f80d6d",
     "packages": [
         {
             "name": "2amigos/yii2-selectize-widget",
@@ -3852,7 +3852,9 @@
     ],
     "aliases": [],
     "minimum-stability": "stable",
-    "stability-flags": [],
+    "stability-flags": {
+        "phpmd/phpmd": 0
+    },
     "prefer-stable": false,
     "prefer-lowest": false,
     "platform": {

@@ -47,7 +47,7 @@ class Assignment extends Model
     public function attributeLabels()
     {
         return [
-            'items' => Yii::t('user', 'Items'),
+            'items' => Yii::t('usuario', 'Items'),
         ];
     }
 

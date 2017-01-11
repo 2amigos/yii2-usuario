@@ -20,7 +20,7 @@ use yii\widgets\Pjax;
  * @var $searchModel  Da\User\Search\UserSearch
  */
 
-$this->title = Yii::t('user', 'Manage users');
+$this->title = Yii::t('usuario', 'Manage users');
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 
@@ -40,7 +40,7 @@ $this->params['breadcrumbs'][] = $this->title;
                 'attribute' => 'registration_ip',
                 'value' => function ($model) {
                     return $model->registration_ip == null
-                        ? '<span class="not-set">'.Yii::t('user', '(not set)').'</span>'
+                        ? '<span class="not-set">'.Yii::t('usuario', '(not set)').'</span>'
                         : $model->registration_ip;
                 },
                 'format' => 'html',
@@ -49,27 +49,27 @@ $this->params['breadcrumbs'][] = $this->title;
                 'attribute' => 'created_at',
                 'value' => function ($model) {
                     if (extension_loaded('intl')) {
-                        return Yii::t('user', '{0, date, MMMM dd, YYYY HH:mm}', [$model->created_at]);
+                        return Yii::t('usuario', '{0, date, MMMM dd, YYYY HH:mm}', [$model->created_at]);
                     } else {
                         return date('Y-m-d G:i:s', $model->created_at);
                     }
                 },
             ],
             [
-                'header' => Yii::t('user', 'Confirmation'),
+                'header' => Yii::t('usuario', 'Confirmation'),
                 'value' => function ($model) {
                     if ($model->isConfirmed) {
                         return '<div class="text-center">
-                                <span class="text-success">' .Yii::t('user', 'Confirmed').'</span>
+                                <span class="text-success">' .Yii::t('usuario', 'Confirmed').'</span>
                             </div>';
                     } else {
                         return Html::a(
-                            Yii::t('user', 'Confirm'),
+                            Yii::t('usuario', 'Confirm'),
                             ['confirm', 'id' => $model->id],
                             [
                                 'class' => 'btn btn-xs btn-success btn-block',
                                 'data-method' => 'post',
-                                'data-confirm' => Yii::t('user', 'Are you sure you want to confirm this user?'),
+                                'data-confirm' => Yii::t('usuario', 'Are you sure you want to confirm this user?'),
                             ]
                         );
                     }
@@ -78,26 +78,26 @@ $this->params['breadcrumbs'][] = $this->title;
                 'visible' => Yii::$app->getModule('user')->enableEmailConfirmation,
             ],
             [
-                'header' => Yii::t('user', 'Block status'),
+                'header' => Yii::t('usuario', 'Block status'),
                 'value' => function ($model) {
                     if ($model->isBlocked) {
                         return Html::a(
-                            Yii::t('user', 'Unblock'),
+                            Yii::t('usuario', 'Unblock'),
                             ['block', 'id' => $model->id],
                             [
                                 'class' => 'btn btn-xs btn-success btn-block',
                                 'data-method' => 'post',
-                                'data-confirm' => Yii::t('user', 'Are you sure you want to unblock this user?'),
+                                'data-confirm' => Yii::t('usuario', 'Are you sure you want to unblock this user?'),
                             ]
                         );
                     } else {
                         return Html::a(
-                            Yii::t('user', 'Block'),
+                            Yii::t('usuario', 'Block'),
                             ['block', 'id' => $model->id],
                             [
                                 'class' => 'btn btn-xs btn-danger btn-block',
                                 'data-method' => 'post',
-                                'data-confirm' => Yii::t('user', 'Are you sure you want to block this user?'),
+                                'data-confirm' => Yii::t('usuario', 'Are you sure you want to block this user?'),
                             ]
                         );
                     }

@@ -15,7 +15,7 @@
  * @var $unassignedItems          string[]
  */
 
-$this->title = Yii::t('user', 'Update permission');
+$this->title = Yii::t('usuario', 'Update permission');
 $this->params['breadcrumbs'][] = $this->title;
 
 ?>

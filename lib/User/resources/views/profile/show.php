@@ -53,7 +53,7 @@ $this->params['breadcrumbs'][] = $this->title;
                     <?php endif; ?>
                     <li>
                         <i class="glyphicon glyphicon-time text-muted"></i>
-                        <?= Yii::t('user', 'Joined on {0, date}', $profile->user->created_at) ?>
+                        <?= Yii::t('usuario', 'Joined on {0, date}', $profile->user->created_at) ?>
                     </li>
                 </ul>
                 <?php if (!empty($profile->bio)): ?>

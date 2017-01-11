@@ -114,13 +114,13 @@ class User extends ActiveRecord implements IdentityInterface
     public function attributeLabels()
     {
         return [
-            'username' => Yii::t('user', 'Username'),
-            'email' => Yii::t('user', 'Email'),
-            'registration_ip' => Yii::t('user', 'Registration ip'),
-            'unconfirmed_email' => Yii::t('user', 'New email'),
-            'password' => Yii::t('user', 'Password'),
-            'created_at' => Yii::t('user', 'Registration time'),
-            'confirmed_at' => Yii::t('user', 'Confirmation time'),
+            'username' => Yii::t('usuario', 'Username'),
+            'email' => Yii::t('usuario', 'Email'),
+            'registration_ip' => Yii::t('usuario', 'Registration ip'),
+            'unconfirmed_email' => Yii::t('usuario', 'New email'),
+            'password' => Yii::t('usuario', 'Password'),
+            'created_at' => Yii::t('usuario', 'Registration time'),
+            'confirmed_at' => Yii::t('usuario', 'Confirmation time'),
         ];
     }
 
@@ -155,7 +155,7 @@ class User extends ActiveRecord implements IdentityInterface
             'usernameUnique' => [
                 'username',
                 'unique',
-                'message' => Yii::t('user', 'This username has already been taken'),
+                'message' => Yii::t('usuario', 'This username has already been taken'),
             ],
 
             // email rules
@@ -165,7 +165,7 @@ class User extends ActiveRecord implements IdentityInterface
             'emailUnique' => [
                 'email',
                 'unique',
-                'message' => Yii::t('user', 'This email address has already been taken'),
+                'message' => Yii::t('usuario', 'This email address has already been taken'),
             ],
             'emailTrim' => ['email', 'trim'],
 

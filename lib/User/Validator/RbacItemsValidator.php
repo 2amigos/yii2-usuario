@@ -22,12 +22,12 @@ class RbacItemsValidator extends Validator
     protected function validateValue($value)
     {
         if (!is_array($value)) {
-            return [Yii::t('item', 'Invalid value'), []];
+            return [Yii::t('usuario', 'Invalid value'), []];
         }
 
         foreach ($value as $item) {
             if ($this->getAuthManager()->getItem($item) == null) {
-                return [Yii::t('user', 'There is neither role nor permission with name "{0}"', [$item]), []];
+                return [Yii::t('usuario', 'There is neither role nor permission with name "{0}"', [$item]), []];
             }
         }
     }

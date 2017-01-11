@@ -45,6 +45,6 @@ class VKontakte extends BaseVKontakte implements AuthClientInterface
      */
     protected function defaultTitle()
     {
-        return Yii::t('user', 'VKontakte');
+        return Yii::t('usuario', 'VKontakte');
     }
 }

@@ -18,7 +18,7 @@ use yii\widgets\ActiveForm;
  * @var \Da\User\Form\RecoveryForm $model
  */
 
-$this->title = Yii::t('user', 'Reset your password');
+$this->title = Yii::t('usuario', 'Reset your password');
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="row">
@@ -38,7 +38,7 @@ $this->params['breadcrumbs'][] = $this->title;
 
                 <?= $form->field($model, 'password')->passwordInput() ?>
 
-                <?= Html::submitButton(Yii::t('user', 'Finish'), ['class' => 'btn btn-success btn-block']) ?><br>
+                <?= Html::submitButton(Yii::t('usuario', 'Finish'), ['class' => 'btn btn-success btn-block']) ?><br>
 
                 <?php ActiveForm::end(); ?>
             </div>

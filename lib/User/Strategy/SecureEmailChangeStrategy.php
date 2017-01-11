@@ -46,7 +46,7 @@ class SecureEmailChangeStrategy implements MailChangeStrategyInterface
                         ->setFlash(
                             'info',
                             Yii::t(
-                                'user',
+                                'usuario',
                                 'We have sent confirmation links to both old and new email addresses. '.
                                 'You must click both links to complete your request.'
                             )

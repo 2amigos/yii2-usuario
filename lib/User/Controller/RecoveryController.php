@@ -101,7 +101,7 @@ class RecoveryController extends Controller
                 return $this->render(
                     '/shared/message',
                     [
-                        'title' => Yii::t('user', 'Recovery message sent'),
+                        'title' => Yii::t('usuario', 'Recovery message sent'),
                         'module' => $this->module,
                     ]
                 );
@@ -136,13 +136,13 @@ class RecoveryController extends Controller
         if ($token === null || $token->getIsExpired() || $token->user === null) {
             Yii::$app->session->setFlash(
                 'danger',
-                Yii::t('user', 'Recovery link is invalid or expired. Please try requesting a new one.')
+                Yii::t('usuario', 'Recovery link is invalid or expired. Please try requesting a new one.')
             );
 
             return $this->render(
                 '/shared/message',
                 [
-                    'title' => Yii::t('user', 'Invalid or expired link'),
+                    'title' => Yii::t('usuario', 'Invalid or expired link'),
                     'module' => $this->module,
                 ]
             );
@@ -161,7 +161,7 @@ class RecoveryController extends Controller
                 return $this->render(
                     '/shared/message',
                     [
-                        'title' => Yii::t('user', 'Password has been changed'),
+                        'title' => Yii::t('usuario', 'Password has been changed'),
                         'module' => $this->module,
                     ]
                 );

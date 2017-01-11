@@ -118,7 +118,7 @@ class SettingsController extends Controller
         if ($profile->load(Yii::$app->request->post())) {
             $this->trigger(UserEvent::EVENT_BEFORE_PROFILE_UPDATE, $event);
             if ($profile->save()) {
-                Yii::$app->getSession()->setFlash('success', Yii::t('user', 'Your profile has been updated'));
+                Yii::$app->getSession()->setFlash('success', Yii::t('usuario', 'Your profile has been updated'));
                 $this->trigger(UserEvent::EVENT_AFTER_PROFILE_UPDATE, $event);
 
                 return $this->refresh();
@@ -145,7 +145,7 @@ class SettingsController extends Controller
             $this->trigger(UserEvent::EVENT_BEFORE_ACCOUNT_UPDATE, $event);
 
             if ($form->save()) {
-                Yii::$app->getSession()->setFlash('success', Yii::t('user', 'Your account details have been updated'));
+                Yii::$app->getSession()->setFlash('success', Yii::t('usuario', 'Your account details have been updated'));
                 $this->trigger(UserEvent::EVENT_AFTER_ACCOUNT_UPDATE, $event);
 
                 return $this->refresh();
@@ -210,7 +210,7 @@ class SettingsController extends Controller
     public function actionDelete()
     {
         if (!$this->module->allowAccountDelete) {
-            throw new NotFoundHttpException(\Yii::t('user', 'Not found'));
+            throw new NotFoundHttpException(\Yii::t('usuario', 'Not found'));
         }
 
         /** @var User $user */
@@ -222,7 +222,7 @@ class SettingsController extends Controller
         $user->delete();
         $this->trigger(UserEvent::EVENT_AFTER_DELETE, $event);
 
-        Yii::$app->session->setFlash('info', Yii::t('user', 'Your account has been completely deleted'));
+        Yii::$app->session->setFlash('info', Yii::t('usuario', 'Your account has been completely deleted'));
 
         return $this->goHome();
     }

@@ -38,13 +38,13 @@ class EmailChangeService implements ServiceInterface
             ->one();
 
         if ($token === null || $token->getIsExpired()) {
-            Yii::$app->session->setFlash('danger', Yii::t('user', 'Your confirmation token is invalid or expired'));
+            Yii::$app->session->setFlash('danger', Yii::t('usuario', 'Your confirmation token is invalid or expired'));
 
             return false;
         } else {
             $token->delete();
             if (empty($this->model->unconfirmed_email)) {
-                Yii::$app->session->setFlash('danger', Yii::t('user', 'An error occurred processing your request'));
+                Yii::$app->session->setFlash('danger', Yii::t('usuario', 'An error occurred processing your request'));
             } elseif ($this->userQuery->whereEmail($this->model->unconfirmed_email)->exists() === false) {
                 if ($this->getModule()->emailChangeStrategy === MailChangeStrategyInterface::TYPE_SECURE) {
                     if ($token->type === Token::TYPE_CONFIRM_NEW_EMAIL) {
@@ -52,7 +52,7 @@ class EmailChangeService implements ServiceInterface
                         Yii::$app->session->setFlash(
                             'success',
                             Yii::t(
-                                'user',
+                                'usuario',
                                 'Awesome, almost there. '.
                                 'Now you need to click the confirmation link sent to your old email address.'
                             )
@@ -62,7 +62,7 @@ class EmailChangeService implements ServiceInterface
                         Yii::$app->session->setFlash(
                             'success',
                             Yii::t(
-                                'user',
+                                'usuario',
                                 'Awesome, almost there. '.
                                 'Now you need to click the confirmation link sent to your new email address.'
                             )
@@ -74,7 +74,7 @@ class EmailChangeService implements ServiceInterface
                 ) {
                     $this->model->email = $this->model->unconfirmed_email;
                     $this->model->unconfirmed_email = null;
-                    Yii::$app->session->setFlash('success', Yii::t('user', 'Your email address has been changed'));
+                    Yii::$app->session->setFlash('success', Yii::t('usuario', 'Your email address has been changed'));
                 }
 
                 return $this->model->save(false);

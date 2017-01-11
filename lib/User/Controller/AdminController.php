@@ -127,7 +127,7 @@ class AdminController extends Controller
             $mailService = MailFactory::makeWelcomeMailerService($user);
 
             if ($this->make(UserCreateService::class, [$user, $mailService])->run()) {
-                Yii::$app->getSession()->setFlash('success', Yii::t('user', 'User has been created'));
+                Yii::$app->getSession()->setFlash('success', Yii::t('usuario', 'User has been created'));
                 $this->trigger(UserEvent::EVENT_AFTER_CREATE, $event);
 
                 return $this->redirect(['update', 'id' => $user->id]);
@@ -150,7 +150,7 @@ class AdminController extends Controller
             $this->trigger(ActiveRecord::EVENT_BEFORE_UPDATE, $event);
 
             if ($user->save()) {
-                Yii::$app->getSession()->setFlash('success', Yii::t('user', 'Account details have been updated'));
+                Yii::$app->getSession()->setFlash('success', Yii::t('usuario', 'Account details have been updated'));
                 $this->trigger(ActiveRecord::EVENT_AFTER_UPDATE, $event);
 
                 return $this->refresh();
@@ -177,7 +177,7 @@ class AdminController extends Controller
         if ($profile->load(Yii::$app->request->post())) {
             if ($profile->save()) {
                 $this->trigger(UserEvent::EVENT_BEFORE_PROFILE_UPDATE, $event);
-                Yii::$app->getSession()->setFlash('success', Yii::t('user', 'Profile details have been updated'));
+                Yii::$app->getSession()->setFlash('success', Yii::t('usuario', 'Profile details have been updated'));
                 $this->trigger(UserEvent::EVENT_AFTER_PROFILE_UPDATE, $event);
 
                 return $this->refresh();
@@ -230,10 +230,10 @@ class AdminController extends Controller
         $this->trigger(UserEvent::EVENT_BEFORE_CONFIRMATION, $event);
 
         if ($this->make(UserConfirmationService::class, [$user])->run()) {
-            Yii::$app->getSession()->setFlash('success', Yii::t('user', 'User has been confirmed'));
+            Yii::$app->getSession()->setFlash('success', Yii::t('usuario', 'User has been confirmed'));
             $this->trigger(UserEvent::EVENT_AFTER_CONFIRMATION, $event);
         } else {
-            Yii::$app->getSession()->setFlash('warning', Yii::t('user', 'Unable to confirm user. Please, try again.'));
+            Yii::$app->getSession()->setFlash('warning', Yii::t('usuario', 'Unable to confirm user. Please, try again.'));
         }
 
         return $this->redirect(Url::previous('actions-redirect'));
@@ -242,7 +242,7 @@ class AdminController extends Controller
     public function actionDelete($id)
     {
         if ($id === Yii::$app->user->getId()) {
-            Yii::$app->getSession()->setFlash('danger', Yii::t('user', 'You cannot remove your own account'));
+            Yii::$app->getSession()->setFlash('danger', Yii::t('usuario', 'You cannot remove your own account'));
         } else {
             /** @var User $user */
             $user = $this->userQuery->where(['id' => $id])->one();
@@ -251,12 +251,12 @@ class AdminController extends Controller
             $this->trigger(ActiveRecord::EVENT_BEFORE_DELETE, $event);
 
             if ($user->delete()) {
-                Yii::$app->getSession()->setFlash('success', \Yii::t('user', 'User has been deleted'));
+                Yii::$app->getSession()->setFlash('success', \Yii::t('usuario', 'User has been deleted'));
                 $this->trigger(ActiveRecord::EVENT_AFTER_DELETE, $event);
             } else {
                 Yii::$app->getSession()->setFlash(
                     'warning',
-                    Yii::t('user', 'Unable to delete user. Please, try again later.')
+                    Yii::t('usuario', 'Unable to delete user. Please, try again later.')
                 );
             }
         }
@@ -267,7 +267,7 @@ class AdminController extends Controller
     public function actionBlock($id)
     {
         if ($id === Yii::$app->user->getId()) {
-            Yii::$app->getSession()->setFlash('danger', Yii::t('user', 'You cannot remove your own account'));
+            Yii::$app->getSession()->setFlash('danger', Yii::t('usuario', 'You cannot remove your own account'));
         } else {
             /** @var User $user */
             $user = $this->userQuery->where(['id' => $id])->one();
@@ -275,9 +275,9 @@ class AdminController extends Controller
             $event = $this->make(UserEvent::class, [$user]);
 
             if ($this->make(UserBlockService::class, [$user, $event, $this])->run()) {
-                Yii::$app->getSession()->setFlash('success', Yii::t('user', 'User block status has been updated.'));
+                Yii::$app->getSession()->setFlash('success', Yii::t('usuario', 'User block status has been updated.'));
             } else {
-                Yii::$app->getSession()->setFlash('danger', Yii::t('user', 'Unable to update block status.'));
+                Yii::$app->getSession()->setFlash('danger', Yii::t('usuario', 'Unable to update block status.'));
             }
         }
 

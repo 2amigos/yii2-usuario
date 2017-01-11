@@ -81,7 +81,7 @@ class SettingsForm extends Model
                 'current_password',
                 function ($attribute) {
                     if (!$this->securityHelper->validatePassword($this->$attribute, $this->getUser()->password_hash)) {
-                        $this->addError($attribute, Yii::t('user', 'Current password is not valid'));
+                        $this->addError($attribute, Yii::t('usuario', 'Current password is not valid'));
                     }
                 },
             ],
@@ -94,10 +94,10 @@ class SettingsForm extends Model
     public function attributeLabels()
     {
         return [
-            'email' => Yii::t('user', 'Email'),
-            'username' => Yii::t('user', 'Username'),
-            'new_password' => Yii::t('user', 'New password'),
-            'current_password' => Yii::t('user', 'Current password'),
+            'email' => Yii::t('usuario', 'Email'),
+            'username' => Yii::t('usuario', 'Username'),
+            'new_password' => Yii::t('usuario', 'New password'),
+            'current_password' => Yii::t('usuario', 'Current password'),
         ];
     }
 

@@ -89,11 +89,11 @@ abstract class AbstractAuthItemController extends Controller
             if ($this->make(AuthItemEditionService::class, [$model])->run()) {
                 Yii::$app
                     ->getSession()
-                    ->setFlash('success', Yii::t('user', 'Authorization item successfully created.'));
+                    ->setFlash('success', Yii::t('usuario', 'Authorization item successfully created.'));
 
                 return $this->redirect(['index']);
             } else {
-                Yii::$app->getSession()->setFlash('danger', Yii::t('user', 'Unable to create authorization item.'));
+                Yii::$app->getSession()->setFlash('danger', Yii::t('usuario', 'Unable to create authorization item.'));
             }
         }
 
@@ -119,11 +119,11 @@ abstract class AbstractAuthItemController extends Controller
             if ($this->make(AuthItemEditionService::class, [$model])->run()) {
                 Yii::$app
                     ->getSession()
-                    ->setFlash('success', Yii::t('user', 'Authorization item successfully updated.'));
+                    ->setFlash('success', Yii::t('usuario', 'Authorization item successfully updated.'));
 
                 return $this->redirect(['index']);
             } else {
-                Yii::$app->getSession()->setFlash('danger', Yii::t('user', 'Unable to update authorization item.'));
+                Yii::$app->getSession()->setFlash('danger', Yii::t('usuario', 'Unable to update authorization item.'));
             }
         }
 
@@ -141,9 +141,9 @@ abstract class AbstractAuthItemController extends Controller
         $item = $this->getItem($name);
 
         if ($this->authHelper->remove($item)) {
-            Yii::$app->getSession()->setFlash('success', Yii::t('user', 'Authorization item successfully removed.'));
+            Yii::$app->getSession()->setFlash('success', Yii::t('usuario', 'Authorization item successfully removed.'));
         } else {
-            Yii::$app->getSession()->setFlash('success', Yii::t('user', 'Unable to remove authorization item.'));
+            Yii::$app->getSession()->setFlash('success', Yii::t('usuario', 'Unable to remove authorization item.'));
         }
 
         return $this->redirect(['index']);

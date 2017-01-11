@@ -71,10 +71,10 @@ abstract class AbstractAuthItem extends Model
     public function attributeLabels()
     {
         return [
-            'name' => Yii::t('user', 'Name'),
-            'description' => Yii::t('user', 'Description'),
-            'children' => Yii::t('user', 'Children'),
-            'rule' => Yii::t('user', 'Rule'),
+            'name' => Yii::t('usuario', 'Name'),
+            'description' => Yii::t('usuario', 'Description'),
+            'children' => Yii::t('usuario', 'Children'),
+            'rule' => Yii::t('usuario', 'Rule'),
         ];
     }
 
@@ -103,7 +103,7 @@ abstract class AbstractAuthItem extends Model
                 'name',
                 function () {
                     if ($this->getAuthManager()->getItem($this->name) !== null) {
-                        $this->addError('name', Yii::t('user', 'Auth item with such name already exists'));
+                        $this->addError('name', Yii::t('usuario', 'Auth item with such name already exists'));
                     }
                 },
                 'when' => function () {

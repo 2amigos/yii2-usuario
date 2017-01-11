@@ -36,5 +36,6 @@ Other
 -----
 
 - [Contriburing to Documentation](other/contriburing-to-documentation.md)
+- [Other for Developers](other/other-for-developers.md)
 
 © [2amigos](http://www.2amigos.us/) 2016

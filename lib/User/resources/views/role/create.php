@@ -14,7 +14,7 @@
  * @var $this               yii\web\View
  * @var $unassignedItems    string[]
  */
-$this->title = Yii::t('user', 'Create new role');
+$this->title = Yii::t('usuario', 'Create new role');
 $this->params['breadcrumbs'][] = $this->title;
 
 ?>

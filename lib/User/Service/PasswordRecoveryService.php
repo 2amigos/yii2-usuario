@@ -48,7 +48,7 @@ class PasswordRecoveryService implements ServiceInterface
 
             Yii::$app->session->setFlash(
                 'info',
-                Yii::t('user', 'An email has been sent with instructions for resetting your password')
+                Yii::t('usuario', 'An email has been sent with instructions for resetting your password')
             );
 
             return true;

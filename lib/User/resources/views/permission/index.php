@@ -18,7 +18,7 @@ use yii\grid\ActionColumn;
 use yii\grid\GridView;
 use yii\helpers\Url;
 
-$this->title = Yii::t('user', 'Permissions');
+$this->title = Yii::t('usuario', 'Permissions');
 $this->params['breadcrumbs'][] = $this->title;
 
 ?>
@@ -33,21 +33,21 @@ $this->params['breadcrumbs'][] = $this->title;
         'columns' => [
             [
                 'attribute' => 'name',
-                'header' => Yii::t('user', 'Name'),
+                'header' => Yii::t('usuario', 'Name'),
                 'options' => [
                     'style' => 'width: 20%',
                 ],
             ],
             [
                 'attribute' => 'description',
-                'header' => Yii::t('user', 'Description'),
+                'header' => Yii::t('usuario', 'Description'),
                 'options' => [
                     'style' => 'width: 55%',
                 ],
             ],
             [
                 'attribute' => 'rule_name',
-                'header' => Yii::t('user', 'Rule name'),
+                'header' => Yii::t('usuario', 'Rule name'),
                 'options' => [
                     'style' => 'width: 20%',
                 ],

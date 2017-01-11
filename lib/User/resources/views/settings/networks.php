@@ -18,7 +18,7 @@ use yii\helpers\Html;
  * @var \Da\User\Model\User $user
  */
 
-$this->title = Yii::t('user', 'Networks');
+$this->title = Yii::t('usuario', 'Networks');
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 
@@ -37,7 +37,7 @@ $this->params['breadcrumbs'][] = $this->title;
             </div>
             <div class="panel-body">
                 <div class="alert alert-info">
-                    <p><?= Yii::t('user', 'You can connect multiple accounts to be able to log in using them') ?>.</p>
+                    <p><?= Yii::t('usuario', 'You can connect multiple accounts to be able to log in using them') ?>.</p>
                 </div>
                 <?php $auth = ConnectWidget::begin(
                     [
@@ -59,7 +59,7 @@ $this->params['breadcrumbs'][] = $this->title;
                             <td style="width: 120px">
                                 <?= $auth->isConnected($client) ?
                                     Html::a(
-                                        Yii::t('user', 'Disconnect'),
+                                        Yii::t('usuario', 'Disconnect'),
                                         $auth->createClientUrl($client),
                                         [
                                             'class' => 'btn btn-danger btn-block',
@@ -67,7 +67,7 @@ $this->params['breadcrumbs'][] = $this->title;
                                         ]
                                     ) :
                                     Html::a(
-                                        Yii::t('user', 'Connect'),
+                                        Yii::t('usuario', 'Connect'),
                                         $auth->createClientUrl($client),
                                         [
                                             'class' => 'btn btn-success btn-block',

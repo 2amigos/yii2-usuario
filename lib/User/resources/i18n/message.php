@@ -10,7 +10,7 @@
  */
 
 return [
-    'sourcePath' => __DIR__.'/../User',
+    'sourcePath' => __DIR__ . '/../../../User',
     'messagePath' => __DIR__,
     'languages' => [
         'ca',
@@ -24,7 +24,7 @@ return [
         'hr',
         'hu',
         'it',
-        'kz',
+        'kk',
         'lt',
         'nl',
         'pl',

@@ -53,7 +53,7 @@ class ResendForm extends Model
     public function attributeLabels()
     {
         return [
-            'email' => Yii::t('user', 'Email'),
+            'email' => Yii::t('usuario', 'Email'),
         ];
     }
 }
