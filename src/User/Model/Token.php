@@ -44,7 +44,7 @@ class Token extends ActiveRecord
         self::TYPE_CONFIRMATION => '/user/registration/confirm',
         self::TYPE_RECOVERY => '/usr/recovery/reset',
         self::TYPE_CONFIRM_NEW_EMAIL => '/user/settings/confirm',
-        self::TYPE_CONFIRM_OLD_EMAIL => '/usr/settings/confirm',
+        self::TYPE_CONFIRM_OLD_EMAIL => '/user/settings/confirm',
     ];
 
     /**
