@@ -100,7 +100,7 @@ class Module extends BaseModule
      */
     public $routes = [
         '<id:\d+>' => 'profile/show',
-        '<action:(login|logout)>' => 'auth/<action>',
+        '<action:(login|logout)>' => 'security/<action>',
         '<action:(register|resend)>' => 'registration/<action>',
         'confirm/<id:\d+>/<code:[A-Za-z0-9_-]+>' => 'registration/confirm',
         'forgot' => 'recovery/request',
