@@ -19,4 +19,13 @@ class ProfileQuery extends ActiveQuery
     {
         return $this->andWhere(['id' => $id]);
     }
+	
+    /**
+     * Search by user id
+     * @return ActiveQuery
+     */
+    public function whereUserId($user_id)
+    {
+        return $this->andWhere(['user_id' => $user_id]);
+    }
 }
