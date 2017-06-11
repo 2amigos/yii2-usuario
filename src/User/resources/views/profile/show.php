@@ -11,7 +11,7 @@
 
 use yii\helpers\Html;
 
-/*
+/**
  * @var \yii\web\View $this
  * @var \Da\User\Model\Profile $profile
  */

@@ -11,7 +11,7 @@
 
 use yii\helpers\Html;
 
-/*
+/**
  * @var \Da\User\Model\Token $token
  */
 ?>

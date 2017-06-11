@@ -13,7 +13,7 @@ use yii\grid\ActionColumn;
 use yii\grid\GridView;
 use yii\helpers\Url;
 
-/*
+/**
  * @var $dataProvider array
  * @var $searchModel  \Da\User\Search\RoleSearch
  * @var $this         yii\web\View

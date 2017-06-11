@@ -14,7 +14,7 @@ use yii\bootstrap\Nav;
 use yii\helpers\Html;
 use yii\web\View;
 
-/*
+/**
  * @var View $this
  * @var User $user
  * @var string $content
