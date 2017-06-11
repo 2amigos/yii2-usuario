@@ -101,6 +101,8 @@ Enhancing and Overriding
 ------------------------
 
 - [How to Enhance a User Model](enhancing-and-overriding/how-to-enhance-a-user-model.md)
+- [Overriding Classes](enhancing-and-overriding/overriding-classes.md) 
+- [Overriding Views](enhancing-and-overriding/overriding-views.md)
 
 Helpful Guides
 --------------
