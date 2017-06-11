@@ -9,6 +9,19 @@
 [![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/2amigos/yii2-usuario/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/2amigos/yii2-usuario/?branch=master)
 [![Code Coverage](https://scrutinizer-ci.com/g/2amigos/yii2-usuario/badges/coverage.png?b=master)](https://scrutinizer-ci.com/g/2amigos/yii2-usuario/?branch=master)
 
+Yii 2 usuario is a highly customizable and extensible user management, RBAC management, authentication, 
+and authorization Yii2 module extension. 
+
+It works extensively with Yii's Container making it really easy to override absolutely anything within its core. The 
+module is built to work out of the box with some minor config tweaks and it comes with the following features: 
+ 
+- Backend user/profile/account management
+- Backend RBAC management 
+- Login via username/email + password process
+- Login via social network process
+- Password recovery process
+
+
 ## Getting Started
 
 This extension has been built to be working `out of the box`, that is, after you install its migrations and configure 
