@@ -104,7 +104,7 @@ class SettingsController extends Controller
 
     public function actionProfile()
     {
-        $profile = $this->profileQuery->whereId(Yii::$app->user->identity->getId())->one();
+        $profile = $this->profileQuery->whereUserId(Yii::$app->user->identity->getId())->one();
 
         if ($profile === null) {
             $profile = $this->make(Profile::class);
