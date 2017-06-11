@@ -101,6 +101,6 @@ The definition can be any of the following (from Yii2's DI container):
   the class of the object to be created. If `class` is not specified, `$class` will be used as the class name.
 - a **string**: a class name, an interface name or an alias name.
 
-
-
 > See [how to enhance a User model](how-to-enhance-a-user-model.md) guide to see a practical example.
+
+© [2amigos](http://www.2amigos.us/) 2013-2017
