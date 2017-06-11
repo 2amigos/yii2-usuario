@@ -9,10 +9,10 @@
  * the LICENSE file that was distributed with this source code.
  */
 
+use Da\User\Helper\TimezoneHelper;
+use yii\helpers\ArrayHelper;
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
-use yii\helpers\ArrayHelper;
-use Da\User\Helper\TimezoneHelper;
 
 /*
  * @var yii\web\View $this

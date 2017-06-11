@@ -12,10 +12,10 @@
 namespace Da\User\Controller;
 
 use Da\User\Query\ProfileQuery;
+use Yii;
 use yii\base\Module;
 use yii\filters\AccessControl;
 use yii\web\Controller;
-use Yii;
 use yii\web\NotFoundHttpException;
 
 class ProfileController extends Controller
@@ -25,10 +25,10 @@ class ProfileController extends Controller
     /**
      * ProfileController constructor.
      *
-     * @param string       $id
-     * @param Module       $module
+     * @param string $id
+     * @param Module $module
      * @param ProfileQuery $profileQuery
-     * @param array        $config
+     * @param array $config
      */
     public function __construct($id, Module $module, ProfileQuery $profileQuery, array $config = [])
     {

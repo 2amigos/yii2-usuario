@@ -35,16 +35,18 @@ $this->params['breadcrumbs'][] = $this->title;
                 <h3 class="panel-title"><?= Html::encode($this->title) ?></h3>
             </div>
             <div class="panel-body">
-                <?php $form = ActiveForm::begin([
-                    'id' => $model->formName(),
-                    'options' => ['class' => 'form-horizontal'],
-                    'fieldConfig' => [
-                        'template' => "{label}\n<div class=\"col-lg-9\">{input}</div>\n<div class=\"col-sm-offset-3 col-lg-9\">{error}\n{hint}</div>",
-                        'labelOptions' => ['class' => 'col-lg-3 control-label'],
-                    ],
-                    'enableAjaxValidation' => true,
-                    'enableClientValidation' => false,
-                ]); ?>
+                <?php $form = ActiveForm::begin(
+                    [
+                        'id' => $model->formName(),
+                        'options' => ['class' => 'form-horizontal'],
+                        'fieldConfig' => [
+                            'template' => "{label}\n<div class=\"col-lg-9\">{input}</div>\n<div class=\"col-sm-offset-3 col-lg-9\">{error}\n{hint}</div>",
+                            'labelOptions' => ['class' => 'col-lg-3 control-label'],
+                        ],
+                        'enableAjaxValidation' => true,
+                        'enableClientValidation' => false,
+                    ]
+                ); ?>
 
                 <?= $form->field($model, 'email') ?>
 
@@ -52,13 +54,14 @@ $this->params['breadcrumbs'][] = $this->title;
 
                 <?= $form->field($model, 'new_password')->passwordInput() ?>
 
-                <hr />
+                <hr/>
 
                 <?= $form->field($model, 'current_password')->passwordInput() ?>
 
                 <div class="form-group">
                     <div class="col-lg-offset-3 col-lg-9">
-                        <?= Html::submitButton(Yii::t('usuario', 'Save'), ['class' => 'btn btn-block btn-success']) ?><br>
+                        <?= Html::submitButton(Yii::t('usuario', 'Save'), ['class' => 'btn btn-block btn-success']) ?>
+                        <br>
                     </div>
                 </div>
 
@@ -77,11 +80,15 @@ $this->params['breadcrumbs'][] = $this->title;
                         <?= Yii::t('usuario', 'It will be deleted forever') ?>.
                         <?= Yii::t('usuario', 'Please be certain') ?>.
                     </p>
-                    <?= Html::a(Yii::t('usuario', 'Delete account'), ['delete'], [
-                        'class' => 'btn btn-danger',
-                        'data-method' => 'post',
-                        'data-confirm' => Yii::t('usuario', 'Are you sure? There is no going back'),
-                    ]) ?>
+                    <?= Html::a(
+                        Yii::t('usuario', 'Delete account'),
+                        ['delete'],
+                        [
+                            'class' => 'btn btn-danger',
+                            'data-method' => 'post',
+                            'data-confirm' => Yii::t('usuario', 'Are you sure? There is no going back'),
+                        ]
+                    ) ?>
                 </div>
             </div>
         <?php endif ?>

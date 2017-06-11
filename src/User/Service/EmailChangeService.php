@@ -41,45 +41,45 @@ class EmailChangeService implements ServiceInterface
             Yii::$app->session->setFlash('danger', Yii::t('usuario', 'Your confirmation token is invalid or expired'));
 
             return false;
-        } else {
-            $token->delete();
-            if (empty($this->model->unconfirmed_email)) {
-                Yii::$app->session->setFlash('danger', Yii::t('usuario', 'An error occurred processing your request'));
-            } elseif ($this->userQuery->whereEmail($this->model->unconfirmed_email)->exists() === false) {
-                if ($this->getModule()->emailChangeStrategy === MailChangeStrategyInterface::TYPE_SECURE) {
-                    if ($token->type === Token::TYPE_CONFIRM_NEW_EMAIL) {
-                        $this->model->flags |= User::NEW_EMAIL_CONFIRMED;
-                        Yii::$app->session->setFlash(
-                            'success',
-                            Yii::t(
-                                'usuario',
-                                'Awesome, almost there. '.
-                                'Now you need to click the confirmation link sent to your old email address.'
-                            )
-                        );
-                    } elseif ($token->type === Token::TYPE_CONFIRM_OLD_EMAIL) {
-                        $this->model->flags |= User::OLD_EMAIL_CONFIRMED;
-                        Yii::$app->session->setFlash(
-                            'success',
-                            Yii::t(
-                                'usuario',
-                                'Awesome, almost there. '.
-                                'Now you need to click the confirmation link sent to your new email address.'
-                            )
-                        );
-                    }
-                }
-                if ($this->getModule()->emailChangeStrategy === MailChangeStrategyInterface::TYPE_DEFAULT
-                    || ($this->model->flags & User::NEW_EMAIL_CONFIRMED & $this->model->flags & User::OLD_EMAIL_CONFIRMED)
-                ) {
-                    $this->model->email = $this->model->unconfirmed_email;
-                    $this->model->unconfirmed_email = null;
-                    Yii::$app->session->setFlash('success', Yii::t('usuario', 'Your email address has been changed'));
-                }
-
-                return $this->model->save(false);
-            }
         }
+        $token->delete();
+        if (empty($this->model->unconfirmed_email)) {
+            Yii::$app->session->setFlash('danger', Yii::t('usuario', 'An error occurred processing your request'));
+        } elseif ($this->userQuery->whereEmail($this->model->unconfirmed_email)->exists() === false) {
+            if ($this->getModule()->emailChangeStrategy === MailChangeStrategyInterface::TYPE_SECURE) {
+                if ($token->type === Token::TYPE_CONFIRM_NEW_EMAIL) {
+                    $this->model->flags |= User::NEW_EMAIL_CONFIRMED;
+                    Yii::$app->session->setFlash(
+                        'success',
+                        Yii::t(
+                            'usuario',
+                            'Awesome, almost there. ' .
+                            'Now you need to click the confirmation link sent to your old email address.'
+                        )
+                    );
+                } elseif ($token->type === Token::TYPE_CONFIRM_OLD_EMAIL) {
+                    $this->model->flags |= User::OLD_EMAIL_CONFIRMED;
+                    Yii::$app->session->setFlash(
+                        'success',
+                        Yii::t(
+                            'usuario',
+                            'Awesome, almost there. ' .
+                            'Now you need to click the confirmation link sent to your new email address.'
+                        )
+                    );
+                }
+            }
+            if ($this->getModule()->emailChangeStrategy === MailChangeStrategyInterface::TYPE_DEFAULT
+                || ($this->model->flags & User::NEW_EMAIL_CONFIRMED & $this->model->flags & User::OLD_EMAIL_CONFIRMED)
+            ) {
+                $this->model->email = $this->model->unconfirmed_email;
+                $this->model->unconfirmed_email = null;
+                Yii::$app->session->setFlash('success', Yii::t('usuario', 'Your email address has been changed'));
+            }
+
+            return $this->model->save(false);
+        }
+
 
         return false;
     }

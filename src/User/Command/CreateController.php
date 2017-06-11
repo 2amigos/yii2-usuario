@@ -32,12 +32,12 @@ class CreateController extends Controller
         $mailService = MailFactory::makeWelcomeMailerService($user);
 
         if ($this->make(UserCreateService::class, [$user, $mailService])->run()) {
-            $this->stdout(Yii::t('usuario', 'User has been created')."!\n", Console::FG_GREEN);
+            $this->stdout(Yii::t('usuario', 'User has been created') . "!\n", Console::FG_GREEN);
         } else {
-            $this->stdout(Yii::t('usuario', 'Please fix following errors:')."\n", Console::FG_RED);
+            $this->stdout(Yii::t('usuario', 'Please fix following errors:') . "\n", Console::FG_RED);
             foreach ($user->errors as $errors) {
                 foreach ($errors as $error) {
-                    $this->stdout(' - '.$error."\n", Console::FG_RED);
+                    $this->stdout(' - ' . $error . "\n", Console::FG_RED);
                 }
             }
         }

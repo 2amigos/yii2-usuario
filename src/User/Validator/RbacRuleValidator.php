@@ -11,10 +11,10 @@
 
 namespace Da\User\Validator;
 
-use ReflectionClass;
 use Exception;
-use yii\validators\Validator;
+use ReflectionClass;
 use Yii;
+use yii\validators\Validator;
 
 class RbacRuleValidator extends Validator
 {

@@ -14,9 +14,9 @@ namespace Da\User\Model;
 use Da\User\Traits\AuthManagerAwareTrait;
 use Da\User\Validator\RbacItemsValidator;
 use Da\User\Validator\RbacRuleValidator;
+use Yii;
 use yii\base\Model;
 use yii\rbac\Item;
-use Yii;
 
 abstract class AbstractAuthItem extends Model
 {

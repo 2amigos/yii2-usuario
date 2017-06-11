@@ -48,9 +48,9 @@ class LoginForm extends Model
     protected $securityHelper;
 
     /**
-     * @param UserQuery      $query
+     * @param UserQuery $query
      * @param SecurityHelper $securityHelper
-     * @param array          $config
+     * @param array $config
      */
     public function __construct(UserQuery $query, SecurityHelper $securityHelper, $config = [])
     {
@@ -119,9 +119,9 @@ class LoginForm extends Model
             $duration = $this->rememberMe ? $this->module->rememberLoginLifespan : 0;
 
             return Yii::$app->getUser()->login($this->user, $duration);
-        } else {
-            return false;
         }
+
+        return false;
     }
 
     /**

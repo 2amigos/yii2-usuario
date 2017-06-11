@@ -16,11 +16,11 @@ use Da\User\Query\ProfileQuery;
 use Da\User\Traits\ContainerAwareTrait;
 use Da\User\Traits\ModuleAwareTrait;
 use Da\User\Validator\TimeZoneValidator;
+use DateTime;
+use DateTimeZone;
+use Exception;
 use Yii;
 use yii\db\ActiveRecord;
-use Exception;
-use DateTimeZone;
-use DateTime;
 
 /**
  * @property int $user_id

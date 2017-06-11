@@ -34,10 +34,10 @@ trait ContainerAwareTrait
     /**
      * Gets a class from the container.
      *
-     * @param string $class  he class name or an alias name (e.g. `foo`) that was previously registered via [[set()]]
-     *                       or [[setSingleton()]]
-     * @param array  $params constructor parameters
-     * @param array  $config attributes
+     * @param string $class he class name or an alias name (e.g. `foo`) that was previously registered via [[set()]]
+     *                      or [[setSingleton()]]
+     * @param array $params constructor parameters
+     * @param array $config attributes
      *
      * @return object
      */
@@ -47,7 +47,7 @@ trait ContainerAwareTrait
     }
 
     /**
-     * @return \Da\User\Helper\AuthHelper
+     * @return \Da\User\Helper\AuthHelper|object
      */
     public function getAuth()
     {
@@ -55,7 +55,7 @@ trait ContainerAwareTrait
     }
 
     /**
-     * @return \Da\User\Helper\ClassMapHelper
+     * @return \Da\User\Helper\ClassMapHelper|object
      */
     public function getClassMap()
     {

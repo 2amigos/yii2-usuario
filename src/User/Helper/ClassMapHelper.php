@@ -54,6 +54,6 @@ class ClassMapHelper
         if (array_key_exists($key, $this->map)) {
             return $this->map[$key];
         }
-        throw new \Exception('Unknown model map key: '.$key);
+        throw new \Exception('Unknown model map key: ' . $key);
     }
 }

@@ -32,12 +32,12 @@ class DeleteController extends Controller
         if ($this->confirm(Yii::t('usuario', 'Are you sure? Deleted user can not be restored'))) {
             $user = $this->userQuery->whereUsernameOrEmail($usernameOrEmail)->one();
             if ($user === null) {
-                $this->stdout(Yii::t('usuario', 'User is not found')."\n", Console::FG_RED);
+                $this->stdout(Yii::t('usuario', 'User is not found') . "\n", Console::FG_RED);
             } else {
                 if ($user->delete()) {
-                    $this->stdout(Yii::t('usuario', 'User has been deleted')."\n", Console::FG_GREEN);
+                    $this->stdout(Yii::t('usuario', 'User has been deleted') . "\n", Console::FG_GREEN);
                 } else {
-                    $this->stdout(Yii::t('usuario', 'Error occurred while deleting user')."\n", Console::FG_RED);
+                    $this->stdout(Yii::t('usuario', 'Error occurred while deleting user') . "\n", Console::FG_RED);
                 }
             }
         }

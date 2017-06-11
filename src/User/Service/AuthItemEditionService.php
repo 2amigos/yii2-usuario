@@ -81,7 +81,6 @@ class AuthItemEditionService implements ServiceInterface
         $childrenNames = array_keys($children);
 
         if (is_array($this->model->children)) {
-
             // remove those not linked anymore
             foreach (array_diff($childrenNames, $this->model->children) as $item) {
                 if (!$this->getAuthManager()->removeChild($this->model->item, $children[$item])) {

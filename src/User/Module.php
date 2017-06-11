@@ -12,7 +12,6 @@
 namespace Da\User;
 
 use Da\User\Contracts\MailChangeStrategyInterface;
-use Da\User\Service\MailService;
 use yii\base\Module as BaseModule;
 
 /**

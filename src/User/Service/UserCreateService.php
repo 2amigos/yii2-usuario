@@ -15,8 +15,8 @@ use Da\User\Contracts\ServiceInterface;
 use Da\User\Event\UserEvent;
 use Da\User\Helper\SecurityHelper;
 use Da\User\Model\User;
-use yii\base\InvalidCallException;
 use Exception;
+use yii\base\InvalidCallException;
 use yii\log\Logger;
 
 class UserCreateService implements ServiceInterface

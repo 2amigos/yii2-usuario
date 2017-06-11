@@ -47,7 +47,7 @@ class SecureEmailChangeStrategy implements MailChangeStrategyInterface
                             'info',
                             Yii::t(
                                 'usuario',
-                                'We have sent confirmation links to both old and new email addresses. '.
+                                'We have sent confirmation links to both old and new email addresses. ' .
                                 'You must click both links to complete your request.'
                             )
                         );

@@ -6,7 +6,7 @@ This page is dedicated for those who prefer to use more or less default
 check [their readme](https://github.com/yiisoft/yii2-app-advanced#readme) file on why and when you should use it,
 for now we're going to explain on how Yii2 User Module extension could be used for the case if you prefer it.
 
-> We highly recommend you to use [Sidekit Application Template](http://www.2amigos.us/) which has sensible default
+> We highly recommend you to use [Sidekit Application Template](https://github.com/sidekit/yii2-app-template) which has sensible default
 packages, and everything you need to start project in no time with batteries included! ;-)
 >
 > [Check this manual page](sidekit-application-template.md) if you decided to use it.
@@ -107,9 +107,5 @@ is very convenient way to track new migration classes coming from this and possi
 > Namespaced migrations were introduced in Yii 2.0.10, so before using them consider updating your framework
 > installation version.
 
-What can I do now?
-------------------
 
-Now you're ready to go and build something nice with help of our module extension. Perhaps you could check
-[how to use login and sign up forms]() gracefully built for your needs, or you can check out how you could
-[customize login form]() look'n'feel.
+© [2amigos](http://www.2amigos.us/) 2013-2017

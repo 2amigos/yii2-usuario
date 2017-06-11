@@ -20,6 +20,6 @@ class GravatarHelper
 
     public function getUrl($id, $size = 200)
     {
-        return '//gravatar.com/avatar/'.$id.'?s='.$size;
+        return '//gravatar.com/avatar/' . $id . '?s=' . $size;
     }
 }

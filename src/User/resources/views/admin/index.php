@@ -40,7 +40,7 @@ $this->params['breadcrumbs'][] = $this->title;
                 'attribute' => 'registration_ip',
                 'value' => function ($model) {
                     return $model->registration_ip == null
-                        ? '<span class="not-set">'.Yii::t('usuario', '(not set)').'</span>'
+                        ? '<span class="not-set">' . Yii::t('usuario', '(not set)') . '</span>'
                         : $model->registration_ip;
                 },
                 'format' => 'html',
@@ -50,9 +50,9 @@ $this->params['breadcrumbs'][] = $this->title;
                 'value' => function ($model) {
                     if (extension_loaded('intl')) {
                         return Yii::t('usuario', '{0, date, MMMM dd, YYYY HH:mm}', [$model->created_at]);
-                    } else {
-                        return date('Y-m-d G:i:s', $model->created_at);
                     }
+
+                    return date('Y-m-d G:i:s', $model->created_at);
                 },
             ],
             [
@@ -60,19 +60,19 @@ $this->params['breadcrumbs'][] = $this->title;
                 'value' => function ($model) {
                     if ($model->isConfirmed) {
                         return '<div class="text-center">
-                                <span class="text-success">' .Yii::t('usuario', 'Confirmed').'</span>
+                                <span class="text-success">' . Yii::t('usuario', 'Confirmed') . '</span>
                             </div>';
-                    } else {
-                        return Html::a(
-                            Yii::t('usuario', 'Confirm'),
-                            ['confirm', 'id' => $model->id],
-                            [
-                                'class' => 'btn btn-xs btn-success btn-block',
-                                'data-method' => 'post',
-                                'data-confirm' => Yii::t('usuario', 'Are you sure you want to confirm this user?'),
-                            ]
-                        );
                     }
+
+                    return Html::a(
+                        Yii::t('usuario', 'Confirm'),
+                        ['confirm', 'id' => $model->id],
+                        [
+                            'class' => 'btn btn-xs btn-success btn-block',
+                            'data-method' => 'post',
+                            'data-confirm' => Yii::t('usuario', 'Are you sure you want to confirm this user?'),
+                        ]
+                    );
                 },
                 'format' => 'raw',
                 'visible' => Yii::$app->getModule('user')->enableEmailConfirmation,
@@ -90,17 +90,17 @@ $this->params['breadcrumbs'][] = $this->title;
                                 'data-confirm' => Yii::t('usuario', 'Are you sure you want to unblock this user?'),
                             ]
                         );
-                    } else {
-                        return Html::a(
-                            Yii::t('usuario', 'Block'),
-                            ['block', 'id' => $model->id],
-                            [
-                                'class' => 'btn btn-xs btn-danger btn-block',
-                                'data-method' => 'post',
-                                'data-confirm' => Yii::t('usuario', 'Are you sure you want to block this user?'),
-                            ]
-                        );
                     }
+
+                    return Html::a(
+                        Yii::t('usuario', 'Block'),
+                        ['block', 'id' => $model->id],
+                        [
+                            'class' => 'btn btn-xs btn-danger btn-block',
+                            'data-method' => 'post',
+                            'data-confirm' => Yii::t('usuario', 'Are you sure you want to block this user?'),
+                        ]
+                    );
                 },
                 'format' => 'raw',
             ],

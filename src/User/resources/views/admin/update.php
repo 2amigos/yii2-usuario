@@ -11,8 +11,8 @@
 
 use Da\User\Model\User;
 use yii\bootstrap\Nav;
-use yii\web\View;
 use yii\helpers\Html;
+use yii\web\View;
 
 /*
  * @var View $this

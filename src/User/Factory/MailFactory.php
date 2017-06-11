@@ -43,7 +43,7 @@ class MailFactory
 
     /**
      * @param string $email
-     * @param Token  $token
+     * @param Token $token
      *
      * @return MailService
      */
@@ -63,7 +63,7 @@ class MailFactory
     }
 
     /**
-     * @param User       $user
+     * @param User $user
      * @param Token|null $token
      *
      * @return MailService
@@ -84,7 +84,7 @@ class MailFactory
     }
 
     /**
-     * @param User  $user
+     * @param User $user
      * @param Token $token
      *
      * @return MailService
@@ -114,7 +114,7 @@ class MailFactory
      * @param string $to
      * @param string $subject
      * @param string $view
-     * @param array  $params
+     * @param array $params
      *
      * @return MailService
      */

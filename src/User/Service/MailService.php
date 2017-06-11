@@ -20,11 +20,11 @@ class MailService implements ServiceInterface
     /**
      * MailService constructor.
      *
-     * @param string          $from
-     * @param string          $to
-     * @param string          $subject
-     * @param string          $view
-     * @param array           $params
+     * @param string $from
+     * @param string $to
+     * @param string $subject
+     * @param string $view
+     * @param array $params
      * @param MailerInterface $mailer
      */
     public function __construct($from, $to, $subject, $view, array $params, BaseMailer $mailer)

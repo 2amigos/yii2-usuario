@@ -43,10 +43,10 @@ class AdminController extends Controller
     /**
      * AdminController constructor.
      *
-     * @param string    $id
-     * @param Module    $module
+     * @param string $id
+     * @param Module $module
      * @param UserQuery $userQuery
-     * @param array     $config
+     * @param array $config
      */
     public function __construct($id, Module $module, UserQuery $userQuery, array $config = [])
     {
@@ -233,7 +233,10 @@ class AdminController extends Controller
             Yii::$app->getSession()->setFlash('success', Yii::t('usuario', 'User has been confirmed'));
             $this->trigger(UserEvent::EVENT_AFTER_CONFIRMATION, $event);
         } else {
-            Yii::$app->getSession()->setFlash('warning', Yii::t('usuario', 'Unable to confirm user. Please, try again.'));
+            Yii::$app->getSession()->setFlash(
+                'warning',
+                Yii::t('usuario', 'Unable to confirm user. Please, try again.')
+            );
         }
 
         return $this->redirect(Url::previous('actions-redirect'));

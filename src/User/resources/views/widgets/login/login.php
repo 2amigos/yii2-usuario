@@ -9,9 +9,9 @@
  * the LICENSE file that was distributed with this source code.
  */
 
+use yii\helpers\Html;
 use yii\helpers\Url;
 use yii\widgets\ActiveForm;
-use yii\helpers\Html;
 
 /*
  * @var yii\web\View           $this
@@ -23,15 +23,17 @@ use yii\helpers\Html;
 ?>
 
 <?php if (Yii::$app->user->isGuest): ?>
-    <?php $form = ActiveForm::begin([
-        'id' => 'login-widget-form',
-        'action' => Url::to(['/user/security/login']),
-        'enableAjaxValidation' => true,
-        'enableClientValidation' => false,
-        'validateOnBlur' => false,
-        'validateOnType' => false,
-        'validateOnChange' => false,
-    ]) ?>
+    <?php $form = ActiveForm::begin(
+        [
+            'id' => 'login-widget-form',
+            'action' => Url::to(['/user/security/login']),
+            'enableAjaxValidation' => true,
+            'enableClientValidation' => false,
+            'validateOnBlur' => false,
+            'validateOnType' => false,
+            'validateOnChange' => false,
+        ]
+    ) ?>
 
     <?= $form->field($model, 'login')->textInput(['placeholder' => 'Login']) ?>
 
@@ -43,8 +45,12 @@ use yii\helpers\Html;
 
     <?php ActiveForm::end(); ?>
 <?php else: ?>
-    <?= Html::a(Yii::t('usuario', 'Logout'), ['/user/security/logout'], [
-        'class' => 'btn btn-danger btn-block',
-        'data-method' => 'post',
-    ]) ?>
+    <?= Html::a(
+        Yii::t('usuario', 'Logout'),
+        ['/user/security/logout'],
+        [
+            'class' => 'btn btn-danger btn-block',
+            'data-method' => 'post',
+        ]
+    ) ?>
 <?php endif ?>

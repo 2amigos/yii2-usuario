@@ -33,10 +33,10 @@ abstract class AbstractAuthItemController extends Controller
     /**
      * AbstractAuthItemController constructor.
      *
-     * @param string     $id
-     * @param Module     $module
+     * @param string $id
+     * @param Module $module
      * @param AuthHelper $authHelper
-     * @param array      $config
+     * @param array $config
      */
     public function __construct($id, Module $module, AuthHelper $authHelper, array $config = [])
     {
@@ -92,9 +92,8 @@ abstract class AbstractAuthItemController extends Controller
                     ->setFlash('success', Yii::t('usuario', 'Authorization item successfully created.'));
 
                 return $this->redirect(['index']);
-            } else {
-                Yii::$app->getSession()->setFlash('danger', Yii::t('usuario', 'Unable to create authorization item.'));
             }
+            Yii::$app->getSession()->setFlash('danger', Yii::t('usuario', 'Unable to create authorization item.'));
         }
 
         return $this->render(
@@ -122,9 +121,8 @@ abstract class AbstractAuthItemController extends Controller
                     ->setFlash('success', Yii::t('usuario', 'Authorization item successfully updated.'));
 
                 return $this->redirect(['index']);
-            } else {
-                Yii::$app->getSession()->setFlash('danger', Yii::t('usuario', 'Unable to update authorization item.'));
             }
+            Yii::$app->getSession()->setFlash('danger', Yii::t('usuario', 'Unable to update authorization item.'));
         }
 
         return $this->render(

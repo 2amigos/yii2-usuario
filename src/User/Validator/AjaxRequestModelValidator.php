@@ -12,8 +12,8 @@
 namespace Da\User\Validator;
 
 use Da\User\Contracts\ValidatorInterface;
-use yii\base\Model;
 use Yii;
+use yii\base\Model;
 use yii\bootstrap\ActiveForm;
 use yii\web\Response;
 

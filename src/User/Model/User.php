@@ -259,8 +259,11 @@ class User extends ActiveRecord implements IdentityInterface
     {
         if ($this->connectedAccounts == null) {
             /** @var SocialNetworkAccount[] $accounts */
-            $accounts = $this->hasMany($this->getClassMap()
-                ->get(SocialNetworkAccount::class), ['user_id' => 'id'])
+            $accounts = $this->hasMany(
+                $this->getClassMap()
+                    ->get(SocialNetworkAccount::class),
+                ['user_id' => 'id']
+            )
                 ->all();
 
             foreach ($accounts as $account) {
@@ -284,6 +287,6 @@ class User extends ActiveRecord implements IdentityInterface
      */
     public static function findIdentityByAccessToken($token, $type = null)
     {
-        throw new NotSupportedException('Method "'.__CLASS__.'::'.__METHOD__.'" is not implemented.');
+        throw new NotSupportedException('Method "' . __CLASS__ . '::' . __METHOD__ . '" is not implemented.');
     }
 }

@@ -42,7 +42,7 @@ class AssignmentsWidget extends Widget
     {
         parent::init();
         if ($this->userId === null) {
-            throw new InvalidConfigException(__CLASS__.'::$userId is required');
+            throw new InvalidConfigException(__CLASS__ . '::$userId is required');
         }
     }
 
@@ -57,10 +57,13 @@ class AssignmentsWidget extends Widget
             $this->make(UpdateAuthAssignmentsService::class, [$model])->run();
         }
 
-        return $this->render('/widgets/assignments/form', [
-            'model' => $model,
-            'availableItems' => $this->getAvailableItems(),
-        ]);
+        return $this->render(
+            '/widgets/assignments/form',
+            [
+                'model' => $model,
+                'availableItems' => $this->getAvailableItems(),
+            ]
+        );
     }
 
     /**
@@ -70,10 +73,14 @@ class AssignmentsWidget extends Widget
      */
     protected function getAvailableItems()
     {
-        return ArrayHelper::map($this->getAuthManager()->getItems(), 'name', function ($item) {
-            return empty($item->description)
-                ? $item->name
-                : $item->name.' ('.$item->description.')';
-        });
+        return ArrayHelper::map(
+            $this->getAuthManager()->getItems(),
+            'name',
+            function ($item) {
+                return empty($item->description)
+                    ? $item->name
+                    : $item->name . ' (' . $item->description . ')';
+            }
+        );
     }
 }

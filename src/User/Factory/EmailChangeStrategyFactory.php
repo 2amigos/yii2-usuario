@@ -16,8 +16,8 @@ use Da\User\Form\SettingsForm;
 use Da\User\Strategy\DefaultEmailChangeStrategy;
 use Da\User\Strategy\InsecureEmailChangeStrategy;
 use Da\User\Strategy\SecureEmailChangeStrategy;
-use Yii;
 use Exception;
+use Yii;
 
 class EmailChangeStrategyFactory
 {

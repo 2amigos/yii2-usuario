@@ -11,9 +11,9 @@
 
 namespace Da\User\Helper;
 
+use DateTime;
 use DateTimeZone;
 use yii\helpers\ArrayHelper;
-use DateTime;
 
 class TimezoneHelper
 {
@@ -32,7 +32,7 @@ class TimezoneHelper
             $offset = $date->getOffset() / 60 / 60;
             $timeZones[] = [
                 'timezone' => $timeZone,
-                'name' => "{$timeZone} (UTC ".($offset > 0 ? '+' : '')."{$offset})",
+                'name' => "{$timeZone} (UTC " . ($offset > 0 ? '+' : '') . "{$offset})",
                 'offset' => $offset,
             ];
         }

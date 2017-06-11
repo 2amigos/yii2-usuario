@@ -43,7 +43,7 @@ class UserSearch extends Model
      * UserSearch constructor.
      *
      * @param UserQuery $query
-     * @param array     $config
+     * @param array $config
      */
     public function __construct(UserQuery $query, $config = [])
     {
@@ -84,9 +84,11 @@ class UserSearch extends Model
     {
         $query = $this->query;
 
-        $dataProvider = new ActiveDataProvider([
-            'query' => $query,
-        ]);
+        $dataProvider = new ActiveDataProvider(
+            [
+                'query' => $query,
+            ]
+        );
 
         if (!($this->load($params) && $this->validate())) {
             return $dataProvider;

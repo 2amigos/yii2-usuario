@@ -44,11 +44,11 @@ class RegistrationController extends Controller
     /**
      * RegistrationController constructor.
      *
-     * @param string                    $id
-     * @param Module                    $module
-     * @param UserQuery                 $userQuery
+     * @param string $id
+     * @param Module $module
+     * @param UserQuery $userQuery
      * @param SocialNetworkAccountQuery $socialNetworkAccountQuery
-     * @param array                     $config
+     * @param array $config
      */
     public function __construct(
         $id,
@@ -232,7 +232,7 @@ class RegistrationController extends Controller
                         'info',
                         Yii::t(
                             'usuario',
-                            'A message has been sent to your email address. '.
+                            'A message has been sent to your email address. ' .
                             'It contains a confirmation link that you must click to complete registration.'
                         )
                     );
@@ -243,18 +243,21 @@ class RegistrationController extends Controller
                     'danger',
                     Yii::t(
                         'usuario',
-                        'We couldn\'t re-send the mail to confirm your address. '.
+                        'We couldn\'t re-send the mail to confirm your address. ' .
                         'Please, verify is the correct email or if it has been confirmed already.'
                     )
                 );
             }
 
-            return $this->render('/shared/message', [
-                'title' => $success
-                    ? Yii::t('usuario', 'A new confirmation link has been sent')
-                    : Yii::t('usuario', 'Unable to send confirmation link'),
-                'module' => $this->module,
-            ]);
+            return $this->render(
+                '/shared/message',
+                [
+                    'title' => $success
+                        ? Yii::t('usuario', 'A new confirmation link has been sent')
+                        : Yii::t('usuario', 'Unable to send confirmation link'),
+                    'module' => $this->module,
+                ]
+            );
         }
 
         return $this->render(

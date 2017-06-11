@@ -21,10 +21,12 @@ use yii\widgets\ActiveForm;
 
 ?>
 
-<?php $form = ActiveForm::begin([
-    'enableClientValidation' => false,
-    'enableAjaxValidation' => true,
-]) ?>
+<?php $form = ActiveForm::begin(
+    [
+        'enableClientValidation' => false,
+        'enableAjaxValidation' => true,
+    ]
+) ?>
 
 <?= $form->field($model, 'name') ?>
 
@@ -32,13 +34,16 @@ use yii\widgets\ActiveForm;
 
 <?= $form->field($model, 'rule') ?>
 
-<?= $form->field($model, 'children')->widget(SelectizeDropDownList::class, [
-    'items' => $unassignedItems,
-    'options' => [
-        'id' => 'children',
-        'multiple' => true,
-    ],
-]) ?>
+<?= $form->field($model, 'children')->widget(
+    SelectizeDropDownList::class,
+    [
+        'items' => $unassignedItems,
+        'options' => [
+            'id' => 'children',
+            'multiple' => true,
+        ],
+    ]
+) ?>
 
 <?= Html::submitButton(Yii::t('usuario', 'Save'), ['class' => 'btn btn-success btn-block']) ?>
 

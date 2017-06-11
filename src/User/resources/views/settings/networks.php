@@ -37,7 +37,8 @@ $this->params['breadcrumbs'][] = $this->title;
             </div>
             <div class="panel-body">
                 <div class="alert alert-info">
-                    <p><?= Yii::t('usuario', 'You can connect multiple accounts to be able to log in using them') ?>.</p>
+                    <p><?= Yii::t('usuario', 'You can connect multiple accounts to be able to log in using them') ?>
+                        .</p>
                 </div>
                 <?php $auth = ConnectWidget::begin(
                     [
@@ -51,7 +52,7 @@ $this->params['breadcrumbs'][] = $this->title;
                     <?php foreach ($auth->getClients() as $client): ?>
                         <tr>
                             <td style="width: 32px; vertical-align: middle">
-                                <?= Html::tag('span', '', ['class' => 'auth-icon '.$client->getName()]) ?>
+                                <?= Html::tag('span', '', ['class' => 'auth-icon ' . $client->getName()]) ?>
                             </td>
                             <td style="vertical-align: middle">
                                 <strong><?= $client->getTitle() ?></strong>

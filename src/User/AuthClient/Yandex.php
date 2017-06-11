@@ -28,9 +28,9 @@ class Yandex extends BaseYandex implements AuthClientInterface
 
         if ($emails !== null && isset($emails[0])) {
             return $emails[0];
-        } else {
-            return null;
         }
+
+        return null;
     }
 
     /**

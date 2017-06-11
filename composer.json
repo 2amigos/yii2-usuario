@@ -38,11 +38,13 @@
         },
         {
             "name": "Timur Ruziev",
-            "email": "resurtm@gmail.com",
+            "email": "resurtm@2amigos.us",
             "homepage": "http://resurtm.com",
             "role": "Developer"
         }
     ],
+    "minimum-stability": "dev",
+    "prefer-stable": true,
     "require": {
         "php": ">=5.5",
         "2amigos/yii2-selectize-widget": "~1.0",
@@ -68,6 +70,14 @@
     "autoload-dev": {
         "psr-4": {
             "Da\\User\\": "./src/User"
+        }
+    },
+    "config": {
+        "fxp-asset": {
+            "installer-paths": {
+                "npm-asset-library": "vendor/npm",
+                "bower-asset-library": "vendor/bower"
+            }
         }
     },
     "extra": {

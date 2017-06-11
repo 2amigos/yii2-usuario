@@ -27,10 +27,10 @@ use Da\User\Query\UserQuery;
 use Da\User\Service\EmailChangeService;
 use Da\User\Traits\ContainerAwareTrait;
 use Da\User\Validator\AjaxRequestModelValidator;
+use Yii;
 use yii\filters\AccessControl;
 use yii\filters\VerbFilter;
 use yii\web\Controller;
-use Yii;
 use yii\web\ForbiddenHttpException;
 use yii\web\NotFoundHttpException;
 
@@ -38,24 +38,24 @@ class SettingsController extends Controller
 {
     use ContainerAwareTrait;
 
-    protected $profileQuery;
-    protected $userQuery;
-    protected $socialNetworkAccountQuery;
-
     /**
      * {@inheritdoc}
      */
     public $defaultAction = 'profile';
 
+    protected $profileQuery;
+    protected $userQuery;
+    protected $socialNetworkAccountQuery;
+
     /**
      * SettingsController constructor.
      *
-     * @param string                    $id
-     * @param Module                    $module
-     * @param ProfileQuery              $profileQuery
-     * @param UserQuery                 $userQuery
+     * @param string $id
+     * @param Module $module
+     * @param ProfileQuery $profileQuery
+     * @param UserQuery $userQuery
      * @param SocialNetworkAccountQuery $socialNetworkAccountQuery
-     * @param array                     $config
+     * @param array $config
      */
     public function __construct(
         $id,
@@ -145,7 +145,10 @@ class SettingsController extends Controller
             $this->trigger(UserEvent::EVENT_BEFORE_ACCOUNT_UPDATE, $event);
 
             if ($form->save()) {
-                Yii::$app->getSession()->setFlash('success', Yii::t('usuario', 'Your account details have been updated'));
+                Yii::$app->getSession()->setFlash(
+                    'success',
+                    Yii::t('usuario', 'Your account details have been updated')
+                );
                 $this->trigger(UserEvent::EVENT_AFTER_ACCOUNT_UPDATE, $event);
 
                 return $this->refresh();

@@ -1,4 +1,0 @@
-Basic Application Template
-==========================
-
-TODO:

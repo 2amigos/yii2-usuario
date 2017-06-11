@@ -16,6 +16,7 @@ use Da\User\Event\ResetPasswordEvent;
 use Da\User\Factory\MailFactory;
 use Da\User\Form\RecoveryForm;
 use Da\User\Model\Token;
+use Da\User\Module;
 use Da\User\Query\TokenQuery;
 use Da\User\Query\UserQuery;
 use Da\User\Service\PasswordRecoveryService;
@@ -23,7 +24,6 @@ use Da\User\Service\ResetPasswordService;
 use Da\User\Traits\ContainerAwareTrait;
 use Da\User\Validator\AjaxRequestModelValidator;
 use Yii;
-use Da\User\Module;
 use yii\filters\AccessControl;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
@@ -38,11 +38,11 @@ class RecoveryController extends Controller
     /**
      * RecoveryController constructor.
      *
-     * @param string     $id
-     * @param Module     $module
-     * @param UserQuery  $userQuery
+     * @param string $id
+     * @param Module $module
+     * @param UserQuery $userQuery
      * @param TokenQuery $tokenQuery
-     * @param array      $config
+     * @param array $config
      */
     public function __construct($id, Module $module, UserQuery $userQuery, TokenQuery $tokenQuery, array $config = [])
     {

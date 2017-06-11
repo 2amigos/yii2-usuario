@@ -35,7 +35,6 @@ class AccessRuleFilter extends AccessRule
                     return true;
                 }
             } elseif ($role === 'admin') {
-
                 /** @var User $identity */
                 $identity = $user->getIdentity();
 

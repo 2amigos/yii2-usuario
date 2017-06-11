@@ -13,9 +13,9 @@ namespace Da\User\Model;
 
 use Da\User\Traits\AuthManagerAwareTrait;
 use Da\User\Validator\RbacItemsValidator;
+use Yii;
 use yii\base\InvalidConfigException;
 use yii\base\Model;
-use Yii;
 
 class Assignment extends Model
 {

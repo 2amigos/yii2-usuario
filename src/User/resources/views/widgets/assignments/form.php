@@ -24,29 +24,36 @@ use yii\widgets\ActiveForm;
 
 <?php if ($model->updated): ?>
 
-<?= Alert::widget([
-    'options' => [
-        'class' => 'alert-success',
-    ],
-    'body' => Yii::t('usuario', 'Assignments have been updated'),
-]) ?>
+    <?= Alert::widget(
+        [
+            'options' => [
+                'class' => 'alert-success',
+            ],
+            'body' => Yii::t('usuario', 'Assignments have been updated'),
+        ]
+    ) ?>
 
 <?php endif ?>
 
-<?php $form = ActiveForm::begin([
-    'enableClientValidation' => false,
-    'enableAjaxValidation' => false,
-]) ?>
+<?php $form = ActiveForm::begin(
+    [
+        'enableClientValidation' => false,
+        'enableAjaxValidation' => false,
+    ]
+) ?>
 
 <?= Html::activeHiddenInput($model, 'user_id') ?>
 
-<?= $form->field($model, 'items')->widget(SelectizeDropDownList::class, [
-    'items' => $availableItems,
-    'options' => [
-        'id' => 'children',
-        'multiple' => true,
-    ],
-]) ?>
+<?= $form->field($model, 'items')->widget(
+    SelectizeDropDownList::class,
+    [
+        'items' => $availableItems,
+        'options' => [
+            'id' => 'children',
+            'multiple' => true,
+        ],
+    ]
+) ?>
 
 <?= Html::submitButton(Yii::t('usuario', 'Update assignments'), ['class' => 'btn btn-success btn-block']) ?>
 

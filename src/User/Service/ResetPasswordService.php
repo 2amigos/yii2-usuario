@@ -30,7 +30,7 @@ class ResetPasswordService implements ServiceInterface
 
     public function run()
     {
-        return $this->model && (bool) $this->model->updateAttributes(
+        return $this->model && (bool)$this->model->updateAttributes(
                 [
                     'password_hash' => $this->securityHelper->generatePasswordHash($this->password),
                 ]

@@ -58,13 +58,13 @@ $this->params['breadcrumbs'][] = $this->title;
                     ->passwordInput()
                     ->label(
                         Yii::t('usuario', 'Password')
-                        .($module->allowPasswordRecovery ?
-                            ' ('.Html::a(
+                        . ($module->allowPasswordRecovery ?
+                            ' (' . Html::a(
                                 Yii::t('usuario', 'Forgot password?'),
                                 ['/user/recovery/request'],
                                 ['tabindex' => '5']
                             )
-                            .')' : '')
+                            . ')' : '')
                     ) ?>
 
                 <?= $form->field($model, 'rememberMe')->checkbox(['tabindex' => '4']) ?>
@@ -79,7 +79,10 @@ $this->params['breadcrumbs'][] = $this->title;
         </div>
         <?php if ($module->enableEmailConfirmation): ?>
             <p class="text-center">
-                <?= Html::a(Yii::t('usuario', 'Didn\'t receive confirmation message?'), ['/user/registration/resend']) ?>
+                <?= Html::a(
+                    Yii::t('usuario', 'Didn\'t receive confirmation message?'),
+                    ['/user/registration/resend']
+                ) ?>
             </p>
         <?php endif ?>
         <?php if ($module->enableRegistration): ?>

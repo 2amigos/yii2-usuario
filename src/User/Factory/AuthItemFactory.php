@@ -11,9 +11,9 @@
 
 namespace Da\User\Factory;
 
+use Exception;
 use Yii;
 use yii\rbac\Item;
-use Exception;
 
 class AuthItemFactory
 {
