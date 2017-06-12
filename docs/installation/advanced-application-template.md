@@ -42,23 +42,6 @@ return [
 ];
 ```
 
-Our extension implemented as some kind of substructure containing its own MVC entities, so another thing you have
-to register it as an application module by adding following lines to the same configuration script file:
-
-```php
-return [
-    // ...
-    'modules' => [
-        'user' => [
-            'class' => Da\User\Module::class,
-        ],
-    ],
-    'components' => [
-        // ...
-    ],
-];
-```
-
 That's all from the part of the web application.
 
 Step 3 - Apply database schema migrations

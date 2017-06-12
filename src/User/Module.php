@@ -81,11 +81,10 @@ class Module extends BaseModule
     public $mailParams = [];
     /**
      * @var int the cost parameter used by the Blowfish hash algorithm.
-     *          The higher the value of cost,
-     *          the longer it takes to generate the hash and to verify a password against it. Higher cost
-     *          therefore slows down a brute-force attack. For best protection against brute-force attacks,
-     *          set it to the highest value that is tolerable on production servers. The time taken to
-     *          compute the hash doubles for every increment by one of $cost
+     *          The higher the value of cost, the longer it takes to generate the hash and to verify a password
+     *          against it. Higher cost therefore slows down a brute-force attack. For best protection against
+     *          brute-force attacks, set it to the highest value that is tolerable on production servers. The time taken
+     *          to compute the hash doubles for every increment by one of $cost
      */
     public $blowfishCost = 10;
     /**
