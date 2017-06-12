@@ -101,7 +101,8 @@ class SecurityController extends Controller
 
     /**
      * Controller action responsible for handling login page and actions.
-     * @return string|Response
+     *
+     * @return array|string|Response
      */
     public function actionLogin()
     {

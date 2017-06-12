@@ -17,20 +17,20 @@ On Controllers
     - **UserEvent::EVENT_AFTER_BLOCK**: Occurs after a user is being blocked (forbid access to app)
     - **UserEvent::EVENT_BEFORE_UNBLOCK**: Occurs before a user is being un-blocked
     - **UserEvent::EVENT_AFTER_UNBLOCK**: Occurs after a user is being un-blocked
-    
-    
+
+
 - **RegistrationController**
     - **UserEvent::EVENT_BEFORE_REGISTER**: Occurs before user registration
     - **UserEvent::EVENT_AFTER_REGISTER**: Occurs after user registration
     - **UserEvent::EVENT_BEFORE_CONFIRMATION**
     - **UserEvent::EVENT_AFTER_CONFIRMATION**
-    
-    
+
+
 - **SecurityController**
     - **UserEvent::EVENT_BEFORE_LOGOUT**: Occurs before user logs out of the app
     - **UserEvent::EVENT_AFTER_LOGOUT**: Occurs after user logs out of the app
-    
-    
+
+
 - **SettingsController**
     - **UserEvent::EVENT_BEFORE_PROFILE_UPDATE**
     - **UserEvent::EVENT_AFTER_PROFILE_UPDATE**
@@ -38,7 +38,7 @@ On Controllers
     - **UserEvent::EVENT_AFTER_ACCOUNT_UPDATE**: Occurs after the user account is updated
     - **UserEvent::EVENT_BEFORE_DELETE**: Occurs before the user account is deleted
     - **UserEvent::EVENT_AFTER_DELETE**: Occurs after the user account is deleted
-    
+
 On Models
 ---------
 
@@ -69,6 +69,7 @@ Here is an example of setting an event for the `AdminController` and the `User` 
 // events.php file
 
 use Da\Controller\AdminController;
+use Da\Event\UserEvent;
 use Da\Model\User;
 use yii\base\Event;
 
