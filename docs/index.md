@@ -50,20 +50,22 @@ to the `require` section of your `composer.json` file.
 This is obvious extension like our which deals with users, roles, permissions, etc. have to use some database.
 Our migrations are namespaced and available in `Da\User\Migration` namespace.
 
-Before starting to work with database, please ensure you have deleted `m130524_201442_init.php` migration file
-which comes from the default installation of the Advanced Application Template. It's located at
+> **Note**: If you are using Yii2's Advanced Application Template, before starting to work with database, please ensure 
+you have deleted `m130524_201442_init.php` migration file which comes from the default installation. It's located at
 `%PROJECT_DIR%/console/migrations/m130524_201442_init.php` path.
 
 There are two ways to apply migrations of this extension, the first one:
 
 ```php
-./yii migrate --migrationPath="@Da/User/Migration"
+./yii migrate --migrationPath=@Da/User/Migration
+./yii migrate --migrationPath=@yii/rbac/migrations
 ./yii migrate
 ```
 
-First command applies migration set of the user module, and the second one is for application migrations.
+First command applies migration set of the user module, and the second one is for Yii RBAC migration, the third is for 
+your own application migrations.
 
-> Note, you cannot mix two ways: choose one of them, and stick with it.
+> **Note**: you cannot mix two ways: choose one of them, and stick with it.
 
 The second way is more comfortable, and you don't have to remember to launch first command every time you obtain
 new version of our extension. First of all add the following lines to the file
@@ -85,9 +87,11 @@ return [
 ```
 
 This basically instructs your application to always try to use migrations from the given namespace. Which again
-is very convenient way to track new migration classes coming from this and possibly other extensions and sources.
+is very convenient way to track new migration classes coming from this and possibly other extensions and sources. 
 
-> Namespaced migrations were introduced in Yii 2.0.10, so before using them consider updating your framework
+> **Note**: You will still have to apply Yii 2 RBAC migrations by executing 
+> `./yii migrate --migrationPath=@yii/rbac/migrations`. 
+> Also, namespaced migrations were introduced in Yii 2.0.10, so before using them consider updating your framework
 > installation version.
 
 #### Step 3 - Configure

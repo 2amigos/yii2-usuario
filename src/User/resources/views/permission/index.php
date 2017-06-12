@@ -10,8 +10,8 @@
  */
 
 /**
- * @var array
- * @var $this        yii\web\View
+ * @var $dataProvider \yii\data\ActiveDataProvider
+ * @var $this yii\web\View
  * @var $searchModel \Da\User\Search\PermissionSearch
  */
 use yii\grid\ActionColumn;
