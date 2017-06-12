@@ -43,8 +43,8 @@ Here is an example of setting an event for the `RecoveryController`:
 <?php 
 // events.php file
 
-use Da\Controller\RecoveryController;
-use Da\Event\FormEvent;
+use Da\User\Controller\RecoveryController;
+use Da\User\Event\FormEvent;
 use yii\base\Event;
 
 Event::on(RecoveryController::class, FormEvent::EVENT_BEFORE_REQUEST, function (FormEvent $event) {

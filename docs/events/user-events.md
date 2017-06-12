@@ -68,9 +68,9 @@ Here is an example of setting an event for the `AdminController` and the `User` 
 <?php 
 // events.php file
 
-use Da\Controller\AdminController;
-use Da\Event\UserEvent;
-use Da\Model\User;
+use Da\User\Controller\AdminController;
+use Da\User\Event\UserEvent;
+use Da\User\Model\User;
 use yii\base\Event;
 
 // This will happen at the controller's level

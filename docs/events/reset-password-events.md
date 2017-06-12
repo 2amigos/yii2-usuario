@@ -25,8 +25,8 @@ Check the following code as an example:
 <?php 
 // events.php file
 
-use Da\Controller\RecoveryController;
-use Da\Event\ResetPasswordEvent;
+use Da\User\Controller\RecoveryController;
+use Da\User\Event\ResetPasswordEvent;
 use yii\base\Event;
 
 Event::on(
@@ -52,3 +52,5 @@ Event::on(
     });
 
 ```
+
+© [2amigos](http://www.2amigos.us/) 2013-2017

@@ -64,9 +64,11 @@ class SocialNetworkAuthenticateService implements ServiceInterface
                 return false;
             }
         }
-        $event = Yii::createObject(SocialNetworkAuthEvent::class, [$this->client]);
+
+        $event = Yii::createObject(SocialNetworkAuthEvent::class, [$account, $this->client]);
 
         $this->controller->trigger(SocialNetworkAuthEvent::EVENT_BEFORE_AUTHENTICATE, $event);
+
         if ($account->user instanceof User) {
             if ($account->user->getIsBlocked()) {
                 Yii::$app->session->setFlash('danger', Yii::t('usuario', 'Your account has been blocked.'));
