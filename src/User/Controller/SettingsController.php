@@ -137,7 +137,7 @@ class SettingsController extends Controller
     {
         /** @var SettingsForm $form */
         $form = $this->make(SettingsForm::class);
-        $event = $this->make(FormEvent::class, [$form]);
+        $event = $this->make(UserEvent::class, [$form->getUser()]);
 
         $this->make(AjaxRequestModelValidator::class, [$form])->validate();
 

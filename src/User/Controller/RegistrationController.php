@@ -106,6 +106,7 @@ class RegistrationController extends Controller
             $mailService = MailFactory::makeWelcomeMailerService($user);
 
             if ($this->make(UserRegisterService::class, [$user, $mailService])->run()) {
+
                 Yii::$app->session->setFlash(
                     'info',
                     Yii::t(
@@ -113,6 +114,7 @@ class RegistrationController extends Controller
                         'Your account has been created and a message with further instructions has been sent to your email'
                     )
                 );
+                $this->trigger(UserEvent::EVENT_AFTER_REGISTER, $event);
 
                 return $this->render(
                     '/shared/message',
@@ -175,6 +177,7 @@ class RegistrationController extends Controller
 
     public function actionConfirm($id, $code)
     {
+        /** @var User $user */
         $user = $this->userQuery->whereId($id)->one();
 
         if ($user === null || $this->module->enableEmailConfirmation === false) {

@@ -39,17 +39,23 @@ class UserBlockService implements ServiceInterface
     public function run()
     {
         if ($this->model->getIsBlocked()) {
-            $this->controller->trigger(UserEvent::EVENT_BEFORE_UNBLOCK, $this->event);
+            $this->triggerEvents(UserEvent::EVENT_BEFORE_UNBLOCK);
             $result = (bool)$this->model->updateAttributes(['blocked_at' => null]);
-            $this->controller->trigger(UserEvent::EVENT_AFTER_UNBLOCK, $this->event);
+            $this->triggerEvents(UserEvent::EVENT_AFTER_UNBLOCK);
         } else {
-            $this->controller->trigger(UserEvent::EVENT_BEFORE_BLOCK, $this->event);
+            $this->triggerEvents(UserEvent::EVENT_BEFORE_BLOCK);
             $result = (bool)$this->model->updateAttributes(
                 ['blocked_at' => time(), 'auth_key' => $this->securityHelper->generateRandomString()]
             );
-            $this->controller->trigger(UserEvent::EVENT_AFTER_BLOCK, $this->event);
+            $this->triggerEvents(UserEvent::EVENT_AFTER_BLOCK);
         }
 
         return $result;
+    }
+
+    protected function triggerEvents($name)
+    {
+        $this->controller->trigger($name, $this->event);
+        $this->model->trigger($name, $this->event);
     }
 }

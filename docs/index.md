@@ -124,6 +124,22 @@ Enhancing and Overriding
 - [Overriding Classes](enhancing-and-overriding/overriding-classes.md) 
 - [Overriding Views](enhancing-and-overriding/overriding-views.md)
 
+Events
+------
+
+Events are a good way to execute logic before and after certain processes. Yii2 Usuario comes with a huge list of them. 
+
+The recommended way to make use of events is by creating a new file in your config folder (i.e. `events.php`), configure 
+there all your events and then include that file on your 
+[`entry script`](http://www.yiiframework.com/doc-2.0/guide-structure-entry-scripts.html). 
+
+- [User Events](events/user-events.md)
+- [Form Events](events/form-events.md)
+- [Reset Password Events](events/reset-password-events.md)
+- [Social Network Authentication Events](events/social-network-auth-events.md)
+- [Social Network Connection Events](events/social-network-connect-events.md)
+
+
 Helpful Guides
 --------------
 

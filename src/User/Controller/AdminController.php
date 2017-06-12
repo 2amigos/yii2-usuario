@@ -281,6 +281,7 @@ class AdminController extends Controller
                 Yii::$app->getSession()->setFlash('success', Yii::t('usuario', 'User block status has been updated.'));
             } else {
                 Yii::$app->getSession()->setFlash('danger', Yii::t('usuario', 'Unable to update block status.'));
+
             }
         }
 

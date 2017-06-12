@@ -121,12 +121,13 @@ class SettingsForm extends Model
     public function save()
     {
         if ($this->validate()) {
-            $this->user->scenario = 'settings';
-            $this->user->username = $this->username;
-            $this->user->password = $this->new_password;
-            if ($this->email == $this->user->email && $this->user->unconfirmed_email != null) {
-                $this->user->unconfirmed_email = null;
-            } elseif ($this->email != $this->user->email) {
+            $user = $this->getUser();
+            $user->scenario = 'settings';
+            $user->username = $this->username;
+            $user->password = $this->new_password;
+            if ($this->email == $user->email && $user->unconfirmed_email != null) {
+                $user->unconfirmed_email = null;
+            } elseif ($this->email != $user->email) {
                 $strategy = EmailChangeStrategyFactory::makeByStrategyType(
                     $this->getModule()->emailChangeStrategy,
                     $this
@@ -135,7 +136,7 @@ class SettingsForm extends Model
                 return $strategy->run();
             }
 
-            return $this->user->save();
+            return $user->save();
         }
 
         return false;
