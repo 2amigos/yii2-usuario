@@ -18,15 +18,18 @@ On Controllers
     - **UserEvent::EVENT_BEFORE_UNBLOCK**: Occurs before a user is being un-blocked
     - **UserEvent::EVENT_AFTER_UNBLOCK**: Occurs after a user is being un-blocked
     
+    
 - **RegistrationController**
     - **UserEvent::EVENT_BEFORE_REGISTER**: Occurs before user registration
     - **UserEvent::EVENT_AFTER_REGISTER**: Occurs after user registration
     - **UserEvent::EVENT_BEFORE_CONFIRMATION**
     - **UserEvent::EVENT_AFTER_CONFIRMATION**
     
+    
 - **SecurityController**
     - **UserEvent::EVENT_BEFORE_LOGOUT**: Occurs before user logs out of the app
     - **UserEvent::EVENT_AFTER_LOGOUT**: Occurs after user logs out of the app
+    
     
 - **SettingsController**
     - **UserEvent::EVENT_BEFORE_PROFILE_UPDATE**
