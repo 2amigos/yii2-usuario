@@ -143,6 +143,7 @@ Helpful Guides
 --------------
 
 - [Separate Frontend and Backend Sessions](helpful-guides/separate-frontend-and-backend-sessions.md)
+- [Social Network Authentication](helpful-guides/social-network-authentication.md)
 
 Contributing
 ------------
