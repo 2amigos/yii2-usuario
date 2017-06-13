@@ -122,21 +122,23 @@ class SettingsForm extends Model
     {
         if ($this->validate()) {
             $user = $this->getUser();
-            $user->scenario = 'settings';
-            $user->username = $this->username;
-            $user->password = $this->new_password;
-            if ($this->email == $user->email && $user->unconfirmed_email != null) {
-                $user->unconfirmed_email = null;
-            } elseif ($this->email != $user->email) {
-                $strategy = EmailChangeStrategyFactory::makeByStrategyType(
-                    $this->getModule()->emailChangeStrategy,
-                    $this
-                );
+            if ($user instanceof User) {
+                $user->scenario = 'settings';
+                $user->username = $this->username;
+                $user->password = $this->new_password;
+                if ($this->email == $user->email && $user->unconfirmed_email != null) {
+                    $user->unconfirmed_email = null;
+                } elseif ($this->email != $user->email) {
+                    $strategy = EmailChangeStrategyFactory::makeByStrategyType(
+                        $this->getModule()->emailChangeStrategy,
+                        $this
+                    );
 
-                return $strategy->run();
+                    return $strategy->run();
+                }
+
+                return $user->save();
             }
-
-            return $user->save();
         }
 
         return false;
