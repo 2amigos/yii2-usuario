@@ -115,6 +115,7 @@ the official Yii2 advanced application template:
 See also all the possible configuration options available: 
 
 - [Configuration Options](installation/configuration-options.md)
+- [RBAC](installation/rbac.md)
 
 Enhancing and Overriding
 ------------------------

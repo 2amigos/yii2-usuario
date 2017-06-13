@@ -74,7 +74,7 @@ Configures the permission name for `administrators`. See [AuthHelper](../../src/
 Configures the URL prefix for the module. 
 
 
-### mailParams (type: `array`, default: `[]`)
+#### mailParams (type: `array`, default: `[]`)
 
 Configures the parameter values used on [MailFactory](../../src/User/Factory/MailFactory.php). The default values are: 
 
