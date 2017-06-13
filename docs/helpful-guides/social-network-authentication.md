@@ -43,13 +43,13 @@ would help us access the email and username with ease.
 
 The following is the list of clients supported by the module: 
 
-- Facebook - 'Da\User\AuthClient\Facebook'
-- Github - 'Da\User\AuthClient\Github'
-- Google - 'Da\User\AuthClient\Google'
-- LinkedIn - 'Da\User\AuthClient\LinkedIn'
-- Twitter - 'Da\User\AuthClient\Twitter'
-- VKontakte - 'Da\User\AuthClient\VKontakte'
-- Yandex - 'Da\User\AuthClient\Yandex'
+- **Facebook** - `Da\User\AuthClient\Facebook`
+- **Github** - `Da\User\AuthClient\Github`
+- **Google** - `Da\User\AuthClient\Google`
+- **LinkedIn** - `Da\User\AuthClient\LinkedIn`
+- **Twitter** - `Da\User\AuthClient\Twitter`
+- **VKontakte** - `Da\User\AuthClient\VKontakte`
+- **Yandex** - `Da\User\AuthClient\Yandex`
 
 For further information about how to configure the clients, please visit the 
 [Official Yii Auth Client Extension documentation](https://github.com/yiisoft/yii2-authclient/blob/master/docs/guide/installation.md).
