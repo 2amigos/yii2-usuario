@@ -1,4 +1,4 @@
-Yii2 Usuario Extension
+Yii 2 Usuario Extension
 ======================
 
 [![Documentation Status](https://readthedocs.org/projects/yii2-usuario/badge/?version=latest)](http://yii2-usuario.readthedocs.io/en/latest/?badge=latest)
@@ -39,5 +39,14 @@ Please, remember that we may not be online all the time. We expect that we can b
 
 Please, read our [CONTRIBUTION guidelines](CONTRIBUTING.md). 
  
+## Credits
+
+This module is highly inspired by the excellent work of [Dektrium](https://dektrium.com/) on both of its modules: 
+
+- [Yii 2 User](https://github.com/dektrium/yii2-user)
+- [Yii 2 RBAC](https://github.com/dektrium/yii2-rbac)
+
+In fact, we have used some of its processes, commands, views, and some of its attribute names to somehow standardize the 
+modules and make it easier for our developers to swap from [Dektrium's](https://dektrium.com) modules to our own.
 
 [![2amigOS!](https://s.gravatar.com/avatar/55363394d72945ff7ed312556ec041e0?s=80)](http://www.2amigos.us) 

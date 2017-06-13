@@ -25,6 +25,7 @@ class CreateController extends Controller
 
     public function actionIndex($email, $username, $password = null)
     {
+        /** @var User $user */
         $user = $this->make(
             User::class,
             ['scenario' => 'create', 'email' => $email, 'username' => $username, 'password' => $password]
