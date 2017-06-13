@@ -143,6 +143,7 @@ there all your events and then include that file on your
 Helpful Guides
 --------------
 
+- [How to Add Captcha Widget](helpful-guides/how-to-add-captcha-widget.md)
 - [Separate Frontend and Backend Sessions](helpful-guides/separate-frontend-and-backend-sessions.md)
 - [Social Network Authentication](helpful-guides/social-network-authentication.md)
 

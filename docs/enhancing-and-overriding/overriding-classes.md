@@ -79,7 +79,9 @@ Now, to tell the module to use your class instead, you simply need to update the
 the `Module::classMap` attribute.
 
 ```php
-\\ ... 
+
+// ...
+ 
 'modules' => [
     'user' => [
         'class' => Da\User\Module::class,
@@ -88,6 +90,7 @@ the `Module::classMap` attribute.
         ]
     ]
 ]
+
 ```
 
 The definition can be any of the following (from Yii2's DI container): 

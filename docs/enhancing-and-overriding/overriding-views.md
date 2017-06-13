@@ -5,7 +5,9 @@ In case you need to override the default views (that you surely have to do if yo
 Bootstrap), Yii2 provides a mechanism that is really easy to do: 
  
 ```php
+
 // ... other configuration here
+
 'components' => [
     'view' => [
         'theme' => [
@@ -15,6 +17,7 @@ Bootstrap), Yii2 provides a mechanism that is really easy to do:
         ]
     ]
 ]
+
 // ...
 ```
 
