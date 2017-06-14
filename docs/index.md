@@ -89,7 +89,8 @@ This basically instructs your application to always try to use migrations from t
 is very convenient way to track new migration classes coming from this and possibly other extensions and sources. 
 
 > **Note**: You will still have to apply Yii 2 RBAC migrations by executing 
-> `./yii migrate --migrationPath=@yii/rbac/migrations`. 
+> `./yii migrate --migrationPath=@yii/rbac/migrations`. Remember that you have to configure the `AuthManager` component 
+> first. 
 > Also, namespaced migrations were introduced in Yii 2.0.10, so before using them consider updating your framework
 > installation version.
 > If you are using a Yii 2 version prior to 2.0.10, you'll have to copy the migrations located on 
