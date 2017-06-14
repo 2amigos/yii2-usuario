@@ -56,7 +56,7 @@ you have deleted `m130524_201442_init.php` migration file which comes from the d
 There are two ways to apply migrations of this extension, the first one:
 
 ```php
-./yii migrate --migrationPath=@Da/User/Migration
+./yii migrate --migrationNamespaces=Da\\User\\Migration
 ./yii migrate --migrationPath=@yii/rbac/migrations
 ./yii migrate
 ```
@@ -92,6 +92,8 @@ is very convenient way to track new migration classes coming from this and possi
 > `./yii migrate --migrationPath=@yii/rbac/migrations`. 
 > Also, namespaced migrations were introduced in Yii 2.0.10, so before using them consider updating your framework
 > installation version.
+> If you are using a Yii 2 version prior to 2.0.10, you'll have to copy the migrations located on 
+> `vendor/2amigos/yii2-usuario/src/User/Migration`, remove its namespaces and add it to your @app/migrations folder.
 
 #### Step 3 - Configure
 
