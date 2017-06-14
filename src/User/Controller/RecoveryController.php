@@ -165,7 +165,7 @@ class RecoveryController extends Controller
                         'module' => $this->module,
                     ]
                 );
-            } else {var_dump('SHIT!');}
+            }
         }
 
         return $this->render('reset', ['model' => $form]);
