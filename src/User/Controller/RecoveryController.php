@@ -88,7 +88,7 @@ class RecoveryController extends Controller
 
         $event = $this->make(FormEvent::class, [$form]);
 
-        $this->make(AjaxRequestModelValidator::class, $form)->validate();
+        $this->make(AjaxRequestModelValidator::class, [$form])->validate();
 
         if ($form->load(Yii::$app->request->post())) {
             $this->trigger(FormEvent::EVENT_BEFORE_REQUEST, $event);
@@ -165,7 +165,7 @@ class RecoveryController extends Controller
                         'module' => $this->module,
                     ]
                 );
-            }
+            } else {var_dump('SHIT!');}
         }
 
         return $this->render('reset', ['model' => $form]);
