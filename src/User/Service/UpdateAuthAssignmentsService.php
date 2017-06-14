@@ -28,7 +28,7 @@ class UpdateAuthAssignmentsService implements ServiceInterface
 
     public function run()
     {
-        if ($this->model->validate()) {
+        if (!$this->model->validate()) {
             return false;
         }
 

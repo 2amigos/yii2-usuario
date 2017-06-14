@@ -64,10 +64,13 @@ class AuthItemEditionService implements ServiceInterface
 
             $this->model->item = $item;
 
-            return $this->updateChildren();
+            $this->updateChildren();
+
         } catch (Exception $e) {
             return false;
         }
+
+        return true;
     }
 
     /**

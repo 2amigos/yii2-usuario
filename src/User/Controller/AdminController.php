@@ -164,10 +164,11 @@ class AdminController extends Controller
     {
         /** @var User $user */
         $user = $this->userQuery->where(['id' => $id])->one();
+        /** @var Profile $profile */
         $profile = $user->profile;
         if ($profile === null) {
             $profile = $this->make(Profile::class);
-            $profile->link($user);
+            $profile->link('user', $user);
         }
         /** @var UserEvent $event */
         $event = $this->make(UserEvent::class, [$user]);
@@ -244,7 +245,7 @@ class AdminController extends Controller
 
     public function actionDelete($id)
     {
-        if ($id === Yii::$app->user->getId()) {
+        if ((int)$id === Yii::$app->user->getId()) {
             Yii::$app->getSession()->setFlash('danger', Yii::t('usuario', 'You cannot remove your own account'));
         } else {
             /** @var User $user */
@@ -269,7 +270,7 @@ class AdminController extends Controller
 
     public function actionBlock($id)
     {
-        if ($id === Yii::$app->user->getId()) {
+        if ((int)$id === Yii::$app->user->getId()) {
             Yii::$app->getSession()->setFlash('danger', Yii::t('usuario', 'You cannot remove your own account'));
         } else {
             /** @var User $user */
