@@ -119,6 +119,7 @@ See also all the possible configuration options available:
 
 - [Configuration Options](installation/configuration-options.md)
 - [RBAC](installation/rbac.md)
+- [Console Commands](installation/console-commands.md)
 
 Enhancing and Overriding
 ------------------------
