@@ -72,7 +72,7 @@ class Profile extends ActiveRecord
             'timeZoneValidation' => [
                 'timezone',
                 function ($attribute) {
-                    if ($this->make(TimeZoneValidator::class, [$attribute])->validate()) {
+                    if ($this->make(TimeZoneValidator::class, [$this->{$attribute}])->validate()) {
                         $this->addError($attribute, Yii::t('usuario', 'Time zone is not valid'));
                     }
                 },

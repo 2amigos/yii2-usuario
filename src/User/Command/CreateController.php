@@ -28,6 +28,7 @@ class CreateController extends Controller
         /** @var User $user */
         $user = $this->make(
             User::class,
+            [],
             ['scenario' => 'create', 'email' => $email, 'username' => $username, 'password' => $password]
         );
         $mailService = MailFactory::makeWelcomeMailerService($user);
