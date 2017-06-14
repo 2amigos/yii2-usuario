@@ -25,7 +25,7 @@ class ConfirmController extends Controller
 
     protected $userQuery;
 
-    public function __construct($id, Module $module, UserQuery $userQuery, array $config)
+    public function __construct($id, Module $module, UserQuery $userQuery, array $config = [])
     {
         $this->userQuery = $userQuery;
 
