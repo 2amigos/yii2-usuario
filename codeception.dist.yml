@@ -22,7 +22,7 @@ coverage:
     enabled: true
     whitelist:
         include:
-            - lib/*
+            - src/*
         exclude:
-            - lib/User/Migration/*
-            - lib/User/resources/*
+            - src/User/Migration/*
+            - src/User/resources/*
