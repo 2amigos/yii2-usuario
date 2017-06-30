@@ -5,7 +5,7 @@ return [
     'basePath' => dirname(__DIR__),
     'language' => 'en-US',
     'aliases' => [
-        '@Da/User' => dirname(dirname(dirname(__DIR__))) . '/lib/User',
+        '@Da/User' => dirname(dirname(dirname(__DIR__))) . '/src/User',
         '@tests' => dirname(dirname(__DIR__)),
         '@vendor' => VENDOR_DIR,
         '@bower' => VENDOR_DIR . '/bower-asset',
@@ -36,7 +36,7 @@ return [
             'translations' => [
                 'usuario*' => [
                     'class' => 'yii\i18n\PhpMessageSource',
-                    'basePath' => __DIR__ . '/../../../lib/User/resources/i18n',
+                    'basePath' => __DIR__ . '/../../../src/User/resources/i18n',
                     'sourceLanguage' => 'en-US',
                     'fileMap' => [
                         'usuario' => 'usuario.php',
