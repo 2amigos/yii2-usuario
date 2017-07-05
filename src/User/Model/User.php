@@ -116,7 +116,7 @@ class User extends ActiveRecord implements IdentityInterface
         return [
             'username' => Yii::t('usuario', 'Username'),
             'email' => Yii::t('usuario', 'Email'),
-            'registration_ip' => Yii::t('usuario', 'Registration ip'),
+            'registration_ip' => Yii::t('usuario', 'Registration IP'),
             'unconfirmed_email' => Yii::t('usuario', 'New email'),
             'password' => Yii::t('usuario', 'Password'),
             'created_at' => Yii::t('usuario', 'Registration time'),
