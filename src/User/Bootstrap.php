@@ -310,7 +310,7 @@ class Bootstrap implements BootstrapInterface
                 'PermissionSearch',
                 'RoleSearch',
             ],
-            'Da\UserForm' => [
+            'Da\User\Form' => [
                 'RegistrationForm',
                 'ResendForm',
                 'LoginForm',
