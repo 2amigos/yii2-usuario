@@ -13,9 +13,9 @@ use Da\User\Widget\ConnectWidget;
 use yii\helpers\Html;
 
 /**
- * @var yii\web\View $this
+ * @var yii\web\View           $this
  * @var yii\widgets\ActiveForm $form
- * @var \Da\User\Model\User $user
+ * @var \Da\User\Model\User    $user
  */
 
 $this->title = Yii::t('usuario', 'Networks');

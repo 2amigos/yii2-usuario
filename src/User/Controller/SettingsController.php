@@ -50,12 +50,12 @@ class SettingsController extends Controller
     /**
      * SettingsController constructor.
      *
-     * @param string $id
-     * @param Module $module
-     * @param ProfileQuery $profileQuery
-     * @param UserQuery $userQuery
+     * @param string                    $id
+     * @param Module                    $module
+     * @param ProfileQuery              $profileQuery
+     * @param UserQuery                 $userQuery
      * @param SocialNetworkAccountQuery $socialNetworkAccountQuery
-     * @param array $config
+     * @param array                     $config
      */
     public function __construct(
         $id,

@@ -46,9 +46,9 @@ class AuthItemFactory
      * @param $type
      * @param $name
      *
+     * @throws Exception
      * @return \yii\rbac\Role|\yii\rbac\Permission
      *
-     * @throws Exception
      */
     public static function makeByType($type, $name)
     {

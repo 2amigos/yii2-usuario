@@ -14,9 +14,9 @@ use yii\helpers\Html;
 use yii\widgets\ActiveForm;
 
 /**
- * @var yii\web\View $this
+ * @var yii\web\View            $this
  * @var \Da\User\Form\LoginForm $model
- * @var \Da\User\Module $module
+ * @var \Da\User\Module         $module
  */
 
 $this->title = Yii::t('usuario', 'Sign in');

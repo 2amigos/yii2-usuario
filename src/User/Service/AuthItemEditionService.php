@@ -65,7 +65,6 @@ class AuthItemEditionService implements ServiceInterface
             $this->model->item = $item;
 
             $this->updateChildren();
-
         } catch (Exception $e) {
             return false;
         }

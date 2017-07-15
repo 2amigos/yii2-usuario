@@ -37,10 +37,10 @@ class SecurityController extends Controller
     /**
      * SecurityController constructor.
      *
-     * @param string $id
-     * @param Module $module
+     * @param string                    $id
+     * @param Module                    $module
      * @param SocialNetworkAccountQuery $socialNetworkAccountQuery
-     * @param array $config
+     * @param array                     $config
      */
     public function __construct(
         $id,

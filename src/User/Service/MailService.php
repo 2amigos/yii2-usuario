@@ -1,5 +1,14 @@
 <?php
 
+/*
+ * This file is part of the 2amigos/yii2-usuario project.
+ *
+ * (c) 2amigOS! <http://2amigos.us/>
+ *
+ * For the full copyright and license information, please view
+ * the LICENSE file that was distributed with this source code.
+ */
+
 namespace Da\User\Service;
 
 use Da\User\Contracts\ServiceInterface;
@@ -21,11 +30,11 @@ class MailService implements ServiceInterface
     /**
      * MailService constructor.
      *
-     * @param string $from
-     * @param string $to
-     * @param string $subject
-     * @param string $view
-     * @param array $params
+     * @param string                     $from
+     * @param string                     $to
+     * @param string                     $subject
+     * @param string                     $view
+     * @param array                      $params
      * @param BaseMailer|MailerInterface $mailer
      */
     public function __construct($from, $to, $subject, $view, array $params, MailerInterface $mailer)

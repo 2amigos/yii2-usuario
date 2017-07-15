@@ -28,7 +28,7 @@ class ResendForm extends Model
 
     /**
      * @param UserQuery $userQuery
-     * @param array $config
+     * @param array     $config
      */
     public function __construct(UserQuery $userQuery, $config = [])
     {

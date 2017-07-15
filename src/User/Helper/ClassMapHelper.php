@@ -45,9 +45,9 @@ class ClassMapHelper
     /**
      * @param $key
      *
+     * @throws \Exception
      * @return mixed
      *
-     * @throws \Exception
      */
     public function get($key)
     {

@@ -32,8 +32,8 @@ class SocialNetworkAccountConnectService implements ServiceInterface
     /**
      * SocialNetworkAccountUserLinkService constructor.
      *
-     * @param SecurityController $controller
-     * @param AuthClientInterface $client
+     * @param SecurityController        $controller
+     * @param AuthClientInterface       $client
      * @param SocialNetworkAccountQuery $socialNetworkAccountQuery
      */
     public function __construct(
@@ -67,7 +67,6 @@ class SocialNetworkAccountConnectService implements ServiceInterface
             'danger',
             Yii::t('usuario', 'This account has already been connected to another user')
         );
-
 
         return false;
     }

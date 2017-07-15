@@ -11,8 +11,8 @@
 
 /**
  * @var $dataProvider \yii\data\ActiveDataProvider
- * @var $this yii\web\View
- * @var $searchModel \Da\User\Search\PermissionSearch
+ * @var $this         yii\web\View
+ * @var $searchModel  \Da\User\Search\PermissionSearch
  */
 use yii\grid\ActionColumn;
 use yii\grid\GridView;

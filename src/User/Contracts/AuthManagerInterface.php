@@ -17,7 +17,7 @@ interface AuthManagerInterface extends ManagerInterface
 {
     /**
      * @param int|null $type
-     * @param array $excludeItems
+     * @param array    $excludeItems
      *
      * @return mixed
      */

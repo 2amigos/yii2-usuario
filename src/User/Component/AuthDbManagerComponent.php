@@ -18,8 +18,8 @@ use yii\rbac\DbManager;
 class AuthDbManagerComponent extends DbManager implements AuthManagerInterface
 {
     /**
-     * @param int|null $type If null will return all auth items
-     * @param array $excludeItems Items that should be excluded from result array
+     * @param int|null $type         If null will return all auth items
+     * @param array    $excludeItems Items that should be excluded from result array
      *
      * @return array
      */

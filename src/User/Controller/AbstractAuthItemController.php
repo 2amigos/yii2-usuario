@@ -33,10 +33,10 @@ abstract class AbstractAuthItemController extends Controller
     /**
      * AbstractAuthItemController constructor.
      *
-     * @param string $id
-     * @param Module $module
+     * @param string     $id
+     * @param Module     $module
      * @param AuthHelper $authHelper
-     * @param array $config
+     * @param array      $config
      */
     public function __construct($id, Module $module, AuthHelper $authHelper, array $config = [])
     {

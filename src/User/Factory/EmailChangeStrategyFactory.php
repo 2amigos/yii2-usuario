@@ -31,9 +31,9 @@ class EmailChangeStrategyFactory
      * @param $strategy
      * @param SettingsForm $form
      *
+     * @throws Exception
      * @return MailChangeStrategyInterface
      *
-     * @throws Exception
      */
     public static function makeByStrategyType($strategy, SettingsForm $form)
     {

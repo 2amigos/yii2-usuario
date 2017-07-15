@@ -44,11 +44,11 @@ class RegistrationController extends Controller
     /**
      * RegistrationController constructor.
      *
-     * @param string $id
-     * @param Module $module
-     * @param UserQuery $userQuery
+     * @param string                    $id
+     * @param Module                    $module
+     * @param UserQuery                 $userQuery
      * @param SocialNetworkAccountQuery $socialNetworkAccountQuery
-     * @param array $config
+     * @param array                     $config
      */
     public function __construct(
         $id,
@@ -106,7 +106,6 @@ class RegistrationController extends Controller
             $mailService = MailFactory::makeWelcomeMailerService($user);
 
             if ($this->make(UserRegisterService::class, [$user, $mailService])->run()) {
-
                 Yii::$app->session->setFlash(
                     'info',
                     Yii::t(

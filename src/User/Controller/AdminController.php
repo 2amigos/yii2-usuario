@@ -43,10 +43,10 @@ class AdminController extends Controller
     /**
      * AdminController constructor.
      *
-     * @param string $id
-     * @param Module $module
+     * @param string    $id
+     * @param Module    $module
      * @param UserQuery $userQuery
-     * @param array $config
+     * @param array     $config
      */
     public function __construct($id, Module $module, UserQuery $userQuery, array $config = [])
     {
@@ -282,7 +282,6 @@ class AdminController extends Controller
                 Yii::$app->getSession()->setFlash('success', Yii::t('usuario', 'User block status has been updated.'));
             } else {
                 Yii::$app->getSession()->setFlash('danger', Yii::t('usuario', 'Unable to update block status.'));
-
             }
         }
 

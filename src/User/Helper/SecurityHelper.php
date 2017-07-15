@@ -28,7 +28,7 @@ class SecurityHelper
     /**
      * Generates a secure hash from a password and a random salt.
      *
-     * @param string $password
+     * @param string   $password
      * @param null|int $cost
      *
      * @return string

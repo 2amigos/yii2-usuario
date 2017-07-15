@@ -59,7 +59,7 @@ class Bootstrap implements BootstrapInterface
      * Initialize container with module classes.
      *
      * @param \yii\base\Application $app
-     * @param array $map the previously built class map list
+     * @param array                 $map the previously built class map list
      */
     protected function initContainer($app, $map)
     {
@@ -214,7 +214,7 @@ class Bootstrap implements BootstrapInterface
     /**
      * Ensures required mail parameters needed for the mail service.
      *
-     * @param Application $app
+     * @param Application             $app
      * @param Module|\yii\base\Module $module
      */
     protected function initMailServiceConfiguration(Application $app, Module $module)
@@ -331,12 +331,12 @@ class Bootstrap implements BootstrapInterface
     /**
      * Returns the parent class name route of a short class name.
      *
-     * @param array $routes class name routes
+     * @param array  $routes class name routes
      * @param string $name
      *
+     * @throws Exception
      * @return int|string
      *
-     * @throws Exception
      */
     protected function getRoute(array $routes, $name)
     {
