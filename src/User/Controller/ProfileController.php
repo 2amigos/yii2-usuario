@@ -25,10 +25,10 @@ class ProfileController extends Controller
     /**
      * ProfileController constructor.
      *
-     * @param string $id
-     * @param Module $module
+     * @param string       $id
+     * @param Module       $module
      * @param ProfileQuery $profileQuery
-     * @param array $config
+     * @param array        $config
      */
     public function __construct($id, Module $module, ProfileQuery $profileQuery, array $config = [])
     {
@@ -67,7 +67,7 @@ class ProfileController extends Controller
 
     public function actionShow($id)
     {
-        $profile = $this->profileQuery->whereId($id)->one();
+        $profile = $this->profileQuery->whereUserId($id)->one();
 
         if ($profile === null) {
             throw new NotFoundHttpException();

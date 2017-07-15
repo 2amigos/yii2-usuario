@@ -15,13 +15,9 @@ use yii\db\ActiveQuery;
 
 class ProfileQuery extends ActiveQuery
 {
-    public function whereId($id)
-    {
-        return $this->andWhere(['id' => $id]);
-    }
-	
     /**
      * Search by user id
+     * @param  mixed       $user_id
      * @return ActiveQuery
      */
     public function whereUserId($user_id)
