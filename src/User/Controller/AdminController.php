@@ -255,7 +255,7 @@ class AdminController extends Controller
             $this->trigger(ActiveRecord::EVENT_BEFORE_DELETE, $event);
 
             if ($user->delete()) {
-                Yii::$app->getSession()->setFlash('success', \Yii::t('usuario', 'User has been deleted'));
+                Yii::$app->getSession()->setFlash('success', Yii::t('usuario', 'User has been deleted'));
                 $this->trigger(ActiveRecord::EVENT_AFTER_DELETE, $event);
             } else {
                 Yii::$app->getSession()->setFlash(

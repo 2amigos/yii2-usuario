@@ -46,11 +46,9 @@ class AuthItemEditionService implements ServiceInterface
             $item->description = $this->model->description;
 
             if (!empty($this->model->rule)) {
-                $rule = $this->make($this->model->rule);
-                if (null === $this->getAuthManager()->getRule($rule->name)) {
-                    $this->getAuthManager()->add($rule);
+                if (null !== $this->getAuthManager()->getRule($this->model->rule)) {
+                    $item->ruleName = $this->model->rule;
                 }
-                $item->ruleName = $rule->name;
             } else {
                 $item->ruleName = null;
             }

@@ -13,6 +13,7 @@ namespace Da\User\Model;
 
 use Da\User\Traits\AuthManagerAwareTrait;
 use Da\User\Validator\RbacItemsValidator;
+use Da\User\Validator\RbacRuleExistsValidator;
 use Da\User\Validator\RbacRuleValidator;
 use Yii;
 use yii\base\Model;
@@ -41,7 +42,7 @@ abstract class AbstractAuthItem extends Model
     /**
      * @var string[]
      */
-    public $children;
+    public $children = [];
     /**
      * @var \yii\rbac\Role|\yii\rbac\Permission
      */
@@ -60,7 +61,7 @@ abstract class AbstractAuthItem extends Model
             $this->description = $this->item->description;
             $this->children = array_keys($this->getAuthManager()->getChildren($this->item->name));
             if ($this->item->ruleName !== null) {
-                $this->rule = get_class($this->getAuthManager()->getRule($this->item->ruleName));
+                $this->rule = $this->item->ruleName;
             }
         }
     }
@@ -111,7 +112,7 @@ abstract class AbstractAuthItem extends Model
                 },
             ],
             ['children', RbacItemsValidator::class],
-            ['rule', RbacRuleValidator::class],
+            ['rule', RbacRuleExistsValidator::class],
         ];
     }
 

@@ -16,6 +16,7 @@
 
 use Da\User\Helper\AuthHelper;
 use dosamigos\selectize\SelectizeDropDownList;
+use yii\helpers\ArrayHelper;
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
 
@@ -33,7 +34,12 @@ $unassignedItems = Yii::$container->get(AuthHelper::class)->getUnassignedItems($
 
 <?= $form->field($model, 'description') ?>
 
-<?= $form->field($model, 'rule') ?>
+<?= $form->field($model, 'rule')->widget(SelectizeDropDownList::class, [
+    'items' => ArrayHelper::map(Yii::$app->getAuthManager()->getRules(), 'name', 'name'),
+    'options' => [
+        'prompt' => 'Select rule...'
+    ]
+]) ?>
 
 <?= $form->field($model, 'children')->widget(
     SelectizeDropDownList::class,

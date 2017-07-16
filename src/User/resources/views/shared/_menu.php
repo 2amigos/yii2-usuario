@@ -33,6 +33,10 @@ use yii\bootstrap\Nav;
                 'url' => ['/user/permission/index'],
             ],
             [
+                'label' => Yii::t('usuario', 'Rules'),
+                'url' => ['/user/rule/index'],
+            ],
+            [
                 'label' => Yii::t('usuario', 'Create'),
                 'items' => [
                     [
@@ -46,6 +50,10 @@ use yii\bootstrap\Nav;
                     [
                         'label' => Yii::t('usuario', 'New permission'),
                         'url' => ['/user/permission/create'],
+                    ],
+                    [
+                        'label' => Yii::t('usuario', 'New rule'),
+                        'url' => ['/user/rule/create'],
                     ],
                 ],
             ],

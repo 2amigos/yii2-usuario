@@ -11,26 +11,26 @@
 
 namespace Da\User\Validator;
 
+use Da\User\Traits\ContainerAwareTrait;
 use Exception;
-use ReflectionClass;
 use Yii;
+use yii\rbac\Rule;
 use yii\validators\Validator;
 
 class RbacRuleValidator extends Validator
 {
+    use ContainerAwareTrait;
+
     protected function validateValue($value)
     {
         try {
-            $class = new ReflectionClass($value);
-        } catch (Exception $e) {
-            return [Yii::t('usuario', 'Class "{0}" does not exist', $value), []];
-        }
+            $rule = $this->make($value);
 
-        if ($class->isInstantiable() == false) {
-            return [Yii::t('usuario', 'Rule class can not be instantiated'), []];
-        }
-        if ($class->isSubclassOf('\yii\rbac\Rule') == false) {
-            return [Yii::t('usuario', 'Rule class must extend "yii\\rbac\\Rule"'), []];
+            if (!($rule instanceof Rule)) {
+                return [Yii::t('usuario', 'Rule class must extend "yii\\rbac\\Rule".'), []];
+            }
+        } catch (Exception $e) {
+            return [Yii::t('usuario', 'Authentication rule class {0} can not be instantiated', $value), []];
         }
     }
 }
