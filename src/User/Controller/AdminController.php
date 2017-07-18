@@ -92,6 +92,11 @@ class AdminController extends Controller
                 'rules' => [
                     [
                         'allow' => true,
+                        'actions' => ['switch-identity'],
+                        'roles' => ['@'],
+                    ],
+                    [
+                        'allow' => true,
                         'roles' => ['admin'],
                     ],
                 ],
