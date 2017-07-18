@@ -17,6 +17,8 @@ On Controllers
     - **UserEvent::EVENT_AFTER_BLOCK**: Occurs after a user is being blocked (forbid access to app)
     - **UserEvent::EVENT_BEFORE_UNBLOCK**: Occurs before a user is being un-blocked
     - **UserEvent::EVENT_AFTER_UNBLOCK**: Occurs after a user is being un-blocked
+    - **UserEvent::EVENT_BEFORE_SWITCH_IDENTITY**: Occurs before a user is being impersonated by admin
+    - **UserEvent::EVENT_AFTER_SWITCH_IDENTITY**: Occurs after a user his being impersonated by admin
 
 
 - **RegistrationController**

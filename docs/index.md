@@ -150,6 +150,7 @@ Helpful Guides
 --------------
 
 - [How to Add Captcha Widget](helpful-guides/how-to-add-captcha-widget.md)
+- [How to Switch Identities](helpful-guides/how-to-swith-identities.md)
 - [Separate Frontend and Backend Sessions](helpful-guides/separate-frontend-and-backend-sessions.md)
 - [Social Network Authentication](helpful-guides/social-network-authentication.md)
 
