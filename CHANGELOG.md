@@ -1,5 +1,8 @@
 # CHANGELOG
 
+## 1.0.9 - July 19, 2017
+- Enh #22: Added impersonation feature (@tonydspaniard)
+
 ## 1.0.8 - July 16, 2017 
 
 - Enh #25: Added option to manage rules (@tonydspaniard)
