@@ -305,7 +305,7 @@ class AdminController extends Controller
             return $this->redirect(['index']);
         }
 
-        $this->make(SwitchIdentityService::class, [$this, 'userId' => $id])->run();
+        $this->make(SwitchIdentityService::class, [$this, 2 => $id])->run();
 
         return $this->goHome();
     }

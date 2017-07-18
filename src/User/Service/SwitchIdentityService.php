@@ -31,7 +31,7 @@ class SwitchIdentityService implements ServiceInterface
     protected $userId;
     protected $userQuery;
 
-    public function __construct(AdminController $controller, $userId, UserQuery $userQuery)
+    public function __construct(AdminController $controller, UserQuery $userQuery, $userId = null)
     {
         /** @var Module $module */
         $module = $controller->module;
