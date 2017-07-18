@@ -13,10 +13,13 @@ register by throwing a `NotFoundHttpException` if the `RegistrationController::a
 If `true`, the module will send an email with a confirmation link that user needs to click through to complete its 
 registration process.
 
-
 #### enableFlashMessages (type: `boolean`, default: `true`)
 
-If `true` views will display flash messages. 
+If `true` views will display flash messages.
+ 
+#### enableSwitchIdentities (type: `boolean`, default: `true`)
+ 
+If `true` allows switching identities for the admin user.
 
 #### generatePasswords (type: `boolean`, default: `true`)
 
@@ -120,6 +123,10 @@ The routes (url rules) of the module for the URL management. The default values 
 #### viewPath (type: `string`, default: `@Da/User/resources/views`)
 
 Configures the root directory of the view files. See [overriding views](../enhancing-and-overriding/overriding-views.md).
+
+#### switchIdentitySessionKey (type: `string`, default: `yuik_usuario`) 
+
+Configures the name of the session key that will be used to hold the original admin identifier.
 
 
 
