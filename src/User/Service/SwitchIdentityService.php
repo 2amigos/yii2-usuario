@@ -56,7 +56,7 @@ class SwitchIdentityService implements ServiceInterface
                 throw new ForbiddenHttpException();
             }
             $user = $this->userQuery->whereId($this->userId)->one();
-            $session->set($this->switchIdentitySessionKey, $this->userId);
+            $session->set($this->switchIdentitySessionKey, Yii::$app->user->id);
         }
 
         $event = $this->make(UserEvent::class, [$user]);
