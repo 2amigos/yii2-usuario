@@ -34,6 +34,8 @@ class UserEvent extends Event
     const EVENT_AFTER_BLOCK = 'afterBlock';
     const EVENT_BEFORE_LOGOUT = 'beforeLogout';
     const EVENT_AFTER_LOGOUT = 'afterLogout';
+    const EVENT_BEFORE_SWITCH_IDENTITY = 'beforeSwitchIdentity';
+    const EVENT_AFTER_SWITCH_IDENTITY = 'afterSwitchIdentity';
 
     protected $user;
 

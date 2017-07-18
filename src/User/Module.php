@@ -32,6 +32,10 @@ class Module extends BaseModule
      */
     public $enableFlashMessages = true;
     /**
+     * @var bool whether to be able to, as an admin, impersonate other users
+     */
+    public $enableSwitchIdentities = true;
+    /**
      * @var bool whether to generate passwords automatically and remove the password field from the registration form
      */
     public $generatePasswords = false;
@@ -92,7 +96,6 @@ class Module extends BaseModule
      * @see Bootstrap::buildClassMap() for more details
      */
     public $classMap = [];
-
     /**
      * @var array the url rules (routes)
      */
@@ -102,12 +105,14 @@ class Module extends BaseModule
         '<action:(register|resend)>' => 'registration/<action>',
         'confirm/<id:\d+>/<code:[A-Za-z0-9_-]+>' => 'registration/confirm',
         'forgot' => 'recovery/request',
-        'recover/<id:\d+>/<code:[A-Za-z0-9_-]+>' => 'recovery/reset',
-        'settings/<action:\w+>' => 'settings/<action>',
+        'recover/<id:\d+>/<code:[A-Za-z0-9_-]+>' => 'recovery/reset'
     ];
-
     /**
      * @var string
      */
     public $viewPath = '@Da/User/resources/views';
+    /**
+     * @var string the session key name to impersonate users
+     */
+    public $switchIdentitySessionKey = 'yuik_user';
 }

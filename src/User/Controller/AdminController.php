@@ -18,6 +18,7 @@ use Da\User\Model\Profile;
 use Da\User\Model\User;
 use Da\User\Query\UserQuery;
 use Da\User\Search\UserSearch;
+use Da\User\Service\SwitchIdentityService;
 use Da\User\Service\UserBlockService;
 use Da\User\Service\UserConfirmationService;
 use Da\User\Service\UserCreateService;
@@ -80,6 +81,7 @@ class AdminController extends Controller
                     'delete' => ['post'],
                     'confirm' => ['post'],
                     'block' => ['post'],
+                    'switch-identity' => ['post']
                 ],
             ],
             'access' => [
@@ -286,5 +288,20 @@ class AdminController extends Controller
         }
 
         return $this->redirect(Url::previous('actions-redirect'));
+    }
+
+    public function actionSwitchIdentity($id = null)
+    {
+        /** @var \Da\User\Module $module */
+        $module = $this->module;
+        if (false === $module->enableSwitchIdentities) {
+            Yii::$app->getSession()->setFlash('danger', Yii::t('usuario', 'Switch identities is disabled.'));
+
+            return $this->redirect(['index']);
+        }
+
+        $this->make(SwitchIdentityService::class, [$this, 'userId' => $id])->run();
+
+        return $this->goHome();
     }
 }

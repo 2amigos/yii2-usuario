@@ -100,6 +100,7 @@ class Bootstrap implements BootstrapInterface
             $di->set(Service\UserConfirmationService::class);
             $di->set(Service\AuthItemEditionService::class);
             $di->set(Service\UpdateAuthAssignmentsService::class);
+            $di->set(Service\SwitchIdentityService::class);
 
             // email change strategy
             $di->set(Strategy\DefaultEmailChangeStrategy::class);

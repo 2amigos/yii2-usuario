@@ -18,10 +18,13 @@ use yii\widgets\Pjax;
  * @var $this         yii\web\View
  * @var $dataProvider yii\data\ActiveDataProvider
  * @var $searchModel  Da\User\Search\UserSearch
+ * @var $module       Da\User\Module
  */
 
 $this->title = Yii::t('usuario', 'Manage users');
 $this->params['breadcrumbs'][] = $this->title;
+
+$module = Yii::$app->getModule('user');
 ?>
 
 <?php $this->beginContent('@Da/User/resources/views/shared/admin_layout.php') ?>
@@ -106,7 +109,27 @@ $this->params['breadcrumbs'][] = $this->title;
             ],
             [
                 'class' => 'yii\grid\ActionColumn',
-                'template' => '{update} {delete}',
+                'template' => '{switch} {update} {delete}',
+                'buttons' => [
+                    'switch' => function ($url, $model) use ($module) {
+                        if ($model->id != Yii::$app->user->id && $module->enableSwitchIdentities) {
+                            return Html::a(
+                                '<span class="glyphicon glyphicon-user"></span>',
+                                ['/user/admin/switch-identity', 'id' => $model->id],
+                                [
+                                    'title' => Yii::t('usuario', 'Impersonate this user'),
+                                    'data-confirm' => Yii::t(
+                                        'usuario',
+                                        'Are you sure you want to switch to this user for the rest of this Session?'
+                                    ),
+                                    'data-method' => 'POST',
+                                ]
+                            );
+                        }
+
+                        return null;
+                    }
+                ]
             ],
         ],
     ]
