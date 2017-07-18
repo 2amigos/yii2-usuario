@@ -121,6 +121,7 @@ See also all the possible configuration options available:
 - [RBAC](installation/rbac.md)
 - [Console Commands](installation/console-commands.md)
 - [Mailer](installation/mailer.md)
+- [Available Actions](installation/available-actions.md)
 
 Enhancing and Overriding
 ------------------------
