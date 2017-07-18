@@ -112,7 +112,7 @@ class Module extends BaseModule
      */
     public $viewPath = '@Da/User/resources/views';
     /**
-     * @var string the session key name to impersonate users
+     * @var string the session key name to impersonate users. Please, modify it for security reasons!
      */
-    public $switchIdentitySessionKey = 'yuik_user';
+    public $switchIdentitySessionKey = 'yuik_usuario';
 }
