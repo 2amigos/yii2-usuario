@@ -112,7 +112,7 @@ Once we have it installed, we have to configure it on your `config.php` file.
 Configuration may differ from template to template, the following are some guidelines for sidekit app template and 
 the official Yii2 advanced application template: 
 
-- [Sidekit Application Template](installation/sidekit-application-template.md)
+- [2amigos Application Template](installation/yii2-application-template.md)
 - [Advanced Application Template](installation/advanced-application-template.md)
 
 See also all the possible configuration options available: 

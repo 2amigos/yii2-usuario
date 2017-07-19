@@ -1,20 +1,20 @@
-Sidekit Application Template
+2amigos Application Template
 ============================
 
-Sidekit Application Template is our proposed structure for your Yii2 applications. It makes use 
-of a special library named `SideKit`
+This Application Template is our proposed structure for your Yii2 applications. It makes use 
+of a special library named `ConfigKit`
 
 > For further information regarding the use of this template, please visit its 
-[README file](https://github.com/sidekit/yii2-app-template).
+[README file](https://github.com/2amigos/yii2-app-template).
 
-Step 1 - Install SideKit Application template
-----------------------------------------------
+Step 1 - Install The Application template
+-----------------------------------------
 
 We will assume that you have composer installed globally on your computer and also the 
 `fxp/composer-asset/plugin:^1.3` that is required for all Yii2 apps.
 
 ```bash
-composer create-project --prefer-dist --stability=dev sidekit/yii2-app-template your-site-name
+composer create-project --prefer-dist --stability=dev 2amigos/yii2-app-template your-site-name
 ```
 
 Step 2 - Configure your application
@@ -74,6 +74,8 @@ return [
 
 This basically instructs your application to always try to use migrations from the given namespace. Which again
 is very convenient way to track new migration classes coming from this and possibly other extensions and sources.
+
+
 
 > Namespaced migrations were introduced in Yii 2.0.10, so before using them consider updating your framework
 > installation version.
