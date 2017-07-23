@@ -50,6 +50,6 @@ In fact, we have used some of its processes, commands, views, and some of its at
 modules and make it easier for our developers to swap from [Dektrium's](https://dektrium.com) modules to our own.
 
 > [![2amigOS!](https://s.gravatar.com/avatar/55363394d72945ff7ed312556ec041e0?s=80)](http://www.2amigos.us)
-<i>Custom Software | Web & Mobile Software Development</i>  
-[www.2amigos.us](http://www.2amigos.us)
+> <i>Custom Software | Web & Mobile Software Development</i>  
+> [www.2amigos.us](http://www.2amigos.us)
 
