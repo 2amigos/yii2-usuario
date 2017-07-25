@@ -178,7 +178,7 @@ class AdminController extends Controller
             $profile->link('user', $user);
         }
         /** @var UserEvent $event */
-        $event = $this->make(UserEvent::class, [$user]);
+        $event = $this->make(UserEvent::class, [$profile]);
 
         $this->make(AjaxRequestModelValidator::class, [$user])->validate();
 
