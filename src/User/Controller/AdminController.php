@@ -178,9 +178,9 @@ class AdminController extends Controller
             $profile->link('user', $user);
         }
         /** @var UserEvent $event */
-        $event = $this->make(UserEvent::class, [$profile]);
+        $event = $this->make(UserEvent::class, [$user]);
 
-        $this->make(AjaxRequestModelValidator::class, [$user])->validate();
+        $this->make(AjaxRequestModelValidator::class, [$profile])->validate();
 
         if ($profile->load(Yii::$app->request->post())) {
             if ($profile->save()) {
