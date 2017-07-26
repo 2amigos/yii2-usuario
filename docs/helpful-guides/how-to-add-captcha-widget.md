@@ -124,6 +124,11 @@ Finally, we have to configure the module and the application to ensure is using 
         'class' => Da\User\Module::class,
         'classMap' => [
             'RecoveryForm' => 'app\forms\RecoveryForm'
+        ], 
+        'controllerMap' => [
+            'recovery' => [
+                 'class' => '\app\controllers\RecoveryController' 
+             ]
         ]
     ]
 ], 
