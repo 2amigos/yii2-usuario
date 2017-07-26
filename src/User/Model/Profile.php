@@ -125,7 +125,7 @@ class Profile extends ActiveRecord
      */
     public function setTimeZone(DateTimeZone $timezone)
     {
-        $this->setAttribute('timezone', $timezone);
+        $this->setAttribute('timezone', $timezone->getName());
     }
 
     /**
