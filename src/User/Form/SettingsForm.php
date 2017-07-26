@@ -46,11 +46,15 @@ class SettingsForm extends Model
     protected $securityHelper;
 
     /** @var User */
-    protected $user;
+    protected $_user;
 
     public function __construct(SecurityHelper $securityHelper, array $config = [])
     {
         $this->securityHelper = $securityHelper;
+        $this->setAttributes([
+            'username' => $this->user->username,
+            'email'    => $this->user->unconfirmed_email ?: $this->user->email,
+        ], false);
         parent::__construct($config);
     }
 
@@ -106,11 +110,11 @@ class SettingsForm extends Model
      */
     public function getUser()
     {
-        if ($this->user == null) {
-            $this->user = Yii::$app->user->identity;
+        if ($this->_user == null) {
+            $this->_user = Yii::$app->user->identity;
         }
 
-        return $this->user;
+        return $this->_user;
     }
 
     /**
