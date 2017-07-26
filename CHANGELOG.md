@@ -1,5 +1,8 @@
 # CHANGELOG
 
+## 1.0.10 - Work In Progress
+- Enh #32: Added Italian Translation (maxxer)
+
 ## 1.0.9 - July 19, 2017
 - Enh #22: Added impersonation feature (@tonydspaniard)
 
