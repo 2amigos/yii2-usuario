@@ -26,8 +26,7 @@ class MailFactory
      */
     public static function makeWelcomeMailerService(User $user)
     {
-        /** @var Module $module */
-        $module = Yii::$app->getModule('user');
+        $module = self::getModule();
         $to = $user->email;
         $from = $module->mailParams['fromEmail'];
         $subject = $module->mailParams['welcomeMailSubject'];
@@ -49,8 +48,7 @@ class MailFactory
      */
     public static function makeRecoveryMailerService($email, Token $token = null)
     {
-        /** @var Module $module */
-        $module = Yii::$app->getModule('user');
+        $module = self::getModule();
         $to = $email;
         $from = $module->mailParams['fromEmail'];
         $subject = $module->mailParams['recoveryMailSubject'];
@@ -70,8 +68,7 @@ class MailFactory
      */
     public static function makeConfirmationMailerService(User $user, Token $token = null)
     {
-        /** @var Module $module */
-        $module = Yii::$app->getModule('user');
+        $module = self::getModule();
         $to = $user->email;
         $from = $module->mailParams['fromEmail'];
         $subject = $module->mailParams['confirmationMailSubject'];
@@ -91,8 +88,7 @@ class MailFactory
      */
     public static function makeReconfirmationMailerService(User $user, Token $token)
     {
-        /** @var Module $module */
-        $module = Yii::$app->getModule('user');
+        $module = self::getModule();
         $to = $token->type === Token::TYPE_CONFIRM_NEW_EMAIL
             ? $user->unconfirmed_email
             : $user->email;
@@ -121,5 +117,13 @@ class MailFactory
     public static function makeMailerService($from, $to, $subject, $view, array $params = [])
     {
         return Yii::$container->get(MailService::class, [$from, $to, $subject, $view, $params, Yii::$app->getMailer()]);
+    }
+
+    /**
+     * @return Module
+     */
+    protected static function getModule()
+    {
+        return Yii::$app->getModule('user');
     }
 }
