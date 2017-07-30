@@ -1,6 +1,5 @@
 # CHANGELOG
 
-
 ## 1.0.10 - Work In Progress
 - Fix #37: Fix bower alias in test environment (tekord)
 - Enh #32: Added Italian Translation (maxxer)
