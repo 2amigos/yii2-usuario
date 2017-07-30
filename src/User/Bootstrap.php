@@ -164,11 +164,10 @@ class Bootstrap implements BootstrapInterface
     protected function initTranslations(Application $app)
     {
         if (!isset($app->get('i18n')->translations['usuario*'])) {
-            $app->get('i18n')->translations['usuario*'] = [
-                'class' => PhpMessageSource::class,
-                'basePath' => __DIR__ . '/resources/i18n',
-                'sourceLanguage' => 'en-US',
-            ];
+            /** @var Module $module */
+            $module = $app->getModule('user');
+
+            $app->get('i18n')->translations['usuario*'] = $module->i18nTranslationConfig;
         }
     }
 
