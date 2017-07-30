@@ -51,6 +51,10 @@ class SettingsForm extends Model
     public function __construct(SecurityHelper $securityHelper, array $config = [])
     {
         $this->securityHelper = $securityHelper;
+        $config = [
+            'username' => $this->getUser()->username,
+            'email' => $this->getUser()->unconfirmed_email? : $this->getUser()->email
+        ];
         parent::__construct($config);
     }
 
