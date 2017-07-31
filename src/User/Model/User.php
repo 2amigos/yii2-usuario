@@ -43,6 +43,7 @@ use yii\web\IdentityInterface;
  * @property int $flags
  * @property int $created_at
  * @property int $updated_at
+ * @property int $last_login_at
  *
  * Defined relations:
  * @property SocialNetworkAccount[] $socialNetworkAccounts
@@ -134,6 +135,7 @@ class User extends ActiveRecord implements IdentityInterface
             'password' => Yii::t('usuario', 'Password'),
             'created_at' => Yii::t('usuario', 'Registration time'),
             'confirmed_at' => Yii::t('usuario', 'Confirmation time'),
+            'last_login_at' => Yii::t('usuario', 'Last login'),
         ];
     }
 
