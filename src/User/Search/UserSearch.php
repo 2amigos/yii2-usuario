@@ -31,6 +31,10 @@ class UserSearch extends Model
      */
     public $created_at;
     /**
+     * @var int
+     */
+    public $last_login_at;
+    /**
      * @var string
      */
     public $registration_ip;
@@ -57,7 +61,7 @@ class UserSearch extends Model
     public function rules()
     {
         return [
-            'safeFields' => [['username', 'email', 'registration_ip', 'created_at'], 'safe'],
+            'safeFields' => [['username', 'email', 'registration_ip', 'created_at', 'last_login_at'], 'safe'],
             'createdDefault' => ['created_at', 'default', 'value' => null],
         ];
     }
@@ -72,6 +76,7 @@ class UserSearch extends Model
             'email' => Yii::t('usuario', 'Email'),
             'created_at' => Yii::t('usuario', 'Registration time'),
             'registration_ip' => Yii::t('usuario', 'Registration IP'),
+            'last_login_at' => Yii::t('usuario', 'Last login'),
         ];
     }
 
@@ -97,6 +102,11 @@ class UserSearch extends Model
         if ($this->created_at !== null) {
             $date = strtotime($this->created_at);
             $query->andFilterWhere(['between', 'created_at', $date, $date + 3600 * 24]);
+        }
+
+        if ($this->last_login_at !== null) {
+            $date = strtotime($this->last_login_at);
+            $query->andFilterWhere(['between', 'last_login_at', $date, $date + 3600 * 24]);
         }
 
         $query
