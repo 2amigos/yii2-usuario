@@ -13,7 +13,7 @@ namespace Da\User\Migration;
 
 use yii\db\Migration;
 
-class m000000_000005_create_token_table extends Migration
+class m000000_000005_add_last_login_at extends Migration
 {
     public function up()
     {
