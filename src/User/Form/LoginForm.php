@@ -117,7 +117,6 @@ class LoginForm extends Model
     {
         if ($this->validate()) {
             $duration = $this->rememberMe ? $this->module->rememberLoginLifespan : 0;
-            $this->user->updateAttributes(['last_login_at' => time()]);
 
             return Yii::$app->getUser()->login($this->user, $duration);
         }
