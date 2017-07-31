@@ -124,6 +124,8 @@ class SecurityController extends Controller
         if ($form->load(Yii::$app->request->post())) {
             $this->trigger(FormEvent::EVENT_BEFORE_LOGIN, $event);
             if ($form->login()) {
+                Yii::$app->getUser()->identity->updateAttributes(['last_login_at' => time()]);
+
                 $this->trigger(FormEvent::EVENT_AFTER_LOGIN, $event);
 
                 return $this->goBack();
