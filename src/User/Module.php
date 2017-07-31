@@ -115,4 +115,13 @@ class Module extends BaseModule
      * @var string the session key name to impersonate users. Please, modify it for security reasons!
      */
     public $switchIdentitySessionKey = 'yuik_usuario';
+
+    /**
+     * @var array translation's configuration.
+     */
+    public $i18nTranslationConfig = [
+        'class' => \yii\i18n\PhpMessageSource::class,
+        'basePath' => __DIR__ . '/resources/i18n',
+        'sourceLanguage' => 'en-US',
+    ];
 }

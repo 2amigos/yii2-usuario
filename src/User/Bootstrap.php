@@ -31,16 +31,18 @@ use yii\web\Application as WebApplication;
  */
 class Bootstrap implements BootstrapInterface
 {
+    const USER_MODULE_ID = 'user';
+
     /**
      * {@inheritdoc}
      */
     public function bootstrap($app)
     {
-        if ($app->hasModule('user') && $app->getModule('user') instanceof Module) {
-            $map = $this->buildClassMap($app->getModule('user')->classMap);
+        if ($app->hasModule(self::USER_MODULE_ID) && $app->getModule(self::USER_MODULE_ID) instanceof Module) {
+            $map = $this->buildClassMap($app->getModule(self::USER_MODULE_ID)->classMap);
             $this->initContainer($app, $map);
             $this->initTranslations($app);
-            $this->initMailServiceConfiguration($app, $app->getModule('user'));
+            $this->initMailServiceConfiguration($app, $app->getModule(self::USER_MODULE_ID));
 
             if ($app instanceof WebApplication) {
                 $this->initControllerNamespace($app);
@@ -164,11 +166,10 @@ class Bootstrap implements BootstrapInterface
     protected function initTranslations(Application $app)
     {
         if (!isset($app->get('i18n')->translations['usuario*'])) {
-            $app->get('i18n')->translations['usuario*'] = [
-                'class' => PhpMessageSource::class,
-                'basePath' => __DIR__ . '/resources/i18n',
-                'sourceLanguage' => 'en-US',
-            ];
+            /** @var Module $module */
+            $module = $app->getModule(self::USER_MODULE_ID);
+
+            $app->get('i18n')->translations['usuario*'] = $module->i18nTranslationConfig;
         }
     }
 
@@ -197,15 +198,15 @@ class Bootstrap implements BootstrapInterface
     protected function initUrlRoutes(WebApplication $app)
     {
         /** @var $module Module */
-        $module = $app->getModule('user');
+        $module = $app->getModule(self::USER_MODULE_ID);
         $config = [
             'class' => 'yii\web\GroupUrlRule',
             'prefix' => $module->prefix,
             'rules' => $module->routes,
         ];
 
-        if ($module->prefix !== 'user') {
-            $config['routePrefix'] = 'user';
+        if ($module->prefix !== self::USER_MODULE_ID) {
+            $config['routePrefix'] = self::USER_MODULE_ID;
         }
 
         $rule = Yii::createObject($config);
@@ -250,7 +251,7 @@ class Bootstrap implements BootstrapInterface
      */
     protected function initConsoleCommands(ConsoleApplication $app)
     {
-        $app->getModule('user')->controllerNamespace = 'Da\User\Command';
+        $app->getModule(self::USER_MODULE_ID)->controllerNamespace = 'Da\User\Command';
     }
 
     /**
@@ -260,8 +261,8 @@ class Bootstrap implements BootstrapInterface
      */
     protected function initControllerNamespace(WebApplication $app)
     {
-        $app->getModule('user')->controllerNamespace = 'Da\User\Controller';
-        $app->getModule('user')->setViewPath('@Da/User/resources/views');
+        $app->getModule(self::USER_MODULE_ID)->controllerNamespace = 'Da\User\Controller';
+        $app->getModule(self::USER_MODULE_ID)->setViewPath('@Da/User/resources/views');
     }
 
     /**
