@@ -1,6 +1,6 @@
 # The BSD License (BSD)
 
-Copyright (c) 2013-2015, 2amigOS! Consulting Group LLC.
+Copyright (c) 2013-2017, 2amigOS! Consulting Group LLC.
 
 > Redistribution and use in source and binary forms, with or without modification,
 > are permitted provided that the following conditions are met:
