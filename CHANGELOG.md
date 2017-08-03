@@ -1,6 +1,7 @@
 # CHANGELOG
 
 ## 1.0.10 - Work In Progress
+- Fix #42: Allow setting permissions as children to roles (kurounin)
 - Fix #37: Fix bower alias in test environment (tekord)
 - Enh #32: Added Italian Translation (maxxer)
 - Fix #30: Prefill username and email in SettingsForm (mattheobjornson)
