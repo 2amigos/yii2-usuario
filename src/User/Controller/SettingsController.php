@@ -12,7 +12,6 @@
 namespace Da\User\Controller;
 
 use Da\User\Contracts\MailChangeStrategyInterface;
-use Da\User\Event\FormEvent;
 use Da\User\Event\ProfileEvent;
 use Da\User\Event\SocialNetworkConnectEvent;
 use Da\User\Event\UserEvent;
@@ -213,7 +212,7 @@ class SettingsController extends Controller
     public function actionDelete()
     {
         if (!$this->module->allowAccountDelete) {
-            throw new NotFoundHttpException(\Yii::t('usuario', 'Not found'));
+            throw new NotFoundHttpException(Yii::t('usuario', 'Not found'));
         }
 
         /** @var User $user */
