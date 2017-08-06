@@ -23,17 +23,14 @@ class ResetPasswordService implements ServiceInterface
 
     public function __construct($password, User $model, SecurityHelper $securityHelper)
     {
-        $this->password;
+        $this->password = $password;
         $this->model = $model;
         $this->securityHelper = $securityHelper;
     }
 
     public function run()
     {
-        return $this->model && (bool)$this->model->updateAttributes(
-                [
-                    'password_hash' => $this->securityHelper->generatePasswordHash($this->password),
-                ]
-            );
+        $this->model->password = $this->password;
+        return (bool)$this->model->save(false, ['password_hash']);
     }
 }
