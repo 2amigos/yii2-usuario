@@ -1,8 +1,9 @@
 # CHANGELOG
 
-## 1.0.11 - Work in progress
+## 1.0.13 - Work in progress
 
-## 1.0.10 - August 6, 2017
+
+## 1.0.12 - August 6, 2017
 - Bug Fix: Modify ResetPasswordService to forcely update password_hash field (tonydspaniard) 
 - Bug Fix: Fixed wrong routing misspell (tonydspaniard) 
 - Enh #41: Remove deprecated package yii2-codeception (tonydspaniard)
@@ -10,6 +11,8 @@
 - Fix #44: Check if the password is empty instead for null value (tonydspaniard)
 - Fix #43: Added Table options according to driver type (tonydspaniard)
 - Fix #42: Allow setting permissions as children to roles (kurounin)
+
+## 1.0.10-11 - July 25, 2017
 - Fix #37: Fix bower alias in test environment (tekord)
 - Enh #32: Added Italian Translation (maxxer)
 - Fix #30: Prefill username and email in SettingsForm (mattheobjornson)
