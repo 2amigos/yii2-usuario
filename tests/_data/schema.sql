@@ -70,6 +70,7 @@ CREATE TABLE `user` (
   `created_at` int(11) NOT NULL,
   `updated_at` int(11) NOT NULL,
   `flags` int(11) NOT NULL DEFAULT '0',
+  `last_login_at` int(11) DEFAULT NULL,
 
   PRIMARY KEY (`id`),
   UNIQUE KEY `user_unique_email` (`email`),
