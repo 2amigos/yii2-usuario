@@ -156,7 +156,10 @@ class RecoveryController extends Controller
 
         if ($form->load(Yii::$app->getRequest()->post())) {
             if ($this->make(ResetPasswordService::class, [$form->password, $token->user])->run()) {
+
                 $this->trigger(ResetPasswordEvent::EVENT_AFTER_RESET, $event);
+
+                Yii::$app->session->setFlash('success',Yii::t('usuario', 'Password has been changed'));
 
                 return $this->render(
                     '/shared/message',
