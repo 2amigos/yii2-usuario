@@ -11,6 +11,7 @@
 
 namespace Da\User\Migration;
 
+use Da\User\Helper\MigrationHelper;
 use yii\db\Migration;
 
 class m000000_000002_create_profile_table extends Migration
@@ -29,10 +30,13 @@ class m000000_000002_create_profile_table extends Migration
                 'website' => $this->string(255),
                 'timezone' => $this->string(40),
                 'bio' => $this->text(),
-            ]
+            ],
+            MigrationHelper::resolveTableOptions($this->db->driverName)
         );
 
-        $this->addForeignKey('fk_profile_user', '{{%profile}}', 'user_id', '{{%user}}', 'id', 'CASCADE', 'RESTRICT');
+        $restrict = MigrationHelper::isMicrosoftSQLServer($this->db->driverName) ? 'NO ACTION' : 'RESTRICT';
+
+        $this->addForeignKey('fk_profile_user', '{{%profile}}', 'user_id', '{{%user}}', 'id', 'CASCADE', $restrict);
     }
 
     public function down()

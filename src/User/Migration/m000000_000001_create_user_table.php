@@ -11,6 +11,7 @@
 
 namespace Da\User\Migration;
 
+use Da\User\Helper\MigrationHelper;
 use yii\db\Migration;
 
 class m000000_000001_create_user_table extends Migration
@@ -32,7 +33,8 @@ class m000000_000001_create_user_table extends Migration
                 'blocked_at' => $this->integer(),
                 'updated_at' => $this->integer()->notNull(),
                 'created_at' => $this->integer()->notNull(),
-            ]
+            ],
+            MigrationHelper::resolveTableOptions($this->db->driverName)
         );
 
         $this->createIndex('idx_user_username', '{{%user}}', 'username', true);

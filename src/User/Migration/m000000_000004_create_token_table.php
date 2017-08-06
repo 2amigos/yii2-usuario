@@ -11,6 +11,7 @@
 
 namespace Da\User\Migration;
 
+use Da\User\Helper\MigrationHelper;
 use yii\db\Migration;
 
 class m000000_000004_create_token_table extends Migration
@@ -24,12 +25,15 @@ class m000000_000004_create_token_table extends Migration
                 'code' => $this->string(32)->notNull(),
                 'type' => $this->smallInteger(6)->notNull(),
                 'created_at' => $this->integer()->notNull(),
-            ]
+            ],
+            MigrationHelper::resolveTableOptions($this->db->driverName)
         );
 
         $this->createIndex('idx_token_user_id_code_type', '{{%token}}', ['user_id', 'code', 'type'], true);
 
-        $this->addForeignKey('fk_token_user', '{{%token}}', 'user_id', '{{%user}}', 'id', 'CASCADE', 'RESTRICT');
+        $restrict = MigrationHelper::isMicrosoftSQLServer($this->db->driverName) ? 'NO ACTION' : 'RESTRICT';
+
+        $this->addForeignKey('fk_token_user', '{{%token}}', 'user_id', '{{%user}}', 'id', 'CASCADE', $restrict);
     }
 
     public function down()

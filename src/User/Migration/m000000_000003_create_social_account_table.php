@@ -11,6 +11,7 @@
 
 namespace Da\User\Migration;
 
+use Da\User\Helper\MigrationHelper;
 use yii\db\Migration;
 
 class m000000_000003_create_social_account_table extends Migration
@@ -29,7 +30,8 @@ class m000000_000003_create_social_account_table extends Migration
                 'username' => $this->string(255),
                 'data' => $this->text(),
                 'created_at' => $this->integer(),
-            ]
+            ],
+            MigrationHelper::resolveTableOptions($this->db->driverName)
         );
 
         $this->createIndex(
@@ -48,7 +50,7 @@ class m000000_000003_create_social_account_table extends Migration
             '{{%user}}',
             'id',
             'CASCADE',
-            'RESTRICT'
+            (MigrationHelper::isMicrosoftSQLServer($this->db->driverName) ? 'NO ACTION' : 'RESTRICT')
         );
     }
 
