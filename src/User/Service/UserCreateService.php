@@ -49,7 +49,7 @@ class UserCreateService implements ServiceInterface
 
         try {
             $model->confirmed_at = time();
-            $model->password = $model->password !== null
+            $model->password = !empty($model->password)
                 ? $model->password
                 : $this->securityHelper->generatePassword(8);
 

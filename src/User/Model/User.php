@@ -185,6 +185,7 @@ class User extends ActiveRecord implements IdentityInterface
             'emailTrim' => ['email', 'trim'],
 
             // password rules
+            'passwordTrim' => ['password', 'trim'],
             'passwordRequired' => ['password', 'required', 'on' => ['register']],
             'passwordLength' => ['password', 'string', 'min' => 6, 'max' => 72, 'on' => ['register', 'create']],
         ];

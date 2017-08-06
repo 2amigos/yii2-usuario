@@ -1,6 +1,8 @@
 # CHANGELOG
 
 ## 1.0.10 - Work In Progress
+- Fix #44: Check if the password is empty instead for null value (tonydspaniard)
+- Fix #43: Added Table options according to driver type (tonydspaniard)
 - Fix #42: Allow setting permissions as children to roles (kurounin)
 - Fix #37: Fix bower alias in test environment (tekord)
 - Enh #32: Added Italian Translation (maxxer)
