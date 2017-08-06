@@ -1,6 +1,11 @@
 # CHANGELOG
 
-## 1.0.10 - Work In Progress
+## 1.0.11 - Work in progress
+
+## 1.0.10 - August 6, 2017
+- Bug Fix: Modify ResetPasswordService to forcely update password_hash field (tonydspaniard) 
+- Bug Fix: Fixed wrong routing misspell (tonydspaniard) 
+- Enh #41: Remove deprecated package yii2-codeception (tonydspaniard)
 - Enh #45: Added option to display the password to the welcome email (tonydspaniard)
 - Fix #44: Check if the password is empty instead for null value (tonydspaniard)
 - Fix #43: Added Table options according to driver type (tonydspaniard)
