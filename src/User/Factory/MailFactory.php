@@ -21,10 +21,11 @@ class MailFactory
 {
     /**
      * @param User $user
+     * @param bool $showPassword
      *
      * @return MailService
      */
-    public static function makeWelcomeMailerService(User $user)
+    public static function makeWelcomeMailerService(User $user, $showPassword = false)
     {
         /** @var Module $module */
         $module = Yii::$app->getModule('user');
@@ -35,7 +36,7 @@ class MailFactory
             'user' => $user,
             'token' => null,
             'module' => $module,
-            'showPassword' => false,
+            'showPassword' => $showPassword,
         ];
 
         return static::makeMailerService($from, $to, $subject, 'welcome', $params);

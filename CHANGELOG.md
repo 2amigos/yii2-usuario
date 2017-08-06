@@ -1,6 +1,7 @@
 # CHANGELOG
 
 ## 1.0.10 - Work In Progress
+- Enh #45: Added option to display the password to the welcome email (tonydspaniard)
 - Fix #44: Check if the password is empty instead for null value (tonydspaniard)
 - Fix #43: Added Table options according to driver type (tonydspaniard)
 - Fix #42: Allow setting permissions as children to roles (kurounin)
