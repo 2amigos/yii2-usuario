@@ -57,7 +57,6 @@
         "friendsofphp/php-cs-fixer": "^2.3",
         "squizlabs/php_codesniffer": "*",
         "phpmd/phpmd": "@stable",
-        "yiisoft/yii2-codeception": "^2.0.0",
         "codeception/specify": "^0.4.3",
         "codeception/verify": "^0.3.1",
         "codeception/codeception": "*"

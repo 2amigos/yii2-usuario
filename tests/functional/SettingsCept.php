@@ -3,31 +3,36 @@
 /**
  * @var Codeception\Scenario
  */
+
 use Da\User\Model\Token;
 use Da\User\Model\User;
 use tests\_fixtures\ProfileFixture;
 use tests\_fixtures\UserFixture;
-use tests\_pages\LoginPage;
-use tests\_pages\SettingsPage;
 use yii\helpers\Html;
 
 $I = new FunctionalTester($scenario);
 $I->wantTo('ensure that account settings page work');
 $I->haveFixtures(['user' => UserFixture::className(), 'profile' => ProfileFixture::className()]);
 
-$page = LoginPage::openBy($I);
 $user = $I->grabFixture('user', 'user');
-$page->login($user->username, 'qwerty');
+$I->amLoggedInAs($user);
 
-$page = SettingsPage::openBy($I);
+$I->amOnRoute('/user/settings/account');
 
 $I->amGoingTo('check that current password is required and must be valid');
-$page->update($user->email, $user->username, 'wrong');
+$I->fillField('#settingsform-email', $user->email);
+$I->fillField('#settingsform-username', $user->username);
+$I->fillField('#settingsform-current_password', 'wrong');
+$I->click('Save');
 $I->see('Current password is not valid');
 
 $I->amGoingTo('check that email is changing properly');
-$page->update('new_user@example.com', $user->username, 'qwerty');
+$I->fillField('#settingsform-email', 'new_user@example.com');
+$I->fillField('#settingsform-username', $user->username);
+$I->fillField('#settingsform-current_password', 'qwerty');
+$I->click('Save');
 $I->seeRecord(User::className(), ['email' => $user->email, 'unconfirmed_email' => 'new_user@example.com']);
+
 $I->see('A confirmation message has been sent to your new email address');
 $user = $I->grabRecord(User::className(), ['id' => $user->id]);
 $token = $I->grabRecord(Token::className(), ['user_id' => $user->id, 'type' => Token::TYPE_CONFIRM_NEW_EMAIL]);
@@ -35,12 +40,13 @@ $token = $I->grabRecord(Token::className(), ['user_id' => $user->id, 'type' => T
 $message = $I->grabLastSentEmail();
 $I->assertArrayHasKey($user->unconfirmed_email, $message->getTo());
 $I->assertContains(Html::encode($token->getUrl()), utf8_encode(quoted_printable_decode($message->getSwiftMessage()->toString())));
-
 Yii::$app->user->logout();
 
 $I->amGoingTo('log in using new email address before clicking the confirmation link');
-$page = LoginPage::openBy($I);
-$page->login('new_user@example.com', 'qwerty');
+$I->amOnRoute('/user/security/login');
+$I->fillField('#loginform-login', 'new_user@example.com');
+$I->fillField('#loginform-password', 'qwerty');
+$I->click('Sign in');
 $I->see('Invalid login or password');
 
 $I->amGoingTo('log in using new email address after clicking the confirmation link');
@@ -48,7 +54,9 @@ $I->amGoingTo('log in using new email address after clicking the confirmation li
 $emailChangeService = Yii::createObject(\Da\User\Service\EmailChangeService::class, [$token->code, $user]);
 $emailChangeService->run();
 
-$page->login('new_user@example.com', 'qwerty');
+$I->fillField('#loginform-login', 'new_user@example.com');
+$I->fillField('#loginform-password', 'qwerty');
+$I->click('Sign in');
 $I->see('Logout');
 $I->seeRecord(User::className(), [
     'id' => 1,
@@ -57,15 +65,26 @@ $I->seeRecord(User::className(), [
 ]);
 
 $I->amGoingTo('reset email changing process');
-$page = SettingsPage::openBy($I);
-$page->update('user@example.com', $user->username, 'qwerty');
+$I->amOnRoute('/user/settings/account');
+
+$I->fillField('#settingsform-email', 'user@example.com');
+$I->fillField('#settingsform-username', $user->username);
+$I->fillField('#settingsform-new_password', null);
+$I->fillField('#settingsform-current_password', 'qwerty');
+$I->click('Save');
 $I->see('A confirmation message has been sent to your new email address');
 $I->seeRecord(User::className(), [
     'id' => 1,
     'email' => 'new_user@example.com',
     'unconfirmed_email' => 'user@example.com',
 ]);
-$page->update('new_user@example.com', $user->username, 'qwerty');
+
+$I->fillField('#settingsform-email', 'new_user@example.com');
+$I->fillField('#settingsform-username', $user->username);
+$I->fillField('#settingsform-new_password', null);
+$I->fillField('#settingsform-current_password', 'qwerty');
+$I->click('Save');
+
 $I->see('Your account details have been updated');
 $I->seeRecord(User::className(), [
     'id' => 1,
@@ -73,7 +92,12 @@ $I->seeRecord(User::className(), [
     'unconfirmed_email' => null,
 ]);
 $I->amGoingTo('change username and password');
-$page->update('new_user@example.com', 'nickname', 'qwerty', '123654');
+
+$I->fillField('#settingsform-email', 'new_user@example.com');
+$I->fillField('#settingsform-username', 'nickname');
+$I->fillField('#settingsform-new_password', '123654');
+$I->fillField('#settingsform-current_password', 'qwerty');
+$I->click('Save');
 $I->see('Your account details have been updated');
 $I->seeRecord(User::className(), [
     'username' => 'nickname',
@@ -83,6 +107,8 @@ $I->seeRecord(User::className(), [
 Yii::$app->user->logout();
 
 $I->amGoingTo('login with new credentials');
-$page = LoginPage::openBy($I);
-$page->login('nickname', '123654');
+$I->amOnRoute('/user/security/login');
+$I->fillField('#loginform-login', 'new_user@example.com');
+$I->fillField('#loginform-password', '123654');
+$I->click('Sign in');
 $I->see('Logout');

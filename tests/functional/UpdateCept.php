@@ -3,23 +3,28 @@
 /**
  * @var Codeception\Scenario
  */
+
 use tests\_fixtures\UserFixture;
-use tests\_pages\UpdatePage;
-use tests\_pages\LoginPage;
 
 $I = new FunctionalTester($scenario);
 $I->wantTo('ensure that user update works');
 $I->haveFixtures(['user' => UserFixture::className()]);
 
-$loginPage = LoginPage::openBy($I);
 $user = $I->grabFixture('user', 'user');
-$loginPage->login($user->email, 'qwerty');
+$I->amLoggedInAs($user);
 
-$page = UpdatePage::openBy($I, ['id' => $user->id]);
+$I->amOnRoute('/user/admin/update', ['id' => $user->id]);
 
-$page->update('user', 'updated_user@example.com', 'new_pass');
+$I->fillField('#user-username', 'user');
+$I->fillField('#user-email', 'updated_user@example.com');
+$I->fillField('#user-password', 'newpassword');
+$I->click('Update');
 $I->see('Account details have been updated');
 
 Yii::$app->user->logout();
-LoginPage::openBy($I)->login('updated_user@example.com', 'new_pass');
+
+$I->amOnRoute('/user/security/login');
+$I->fillField('#loginform-login', 'updated_user@example.com');
+$I->fillField('#loginform-password', 'newpassword');
+$I->click('Sign in');
 $I->see('Logout');

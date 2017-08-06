@@ -5,8 +5,6 @@ use Da\User\Model\Token;
 use Da\User\Model\User;
 use Da\User\Module;
 use tests\_fixtures\UserFixture;
-use tests\_pages\LoginPage;
-use tests\_pages\RegistrationPage;
 use yii\helpers\Html;
 
 class RegistrationCest
@@ -36,10 +34,10 @@ class RegistrationCest
             'generatePasswords' => false,
         ]);
 
-        $page = RegistrationPage::openBy($I);
+        $I->amOnRoute('/user/registration/register');
 
         $I->amGoingTo('try to register with empty credentials');
-        $page->register('', '', '');
+        $this->register($I, '', '', '');
         $I->see('Username cannot be blank');
         $I->see('Email cannot be blank');
         $I->see('Password cannot be blank');
@@ -47,17 +45,19 @@ class RegistrationCest
         $I->amGoingTo('try to register with already used email and username');
         $user = $I->grabFixture('user', 'user');
 
-        $page->register($user->email, $user->username, 'qwerty');
+        $this->register($I, $user->email, $user->username, 'qwerty');
         $I->see(Html::encode('This username has already been taken'));
         $I->see(Html::encode('This email address has already been taken'));
 
-        $page->register('tester@example.com', 'tester', 'tester');
+        $this->register($I, 'tester@example.com', 'tester', 'tester');
         $I->see('Your account has been created and a message with further instructions has been sent to your email');
         $user = $I->grabRecord(User::className(), ['email' => 'tester@example.com']);
         $I->assertTrue($user->isConfirmed);
 
-        $page = LoginPage::openBy($I);
-        $page->login('tester', 'tester');
+        $I->amOnRoute('/user/security/login');
+        $I->fillField('#loginform-login', 'tester');
+        $I->fillField('#loginform-password', 'tester');
+        $I->click('Sign in');
         $I->see('Logout');
     }
 
@@ -71,8 +71,8 @@ class RegistrationCest
         \Yii::$container->set(Module::className(), [
             'enableEmailConfirmation' => true,
         ]);
-        $page = RegistrationPage::openBy($I);
-        $page->register('tester@example.com', 'tester', 'tester');
+        $I->amOnRoute('/user/registration/register');
+        $this->register($I, 'tester@example.com', 'tester', 'tester');
         $I->see('Your account has been created and a message with further instructions has been sent to your email');
         $user = $I->grabRecord(User::className(), ['email' => 'tester@example.com']);
         $token = $I->grabRecord(Token::className(), ['user_id' => $user->id, 'type' => Token::TYPE_CONFIRMATION]);
@@ -94,8 +94,8 @@ class RegistrationCest
             'enableEmailConfirmation' => false,
             'generatePasswords' => true,
         ]);
-        $page = RegistrationPage::openBy($I);
-        $page->register('tester@example.com', 'tester');
+        $I->amOnRoute('/user/registration/register');
+        $this->register($I, 'tester@example.com', 'tester');
         $I->see('Your account has been created and a message with further instructions has been sent to your email');
         $user = $I->grabRecord(User::className(), ['email' => 'tester@example.com']);
         $I->assertEquals('tester', $user->username);
@@ -103,5 +103,15 @@ class RegistrationCest
         $message = $I->grabLastSentEmail();
         $I->assertArrayHasKey($user->email, $message->getTo());
         $I->assertContains('We have generated a password for you', utf8_encode(quoted_printable_decode($message->getSwiftMessage()->toString())));
+    }
+
+    protected function register(FunctionalTester $I, $email, $username = null, $password = null) {
+        $I->fillField('#registrationform-email', $email);
+        $I->fillField('#registrationform-username', $username);
+        if ($password !== null) {
+            $I->fillField('#registrationform-password', $password);
+        }
+        $I->click('Sign up');
+
     }
 }

@@ -3,26 +3,29 @@
 /**
  * @var Codeception\Scenario
  */
+
 use tests\_fixtures\UserFixture;
-use tests\_pages\ResendPage;
 
 $I = new FunctionalTester($scenario);
 $I->wantTo('ensure that resending of confirmation tokens works');
 $I->haveFixtures(['user' => UserFixture::className()]);
 
 $I->amGoingTo('try to resend token to non-existent user');
-$page = ResendPage::openBy($I);
-$page->resend('foo@example.com');
+$I->amOnRoute('/user/registration/resend');
+$I->fillField('#resendform-email', 'foo@example.com');
+$I->click('Continue');
 $I->see('We couldn\'t re-send the mail to confirm your address. Please, verify is the correct email or if it has been confirmed already.');
 
 $I->amGoingTo('try to resend token to already confirmed user');
-$page = ResendPage::openBy($I);
+$I->amOnRoute('/user/registration/resend');
 $user = $I->grabFixture('user', 'user');
-$page->resend($user->email);
+$I->fillField('#resendform-email', $user->email);
+$I->click('Continue');
 $I->see('We couldn\'t re-send the mail to confirm your address. Please, verify is the correct email or if it has been confirmed already.');
 
 $I->amGoingTo('try to resend token to unconfirmed user');
-$page = ResendPage::openBy($I);
+$I->amOnRoute('/user/registration/resend');
 $user = $I->grabFixture('user', 'unconfirmed');
-$page->resend($user->email);
+$I->fillField('#resendform-email', $user->email);
+$I->click('Continue');
 $I->see('A message has been sent to your email address. It contains a confirmation link that you must click to complete registration.');
