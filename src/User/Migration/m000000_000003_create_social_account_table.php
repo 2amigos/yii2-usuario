@@ -16,7 +16,7 @@ use yii\db\Migration;
 
 class m000000_000003_create_social_account_table extends Migration
 {
-    public function up()
+    public function safeUp()
     {
         $this->createTable(
             '{{%social_account}}',
@@ -54,7 +54,7 @@ class m000000_000003_create_social_account_table extends Migration
         );
     }
 
-    public function down()
+    public function safeDown()
     {
         $this->dropTable('{{%social_account}}');
     }

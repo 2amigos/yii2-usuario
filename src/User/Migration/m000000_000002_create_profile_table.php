@@ -16,7 +16,7 @@ use yii\db\Migration;
 
 class m000000_000002_create_profile_table extends Migration
 {
-    public function up()
+    public function safeUp()
     {
         $this->createTable(
             '{{%profile}}',
@@ -39,7 +39,7 @@ class m000000_000002_create_profile_table extends Migration
         $this->addForeignKey('fk_profile_user', '{{%profile}}', 'user_id', '{{%user}}', 'id', 'CASCADE', $restrict);
     }
 
-    public function down()
+    public function safeDown()
     {
         $this->dropTable('{{%profile}}');
     }
