@@ -91,6 +91,7 @@ class SocialNetworkAuthenticateService implements ServiceInterface
         /** @var SocialNetworkAccount $account */
         $account = $this->controller->make(
             SocialNetworkAccount::class,
+            [],
             [
                 'provider' => $this->client->getId(),
                 'client_id' => $data['id'],
@@ -119,6 +120,7 @@ class SocialNetworkAuthenticateService implements ServiceInterface
         /** @var User $user */
         $user = $this->controller->make(
             User::class,
+            [],
             [
                 'scenario' => 'connect',
                 'username' => $account->username,

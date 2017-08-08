@@ -1,7 +1,7 @@
 # CHANGELOG
 
 ## 1.0.13 - Work in progress
-
+- Fix #49: Fix wrong call of method make() for set attributes (MKiselev)
 
 ## 1.0.12 - August 6, 2017
 - Bug Fix: Modify ResetPasswordService to forcely update password_hash field (tonydspaniard) 
