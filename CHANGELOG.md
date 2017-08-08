@@ -1,6 +1,7 @@
 # CHANGELOG
 
 ## 1.0.13 - Work in progress
+- Fix #51: Typo fix rememberLoginLifeSpan to rememberLoginLifespan (MKiselev)
 
 
 ## 1.0.12 - August 6, 2017
