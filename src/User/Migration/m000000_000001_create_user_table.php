@@ -16,7 +16,7 @@ use yii\db\Migration;
 
 class m000000_000001_create_user_table extends Migration
 {
-    public function up()
+    public function safeUp()
     {
         $this->createTable(
             '{{%user}}',
@@ -41,7 +41,7 @@ class m000000_000001_create_user_table extends Migration
         $this->createIndex('idx_user_email', '{{%user}}', 'email', true);
     }
 
-    public function down()
+    public function safeDown()
     {
         $this->dropTable('{{%user}}');
     }

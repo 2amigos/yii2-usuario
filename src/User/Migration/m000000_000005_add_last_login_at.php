@@ -15,12 +15,12 @@ use yii\db\Migration;
 
 class m000000_000005_add_last_login_at extends Migration
 {
-    public function up()
+    public function safeUp()
     {
         $this->addColumn('{{%user}}', 'last_login_at', $this->integer());
     }
 
-    public function down()
+    public function safeDown()
     {
         $this->dropColumn('{{%user}}', 'last_login_at');
     }

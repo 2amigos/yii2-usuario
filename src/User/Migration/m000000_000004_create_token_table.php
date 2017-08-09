@@ -16,7 +16,7 @@ use yii\db\Migration;
 
 class m000000_000004_create_token_table extends Migration
 {
-    public function up()
+    public function safeUp()
     {
         $this->createTable(
             '{{%token}}',
@@ -36,7 +36,7 @@ class m000000_000004_create_token_table extends Migration
         $this->addForeignKey('fk_token_user', '{{%token}}', 'user_id', '{{%user}}', 'id', 'CASCADE', $restrict);
     }
 
-    public function down()
+    public function safeDown()
     {
         $this->dropTable('{{%token}}');
     }
