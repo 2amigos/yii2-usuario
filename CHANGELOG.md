@@ -2,6 +2,7 @@
 
 ## 1.0.13 - Work in progress
 - Enh #46: Use safeUp()/safeDown() instead up()/down() in migrations (MKiselev)
+- Fix #51: Typo fix rememberLoginLifeSpan to rememberLoginLifespan (MKiselev)
 
 ## 1.0.12 - August 6, 2017
 - Bug Fix: Modify ResetPasswordService to forcely update password_hash field (tonydspaniard) 
