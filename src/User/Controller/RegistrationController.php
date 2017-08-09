@@ -145,6 +145,7 @@ class RegistrationController extends Controller
         /** @var User $user */
         $user = $this->make(
             User::class,
+            [],
             ['scenario' => 'connect', 'username' => $account->username, 'email' => $account->email]
         );
         $event = $this->make(SocialNetworkConnectEvent::class, [$user, $account]);

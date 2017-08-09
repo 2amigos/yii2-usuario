@@ -80,6 +80,7 @@ class SocialNetworkAccountConnectService implements ServiceInterface
 
             $account = $this->make(
                 SocialNetworkAccount::class,
+                [],
                 [
                     'provider' => $this->client->getId(),
                     'client_id' => $data['id'],
