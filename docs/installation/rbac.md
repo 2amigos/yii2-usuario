@@ -11,7 +11,7 @@ accessible.
 
 We have added an access filter (`Da\User\Filter\AccessRuleFilter`) to allow you to work with those usernames you 
 configure as administrators of your app via the 
-[Module::administradors](configuration-options.md#administrators-type-array-default-) attribute.
+[Module::administrators](configuration-options.md#administrators-type-array-default-) attribute.
 
 > **Note**: Remember that you have to configure applications `authManager` with `'class' => 'Da\User\Component\AuthDbManagerComponent'`, 
 > prior to even apply the rbac migrations! 
