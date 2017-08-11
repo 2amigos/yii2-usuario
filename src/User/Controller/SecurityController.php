@@ -15,6 +15,7 @@ use Da\User\Contracts\AuthClientInterface;
 use Da\User\Event\FormEvent;
 use Da\User\Event\UserEvent;
 use Da\User\Form\LoginForm;
+use Da\User\Model\User;
 use Da\User\Query\SocialNetworkAccountQuery;
 use Da\User\Service\SocialNetworkAccountConnectService;
 use Da\User\Service\SocialNetworkAuthenticateService;
@@ -124,7 +125,7 @@ class SecurityController extends Controller
         if ($form->load(Yii::$app->request->post())) {
             $this->trigger(FormEvent::EVENT_BEFORE_LOGIN, $event);
             if ($form->login()) {
-                Yii::$app->getUser()->identity->updateAttributes(['last_login_at' => time()]);
+                User::findOne(Yii::$app->getUser()->getId())->updateAttributes(['last_login_at' => time()]);
 
                 $this->trigger(FormEvent::EVENT_AFTER_LOGIN, $event);
 
