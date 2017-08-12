@@ -125,7 +125,7 @@ class SecurityController extends Controller
         if ($form->load(Yii::$app->request->post())) {
             $this->trigger(FormEvent::EVENT_BEFORE_LOGIN, $event);
             if ($form->login()) {
-                User::findOne(Yii::$app->getUser()->getId())->updateAttributes(['last_login_at' => time()]);
+                $form->getUser()->updateAttributes(['last_login_at' => time()]);
 
                 $this->trigger(FormEvent::EVENT_AFTER_LOGIN, $event);
 
