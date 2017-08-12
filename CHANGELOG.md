@@ -4,6 +4,7 @@
 - Fix #49: Fix wrong call of method make() for set attributes (MKiselev)
 - Enh #46: Use safeUp()/safeDown() instead up()/down() in migrations (MKiselev)
 - Fix #51: Typo fix rememberLoginLifeSpan to rememberLoginLifespan (MKiselev)
+- Fix #58: Last login fix (pappfer)
 
 ## 1.0.12 - August 6, 2017
 - Bug Fix: Modify ResetPasswordService to forcely update password_hash field (tonydspaniard) 
