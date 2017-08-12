@@ -137,4 +137,12 @@ class LoginForm extends Model
 
         return false;
     }
+    
+    /*
+     * @return User
+     */
+    public function getUser()
+    {
+        return $this->user;
+    }
 }
