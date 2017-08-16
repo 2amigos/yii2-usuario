@@ -10,15 +10,16 @@
  */
 
 /**
- * @var \Da\User\Model\User
+ * @var \Da\User\Model\User  $user
  * @var \Da\User\Model\Token $token
  * @var \Da\User\Module      $module
+ * @var bool                 $showPassword
  */
 ?>
 <?= Yii::t('usuario', 'Hello') ?>,
 
 <?= Yii::t('usuario', 'Your account on {0} has been created', Yii::$app->name) ?>.
-<?php if ($module->generatePasswords): ?>
+<?php if ($showPassword || $module->generatePasswords): ?>
     <?= Yii::t('usuario', 'We have generated a password for you') ?>:
     <?= $user->password ?>
 <?php endif ?>
