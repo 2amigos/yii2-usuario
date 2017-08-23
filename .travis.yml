@@ -54,7 +54,7 @@ script:
 
 notifications:
   email:
-    - resurtm+travis-ci@gmail.com
+    - hola@2amigos.us
 
 after_script:
   - |
