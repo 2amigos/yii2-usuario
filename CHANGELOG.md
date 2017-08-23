@@ -1,6 +1,7 @@
 # CHANGELOG
 
 ## 1.0.14 - Work in progress
+- Enh #61: Updated Russian translation (faenir)
 
 ## 1.0.13 - August 12, 2017
 - Fix #49: Fix wrong call of method make() for set attributes (MKiselev)
