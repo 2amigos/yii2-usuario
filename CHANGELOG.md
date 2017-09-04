@@ -1,7 +1,7 @@
 # CHANGELOG
 
 ## 1.0.14 - Work in progress
-- Enh #62: Updated Romanian translation (mrbig00)
+- Enh #65: Updated Romanian translation (mrbig00)
 - Enh #61: Updated Russian translation (faenir)
 
 ## 1.0.13 - August 12, 2017
