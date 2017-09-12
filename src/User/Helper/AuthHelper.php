@@ -99,7 +99,7 @@ class AuthHelper
     public function getUnassignedItems(AbstractAuthItem $model)
     {
         $excludeItems = $model->item !== null ? [$model->item->name] : [];
-        $type = $model->getType() == Permission::TYPE_PERMISSION ?: null;
+        $type = $model->getType() == Permission::TYPE_PERMISSION ? Permission::TYPE_PERMISSION : null;
         $items = $this->getAuthManager()->getItems($type, $excludeItems);
 
         return ArrayHelper::map(
