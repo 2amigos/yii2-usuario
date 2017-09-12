@@ -3,7 +3,7 @@
 ## 1.0.14 - Work in progress
 - Enh #65: Updated Romanian translation (mrbig00)
 - Enh #61: Updated Russian translation (faenir)
-- Enh #70: Allow permission-permission parent-child relationship
+- Enh #70: Allow permission-permission parent-child relationship (Philosoft)
 
 ## 1.0.13 - August 12, 2017
 - Fix #49: Fix wrong call of method make() for set attributes (MKiselev)
@@ -27,9 +27,9 @@
 - Enh #39: Added `last_login_at` field to user table (pappfer)
 
 ## 1.0.9 - July 19, 2017
-- Enh #22: Added impersonation feature (@tonydspaniard)
+- Enh #22: Added impersonation feature (tonydspaniard)
 
 ## 1.0.8 - July 16, 2017 
 
-- Enh #25: Added option to manage rules (@tonydspaniard)
-- Enh #25: Added SelectizeDropDownList widget to Role and Permission forms (@tonydspaniard)
+- Enh #25: Added option to manage rules (tonydspaniard)
+- Enh #25: Added SelectizeDropDownList widget to Role and Permission forms (tonydspaniard)
