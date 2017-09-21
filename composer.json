@@ -73,12 +73,14 @@
             "Da\\User\\": "./src/User"
         }
     },
-    "repositories": [
-        {
-            "type": "composer",
-            "url": "https://asset-packagist.org"
+    "config": {
+        "fxp-asset": {
+            "installer-paths": {
+                "npm-asset-library": "vendor/npm",
+                "bower-asset-library": "vendor/bower"
+            }
         }
-    ],
+    },
     "extra": {
         "bootstrap": "Da\\User\\Bootstrap"
     }
