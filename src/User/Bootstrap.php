@@ -15,7 +15,6 @@ use Da\User\Component\AuthDbManagerComponent;
 use Da\User\Contracts\AuthManagerInterface;
 use Da\User\Helper\ClassMapHelper;
 use Da\User\Model\User;
-use Da\User\Validator\TimeZoneValidator;
 use Yii;
 use yii\authclient\Collection;
 use yii\base\Application;
@@ -101,6 +100,7 @@ class Bootstrap implements BootstrapInterface
             $di->set(Service\AuthItemEditionService::class);
             $di->set(Service\UpdateAuthAssignmentsService::class);
             $di->set(Service\SwitchIdentityService::class);
+            $di->set(Service\TwoFactorQrCodeUriGeneratorService::class);
 
             // email change strategy
             $di->set(Strategy\DefaultEmailChangeStrategy::class);
@@ -109,7 +109,8 @@ class Bootstrap implements BootstrapInterface
 
             // validators
             $di->set(Validator\AjaxRequestModelValidator::class);
-            $di->set(TimeZoneValidator::class);
+            $di->set(Validator\TimeZoneValidator::class);
+            $di->set(Validator\TwoFactorCodeValidator::class);
 
             // class map models + query classes
             $modelClassMap = [];
