@@ -1,5 +1,5 @@
 # faster builds on new travis setup not using sudo
-sudo: false
+sudo: required
 
 language: php
 
