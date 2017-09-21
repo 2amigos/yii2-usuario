@@ -47,10 +47,12 @@
     "prefer-stable": true,
     "require": {
         "php": ">=5.5",
-        "2amigos/yii2-selectize-widget": "~1.1",
+        "2amigos/yii2-selectize-widget": "^1.1",
         "yiisoft/yii2-authclient": "^2.1.0",
         "yiisoft/yii2-bootstrap": "^2.0.0",
-        "yiisoft/yii2-swiftmailer": "^2.0.0"
+        "yiisoft/yii2-swiftmailer": "^2.0.0",
+        "2amigos/2fa-library": "^1.0",
+        "2amigos/qrcode-library": "^1.1"
     },
     "require-dev": {
         "cebe/assetfree-yii2": "~2.0.0",
@@ -71,14 +73,12 @@
             "Da\\User\\": "./src/User"
         }
     },
-    "config": {
-        "fxp-asset": {
-            "installer-paths": {
-                "npm-asset-library": "vendor/npm",
-                "bower-asset-library": "vendor/bower"
-            }
+    "repositories": [
+        {
+            "type": "composer",
+            "url": "https://asset-packagist.org"
         }
-    },
+    ],
     "extra": {
         "bootstrap": "Da\\User\\Bootstrap"
     }

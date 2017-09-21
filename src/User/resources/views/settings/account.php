@@ -10,16 +10,20 @@
  */
 
 use yii\helpers\Html;
+use yii\helpers\Url;
 use yii\widgets\ActiveForm;
 
 /**
- * @var yii\web\View               $this
- * @var yii\widgets\ActiveForm     $form
+ * @var yii\web\View $this
+ * @var yii\widgets\ActiveForm $form
  * @var \Da\User\Form\SettingsForm $model
  */
 
 $this->title = Yii::t('usuario', 'Account settings');
 $this->params['breadcrumbs'][] = $this->title;
+
+/** @var \Da\User\Module $module */
+$module = Yii::$app->getModule('user');
 ?>
 <div class="clearfix"></div>
 
@@ -68,7 +72,61 @@ $this->params['breadcrumbs'][] = $this->title;
                 <?php ActiveForm::end(); ?>
             </div>
         </div>
-
+        <?php if ($module->enableTwoFactorAuthentication): ?>
+            <div class="modal fade" id="tfmodal" tabindex="-1" role="dialog" aria-labelledby="tfamodalLabel"
+                 aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                                    aria-hidden="true">&times;</span></button>
+                            <h4 class="modal-title" id="myModalLabel">
+                                <?= Yii::t('usuario', 'Two Factor Authentication') ?></h4>
+                        </div>
+                        <div class="modal-body">
+                            ...
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-default" data-dismiss="modal">
+                                <?= Yii::t('usuario', 'Close') ?>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="panel panel-info">
+                <div class="panel-heading">
+                    <h3 class="panel-title"><?= Yii::t('usuario', 'Two-Factor Authentication') ?></h3>
+                </div>
+                <div class="panel-body">
+                    <p>
+                        <?= Yii::t('usuario', 'Two-factor auth protects you against stolen credentials') ?>.
+                    </p>
+                    <div class="text-right">
+                        <?= Html::a(
+                            Yii::t('usuario', 'Disable Two-Factor Auth'),
+                            ['two-factor-disable', 'id' => $model->getUser()->id],
+                            [
+                                'id' => 'disable_tf_btn',
+                                'class' => 'btn btn-warning ' . ($model->getUser()->auth_tf_enabled ? '' : 'hide'),
+                                'data-method' => 'post',
+                                'data-confirm' => Yii::t('usuario', 'This will disable two-factor auth. Are you sure?'),
+                            ]
+                        ) ?>
+                        <?= Html::a(
+                            Yii::t('usuario', 'Enable Two-factor auth'),
+                            '#tfmodal',
+                            [
+                                'id' => 'enable_tf_btn',
+                                'class' => 'btn btn-info ' . ($model->getUser()->auth_tf_enabled ? 'hide' : ''),
+                                'data-toggle' => 'modal',
+                                'data-target' => '#tfmodal'
+                            ]
+                        ) ?>
+                    </div>
+                </div>
+            </div>
+        <?php endif; ?>
         <?php if ($model->module->allowAccountDelete): ?>
             <div class="panel panel-danger">
                 <div class="panel-heading">
@@ -80,17 +138,59 @@ $this->params['breadcrumbs'][] = $this->title;
                         <?= Yii::t('usuario', 'It will be deleted forever') ?>.
                         <?= Yii::t('usuario', 'Please be certain') ?>.
                     </p>
-                    <?= Html::a(
-                        Yii::t('usuario', 'Delete account'),
-                        ['delete'],
-                        [
-                            'class' => 'btn btn-danger',
-                            'data-method' => 'post',
-                            'data-confirm' => Yii::t('usuario', 'Are you sure? There is no going back'),
-                        ]
-                    ) ?>
+                    <div class="text-right">
+                        <?= Html::a(
+                            Yii::t('usuario', 'Delete account'),
+                            ['delete'],
+                            [
+                                'class' => 'btn btn-danger',
+                                'data-method' => 'post',
+                                'data-confirm' => Yii::t('usuario', 'Are you sure? There is no going back'),
+                            ]
+                        ) ?>
+                    </div>
                 </div>
             </div>
         <?php endif ?>
     </div>
 </div>
+<?php if ($module->enableTwoFactorAuthentication): ?>
+
+    <?php
+    // This script should be in fact in a module as an external file
+    // consider overriding this view and include your very own approach
+    $uri = Url::to(['two-factor', 'id' => $model->getUser()->id]);
+    $verify = Url::to(['two-factor-enable', 'id' => $model->getUser()->id]);
+    $js = <<<JS
+$('#tfmodal')
+    .on('show.bs.modal', function(){
+        if(!$('img#qrCode').length) {
+            $(this).find('.modal-body').load('{$uri}');
+        } else {
+            $('input#tfcode').val('');
+        }
+    });
+
+$(document)
+    .on('click', '.btn-submit-code', function(e) {
+       e.preventDefault();
+       var btn = $(this);
+       btn.prop('disabled', true);
+       
+       $.getJSON('{$verify}', {code: $('#tfcode').val()}, function(data){
+          btn.prop('disabled', false);
+          if(data.success) {
+              $('#enable_tf_btn, #disable_tf_btn').toggleClass('hide');
+              $('#tfmessage').removeClass('alert-danger').addClass('alert-success').find('p').text(data.message);
+              setTimeout(function() { $('#tfmodal').modal('hide'); }, 2000);
+          } else {
+              $('input#tfcode').val('');
+              $('#tfmessage').removeClass('alert-info').addClass('alert-danger').find('p').text(data.message);
+          }
+       }).fail(function(){ btn.prop('disabled', false); });
+    });
+JS;
+
+    $this->registerJs($js);
+    ?>
+<?php endif; ?>

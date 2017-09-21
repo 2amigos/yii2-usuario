@@ -24,14 +24,17 @@ use Da\User\Query\ProfileQuery;
 use Da\User\Query\SocialNetworkAccountQuery;
 use Da\User\Query\UserQuery;
 use Da\User\Service\EmailChangeService;
+use Da\User\Service\TwoFactorQrCodeUriGeneratorService;
 use Da\User\Traits\ContainerAwareTrait;
 use Da\User\Validator\AjaxRequestModelValidator;
+use Da\User\Validator\TwoFactorCodeValidator;
 use Yii;
 use yii\filters\AccessControl;
 use yii\filters\VerbFilter;
 use yii\web\Controller;
 use yii\web\ForbiddenHttpException;
 use yii\web\NotFoundHttpException;
+use yii\web\Response;
 
 class SettingsController extends Controller
 {
@@ -49,12 +52,12 @@ class SettingsController extends Controller
     /**
      * SettingsController constructor.
      *
-     * @param string                    $id
-     * @param Module                    $module
-     * @param ProfileQuery              $profileQuery
-     * @param UserQuery                 $userQuery
+     * @param string $id
+     * @param Module $module
+     * @param ProfileQuery $profileQuery
+     * @param UserQuery $userQuery
      * @param SocialNetworkAccountQuery $socialNetworkAccountQuery
-     * @param array                     $config
+     * @param array $config
      */
     public function __construct(
         $id,
@@ -81,6 +84,7 @@ class SettingsController extends Controller
                 'actions' => [
                     'disconnect' => ['post'],
                     'delete' => ['post'],
+                    'two-factor-disable' => ['post']
                 ],
             ],
             'access' => [
@@ -88,7 +92,16 @@ class SettingsController extends Controller
                 'rules' => [
                     [
                         'allow' => true,
-                        'actions' => ['profile', 'account', 'networks', 'disconnect', 'delete'],
+                        'actions' => [
+                            'profile',
+                            'account',
+                            'networks',
+                            'disconnect',
+                            'delete',
+                            'two-factor',
+                            'two-factor-enable',
+                            'two-factor-disable'
+                        ],
                         'roles' => ['@'],
                     ],
                     [
@@ -227,5 +240,71 @@ class SettingsController extends Controller
         Yii::$app->session->setFlash('info', Yii::t('usuario', 'Your account has been completely deleted'));
 
         return $this->goHome();
+    }
+
+    public function actionTwoFactor($id)
+    {
+        /** @var User $user */
+        $user = $this->userQuery->whereId($id)->one();
+
+        if (null === $user) {
+            throw new NotFoundHttpException();
+        }
+
+        $uri = $this->make(TwoFactorQrCodeUriGeneratorService::class, [$user])->run();
+
+        return $this->renderAjax('two-factor', ['id' => $id, 'uri' => $uri]);
+    }
+
+    public function actionTwoFactorEnable($id)
+    {
+        Yii::$app->response->format = Response::FORMAT_JSON;
+
+        /** @var User $user */
+        $user = $this->userQuery->whereId($id)->one();
+
+        if (null === $user) {
+            return [
+                'success' => false,
+                'message' => Yii::t('usuario', 'User not found.')
+            ];
+        }
+        $code = Yii::$app->request->get('code');
+
+        $success = $this
+            ->make(TwoFactorCodeValidator::class, [$user, $code, $this->module->twoFactorAuthenticationCycles])
+            ->validate();
+
+        $success = $success && $user->updateAttributes(['auth_tf_enabled' => '1']);
+
+        return [
+            'success' => $success,
+            'message' => $success
+                ? Yii::t('usuario', 'Two factor successfully enabled.')
+                : Yii::t('usuario', 'Verification failed. Please, enter new code.')
+        ];
+    }
+
+    public function actionTwoFactorDisable($id)
+    {
+        /** @var User $user */
+        $user = $this->userQuery->whereId($id)->one();
+
+        if (null === $user) {
+            throw new NotFoundHttpException();
+        }
+
+        if($user->updateAttributes(['auth_tf_enabled' => '0']))
+        {
+            Yii::$app
+                ->getSession()
+                ->setFlash('success', Yii::t('usuario', 'Two-factor authorization has been disabled.'));
+        } else {
+            Yii::$app
+                ->getSession()
+                ->setFlash('danger', Yii::t('usuario', 'Unable to disable two-factor authorization.'));
+        }
+
+        $this->redirect(['account']);
     }
 }

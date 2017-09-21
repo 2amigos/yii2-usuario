@@ -20,6 +20,15 @@ use yii\base\Module as BaseModule;
 class Module extends BaseModule
 {
     /**
+     * @var bool whether to enable two factor authentication or not
+     */
+    public $enableTwoFactorAuthentication = false;
+    /**
+     * @var int cycles of key generation are set on 30 sec. To avoid sync issues, increased validity up to 60 sec.
+     * @see http://2fa-library.readthedocs.io/en/latest/
+     */
+    public $twoFactorAuthenticationCycles = 1;
+    /**
      * @var bool whether to allow registration process or not
      */
     public $enableRegistration = true;

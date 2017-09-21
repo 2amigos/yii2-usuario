@@ -15,6 +15,7 @@ use Da\User\Helper\SecurityHelper;
 use Da\User\Model\User;
 use Da\User\Query\UserQuery;
 use Da\User\Traits\ModuleAwareTrait;
+use Da\User\Validator\TwoFactorCodeValidator;
 use Yii;
 use yii\base\Model;
 
@@ -30,6 +31,10 @@ class LoginForm extends Model
      * @var string User's password
      */
     public $password;
+    /**
+     * @var string User's two-factor authentication code
+     */
+    public $twoFactorAuthenticationCode;
     /**
      * @var bool whether to remember User's login
      */
@@ -48,9 +53,9 @@ class LoginForm extends Model
     protected $securityHelper;
 
     /**
-     * @param UserQuery      $query
+     * @param UserQuery $query
      * @param SecurityHelper $securityHelper
-     * @param array          $config
+     * @param array $config
      */
     public function __construct(UserQuery $query, SecurityHelper $securityHelper, $config = [])
     {
@@ -68,6 +73,7 @@ class LoginForm extends Model
             'login' => Yii::t('usuario', 'Login'),
             'password' => Yii::t('usuario', 'Password'),
             'rememberMe' => Yii::t('usuario', 'Remember me next time'),
+            'twoFactorAuthenticationCode' => Yii::t('usuario', 'Two-factor authentication code')
         ];
     }
 
@@ -78,7 +84,13 @@ class LoginForm extends Model
     {
         return [
             'requiredFields' => [['login', 'password'], 'required'],
+            'requiredFieldsTwoFactor' => [
+                ['login', 'password', 'twoFactorAuthenticationCode'],
+                'required',
+                'on' => '2fa'
+            ],
             'loginTrim' => ['login', 'trim'],
+            'twoFactorAuthenticationCodeTrim' => ['twoFactorAuthenticationCode', 'trim'],
             'passwordValidate' => [
                 'password',
                 function ($attribute) {
@@ -88,6 +100,20 @@ class LoginForm extends Model
                         $this->addError($attribute, Yii::t('usuario', 'Invalid login or password'));
                     }
                 },
+            ],
+            'twoFactorAuthenticationCodeValidate' => [
+                'twoFactorAuthenticationCode',
+                function ($attribute) {
+                    if ($this->user === null ||
+                        !(new TwoFactorCodeValidator(
+                            $this->user,
+                            $this->twoFactorAuthenticationCode,
+                            $this->module->twoFactorAuthenticationCycles
+                        ))
+                            ->validate()) {
+                        $this->addError($attribute, Yii::t('usuario', 'Invalid two-factor code'));
+                    }
+                }
             ],
             'confirmationValidate' => [
                 'login',

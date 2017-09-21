@@ -37,6 +37,8 @@ use yii\web\IdentityInterface;
  * @property string $unconfirmed_email
  * @property string $password_hash
  * @property string $auth_key
+ * @property string $auth_tf_key
+ * @property int $auth_tf_enabled
  * @property int $registration_ip
  * @property int $confirmed_at
  * @property int $blocked_at
@@ -188,6 +190,11 @@ class User extends ActiveRecord implements IdentityInterface
             'passwordTrim' => ['password', 'trim'],
             'passwordRequired' => ['password', 'required', 'on' => ['register']],
             'passwordLength' => ['password', 'string', 'min' => 6, 'max' => 72, 'on' => ['register', 'create']],
+
+            // two factor auth rules
+            'twoFactorSecretTrim' => ['auth_tf_key', 'trim'],
+            'twoFactorSecretLength' => ['auth_tf_key', 'string', 'max' => 16],
+            'twoFactorEnabledNumber' => ['auth_tf_enabled', 'integer']
         ];
     }
 
