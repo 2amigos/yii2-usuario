@@ -3,6 +3,15 @@ Configuration Options
 
 The module comes with a set of attributes to configure. The following is the list of all available options: 
 
+#### enableTwoFactorAuthentication (type: `boolean`, default: `false`)
+
+Setting this attribute will allow users to configure their login process with two-factor authentication. 
+
+### twoFactorAuthenticationCycles (type: `integer`, default: `1`)
+
+By default, Google Authenticator App for two-factor authentication cycles in periods of 30 seconds. In order to allow 
+a bigger period so to avoid out of sync issues. 
+
 #### enableRegistration (type: `boolean`, default: `true`)
 
 Setting this attribute allows the registration process. If you set it to `false`, the module won't allow users to 
