@@ -50,7 +50,7 @@ You can delete a user whether by using its email or username.
 ./yii user/delete <email|username>
 ```
 
-#### user/delete 
+#### user/password 
 
 You can update a user's password whether by using its email or username.
 
