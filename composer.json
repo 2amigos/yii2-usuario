@@ -48,9 +48,9 @@
     "require": {
         "php": ">=5.5",
         "2amigos/yii2-selectize-widget": "^1.1",
-        "yiisoft/yii2-authclient": "^2.1.0",
-        "yiisoft/yii2-bootstrap": "^2.0.0",
-        "yiisoft/yii2-swiftmailer": "^2.0.0",
+        "yiisoft/yii2-authclient": "^2.1",
+        "yiisoft/yii2-bootstrap": "^2.0",
+        "yiisoft/yii2-swiftmailer": "^2.0",
         "2amigos/2fa-library": "^1.0",
         "2amigos/qrcode-library": "^1.1"
     },
