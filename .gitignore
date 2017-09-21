@@ -49,3 +49,6 @@ codeception.yml
 /phpcs.xml
 /.php_cs.cache
 /.php_cs
+
+# composer
+composer.lock
