@@ -69,6 +69,8 @@ CREATE TABLE `user` (
   `blocked_at` int(11) DEFAULT NULL,
   `created_at` int(11) NOT NULL,
   `updated_at` int(11) NOT NULL,
+  `auth_tf_key` varchar(16) DEFAULT NULL,
+  `auth_tf_enabled` tinyint(1) DEFAULT '0',
   `flags` int(11) NOT NULL DEFAULT '0',
   `last_login_at` int(11) DEFAULT NULL,
 
