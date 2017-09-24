@@ -16,10 +16,10 @@ matrix:
     - php: nightly
 
 # cache vendor dirs
-cache:
-  directories:
-    - vendor
-    - $HOME/.composer/cache
+# cache:
+#  directories:
+#    - vendor
+#    - $HOME/.composer/cache
 
 install:
   - |
