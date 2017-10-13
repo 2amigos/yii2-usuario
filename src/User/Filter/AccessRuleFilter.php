@@ -11,6 +11,7 @@
 
 namespace Da\User\Filter;
 
+use Closure;
 use Da\User\Model\User;
 use yii\filters\AccessRule;
 
