@@ -1,6 +1,7 @@
 # CHANGELOG
 
 ## 1.0.14 - Work in progress
+- Enh #81: Update `AccessRuleFilter` to evaluate `roleParams` (kartik-v)
 - Enh #56: Added two factor authentication (tonydspaniard)
 - Fix #63: Fix selectize version (tonydspaniard)
 - Enh #65: Updated Romanian translation (mrbig00)
