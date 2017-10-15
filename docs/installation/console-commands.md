@@ -28,10 +28,11 @@ How to Use Them
 #### user/create
 
 If password is not set, it will automatically generate it. The newly created user will receive an email message with its 
-new credentials. 
+new credentials. If a role is provided, it will assign it to the user. Is important not note, that if the role doesn't 
+exist, the command will create it.
 
 ```php 
-./yii user/create <email> <username> [password]
+./yii user/create <email> <username> [password] [role]
 ```
 
 #### user/confirm 

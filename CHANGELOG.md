@@ -1,6 +1,7 @@
 # CHANGELOG
 
 ## 1.0.14 - Work in progress
+- Fix #20: Allow the assignment of a role on user creation via console (tonydspaniard)
 - Fix #59: Add instructions to add rbac migration path (tonydspaniard)
 - Fix #68: Fix user events documentation and events raised from User model (tonydspaniard)
 - Fix #69: Log level when user can't register should be L_ERROR (tonydspaniard)

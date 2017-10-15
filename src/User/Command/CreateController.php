@@ -23,7 +23,7 @@ class CreateController extends Controller
 {
     use ContainerAwareTrait;
 
-    public function actionIndex($email, $username, $password = null)
+    public function actionIndex($email, $username, $password = null, $role = null)
     {
         /** @var User $user */
         $user = $this->make(
@@ -35,6 +35,11 @@ class CreateController extends Controller
 
         if ($this->make(UserCreateService::class, [$user, $mailService])->run()) {
             $this->stdout(Yii::t('usuario', 'User has been created') . "!\n", Console::FG_GREEN);
+
+            if (null !== $role) {
+                $this->assignRole($user, $role);
+            }
+
         } else {
             $this->stdout(Yii::t('usuario', 'Please fix following errors:') . "\n", Console::FG_RED);
             foreach ($user->errors as $errors) {
@@ -42,6 +47,29 @@ class CreateController extends Controller
                     $this->stdout(' - ' . $error . "\n", Console::FG_RED);
                 }
             }
+        }
+    }
+
+    protected function assignRole(User $user, $role)
+    {
+        $auth = Yii::$app->getAuthManager();
+        if (false === $auth) {
+            $this->stdout(
+                Yii::t(
+                    'usuario',
+                    'Cannot assign role "{0}" as the AuthManager is not configured on your console application.',
+                    $role
+                ) . "\n",
+                Console::FG_RED
+            );
+        } else {
+            $userRole = $auth->getRole($role);
+            if (null === $userRole) {
+                $this->stdout(Yii::t('usuario', 'Role "{0}" not found. Creating it.') . "!\n", Console::FG_GREEN);
+                $userRole = $auth->createRole($role);
+                $auth->add($userRole);
+            }
+            $auth->assign($userRole, $user->id);
         }
     }
 }
