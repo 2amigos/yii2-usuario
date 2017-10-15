@@ -140,6 +140,9 @@ Events
 
 Events are a good way to execute logic before and after certain processes. Yii2 Usuario comes with a huge list of them. 
 
+One important thing to remember is that this module overrides those of `yii\web\User`. They will simply not work, you 
+*must* use those specified on this module.  
+
 The recommended way to make use of events is by creating a new file in your config folder (i.e. `events.php`), configure 
 there all your events and then include that file on your 
 [`entry script`](http://www.yiiframework.com/doc-2.0/guide-structure-entry-scripts.html). 
