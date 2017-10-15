@@ -19,6 +19,7 @@
 return [
     'A message has been sent to your email address. It contains a confirmation link that you must click to complete registration.' => '',
     'Are you sure you want to switch to this user for the rest of this Session?' => '',
+    'Are you sure you wish to send a password recovery email to this user?' => '',
     'Authentication rule class {0} can not be instantiated' => '',
     'Authorization rule has been added.' => '',
     'Authorization rule has been removed.' => '',
@@ -48,6 +49,7 @@ return [
     'Rule {0} not found.' => '',
     'Rules' => '',
     'Scan the QrCode with Google Authenticator App, then insert its temporary code on the box and submit.' => '',
+    'Send password recovery email' => '',
     'Switch identities is disabled.' => '',
     'The "recaptcha" component must be configured.' => '',
     'The verification code is incorrect.' => '',
@@ -61,6 +63,7 @@ return [
     'Two-factor code' => '',
     'Unable to create new authorization rule.' => '',
     'Unable to disable two-factor authorization.' => '',
+    'Unable to send recovery message to the user' => '',
     'Unable to update authorization rule.' => '',
     'Update rule' => '',
     'Updated at' => '',

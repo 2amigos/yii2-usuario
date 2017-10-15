@@ -43,6 +43,11 @@ If `true` it will allow users to login with unconfirmed emails.
 
 If `true` it will enable password recovery process.
 
+#### allowAdminPasswordRecovery (type: `boolean`, default: `true`)
+
+If `true` and `allowPasswordRecovery` is false, it will enable administrator to send a password recovery email to a 
+user.
+
 #### allowAccountDelete (type: `boolean`, default: `true`)
 
 If `true` users will be able to remove their own accounts. 

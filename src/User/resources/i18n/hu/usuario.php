@@ -18,6 +18,7 @@
  */
 return [
     'A message has been sent to your email address. It contains a confirmation link that you must click to complete registration.' => '',
+    'Are you sure you wish to send a password recovery email to this user?' => '',
     'Awesome, almost there. Now you need to click the confirmation link sent to your new email address.' => '',
     'Awesome, almost there. Now you need to click the confirmation link sent to your old email address.' => '',
     'Cancel' => '',
@@ -33,6 +34,7 @@ return [
     'Required "secret" cannot be empty.' => '',
     'Role "{0}" not found. Creating it.' => '',
     'Scan the QrCode with Google Authenticator App, then insert its temporary code on the box and submit.' => '',
+    'Send password recovery email' => '',
     'The "recaptcha" component must be configured.' => '',
     'The verification code is incorrect.' => '',
     'This will disable two-factor auth. Are you sure?' => '',
@@ -44,6 +46,7 @@ return [
     'Two-factor authorization has been disabled.' => '',
     'Two-factor code' => '',
     'Unable to disable two-factor authorization.' => '',
+    'Unable to send recovery message to the user' => '',
     'User not found.' => '',
     'Verification failed. Please, enter new code.' => '',
     'We couldn\'t re-send the mail to confirm your address. Please, verify is the correct email or if it has been confirmed already.' => '',

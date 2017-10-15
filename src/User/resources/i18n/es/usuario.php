@@ -17,11 +17,9 @@
  * NOTE: this file must be saved in UTF-8 encoding.
  */
 return [
-    'Required "key" cannot be empty.' => 'El atributo "key" es obligatorio.',
-    'Required "secret" cannot be empty.' => 'El atributo "secret" es obligatorio.',
-    'The "recaptcha" component must be configured.' => 'El component "recaptcha" debe estar configurado.',
-    'The verification code is incorrect.' => 'El código de verificación es incorrecto.',
-    '{0} cannot be blank.' => '{0} no puede estar vacío.',
+    'Are you sure you wish to send a password recovery email to this user?' => 'Estás seguro de querer enviar un email de recuperación de contraseña a este usuario?',
+    'Send password recovery email' => 'Enviar email de recuperación de contraseña',
+    'Unable to send recovery message to the user' => 'Ha sido imposible enviar el email de recuperación de contraseña',
     '(not set)' => '(sin establecer)',
     'A confirmation message has been sent to your new email address' => 'Se ha enviado un mensaje de confirmación a tu nueva dirección de correo electrónico',
     'A message has been sent to your email address. It contains a confirmation link that you must click to complete registration.' => 'Un mensaje ha sido enviado a tu dirección de correo electrónico. Contiene un vínculo de confirmación que tienes que seguir para completar el registro.',
@@ -152,6 +150,8 @@ return [
     'Registration time' => 'Hora de registro',
     'Remember me next time' => 'Recuérdame la próxima vez',
     'Request new confirmation message' => 'Solicita nuevo mensaje de confirmación',
+    'Required "key" cannot be empty.' => 'El atributo "key" es obligatorio.',
+    'Required "secret" cannot be empty.' => 'El atributo "secret" es obligatorio.',
     'Reset your password' => 'Restablece contraseña',
     'Role "{0}" not found. Creating it.' => 'Rol "{0}" no encontrado. Creándolo.',
     'Roles' => 'Roles',
@@ -170,7 +170,9 @@ return [
     'Switch identities is disabled.' => 'Personificación de usuarios deshabilitada.',
     'Thank you for signing up on {0}' => 'Gracias por registrate en {0}',
     'Thank you, registration is now complete.' => 'Gracias, el registro ha sido completado.',
+    'The "recaptcha" component must be configured.' => 'El component "recaptcha" debe estar configurado.',
     'The confirmation link is invalid or expired. Please try requesting a new one.' => 'El enlace de confirmación no es válido o ha caducado. Por favor, intenta a solicitar uno nuevo.',
+    'The verification code is incorrect.' => 'El código de verificación es incorrecto.',
     'There is neither role nor permission with name "{0}"' => 'No existe rol ni permiso con el nombre "{0}"',
     'This account has already been connected to another user' => 'Esta cuenta ya está conectada con otro usuario',
     'This email address has already been taken' => 'Esta cuenta de correo electrónico ya está siendo utilizada',
@@ -239,4 +241,5 @@ return [
     'Your email address has been changed' => 'Tu cuenta de correo electrónico ha sido cambiada',
     'Your profile has been updated' => 'Tu perfil ha sido actualizado',
     '{0, date, MMMM dd, YYYY HH:mm}' => '{0, date, MMMM dd, YYYY HH:mm}',
+    '{0} cannot be blank.' => '{0} no puede estar vacío.',
 ];

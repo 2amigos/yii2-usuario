@@ -121,7 +121,7 @@ $module = Yii::$app->getModule('user');
             ],
             [
                 'class' => 'yii\grid\ActionColumn',
-                'template' => '{switch} {update} {delete}',
+                'template' => '{switch} {reset} {update} {delete}',
                 'buttons' => [
                     'switch' => function ($url, $model) use ($module) {
                         if ($model->id != Yii::$app->user->id && $module->enableSwitchIdentities) {
@@ -133,6 +133,24 @@ $module = Yii::$app->getModule('user');
                                     'data-confirm' => Yii::t(
                                         'usuario',
                                         'Are you sure you want to switch to this user for the rest of this Session?'
+                                    ),
+                                    'data-method' => 'POST',
+                                ]
+                            );
+                        }
+
+                        return null;
+                    },
+                    'reset' => function ($url, $model) use ($module) {
+                        if(!$module->allowPasswordRecovery && $module->allowAdminPasswordRecovery) {
+                            return Html::a(
+                                '<span class="glyphicon glyphicon-flash"></span>',
+                                ['/user/admin/password-reset', 'id' => $model->id],
+                                [
+                                    'title' => Yii::t('usuario', 'Send password recovery email'),
+                                    'data-confirm' => Yii::t(
+                                        'usuario',
+                                        'Are you sure you wish to send a password recovery email to this user?'
                                     ),
                                     'data-method' => 'POST',
                                 ]

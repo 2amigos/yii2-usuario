@@ -123,7 +123,7 @@ class RecoveryController extends Controller
      */
     public function actionReset($id, $code)
     {
-        if (!$this->module->allowPasswordRecovery) {
+        if (!$this->module->allowPasswordRecovery && !$this->module->allowAdminPasswordRecovery) {
             throw new NotFoundHttpException();
         }
         /** @var Token $token */

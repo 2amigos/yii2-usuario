@@ -57,6 +57,10 @@ class Module extends BaseModule
      */
     public $allowPasswordRecovery = true;
     /**
+     * @var bool whether to enable password recovery from the admin console
+     */
+    public $allowAdminPasswordRecovery = true;
+    /**
      * @var bool whether user can remove his account
      */
     public $allowAccountDelete = false;

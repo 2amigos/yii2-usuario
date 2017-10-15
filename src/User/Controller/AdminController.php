@@ -18,6 +18,7 @@ use Da\User\Model\Profile;
 use Da\User\Model\User;
 use Da\User\Query\UserQuery;
 use Da\User\Search\UserSearch;
+use Da\User\Service\PasswordRecoveryService;
 use Da\User\Service\SwitchIdentityService;
 use Da\User\Service\UserBlockService;
 use Da\User\Service\UserConfirmationService;
@@ -44,10 +45,10 @@ class AdminController extends Controller
     /**
      * AdminController constructor.
      *
-     * @param string    $id
-     * @param Module    $module
+     * @param string $id
+     * @param Module $module
      * @param UserQuery $userQuery
-     * @param array     $config
+     * @param array $config
      */
     public function __construct($id, Module $module, UserQuery $userQuery, array $config = [])
     {
@@ -81,7 +82,8 @@ class AdminController extends Controller
                     'delete' => ['post'],
                     'confirm' => ['post'],
                     'block' => ['post'],
-                    'switch-identity' => ['post']
+                    'switch-identity' => ['post'],
+                    'password-reset' => ['post']
                 ],
             ],
             'access' => [
@@ -308,5 +310,22 @@ class AdminController extends Controller
         $this->make(SwitchIdentityService::class, [$this, 2 => $id])->run();
 
         return $this->goHome();
+    }
+
+    public function actionPasswordReset($id)
+    {
+        /** @var User $user */
+        $user = $this->userQuery->where(['id' => $id])->one();
+        $mailService = MailFactory::makeRecoveryMailerService($user->email);
+        if ($this->make(PasswordRecoveryService::class, [$user->email, $mailService])->run()) {
+            Yii::$app->getSession()->setFlash('success', Yii::t('usuario', 'Recovery message sent'));
+        } else {
+            Yii::$app->getSession()->setFlash(
+                'danger',
+                Yii::t('usuario', 'Unable to send recovery message to the user')
+            );
+        }
+
+        return $this->redirect(['index']);
     }
 }
