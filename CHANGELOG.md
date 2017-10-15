@@ -1,6 +1,7 @@
 # CHANGELOG
 
 ## 1.0.14 - Work in progress
+- Fix #85: External links should open in a new tab|window (eseperio)
 - Enh #23: Provide administrator with an option to reset user password (tonydspaniard)
 - Enh #55: Provide google recaptcha mechanism (tonydspaniard)
 - Fix #20: Allow the assignment of a role on user creation via console (tonydspaniard)
