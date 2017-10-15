@@ -21,6 +21,8 @@ module is built to work out of the box with some minor config tweaks and it come
 - Login via username/email + password process
 - Login via social network process
 - Password recovery process
+- Two-Factor authentication process 
+- Google reCaptcha
 
 We considered that RBAC was essential to be included into any user management module, even if you simply use one user 
 with `admin` role, its much better to actually work with RBAC just in case your application scales in the future.
