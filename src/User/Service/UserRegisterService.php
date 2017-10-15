@@ -56,8 +56,8 @@ class UserRegisterService implements ServiceInterface
                 ? $this->securityHelper->generatePassword(8)
                 : $model->password;
 
-            $userEvent = $this->make(UserEvent::class, [$model]);
-            $model->trigger(UserEvent::EVENT_BEFORE_REGISTER, $userEvent);
+            $event = $this->make(UserEvent::class, [$model]);
+            $model->trigger(UserEvent::EVENT_BEFORE_REGISTER, $event);
 
             if (!$model->save()) {
                 $transaction->rollBack();
@@ -74,7 +74,7 @@ class UserRegisterService implements ServiceInterface
             }
             $this->mailService->run();
 
-            $model->trigger(UserEvent::EVENT_AFTER_REGISTER, $userEvent);
+            $model->trigger(UserEvent::EVENT_AFTER_REGISTER, $event);
 
             $transaction->commit();
 
