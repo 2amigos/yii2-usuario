@@ -71,7 +71,8 @@ $timezoneHelper = $model->make(TimezoneHelper::class);
                     ->hint(
                         Html::a(
                             Yii::t('usuario', 'Change your avatar at Gravatar.com'),
-                            'http://gravatar.com'
+                            'http://gravatar.com',
+                            ['target' => '_blank']
                         )
                     ) ?>
 
