@@ -62,8 +62,7 @@ class EmailChangeService implements ServiceInterface
                         'success',
                         Yii::t(
                             'usuario',
-                            'Awesome, almost there. ' .
-                            'Now you need to click the confirmation link sent to your old email address.'
+                            'Awesome, almost there. Now you need to click the confirmation link sent to your old email address.'
                         )
                     );
                 } elseif ($token->type === Token::TYPE_CONFIRM_OLD_EMAIL) {
@@ -72,8 +71,7 @@ class EmailChangeService implements ServiceInterface
                         'success',
                         Yii::t(
                             'usuario',
-                            'Awesome, almost there. ' .
-                            'Now you need to click the confirmation link sent to your new email address.'
+                            'Awesome, almost there. Now you need to click the confirmation link sent to your new email address.'
                         )
                     );
                 }

@@ -235,8 +235,7 @@ class RegistrationController extends Controller
                         'info',
                         Yii::t(
                             'usuario',
-                            'A message has been sent to your email address. ' .
-                            'It contains a confirmation link that you must click to complete registration.'
+                            'A message has been sent to your email address. It contains a confirmation link that you must click to complete registration.'
                         )
                     );
                 }
@@ -246,8 +245,7 @@ class RegistrationController extends Controller
                     'danger',
                     Yii::t(
                         'usuario',
-                        'We couldn\'t re-send the mail to confirm your address. ' .
-                        'Please, verify is the correct email or if it has been confirmed already.'
+                        'We couldn\'t re-send the mail to confirm your address. Please, verify is the correct email or if it has been confirmed already.'
                     )
                 );
             }
