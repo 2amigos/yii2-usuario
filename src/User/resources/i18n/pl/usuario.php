@@ -17,14 +17,14 @@
  * NOTE: this file must be saved in UTF-8 encoding.
  */
 return [
-    'A message has been sent to your email address. It contains a confirmation link that you must click to complete registration.' => '',
-    'Cancel' => '',
-    'Close' => '',
-    'Last login' => '',
-    'Two factor successfully enabled.' => '',
-    'User not found.' => '',
-    'Verification failed. Please, enter new code.' => '',
-    'We couldn\'t re-send the mail to confirm your address. Please, verify is the correct email or if it has been confirmed already.' => '',
+    'A message has been sent to your email address. It contains a confirmation link that you must click to complete registration.' => 'Wysłaliśmy wiadomość na Twój adres email, zawierającą link aktywacyjny, w który musisz kliknąć, aby zakończyć rejestrację.',
+    'Cancel' => 'Anuluj',
+    'Close' => 'Zamknij',
+    'Last login' => 'Data ostatniego logowania',
+    'Two factor successfully enabled.' => 'Dwuetapowe uwierzytelnianie poprawnie włączone.',
+    'User not found.' => 'Nie znaleziono użytkownika.',
+    'Verification failed. Please, enter new code.' => 'Weryfikacja nie powiodła się. Prosimy o podanie nowego kodu.',
+    'We couldn\'t re-send the mail to confirm your address. Please, verify is the correct email or if it has been confirmed already.' => 'Nie mogliśmy wysłać ponownie emaila, aby potwierdzić Twój adres. Prosimy o sprawdzenie, czy to poprawny adres i czy nie został już potwierdzony.',
     '(not set)' => '(nie podano)',
     'A confirmation message has been sent to your new email address' => 'Potwierdzenie zostało wysłane na Twój nowy adres email',
     'A new confirmation link has been sent' => 'Nowy link z potwierdzeniem został wysłany',
