@@ -39,7 +39,6 @@ class CreateController extends Controller
             if (null !== $role) {
                 $this->assignRole($user, $role);
             }
-
         } else {
             $this->stdout(Yii::t('usuario', 'Please fix following errors:') . "\n", Console::FG_RED);
             foreach ($user->errors as $errors) {

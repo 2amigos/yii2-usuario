@@ -37,10 +37,10 @@ class SecurityController extends Controller
     /**
      * SecurityController constructor.
      *
-     * @param string $id
-     * @param Module $module
+     * @param string                    $id
+     * @param Module                    $module
      * @param SocialNetworkAccountQuery $socialNetworkAccountQuery
-     * @param array $config
+     * @param array                     $config
      */
     public function __construct(
         $id,
@@ -117,14 +117,12 @@ class SecurityController extends Controller
         $event = $this->make(FormEvent::class, [$form]);
 
         if (Yii::$app->request->isAjax && $form->load(Yii::$app->request->post())) {
-
             Yii::$app->response->format = Response::FORMAT_JSON;
 
             return ActiveForm::validate($form);
         }
 
         if ($form->load(Yii::$app->request->post())) {
-
             if ($this->module->enableTwoFactorAuthentication && $form->validate()) {
                 if ($form->getUser()->auth_tf_enabled) {
                     Yii::$app->session->set('credentials', ['login' => $form->login, 'pwd' => $form->password]);
@@ -173,18 +171,15 @@ class SecurityController extends Controller
         $event = $this->make(FormEvent::class, [$form]);
 
         if (Yii::$app->request->isAjax && $form->load(Yii::$app->request->post())) {
-
             Yii::$app->response->format = Response::FORMAT_JSON;
 
             return ActiveForm::validate($form);
         }
 
         if ($form->load(Yii::$app->request->post())) {
-
             $this->trigger(FormEvent::EVENT_BEFORE_LOGIN, $event);
 
             if ($form->login()) {
-
                 Yii::$app->session->set('credentials', null);
 
                 $form->getUser()->updateAttributes(['last_login_at' => time()]);
@@ -202,7 +197,6 @@ class SecurityController extends Controller
                 'module' => $this->module,
             ]
         );
-
     }
 
     public function actionLogout()

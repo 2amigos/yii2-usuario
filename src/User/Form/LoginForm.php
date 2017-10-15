@@ -53,9 +53,9 @@ class LoginForm extends Model
     protected $securityHelper;
 
     /**
-     * @param UserQuery $query
+     * @param UserQuery      $query
      * @param SecurityHelper $securityHelper
-     * @param array $config
+     * @param array          $config
      */
     public function __construct(UserQuery $query, SecurityHelper $securityHelper, $config = [])
     {

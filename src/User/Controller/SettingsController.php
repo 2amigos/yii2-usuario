@@ -52,12 +52,12 @@ class SettingsController extends Controller
     /**
      * SettingsController constructor.
      *
-     * @param string $id
-     * @param Module $module
-     * @param ProfileQuery $profileQuery
-     * @param UserQuery $userQuery
+     * @param string                    $id
+     * @param Module                    $module
+     * @param ProfileQuery              $profileQuery
+     * @param UserQuery                 $userQuery
      * @param SocialNetworkAccountQuery $socialNetworkAccountQuery
-     * @param array $config
+     * @param array                     $config
      */
     public function __construct(
         $id,
@@ -294,8 +294,7 @@ class SettingsController extends Controller
             throw new NotFoundHttpException();
         }
 
-        if($user->updateAttributes(['auth_tf_enabled' => '0']))
-        {
+        if ($user->updateAttributes(['auth_tf_enabled' => '0'])) {
             Yii::$app
                 ->getSession()
                 ->setFlash('success', Yii::t('usuario', 'Two-factor authorization has been disabled.'));
