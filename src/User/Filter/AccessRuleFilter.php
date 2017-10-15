@@ -11,6 +11,7 @@
 
 namespace Da\User\Filter;
 
+use Closure;
 use Da\User\Model\User;
 use yii\filters\AccessRule;
 
@@ -41,8 +42,13 @@ class AccessRuleFilter extends AccessRule
                 if (!$user->getIsGuest() && $identity->getIsAdmin()) {
                     return true;
                 }
-            } elseif ($user->can($role)) {
-                return true;
+            } else {
+                if (!isset($roleParams)) {
+                    $roleParams = $this->roleParams instanceof Closure ? call_user_func($this->roleParams, $this) : $this->roleParams;
+                }
+                if ($user->can($role, $roleParams)) {
+                    return true;
+                }
             }
         }
 
