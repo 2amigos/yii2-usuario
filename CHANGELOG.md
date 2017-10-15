@@ -1,6 +1,7 @@
 # CHANGELOG
 
 ## 1.0.14 - Work in progress
+- Fix #68: Fix user events documentation and events raised from User model (tonydspaniard)
 - Fix #69: Log level when user can't register should be L_ERROR (tonydspaniard)
 - Enh #81: Update `AccessRuleFilter` to evaluate `roleParams` (kartik-v)
 - Enh #56: Added two factor authentication (tonydspaniard)

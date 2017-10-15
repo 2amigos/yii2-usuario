@@ -14,6 +14,8 @@ On Controllers
 - **RegistrationController**
     - **FormEvent::EVENT_BEFORE_RESEND**: Occurs before a confirmation message is being sent via email
     - **FormEvent::EVENT_AFTER_RESEND**: Occurs after a confirmation message is being sent via email
+    - **FormEvent::EVENT_BEFORE_REGISTER**: Occurs before user registration
+    - **FormEvent::EVENT_AFTER_REGISTER**: Occurs after user registration
 
 
 - **SecurityController**

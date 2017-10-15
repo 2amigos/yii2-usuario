@@ -22,8 +22,6 @@ On Controllers
 
 
 - **RegistrationController**
-    - **UserEvent::EVENT_BEFORE_REGISTER**: Occurs before user registration
-    - **UserEvent::EVENT_AFTER_REGISTER**: Occurs after user registration
     - **UserEvent::EVENT_BEFORE_CONFIRMATION**
     - **UserEvent::EVENT_AFTER_CONFIRMATION**
 

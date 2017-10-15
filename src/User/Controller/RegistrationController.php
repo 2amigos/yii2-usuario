@@ -99,7 +99,7 @@ class RegistrationController extends Controller
         $this->make(AjaxRequestModelValidator::class, [$form])->validate();
 
         if ($form->load(Yii::$app->request->post()) && $form->validate()) {
-            $this->trigger(UserEvent::EVENT_BEFORE_REGISTER, $event);
+            $this->trigger(FormEvent::EVENT_BEFORE_REGISTER, $event);
             /** @var User $user */
             $user = $this->make(User::class, [], $form->attributes);
             $user->setScenario('register');
@@ -113,7 +113,7 @@ class RegistrationController extends Controller
                         'Your account has been created and a message with further instructions has been sent to your email'
                     )
                 );
-                $this->trigger(UserEvent::EVENT_AFTER_REGISTER, $event);
+                $this->trigger(FormEvent::EVENT_AFTER_REGISTER, $event);
 
                 return $this->render(
                     '/shared/message',
