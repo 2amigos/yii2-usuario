@@ -15,6 +15,7 @@ $finder = PhpCsFixer\Finder::create()
         'temp',
         'tests',
         'vendor',
+        'src/User/resources'
     ])
     ->in(__DIR__);
 
