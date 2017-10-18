@@ -138,8 +138,9 @@ class AdminController extends Controller
             if ($this->make(UserCreateService::class, [$user, $mailService])->run()) {
                 Yii::$app->getSession()->setFlash('success', Yii::t('usuario', 'User has been created'));
                 $this->trigger(UserEvent::EVENT_AFTER_CREATE, $event);
-
                 return $this->redirect(['update', 'id' => $user->id]);
+            } else {
+                Yii::$app->session->setFlash( 'danger', Yii::t('usuario', 'User account could not be created.'));
             }
         }
 

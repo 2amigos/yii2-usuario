@@ -19,6 +19,8 @@
 return [
     'Are you sure you wish to send a password recovery email to this user?' => '',
     'Cannot assign role "{0}" as the AuthManager is not configured on your console application.' => '',
+    'Error sending registration message to "{email}". Please try again later.' => '',
+    'Error sending welcome message to "{email}". Please try again later.' => '',
     'Required "key" cannot be empty.' => '',
     'Required "secret" cannot be empty.' => '',
     'Role "{0}" not found. Creating it.' => '',
@@ -26,6 +28,8 @@ return [
     'The "recaptcha" component must be configured.' => '',
     'The verification code is incorrect.' => '',
     'Unable to send recovery message to the user' => '',
+    'User account could not be created.' => '',
+    'User could not be registered.' => '',
     '{0} cannot be blank.' => '',
     '(not set)' => '(nie podano)',
     'A confirmation message has been sent to your new email address' => 'Potwierdzenie zostało wysłane na Twój nowy adres email',
