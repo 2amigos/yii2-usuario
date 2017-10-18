@@ -16,12 +16,15 @@ use Da\User\Factory\TokenFactory;
 use Da\User\Model\Token;
 use Da\User\Model\User;
 use Da\User\Query\UserQuery;
+use Da\User\Traits\MailAwareTrait;
 use Exception;
 use Yii;
 use yii\log\Logger;
 
 class PasswordRecoveryService implements ServiceInterface
 {
+    use MailAwareTrait;
+
     protected $query;
 
     protected $email;
@@ -51,7 +54,7 @@ class PasswordRecoveryService implements ServiceInterface
 
             $this->mailService->setViewParam('user', $user);
             $this->mailService->setViewParam('token', $token);
-            if (!$this->mailService->run()) {
+            if (!$this->sendMail($user)) {
                 return false;
             }
 

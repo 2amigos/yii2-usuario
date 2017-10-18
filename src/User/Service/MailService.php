@@ -20,6 +20,7 @@ class MailService implements ServiceInterface
 {
     protected $viewPath = '@Da/User/resources/views/mail';
 
+    protected $type;
     protected $from;
     protected $to;
     protected $subject;
@@ -30,15 +31,17 @@ class MailService implements ServiceInterface
     /**
      * MailService constructor.
      *
-     * @param string                     $from
-     * @param string                     $to
-     * @param string                     $subject
-     * @param string                     $view
-     * @param array                      $params
-     * @param BaseMailer|MailerInterface $mailer
+     * @param string                     $type      the mailer type
+     * @param string                     $from      from email account
+     * @param string                     $to        to email account
+     * @param string                     $subject   the email subject
+     * @param string                     $view      the view to render mail
+     * @param array                      $params    view parameters
+     * @param BaseMailer|MailerInterface $mailer    mailer interface
      */
-    public function __construct($from, $to, $subject, $view, array $params, MailerInterface $mailer)
+    public function __construct($type, $from, $to, $subject, $view, array $params, MailerInterface $mailer)
     {
+        $this->type = $type;
         $this->from = $from;
         $this->to = $to;
         $this->subject = $subject;
@@ -60,6 +63,15 @@ class MailService implements ServiceInterface
         $this->params[$name] = $value;
 
         return $this;
+    }
+
+    /**
+     * gets mailer type
+     * @return string
+     */
+    public function getType()
+    {
+        return $this->type;
     }
 
     /**

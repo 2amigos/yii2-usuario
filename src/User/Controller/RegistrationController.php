@@ -114,7 +114,6 @@ class RegistrationController extends Controller
                     )
                 );
                 $this->trigger(FormEvent::EVENT_AFTER_REGISTER, $event);
-
                 return $this->render(
                     '/shared/message',
                     [
@@ -122,16 +121,11 @@ class RegistrationController extends Controller
                         'module' => $this->module,
                     ]
                 );
+            } else {
+                Yii::$app->session->setFlash( 'danger', Yii::t('usuario', 'User could not be registered.'));
             }
         }
-
-        return $this->render(
-            'register',
-            [
-                'model' => $form,
-                'module' => $this->module,
-            ]
-        );
+        return $this->render('register', ['model' => $form, 'module' => $this->module]);
     }
 
     public function actionConnect($code)

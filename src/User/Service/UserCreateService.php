@@ -15,12 +15,16 @@ use Da\User\Contracts\ServiceInterface;
 use Da\User\Event\UserEvent;
 use Da\User\Helper\SecurityHelper;
 use Da\User\Model\User;
+use Da\User\Traits\MailAwareTrait;
 use Exception;
+use Yii;
 use yii\base\InvalidCallException;
 use yii\log\Logger;
 
 class UserCreateService implements ServiceInterface
 {
+    use MailAwareTrait;
+
     protected $model;
     protected $securityHelper;
     protected $mailService;
@@ -57,15 +61,23 @@ class UserCreateService implements ServiceInterface
 
             if (!$model->save()) {
                 $transaction->rollBack();
-
                 return false;
             }
 
             $model->trigger(UserEvent::EVENT_AFTER_CREATE);
-
-            $this->mailService->run();
+            if (!$this->sendMail($model)) {
+                Yii::$app->session->setFlash(
+                    'warning',
+                    Yii::t(
+                        'usuario',
+                        'Error sending welcome message to "{email}". Please try again later.',
+                        ['email' => $model->email]
+                    )
+                );
+                $transaction->rollBack();
+                return false;
+            }
             $transaction->commit();
-
             return true;
         } catch (Exception $e) {
             $transaction->rollBack();
