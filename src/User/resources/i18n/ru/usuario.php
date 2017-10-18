@@ -9,7 +9,7 @@
  * Each array element represents the translation (value) of a message (key).
  * If the value is empty, the message is considered as not translated.
  * Messages that no longer need translation will have their translations
- * enclosed between a pair of '' marks.
+ * enclosed between a pair of '@@' marks.
  *
  * Message string can be used with plural forms format. Check i18n section
  * of the guide for details.
@@ -52,12 +52,14 @@ return [
     'We couldn\'t re-send the mail to confirm your address. Please, verify is the correct email or if it has been confirmed already.' => 'Не удалось повторно отправить письмо для подтверждения вашего адреса электронной почты. Пожалуйста, проверьте, что ввели корректный адрес или что он ещё не был подтверждён.',
     'We have sent confirmation links to both old and new email addresses. You must click both links to complete your request.' => 'Мы отправили письма на ваш старый и новый адреса. Вы должны перейти по обеим ссылкам, чтобы завершить процесс смены адреса.',
     '{0} cannot be blank.' => '{0} не может быть пустым.',
-    'A message has been sent to your email address. ' => 'Сообщение было отправлено на вашу электронную почту',
-    'Awesome, almost there. ' => 'Замечательно, почти готово!',
-    'Class "{0}" does not exist' => 'Класс "{0}" не найден',
-    'Registration ip' => 'IP при регистрации',
-    'Rule class can not be instantiated' => 'Класс правила не может быть создан',
-    'Rule class must extend "yii\\rbac\\Rule"' => 'Класс правила должен наследоваться от "yii\\rbac\\Rule"',
+    'A message has been sent to your email address. ' => '@@Сообщение было отправлено на вашу электронную почту@@',
+    'Awesome, almost there. ' => '@@Замечательно, почти готово!@@',
+    'Class "{0}" does not exist' => '@@Класс "{0}" не найден@@',
+    'Registration ip' => '@@IP при регистрации@@',
+    'Rule class can not be instantiated' => '@@Класс правила не может быть создан@@',
+    'Rule class must extend "yii\\rbac\\Rule"' => '@@Класс правила должен наследоваться от "yii\\rbac\\Rule"@@',
+    'We couldn\'t re-send the mail to confirm your address. ' => '@@Мы не можем повторно отправить письмо для подтверждения вашего адреса электронной почты.@@',
+    'We have sent confirmation links to both old and new email addresses. ' => '@@Мы отправили письма на ваш старый и новый почтовые ящики. Вы должны перейти по обеим, чтобы завершить процесс смены адреса.@@',
     'We couldn\'t re-send the mail to confirm your address. ' => 'Не удалось повторно отправить письмо для подтверждения вашего адреса электронной почты.',
     '(not set)' => '(не задано)',
     'A confirmation message has been sent to your new email address' => 'На указанный адрес было отправлено письмо с дальнейшими инструкциями',
