@@ -11,7 +11,6 @@
 
 namespace Da\User\Traits;
 
-use Da\QrCode\Exception\InvalidConfigException;
 use Da\User\Event\MailEvent;
 use Da\User\Model\User;
 use Da\User\Service\MailService;
