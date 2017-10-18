@@ -17,9 +17,10 @@
  * NOTE: this file must be saved in UTF-8 encoding.
  */
 return [
-    'Are you sure you wish to send a password recovery email to this user?' => 'Estás seguro de querer enviar un email de recuperación de contraseña a este usuario?',
-    'Send password recovery email' => 'Enviar email de recuperación de contraseña',
-    'Unable to send recovery message to the user' => 'Ha sido imposible enviar el email de recuperación de contraseña',
+    'Error sending registration message to "{email}". Please try again later.' => '',
+    'Error sending welcome message to "{email}". Please try again later.' => '',
+    'User account could not be created.' => '',
+    'User could not be registered.' => '',
     '(not set)' => '(sin establecer)',
     'A confirmation message has been sent to your new email address' => 'Se ha enviado un mensaje de confirmación a tu nueva dirección de correo electrónico',
     'A message has been sent to your email address. It contains a confirmation link that you must click to complete registration.' => 'Un mensaje ha sido enviado a tu dirección de correo electrónico. Contiene un vínculo de confirmación que tienes que seguir para completar el registro.',
@@ -38,6 +39,7 @@ return [
     'Are you sure you want to delete this user?' => '¿Estas seguro de querer eliminar este usuario?',
     'Are you sure you want to switch to this user for the rest of this Session?' => 'Estás seguro que quieres intercambiarte por este usuario para el resto de esta sesión?',
     'Are you sure you want to unblock this user?' => '¿Estas seguro de querer desbloquear este usuario?',
+    'Are you sure you wish to send a password recovery email to this user?' => 'Estás seguro de querer enviar un email de recuperación de contraseña a este usuario?',
     'Are you sure? Deleted user can not be restored' => '¿Estas seguro? Los usuarios eliminados no se pueden restaurar',
     'Are you sure? There is no going back' => '¿Estás seguro? No se podrá volver atrás',
     'Assignments' => 'Asignaciones',
@@ -164,6 +166,7 @@ return [
     'Rules' => 'Reglas',
     'Save' => 'Guardar',
     'Scan the QrCode with Google Authenticator App, then insert its temporary code on the box and submit.' => 'Escanee el QrCode con la aplicación Google Authenticator, luego inserte su código temporal en el campo de texto y envíe.',
+    'Send password recovery email' => 'Enviar email de recuperación de contraseña',
     'Sign in' => 'Iniciar sesión',
     'Sign up' => 'Registrarse',
     'Something went wrong' => 'Algo salió mal',
@@ -195,6 +198,7 @@ return [
     'Unable to disable two-factor authorization.' => 'Ha sido imposible inhabilitar al autenticación de dos factores.',
     'Unable to remove authorization item.' => 'No se ha podido eliminar el elemento de autorización.',
     'Unable to send confirmation link' => 'No se ha podido enviar el enlace de confirmación',
+    'Unable to send recovery message to the user' => 'Ha sido imposible enviar el email de recuperación de contraseña',
     'Unable to update authorization item.' => 'No se ha podido actualizar el elemento de autorización.',
     'Unable to update authorization rule.' => 'Ha sido imposible actualizar la regla de autencicación.',
     'Unable to update block status.' => 'No se ha podido actualizar el estado de bloqueo.',

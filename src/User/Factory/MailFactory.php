@@ -11,12 +11,19 @@
 
 namespace Da\User\Factory;
 
+use Da\User\Event\MailEvent;
 use Da\User\Model\Token;
 use Da\User\Model\User;
 use Da\User\Module;
 use Da\User\Service\MailService;
 use Yii;
 
+/**
+ * Class MailFactory
+ *
+ * @package Da\User\Factory
+ * @modified 2017-10-18 by Kartik Visweswaran <kartikv2@gmail.com>
+ */
 class MailFactory
 {
     /**
@@ -39,7 +46,7 @@ class MailFactory
             'showPassword' => $showPassword,
         ];
 
-        return static::makeMailerService($from, $to, $subject, 'welcome', $params);
+        return static::makeMailerService(MailEvent::TYPE_WELCOME, $from, $to, $subject, 'welcome', $params);
     }
 
     /**
@@ -60,7 +67,7 @@ class MailFactory
             'token' => $token,
         ];
 
-        return static::makeMailerService($from, $to, $subject, 'recovery', $params);
+        return static::makeMailerService(MailEvent::TYPE_RECOVERY, $from, $to, $subject, 'recovery', $params);
     }
 
     /**
@@ -81,7 +88,7 @@ class MailFactory
             'token' => $token,
         ];
 
-        return static::makeMailerService($from, $to, $subject, 'recovery', $params);
+        return static::makeMailerService(MailEvent::TYPE_CONFIRM, $from, $to, $subject, 'recovery', $params);
     }
 
     /**
@@ -105,12 +112,13 @@ class MailFactory
             'token' => $token,
         ];
 
-        return static::makeMailerService($from, $to, $subject, 'recovery', $params);
+        return static::makeMailerService(MailEvent::TYPE_RECONFIRM, $from, $to, $subject, 'recovery', $params);
     }
 
     /**
      * Builds a MailerService.
      *
+     * @param string $type
      * @param string $from
      * @param string $to
      * @param string $subject
@@ -119,8 +127,12 @@ class MailFactory
      *
      * @return MailService
      */
-    public static function makeMailerService($from, $to, $subject, $view, array $params = [])
+    public static function makeMailerService($type, $from, $to, $subject, $view, $params = [])
     {
-        return Yii::$container->get(MailService::class, [$from, $to, $subject, $view, $params, Yii::$app->getMailer()]);
+        /** @noinspection PhpIncompatibleReturnTypeInspection */
+        return Yii::$container->get(
+            MailService::class,
+            [$type, $from, $to, $subject, $view, $params, Yii::$app->getMailer()]
+        );
     }
 }
