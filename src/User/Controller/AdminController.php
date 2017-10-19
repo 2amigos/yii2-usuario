@@ -140,7 +140,7 @@ class AdminController extends Controller
                 $this->trigger(UserEvent::EVENT_AFTER_CREATE, $event);
                 return $this->redirect(['update', 'id' => $user->id]);
             } else {
-                Yii::$app->session->setFlash( 'danger', Yii::t('usuario', 'User account could not be created.'));
+                Yii::$app->session->setFlash('danger', Yii::t('usuario', 'User account could not be created.'));
             }
         }
 
