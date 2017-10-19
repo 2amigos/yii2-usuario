@@ -148,6 +148,7 @@ there all your events and then include that file on your
 [`entry script`](http://www.yiiframework.com/doc-2.0/guide-structure-entry-scripts.html). 
 
 - [User Events](events/user-events.md)
+- [Mail Events](events/mail-events.md)
 - [Form Events](events/form-events.md)
 - [Reset Password Events](events/reset-password-events.md)
 - [Social Network Authentication Events](events/social-network-auth-events.md)
