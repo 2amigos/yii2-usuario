@@ -22,7 +22,7 @@ class LoginWidget extends Widget
     public function run()
     {
         return $this->render(
-            '/widgets/login',
+            '@Da/User/resources/views/widgets/login/form',
             [
                 'model' => Yii::createObject(LoginForm::class),
             ]
