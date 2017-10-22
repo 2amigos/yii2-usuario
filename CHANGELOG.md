@@ -19,6 +19,7 @@
 - Enh #70: Allow permission-permission parent-child relationship (Philosoft)
 - Enh #82: Updated Polish translation (bizley)
 - Enh #83: Updated Russian translation (Katenkka)
+- Fix #87: Fix wrong documentation info (tonydspaniard)
 
 ## 1.0.13 - August 12, 2017
 - Fix #49: Fix wrong call of method make() for set attributes (MKiselev)
