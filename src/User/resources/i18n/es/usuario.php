@@ -17,10 +17,10 @@
  * NOTE: this file must be saved in UTF-8 encoding.
  */
 return [
-    'Error sending registration message to "{email}". Please try again later.' => '',
-    'Error sending welcome message to "{email}". Please try again later.' => '',
-    'User account could not be created.' => '',
-    'User could not be registered.' => '',
+    'Error sending registration message to "{email}". Please try again later.' => 'Ha ocurrido un error enviando el mensaje de registro a "{email}". Por favor inténtalo de nuevo más tarde.',
+    'Error sending welcome message to "{email}". Please try again later.' => 'Ha ocurrido un error al enviar el mensaje de bienvenida a "{email}". Por favor inténtalo de nuevo más tarde.',
+    'User account could not be created.' => 'La cuenta de usuario no ha podido ser creada.',
+    'User could not be registered.' => 'El usuario no ha podido ser registrado.',
     '(not set)' => '(sin establecer)',
     'A confirmation message has been sent to your new email address' => 'Se ha enviado un mensaje de confirmación a tu nueva dirección de correo electrónico',
     'A message has been sent to your email address. It contains a confirmation link that you must click to complete registration.' => 'Un mensaje ha sido enviado a tu dirección de correo electrónico. Contiene un vínculo de confirmación que tienes que seguir para completar el registro.',

@@ -1,7 +1,8 @@
 # CHANGELOG
 
-## 1.1.0 - October 22, 2017
+## 1.1.1 - Work in progress
 
+## 1.1.0 - October 22, 2017
 - Enh #91: Documentation for Mail events (kartik-v)
 - Enh #79: Enhancements to Mailer exception handling and events (kartik-v)
 - Fix #85: External links should open in a new tab|window (eseperio)
