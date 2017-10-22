@@ -1,6 +1,6 @@
 # CHANGELOG
 
-## 1.0.14 - Work in progress
+## 1.1.0 - October 22, 2017
 
 - Enh #91: Documentation for Mail events (kartik-v)
 - Enh #79: Enhancements to Mailer exception handling and events (kartik-v)
