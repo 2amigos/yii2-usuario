@@ -1,6 +1,7 @@
 # CHANGELOG
 
 ## 1.1.1 - Work in progress
+- Enh #99: Added German translation (jkmssoft)
 
 ## 1.1.0 - October 22, 2017
 - Enh #91: Documentation for Mail events (kartik-v)
