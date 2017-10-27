@@ -42,7 +42,7 @@ class Token extends ActiveRecord
 
     protected $routes = [
         self::TYPE_CONFIRMATION => '/user/registration/confirm',
-        self::TYPE_RECOVERY => '/usr/recovery/reset',
+        self::TYPE_RECOVERY => '/user/recovery/reset',
         self::TYPE_CONFIRM_NEW_EMAIL => '/user/settings/confirm',
         self::TYPE_CONFIRM_OLD_EMAIL => '/user/settings/confirm',
     ];
