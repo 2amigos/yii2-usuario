@@ -73,7 +73,7 @@ class LoginForm extends Model
             'login' => Yii::t('usuario', 'Login'),
             'password' => Yii::t('usuario', 'Password'),
             'rememberMe' => Yii::t('usuario', 'Remember me next time'),
-            'twoFactorAuthenticationCode' => Yii::t('usuario', 'Two-factor authentication code')
+            'twoFactorAuthenticationCode' => Yii::t('usuario', '2FA code')
         ];
     }
 
@@ -111,7 +111,7 @@ class LoginForm extends Model
                             $this->module->twoFactorAuthenticationCycles
                         ))
                             ->validate()) {
-                        $this->addError($attribute, Yii::t('usuario', 'Invalid two-factor code'));
+                        $this->addError($attribute, Yii::t('usuario', 'Invalid 2FA code'));
                     }
                 }
             ],

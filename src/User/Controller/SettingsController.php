@@ -280,7 +280,7 @@ class SettingsController extends Controller
         return [
             'success' => $success,
             'message' => $success
-                ? Yii::t('usuario', 'Two factor successfully enabled.')
+                ? Yii::t('usuario', '2FA successfully enabled.')
                 : Yii::t('usuario', 'Verification failed. Please, enter new code.')
         ];
     }
@@ -297,11 +297,11 @@ class SettingsController extends Controller
         if ($user->updateAttributes(['auth_tf_enabled' => '0'])) {
             Yii::$app
                 ->getSession()
-                ->setFlash('success', Yii::t('usuario', 'Two-factor authorization has been disabled.'));
+                ->setFlash('success', Yii::t('usuario', '2FA has been disabled.'));
         } else {
             Yii::$app
                 ->getSession()
-                ->setFlash('danger', Yii::t('usuario', 'Unable to disable two-factor authorization.'));
+                ->setFlash('danger', Yii::t('usuario', 'Unable to disable 2FA.'));
         }
 
         $this->redirect(['account']);
