@@ -62,6 +62,6 @@ class MailEvent extends Event
 
     public function getException()
     {
-        return $this->mailService;
+        return $this->exception;
     }
 }
