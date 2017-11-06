@@ -29,7 +29,7 @@
 <div class="row">
     <div class="col-md-offset-3 col-md-6 text-center">
         <div class="input-group">
-            <input type="text" class="form-control" id="tfcode" placeholder="<?= Yii::t('usuario', '2FA code') ?>"/>
+            <input type="text" class="form-control" id="tfcode" placeholder="<?= Yii::t('usuario', 'Two factor authentication code') ?>"/>
             <span class="input-group-btn">
                 <button type="button" class="btn btn-primary btn-submit-code">
                     <?= Yii::t('usuario', 'Enable') ?>
