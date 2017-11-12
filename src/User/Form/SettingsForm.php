@@ -18,7 +18,9 @@ use Da\User\Traits\ContainerAwareTrait;
 use Da\User\Traits\ModuleAwareTrait;
 use Yii;
 use yii\base\InvalidConfigException;
+use yii\base\InvalidParamException;
 use yii\base\Model;
+use yii\helpers\ArrayHelper;
 
 class SettingsForm extends Model
 {
@@ -49,19 +51,28 @@ class SettingsForm extends Model
     /** @var User */
     protected $user;
 
+    /**
+     * SettingsForm constructor.
+     *
+     * @param SecurityHelper $securityHelper
+     * @param array $config
+     */
     public function __construct(SecurityHelper $securityHelper, array $config = [])
     {
         $this->securityHelper = $securityHelper;
-        $config = [
-            'username' => $this->getUser()->username,
-            'email' => $this->getUser()->unconfirmed_email? : $this->getUser()->email
-        ];
+        $config = ArrayHelper::merge(
+            [
+                'username' => $this->getUser()->username,
+                'email' => $this->getUser()->unconfirmed_email ?: $this->getUser()->email
+            ],
+            $config
+        );
         parent::__construct($config);
     }
 
     /**
      * @throws InvalidConfigException
-     * @throws \Exception
+     * @throws InvalidParamException
      * @return array
      *
      */

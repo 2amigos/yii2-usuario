@@ -15,6 +15,7 @@ use Yii;
 use yii\authclient\ClientInterface;
 use yii\authclient\widgets\AuthChoice;
 use yii\authclient\widgets\AuthChoiceAsset;
+use yii\base\InvalidParamException;
 use yii\helpers\Html;
 use yii\helpers\Url;
 
@@ -40,6 +41,8 @@ class ConnectWidget extends AuthChoice
 
     /**
      * {@inheritdoc}
+     *
+     * @throws InvalidParamException
      */
     public function createClientUrl($provider)
     {
@@ -59,6 +62,6 @@ class ConnectWidget extends AuthChoice
      */
     public function isConnected(ClientInterface $provider)
     {
-        return $this->accounts != null && isset($this->accounts[$provider->getId()]);
+        return null !== $this->accounts && isset($this->accounts[$provider->getId()]);
     }
 }

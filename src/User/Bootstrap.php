@@ -33,6 +33,8 @@ class Bootstrap implements BootstrapInterface
 {
     /**
      * {@inheritdoc}
+     *
+     * @throws InvalidConfigException
      */
     public function bootstrap($app)
     {
@@ -279,6 +281,7 @@ class Bootstrap implements BootstrapInterface
      *
      * @param array $userClassMap user configuration on the module
      *
+     * @throws Exception
      * @return array
      */
     protected function buildClassMap(array $userClassMap)
@@ -352,7 +355,7 @@ class Bootstrap implements BootstrapInterface
     protected function getRoute(array $routes, $name)
     {
         foreach ($routes as $route => $names) {
-            if (in_array($name, $names)) {
+            if (in_array($name, $names, false)) {
                 return $route;
             }
         }

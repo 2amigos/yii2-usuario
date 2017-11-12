@@ -51,6 +51,7 @@ class AssignmentsWidget extends Widget
      * {@inheritdoc}
      *
      * @throws InvalidParamException
+     * @throws InvalidConfigException
      */
     public function run()
     {

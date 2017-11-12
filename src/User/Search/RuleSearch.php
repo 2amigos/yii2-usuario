@@ -13,6 +13,8 @@ namespace Da\User\Search;
 
 use Da\User\Model\Rule;
 use Da\User\Traits\ContainerAwareTrait;
+use yii\base\InvalidConfigException;
+use yii\base\InvalidParamException;
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
 use yii\db\Query;
@@ -47,6 +49,8 @@ class RuleSearch extends Rule
     /**
      * @param array $params
      *
+     * @throws InvalidConfigException
+     * @throws InvalidParamException
      * @return ActiveDataProvider
      */
     public function search(array $params = [])

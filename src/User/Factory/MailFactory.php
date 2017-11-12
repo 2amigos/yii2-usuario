@@ -25,6 +25,7 @@ class MailFactory
      * @param User $user
      * @param bool $showPassword
      *
+     * @throws InvalidConfigException
      * @return MailService
      */
     public static function makeWelcomeMailerService(User $user, $showPassword = false)
@@ -48,6 +49,7 @@ class MailFactory
      * @param string $email
      * @param Token  $token
      *
+     * @throws InvalidConfigException
      * @return MailService
      */
     public static function makeRecoveryMailerService($email, Token $token = null)
@@ -69,6 +71,7 @@ class MailFactory
      * @param User       $user
      * @param Token|null $token
      *
+     * @throws InvalidConfigException
      * @return MailService
      */
     public static function makeConfirmationMailerService(User $user, Token $token = null)
@@ -90,6 +93,7 @@ class MailFactory
      * @param User  $user
      * @param Token $token
      *
+     * @throws InvalidConfigException
      * @return MailService
      */
     public static function makeReconfirmationMailerService(User $user, Token $token)

@@ -6,6 +6,7 @@
 - Enh #100: Added pt-BR translation (gugoan)
 - Enh #105: Consolidate 2fa messages (maxxer)
 - Fix #108: Use main logger app (tonydspaniard)
+- Enh #109: Make use of better classes names (tonydspaniard)
 
 ## 1.1.0 - October 22, 2017
 - Enh #91: Documentation for Mail events (kartik-v)

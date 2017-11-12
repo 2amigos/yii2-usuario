@@ -13,6 +13,7 @@ namespace Da\User\Validator;
 
 use Da\User\Component\ReCaptchaComponent;
 use Yii;
+use yii\base\InvalidConfigException;
 use yii\validators\Validator;
 
 class ReCaptchaValidator extends Validator
@@ -52,6 +53,8 @@ class ReCaptchaValidator extends Validator
 
     /**
      * @inheritdoc
+     *
+     * @throws InvalidConfigException
      */
     protected function validateValue($value)
     {

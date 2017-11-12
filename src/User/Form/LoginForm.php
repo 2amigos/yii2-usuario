@@ -18,6 +18,7 @@ use Da\User\Query\UserQuery;
 use Da\User\Traits\ModuleAwareTrait;
 use Da\User\Validator\TwoFactorCodeValidator;
 use Yii;
+use yii\base\InvalidParamException;
 use yii\base\Model;
 
 class LoginForm extends Model
@@ -140,6 +141,7 @@ class LoginForm extends Model
     /**
      * Validates form and logs the user in.
      *
+     * @throws InvalidParamException
      * @return bool whether the user is logged in successfully
      */
     public function login()

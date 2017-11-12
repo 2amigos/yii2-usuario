@@ -15,6 +15,8 @@ use Da\User\Query\SocialNetworkAccountQuery;
 use Da\User\Traits\ContainerAwareTrait;
 use Da\User\Traits\ModuleAwareTrait;
 use Yii;
+use yii\base\Exception;
+use yii\base\InvalidParamException;
 use yii\db\ActiveRecord;
 use yii\helpers\Url;
 
@@ -55,7 +57,7 @@ class SocialNetworkAccount extends ActiveRecord
      */
     public function getIsConnected()
     {
-        return $this->user_id != null;
+        return null !== $this->user_id;
     }
 
     /**
@@ -71,6 +73,8 @@ class SocialNetworkAccount extends ActiveRecord
     }
 
     /**
+     * @throws Exception
+     * @throws InvalidParamException
      * @return string the connection url
      */
     public function getConnectionUrl()

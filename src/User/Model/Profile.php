@@ -20,6 +20,7 @@ use DateTime;
 use DateTimeZone;
 use Exception;
 use Yii;
+use yii\base\InvalidConfigException;
 use yii\base\InvalidParamException;
 use yii\db\ActiveRecord;
 
@@ -44,6 +45,7 @@ class Profile extends ActiveRecord
      * {@inheritdoc}
      *
      * @throws InvalidParamException
+     * @throws InvalidConfigException
      */
     public function beforeSave($insert)
     {
@@ -67,6 +69,8 @@ class Profile extends ActiveRecord
 
     /**
      * {@inheritdoc}
+     *
+     * @throws InvalidConfigException
      */
     public function rules()
     {
@@ -125,6 +129,8 @@ class Profile extends ActiveRecord
      * Set the User's timezone.
      *
      * @param DateTimeZone $timezone
+     *
+     * @throws InvalidParamException
      */
     public function setTimeZone(DateTimeZone $timezone)
     {
@@ -144,6 +150,7 @@ class Profile extends ActiveRecord
     }
 
     /**
+     * @throws InvalidConfigException
      * @return \yii\db\ActiveQuery
      */
     public function getUser()
@@ -154,6 +161,7 @@ class Profile extends ActiveRecord
     /**
      * @param int $size
      *
+     * @throws InvalidConfigException
      * @return mixed
      */
     public function getAvatarUrl($size = 200)

@@ -108,7 +108,7 @@ abstract class AbstractAuthItem extends Model
                     }
                 },
                 'when' => function () {
-                    return $this->scenario == 'create' || $this->item->name != $this->name;
+                    return $this->scenario === 'create' || $this->item->name !== $this->name;
                 },
             ],
             ['children', RbacItemsValidator::class],

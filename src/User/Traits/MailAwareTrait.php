@@ -16,6 +16,7 @@ use Da\User\Model\User;
 use Da\User\Service\MailService;
 use Exception;
 use Yii;
+use yii\base\InvalidConfigException;
 
 /**
  * @property MailService $mailService
@@ -29,6 +30,7 @@ trait MailAwareTrait
      *
      * @param User $user
      *
+     * @throws InvalidConfigException
      * @return bool
      */
     protected function sendMail(User $user)

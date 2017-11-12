@@ -35,6 +35,8 @@ class PermissionController extends AbstractAuthItemController
 
     /**
      * {@inheritdoc}
+     *
+     * @throws NotFoundHttpException
      */
     protected function getItem($name)
     {

@@ -13,6 +13,7 @@ namespace Da\User\Search;
 
 use Da\User\Query\UserQuery;
 use Yii;
+use yii\base\InvalidParamException;
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
 
@@ -83,6 +84,7 @@ class UserSearch extends Model
     /**
      * @param $params
      *
+     * @throws InvalidParamException
      * @return ActiveDataProvider
      */
     public function search($params)

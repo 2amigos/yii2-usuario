@@ -24,6 +24,6 @@ class TimeZoneValidator implements ValidatorInterface
 
     public function validate()
     {
-        return in_array($this->timezone, timezone_identifiers_list());
+        return in_array($this->timezone, timezone_identifiers_list(), false);
     }
 }

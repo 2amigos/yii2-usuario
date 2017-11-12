@@ -179,7 +179,7 @@ class SettingsController extends Controller
     {
         $user = $this->userQuery->whereId($id)->one();
 
-        if ($user === null || $this->module->emailChangeStrategy == MailChangeStrategyInterface::TYPE_INSECURE) {
+        if ($user === null || MailChangeStrategyInterface::TYPE_INSECURE === $this->module->emailChangeStrategy) {
             throw new NotFoundHttpException();
         }
         $event = $this->make(UserEvent::class, [$user]);
@@ -210,7 +210,7 @@ class SettingsController extends Controller
         if ($account === null) {
             throw new NotFoundHttpException();
         }
-        if ($account->user_id != Yii::$app->user->id) {
+        if ($account->user_id !== Yii::$app->user->id) {
             throw new ForbiddenHttpException();
         }
         $event = $this->make(SocialNetworkConnectEvent::class, [Yii::$app->user->identity, $account]);
