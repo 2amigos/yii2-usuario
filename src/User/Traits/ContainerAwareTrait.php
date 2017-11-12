@@ -40,6 +40,7 @@ trait ContainerAwareTrait
      * @param array  $params constructor parameters
      * @param array  $config attributes
      *
+     * @throws InvalidConfigException
      * @return object
      */
     public function make($class, $params = [], $config = [])
@@ -48,9 +49,9 @@ trait ContainerAwareTrait
     }
 
     /**
+     * @throws InvalidConfigException
      * @return \Da\User\Helper\AuthHelper|object
      *
-     * @throws InvalidConfigException
      */
     public function getAuth()
     {
@@ -58,9 +59,9 @@ trait ContainerAwareTrait
     }
 
     /**
+     * @throws InvalidConfigException
      * @return \Da\User\Helper\ClassMapHelper|object
      *
-     * @throws InvalidConfigException
      */
     public function getClassMap()
     {

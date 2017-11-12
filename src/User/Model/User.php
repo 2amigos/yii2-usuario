@@ -279,9 +279,9 @@ class User extends ActiveRecord implements IdentityInterface
     }
 
     /**
+     * @throws \Exception
      * @return SocialNetworkAccount[] social connected accounts [ 'providerName' => socialAccountModel ]
      *
-     * @throws \Exception
      */
     public function getSocialNetworkAccounts()
     {

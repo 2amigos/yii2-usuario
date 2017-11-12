@@ -120,9 +120,9 @@ class MailFactory
      * @param string $view
      * @param array  $params
      *
+     * @throws InvalidConfigException
      * @return MailService
      *
-     * @throws InvalidConfigException
      */
     public static function makeMailerService($type, $from, $to, $subject, $view, $params = [])
     {

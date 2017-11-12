@@ -60,10 +60,10 @@ class SettingsForm extends Model
     }
 
     /**
-     * @return array
-     *
      * @throws InvalidConfigException
      * @throws \Exception
+     * @return array
+     *
      */
     public function rules()
     {
@@ -124,9 +124,9 @@ class SettingsForm extends Model
     /**
      * Saves new account settings.
      *
+     * @throws \Exception
      * @return bool
      *
-     * @throws \Exception
      */
     public function save()
     {

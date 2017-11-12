@@ -31,13 +31,13 @@ class MailService implements ServiceInterface
     /**
      * MailService constructor.
      *
-     * @param string                     $type      the mailer type
-     * @param string                     $from      from email account
-     * @param string                     $to        to email account
-     * @param string                     $subject   the email subject
-     * @param string                     $view      the view to render mail
-     * @param array                      $params    view parameters
-     * @param BaseMailer|MailerInterface $mailer    mailer interface
+     * @param string                     $type    the mailer type
+     * @param string                     $from    from email account
+     * @param string                     $to      to email account
+     * @param string                     $subject the email subject
+     * @param string                     $view    the view to render mail
+     * @param array                      $params  view parameters
+     * @param BaseMailer|MailerInterface $mailer  mailer interface
      */
     public function __construct($type, $from, $to, $subject, $view, array $params, MailerInterface $mailer)
     {

@@ -37,9 +37,9 @@ class TwoFactorCodeValidator implements ValidatorInterface
     }
 
     /**
+     * @throws InvalidSecretKeyException
      * @return bool|int
      *
-     * @throws InvalidSecretKeyException
      */
     public function validate()
     {

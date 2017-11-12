@@ -19,8 +19,8 @@ use Da\User\Model\User;
 use Da\User\Traits\MailAwareTrait;
 use Da\User\Traits\ModuleAwareTrait;
 use Exception;
-use yii\base\InvalidCallException;
 use Yii;
+use yii\base\InvalidCallException;
 
 class UserRegisterService implements ServiceInterface
 {

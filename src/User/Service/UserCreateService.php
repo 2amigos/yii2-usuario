@@ -36,10 +36,10 @@ class UserCreateService implements ServiceInterface
     }
 
     /**
-     * @return bool
-     *
      * @throws InvalidCallException
      * @throws \yii\db\Exception
+     * @return bool
+     *
      */
     public function run()
     {

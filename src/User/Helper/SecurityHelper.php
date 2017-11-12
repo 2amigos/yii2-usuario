@@ -32,9 +32,9 @@ class SecurityHelper
      * @param string   $password
      * @param null|int $cost
      *
+     * @throws Exception
      * @return string
      *
-     * @throws Exception
      */
     public function generatePasswordHash($password, $cost = null)
     {
@@ -46,9 +46,9 @@ class SecurityHelper
      *
      * @param int $length
      *
+     * @throws Exception
      * @return string
      *
-     * @throws Exception
      */
     public function generateRandomString($length = 32)
     {

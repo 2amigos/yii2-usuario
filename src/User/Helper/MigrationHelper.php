@@ -18,9 +18,9 @@ class MigrationHelper
     /**
      * @param string $driverName
      *
+     * @throws RuntimeException
      * @return null|string
      *
-     * @throws RuntimeException
      */
     public static function resolveTableOptions($driverName)
     {
@@ -40,9 +40,9 @@ class MigrationHelper
     /**
      * @param $driverName
      *
+     * @throws RuntimeException
      * @return string
      *
-     * @throws RuntimeException
      */
     public static function resolveDbType($driverName)
     {
@@ -63,9 +63,9 @@ class MigrationHelper
     /**
      * @param string $driverName
      *
+     * @throws RuntimeException
      * @return bool
      *
-     * @throws RuntimeException
      */
     public static function isMicrosoftSQLServer($driverName)
     {

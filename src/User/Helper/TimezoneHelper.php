@@ -21,9 +21,9 @@ class TimezoneHelper
     /**
      * Get all of the time zones with the offsets sorted by their offset.
      *
+     * @throws InvalidParamException
      * @return array
      *
-     * @throws InvalidParamException
      */
     public static function getAll()
     {

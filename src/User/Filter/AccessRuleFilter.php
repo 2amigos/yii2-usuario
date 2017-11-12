@@ -43,7 +43,6 @@ class AccessRuleFilter extends AccessRule
                     return true;
                 }
             } else {
-
                 $roleParams = $this->roleParams instanceof Closure
                     ? call_user_func($this->roleParams, $this)
                     : $this->roleParams;

@@ -121,9 +121,8 @@ class RegistrationController extends Controller
                         'module' => $this->module,
                     ]
                 );
-            } else {
-                Yii::$app->session->setFlash('danger', Yii::t('usuario', 'User could not be registered.'));
             }
+            Yii::$app->session->setFlash('danger', Yii::t('usuario', 'User could not be registered.'));
         }
         return $this->render('register', ['model' => $form, 'module' => $this->module]);
     }
