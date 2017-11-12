@@ -11,14 +11,6 @@
 
 namespace Da\User\Helper;
 
-/**
- * ModelMapHelper.php.
- *
- * Date: 3/12/16
- * Time: 18:10
- *
- * @author Antonio Ramirez <hola@2amigos.us>
- */
 class ClassMapHelper
 {
     protected $map = [];

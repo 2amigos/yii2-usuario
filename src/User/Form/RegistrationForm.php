@@ -37,6 +37,8 @@ class RegistrationForm extends Model
 
     /**
      * {@inheritdoc}
+     *
+     * @throws \Exception
      */
     public function rules()
     {

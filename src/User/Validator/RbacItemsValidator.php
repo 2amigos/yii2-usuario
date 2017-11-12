@@ -26,7 +26,7 @@ class RbacItemsValidator extends Validator
         }
 
         foreach ($value as $item) {
-            if ($this->getAuthManager()->getItem($item) == null) {
+            if ($this->getAuthManager()->getItem($item) === null) {
                 return [Yii::t('usuario', 'There is neither role nor permission with name "{0}"', [$item]), []];
             }
         }

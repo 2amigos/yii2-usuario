@@ -20,6 +20,7 @@ use DateTime;
 use DateTimeZone;
 use Exception;
 use Yii;
+use yii\base\InvalidParamException;
 use yii\db\ActiveRecord;
 
 /**
@@ -41,6 +42,8 @@ class Profile extends ActiveRecord
 
     /**
      * {@inheritdoc}
+     *
+     * @throws InvalidParamException
      */
     public function beforeSave($insert)
     {

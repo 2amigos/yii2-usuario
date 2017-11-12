@@ -11,6 +11,7 @@
 
 namespace Da\User\Validator;
 
+use Da\TwoFA\Exception\InvalidSecretKeyException;
 use Da\TwoFA\Manager;
 use Da\User\Contracts\ValidatorInterface;
 use Da\User\Model\User;
@@ -37,6 +38,8 @@ class TwoFactorCodeValidator implements ValidatorInterface
 
     /**
      * @return bool|int
+     *
+     * @throws InvalidSecretKeyException
      */
     public function validate()
     {

@@ -13,13 +13,11 @@ namespace Da\User\Service;
 
 use Da\User\Contracts\ServiceInterface;
 use Da\User\Factory\TokenFactory;
-use Da\User\Model\Token;
 use Da\User\Model\User;
 use Da\User\Query\UserQuery;
 use Da\User\Traits\MailAwareTrait;
 use Exception;
 use Yii;
-use yii\log\Logger;
 
 class PasswordRecoveryService implements ServiceInterface
 {
@@ -30,14 +28,12 @@ class PasswordRecoveryService implements ServiceInterface
     protected $email;
     protected $mailService;
     protected $securityHelper;
-    protected $logger;
 
-    public function __construct($email, MailService $mailService, UserQuery $query, Logger $logger)
+    public function __construct($email, MailService $mailService, UserQuery $query)
     {
         $this->email = $email;
         $this->mailService = $mailService;
         $this->query = $query;
-        $this->logger = $logger;
     }
 
     public function run()
@@ -65,7 +61,7 @@ class PasswordRecoveryService implements ServiceInterface
 
             return true;
         } catch (Exception $e) {
-            $this->logger->log($e->getMessage(), Logger::LEVEL_ERROR);
+            Yii::error($e->getMessage(), 'usuario');
 
             return false;
         }

@@ -19,7 +19,6 @@ use Da\User\Traits\MailAwareTrait;
 use Exception;
 use Yii;
 use yii\base\InvalidCallException;
-use yii\log\Logger;
 
 class UserCreateService implements ServiceInterface
 {
@@ -28,18 +27,19 @@ class UserCreateService implements ServiceInterface
     protected $model;
     protected $securityHelper;
     protected $mailService;
-    protected $logger;
 
-    public function __construct(User $model, MailService $mailService, SecurityHelper $securityHelper, Logger $logger)
+    public function __construct(User $model, MailService $mailService, SecurityHelper $securityHelper)
     {
         $this->model = $model;
         $this->mailService = $mailService;
         $this->securityHelper = $securityHelper;
-        $this->logger = $logger;
     }
 
     /**
      * @return bool
+     *
+     * @throws InvalidCallException
+     * @throws \yii\db\Exception
      */
     public function run()
     {
@@ -49,7 +49,7 @@ class UserCreateService implements ServiceInterface
             throw new InvalidCallException('Cannot create a new user from an existing one.');
         }
 
-        $transaction = $model->getDb()->beginTransaction();
+        $transaction = $model::getDb()->beginTransaction();
 
         try {
             $model->confirmed_at = time();
@@ -81,7 +81,7 @@ class UserCreateService implements ServiceInterface
             return true;
         } catch (Exception $e) {
             $transaction->rollBack();
-            $this->logger->log($e->getMessage(), Logger::LEVEL_ERROR);
+            Yii::error($e->getMessage(), 'usuario');
 
             return false;
         }

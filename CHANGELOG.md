@@ -2,8 +2,10 @@
 
 ## 1.1.1 - Work in progress
 - Bug #106: Correct exception value returned in `MailEvent::getException` (kartik-v)
-- Enh #99: Added German translation (jkmssoft)
+- Enh #99:  Added German translation (jkmssoft)
 - Enh #100: Added pt-BR translation (gugoan)
+- Enh #105: Consolidate 2fa messages (maxxer)
+- Fix #108: Use main logger app (tonydspaniard)
 
 ## 1.1.0 - October 22, 2017
 - Enh #91: Documentation for Mail events (kartik-v)

@@ -17,13 +17,8 @@ use Da\User\Model\User;
 use Da\User\Module;
 use Da\User\Service\MailService;
 use Yii;
+use yii\base\InvalidConfigException;
 
-/**
- * Class MailFactory
- *
- * @package Da\User\Factory
- * @modified 2017-10-18 by Kartik Visweswaran <kartikv2@gmail.com>
- */
 class MailFactory
 {
     /**
@@ -126,6 +121,8 @@ class MailFactory
      * @param array  $params
      *
      * @return MailService
+     *
+     * @throws InvalidConfigException
      */
     public static function makeMailerService($type, $from, $to, $subject, $view, $params = [])
     {

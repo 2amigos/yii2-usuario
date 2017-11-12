@@ -15,12 +15,10 @@ use Da\User\Event\MailEvent;
 use Da\User\Model\User;
 use Da\User\Service\MailService;
 use Exception;
-use yii\log\Logger;
+use Yii;
 
 /**
  * @property MailService $mailService
- * @property Logger $logger
- * @author Kartik Visweswaran <kartikv2@gmail.com>
  */
 trait MailAwareTrait
 {
@@ -42,7 +40,7 @@ trait MailAwareTrait
             $this->mailService->run();
         } catch (Exception $e) {
             $event = $this->make(MailEvent::class, [$type, $user, $this->mailService, $e]);
-            $this->logger->log($e->getMessage(), Logger::LEVEL_ERROR);
+            Yii::error($e->getMessage(), 'usuario');
             $user->trigger(MailEvent::EVENT_AFTER_SEND_MAIL, $event);
             return false;
         }

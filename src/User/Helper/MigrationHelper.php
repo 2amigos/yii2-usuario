@@ -19,6 +19,8 @@ class MigrationHelper
      * @param string $driverName
      *
      * @return null|string
+     *
+     * @throws RuntimeException
      */
     public static function resolveTableOptions($driverName)
     {
@@ -39,6 +41,8 @@ class MigrationHelper
      * @param $driverName
      *
      * @return string
+     *
+     * @throws RuntimeException
      */
     public static function resolveDbType($driverName)
     {
@@ -60,9 +64,11 @@ class MigrationHelper
      * @param string $driverName
      *
      * @return bool
+     *
+     * @throws RuntimeException
      */
     public static function isMicrosoftSQLServer($driverName)
     {
-        return self::resolveDbType($driverName) == 'sqlsrv';
+        return self::resolveDbType($driverName) === 'sqlsrv';
     }
 }

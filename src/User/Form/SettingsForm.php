@@ -17,6 +17,7 @@ use Da\User\Model\User;
 use Da\User\Traits\ContainerAwareTrait;
 use Da\User\Traits\ModuleAwareTrait;
 use Yii;
+use yii\base\InvalidConfigException;
 use yii\base\Model;
 
 class SettingsForm extends Model
@@ -60,6 +61,9 @@ class SettingsForm extends Model
 
     /**
      * @return array
+     *
+     * @throws InvalidConfigException
+     * @throws \Exception
      */
     public function rules()
     {
@@ -75,7 +79,7 @@ class SettingsForm extends Model
                 ['email', 'username'],
                 'unique',
                 'when' => function ($model, $attribute) {
-                    return $this->getUser()->$attribute != $model->$attribute;
+                    return $this->getUser()->$attribute !== $model->$attribute;
                 },
                 'targetClass' => $this->getClassMap()->get(User::class),
             ],
@@ -110,7 +114,7 @@ class SettingsForm extends Model
      */
     public function getUser()
     {
-        if ($this->user == null) {
+        if (null === $this->user) {
             $this->user = Yii::$app->user->identity;
         }
 
@@ -121,6 +125,8 @@ class SettingsForm extends Model
      * Saves new account settings.
      *
      * @return bool
+     *
+     * @throws \Exception
      */
     public function save()
     {
@@ -130,9 +136,9 @@ class SettingsForm extends Model
                 $user->scenario = 'settings';
                 $user->username = $this->username;
                 $user->password = $this->new_password;
-                if ($this->email == $user->email && $user->unconfirmed_email != null) {
+                if ($this->email === $user->email && $user->unconfirmed_email !== null) {
                     $user->unconfirmed_email = null;
-                } elseif ($this->email != $user->email) {
+                } elseif ($this->email !== $user->email) {
                     $strategy = EmailChangeStrategyFactory::makeByStrategyType(
                         $this->getModule()->emailChangeStrategy,
                         $this

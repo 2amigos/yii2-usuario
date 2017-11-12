@@ -31,14 +31,14 @@ class AuthRuleEditionService implements ServiceInterface
 
     public function run()
     {
-        if (!$this->model->validate() || (!in_array($this->model->scenario, ['create', 'update']))) {
+        if (!$this->model->validate() || (!in_array($this->model->scenario, ['create', 'update'], false))) {
             return false;
         }
 
         $rule = $this->make($this->model->className, [], ['name' => $this->model->name]);
 
         try {
-            if ($this->model->scenario == 'create') {
+            if ($this->model->scenario === 'create') {
                 $this->getAuthManager()->add($rule);
             } else {
                 $this->getAuthManager()->update($this->model->previousName, $rule);

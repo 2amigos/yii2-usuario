@@ -16,6 +16,7 @@ use Da\User\Service\UpdateAuthAssignmentsService;
 use Da\User\Traits\AuthManagerAwareTrait;
 use Da\User\Traits\ContainerAwareTrait;
 use yii\base\InvalidConfigException;
+use yii\base\InvalidParamException;
 use yii\base\Widget;
 use yii\helpers\ArrayHelper;
 
@@ -48,6 +49,8 @@ class AssignmentsWidget extends Widget
 
     /**
      * {@inheritdoc}
+     *
+     * @throws InvalidParamException
      */
     public function run()
     {

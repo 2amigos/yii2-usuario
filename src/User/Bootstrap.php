@@ -20,6 +20,7 @@ use yii\authclient\Collection;
 use yii\base\Application;
 use yii\base\BootstrapInterface;
 use yii\base\Exception;
+use yii\base\InvalidConfigException;
 use yii\console\Application as ConsoleApplication;
 use yii\i18n\PhpMessageSource;
 use yii\web\Application as WebApplication;
@@ -161,6 +162,8 @@ class Bootstrap implements BootstrapInterface
      * Registers module translation messages.
      *
      * @param Application $app
+     *
+     * @throws InvalidConfigException
      */
     protected function initTranslations(Application $app)
     {
@@ -177,6 +180,8 @@ class Bootstrap implements BootstrapInterface
      * Ensures the auth manager is the one provided by the library.
      *
      * @param Application $app
+     *
+     * @throws InvalidConfigException
      */
     protected function initAuthManager(Application $app)
     {
@@ -194,6 +199,8 @@ class Bootstrap implements BootstrapInterface
      * Initializes web url routes (rules in Yii2).
      *
      * @param WebApplication $app
+     *
+     * @throws InvalidConfigException
      */
     protected function initUrlRoutes(WebApplication $app)
     {
@@ -236,6 +243,8 @@ class Bootstrap implements BootstrapInterface
      * Ensures the authCollection component is configured.
      *
      * @param WebApplication $app
+     *
+     * @throws InvalidConfigException
      */
     protected function initAuthCollection(WebApplication $app)
     {

@@ -16,6 +16,7 @@ use Da\User\Query\UserQuery;
 use Da\User\Traits\ContainerAwareTrait;
 use Da\User\Traits\ModuleAwareTrait;
 use Yii;
+use yii\base\InvalidParamException;
 use yii\base\NotSupportedException;
 use yii\behaviors\TimestampBehavior;
 use yii\db\ActiveRecord;
@@ -71,6 +72,8 @@ class User extends ActiveRecord implements IdentityInterface
 
     /**
      * {@inheritdoc}
+     *
+     * @throws InvalidParamException
      */
     public function beforeSave($insert)
     {
@@ -277,6 +280,8 @@ class User extends ActiveRecord implements IdentityInterface
 
     /**
      * @return SocialNetworkAccount[] social connected accounts [ 'providerName' => socialAccountModel ]
+     *
+     * @throws \Exception
      */
     public function getSocialNetworkAccounts()
     {
@@ -307,6 +312,8 @@ class User extends ActiveRecord implements IdentityInterface
 
     /**
      * {@inheritdoc}
+     *
+     * @throws NotSupportedException
      */
     public static function findIdentityByAccessToken($token, $type = null)
     {

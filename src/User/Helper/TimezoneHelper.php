@@ -13,6 +13,7 @@ namespace Da\User\Helper;
 
 use DateTime;
 use DateTimeZone;
+use yii\base\InvalidParamException;
 use yii\helpers\ArrayHelper;
 
 class TimezoneHelper
@@ -21,6 +22,8 @@ class TimezoneHelper
      * Get all of the time zones with the offsets sorted by their offset.
      *
      * @return array
+     *
+     * @throws InvalidParamException
      */
     public static function getAll()
     {
