@@ -65,6 +65,8 @@ class ReCaptchaWidget extends InputWidget
 
     /**
      * @inheritdoc
+     *
+     * @throws InvalidConfigException
      */
     public function run()
     {
