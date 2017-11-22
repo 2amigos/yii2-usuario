@@ -1,6 +1,7 @@
 # CHANGELOG
 
 ## 1.1.1 - Work in progress
+- Bug #115: Convert client_id to string because pgsql fail with type convertion (Dezinger)
 - Bug #111: Fix migration for PostgreSQL DBMS (MKiselev)
 - Bug #106: Correct exception value returned in `MailEvent::getException` (kartik-v)
 - Enh #99:  Added German translation (jkmssoft)
