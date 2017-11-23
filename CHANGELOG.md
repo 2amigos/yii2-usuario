@@ -2,6 +2,7 @@
 
 ## 1.1.1 - Work in progress
 - Bug #119: Security fix: add AccessControl to RuleController (Dezinger)
+- Enh #120: 2FA i18n russian translation (Dezinger)
 - Bug #111: Fix migration for PostgreSQL DBMS (MKiselev)
 - Bug #106: Correct exception value returned in `MailEvent::getException` (kartik-v)
 - Enh #99:  Added German translation (jkmssoft)
