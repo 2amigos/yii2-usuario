@@ -1,6 +1,7 @@
 # CHANGELOG
 
 ## 1.1.1 - Work in progress
+- Bug #115: Convert client_id to string because pgsql fail with type convertion (Dezinger)
 - Bug #119: Security fix: add AccessControl to RuleController (Dezinger)
 - Enh #120: 2FA i18n russian translation (Dezinger)
 - Bug #111: Fix migration for PostgreSQL DBMS (MKiselev)
