@@ -24,6 +24,10 @@ use yii\console\Application as ConsoleApplication;
 use yii\i18n\PhpMessageSource;
 use yii\web\Application as WebApplication;
 
+use yii\base\Event;
+use Da\User\Event\FormEvent;
+use Da\User\Controller\SecurityController;
+
 /**
  * Bootstrap class of the yii2-usuario extension. Configures container services, initializes translations,
  * builds class map, and does the other setup actions participating in the application bootstrap process.
@@ -88,6 +92,7 @@ class Bootstrap implements BootstrapInterface
             // services
             $di->set(Service\AccountConfirmationService::class);
             $di->set(Service\EmailChangeService::class);
+            $di->set(Service\PasswordExpireService::class);
             $di->set(Service\PasswordRecoveryService::class);
             $di->set(Service\ResendConfirmationService::class);
             $di->set(Service\ResetPasswordService::class);
@@ -140,6 +145,19 @@ class Bootstrap implements BootstrapInterface
             if (!$di->has(Search\RoleSearch::class)) {
                 $di->set(Search\RoleSearch::class);
             }
+
+            // Attach an event to check if the password has expired
+            Event::on(SecurityController::class, FormEvent::EVENT_AFTER_LOGIN, function (FormEvent $event) {
+                if (is_null(Yii::$app->getModule('user')->maxPasswordAge)) {
+                    return;
+                }
+                $user = $event->form->user;
+                if ($user->password_age >= Yii::$app->getModule('user')->maxPasswordAge) {
+                    // Force password change
+                    Yii::$app->session->setFlash('warning', Yii::t('usuario', 'Your password has expired, you must change it now'));
+                    Yii::$app->response->redirect(['/user/settings/account'])->send();
+                }
+            });
 
             if ($app instanceof WebApplication) {
                 // override Yii
