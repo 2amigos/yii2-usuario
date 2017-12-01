@@ -111,7 +111,7 @@ class MailFactory
             'token' => $token,
         ];
 
-        return static::makeMailerService(MailEvent::TYPE_RECONFIRM, $from, $to, $subject, 'recovery', $params);
+        return static::makeMailerService(MailEvent::TYPE_RECONFIRM, $from, $to, $subject, 'reconfirmation', $params);
     }
 
     /**
