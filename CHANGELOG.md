@@ -1,6 +1,7 @@
 # CHANGELOG
 
 ## 1.1.2 - Work in progress
+- Bug #122: Fix wrong email message for email address change (liviuk2)
 
 ## 1.1.1 - November 27, 2017
 - Bug #115: Convert client_id to string because pgsql fail with type convertion (Dezinger)
