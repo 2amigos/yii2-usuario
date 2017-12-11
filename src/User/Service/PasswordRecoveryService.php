@@ -42,6 +42,10 @@ class PasswordRecoveryService implements ServiceInterface
             /** @var User $user */
             $user = $this->query->whereEmail($this->email)->one();
 
+            if ($user === null) {
+                throw new \RuntimeException('User not found.');
+            }
+
             $token = TokenFactory::makeRecoveryToken($user->id);
 
             if (!$token) {
