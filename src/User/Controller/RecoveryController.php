@@ -94,7 +94,7 @@ class RecoveryController extends Controller
 
         $this->make(AjaxRequestModelValidator::class, [$form])->validate();
 
-        if ($form->load(Yii::$app->request->post())) {
+        if ($form->load(Yii::$app->request->post()) && $form->validate()) {
             $this->trigger(FormEvent::EVENT_BEFORE_REQUEST, $event);
 
             $mailService = MailFactory::makeRecoveryMailerService($form->email);
