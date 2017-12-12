@@ -145,7 +145,7 @@ class RegistrationController extends Controller
 
         $this->make(AjaxRequestModelValidator::class, [$user])->validate();
 
-        if ($user->load(Yii::$app->request->post())) {
+        if ($user->load(Yii::$app->request->post()) && $user->validate()) {
             $this->trigger(SocialNetworkConnectEvent::EVENT_BEFORE_CONNECT, $event);
 
             $mailService = MailFactory::makeWelcomeMailerService($user);
