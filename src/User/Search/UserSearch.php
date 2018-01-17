@@ -63,7 +63,7 @@ class UserSearch extends Model
     {
         return [
             'safeFields' => [['username', 'email', 'registration_ip', 'created_at', 'last_login_at'], 'safe'],
-            'createdDefault' => ['created_at', 'default', 'value' => null],
+            'createdDefault' => [['created_at', 'last_login_at'], 'default', 'value' => null],
         ];
     }
 
