@@ -147,17 +147,16 @@ class Bootstrap implements BootstrapInterface
             }
 
             // Attach an event to check if the password has expired
-            Event::on(SecurityController::class, FormEvent::EVENT_AFTER_LOGIN, function (FormEvent $event) {
-                if (is_null(Yii::$app->getModule('user')->maxPasswordAge)) {
-                    return;
-                }
-                $user = $event->form->user;
-                if ($user->password_age >= Yii::$app->getModule('user')->maxPasswordAge) {
-                    // Force password change
-                    Yii::$app->session->setFlash('warning', Yii::t('usuario', 'Your password has expired, you must change it now'));
-                    Yii::$app->response->redirect(['/user/settings/account'])->send();
-                }
-            });
+            if (!is_null(Yii::$app->getModule('user')->maxPasswordAge)) {
+                Event::on(SecurityController::class, FormEvent::EVENT_AFTER_LOGIN, function (FormEvent $event) {
+                    $user = $event->form->user;
+                    if ($user->password_age >= Yii::$app->getModule('user')->maxPasswordAge) {
+                        // Force password change
+                        Yii::$app->session->setFlash('warning', Yii::t('usuario', 'Your password has expired, you must change it now'));
+                        Yii::$app->response->redirect(['/user/settings/account'])->send();
+                    }
+                });
+            }
 
             if ($app instanceof WebApplication) {
                 // override Yii
