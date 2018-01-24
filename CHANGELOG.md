@@ -1,6 +1,14 @@
 # CHANGELOG
 
-## 1.1.1 - Work in progress
+## 1.1.2 - Work in progress
+- Bug #133: Fix user search returning no results in admin page (phiurs)
+- Bug #125: Fix validation in non-ajax requests (faenir)
+- Bug #122: Fix wrong email message for email address change (liviuk2)
+
+## 1.1.1 - November 27, 2017
+- Bug #115: Convert client_id to string because pgsql fail with type convertion (Dezinger)
+- Bug #119: Security fix: add AccessControl to RuleController (Dezinger)
+- Enh #120: 2FA i18n russian translation (Dezinger)
 - Bug #111: Fix migration for PostgreSQL DBMS (MKiselev)
 - Bug #106: Correct exception value returned in `MailEvent::getException` (kartik-v)
 - Enh #99:  Added German translation (jkmssoft)

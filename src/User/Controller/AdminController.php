@@ -130,7 +130,7 @@ class AdminController extends Controller
 
         $this->make(AjaxRequestModelValidator::class, [$user])->validate();
 
-        if ($user->load(Yii::$app->request->post())) {
+        if ($user->load(Yii::$app->request->post()) && $user->validate()) {
             $this->trigger(UserEvent::EVENT_BEFORE_CREATE, $event);
 
             $mailService = MailFactory::makeWelcomeMailerService($user);
