@@ -3,6 +3,7 @@
 ## 1.1.2 - Work in progress
 - Bug #125: Fix validation in non-ajax requests (faenir)
 - Bug #122: Fix wrong email message for email address change (liviuk2)
+- Bug #102: Implemented password expiration feature (maxxer)
 
 ## 1.1.1 - November 27, 2017
 - Bug #115: Convert client_id to string because pgsql fail with type convertion (Dezinger)
