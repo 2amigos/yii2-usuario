@@ -15,11 +15,6 @@ use Da\User\Model\User;
 use Da\User\Service\MailService;
 use yii\base\Event;
 
-/**
- * Mailer event to trap and handle mail exceptions for user model actions
- *
- * @author Kartik Visweswaran <kartikv2@gmail.com>
- */
 class MailEvent extends Event
 {
     const TYPE_WELCOME = 'welcome';
@@ -62,6 +57,6 @@ class MailEvent extends Event
 
     public function getException()
     {
-        return $this->mailService;
+        return $this->exception;
     }
 }

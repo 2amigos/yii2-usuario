@@ -22,7 +22,7 @@ class ProfileEvent extends Event
     {
         $this->profile = $profile;
 
-        return parent::__construct($config);
+        parent::__construct($config);
     }
 
     public function getProfile()

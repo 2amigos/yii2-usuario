@@ -18,6 +18,7 @@ use Da\User\Strategy\InsecureEmailChangeStrategy;
 use Da\User\Strategy\SecureEmailChangeStrategy;
 use Exception;
 use Yii;
+use yii\base\InvalidParamException;
 
 class EmailChangeStrategyFactory
 {
@@ -41,7 +42,7 @@ class EmailChangeStrategyFactory
             return Yii::$container->get(static::$map[$strategy], [$form]);
         }
 
-        throw new Exception('Unknown strategy type');
+        throw new InvalidParamException('Unknown strategy type');
     }
 
     /**

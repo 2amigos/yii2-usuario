@@ -16,6 +16,9 @@ use Da\User\Query\UserQuery;
 use Da\User\Traits\ContainerAwareTrait;
 use Da\User\Traits\ModuleAwareTrait;
 use Yii;
+use yii\base\Exception;
+use yii\base\InvalidConfigException;
+use yii\base\InvalidParamException;
 use yii\base\NotSupportedException;
 use yii\behaviors\TimestampBehavior;
 use yii\db\ActiveRecord;
@@ -74,6 +77,10 @@ class User extends ActiveRecord implements IdentityInterface
 
     /**
      * {@inheritdoc}
+     *
+     * @throws InvalidParamException
+     * @throws InvalidConfigException
+     * @throws Exception
      */
     public function beforeSave($insert)
     {
@@ -99,6 +106,8 @@ class User extends ActiveRecord implements IdentityInterface
 
     /**
      * @inheritdoc
+     *
+     * @throws InvalidConfigException
      */
     public function afterSave($insert, $changedAttributes)
     {
@@ -245,6 +254,7 @@ class User extends ActiveRecord implements IdentityInterface
     }
 
     /**
+     * @throws InvalidConfigException
      * @return bool whether the user is an admin or not
      */
     public function getIsAdmin()
@@ -274,6 +284,8 @@ class User extends ActiveRecord implements IdentityInterface
     }
 
     /**
+     * @throws InvalidConfigException
+     * @throws InvalidParamException
      * @return \yii\db\ActiveQuery
      */
     public function getProfile()
@@ -282,11 +294,13 @@ class User extends ActiveRecord implements IdentityInterface
     }
 
     /**
+     * @throws \Exception
      * @return SocialNetworkAccount[] social connected accounts [ 'providerName' => socialAccountModel ]
+     *
      */
     public function getSocialNetworkAccounts()
     {
-        if ($this->connectedAccounts == null) {
+        if (null === $this->connectedAccounts) {
             /** @var SocialNetworkAccount[] $accounts */
             $accounts = $this->hasMany(
                 $this->getClassMap()
@@ -313,6 +327,8 @@ class User extends ActiveRecord implements IdentityInterface
 
     /**
      * {@inheritdoc}
+     *
+     * @throws NotSupportedException
      */
     public static function findIdentityByAccessToken($token, $type = null)
     {

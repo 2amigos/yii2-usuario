@@ -14,6 +14,7 @@ namespace Da\User\Traits;
 use Da\User\Helper\AuthHelper;
 use Da\User\Helper\ClassMapHelper;
 use Yii;
+use yii\base\InvalidConfigException;
 use yii\di\Container;
 
 /**
@@ -39,6 +40,7 @@ trait ContainerAwareTrait
      * @param array  $params constructor parameters
      * @param array  $config attributes
      *
+     * @throws InvalidConfigException
      * @return object
      */
     public function make($class, $params = [], $config = [])
@@ -47,7 +49,9 @@ trait ContainerAwareTrait
     }
 
     /**
+     * @throws InvalidConfigException
      * @return \Da\User\Helper\AuthHelper|object
+     *
      */
     public function getAuth()
     {
@@ -55,7 +59,9 @@ trait ContainerAwareTrait
     }
 
     /**
+     * @throws InvalidConfigException
      * @return \Da\User\Helper\ClassMapHelper|object
+     *
      */
     public function getClassMap()
     {

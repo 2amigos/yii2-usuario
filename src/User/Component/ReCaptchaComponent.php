@@ -29,6 +29,8 @@ class ReCaptchaComponent extends Component
 
     /**
      * @inheritdoc
+     *
+     * @throws InvalidConfigException
      */
     public function init()
     {

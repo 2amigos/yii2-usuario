@@ -24,6 +24,8 @@ use Da\User\Service\ResetPasswordService;
 use Da\User\Traits\ContainerAwareTrait;
 use Da\User\Validator\AjaxRequestModelValidator;
 use Yii;
+use yii\base\InvalidConfigException;
+use yii\base\InvalidParamException;
 use yii\filters\AccessControl;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
@@ -74,6 +76,8 @@ class RecoveryController extends Controller
      * Displays / handles user password recovery request.
      *
      * @throws NotFoundHttpException
+     * @throws InvalidConfigException
+     * @throws InvalidParamException
      * @return string
      *
      */
@@ -90,7 +94,7 @@ class RecoveryController extends Controller
 
         $this->make(AjaxRequestModelValidator::class, [$form])->validate();
 
-        if ($form->load(Yii::$app->request->post())) {
+        if ($form->load(Yii::$app->request->post()) && $form->validate()) {
             $this->trigger(FormEvent::EVENT_BEFORE_REQUEST, $event);
 
             $mailService = MailFactory::makeRecoveryMailerService($form->email);
@@ -118,6 +122,8 @@ class RecoveryController extends Controller
      * @param $code
      *
      * @throws NotFoundHttpException
+     * @throws InvalidConfigException
+     * @throws InvalidParamException
      * @return string
      *
      */

@@ -16,6 +16,8 @@ use Da\User\Query\TokenQuery;
 use Da\User\Traits\ContainerAwareTrait;
 use Da\User\Traits\ModuleAwareTrait;
 use RuntimeException;
+use yii\base\InvalidConfigException;
+use yii\base\InvalidParamException;
 use yii\db\ActiveRecord;
 use yii\helpers\Url;
 
@@ -49,6 +51,9 @@ class Token extends ActiveRecord
 
     /**
      * {@inheritdoc}
+     *
+     * @throws InvalidParamException
+     * @throws InvalidConfigException
      */
     public function beforeSave($insert)
     {
@@ -86,6 +91,7 @@ class Token extends ActiveRecord
     }
 
     /**
+     * @throws InvalidParamException
      * @return string
      */
     public function getUrl()
@@ -94,16 +100,17 @@ class Token extends ActiveRecord
     }
 
     /**
+     * @throws RuntimeException
      * @return bool Whether token has expired
      */
     public function getIsExpired()
     {
-        if ($this->type == static::TYPE_RECOVERY) {
+        if ($this->type === static::TYPE_RECOVERY) {
             $expirationTime = $this->getModule()->tokenRecoveryLifespan;
         } elseif ($this->type >= static::TYPE_CONFIRMATION && $this->type <= static::TYPE_CONFIRM_OLD_EMAIL) {
             $expirationTime = $this->getModule()->tokenConfirmationLifespan;
         } else {
-            throw new RuntimeException();
+            throw new RuntimeException('Unknown Token type.');
         }
 
         return ($this->created_at + $expirationTime) < time();

@@ -11,6 +11,7 @@
 
 namespace Da\User\Helper;
 
+use yii\base\Exception;
 use yii\base\Security;
 
 class SecurityHelper
@@ -31,13 +32,24 @@ class SecurityHelper
      * @param string   $password
      * @param null|int $cost
      *
+     * @throws Exception
      * @return string
+     *
      */
     public function generatePasswordHash($password, $cost = null)
     {
         return $this->security->generatePasswordHash($password, $cost);
     }
 
+    /**
+     * Generates a random string
+     *
+     * @param int $length
+     *
+     * @throws Exception
+     * @return string
+     *
+     */
     public function generateRandomString($length = 32)
     {
         return $this->security->generateRandomString($length);

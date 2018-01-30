@@ -131,7 +131,7 @@ class AdminController extends Controller
 
         $this->make(AjaxRequestModelValidator::class, [$user])->validate();
 
-        if ($user->load(Yii::$app->request->post())) {
+        if ($user->load(Yii::$app->request->post()) && $user->validate()) {
             $this->trigger(UserEvent::EVENT_BEFORE_CREATE, $event);
 
             $mailService = MailFactory::makeWelcomeMailerService($user);
@@ -140,9 +140,8 @@ class AdminController extends Controller
                 Yii::$app->getSession()->setFlash('success', Yii::t('usuario', 'User has been created'));
                 $this->trigger(UserEvent::EVENT_AFTER_CREATE, $event);
                 return $this->redirect(['update', 'id' => $user->id]);
-            } else {
-                Yii::$app->session->setFlash('danger', Yii::t('usuario', 'User account could not be created.'));
             }
+            Yii::$app->session->setFlash('danger', Yii::t('usuario', 'User account could not be created.'));
         }
 
         return $this->render('create', ['user' => $user]);

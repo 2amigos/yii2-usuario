@@ -17,19 +17,15 @@ use Da\User\Model\User;
 use Da\User\Module;
 use Da\User\Service\MailService;
 use Yii;
+use yii\base\InvalidConfigException;
 
-/**
- * Class MailFactory
- *
- * @package Da\User\Factory
- * @modified 2017-10-18 by Kartik Visweswaran <kartikv2@gmail.com>
- */
 class MailFactory
 {
     /**
      * @param User $user
      * @param bool $showPassword
      *
+     * @throws InvalidConfigException
      * @return MailService
      */
     public static function makeWelcomeMailerService(User $user, $showPassword = false)
@@ -53,6 +49,7 @@ class MailFactory
      * @param string $email
      * @param Token  $token
      *
+     * @throws InvalidConfigException
      * @return MailService
      */
     public static function makeRecoveryMailerService($email, Token $token = null)
@@ -74,6 +71,7 @@ class MailFactory
      * @param User       $user
      * @param Token|null $token
      *
+     * @throws InvalidConfigException
      * @return MailService
      */
     public static function makeConfirmationMailerService(User $user, Token $token = null)
@@ -95,6 +93,7 @@ class MailFactory
      * @param User  $user
      * @param Token $token
      *
+     * @throws InvalidConfigException
      * @return MailService
      */
     public static function makeReconfirmationMailerService(User $user, Token $token)
@@ -112,7 +111,7 @@ class MailFactory
             'token' => $token,
         ];
 
-        return static::makeMailerService(MailEvent::TYPE_RECONFIRM, $from, $to, $subject, 'recovery', $params);
+        return static::makeMailerService(MailEvent::TYPE_RECONFIRM, $from, $to, $subject, 'reconfirmation', $params);
     }
 
     /**
@@ -125,7 +124,9 @@ class MailFactory
      * @param string $view
      * @param array  $params
      *
+     * @throws InvalidConfigException
      * @return MailService
+     *
      */
     public static function makeMailerService($type, $from, $to, $subject, $view, $params = [])
     {

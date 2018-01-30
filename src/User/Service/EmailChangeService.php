@@ -76,8 +76,8 @@ class EmailChangeService implements ServiceInterface
                     );
                 }
             }
-            if ($this->getModule()->emailChangeStrategy === MailChangeStrategyInterface::TYPE_DEFAULT
-                || ($this->model->flags & User::NEW_EMAIL_CONFIRMED & $this->model->flags & User::OLD_EMAIL_CONFIRMED)
+            if (($this->model->flags & User::NEW_EMAIL_CONFIRMED & $this->model->flags & User::OLD_EMAIL_CONFIRMED)
+                || $this->getModule()->emailChangeStrategy === MailChangeStrategyInterface::TYPE_DEFAULT
             ) {
                 $this->model->email = $this->model->unconfirmed_email;
                 $this->model->unconfirmed_email = null;
