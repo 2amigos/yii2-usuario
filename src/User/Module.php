@@ -29,6 +29,10 @@ class Module extends BaseModule
      */
     public $twoFactorAuthenticationCycles = 1;
     /**
+     * @var bool whether to allow autologin or not
+     */
+    public $enableAutologin = true;
+    /**
      * @var bool whether to allow registration process or not
      */
     public $enableRegistration = true;
