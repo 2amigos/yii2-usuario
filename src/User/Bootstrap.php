@@ -149,7 +149,7 @@ class Bootstrap implements BootstrapInterface
                 $di->set(
                     'yii\web\User',
                     [
-                        'enableAutoLogin' => true,
+                        'enableAutoLogin' => $app->getModule('user')->enableAutologin,
                         'loginUrl' => ['/user/security/login'],
                         'identityClass' => $di->get(ClassMapHelper::class)->get(User::class),
                     ]
