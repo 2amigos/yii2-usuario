@@ -1,6 +1,7 @@
 # CHANGELOG
 
 ## 1.1.2 - Work in progress
+- Enh #137: Added the ability to make `enableAutologin` configurable (pappfer)
 - Enh #135: Added Estonian translation (tonisormisson)
 - Bug #133: Fix user search returning no results in admin page (phiurs)
 - Bug #125: Fix validation in non-ajax requests (faenir)
