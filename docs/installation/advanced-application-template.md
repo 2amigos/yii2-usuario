@@ -12,7 +12,7 @@ packages, and everything you need to start project in no time with batteries inc
 > [Check this manual page](sidekit-application-template.md) if you decided to use it.
 
 If you want to use the default [Basic Application Template](https://github.com/yiisoft/yii2-app-basic) with our
-extension, then check [Basic Application Template documentation page](basic-application-template.md).
+extension, then check [Basic Application Template documentation page](yii2-application-template.md).
 
 Step 1 - Install Advanced Application template
 ----------------------------------------------
