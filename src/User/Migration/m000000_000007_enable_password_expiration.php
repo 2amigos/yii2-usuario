@@ -17,7 +17,7 @@ class m000000_000007_enable_password_expiration extends Migration
 {
     public function safeUp()
     {
-        $this->addColumn('{{%user}}', 'password_changed_at', $this->int()->null());
+        $this->addColumn('{{%user}}', 'password_changed_at', $this->integer()->null());
     }
 
     public function safeDown()
