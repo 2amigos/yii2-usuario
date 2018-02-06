@@ -73,7 +73,7 @@ CREATE TABLE `user` (
   `auth_tf_enabled` tinyint(1) DEFAULT '0',
   `flags` int(11) NOT NULL DEFAULT '0',
   `last_login_at` int(11) DEFAULT NULL,
-  `last_password_change` timestamp,
+  `password_changed_at` int(11) DEFAULT NULL,
 
   PRIMARY KEY (`id`),
   UNIQUE KEY `user_unique_email` (`email`),

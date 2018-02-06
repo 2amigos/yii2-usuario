@@ -17,11 +17,11 @@ class m000000_000007_enable_password_expiration extends Migration
 {
     public function safeUp()
     {
-        $this->addColumn('{{%user}}', 'last_password_change', $this->timestamp()->null());
+        $this->addColumn('{{%user}}', 'password_changed_at', $this->int()->null());
     }
 
     public function safeDown()
     {
-        $this->dropColumn('{{%user}}', 'last_password_change');
+        $this->dropColumn('{{%user}}', 'password_changed_at');
     }
 }

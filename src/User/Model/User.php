@@ -50,7 +50,7 @@ use yii\web\IdentityInterface;
  * @property int $created_at
  * @property int $updated_at
  * @property int $last_login_at
- * @property int $last_password_change
+ * @property int $password_changed_at
  * @property int $password_age
  *
  * Defined relations:
@@ -98,7 +98,7 @@ class User extends ActiveRecord implements IdentityInterface
                 'password_hash',
                 $security->generatePasswordHash($this->password, $this->getModule()->blowfishCost)
             );
-            $this->last_password_change = new Expression("NOW()");
+            $this->password_changed_at = time();
         }
 
         return parent::beforeSave($insert);
@@ -151,7 +151,7 @@ class User extends ActiveRecord implements IdentityInterface
             'created_at' => Yii::t('usuario', 'Registration time'),
             'confirmed_at' => Yii::t('usuario', 'Confirmation time'),
             'last_login_at' => Yii::t('usuario', 'Last login'),
-            'last_password_change' => Yii::t('usuario', 'Last password change'),
+            'password_changed_at' => Yii::t('usuario', 'Last password change'),
             'password_age' => Yii::t('usuario', 'Password age'),
         ];
     }
@@ -341,10 +341,10 @@ class User extends ActiveRecord implements IdentityInterface
      */
     public function getPassword_age()
     {
-        if (is_null($this->last_password_change)) {
+        if (is_null($this->password_changed_at)) {
             return $this->getModule()->maxPasswordAge;
         }
-        $d = new \DateTime($this->last_password_change);
+        $d = new \DateTime($this->password_changed_at);
         return $d->diff(new \DateTime(), true)->format("%a");
     }
 }
