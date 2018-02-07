@@ -175,7 +175,7 @@ class User extends ActiveRecord implements IdentityInterface
         return [
             // username rules
             'usernameRequired' => ['username', 'required', 'on' => ['register', 'create', 'connect', 'update']],
-            'usernameMatch' => ['username', 'match', 'pattern' => '/^[-a-zA-Z0-9_\.@]+$/'],
+            'usernameMatch' => ['username', 'match', 'pattern' => '/^[-a-zA-Z0-9_\.@\+]+$/'],
             'usernameLength' => ['username', 'string', 'min' => 3, 'max' => 255],
             'usernameTrim' => ['username', 'trim'],
             'usernameUnique' => [
