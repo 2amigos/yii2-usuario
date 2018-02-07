@@ -120,7 +120,7 @@ Once we have it installed, we have to configure it on your `config.php` file.
 NOTE: If you are using the Yii2 Basic Template, make sure you remove this (default user model config) from your `config.php`,
 i.e. `config/web.php` file:
 
-```
+```php
 'components' => [
     'user' => [
         'identityClass' => 'app\models\User',
