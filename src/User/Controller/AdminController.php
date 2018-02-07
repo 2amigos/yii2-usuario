@@ -18,6 +18,7 @@ use Da\User\Model\Profile;
 use Da\User\Model\User;
 use Da\User\Query\UserQuery;
 use Da\User\Search\UserSearch;
+use Da\User\Service\PasswordExpireService;
 use Da\User\Service\PasswordRecoveryService;
 use Da\User\Service\SwitchIdentityService;
 use Da\User\Service\UserBlockService;
@@ -327,5 +328,21 @@ class AdminController extends Controller
         }
 
         return $this->redirect(['index']);
+    }
+    
+    /**
+     * Forces the user to change password at next login
+     * @param integer $id
+     */
+    public function actionForcePasswordChange($id)
+    {
+        /** @var User $user */
+        $user = $this->userQuery->where(['id' => $id])->one();
+        if ($this->make(PasswordExpireService::class, [$user])->run()) {
+            Yii::$app->session->setFlash("success", Yii::t('usuario', 'User will be required to change password at next login'));
+        } else {
+            Yii::$app->session->setFlash("danger", Yii::t('usuario', 'There was an error in saving user'));
+        }
+        $this->redirect(['index']);
     }
 }
