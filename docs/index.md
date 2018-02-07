@@ -110,9 +110,26 @@ Once we have it installed, we have to configure it on your `config.php` file.
 'modules' => [
     'user' => [
         'class' => Da\User\Module::class,
+        // ...other configs from here: [Configuration Options](installation/configuration-options.md), e.g.
+        // 'generatePasswords' => true,
+        // 'switchIdentitySessionKey' => 'myown_usuario_admin_user_key',
     ]
 ]
 ```
+
+NOTE: If you are using the Yii2 Basic Template, make sure you remove this (default user model config) from your `config.php`,
+i.e. `config/web.php` file:
+
+```php
+'components' => [
+    'user' => [
+        'identityClass' => 'app\models\User',
+        'enableAutoLogin' => true,
+    ],
+],
+```
+
+This will ensure the proper functionality of login/guest user detection etc.
 
 Configuration may differ from template to template, the following are some guidelines for sidekit app template and 
 the official Yii2 advanced application template: 
