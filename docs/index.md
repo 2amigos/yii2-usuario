@@ -144,6 +144,7 @@ See also all the possible configuration options available:
 - [Console Commands](installation/console-commands.md)
 - [Mailer](installation/mailer.md)
 - [Available Actions](installation/available-actions.md)
+- [Migration guide from Dektrium tools](installation/migration-guide-from-dektrium-tools.md)
 
 Enhancing and Overriding
 ------------------------
@@ -188,4 +189,4 @@ Contributing
 - [How to Contribute](contributing/how-to.md)
 - [Clean Code](contributing/clean-code.md)
 
-© [2amigos](http://www.2amigos.us/) 2013-2017
+© [2amigos](http://www.2amigos.us/) 2013-2018
