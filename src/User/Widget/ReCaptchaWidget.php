@@ -54,7 +54,7 @@ class ReCaptchaWidget extends InputWidget
      */
     public function init()
     {
-        if (Yii::$app->get('recaptcha')) {
+        if (!Yii::$app->get('recaptcha')) {
             throw new InvalidConfigException(Yii::t('usuario', 'The "recaptcha" component must be configured.'));
         }
 
