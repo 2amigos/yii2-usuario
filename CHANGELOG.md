@@ -1,6 +1,8 @@
 # CHANGELOG
 
-## 1.1.2 - Work in progress
+## 1.1.4 - Work in progress
+
+## 1.1.2-3 - February 9, 2018
 - Bug: Bugfix for Model events UserEvent::EVENT_BEFORE_CONFIRMATION and UserEvent::EVENT_AFTER_CONFIRMATION (ajmedway)
 - Bug: Bugfix for Model events UserEvent::EVENT_BEFORE_CREATE and UserEvent::EVENT_AFTER_CREATE (ajmedway)
 - Enh #137: Added the ability to make `enableAutologin` configurable (pappfer)
