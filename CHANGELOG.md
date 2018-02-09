@@ -10,6 +10,7 @@
 - Enh #143: Introduced "conflict" configuration in composer.json (maxxer)
 - Enh #145: Allowed the `+` sign in username (maxxer)
 - Bug #9:   Documentation about migration from Dektrium tools (maxxer)
+- Bug #110: Honor `enableFlashMessages` in `PasswordRecoveryService` (maxxer)
 
 ## 1.1.1 - November 27, 2017
 - Bug #115: Convert client_id to string because pgsql fail with type convertion (Dezinger)

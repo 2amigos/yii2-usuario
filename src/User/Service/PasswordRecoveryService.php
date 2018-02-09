@@ -16,12 +16,14 @@ use Da\User\Factory\TokenFactory;
 use Da\User\Model\User;
 use Da\User\Query\UserQuery;
 use Da\User\Traits\MailAwareTrait;
+use Da\User\Traits\ModuleAwareTrait;
 use Exception;
 use Yii;
 
 class PasswordRecoveryService implements ServiceInterface
 {
     use MailAwareTrait;
+    use ModuleAwareTrait;
 
     protected $query;
 
@@ -58,10 +60,12 @@ class PasswordRecoveryService implements ServiceInterface
                 return false;
             }
 
-            Yii::$app->session->setFlash(
-                'info',
-                Yii::t('usuario', 'An email has been sent with instructions for resetting your password')
-            );
+            if ($this->getModule()->enableFlashMessages == true) {
+                Yii::$app->session->setFlash(
+                    'info',
+                    Yii::t('usuario', 'An email has been sent with instructions for resetting your password')
+                );
+            }
 
             return true;
         } catch (Exception $e) {
