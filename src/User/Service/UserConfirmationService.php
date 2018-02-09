@@ -14,9 +14,12 @@ namespace Da\User\Service;
 use Da\User\Contracts\ServiceInterface;
 use Da\User\Event\UserEvent;
 use Da\User\Model\User;
+use Da\User\Traits\MailAwareTrait;
 
 class UserConfirmationService implements ServiceInterface
 {
+    use MailAwareTrait;
+    
     protected $model;
 
     public function __construct(User $model)
