@@ -344,7 +344,7 @@ class User extends ActiveRecord implements IdentityInterface
         if (is_null($this->password_changed_at)) {
             return $this->getModule()->maxPasswordAge;
         }
-        $d = new \DateTime($this->password_changed_at);
+        $d = new \DateTime("@{$this->password_changed_at}");
         return $d->diff(new \DateTime(), true)->format("%a");
     }
 }
