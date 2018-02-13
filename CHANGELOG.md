@@ -1,6 +1,7 @@
 # CHANGELOG
 
 ## 1.1.4 - Work in progress
+- Fix #154: Fix DateTime constructor with Unix timestamps (tonydspaniard)
 
 ## 1.1.2-3 - February 9, 2018
 - Bug: Bugfix for Model events UserEvent::EVENT_BEFORE_CONFIRMATION and UserEvent::EVENT_AFTER_CONFIRMATION (ajmedway)
