@@ -66,8 +66,6 @@ class RuleSearch extends Rule
 
         if (!$this->validate()) {
             $query->where('0=1');
-            var_dump($this->load($params));
-            die();
         }
 
         return $this->make(
