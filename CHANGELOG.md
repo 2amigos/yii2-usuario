@@ -1,6 +1,7 @@
 # CHANGELOG
 
 ## 1.1.4 - Work in progress
+- Enh: Check enableEmailConfirmation on registration (faenir)
 - Fix #154: Fix DateTime constructor with Unix timestamps (tonydspaniard)
 
 ## 1.1.2-3 - February 9, 2018
