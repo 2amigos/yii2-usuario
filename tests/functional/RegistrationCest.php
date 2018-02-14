@@ -96,7 +96,7 @@ class RegistrationCest
         ]);
         $I->amOnRoute('/user/registration/register');
         $this->register($I, 'tester@example.com', 'tester');
-        $I->see('Your account has been created and a message with further instructions has been sent to your email');
+        $I->see('Your account has been created');
         $user = $I->grabRecord(User::className(), ['email' => 'tester@example.com']);
         $I->assertEquals('tester', $user->username);
         /** @var yii\swiftmailer\Message $message */
