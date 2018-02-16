@@ -92,6 +92,7 @@ $module = Yii::$app->getModule('user');
                 'format' => 'raw',
                 'visible' => Yii::$app->getModule('user')->enableEmailConfirmation,
             ],
+            'password_age',
             [
                 'header' => Yii::t('usuario', 'Block status'),
                 'value' => function ($model) {
@@ -121,7 +122,7 @@ $module = Yii::$app->getModule('user');
             ],
             [
                 'class' => 'yii\grid\ActionColumn',
-                'template' => '{switch} {reset} {update} {delete}',
+                'template' => '{switch} {reset} {force-password-change} {update} {delete}',
                 'buttons' => [
                     'switch' => function ($url, $model) use ($module) {
                         if ($model->id != Yii::$app->user->id && $module->enableSwitchIdentities) {
@@ -158,7 +159,24 @@ $module = Yii::$app->getModule('user');
                         }
 
                         return null;
-                    }
+                    },
+                    'force-password-change' => function ($url, $model) use ($module) {
+                        if (is_null($module->maxPasswordAge)) {
+                            return null;
+                        }
+                        return Html::a(
+                            '<span class="glyphicon glyphicon-time"></span>',
+                            ['/user/admin/force-password-change', 'id' => $model->id],
+                            [
+                                'title' => Yii::t('usuario', 'Force password change at next login'),
+                                'data-confirm' => Yii::t(
+                                    'usuario',
+                                    'Are you sure you wish the user to change their password at next login?'
+                                ),
+                                'data-method' => 'POST',
+                            ]
+                        );
+                    },
                 ]
             ],
         ],

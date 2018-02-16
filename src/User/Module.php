@@ -29,9 +29,9 @@ class Module extends BaseModule
      */
     public $twoFactorAuthenticationCycles = 1;
     /**
-     * @var bool whether to allow autologin or not
+     * @var bool whether to allow auto login or not
      */
-    public $enableAutologin = true;
+    public $enableAutoLogin = true;
     /**
      * @var bool whether to allow registration process or not
      */
@@ -132,4 +132,8 @@ class Module extends BaseModule
      * @var string the session key name to impersonate users. Please, modify it for security reasons!
      */
     public $switchIdentitySessionKey = 'yuik_usuario';
+    /**
+     * @var integer If != NULL sets a max password age in days
+     */
+    public $maxPasswordAge = null;
 }

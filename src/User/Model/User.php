@@ -22,6 +22,7 @@ use yii\base\InvalidParamException;
 use yii\base\NotSupportedException;
 use yii\behaviors\TimestampBehavior;
 use yii\db\ActiveRecord;
+use yii\db\Expression;
 use yii\helpers\ArrayHelper;
 use yii\web\Application;
 use yii\web\IdentityInterface;
@@ -49,6 +50,8 @@ use yii\web\IdentityInterface;
  * @property int $created_at
  * @property int $updated_at
  * @property int $last_login_at
+ * @property int $password_changed_at
+ * @property int $password_age
  *
  * Defined relations:
  * @property SocialNetworkAccount[] $socialNetworkAccounts
@@ -95,6 +98,7 @@ class User extends ActiveRecord implements IdentityInterface
                 'password_hash',
                 $security->generatePasswordHash($this->password, $this->getModule()->blowfishCost)
             );
+            $this->password_changed_at = time();
         }
 
         return parent::beforeSave($insert);
@@ -147,6 +151,8 @@ class User extends ActiveRecord implements IdentityInterface
             'created_at' => Yii::t('usuario', 'Registration time'),
             'confirmed_at' => Yii::t('usuario', 'Confirmation time'),
             'last_login_at' => Yii::t('usuario', 'Last login'),
+            'password_changed_at' => Yii::t('usuario', 'Last password change'),
+            'password_age' => Yii::t('usuario', 'Password age'),
         ];
     }
 
@@ -175,7 +181,7 @@ class User extends ActiveRecord implements IdentityInterface
         return [
             // username rules
             'usernameRequired' => ['username', 'required', 'on' => ['register', 'create', 'connect', 'update']],
-            'usernameMatch' => ['username', 'match', 'pattern' => '/^[-a-zA-Z0-9_\.@]+$/'],
+            'usernameMatch' => ['username', 'match', 'pattern' => '/^[-a-zA-Z0-9_\.@\+]+$/'],
             'usernameLength' => ['username', 'string', 'min' => 3, 'max' => 255],
             'usernameTrim' => ['username', 'trim'],
             'usernameUnique' => [
@@ -327,5 +333,18 @@ class User extends ActiveRecord implements IdentityInterface
     public static function findIdentityByAccessToken($token, $type = null)
     {
         throw new NotSupportedException('Method "' . __CLASS__ . '::' . __METHOD__ . '" is not implemented.');
+    }
+    
+    /**
+     * Returns password age in days
+     * @return integer 
+     */
+    public function getPassword_age()
+    {
+        if (is_null($this->password_changed_at)) {
+            return $this->getModule()->maxPasswordAge;
+        }
+        $d = new \DateTime("@{$this->password_changed_at}");
+        return $d->diff(new \DateTime(), true)->format("%a");
     }
 }

@@ -1,11 +1,22 @@
 # CHANGELOG
 
-## 1.1.2 - Work in progress
+## 1.1.4 - Work in progress
+- Enh: Check enableEmailConfirmation on registration (faenir)
+- Fix #154: Fix DateTime constructor with Unix timestamps (tonydspaniard)
+
+## 1.1.2-3 - February 9, 2018
+- Bug: Bugfix for Model events UserEvent::EVENT_BEFORE_CONFIRMATION and UserEvent::EVENT_AFTER_CONFIRMATION (ajmedway)
+- Bug: Bugfix for Model events UserEvent::EVENT_BEFORE_CREATE and UserEvent::EVENT_AFTER_CREATE (ajmedway)
 - Enh #137: Added the ability to make `enableAutologin` configurable (pappfer)
 - Enh #135: Added Estonian translation (tonisormisson)
 - Bug #133: Fix user search returning no results in admin page (phiurs)
 - Bug #125: Fix validation in non-ajax requests (faenir)
 - Bug #122: Fix wrong email message for email address change (liviuk2)
+- Bug #102: Implemented password expiration feature (maxxer)
+- Enh #143: Introduced "conflict" configuration in composer.json (maxxer)
+- Enh #145: Allowed the `+` sign in username (maxxer)
+- Bug #9:   Documentation about migration from Dektrium tools (maxxer)
+- Bug #110: Honor `enableFlashMessages` in `PasswordRecoveryService` (maxxer)
 
 ## 1.1.1 - November 27, 2017
 - Bug #115: Convert client_id to string because pgsql fail with type convertion (Dezinger)

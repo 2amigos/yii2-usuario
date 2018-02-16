@@ -57,14 +57,15 @@ class UserCreateService implements ServiceInterface
                 ? $model->password
                 : $this->securityHelper->generatePassword(8);
 
-            $model->trigger(UserEvent::EVENT_BEFORE_CREATE);
+            $event = $this->make(UserEvent::class, [$model]);
+            $model->trigger(UserEvent::EVENT_BEFORE_CREATE, $event);
 
             if (!$model->save()) {
                 $transaction->rollBack();
                 return false;
             }
 
-            $model->trigger(UserEvent::EVENT_AFTER_CREATE);
+            $model->trigger(UserEvent::EVENT_AFTER_CREATE, $event);
             if (!$this->sendMail($model)) {
                 Yii::$app->session->setFlash(
                     'warning',
