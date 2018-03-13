@@ -63,7 +63,7 @@ class ReCaptchaComponent extends Component
             ]
         ))
             ->get(
-                'site/verify',
+                'siteverify',
                 [
                     'secret' => $this->secret,
                     'response' => $value,
@@ -72,6 +72,6 @@ class ReCaptchaComponent extends Component
             )
             ->send();
 
-        return $response['success'] ? : false;
+        return $response->getData()['success'] ? : false;
     }
 }
