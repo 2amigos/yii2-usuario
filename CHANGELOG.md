@@ -1,7 +1,9 @@
 # CHANGELOG
 
 ## 1.1.5 - Work in progress
-
+ - Fix #169: Fix bug in ReCaptchaComponent (BuTaMuH)
+ - Fix #168: Fix spelling in russian language (EvgenyOrekhov)
+ 
 ## 1.1.4 - February 19, 2018
 - Enh: Check enableEmailConfirmation on registration (faenir)
 - Fix #154: Fix DateTime constructor with Unix timestamps (tonydspaniard)
