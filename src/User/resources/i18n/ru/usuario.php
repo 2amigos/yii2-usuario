@@ -251,7 +251,7 @@ return [
     'You can connect multiple accounts to be able to log in using them' => 'Вы можете подключить несколько аккаунтов, чтобы использовать их для входа',
     'You cannot remove your own account' => 'Вы не можете удалить свой аккаунт',
     'You need to confirm your email address' => 'Вам нужно подтвердить ваш адрес электронной почты',
-    'Your account details have been updated' => 'Настройки аккаунта были изменён',
+    'Your account details have been updated' => 'Настройки аккаунта были изменены',
     'Your account has been blocked' => 'Ваш аккаунт заблокирован',
     'Your account has been blocked.' => 'Ваш аккаунт заблокирован.',
     'Your account has been completely deleted' => 'Ваш аккаунт был полностью удалён',
