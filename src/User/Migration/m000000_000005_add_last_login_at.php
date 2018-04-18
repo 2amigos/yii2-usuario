@@ -17,7 +17,11 @@ class m000000_000005_add_last_login_at extends Migration
 {
     public function safeUp()
     {
-        $this->addColumn('{{%user}}', 'last_login_at', $this->integer());
+        /* if it already exists do not add the field */
+        $schema = $this->db->getTableSchema('{{%user}}');
+        if (!in_array('last_login_at',$schema->columnNames)) {
+            $this->addColumn('{{%user}}', 'last_login_at', $this->integer());
+        }
     }
 
     public function safeDown()
