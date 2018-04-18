@@ -18,22 +18,25 @@ class m000000_000004_create_token_table extends Migration
 {
     public function safeUp()
     {
-        $this->createTable(
-            '{{%token}}',
-            [
-                'user_id' => $this->integer(),
-                'code' => $this->string(32)->notNull(),
-                'type' => $this->smallInteger(6)->notNull(),
-                'created_at' => $this->integer()->notNull(),
-            ],
-            MigrationHelper::resolveTableOptions($this->db->driverName)
-        );
+        /* Create the table only if does not exist */
+        if ($this->db->getTableSchema('{{%token}}')===null) {
+            $this->createTable(
+                '{{%token}}',
+                [
+                    'user_id' => $this->integer(),
+                    'code' => $this->string(32)->notNull(),
+                    'type' => $this->smallInteger(6)->notNull(),
+                    'created_at' => $this->integer()->notNull(),
+                ],
+                MigrationHelper::resolveTableOptions($this->db->driverName)
+            );
 
-        $this->createIndex('idx_token_user_id_code_type', '{{%token}}', ['user_id', 'code', 'type'], true);
+            $this->createIndex('idx_token_user_id_code_type', '{{%token}}', ['user_id', 'code', 'type'], true);
 
-        $restrict = MigrationHelper::isMicrosoftSQLServer($this->db->driverName) ? 'NO ACTION' : 'RESTRICT';
+            $restrict = MigrationHelper::isMicrosoftSQLServer($this->db->driverName) ? 'NO ACTION' : 'RESTRICT';
 
-        $this->addForeignKey('fk_token_user', '{{%token}}', 'user_id', '{{%user}}', 'id', 'CASCADE', $restrict);
+            $this->addForeignKey('fk_token_user', '{{%token}}', 'user_id', '{{%user}}', 'id', 'CASCADE', $restrict);
+        }
     }
 
     public function safeDown()

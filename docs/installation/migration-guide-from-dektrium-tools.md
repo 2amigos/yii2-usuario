@@ -54,6 +54,11 @@ In `config/web.php` remove *module > rbac* configuration and change the *modules
 *  In your extended model replace the `BaseUser` inheritance from `dektrium\user\models\User` to `Da\User\Model\User`
 *  If you had controller remapping replace the inheritance from `dektrium\user\controllers\XX` to `Da\User\Controller\XX`
 
+## Existing tables from dektrium migrations
+
+The migrations will check for existing tables (user,profile,social_account and token) and will simply do nothing if already found.
+This will permit to migrate existing production projects.
+
 ## Rbac migrations
 
 [yii2-rbac](https://github.com/dektrium/yii2-rbac) had a nice tool which are rbac migrations, which helped writing new permissions and roles.
