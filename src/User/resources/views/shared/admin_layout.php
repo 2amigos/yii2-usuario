@@ -32,7 +32,7 @@ use yii\helpers\Html;
                 <h3 class="panel-title"><?= Html::encode($this->title) ?></h3>
             </div>
             <div class="panel-body">
-                <?= $this->render('_menu') ?>
+                <?= $this->render('/shared/_menu') ?>
                 <?= $content ?>
             </div>
         </div>

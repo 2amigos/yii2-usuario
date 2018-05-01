@@ -20,7 +20,7 @@ $this->title = $title;
 ?>
 
 <?= $this->render(
-    '_alert',
+    '/shared/_alert',
     [
         'module' => $module,
     ]
