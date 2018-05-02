@@ -31,6 +31,7 @@ class Google extends BaseGoogle implements AuthClientInterface
      */
     public function getUsername()
     {
-        return null;
+        /* returns the e-mail as it corresponds with the username */
+        return $this->getEmail();
     }
 }
