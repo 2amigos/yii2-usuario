@@ -18,7 +18,7 @@ class m000000_000006_add_two_factor_fields extends Migration
     public function safeUp()
     {
         $this->addColumn('{{%user}}', 'auth_tf_key', $this->string(16));
-        $this->addColumn('{{%user}}', 'auth_tf_enabled', $this->boolean()->defaultValue(false));
+        $this->addColumn('{{%user}}', 'auth_tf_enabled', $this->boolean()->defaultValue(0));
     }
 
     public function safeDown()
