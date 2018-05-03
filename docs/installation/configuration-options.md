@@ -81,7 +81,7 @@ Configures one of the three ways available to change user's password:
 - **MailChangeStrategyInterface::TYPE_SECURE**: A confirmation message will be sent to the previous and new user's email 
     with a link that would require both to be click through to confirm the change.
     
-#### rememberLoginLifespan (type: `integer`, default: `209600`)
+#### rememberLoginLifespan (type: `integer`, default: `1209600`)
 
 Configures the time length in seconds a user will be remembered without the need to login again. The default time is 2 
 weeks. 
