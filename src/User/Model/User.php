@@ -43,13 +43,14 @@ use yii\web\IdentityInterface;
  * @property string $auth_key
  * @property string $auth_tf_key
  * @property int $auth_tf_enabled
- * @property int $registration_ip
+ * @property string $registration_ip
  * @property int $confirmed_at
  * @property int $blocked_at
  * @property int $flags
  * @property int $created_at
  * @property int $updated_at
  * @property int $last_login_at
+ * @property string $last_login_ip
  * @property int $password_changed_at
  * @property int $password_age
  *
@@ -150,7 +151,8 @@ class User extends ActiveRecord implements IdentityInterface
             'password' => Yii::t('usuario', 'Password'),
             'created_at' => Yii::t('usuario', 'Registration time'),
             'confirmed_at' => Yii::t('usuario', 'Confirmation time'),
-            'last_login_at' => Yii::t('usuario', 'Last login'),
+            'last_login_at' => Yii::t('usuario', 'Last login time'),
+            'last_login_ip' => Yii::t('usuario', 'Last login IP'),
             'password_changed_at' => Yii::t('usuario', 'Last password change'),
             'password_age' => Yii::t('usuario', 'Password age'),
         ];
