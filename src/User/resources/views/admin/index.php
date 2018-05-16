@@ -52,7 +52,7 @@ $module = Yii::$app->getModule('user');
                 'attribute' => 'created_at',
                 'value' => function ($model) {
                     if (extension_loaded('intl')) {
-                        return Yii::t('usuario', '{0, date, MMMM dd, YYYY HH:mm}', [$model->created_at]);
+                        return Yii::t('usuario', '{0, date, MMM dd, YYYY HH:mm}', [$model->created_at]);
                     }
 
                     return date('Y-m-d G:i:s', $model->created_at);
@@ -64,11 +64,20 @@ $module = Yii::$app->getModule('user');
                     if (!$model->last_login_at || $model->last_login_at == 0) {
                         return Yii::t('usuario', 'Never');
                     } elseif (extension_loaded('intl')) {
-                        return Yii::t('usuario', '{0, date, MMMM dd, YYYY HH:mm}', [$model->last_login_at]);
+                        return Yii::t('usuario', '{0, date, MMM dd, YYYY HH:mm}', [$model->last_login_at]);
                     } else {
                         return date('Y-m-d G:i:s', $model->last_login_at);
                     }
                 },
+            ],
+            [
+                'attribute' => 'last_login_ip',
+                'value' => function ($model) {
+                    return $model->last_login_ip == null
+                        ? '<span class="not-set">' . Yii::t('usuario', '(not set)') . '</span>'
+                        : $model->last_login_ip;
+                },
+                'format' => 'html',
             ],
             [
                 'header' => Yii::t('usuario', 'Confirmation'),
