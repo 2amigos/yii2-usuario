@@ -66,7 +66,8 @@ class SettingsController extends Controller
         UserQuery $userQuery,
         SocialNetworkAccountQuery $socialNetworkAccountQuery,
         array $config = []
-    ) {
+    )
+    {
         $this->profileQuery = $profileQuery;
         $this->userQuery = $userQuery;
         $this->socialNetworkAccountQuery = $socialNetworkAccountQuery;
@@ -96,6 +97,7 @@ class SettingsController extends Controller
                             'profile',
                             'account',
                             'networks',
+                            'privacy',
                             'disconnect',
                             'delete',
                             'two-factor',
@@ -143,6 +145,11 @@ class SettingsController extends Controller
                 'model' => $profile,
             ]
         );
+    }
+
+    public function actionPrivacy()
+    {
+        return $this->render('privacy');
     }
 
     public function actionAccount()
