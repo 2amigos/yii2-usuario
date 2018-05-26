@@ -73,9 +73,14 @@ class RegistrationForm extends Model
             // password rules
             'passwordRequired' => ['password', 'required', 'skipOnEmpty' => $this->module->generatePasswords],
             'passwordLength' => ['password', 'string', 'min' => 6, 'max' => 72],
-            'gdprConsent' => ['gdpr_consent', 'required', 'when' => function () {
-                return $this->module->enableGPDRcompliance;
-            }]
+            'gdprType' => ['gdpr_consent', 'boolean'],
+            'gdprRequired' => ['gdpr_consent',
+                'compare',
+                'compareValue' => true,
+                'message' => Yii::t('xenon','Your consent is required to register'),
+                'when' => function () {
+                    return $this->module->enableGDPRcompliance;
+                }]
         ];
     }
 
