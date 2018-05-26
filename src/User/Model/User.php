@@ -46,6 +46,8 @@ use yii\web\IdentityInterface;
  * @property int $created_at
  * @property int $updated_at
  * @property int $last_login_at
+ * @property bool $gdpr_consent
+ * @property int $gdpr_consent_date
  *
  * Defined relations:
  * @property SocialNetworkAccount[] $socialNetworkAccounts
@@ -68,6 +70,38 @@ class User extends ActiveRecord implements IdentityInterface
      * @var array connected account list
      */
     protected $connectedAccounts;
+
+    /**
+     * {@inheritdoc}
+     */
+    public static function tableName()
+    {
+        return '{{%user}}';
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public static function findIdentity($id)
+    {
+        return static::findOne($id);
+    }
+
+    /**
+     * @return UserQuery
+     */
+    public static function find()
+    {
+        return new UserQuery(static::class);
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public static function findIdentityByAccessToken($token, $type = null)
+    {
+        throw new NotSupportedException('Method "' . __CLASS__ . '::' . __METHOD__ . '" is not implemented.');
+    }
 
     /**
      * {@inheritdoc}
@@ -104,14 +138,6 @@ class User extends ActiveRecord implements IdentityInterface
             $profile = $this->make(Profile::class);
             $profile->link('user', $this);
         }
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public static function tableName()
-    {
-        return '{{%user}}';
     }
 
     /**
@@ -223,14 +249,6 @@ class User extends ActiveRecord implements IdentityInterface
     }
 
     /**
-     * {@inheritdoc}
-     */
-    public static function findIdentity($id)
-    {
-        return static::findOne($id);
-    }
-
-    /**
      * @return bool whether is blocked or not
      */
     public function getIsBlocked()
@@ -295,21 +313,5 @@ class User extends ActiveRecord implements IdentityInterface
         }
 
         return $this->connectedAccounts;
-    }
-
-    /**
-     * @return UserQuery
-     */
-    public static function find()
-    {
-        return new UserQuery(static::class);
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public static function findIdentityByAccessToken($token, $type = null)
-    {
-        throw new NotSupportedException('Method "' . __CLASS__ . '::' . __METHOD__ . '" is not implemented.');
     }
 }
