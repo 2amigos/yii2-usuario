@@ -16,6 +16,7 @@ use Da\User\Traits\ContainerAwareTrait;
 use Da\User\Traits\ModuleAwareTrait;
 use Yii;
 use yii\base\Model;
+use yii\helpers\Html;
 
 class RegistrationForm extends Model
 {
@@ -34,6 +35,10 @@ class RegistrationForm extends Model
      * @var string Password
      */
     public $password;
+    /**
+     * @var bool Data processing consent
+     */
+    public $gdpr_consent;
 
     /**
      * {@inheritdoc}
@@ -83,6 +88,21 @@ class RegistrationForm extends Model
             'email' => Yii::t('usuario', 'Email'),
             'username' => Yii::t('usuario', 'Username'),
             'password' => Yii::t('usuario', 'Password'),
+            'gdpr_consent' => Yii::t('usuario', 'Data processing consent')
+        ];
+    }
+
+    public function attributeHints()
+    {
+        return [
+            'gdpr_consent' => Yii::t('usuario', 'I aggree processing of my personal data and the use of cookies 
+            to facilitate the operation of this site. For more information read our {privacyPolicy}',
+                [
+                    'privacyPolicy' => Html::a(Yii::t('usuario', 'privacy policy'),
+                        $this->module->GDPRprivacyPolicyUrl,
+                        ['target' => '_blank']
+                    )
+                ])
         ];
     }
 }
