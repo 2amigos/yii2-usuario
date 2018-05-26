@@ -29,7 +29,7 @@ class Module extends BaseModule
      *           - Forgot me button in profile view.
      *           - Download my data button in profile
      */
-    public $enableGPDRcompliance = false;
+    public $enableGDPRcompliance = false;
     /**
      * @var null|array|string with the url to privacy policy.
      *                        Must be in the same format as yii/helpers/Url::to requires.
