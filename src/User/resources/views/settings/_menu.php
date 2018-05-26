@@ -14,6 +14,7 @@ use yii\widgets\Menu;
 
 /** @var \Da\User\Model\User $user */
 $user = Yii::$app->user->identity;
+$module = Yii::$app->getModule('user');
 $networksVisible = count(Yii::$app->authClientCollection->clients) > 0;
 
 ?>
@@ -40,6 +41,10 @@ $networksVisible = count(Yii::$app->authClientCollection->clients) > 0;
                 'items' => [
                     ['label' => Yii::t('usuario', 'Profile'), 'url' => ['/user/settings/profile']],
                     ['label' => Yii::t('usuario', 'Account'), 'url' => ['/user/settings/account']],
+                    ['label' => Yii::t('usuario', 'Privacy'),
+                        'url' => ['/user/settings/privacy'],
+                        'visible' => $module->enableGDPRcompliance
+                    ],
                     [
                         'label' => Yii::t('usuario', 'Networks'),
                         'url' => ['/user/settings/networks'],
