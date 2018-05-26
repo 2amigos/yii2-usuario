@@ -13,15 +13,17 @@ namespace Da\User\Migration;
 
 use yii\db\Migration;
 
-class m000000_000007_add_gdpr_consent_field extends Migration
+class m000000_000007_add_gdpr_consent_fields extends Migration
 {
     public function safeUp()
     {
         $this->addColumn('{{%user}}', 'gdpr_consent', $this->boolean());
+        $this->addColumn('{{%user}}', 'gdpr_consent_date', $this->integer(11));
     }
 
     public function safeDown()
     {
         $this->dropColumn('{{%user}}', 'gdpr_consent');
+        $this->dropColumn('{{%user}}', 'gdpr_consent_date');
     }
 }
