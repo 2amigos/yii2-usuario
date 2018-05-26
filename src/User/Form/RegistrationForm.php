@@ -68,6 +68,9 @@ class RegistrationForm extends Model
             // password rules
             'passwordRequired' => ['password', 'required', 'skipOnEmpty' => $this->module->generatePasswords],
             'passwordLength' => ['password', 'string', 'min' => 6, 'max' => 72],
+            'gdprConsent' => ['gdpr_consent', 'required', 'when' => function () {
+                return $this->module->enableGPDRcompliance;
+            }]
         ];
     }
 
