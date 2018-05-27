@@ -156,6 +156,9 @@ class SettingsController extends Controller
 
     public function actionPrivacy()
     {
+        if (!$this->module->enableGDPRcompliance)
+            throw new NotFoundHttpException();
+
         return $this->render('privacy', [
             'module' => $this->module
         ]);
