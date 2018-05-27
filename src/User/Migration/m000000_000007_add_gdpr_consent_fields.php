@@ -19,11 +19,13 @@ class m000000_000007_add_gdpr_consent_fields extends Migration
     {
         $this->addColumn('{{%user}}', 'gdpr_consent', $this->boolean());
         $this->addColumn('{{%user}}', 'gdpr_consent_date', $this->integer(11));
+        $this->addColumn('{{%user}}', 'gdpr_deleted', $this->boolean()->defaultValue(0));
     }
 
     public function safeDown()
     {
         $this->dropColumn('{{%user}}', 'gdpr_consent');
         $this->dropColumn('{{%user}}', 'gdpr_consent_date');
+        $this->dropColumn('{{%user}}', 'gdpr_deleted');
     }
 }
