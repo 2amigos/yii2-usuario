@@ -31,6 +31,7 @@ use Da\User\Validator\TwoFactorCodeValidator;
 use Yii;
 use yii\filters\AccessControl;
 use yii\filters\VerbFilter;
+use yii\helpers\ArrayHelper;
 use yii\web\Controller;
 use yii\web\ForbiddenHttpException;
 use yii\web\NotFoundHttpException;
@@ -96,6 +97,7 @@ class SettingsController extends Controller
                         'actions' => [
                             'profile',
                             'account',
+                            'export',
                             'networks',
                             'privacy',
                             'disconnect',
@@ -150,6 +152,44 @@ class SettingsController extends Controller
     public function actionPrivacy()
     {
         return $this->render('privacy');
+    }
+
+    /**
+     * Exports the personal data of the current active user
+     */
+    public function actionExport()
+    {
+        if (!$this->module->enableGDPRcompliance)
+            throw new NotFoundHttpException('Page not found');
+
+        try {
+            $properties = $this->module->GDPRexportProperties;
+            $user = Yii::$app->user->identity;
+            $data = [$properties, []];
+
+            foreach ($properties as $property) {
+                $data[1][] = Yii::$app->formatter->asText(ArrayHelper::getValue($user, $property));
+            }
+
+            array_walk($data[0], function (&$value, $key) {
+                $splitted = explode('.', $value);
+                $value = array_pop($splitted);
+            });
+
+            Yii::$app->response->headers->removeAll();
+            Yii::$app->response->headers->add('Content-type', 'text/csv');
+            Yii::$app->response->headers->add('Content-Disposition', 'attachment;filename=gdpr-data.csv');
+            Yii::$app->response->send();
+            $f = fopen('php://output', 'w');
+            foreach ($data as $line) {
+                fputcsv($f, $line, ";");
+            }
+        } catch (\Exception $e) {
+            throw $e;
+        } catch (\Throwable $e) {
+            throw $e;
+        }
+
     }
 
     public function actionAccount()
