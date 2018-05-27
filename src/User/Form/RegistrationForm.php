@@ -77,7 +77,7 @@ class RegistrationForm extends Model
             'gdprRequired' => ['gdpr_consent',
                 'compare',
                 'compareValue' => true,
-                'message' => Yii::t('xenon','Your consent is required to register'),
+                'message' => Yii::t('usuario', 'Your consent is required to register'),
                 'when' => function () {
                     return $this->module->enableGDPRcompliance;
                 }]
@@ -100,8 +100,7 @@ class RegistrationForm extends Model
     public function attributeHints()
     {
         return [
-            'gdpr_consent' => Yii::t('usuario', 'I aggree processing of my personal data and the use of cookies 
-            to facilitate the operation of this site. For more information read our {privacyPolicy}',
+            'gdpr_consent' => Yii::t('usuario', 'I aggree processing of my personal data and the use of cookies to facilitate the operation of this site. For more information read our {privacyPolicy}',
                 [
                     'privacyPolicy' => Html::a(Yii::t('usuario', 'privacy policy'),
                         $this->module->GDPRprivacyPolicyUrl,
