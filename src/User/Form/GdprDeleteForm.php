@@ -4,13 +4,20 @@
 namespace Da\User\Form;
 
 
-use yii\base\Model;
-use Yii;
-use Da\User\Model\User;
 use Da\User\Helper\SecurityHelper;
+use Da\User\Model\User;
+use Da\User\Traits\ContainerAwareTrait;
+use Yii;
+use yii\base\Model;
 
+/**
+ * Class GdprDeleteForm
+ * @package Da\User\Form
+ */
 class GdprDeleteForm extends Model
 {
+    use ContainerAwareTrait;
+
     /**
      * @var string User's password
      */
@@ -26,7 +33,7 @@ class GdprDeleteForm extends Model
 
     /**
      * @param SecurityHelper $securityHelper
-     * @param array          $config
+     * @param array $config
      */
     public function __construct(SecurityHelper $securityHelper, $config = [])
     {
@@ -44,14 +51,27 @@ class GdprDeleteForm extends Model
             'passwordValidate' => [
                 'password',
                 function ($attribute) {
-                    if ($this->user === null ||
-                        !$this->securityHelper->validatePassword($this->password, $this->user->password_hash)
+                    if (!$this->securityHelper
+                        ->validatePassword($this->password, $this->getUser()->password_hash)
                     ) {
-                        $this->addError($attribute, Yii::t('usuario', 'Invalid login or password'));
+                        $this->addError($attribute, Yii::t('usuario', 'Invalid password'));
                     }
                 },
             ]
         ];
     }
+
+    /**
+     * @return User|null|\yii\web\IdentityInterface
+     */
+    public function getUser()
+    {
+        if ($this->user == null) {
+            $this->user = Yii::$app->user->identity;
+        }
+
+        return $this->user;
+    }
+
 
 }

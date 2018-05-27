@@ -53,6 +53,10 @@ class Module extends BaseModule
         'profile.bio'
     ];
     /**
+     * @var string prefix to be used as a replacement when user requeste deletion of his data.
+     */
+    public $GDPRanonymPrefix = 'GDPR';
+    /**
      * @var bool whether to enable two factor authentication or not
      */
     public $enableTwoFactorAuthentication = false;
