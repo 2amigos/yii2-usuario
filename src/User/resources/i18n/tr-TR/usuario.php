@@ -100,11 +100,9 @@ return [
     'Error occurred while changing password' => '',
     'Error occurred while confirming user' => '',
     'Error occurred while deleting user' => '',
-<<<<<<< HEAD:src/User/resources/i18n/tr_TR/usuario.php
     'Export my data' => '',
     'Error sending registration message to "{email}". Please try again later.' => '',
     'Error sending welcome message to "{email}". Please try again later.' => '',
->>>>>>> upstream/master:src/User/resources/i18n/tr-TR/usuario.php
     'Finish' => '',
     'Forgot password?' => '',
     'Gravatar email' => '',
@@ -121,11 +119,9 @@ return [
     'Information' => '',
     'Invalid login or password' => '',
     'Invalid or expired link' => '',
-<<<<<<< HEAD:src/User/resources/i18n/tr_TR/usuario.php
     'Invalid password' => '',
     'Invalid two-factor code' => '',
     'Invalid two factor authentication code' => '',
->>>>>>> upstream/master:src/User/resources/i18n/tr-TR/usuario.php
     'Invalid value' => '',
     'It will be deleted forever' => '',
     'Items' => '',
@@ -196,11 +192,9 @@ return [
     'This account has already been connected to another user' => '',
     'This email address has already been taken' => '',
     'This username has already been taken' => '',
-<<<<<<< HEAD:src/User/resources/i18n/tr_TR/usuario.php
     'This will disable two-factor auth. Are you sure?' => '',
     'This will remove your personal data from this site. You will no longer be able to sign in.' => '',
     'This will disable two factor authentication. Are you sure?' => '',
->>>>>>> upstream/master:src/User/resources/i18n/tr-TR/usuario.php
     'Time zone' => '',
     'Time zone is not valid' => '',
     'Two Factor Authentication (2FA)' => '',
@@ -273,12 +267,10 @@ return [
     'A message has been sent to your email address. ' => '@@@@',
     'Awesome, almost there. ' => '@@@@',
     'Class "{0}" does not exist' => '@@@@',
-<<<<<<< HEAD:src/User/resources/i18n/tr_TR/usuario.php
     'I aggree processing of my personal data and the use of cookies 
             to facilitate the operation of this site. For more information read our {privacyPolicy}' => '@@@@',
     'Disable Two-Factor Auth' => '@@@@',
     'Enable Two-factor auth' => '@@@@',
->>>>>>> upstream/master:src/User/resources/i18n/tr-TR/usuario.php
     'Registration ip' => '@@@@',
     'Rule class can not be instantiated' => '@@@@',
     'Rule class must extend "yii\\rbac\\Rule"' => '@@@@',
