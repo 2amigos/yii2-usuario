@@ -40,7 +40,7 @@ $this->title = Yii::t('usuario', 'Privacy settings');
                             ) ?>
                         </p>
                         <?= Html::a(Yii::t('usuario', 'Delete'),
-                            ['/user/settings/delete'],
+                            ['/user/settings/gdprdelete'],
                             ['class' => 'btn btn-danger'])
                         ?>
                     </div>
