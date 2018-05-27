@@ -13,7 +13,7 @@ namespace Da\User\Migration;
 
 use yii\db\Migration;
 
-class m000000_000007_add_gdpr_consent_fields extends Migration
+class m000000_000009_add_gdpr_consent_fields extends Migration
 {
     public function safeUp()
     {
