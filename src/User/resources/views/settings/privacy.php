@@ -26,7 +26,10 @@ $this->title = Yii::t('usuario', 'Privacy settings');
                         </p>
                         <?= Html::a(Yii::t('usuario', 'Download my data'),
                             ['/user/settings/export'],
-                            ['class' => 'btn btn-info'])
+                            [
+                                'class' => 'btn btn-info',
+                                'target' => '_blank'
+                            ])
                         ?>
                     </div>
                     <div class="col-md-6">
