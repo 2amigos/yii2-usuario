@@ -76,6 +76,7 @@ class RegistrationForm extends Model
             'passwordRequired' => ['password', 'required', 'skipOnEmpty' => $this->module->generatePasswords],
             'passwordLength' => ['password', 'string', 'min' => 6, 'max' => 72],
             'gdprType' => ['gdpr_consent', 'boolean'],
+            'gdprDefault' => ['gdpr_consent', 'default', 'value' => 0,'skipOnEmpty' => false],
             'gdprRequired' => ['gdpr_consent',
                 'compare',
                 'compareValue' => true,
