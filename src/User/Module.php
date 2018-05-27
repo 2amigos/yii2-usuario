@@ -37,7 +37,10 @@ class Module extends BaseModule
     public $GDPRprivacyPolicyUrl = null;
     /**
      * @var array with the name of the user identity properties to be included when user request download of his data.
-     *            Names can include relations like `profile.name`
+     *            Names can include relations like `profile.name`.
+     *            GPDR says:
+     *            > The data subject shall have the right to receive the personal data concerning him or her, which he
+     *            > or she has provided to a controller, in a structured, commonly used and machine-readable format
      */
     public $GDPRexportProperties = [
         'email',
@@ -45,7 +48,6 @@ class Module extends BaseModule
         'profile.public_email',
         'profile.name',
         'profile.gravatar_email',
-        'profile.gravatar_id',
         'profile.location',
         'profile.website',
         'profile.bio'
