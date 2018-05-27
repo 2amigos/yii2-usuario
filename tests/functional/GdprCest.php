@@ -134,21 +134,37 @@ class GdprCest
      */
     public function testPrivacyPage(FunctionalTester $I)
     {
-        $this->_prepareModule(false, false);
 
         $I->amGoingTo('try that privacy page works');
         $I->amLoggedInAs(1);
+        $this->_prepareModule(false, false);
         $I->amOnRoute('/user/settings/privacy');
         $I->see('Export my data', 'h3');
         $I->see('Delete my account', 'h3');
         $I->click('Delete');
-        $I->fillField('#gdprdeleteform-password','wrongpassword');
+        $I->fillField('#gdprdeleteform-password', 'wrongpassword');
         $I->click('Delete');
         $I->see('Invalid password');
-        $I->fillField('#gdprdeleteform-password','qwerty');
+        $I->fillField('#gdprdeleteform-password', 'qwerty');
         $I->click('Delete');
         $I->see('Login');
+    }
 
-
+    /**
+     * Test privacy page
+     *
+     * @param FunctionalTester $I
+     */
+    public function testPrivacyPageAccess(FunctionalTester $I)
+    {
+        $I->amGoingTo('Try that a user cant access to privacy if GDPR is not enabled');
+        $this->_prepareModule(false, false, false);
+        $I->amLoggedInAs(1);
+        $I->amOnRoute('/user/settings/privacy');
+        $I->see('Not Found');
+        $I->amOnRoute('/user/settings/gdprdelete');
+        $I->see('Not Found');
+        $I->amOnRoute('/user/settings/export');
+        $I->see('Not Found');
     }
 }
