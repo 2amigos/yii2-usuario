@@ -11,11 +11,13 @@
 
 namespace Da\User\Factory;
 
+use Da\User\Event\MailEvent;
 use Da\User\Model\Token;
 use Da\User\Model\User;
 use Da\User\Module;
 use Da\User\Service\MailService;
 use Yii;
+use yii\base\InvalidConfigException;
 
 class MailFactory
 {
@@ -23,6 +25,7 @@ class MailFactory
      * @param User $user
      * @param bool $showPassword
      *
+     * @throws InvalidConfigException
      * @return MailService
      */
     public static function makeWelcomeMailerService(User $user, $showPassword = false)
@@ -39,13 +42,14 @@ class MailFactory
             'showPassword' => $showPassword,
         ];
 
-        return static::makeMailerService($from, $to, $subject, 'welcome', $params);
+        return static::makeMailerService(MailEvent::TYPE_WELCOME, $from, $to, $subject, 'welcome', $params);
     }
 
     /**
      * @param string $email
      * @param Token  $token
      *
+     * @throws InvalidConfigException
      * @return MailService
      */
     public static function makeRecoveryMailerService($email, Token $token = null)
@@ -60,13 +64,14 @@ class MailFactory
             'token' => $token,
         ];
 
-        return static::makeMailerService($from, $to, $subject, 'recovery', $params);
+        return static::makeMailerService(MailEvent::TYPE_RECOVERY, $from, $to, $subject, 'recovery', $params);
     }
 
     /**
      * @param User       $user
      * @param Token|null $token
      *
+     * @throws InvalidConfigException
      * @return MailService
      */
     public static function makeConfirmationMailerService(User $user, Token $token = null)
@@ -81,13 +86,14 @@ class MailFactory
             'token' => $token,
         ];
 
-        return static::makeMailerService($from, $to, $subject, 'recovery', $params);
+        return static::makeMailerService(MailEvent::TYPE_CONFIRM, $from, $to, $subject, 'recovery', $params);
     }
 
     /**
      * @param User  $user
      * @param Token $token
      *
+     * @throws InvalidConfigException
      * @return MailService
      */
     public static function makeReconfirmationMailerService(User $user, Token $token)
@@ -105,22 +111,29 @@ class MailFactory
             'token' => $token,
         ];
 
-        return static::makeMailerService($from, $to, $subject, 'recovery', $params);
+        return static::makeMailerService(MailEvent::TYPE_RECONFIRM, $from, $to, $subject, 'reconfirmation', $params);
     }
 
     /**
      * Builds a MailerService.
      *
+     * @param string $type
      * @param string $from
      * @param string $to
      * @param string $subject
      * @param string $view
      * @param array  $params
      *
+     * @throws InvalidConfigException
      * @return MailService
+     *
      */
-    public static function makeMailerService($from, $to, $subject, $view, array $params = [])
+    public static function makeMailerService($type, $from, $to, $subject, $view, $params = [])
     {
-        return Yii::$container->get(MailService::class, [$from, $to, $subject, $view, $params, Yii::$app->getMailer()]);
+        /** @noinspection PhpIncompatibleReturnTypeInspection */
+        return Yii::$container->get(
+            MailService::class,
+            [$type, $from, $to, $subject, $view, $params, Yii::$app->getMailer()]
+        );
     }
 }

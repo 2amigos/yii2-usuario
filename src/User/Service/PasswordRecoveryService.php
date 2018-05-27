@@ -13,28 +13,29 @@ namespace Da\User\Service;
 
 use Da\User\Contracts\ServiceInterface;
 use Da\User\Factory\TokenFactory;
-use Da\User\Model\Token;
 use Da\User\Model\User;
 use Da\User\Query\UserQuery;
+use Da\User\Traits\MailAwareTrait;
+use Da\User\Traits\ModuleAwareTrait;
 use Exception;
 use Yii;
-use yii\log\Logger;
 
 class PasswordRecoveryService implements ServiceInterface
 {
+    use MailAwareTrait;
+    use ModuleAwareTrait;
+
     protected $query;
 
     protected $email;
     protected $mailService;
     protected $securityHelper;
-    protected $logger;
 
-    public function __construct($email, MailService $mailService, UserQuery $query, Logger $logger)
+    public function __construct($email, MailService $mailService, UserQuery $query)
     {
         $this->email = $email;
         $this->mailService = $mailService;
         $this->query = $query;
-        $this->logger = $logger;
     }
 
     public function run()
@@ -42,6 +43,10 @@ class PasswordRecoveryService implements ServiceInterface
         try {
             /** @var User $user */
             $user = $this->query->whereEmail($this->email)->one();
+
+            if ($user === null) {
+                throw new \RuntimeException('User not found.');
+            }
 
             $token = TokenFactory::makeRecoveryToken($user->id);
 
@@ -51,18 +56,20 @@ class PasswordRecoveryService implements ServiceInterface
 
             $this->mailService->setViewParam('user', $user);
             $this->mailService->setViewParam('token', $token);
-            if (!$this->mailService->run()) {
+            if (!$this->sendMail($user)) {
                 return false;
             }
 
-            Yii::$app->session->setFlash(
-                'info',
-                Yii::t('usuario', 'An email has been sent with instructions for resetting your password')
-            );
+            if ($this->getModule()->enableFlashMessages == true) {
+                Yii::$app->session->setFlash(
+                    'info',
+                    Yii::t('usuario', 'An email has been sent with instructions for resetting your password')
+                );
+            }
 
             return true;
         } catch (Exception $e) {
-            $this->logger->log($e->getMessage(), Logger::LEVEL_ERROR);
+            Yii::error($e->getMessage(), 'usuario');
 
             return false;
         }

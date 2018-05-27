@@ -23,7 +23,7 @@ $this->params['breadcrumbs'][] = $this->title;
 <?php $this->beginContent('@Da/User/resources/views/shared/admin_layout.php') ?>
 
 <?= $this->render(
-    '_form',
+    '/permission/_form',
     [
         'model' => $model,
         'unassignedItems' => $unassignedItems,

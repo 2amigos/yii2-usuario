@@ -11,14 +11,8 @@
 
 namespace Da\User\Helper;
 
-/**
- * ModelMapHelper.php.
- *
- * Date: 3/12/16
- * Time: 18:10
- *
- * @author Antonio Ramirez <hola@2amigos.us>
- */
+use yii\base\InvalidParamException;
+
 class ClassMapHelper
 {
     protected $map = [];
@@ -45,7 +39,7 @@ class ClassMapHelper
     /**
      * @param $key
      *
-     * @throws \Exception
+     * @throws InvalidParamException
      * @return mixed
      *
      */
@@ -54,6 +48,6 @@ class ClassMapHelper
         if (array_key_exists($key, $this->map)) {
             return $this->map[$key];
         }
-        throw new \Exception('Unknown model map key: ' . $key);
+        throw new InvalidParamException('Unknown model map key: ' . $key);
     }
 }

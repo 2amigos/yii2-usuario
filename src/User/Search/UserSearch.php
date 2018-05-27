@@ -13,6 +13,7 @@ namespace Da\User\Search;
 
 use Da\User\Query\UserQuery;
 use Yii;
+use yii\base\InvalidParamException;
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
 
@@ -39,6 +40,10 @@ class UserSearch extends Model
      */
     public $registration_ip;
     /**
+     * @var string
+     */
+    public $last_login_ip;
+    /**
      * @var UserQuery
      */
     protected $query;
@@ -61,8 +66,8 @@ class UserSearch extends Model
     public function rules()
     {
         return [
-            'safeFields' => [['username', 'email', 'registration_ip', 'created_at', 'last_login_at'], 'safe'],
-            'createdDefault' => ['created_at', 'default', 'value' => null],
+            'safeFields' => [['username', 'email', 'registration_ip', 'created_at', 'last_login_at, last_login_ip'], 'safe'],
+            'createdDefault' => [['created_at', 'last_login_at'], 'default', 'value' => null],
         ];
     }
 
@@ -76,13 +81,15 @@ class UserSearch extends Model
             'email' => Yii::t('usuario', 'Email'),
             'created_at' => Yii::t('usuario', 'Registration time'),
             'registration_ip' => Yii::t('usuario', 'Registration IP'),
-            'last_login_at' => Yii::t('usuario', 'Last login'),
+            'last_login_at' => Yii::t('usuario', 'Last login time'),
+            'last_login_ip' => Yii::t('usuario', 'Last login IP'),
         ];
     }
 
     /**
      * @param $params
      *
+     * @throws InvalidParamException
      * @return ActiveDataProvider
      */
     public function search($params)
@@ -112,7 +119,8 @@ class UserSearch extends Model
         $query
             ->andFilterWhere(['like', 'username', $this->username])
             ->andFilterWhere(['like', 'email', $this->email])
-            ->andFilterWhere(['registration_ip' => $this->registration_ip]);
+            ->andFilterWhere(['registration_ip' => $this->registration_ip])
+            ->andFilterWhere(['last_login_ip' => $this->last_login_ip]);
 
         return $dataProvider;
     }

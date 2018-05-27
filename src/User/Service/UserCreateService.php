@@ -15,27 +15,31 @@ use Da\User\Contracts\ServiceInterface;
 use Da\User\Event\UserEvent;
 use Da\User\Helper\SecurityHelper;
 use Da\User\Model\User;
+use Da\User\Traits\MailAwareTrait;
 use Exception;
+use Yii;
 use yii\base\InvalidCallException;
-use yii\log\Logger;
 
 class UserCreateService implements ServiceInterface
 {
+    use MailAwareTrait;
+
     protected $model;
     protected $securityHelper;
     protected $mailService;
-    protected $logger;
 
-    public function __construct(User $model, MailService $mailService, SecurityHelper $securityHelper, Logger $logger)
+    public function __construct(User $model, MailService $mailService, SecurityHelper $securityHelper)
     {
         $this->model = $model;
         $this->mailService = $mailService;
         $this->securityHelper = $securityHelper;
-        $this->logger = $logger;
     }
 
     /**
+     * @throws InvalidCallException
+     * @throws \yii\db\Exception
      * @return bool
+     *
      */
     public function run()
     {
@@ -45,7 +49,7 @@ class UserCreateService implements ServiceInterface
             throw new InvalidCallException('Cannot create a new user from an existing one.');
         }
 
-        $transaction = $model->getDb()->beginTransaction();
+        $transaction = $model::getDb()->beginTransaction();
 
         try {
             $model->confirmed_at = time();
@@ -53,23 +57,32 @@ class UserCreateService implements ServiceInterface
                 ? $model->password
                 : $this->securityHelper->generatePassword(8);
 
-            $model->trigger(UserEvent::EVENT_BEFORE_CREATE);
+            $event = $this->make(UserEvent::class, [$model]);
+            $model->trigger(UserEvent::EVENT_BEFORE_CREATE, $event);
 
             if (!$model->save()) {
                 $transaction->rollBack();
-
                 return false;
             }
 
-            $model->trigger(UserEvent::EVENT_AFTER_CREATE);
-
-            $this->mailService->run();
+            $model->trigger(UserEvent::EVENT_AFTER_CREATE, $event);
+            if (!$this->sendMail($model)) {
+                Yii::$app->session->setFlash(
+                    'warning',
+                    Yii::t(
+                        'usuario',
+                        'Error sending welcome message to "{email}". Please try again later.',
+                        ['email' => $model->email]
+                    )
+                );
+                $transaction->rollBack();
+                return false;
+            }
             $transaction->commit();
-
             return true;
         } catch (Exception $e) {
             $transaction->rollBack();
-            $this->logger->log($e->getMessage(), Logger::LEVEL_ERROR);
+            Yii::error($e->getMessage(), 'usuario');
 
             return false;
         }

@@ -66,6 +66,10 @@ class Module extends BaseModule
      */
     public $twoFactorAuthenticationCycles = 1;
     /**
+     * @var bool whether to allow auto login or not
+     */
+    public $enableAutoLogin = true;
+    /**
      * @var bool whether to allow registration process or not
      */
     public $enableRegistration = true;
@@ -93,6 +97,10 @@ class Module extends BaseModule
      * @var bool whether to enable password recovery or not
      */
     public $allowPasswordRecovery = true;
+    /**
+     * @var bool whether to enable password recovery from the admin console
+     */
+    public $allowAdminPasswordRecovery = true;
     /**
      * @var bool whether user can remove his account
      */
@@ -161,4 +169,8 @@ class Module extends BaseModule
      * @var string the session key name to impersonate users. Please, modify it for security reasons!
      */
     public $switchIdentitySessionKey = 'yuik_usuario';
+    /**
+     * @var integer If != NULL sets a max password age in days
+     */
+    public $maxPasswordAge = null;
 }

@@ -16,6 +16,9 @@ use Da\User\Query\UserQuery;
 use Da\User\Traits\ContainerAwareTrait;
 use Da\User\Traits\ModuleAwareTrait;
 use Yii;
+use yii\base\Exception;
+use yii\base\InvalidConfigException;
+use yii\base\InvalidParamException;
 use yii\base\NotSupportedException;
 use yii\behaviors\TimestampBehavior;
 use yii\db\ActiveRecord;
@@ -41,14 +44,20 @@ use yii\web\IdentityInterface;
  * @property string $auth_key
  * @property string $auth_tf_key
  * @property int $auth_tf_enabled
- * @property int $registration_ip
+ * @property string $registration_ip
  * @property int $confirmed_at
  * @property int $blocked_at
  * @property int $flags
  * @property int $created_at
  * @property int $updated_at
  * @property int $last_login_at
+<<<<<<< HEAD
  * @property int $gdpr_consent_date date of agreement of data processing
+ * =======
+ * @property string $last_login_ip
+ * @property int $password_changed_at
+ * @property int $password_age
+>>>>>>> upstream/master
  *
  * Defined relations:
  * @property SocialNetworkAccount[] $socialNetworkAccounts
@@ -74,6 +83,10 @@ class User extends ActiveRecord implements IdentityInterface
 
     /**
      * {@inheritdoc}
+     *
+     * @throws InvalidParamException
+     * @throws InvalidConfigException
+     * @throws Exception
      */
     public static function tableName()
     {
@@ -98,6 +111,8 @@ class User extends ActiveRecord implements IdentityInterface
 
     /**
      * {@inheritdoc}
+     *
+     * @throws NotSupportedException
      */
     public static function findIdentityByAccessToken($token, $type = null)
     {
@@ -123,6 +138,7 @@ class User extends ActiveRecord implements IdentityInterface
                 'password_hash',
                 $security->generatePasswordHash($this->password, $this->getModule()->blowfishCost)
             );
+            $this->password_changed_at = time();
         }
 
         return parent::beforeSave($insert);
@@ -130,6 +146,8 @@ class User extends ActiveRecord implements IdentityInterface
 
     /**
      * @inheritdoc
+     *
+     * @throws InvalidConfigException
      */
     public function afterSave($insert, $changedAttributes)
     {
@@ -174,7 +192,10 @@ class User extends ActiveRecord implements IdentityInterface
             'password' => Yii::t('usuario', 'Password'),
             'created_at' => Yii::t('usuario', 'Registration time'),
             'confirmed_at' => Yii::t('usuario', 'Confirmation time'),
-            'last_login_at' => Yii::t('usuario', 'Last login'),
+            'last_login_at' => Yii::t('usuario', 'Last login time'),
+            'last_login_ip' => Yii::t('usuario', 'Last login IP'),
+            'password_changed_at' => Yii::t('usuario', 'Last password change'),
+            'password_age' => Yii::t('usuario', 'Password age'),
         ];
     }
 
@@ -203,7 +224,7 @@ class User extends ActiveRecord implements IdentityInterface
         return [
             // username rules
             'usernameRequired' => ['username', 'required', 'on' => ['register', 'create', 'connect', 'update']],
-            'usernameMatch' => ['username', 'match', 'pattern' => '/^[-a-zA-Z0-9_\.@]+$/'],
+            'usernameMatch' => ['username', 'match', 'pattern' => '/^[-a-zA-Z0-9_\.@\+]+$/'],
             'usernameLength' => ['username', 'string', 'min' => 3, 'max' => 255],
             'usernameTrim' => ['username', 'trim'],
             'usernameUnique' => [
@@ -268,6 +289,7 @@ class User extends ActiveRecord implements IdentityInterface
     }
 
     /**
+     * @throws InvalidConfigException
      * @return bool whether the user is an admin or not
      */
     public function getIsAdmin()
@@ -297,6 +319,8 @@ class User extends ActiveRecord implements IdentityInterface
     }
 
     /**
+     * @throws InvalidConfigException
+     * @throws InvalidParamException
      * @return \yii\db\ActiveQuery
      */
     public function getProfile()
@@ -305,11 +329,13 @@ class User extends ActiveRecord implements IdentityInterface
     }
 
     /**
+     * @throws \Exception
      * @return SocialNetworkAccount[] social connected accounts [ 'providerName' => socialAccountModel ]
+     *
      */
     public function getSocialNetworkAccounts()
     {
-        if ($this->connectedAccounts == null) {
+        if (null === $this->connectedAccounts) {
             /** @var SocialNetworkAccount[] $accounts */
             $accounts = $this->hasMany(
                 $this->getClassMap()
@@ -324,5 +350,19 @@ class User extends ActiveRecord implements IdentityInterface
         }
 
         return $this->connectedAccounts;
+    }
+
+    /**
+     * Returns password age in days
+     * @return integer
+     */
+    public function getPassword_age()
+    {
+        if (is_null($this->password_changed_at)) {
+            return $this->getModule()->maxPasswordAge;
+        }
+        $d = new \DateTime("@{$this->password_changed_at}");
+
+        return $d->diff(new \DateTime(), true)->format("%a");
     }
 }

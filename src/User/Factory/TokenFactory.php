@@ -13,12 +13,14 @@ namespace Da\User\Factory;
 
 use Da\User\Model\Token;
 use Yii;
+use yii\base\InvalidConfigException;
 
 class TokenFactory
 {
     /**
      * @param $userId
      *
+     * @throws InvalidConfigException
      * @return Token
      */
     public static function makeConfirmationToken($userId)
@@ -47,6 +49,7 @@ class TokenFactory
     /**
      * @param $userId
      *
+     * @throws InvalidConfigException
      * @return Token
      */
     public static function makeConfirmOldMailToken($userId)
@@ -61,6 +64,7 @@ class TokenFactory
     /**
      * @param $userId
      *
+     * @throws InvalidConfigException
      * @return Token
      */
     public static function makeRecoveryToken($userId)
@@ -76,7 +80,8 @@ class TokenFactory
      * @param $userId
      * @param $type
      *
-     * @return Token
+     * @throws InvalidConfigException
+     * @return Token|\object
      */
     protected static function make($userId, $type)
     {

@@ -35,6 +35,8 @@ class RoleController extends AbstractAuthItemController
 
     /**
      * {@inheritdoc}
+     *
+     * @throws NotFoundHttpException
      */
     protected function getItem($name)
     {

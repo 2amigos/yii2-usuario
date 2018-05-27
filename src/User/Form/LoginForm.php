@@ -11,12 +11,14 @@
 
 namespace Da\User\Form;
 
+use Da\TwoFA\Exception\InvalidSecretKeyException;
 use Da\User\Helper\SecurityHelper;
 use Da\User\Model\User;
 use Da\User\Query\UserQuery;
 use Da\User\Traits\ModuleAwareTrait;
 use Da\User\Validator\TwoFactorCodeValidator;
 use Yii;
+use yii\base\InvalidParamException;
 use yii\base\Model;
 
 class LoginForm extends Model
@@ -73,12 +75,14 @@ class LoginForm extends Model
             'login' => Yii::t('usuario', 'Login'),
             'password' => Yii::t('usuario', 'Password'),
             'rememberMe' => Yii::t('usuario', 'Remember me next time'),
-            'twoFactorAuthenticationCode' => Yii::t('usuario', 'Two-factor authentication code')
+            'twoFactorAuthenticationCode' => Yii::t('usuario', 'Two factor authentication code')
         ];
     }
 
     /**
      * {@inheritdoc}
+     *
+     * @throws InvalidSecretKeyException
      */
     public function rules()
     {
@@ -111,7 +115,7 @@ class LoginForm extends Model
                             $this->module->twoFactorAuthenticationCycles
                         ))
                             ->validate()) {
-                        $this->addError($attribute, Yii::t('usuario', 'Invalid two-factor code'));
+                        $this->addError($attribute, Yii::t('usuario', 'Invalid two factor authentication code'));
                     }
                 }
             ],
@@ -137,6 +141,7 @@ class LoginForm extends Model
     /**
      * Validates form and logs the user in.
      *
+     * @throws InvalidParamException
      * @return bool whether the user is logged in successfully
      */
     public function login()

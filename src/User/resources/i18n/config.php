@@ -33,7 +33,7 @@ return [
         'ro',
         'ru',
         'th',
-        'tr_TR',
+        'tr-TR',
         'uk',
         'vi',
         'zh-CN',

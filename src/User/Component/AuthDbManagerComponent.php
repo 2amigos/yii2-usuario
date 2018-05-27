@@ -68,7 +68,6 @@ class AuthDbManagerComponent extends DbManager implements AuthManagerInterface
         $roles = [];
         foreach ($query->all($this->db) as $row) {
             $roles[$row['name']] = $this->populateItem($row);
-            $roles[$row['name']] = $this->populateItem($row);
         }
 
         return $roles;

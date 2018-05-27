@@ -32,7 +32,7 @@ $timezoneHelper = $model->make(TimezoneHelper::class);
 
 <div class="row">
     <div class="col-md-3">
-        <?= $this->render('_menu') ?>
+        <?= $this->render('/profile/_menu') ?>
     </div>
     <div class="col-md-9">
         <div class="panel panel-default">
@@ -71,7 +71,8 @@ $timezoneHelper = $model->make(TimezoneHelper::class);
                     ->hint(
                         Html::a(
                             Yii::t('usuario', 'Change your avatar at Gravatar.com'),
-                            'http://gravatar.com'
+                            'http://gravatar.com',
+                            ['target' => '_blank']
                         )
                     ) ?>
 

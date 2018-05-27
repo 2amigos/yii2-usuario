@@ -235,7 +235,7 @@ class SettingsController extends Controller
         if ($account === null) {
             throw new NotFoundHttpException();
         }
-        if ($account->user_id != Yii::$app->user->id) {
+        if ($account->user_id !== Yii::$app->user->id) {
             throw new ForbiddenHttpException();
         }
         $event = $this->make(SocialNetworkConnectEvent::class, [Yii::$app->user->identity, $account]);
@@ -321,7 +321,7 @@ class SettingsController extends Controller
     {
         $user = $this->userQuery->whereId($id)->one();
 
-        if ($user === null || $this->module->emailChangeStrategy == MailChangeStrategyInterface::TYPE_INSECURE) {
+        if ($user === null || MailChangeStrategyInterface::TYPE_INSECURE === $this->module->emailChangeStrategy) {
             throw new NotFoundHttpException();
         }
         $event = $this->make(UserEvent::class, [$user]);
@@ -347,7 +347,6 @@ class SettingsController extends Controller
     public function actionDisconnect($id)
     {
         $this->disconnectSocialNetwork($id);
-
         return $this->redirect(['networks']);
     }
 
@@ -409,7 +408,7 @@ class SettingsController extends Controller
         return [
             'success' => $success,
             'message' => $success
-                ? Yii::t('usuario', 'Two factor successfully enabled.')
+                ? Yii::t('usuario', 'Two factor authentication successfully enabled.')
                 : Yii::t('usuario', 'Verification failed. Please, enter new code.')
         ];
     }
@@ -426,11 +425,11 @@ class SettingsController extends Controller
         if ($user->updateAttributes(['auth_tf_enabled' => '0'])) {
             Yii::$app
                 ->getSession()
-                ->setFlash('success', Yii::t('usuario', 'Two-factor authorization has been disabled.'));
+                ->setFlash('success', Yii::t('usuario', 'Two factor authentication has been disabled.'));
         } else {
             Yii::$app
                 ->getSession()
-                ->setFlash('danger', Yii::t('usuario', 'Unable to disable two-factor authorization.'));
+                ->setFlash('danger', Yii::t('usuario', 'Unable to disable Two factor authentication.'));
         }
 
         $this->redirect(['account']);

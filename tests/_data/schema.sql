@@ -76,6 +76,8 @@ CREATE TABLE `user` (
   `gdpr_consent` tinyint(1) NULL DEFAULT '0',
 	`gdpr_consent_date` int(11) NULL,
 	`gdpr_deleted` tinyint(1) DEFAULT '0',
+  `last_login_ip` varchar(45) DEFAULT NULL,
+  `password_changed_at` int(11) DEFAULT NULL,
 
   PRIMARY KEY (`id`),
   UNIQUE KEY `user_unique_email` (`email`),

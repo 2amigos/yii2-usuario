@@ -21,6 +21,8 @@ use Da\User\Service\SocialNetworkAuthenticateService;
 use Da\User\Traits\ContainerAwareTrait;
 use Yii;
 use yii\authclient\AuthAction;
+use yii\base\InvalidConfigException;
+use yii\base\InvalidParamException;
 use yii\base\Module;
 use yii\filters\AccessControl;
 use yii\filters\VerbFilter;
@@ -102,6 +104,8 @@ class SecurityController extends Controller
     /**
      * Controller action responsible for handling login page and actions.
      *
+     * @throws InvalidConfigException
+     * @throws InvalidParamException
      * @return array|string|Response
      */
     public function actionLogin()
@@ -133,7 +137,10 @@ class SecurityController extends Controller
 
             $this->trigger(FormEvent::EVENT_BEFORE_LOGIN, $event);
             if ($form->login()) {
-                $form->getUser()->updateAttributes(['last_login_at' => time()]);
+                $form->getUser()->updateAttributes([
+                    'last_login_at' => time(),
+                    'last_login_ip' => Yii::$app->request->getUserIP(),
+                ]);
 
                 $this->trigger(FormEvent::EVENT_AFTER_LOGIN, $event);
 

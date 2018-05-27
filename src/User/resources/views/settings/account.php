@@ -31,7 +31,7 @@ $module = Yii::$app->getModule('user');
 
 <div class="row">
     <div class="col-md-3">
-        <?= $this->render('_menu') ?>
+        <?= $this->render('/settings/_menu') ?>
     </div>
     <div class="col-md-9">
         <div class="panel panel-default">
@@ -81,7 +81,7 @@ $module = Yii::$app->getModule('user');
                             <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
                                     aria-hidden="true">&times;</span></button>
                             <h4 class="modal-title" id="myModalLabel">
-                                <?= Yii::t('usuario', 'Two Factor Authentication') ?></h4>
+                                <?= Yii::t('usuario', 'Two Factor Authentication (2FA)') ?></h4>
                         </div>
                         <div class="modal-body">
                             ...
@@ -96,25 +96,25 @@ $module = Yii::$app->getModule('user');
             </div>
             <div class="panel panel-info">
                 <div class="panel-heading">
-                    <h3 class="panel-title"><?= Yii::t('usuario', 'Two-Factor Authentication') ?></h3>
+                    <h3 class="panel-title"><?= Yii::t('usuario', 'Two Factor Authentication (2FA)') ?></h3>
                 </div>
                 <div class="panel-body">
                     <p>
-                        <?= Yii::t('usuario', 'Two-factor auth protects you against stolen credentials') ?>.
+                        <?= Yii::t('usuario', 'Two factor authentication protects you against stolen credentials') ?>.
                     </p>
                     <div class="text-right">
                         <?= Html::a(
-                            Yii::t('usuario', 'Disable Two-Factor Auth'),
+                            Yii::t('usuario', 'Disable two factor authentication'),
                             ['two-factor-disable', 'id' => $model->getUser()->id],
                             [
                                 'id' => 'disable_tf_btn',
                                 'class' => 'btn btn-warning ' . ($model->getUser()->auth_tf_enabled ? '' : 'hide'),
                                 'data-method' => 'post',
-                                'data-confirm' => Yii::t('usuario', 'This will disable two-factor auth. Are you sure?'),
+                                'data-confirm' => Yii::t('usuario', 'This will disable two factor authentication. Are you sure?'),
                             ]
                         ) ?>
                         <?= Html::a(
-                            Yii::t('usuario', 'Enable Two-factor auth'),
+                            Yii::t('usuario', 'Enable two factor authentication'),
                             '#tfmodal',
                             [
                                 'id' => 'enable_tf_btn',

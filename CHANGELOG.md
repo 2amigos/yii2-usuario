@@ -1,6 +1,46 @@
 # CHANGELOG
 
-## 1.0.14 - Work in progress
+## 1.1.5 - Work in progress
+ - Enh #184: Add `last-login-ip` capture capability (kartik-v)
+ - Enh: Changed `View::render()` calls in views to use absolute paths (ajmedway)
+ - Fix #169: Fix bug in ReCaptchaComponent (BuTaMuH)
+ - Fix #168: Fix spelling in russian language (EvgenyOrekhov)
+ 
+## 1.1.4 - February 19, 2018
+- Enh: Check enableEmailConfirmation on registration (faenir)
+- Fix #154: Fix DateTime constructor with Unix timestamps (tonydspaniard)
+
+## 1.1.2-3 - February 9, 2018
+- Bug: Bugfix for Model events UserEvent::EVENT_BEFORE_CONFIRMATION and UserEvent::EVENT_AFTER_CONFIRMATION (ajmedway)
+- Bug: Bugfix for Model events UserEvent::EVENT_BEFORE_CREATE and UserEvent::EVENT_AFTER_CREATE (ajmedway)
+- Enh #137: Added the ability to make `enableAutologin` configurable (pappfer)
+- Enh #135: Added Estonian translation (tonisormisson)
+- Bug #133: Fix user search returning no results in admin page (phiurs)
+- Bug #125: Fix validation in non-ajax requests (faenir)
+- Bug #122: Fix wrong email message for email address change (liviuk2)
+- Bug #102: Implemented password expiration feature (maxxer)
+- Enh #143: Introduced "conflict" configuration in composer.json (maxxer)
+- Enh #145: Allowed the `+` sign in username (maxxer)
+- Bug #9:   Documentation about migration from Dektrium tools (maxxer)
+- Bug #110: Honor `enableFlashMessages` in `PasswordRecoveryService` (maxxer)
+
+## 1.1.1 - November 27, 2017
+- Bug #115: Convert client_id to string because pgsql fail with type convertion (Dezinger)
+- Bug #119: Security fix: add AccessControl to RuleController (Dezinger)
+- Enh #120: 2FA i18n russian translation (Dezinger)
+- Bug #111: Fix migration for PostgreSQL DBMS (MKiselev)
+- Bug #106: Correct exception value returned in `MailEvent::getException` (kartik-v)
+- Enh #99:  Added German translation (jkmssoft)
+- Enh #100: Added pt-BR translation (gugoan)
+- Enh #105: Consolidate 2fa messages (maxxer)
+- Fix #108: Use main logger app (tonydspaniard)
+- Enh #109: Make use of better classes names (tonydspaniard)
+
+## 1.1.0 - October 22, 2017
+- Enh #91: Documentation for Mail events (kartik-v)
+- Enh #79: Enhancements to Mailer exception handling and events (kartik-v)
+- Fix #85: External links should open in a new tab|window (eseperio)
+- Enh #23: Provide administrator with an option to reset user password (tonydspaniard)
 - Enh #55: Provide google recaptcha mechanism (tonydspaniard)
 - Fix #20: Allow the assignment of a role on user creation via console (tonydspaniard)
 - Fix #59: Add instructions to add rbac migration path (tonydspaniard)
@@ -13,6 +53,9 @@
 - Enh #61: Updated Russian translation (faenir)
 - Enh #70: Allow permission-permission parent-child relationship (Philosoft)
 - Enh #82: Updated Polish translation (bizley)
+- Enh #83: Updated Russian translation (Katenkka)
+- Fix #87: Fix wrong documentation info (tonydspaniard)
+- Fix #86: Fix view location bug (tonydspaniard)
 
 ## 1.0.13 - August 12, 2017
 - Fix #49: Fix wrong call of method make() for set attributes (MKiselev)

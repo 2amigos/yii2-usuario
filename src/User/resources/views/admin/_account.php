@@ -32,7 +32,7 @@ use yii\helpers\Html;
     ]
 ); ?>
 
-<?= $this->render('_user', ['form' => $form, 'user' => $user]) ?>
+<?= $this->render('/admin/_user', ['form' => $form, 'user' => $user]) ?>
 
 <div class="form-group">
     <div class="col-lg-offset-3 col-lg-9">

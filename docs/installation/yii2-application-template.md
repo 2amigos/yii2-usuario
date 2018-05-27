@@ -45,7 +45,8 @@ which comes from the default installation of the Advanced Application Template. 
 There are two ways to apply migrations of this extension, the first one:
 
 ```php
-./yii migrate --migrationPath="@Da/User/Migration"
+./yii migrate --migrationNamespaces=Da\\User\\Migration
+./yii migrate --migrationPath=@yii/rbac/migrations
 ./yii migrate
 ```
 
@@ -65,6 +66,10 @@ return [
             'class' => \yii\console\controllers\MigrateController::class,
             'migrationNamespaces' => [
                 'Da\User\Migration',
+            ],
+            'migrationPath' => [
+                '@app/migrations',
+                '@yii/rbac/migrations', 
             ],
         ],
     ],

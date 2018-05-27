@@ -30,7 +30,7 @@ class RbacRuleNameValidator extends Validator
      */
     protected function validateValue($value)
     {
-        if ($this->previousName != $value) {
+        if ($this->previousName !== $value) {
             $rule = $this->getAuthManager()->getRule($value);
 
             if ($rule instanceof Rule) {

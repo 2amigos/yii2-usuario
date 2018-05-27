@@ -56,7 +56,7 @@ class AuthHelper
             ? Yii::$app->getUser()->can($module->administratorPermissionName)
             : false;
 
-        return $hasAdministratorPermissionName || in_array($username, $module->administrators);
+        return $hasAdministratorPermissionName || in_array($username, $module->administrators, false);
     }
 
     /**
@@ -99,7 +99,7 @@ class AuthHelper
     public function getUnassignedItems(AbstractAuthItem $model)
     {
         $excludeItems = $model->item !== null ? [$model->item->name] : [];
-        $type = $model->getType() == Permission::TYPE_PERMISSION ? Permission::TYPE_PERMISSION : null;
+        $type = $model->getType() === Permission::TYPE_PERMISSION ? Permission::TYPE_PERMISSION : null;
         $items = $this->getAuthManager()->getItems($type, $excludeItems);
 
         return ArrayHelper::map(

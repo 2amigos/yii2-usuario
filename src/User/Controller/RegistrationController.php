@@ -106,15 +106,18 @@ class RegistrationController extends Controller
             $mailService = MailFactory::makeWelcomeMailerService($user);
 
             if ($this->make(UserRegisterService::class, [$user, $mailService])->run()) {
-                Yii::$app->session->setFlash(
-                    'info',
-                    Yii::t(
-                        'usuario',
-                        'Your account has been created and a message with further instructions has been sent to your email'
-                    )
-                );
+                if ($this->module->enableEmailConfirmation) {
+                    Yii::$app->session->setFlash(
+                        'info',
+                        Yii::t(
+                            'usuario',
+                            'Your account has been created and a message with further instructions has been sent to your email'
+                        )
+                    );
+                } else {
+                    Yii::$app->session->setFlash('info', Yii::t('usuario', 'Your account has been created'));
+                }
                 $this->trigger(FormEvent::EVENT_AFTER_REGISTER, $event);
-
                 return $this->render(
                     '/shared/message',
                     [
@@ -123,15 +126,9 @@ class RegistrationController extends Controller
                     ]
                 );
             }
+            Yii::$app->session->setFlash('danger', Yii::t('usuario', 'User could not be registered.'));
         }
-
-        return $this->render(
-            'register',
-            [
-                'model' => $form,
-                'module' => $this->module,
-            ]
-        );
+        return $this->render('register', ['model' => $form, 'module' => $this->module]);
     }
 
     public function actionConnect($code)
@@ -152,7 +149,7 @@ class RegistrationController extends Controller
 
         $this->make(AjaxRequestModelValidator::class, [$user])->validate();
 
-        if ($user->load(Yii::$app->request->post())) {
+        if ($user->load(Yii::$app->request->post()) && $user->validate()) {
             $this->trigger(SocialNetworkConnectEvent::EVENT_BEFORE_CONNECT, $event);
 
             $mailService = MailFactory::makeWelcomeMailerService($user);

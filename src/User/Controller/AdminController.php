@@ -18,6 +18,8 @@ use Da\User\Model\Profile;
 use Da\User\Model\User;
 use Da\User\Query\UserQuery;
 use Da\User\Search\UserSearch;
+use Da\User\Service\PasswordExpireService;
+use Da\User\Service\PasswordRecoveryService;
 use Da\User\Service\SwitchIdentityService;
 use Da\User\Service\UserBlockService;
 use Da\User\Service\UserConfirmationService;
@@ -81,7 +83,8 @@ class AdminController extends Controller
                     'delete' => ['post'],
                     'confirm' => ['post'],
                     'block' => ['post'],
-                    'switch-identity' => ['post']
+                    'switch-identity' => ['post'],
+                    'password-reset' => ['post']
                 ],
             ],
             'access' => [
@@ -128,7 +131,7 @@ class AdminController extends Controller
 
         $this->make(AjaxRequestModelValidator::class, [$user])->validate();
 
-        if ($user->load(Yii::$app->request->post())) {
+        if ($user->load(Yii::$app->request->post()) && $user->validate()) {
             $this->trigger(UserEvent::EVENT_BEFORE_CREATE, $event);
 
             $mailService = MailFactory::makeWelcomeMailerService($user);
@@ -136,9 +139,9 @@ class AdminController extends Controller
             if ($this->make(UserCreateService::class, [$user, $mailService])->run()) {
                 Yii::$app->getSession()->setFlash('success', Yii::t('usuario', 'User has been created'));
                 $this->trigger(UserEvent::EVENT_AFTER_CREATE, $event);
-
                 return $this->redirect(['update', 'id' => $user->id]);
             }
+            Yii::$app->session->setFlash('danger', Yii::t('usuario', 'User account could not be created.'));
         }
 
         return $this->render('create', ['user' => $user]);
@@ -308,5 +311,38 @@ class AdminController extends Controller
         $this->make(SwitchIdentityService::class, [$this, 2 => $id])->run();
 
         return $this->goHome();
+    }
+
+    public function actionPasswordReset($id)
+    {
+        /** @var User $user */
+        $user = $this->userQuery->where(['id' => $id])->one();
+        $mailService = MailFactory::makeRecoveryMailerService($user->email);
+        if ($this->make(PasswordRecoveryService::class, [$user->email, $mailService])->run()) {
+            Yii::$app->getSession()->setFlash('success', Yii::t('usuario', 'Recovery message sent'));
+        } else {
+            Yii::$app->getSession()->setFlash(
+                'danger',
+                Yii::t('usuario', 'Unable to send recovery message to the user')
+            );
+        }
+
+        return $this->redirect(['index']);
+    }
+    
+    /**
+     * Forces the user to change password at next login
+     * @param integer $id
+     */
+    public function actionForcePasswordChange($id)
+    {
+        /** @var User $user */
+        $user = $this->userQuery->where(['id' => $id])->one();
+        if ($this->make(PasswordExpireService::class, [$user])->run()) {
+            Yii::$app->session->setFlash("success", Yii::t('usuario', 'User will be required to change password at next login'));
+        } else {
+            Yii::$app->session->setFlash("danger", Yii::t('usuario', 'There was an error in saving user'));
+        }
+        $this->redirect(['index']);
     }
 }

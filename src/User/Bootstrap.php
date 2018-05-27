@@ -20,9 +20,14 @@ use yii\authclient\Collection;
 use yii\base\Application;
 use yii\base\BootstrapInterface;
 use yii\base\Exception;
+use yii\base\InvalidConfigException;
 use yii\console\Application as ConsoleApplication;
 use yii\i18n\PhpMessageSource;
 use yii\web\Application as WebApplication;
+
+use yii\base\Event;
+use Da\User\Event\FormEvent;
+use Da\User\Controller\SecurityController;
 
 /**
  * Bootstrap class of the yii2-usuario extension. Configures container services, initializes translations,
@@ -32,6 +37,8 @@ class Bootstrap implements BootstrapInterface
 {
     /**
      * {@inheritdoc}
+     *
+     * @throws InvalidConfigException
      */
     public function bootstrap($app)
     {
@@ -90,6 +97,7 @@ class Bootstrap implements BootstrapInterface
             // services
             $di->set(Service\AccountConfirmationService::class);
             $di->set(Service\EmailChangeService::class);
+            $di->set(Service\PasswordExpireService::class);
             $di->set(Service\PasswordRecoveryService::class);
             $di->set(Service\ResendConfirmationService::class);
             $di->set(Service\ResetPasswordService::class);
@@ -143,12 +151,24 @@ class Bootstrap implements BootstrapInterface
                 $di->set(Search\RoleSearch::class);
             }
 
+            // Attach an event to check if the password has expired
+            if (!is_null(Yii::$app->getModule('user')->maxPasswordAge)) {
+                Event::on(SecurityController::class, FormEvent::EVENT_AFTER_LOGIN, function (FormEvent $event) {
+                    $user = $event->form->user;
+                    if ($user->password_age >= Yii::$app->getModule('user')->maxPasswordAge) {
+                        // Force password change
+                        Yii::$app->session->setFlash('warning', Yii::t('usuario', 'Your password has expired, you must change it now'));
+                        Yii::$app->response->redirect(['/user/settings/account'])->send();
+                    }
+                });
+            }
+
             if ($app instanceof WebApplication) {
                 // override Yii
                 $di->set(
                     'yii\web\User',
                     [
-                        'enableAutoLogin' => true,
+                        'enableAutoLogin' => $app->getModule('user')->enableAutoLogin,
                         'loginUrl' => ['/user/security/login'],
                         'identityClass' => $di->get(ClassMapHelper::class)->get(User::class),
                     ]
@@ -163,6 +183,8 @@ class Bootstrap implements BootstrapInterface
      * Registers module translation messages.
      *
      * @param Application $app
+     *
+     * @throws InvalidConfigException
      */
     protected function initTranslations(Application $app)
     {
@@ -179,6 +201,8 @@ class Bootstrap implements BootstrapInterface
      * Ensures the auth manager is the one provided by the library.
      *
      * @param Application $app
+     *
+     * @throws InvalidConfigException
      */
     protected function initAuthManager(Application $app)
     {
@@ -196,6 +220,8 @@ class Bootstrap implements BootstrapInterface
      * Initializes web url routes (rules in Yii2).
      *
      * @param WebApplication $app
+     *
+     * @throws InvalidConfigException
      */
     protected function initUrlRoutes(WebApplication $app)
     {
@@ -238,6 +264,8 @@ class Bootstrap implements BootstrapInterface
      * Ensures the authCollection component is configured.
      *
      * @param WebApplication $app
+     *
+     * @throws InvalidConfigException
      */
     protected function initAuthCollection(WebApplication $app)
     {
@@ -272,6 +300,7 @@ class Bootstrap implements BootstrapInterface
      *
      * @param array $userClassMap user configuration on the module
      *
+     * @throws Exception
      * @return array
      */
     protected function buildClassMap(array $userClassMap)
@@ -345,7 +374,7 @@ class Bootstrap implements BootstrapInterface
     protected function getRoute(array $routes, $name)
     {
         foreach ($routes as $route => $names) {
-            if (in_array($name, $names)) {
+            if (in_array($name, $names, false)) {
                 return $route;
             }
         }

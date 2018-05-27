@@ -43,6 +43,30 @@ If `true` it will allow users to login with unconfirmed emails.
 
 If `true` it will enable password recovery process.
 
+#### allowAdminPasswordRecovery (type: `boolean`, default: `true`)
+
+If `true` and `allowPasswordRecovery` is false, it will enable administrator to send a password recovery email to a 
+user.
+
+#### maxPasswordAge (type: `integer`, default: `null`)
+
+If set to an integer value it will check user password age. If the days since last password change are greater than this configuration value
+user will be forced to change it. This enforcement is done only at login stage. In order to perform the check in every action you must configure
+a filter into your controller like this:
+```
+use Da\User\Filter\PasswordAgeEnforceFilter;
+class SiteController extends Controller
+{
+    public function behaviors()
+    {
+        return [
+            [...]
+            'enforcePasswordAge' => [
+                'class' => PasswordAgeEnforceFilter::className(),
+            ],
+```
+This will redirect the user to their account page until the password has been updated.
+
 #### allowAccountDelete (type: `boolean`, default: `true`)
 
 If `true` users will be able to remove their own accounts. 
@@ -57,7 +81,7 @@ Configures one of the three ways available to change user's password:
 - **MailChangeStrategyInterface::TYPE_SECURE**: A confirmation message will be sent to the previous and new user's email 
     with a link that would require both to be click through to confirm the change.
     
-#### rememberLoginLifespan (type: `integer`, default: `209600`)
+#### rememberLoginLifespan (type: `integer`, default: `1209600`)
 
 Configures the time length in seconds a user will be remembered without the need to login again. The default time is 2 
 weeks. 

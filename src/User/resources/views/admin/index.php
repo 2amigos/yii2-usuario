@@ -52,7 +52,7 @@ $module = Yii::$app->getModule('user');
                 'attribute' => 'created_at',
                 'value' => function ($model) {
                     if (extension_loaded('intl')) {
-                        return Yii::t('usuario', '{0, date, MMMM dd, YYYY HH:mm}', [$model->created_at]);
+                        return Yii::t('usuario', '{0, date, MMM dd, YYYY HH:mm}', [$model->created_at]);
                     }
 
                     return date('Y-m-d G:i:s', $model->created_at);
@@ -64,11 +64,20 @@ $module = Yii::$app->getModule('user');
                     if (!$model->last_login_at || $model->last_login_at == 0) {
                         return Yii::t('usuario', 'Never');
                     } elseif (extension_loaded('intl')) {
-                        return Yii::t('usuario', '{0, date, MMMM dd, YYYY HH:mm}', [$model->last_login_at]);
+                        return Yii::t('usuario', '{0, date, MMM dd, YYYY HH:mm}', [$model->last_login_at]);
                     } else {
                         return date('Y-m-d G:i:s', $model->last_login_at);
                     }
                 },
+            ],
+            [
+                'attribute' => 'last_login_ip',
+                'value' => function ($model) {
+                    return $model->last_login_ip == null
+                        ? '<span class="not-set">' . Yii::t('usuario', '(not set)') . '</span>'
+                        : $model->last_login_ip;
+                },
+                'format' => 'html',
             ],
             [
                 'header' => Yii::t('usuario', 'Confirmation'),
@@ -92,6 +101,7 @@ $module = Yii::$app->getModule('user');
                 'format' => 'raw',
                 'visible' => Yii::$app->getModule('user')->enableEmailConfirmation,
             ],
+            'password_age',
             [
                 'header' => Yii::t('usuario', 'Block status'),
                 'value' => function ($model) {
@@ -121,7 +131,7 @@ $module = Yii::$app->getModule('user');
             ],
             [
                 'class' => 'yii\grid\ActionColumn',
-                'template' => '{switch} {update} {delete}',
+                'template' => '{switch} {reset} {force-password-change} {update} {delete}',
                 'buttons' => [
                     'switch' => function ($url, $model) use ($module) {
                         if ($model->id != Yii::$app->user->id && $module->enableSwitchIdentities) {
@@ -140,7 +150,42 @@ $module = Yii::$app->getModule('user');
                         }
 
                         return null;
-                    }
+                    },
+                    'reset' => function ($url, $model) use ($module) {
+                        if(!$module->allowPasswordRecovery && $module->allowAdminPasswordRecovery) {
+                            return Html::a(
+                                '<span class="glyphicon glyphicon-flash"></span>',
+                                ['/user/admin/password-reset', 'id' => $model->id],
+                                [
+                                    'title' => Yii::t('usuario', 'Send password recovery email'),
+                                    'data-confirm' => Yii::t(
+                                        'usuario',
+                                        'Are you sure you wish to send a password recovery email to this user?'
+                                    ),
+                                    'data-method' => 'POST',
+                                ]
+                            );
+                        }
+
+                        return null;
+                    },
+                    'force-password-change' => function ($url, $model) use ($module) {
+                        if (is_null($module->maxPasswordAge)) {
+                            return null;
+                        }
+                        return Html::a(
+                            '<span class="glyphicon glyphicon-time"></span>',
+                            ['/user/admin/force-password-change', 'id' => $model->id],
+                            [
+                                'title' => Yii::t('usuario', 'Force password change at next login'),
+                                'data-confirm' => Yii::t(
+                                    'usuario',
+                                    'Are you sure you wish the user to change their password at next login?'
+                                ),
+                                'data-method' => 'POST',
+                            ]
+                        );
+                    },
                 ]
             ],
         ],

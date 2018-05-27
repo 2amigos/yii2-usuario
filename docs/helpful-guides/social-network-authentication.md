@@ -31,7 +31,7 @@ After you need to configure the `authClientCollection::clients` on your Applicat
             'facebook' => [
                 'class' => 'Da\User\AuthClient\Facebook',
                 'clientId' => 'facebook_client_id',
-                'clientScret' => 'facebook_client_secret'
+                'clientSecret' => 'facebook_client_secret'
             ]
         ]
     ]

@@ -14,9 +14,12 @@ namespace Da\User\Service;
 use Da\User\Contracts\ServiceInterface;
 use Da\User\Event\UserEvent;
 use Da\User\Model\User;
+use Da\User\Traits\MailAwareTrait;
 
 class UserConfirmationService implements ServiceInterface
 {
+    use MailAwareTrait;
+    
     protected $model;
 
     public function __construct(User $model)
@@ -26,9 +29,12 @@ class UserConfirmationService implements ServiceInterface
 
     public function run()
     {
-        $this->model->trigger(UserEvent::EVENT_BEFORE_CONFIRMATION);
+        $model = $this->model;
+        $event = $this->make(UserEvent::class, [$model]);
+        
+        $this->model->trigger(UserEvent::EVENT_BEFORE_CONFIRMATION, $event);
         if ((bool)$this->model->updateAttributes(['confirmed_at' => time()])) {
-            $this->model->trigger(UserEvent::EVENT_AFTER_CONFIRMATION);
+            $this->model->trigger(UserEvent::EVENT_AFTER_CONFIRMATION, $event);
 
             return true;
         }

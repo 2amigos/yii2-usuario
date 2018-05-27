@@ -16,28 +16,26 @@ use Da\User\Event\UserEvent;
 use Da\User\Factory\TokenFactory;
 use Da\User\Helper\SecurityHelper;
 use Da\User\Model\User;
-use Da\User\Traits\ContainerAwareTrait;
+use Da\User\Traits\MailAwareTrait;
 use Da\User\Traits\ModuleAwareTrait;
 use Exception;
+use Yii;
 use yii\base\InvalidCallException;
-use yii\log\Logger;
 
 class UserRegisterService implements ServiceInterface
 {
     use ModuleAwareTrait;
-    use ContainerAwareTrait;
+    use MailAwareTrait;
 
     protected $model;
     protected $securityHelper;
     protected $mailService;
-    protected $logger;
 
-    public function __construct(User $model, MailService $mailService, SecurityHelper $securityHelper, Logger $logger)
+    public function __construct(User $model, MailService $mailService, SecurityHelper $securityHelper)
     {
         $this->model = $model;
         $this->mailService = $mailService;
         $this->securityHelper = $securityHelper;
-        $this->logger = $logger;
     }
 
     public function run()
@@ -48,7 +46,7 @@ class UserRegisterService implements ServiceInterface
             throw new InvalidCallException('Cannot register user from an existing one.');
         }
 
-        $transaction = $model->getDb()->beginTransaction();
+        $transaction = $model::getDb()->beginTransaction();
 
         try {
             $model->confirmed_at = $this->getModule()->enableEmailConfirmation ? null : time();
@@ -61,7 +59,6 @@ class UserRegisterService implements ServiceInterface
 
             if (!$model->save()) {
                 $transaction->rollBack();
-
                 return false;
             }
 
@@ -72,8 +69,18 @@ class UserRegisterService implements ServiceInterface
             if (isset($token)) {
                 $this->mailService->setViewParam('token', $token);
             }
-            $this->mailService->run();
-
+            if (!$this->sendMail($model)) {
+                Yii::$app->session->setFlash(
+                    'warning',
+                    Yii::t(
+                        'usuario',
+                        'Error sending registration message to "{email}". Please try again later.',
+                        ['email' => $model->email]
+                    )
+                );
+                $transaction->rollBack();
+                return false;
+            }
             $model->trigger(UserEvent::EVENT_AFTER_REGISTER, $event);
 
             $transaction->commit();
@@ -81,7 +88,7 @@ class UserRegisterService implements ServiceInterface
             return true;
         } catch (Exception $e) {
             $transaction->rollBack();
-            $this->logger->log($e->getMessage(), Logger::LEVEL_ERROR);
+            Yii::error($e->getMessage(), 'usuario');
 
             return false;
         }

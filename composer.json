@@ -89,6 +89,10 @@
             "pattern-skip-version": "(-build|-patch)"
         }
     },
+    "conflict": {
+        "dektrium/yii2-rbac": "*",
+        "dektrium/yii2-user": "*"
+    },
     "extra": {
         "bootstrap": "Da\\User\\Bootstrap"
     }

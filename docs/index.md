@@ -77,7 +77,7 @@ return [
     'controllerMap' => [
         'migrate' => [
             'class' => \yii\console\controllers\MigrateController::class,
-            'migrationPath => [
+            'migrationPath' => [
                 '@app/migrations',
                 '@yii/rbac/migrations', // Just in case you forgot to run it on console (see next note)
             ],
@@ -110,9 +110,26 @@ Once we have it installed, we have to configure it on your `config.php` file.
 'modules' => [
     'user' => [
         'class' => Da\User\Module::class,
+        // ...other configs from here: [Configuration Options](installation/configuration-options.md), e.g.
+        // 'generatePasswords' => true,
+        // 'switchIdentitySessionKey' => 'myown_usuario_admin_user_key',
     ]
 ]
 ```
+
+NOTE: If you are using the Yii2 Basic Template, make sure you remove this (default user model config) from your `config.php`,
+i.e. `config/web.php` file:
+
+```php
+'components' => [
+    'user' => [
+        'identityClass' => 'app\models\User',
+        'enableAutoLogin' => true,
+    ],
+],
+```
+
+This will ensure the proper functionality of login/guest user detection etc.
 
 Configuration may differ from template to template, the following are some guidelines for sidekit app template and 
 the official Yii2 advanced application template: 
@@ -127,6 +144,7 @@ See also all the possible configuration options available:
 - [Console Commands](installation/console-commands.md)
 - [Mailer](installation/mailer.md)
 - [Available Actions](installation/available-actions.md)
+- [Migration guide from Dektrium tools](installation/migration-guide-from-dektrium-tools.md)
 
 Enhancing and Overriding
 ------------------------
@@ -148,6 +166,7 @@ there all your events and then include that file on your
 [`entry script`](http://www.yiiframework.com/doc-2.0/guide-structure-entry-scripts.html). 
 
 - [User Events](events/user-events.md)
+- [Mail Events](events/mail-events.md)
 - [Form Events](events/form-events.md)
 - [Reset Password Events](events/reset-password-events.md)
 - [Social Network Authentication Events](events/social-network-auth-events.md)
@@ -170,4 +189,4 @@ Contributing
 - [How to Contribute](contributing/how-to.md)
 - [Clean Code](contributing/clean-code.md)
 
-© [2amigos](http://www.2amigos.us/) 2013-2017
+© [2amigos](http://www.2amigos.us/) 2013-2018
