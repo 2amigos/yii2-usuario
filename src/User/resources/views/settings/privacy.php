@@ -2,6 +2,8 @@
 
 use yii\helpers\Html;
 
+/* @var $module \Da\User\Module */
+
 $this->title = Yii::t('usuario', 'Privacy settings');
 
 ?>
@@ -39,10 +41,22 @@ $this->title = Yii::t('usuario', 'Privacy settings');
                                 'This will remove your personal data from this site. You will no longer be able to sign in.'
                             ) ?>
                         </p>
-                        <?= Html::a(Yii::t('usuario', 'Delete'),
-                            ['/user/settings/gdprdelete'],
-                            ['class' => 'btn btn-danger'])
-                        ?>
+                        <?php if ($module->allowAccountDelete): ?>
+                            <?= Html::a(
+                                Yii::t('usuario', 'Delete account'),
+                                ['delete'],
+                                [
+                                    'class' => 'btn btn-danger',
+                                    'data-method' => 'post',
+                                    'data-confirm' => Yii::t('usuario', 'Are you sure? There is no going back'),
+                                ]
+                            ) ?>
+                        <? else:
+                            echo Html::a(Yii::t('usuario', 'Delete'),
+                                ['/user/settings/gdprdelete'],
+                                ['class' => 'btn btn-danger'])
+                            ?>
+                        <?php endif ?>
                     </div>
                 </div>
             </div>
