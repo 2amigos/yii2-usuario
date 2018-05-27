@@ -51,14 +51,10 @@ use yii\web\IdentityInterface;
  * @property int $created_at
  * @property int $updated_at
  * @property int $last_login_at
-<<<<<<< HEAD
  * @property int $gdpr_consent_date date of agreement of data processing
- * =======
  * @property string $last_login_ip
  * @property int $password_changed_at
  * @property int $password_age
->>>>>>> upstream/master
- *
  * Defined relations:
  * @property SocialNetworkAccount[] $socialNetworkAccounts
  * @property Profile $profile
