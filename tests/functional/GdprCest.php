@@ -9,18 +9,12 @@ use yii\helpers\Html;
 
 class GdprCest
 {
-    public function _prepareModule($emailConfirmation = true, $generatePasswords = false, $enableGdpr = true)
-    {
-        /* @var $module Module */
-        $module = Yii::$app->getModule('user');
-        $module->enableEmailConfirmation = $emailConfirmation;
-        $module->generatePasswords = $generatePasswords;
-        $module->enableGDPRcompliance = $enableGdpr;
-    }
-
     public function _before(FunctionalTester $I)
     {
-        $I->haveFixtures(['user' => UserFixture::className()]);
+        $I->haveFixtures([
+            'user' => UserFixture::class,
+            'profile' => \tests\_fixtures\ProfileFixture::class
+        ]);
     }
 
     public function _after(FunctionalTester $I)
@@ -39,12 +33,12 @@ class GdprCest
     public function testGdprRegistration(FunctionalTester $I)
     {
 
-        $this->_prepareModule(false,false);
+        $this->_prepareModule(false, false);
 
         $I->amOnRoute('/user/registration/register');
 
         $I->amGoingTo('try to register with empty credentials');
-        $this->register($I, '', '', '',false);
+        $this->register($I, '', '', '', false);
         $I->see('Username cannot be blank');
         $I->see('Email cannot be blank');
         $I->see('Password cannot be blank');
@@ -66,6 +60,15 @@ class GdprCest
         $I->fillField('#loginform-password', 'tester');
         $I->click('Sign in');
         $I->see('Logout');
+    }
+
+    public function _prepareModule($emailConfirmation = true, $generatePasswords = false, $enableGdpr = true)
+    {
+        /* @var $module Module */
+        $module = Yii::$app->getModule('user');
+        $module->enableEmailConfirmation = $emailConfirmation;
+        $module->generatePasswords = $generatePasswords;
+        $module->enableGDPRcompliance = $enableGdpr;
     }
 
     protected function register(FunctionalTester $I, $email, $username = null, $password = null, $gdpr_consent = true)
@@ -110,7 +113,7 @@ class GdprCest
      */
     public function testRegistrationWithoutPassword(FunctionalTester $I)
     {
-        $this->_prepareModule(false,true);
+        $this->_prepareModule(false, true);
 
         $I->amOnRoute('/user/registration/register');
         $this->register($I, 'tester@example.com', 'tester');
@@ -121,5 +124,31 @@ class GdprCest
         $message = $I->grabLastSentEmail();
         $I->assertArrayHasKey($user->email, $message->getTo());
         $I->assertContains('We have generated a password for you', utf8_encode(quoted_printable_decode($message->getSwiftMessage()->toString())));
+    }
+
+
+    /**
+     * Test privacy page
+     *
+     * @param FunctionalTester $I
+     */
+    public function testPrivacyPage(FunctionalTester $I)
+    {
+        $this->_prepareModule(false, false);
+
+        $I->amGoingTo('try that privacy page works');
+        $I->amLoggedInAs(1);
+        $I->amOnRoute('/user/settings/privacy');
+        $I->see('Export my data', 'h3');
+        $I->see('Delete my account', 'h3');
+        $I->click('Delete');
+        $I->fillField('#gdprdeleteform-password','wrongpassword');
+        $I->click('Delete');
+        $I->see('Invalid password');
+        $I->fillField('#gdprdeleteform-password','qwerty');
+        $I->click('Delete');
+        $I->see('Login');
+
+
     }
 }
