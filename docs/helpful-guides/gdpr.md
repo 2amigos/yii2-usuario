@@ -11,13 +11,16 @@ To enable support in yii2-usuario set `enableGDPRcompliance` to `true` and set
 ### At this moment a few measures apply to your app:
 
 #### Data processing consent:
+GDPR says: [Article 7](https://gdpr.algolia.com/gdpr-article-7)
+
+> Where processing is based on consent, the controller shall be able to demonstrate that the data subject has consented to processing of his or her personal data.\[...]
 
 All users must give consent of data processing to register.
 Also consent will be stored in db with the user data.
 
 #### Data portability
 
-Gdpr says:
+GDPR says: [Article 20](https://gdpr.algolia.com/gdpr-article-20)
 > The data subject shall have the right to receive the personal data concerning him or her, which he
 > or she has provided to a controller, in a structured, commonly used and machine-readable format\[...]
 
