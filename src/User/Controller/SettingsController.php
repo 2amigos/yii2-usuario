@@ -155,7 +155,11 @@ class SettingsController extends Controller
     }
 
     /**
-     * Exports the personal data of the current active user
+     * Exports the data from the current user in a mechanical readable format (csv). Properties exported can be defined
+     * in the module configuration.
+     * @throws NotFoundHttpException if gdpr compliance is not enabled
+     * @throws \Exception
+     * @throws \Throwable
      */
     public function actionExport()
     {
@@ -182,7 +186,7 @@ class SettingsController extends Controller
             Yii::$app->response->send();
             $f = fopen('php://output', 'w');
             foreach ($data as $line) {
-                fputcsv($f, $line, ";");
+                fputcsv($f, $line);
             }
         } catch (\Exception $e) {
             throw $e;
