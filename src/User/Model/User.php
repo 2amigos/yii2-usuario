@@ -28,7 +28,9 @@ use yii\web\IdentityInterface;
  *
  * @property bool $isAdmin
  * @property bool $isBlocked
- * @property bool $isConfirmed whether user account has been confirmed or not
+ * @property bool $isConfirmed      whether user account has been confirmed or not
+ * @property bool $gdpr_deleted     whether user requested deletion of his account
+ * @property bool $gdpr_consent     whether user has consent personal data processing
  *
  * Database fields:
  * @property int $id
@@ -46,8 +48,7 @@ use yii\web\IdentityInterface;
  * @property int $created_at
  * @property int $updated_at
  * @property int $last_login_at
- * @property bool $gdpr_consent
- * @property int $gdpr_consent_date
+ * @property int $gdpr_consent_date date of agreement of data processing
  *
  * Defined relations:
  * @property SocialNetworkAccount[] $socialNetworkAccounts
@@ -145,9 +146,19 @@ class User extends ActiveRecord implements IdentityInterface
      */
     public function behaviors()
     {
-        return [
+        $behaviors = [
             TimestampBehavior::className(),
         ];
+
+        if ($this->module->enableGDPRcompliance) {
+            $behaviors['GDPR'] = [
+                'class' => TimestampBehavior::class,
+                'createdAtAttribute' => 'gdpr_consent_date',
+                'updatedAtAttribute' => false
+            ];
+        }
+
+        return $behaviors;
     }
 
     /**
