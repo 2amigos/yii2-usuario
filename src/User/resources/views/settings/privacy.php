@@ -46,6 +46,7 @@ $this->title = Yii::t('usuario', 'Privacy settings');
                                 Yii::t('usuario', 'Delete account'),
                                 ['delete'],
                                 [
+                                    'id' => 'gdpr-del-button',
                                     'class' => 'btn btn-danger',
                                     'data-method' => 'post',
                                     'data-confirm' => Yii::t('usuario', 'Are you sure? There is no going back'),
@@ -54,7 +55,11 @@ $this->title = Yii::t('usuario', 'Privacy settings');
                         <? else:
                             echo Html::a(Yii::t('usuario', 'Delete'),
                                 ['/user/settings/gdprdelete'],
-                                ['class' => 'btn btn-danger'])
+                                [
+                                    'class' => 'btn btn-danger',
+                                    'id' => 'gdpr-del-button',
+
+                                ])
                             ?>
                         <?php endif ?>
                     </div>
