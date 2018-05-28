@@ -16,10 +16,8 @@ class RegistrationCest
 
     public function _after(FunctionalTester $I)
     {
-        \Yii::$container->set(Module::className(), [
-            'enableEmailConfirmation' => true,
-            'generatePasswords' => false,
-        ]);
+        Yii::$app->getModule('user')->enableEmailConfirmation = true;
+        Yii::$app->getModule('user')->generatePasswords = true;
     }
 
     /**
@@ -29,10 +27,8 @@ class RegistrationCest
      */
     public function testRegistration(FunctionalTester $I)
     {
-        \Yii::$container->set(Module::className(), [
-            'enableEmailConfirmation' => false,
-            'generatePasswords' => false,
-        ]);
+        Yii::$app->getModule('user')->enableEmailConfirmation = false;
+        Yii::$app->getModule('user')->generatePasswords = false;
 
         $I->amOnRoute('/user/registration/register');
 
@@ -68,9 +64,7 @@ class RegistrationCest
      */
     public function testRegistrationWithConfirmation(FunctionalTester $I)
     {
-        \Yii::$container->set(Module::className(), [
-            'enableEmailConfirmation' => true,
-        ]);
+        Yii::$app->getModule('user')->enableEmailConfirmation = true;
         $I->amOnRoute('/user/registration/register');
         $this->register($I, 'tester@example.com', 'tester', 'tester');
         $I->see('Your account has been created and a message with further instructions has been sent to your email');
@@ -90,10 +84,8 @@ class RegistrationCest
      */
     public function testRegistrationWithoutPassword(FunctionalTester $I)
     {
-        \Yii::$container->set(Module::className(), [
-            'enableEmailConfirmation' => false,
-            'generatePasswords' => true,
-        ]);
+        Yii::$app->getModule('user')->enableEmailConfirmation = false;
+        Yii::$app->getModule('user')->generatePasswords = true;
         $I->amOnRoute('/user/registration/register');
         $this->register($I, 'tester@example.com', 'tester');
         $I->see('Your account has been created');
