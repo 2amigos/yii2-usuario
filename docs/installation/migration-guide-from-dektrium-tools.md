@@ -56,10 +56,11 @@ In `config/web.php` remove *module > rbac* configuration and change the *modules
 
 ## Rbac migrations
 
-[yii2-rbac](https://github.com/dektrium/yii2-rbac) had a nice tool which are rbac migrations, which helped writing new permissions and roles.
+[yii2-rbac](https://github.com/dektrium/yii2-rbac) have a nice tool which are rbac migrations, which help writing new permissions and roles.
 There's no such feature in yii2-usuario, but in case you need to still apply them you can:
 
 1.  create a migration component which basically it's the same as the original [Migration](https://github.com/dektrium/yii2-rbac/blob/master/migrations/Migration.php) object, with some minor changes. Copy the content below and save it in your `@app/components/RbacMigration.php`:
+
     ```php
     <?php
 
@@ -379,9 +380,10 @@ There's no such feature in yii2-usuario, but in case you need to still apply the
             return $rule;
         }
     }
-
     ```
 
 2.  change the inheritance of the `@app/rbac/migrations` files to `app\components\RbacMigration as Migration`
 
-... and you're done! You can still apply your rbac migrations with `./yii migrate/up --migrationPath=@yii/rbac/migrations`.
+... and you're done! You can still apply your rbac migrations with `./yii migrate/up --migrationPath=@app/rbac/migrations`.
+
+To create a new migration just run `yii migrate/create name_your_migration --migrationPath=@app/rbac/migrations` and remember to change parent class.
