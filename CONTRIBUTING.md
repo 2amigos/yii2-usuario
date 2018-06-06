@@ -21,6 +21,10 @@ We accept contributions via Pull Requests on [Github](https://github.com/2amigos
 
 - **Send coherent history** - Make sure each individual commit in your pull request is meaningful. If you had to make multiple intermediate commits while developing, please squash them before submitting.
 
+- **Update CHANGELOG.md** - If you make relevant changes please add a note to the changelog file with your credits.
+
+- **Update message files** - If you make changes to message strings make sure to run `vendor/bin/yii message/extract src/User/resources/i18n/config.php` in order to update translation files.
+
 
 ## Running Tests
 
