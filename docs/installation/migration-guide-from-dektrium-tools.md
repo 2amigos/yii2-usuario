@@ -54,6 +54,15 @@ In `config/web.php` remove *module > rbac* configuration and change the *modules
 *  In your extended model replace the `BaseUser` inheritance from `dektrium\user\models\User` to `Da\User\Model\User`
 *  If you had controller remapping replace the inheritance from `dektrium\user\controllers\XX` to `Da\User\Controller\XX`
 
+## Structure migrations
+
+If you have an existing project which already has the dektrium migrations applied you should:
+
+1. Make sure it's at the latest version by running ```$ php yii migrate/up --migrationPath=@vendor/dektrium/yii2-user/migrations```
+2. Configure the application (as stated above in *Configuration* section)
+3. Run the command ```$ php yii user/dektrium-migrate``` which will take care of virtually apply the already applied migrations.
+4. Apply the new migrations with ```$ php yii migrate/up``` (please consult the *Getting Started* section)
+
 ## Rbac migrations
 
 [yii2-rbac](https://github.com/dektrium/yii2-rbac) have a nice tool which are rbac migrations, which help writing new permissions and roles.
