@@ -11,6 +11,11 @@ composer remove dektrium/yii2-user
 composer remove dektrium/yii2-rbac
 ```
 
+## Install yii2-usuario
+```
+composer add 2amigos/yii2-usuario
+```
+
 ## Configuration
 
 Configure the `config/console.php` stuff:
@@ -53,6 +58,19 @@ In `config/web.php` remove *module > rbac* configuration and change the *modules
 *  If you had `modelMap` customization you have to replace them with `classMap`.
 *  In your extended model replace the `BaseUser` inheritance from `dektrium\user\models\User` to `Da\User\Model\User`
 *  If you had controller remapping replace the inheritance from `dektrium\user\controllers\XX` to `Da\User\Controller\XX`
+
+## Mark migrations as applied in an existing project
+
+If you already have a production project which has all the necessary user tables from dektrium simply run the following commands to 
+mark some migrations as already applied.
+
+```
+./yii migrate/mark "Da\User\Migration\m000000_000005_add_last_login_at"
+./yii migrate/to "Da\User\Migration\m000000_000007_enable_password_expiration"
+```
+
+The first command will mark the migration as applied, the second will apply missing migrations. 
+The second command is optiona as a simple ```./yii migrate/up``` would apply all missing migrations anyway.
 
 ## Rbac migrations
 
