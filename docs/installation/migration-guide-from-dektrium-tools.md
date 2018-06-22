@@ -70,7 +70,7 @@ mark some migrations as already applied.
 ```
 
 The first command will mark the migration as applied, the second will apply missing migrations. 
-The second command is optiona as a simple ```./yii migrate/up``` would apply all missing migrations anyway.
+The second command is optional as a simple ```./yii migrate/up``` would apply all missing migrations anyway.
 
 ## Rbac migrations
 
