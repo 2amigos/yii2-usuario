@@ -80,7 +80,7 @@ return [
     'Complete password reset on {0}' => 'Complete el restablecimiento de contraseña en {0}',
     'Confirm' => 'Confirmar',
     'Confirm account on {0}' => 'Confirme cuenta en {0}',
-    'Confirm email change on {0}' => 'Confirm el cambio de correo electrónico en {0}',
+    'Confirm email change on {0}' => 'Confirme el cambio de correo electrónico en {0}',
     'Confirmation' => 'Confirmación',
     'Confirmation status' => 'Estado de confirmación',
     'Confirmation time' => 'Hora de confirmación',
