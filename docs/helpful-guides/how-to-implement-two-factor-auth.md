@@ -11,11 +11,16 @@ With this module is quite easy. It basically implements two factor authenticatio
 - [2amigos/2fa-library](https://github.com/2amigos/2fa-library)
 - [2amigos/qrcode-library](https://github.com/2amigos/qrcode-library)
 
-
 Enable Two Factor 
 -----------------
 
-We simply need to enable two factor authentication: 
+Install required libraries with:
+```
+composer require 2amigos/2fa-library "^1.0"
+composer require 2amigos/qrcode-library "^1.1"
+```
+
+Then enable two factor authentication in your config: 
 
 ```php 
 'modules' => [

@@ -51,9 +51,11 @@
         "yiisoft/yii2-authclient": "^2.1",
         "yiisoft/yii2-httpclient": "^2.0",
         "yiisoft/yii2-bootstrap": "^2.0",
-        "yiisoft/yii2-swiftmailer": "^2.0",
-        "2amigos/2fa-library": "^1.0",
-        "2amigos/qrcode-library": "^1.1"
+        "yiisoft/yii2-swiftmailer": "^2.0"
+    },
+    "suggest": {
+        "2amigos/2fa-library": "Needed if you want to enable 2 Factor Authentication. Require version ^1.0",
+        "2amigos/qrcode-library": "Needed if you want to enable 2FA with QR Code generation. Require version ^1.1"
     },
     "require-dev": {
         "friendsofphp/php-cs-fixer": "^2.3",
