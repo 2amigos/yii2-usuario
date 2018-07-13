@@ -11,11 +11,15 @@
 
 namespace Da\User\Controller;
 
+
 use Da\User\Contracts\MailChangeStrategyInterface;
+use Da\User\Event\GdprEvent;
 use Da\User\Event\ProfileEvent;
 use Da\User\Event\SocialNetworkConnectEvent;
 use Da\User\Event\UserEvent;
+use Da\User\Form\GdprDeleteForm;
 use Da\User\Form\SettingsForm;
+use Da\User\Helper\SecurityHelper;
 use Da\User\Model\Profile;
 use Da\User\Model\SocialNetworkAccount;
 use Da\User\Model\User;
@@ -31,6 +35,7 @@ use Da\User\Validator\TwoFactorCodeValidator;
 use Yii;
 use yii\filters\AccessControl;
 use yii\filters\VerbFilter;
+use yii\helpers\ArrayHelper;
 use yii\web\Controller;
 use yii\web\ForbiddenHttpException;
 use yii\web\NotFoundHttpException;
@@ -52,12 +57,12 @@ class SettingsController extends Controller
     /**
      * SettingsController constructor.
      *
-     * @param string                    $id
-     * @param Module                    $module
-     * @param ProfileQuery              $profileQuery
-     * @param UserQuery                 $userQuery
+     * @param string $id
+     * @param Module $module
+     * @param ProfileQuery $profileQuery
+     * @param UserQuery $userQuery
      * @param SocialNetworkAccountQuery $socialNetworkAccountQuery
-     * @param array                     $config
+     * @param array $config
      */
     public function __construct(
         $id,
@@ -66,7 +71,8 @@ class SettingsController extends Controller
         UserQuery $userQuery,
         SocialNetworkAccountQuery $socialNetworkAccountQuery,
         array $config = []
-    ) {
+    )
+    {
         $this->profileQuery = $profileQuery;
         $this->userQuery = $userQuery;
         $this->socialNetworkAccountQuery = $socialNetworkAccountQuery;
@@ -95,7 +101,10 @@ class SettingsController extends Controller
                         'actions' => [
                             'profile',
                             'account',
+                            'export',
                             'networks',
+                            'privacy',
+                            'gdprdelete',
                             'disconnect',
                             'delete',
                             'two-factor',
@@ -143,6 +152,142 @@ class SettingsController extends Controller
                 'model' => $profile,
             ]
         );
+    }
+
+    public function actionPrivacy()
+    {
+        if (!$this->module->enableGDPRcompliance)
+            throw new NotFoundHttpException();
+
+        return $this->render('privacy', [
+            'module' => $this->module
+        ]);
+    }
+
+    public function actionGdprdelete()
+    {
+        if (!$this->module->enableGDPRcompliance)
+            throw new NotFoundHttpException();
+
+        /** @var GdprDeleteForm $form */
+        $form = $this->make(GdprDeleteForm::class);
+
+        $user = $form->getUser();
+        /* @var $event GdprEvent */
+        $event = $this->make(GdprEvent::class, [$user]);
+
+        if ($form->load(Yii::$app->request->post()) && $form->validate()) {
+            $this->trigger(GdprEvent::EVENT_BEFORE_DELETE, $event);
+
+            if ($event->isValid) {
+                Yii::$app->user->logout();
+                //Disconnect social networks
+                $networks = $this->socialNetworkAccountQuery->where(['user_id' => $user->id])->all();
+                foreach ($networks as $network) {
+                    $this->disconnectSocialNetwork($network->id);
+                }
+
+                /* @var $security SecurityHelper */
+                $security = $this->make(SecurityHelper::class);
+                $anonymReplacement = $this->module->GDPRanonymPrefix . $user->id;
+
+                $user->updateAttributes([
+                    'email' => $anonymReplacement . "@example.com",
+                    'username' => $anonymReplacement,
+                    'gdpr_deleted' => 1,
+                    'blocked_at' => time(),
+                    'auth_key' => $security->generateRandomString()
+                ]);
+                $user->profile->updateAttributes([
+                    'public_email' => $anonymReplacement . "@example.com",
+                    'name' => $anonymReplacement,
+                    'gravatar_email' => $anonymReplacement . "@example.com",
+                    'location' => $anonymReplacement,
+                    'website' => $anonymReplacement . ".tld",
+                    'bio' => Yii::t('usuario', 'Deleted by GDPR request')
+                ]);
+
+
+            }
+            $this->trigger(GdprEvent::EVENT_AFTER_DELETE, $event);
+
+            Yii::$app->session->setFlash('info', Yii::t('usuario', 'Your personal information has been removed'));
+
+            return $this->goHome();
+
+        }
+
+        return $this->render('gdprdelete', [
+            'model' => $form,
+        ]);
+    }
+
+    /**
+     * @param $id
+     * @throws ForbiddenHttpException
+     * @throws NotFoundHttpException
+     * @throws \Exception
+     * @throws \Throwable
+     * @throws \yii\db\StaleObjectException
+     */
+    protected function disconnectSocialNetwork($id): void
+    {
+        /** @var SocialNetworkAccount $account */
+        $account = $this->socialNetworkAccountQuery->whereId($id)->one();
+
+        if ($account === null) {
+            throw new NotFoundHttpException();
+        }
+        if ($account->user_id !== Yii::$app->user->id) {
+            throw new ForbiddenHttpException();
+        }
+        $event = $this->make(SocialNetworkConnectEvent::class, [Yii::$app->user->identity, $account]);
+
+        $this->trigger(SocialNetworkConnectEvent::EVENT_BEFORE_DISCONNECT, $event);
+        $account->delete();
+        $this->trigger(SocialNetworkConnectEvent::EVENT_AFTER_DISCONNECT, $event);
+    }
+
+    /**
+     * Exports the data from the current user in a mechanical readable format (csv). Properties exported can be defined
+     * in the module configuration.
+     * @throws NotFoundHttpException if gdpr compliance is not enabled
+     * @throws \Exception
+     * @throws \Throwable
+     */
+    public function actionExport()
+    {
+        if (!$this->module->enableGDPRcompliance)
+            throw new NotFoundHttpException();
+
+        try {
+            $properties = $this->module->GDPRexportProperties;
+            $user = Yii::$app->user->identity;
+            $data = [$properties, []];
+
+            foreach ($properties as $property) {
+                $data[1][] = Yii::$app->formatter->asText(ArrayHelper::getValue($user, $property));
+            }
+
+            array_walk($data[0], function (&$value, $key) {
+                $splitted = explode('.', $value);
+                $value = array_pop($splitted);
+            });
+
+            Yii::$app->response->headers->removeAll();
+            Yii::$app->response->headers->add('Content-type', 'text/csv');
+            Yii::$app->response->headers->add('Content-Disposition', 'attachment;filename=gdpr-data.csv');
+            Yii::$app->response->send();
+            $f = fopen('php://output', 'w');
+            foreach ($data as $line) {
+                fputcsv($f, $line);
+            }
+        } catch (\Exception $e) {
+            throw $e;
+        } catch (\Throwable $e) {
+            throw $e;
+        }
+
     }
 
     public function actionAccount()
@@ -204,21 +349,7 @@ class SettingsController extends Controller
 
     public function actionDisconnect($id)
     {
-        /** @var SocialNetworkAccount $account */
-        $account = $this->socialNetworkAccountQuery->whereId($id)->one();
-
-        if ($account === null) {
-            throw new NotFoundHttpException();
-        }
-        if ($account->user_id !== Yii::$app->user->id) {
-            throw new ForbiddenHttpException();
-        }
-        $event = $this->make(SocialNetworkConnectEvent::class, [Yii::$app->user->identity, $account]);
-
-        $this->trigger(SocialNetworkConnectEvent::EVENT_BEFORE_DISCONNECT, $event);
-        $account->delete();
-        $this->trigger(SocialNetworkConnectEvent::EVENT_AFTER_DISCONNECT, $event);
-
+        $this->disconnectSocialNetwork($id);
         return $this->redirect(['networks']);
     }
 

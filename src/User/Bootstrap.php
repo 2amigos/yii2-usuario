@@ -78,6 +78,7 @@ class Bootstrap implements BootstrapInterface
             $di->set(Event\SocialNetworkAuthEvent::class);
             $di->set(Event\SocialNetworkConnectEvent::class);
             $di->set(Event\UserEvent::class);
+            $di->set(Event\GdprEvent::class);
 
             // forms
             $di->set(Form\LoginForm::class);
@@ -85,6 +86,7 @@ class Bootstrap implements BootstrapInterface
             $di->set(Form\RegistrationForm::class);
             $di->set(Form\ResendForm::class);
             $di->set(Form\SettingsForm::class);
+            $di->set(Form\GdprDeleteForm::class);
 
             // helpers
             $di->set(Helper\AuthHelper::class);

@@ -22,7 +22,6 @@ use yii\base\InvalidParamException;
 use yii\base\NotSupportedException;
 use yii\behaviors\TimestampBehavior;
 use yii\db\ActiveRecord;
-use yii\db\Expression;
 use yii\helpers\ArrayHelper;
 use yii\web\Application;
 use yii\web\IdentityInterface;
@@ -32,7 +31,9 @@ use yii\web\IdentityInterface;
  *
  * @property bool $isAdmin
  * @property bool $isBlocked
- * @property bool $isConfirmed whether user account has been confirmed or not
+ * @property bool $isConfirmed      whether user account has been confirmed or not
+ * @property bool $gdpr_deleted     whether user requested deletion of his account
+ * @property bool $gdpr_consent     whether user has consent personal data processing
  *
  * Database fields:
  * @property int $id
@@ -50,10 +51,10 @@ use yii\web\IdentityInterface;
  * @property int $created_at
  * @property int $updated_at
  * @property int $last_login_at
+ * @property int $gdpr_consent_date date of agreement of data processing
  * @property string $last_login_ip
  * @property int $password_changed_at
  * @property int $password_age
- *
  * Defined relations:
  * @property SocialNetworkAccount[] $socialNetworkAccounts
  * @property Profile $profile
@@ -82,6 +83,40 @@ class User extends ActiveRecord implements IdentityInterface
      * @throws InvalidParamException
      * @throws InvalidConfigException
      * @throws Exception
+     */
+    public static function tableName()
+    {
+        return '{{%user}}';
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public static function findIdentity($id)
+    {
+        return static::findOne($id);
+    }
+
+    /**
+     * @return UserQuery
+     */
+    public static function find()
+    {
+        return new UserQuery(static::class);
+    }
+
+    /**
+     * {@inheritdoc}
+     *
+     * @throws NotSupportedException
+     */
+    public static function findIdentityByAccessToken($token, $type = null)
+    {
+        throw new NotSupportedException('Method "' . __CLASS__ . '::' . __METHOD__ . '" is not implemented.');
+    }
+
+    /**
+     * {@inheritdoc}
      */
     public function beforeSave($insert)
     {
@@ -123,19 +158,21 @@ class User extends ActiveRecord implements IdentityInterface
     /**
      * {@inheritdoc}
      */
-    public static function tableName()
-    {
-        return '{{%user}}';
-    }
-
-    /**
-     * {@inheritdoc}
-     */
     public function behaviors()
     {
-        return [
+        $behaviors = [
             TimestampBehavior::className(),
         ];
+
+        if ($this->module->enableGDPRcompliance) {
+            $behaviors['GDPR'] = [
+                'class' => TimestampBehavior::class,
+                'createdAtAttribute' => 'gdpr_consent_date',
+                'updatedAtAttribute' => false
+            ];
+        }
+
+        return $behaviors;
     }
 
     /**
@@ -240,14 +277,6 @@ class User extends ActiveRecord implements IdentityInterface
     }
 
     /**
-     * {@inheritdoc}
-     */
-    public static function findIdentity($id)
-    {
-        return static::findOne($id);
-    }
-
-    /**
      * @return bool whether is blocked or not
      */
     public function getIsBlocked()
@@ -320,26 +349,8 @@ class User extends ActiveRecord implements IdentityInterface
     }
 
     /**
-     * @return UserQuery
-     */
-    public static function find()
-    {
-        return new UserQuery(static::class);
-    }
-
-    /**
-     * {@inheritdoc}
-     *
-     * @throws NotSupportedException
-     */
-    public static function findIdentityByAccessToken($token, $type = null)
-    {
-        throw new NotSupportedException('Method "' . __CLASS__ . '::' . __METHOD__ . '" is not implemented.');
-    }
-    
-    /**
      * Returns password age in days
-     * @return integer 
+     * @return integer
      */
     public function getPassword_age()
     {
@@ -347,6 +358,7 @@ class User extends ActiveRecord implements IdentityInterface
             return $this->getModule()->maxPasswordAge;
         }
         $d = new \DateTime("@{$this->password_changed_at}");
+
         return $d->diff(new \DateTime(), true)->format("%a");
     }
 }

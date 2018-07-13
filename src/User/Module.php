@@ -20,6 +20,43 @@ use yii\base\Module as BaseModule;
 class Module extends BaseModule
 {
     /**
+     * @var bool whether to enable european G.D.P.R. compliance.
+     *           This will add a few elements to comply with european general data protection regulation.
+     *           This regulation affects to all companys in Europe a those companies outside that offer their
+     *           services to the E.U.
+     *           List of elements that will be added when this is enabled:
+     *           - Checkbox to request consent on register form
+     *           - Forgot me button in profile view.
+     *           - Download my data button in profile
+     */
+    public $enableGDPRcompliance = false;
+    /**
+     * @var null|array|string with the url to privacy policy.
+     *                        Must be in the same format as yii/helpers/Url::to requires.
+     */
+    public $GDPRprivacyPolicyUrl = null;
+    /**
+     * @var array with the name of the user identity properties to be included when user request download of his data.
+     *            Names can include relations like `profile.name`.
+     *            GPDR says:
+     *            > The data subject shall have the right to receive the personal data concerning him or her, which he
+     *            > or she has provided to a controller, in a structured, commonly used and machine-readable format
+     */
+    public $GDPRexportProperties = [
+        'email',
+        'username',
+        'profile.public_email',
+        'profile.name',
+        'profile.gravatar_email',
+        'profile.location',
+        'profile.website',
+        'profile.bio'
+    ];
+    /**
+     * @var string prefix to be used as a replacement when user requeste deletion of his data.
+     */
+    public $GDPRanonymPrefix = 'GDPR';
+    /**
      * @var bool whether to enable two factor authentication or not
      */
     public $enableTwoFactorAuthentication = false;
