@@ -18,6 +18,7 @@ return [
         'de',
         'de-DU',
         'es',
+        'et',
         'fa-IR',
         'fi',
         'fr',
