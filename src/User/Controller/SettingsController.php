@@ -230,7 +230,7 @@ class SettingsController extends Controller
      * @throws \Throwable
      * @throws \yii\db\StaleObjectException
      */
-    protected function disconnectSocialNetwork($id): void
+    protected function disconnectSocialNetwork($id)
     {
         /** @var SocialNetworkAccount $account */
         $account = $this->socialNetworkAccountQuery->whereId($id)->one();

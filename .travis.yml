@@ -21,6 +21,9 @@ matrix:
 #    - vendor
 #    - $HOME/.composer/cache
 
+before_install:
+  - echo "memory_limit=2G" >> ~/.phpenv/versions/$(phpenv version-name)/etc/conf.d/travis.ini
+
 install:
   - |
     if [[ $TRAVIS_PHP_VERSION != '7.1' && $TRAVIS_PHP_VERSION != hhv* ]]; then
@@ -34,7 +37,6 @@ install:
   - travis_retry composer install --prefer-dist --no-interaction
 
 before_script:
-  - echo "memory_limit=-1" >> ~/.phpenv/versions/$(phpenv version-name)/etc/conf.d/travis.ini
   - php -r "echo INTL_ICU_VERSION . \"\n\";"
   - php -r "echo INTL_ICU_DATA_VERSION . \"\n\";"
   - mysql --version
