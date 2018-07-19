@@ -19,7 +19,6 @@
 return [
     'Authentication rule class {0} can not be instantiated' => '',
     'Rule class must extend "yii\\rbac\\Rule".' => '',
-    'Two factor authentication protects you in case of stolen credentials' => 'Kahefaktoriline autentimine kaitseb sind paroolide varguse korral',
     'VKontakte' => '',
     'Yandex' => '',
     '{0, date, MMM dd, YYYY HH:mm}' => '',
@@ -209,6 +208,7 @@ return [
     'Two Factor Authentication (2FA)' => 'Kahefaktoriline autentimine (2FA)',
     'Two factor authentication code' => 'Kahefaktorilise autentimise kood',
     'Two factor authentication has been disabled.' => 'Kahefaktoriline autentimine on deaktiveeritud',
+    'Two factor authentication protects you in case of stolen credentials' => 'Kahefaktoriline autentimine kaitseb sind paroolide varguse korral',
     'Two factor authentication successfully enabled.' => 'Kahefaktorilise autentimise aktiveerimine õnnestus.',
     'Unable to confirm user. Please, try again.' => 'Kasutaja kinnitamine ebaõnnestus. Palun proovi uuesti.',
     'Unable to create an account.' => 'Konto loomine ebaõnnestus.',
