@@ -1,6 +1,7 @@
 # CHANGELOG
 
 ## 1.1.5 - Work in progress
+ - Fix #211: Migration boolean default value set to FALSE instead 0 (Dezinger)
  - Ehn #131: 2FA libraries now optional (maxxer)
  - Ehn #187: Add GDPR features (Eseperio)
  - Enh #184: Add `last-login-ip` capture capability (kartik-v)
