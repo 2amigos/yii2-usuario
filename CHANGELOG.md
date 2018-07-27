@@ -1,6 +1,7 @@
 # CHANGELOG
 
 ## 1.1.5 - Work in progress
+ - Fix #209: Doc fix. allowAccountDelete default value is false (Dezinger)
  - Ehn #131: 2FA libraries now optional (maxxer)
  - Ehn #187: Add GDPR features (Eseperio)
  - Enh #184: Add `last-login-ip` capture capability (kartik-v)
