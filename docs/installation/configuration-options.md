@@ -98,7 +98,7 @@ class SiteController extends Controller
 ```
 This will redirect the user to their account page until the password has been updated.
 
-#### allowAccountDelete (type: `boolean`, default: `true`)
+#### allowAccountDelete (type: `boolean`, default: `false`)
 
 If `true` users will be able to remove their own accounts. 
 

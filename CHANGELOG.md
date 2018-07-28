@@ -1,7 +1,10 @@
 # CHANGELOG
 
 ## 1.1.5 - Work in progress
- - Ehn #198: Updated RU translations (Dezinger)
+ - Fix #198: Updated translations by quique, bizley, TonisOrmisson, guogan, Dezinger, maxxer
+ - Fix #209: Doc fix. allowAccountDelete default value is false (Dezinger)
+ - Fix #211: Migration boolean default value set to FALSE instead 0 (Dezinger)
+ - Fix #213: Migration sql syntax fix (Dezinger)
  - Ehn #131: 2FA libraries now optional (maxxer)
  - Ehn #187: Add GDPR features (Eseperio)
  - Enh #184: Add `last-login-ip` capture capability (kartik-v)

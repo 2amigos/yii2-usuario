@@ -16,7 +16,7 @@ class m000000_000008_add_last_login_ip extends Migration
      */
     public function safeUp()
     {
-        $this->addColumn('{{%user}}', 'last_login_ip', Schema::TYPE_STRING . '(45) DEFAULT NULL AFTER last_login_at');
+        $this->addColumn('{{%user}}', 'last_login_ip', $this->string(45)->null()->after('last_login_at'));
     }
 
     /**
