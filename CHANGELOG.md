@@ -1,6 +1,7 @@
 # CHANGELOG
 
 ## 1.1.5 - Work in progress
+ - Fix #211: Migration boolean default value set to FALSE instead 0 (Dezinger)
  - Fix #213: Migration sql syntax fix (Dezinger)
  - Ehn #131: 2FA libraries now optional (maxxer)
  - Ehn #187: Add GDPR features (Eseperio)
