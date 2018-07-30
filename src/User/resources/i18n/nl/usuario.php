@@ -17,7 +17,7 @@
  * NOTE: this file must be saved in UTF-8 encoding.
  */
 return [
-    '(not set)' => '',
+    '(not set)' => '(niet ingesteld)',
     'A confirmation message has been sent to your new email address' => 'Er werd een bevestigingsmail naar het nieuwe emailadres verzonden',
     'A message has been sent to your email address. It contains a confirmation link that you must click to complete registration.' => 'Een email met daarin een bevestigingslink werd verzonden naar jouw email adres. Klik op de link om de registratie te vervolledigen.',
     'A new confirmation link has been sent' => 'Een nieuwe bevestigingslink werd verzonden',
