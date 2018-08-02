@@ -47,12 +47,12 @@ For further information, please visit [FriendsOfPHP/PHP-CS-Fixer](https://github
 Running Tests
 -------------
 
-We are using `Codeception` for testing the module. Do the following: 
+We are using `Codeception` for testing the module. To run tests do the following: 
 
 - Create a `yii2-usuario-test` database. 
-- Add database access configuration `tests/_app/config/db.php` 
+- Add database access configuration in `tests/_app/config/db.php` (or create `db.local.php` in the same directory) and `codeception.dist.yml`.
 - Run `./vendor/bin/codecept build`
-- Run `./vendor/bin/codecept functional`
+- Run `./vendor/bin/codecept run`
 
 We still need to add `unit` tests to the module. Feel free to add your tests to it as long as it makes use of 
 `Codeception`. 

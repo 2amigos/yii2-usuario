@@ -28,9 +28,7 @@ We accept contributions via Pull Requests on [Github](https://github.com/2amigos
 
 ## Running Tests
 
-``` bash
-$ ./vendor/bin/phpunit
-```
+See the *Running Tests* section on the [docs](http://yii2-usuario.readthedocs.io/en/latest/contributing/clean-code/).
 
 
 **Happy coding**!
