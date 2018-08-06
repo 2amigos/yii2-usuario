@@ -199,7 +199,7 @@ return [
 	'This username has already been taken' => 'Deze gebruikersnaam is al in gebruik',
 	'This will disable two factor authentication. Are you sure?' => 'Dit zal de 2 traps authenticatie uitschakelen. Ben je zeker?',
 	'This will remove your personal data from this site. You will no longer be able to sign in.' => 'Dit zal jouw persoonlijke data van de website wissen. Je zal niet langer kunnen inloggen.',
-	'Time zone' => 'Tijd zonde',
+	'Time zone' => 'Tijd zone',
 	'Time zone is not valid' => 'Tijd zone is niet geldig',
 	'Two Factor Authentication (2FA)' => '2 traps authenticatie (2FA)',
 	'Two factor authentication code' => '2 traps authenticatie code',
