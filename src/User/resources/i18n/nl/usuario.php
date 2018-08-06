@@ -62,7 +62,7 @@ return [
     'Children' => 'Kinderen',
     'Class' => 'Klasse',
     'Close' => 'Sluiten',
-    'Complete password reset on {0}' => 'Vervollig het resetten van het wachtwoord op {0}',
+    'Complete password reset on {0}' => 'Vervolledig het resetten van het wachtwoord op {0}',
     'Confirm' => 'Bevestig',
     'Confirm account on {0}' => 'Bevestig account op {0}',
     'Confirm email change on {0}' => 'Bevestig email wijziging op {0}',
