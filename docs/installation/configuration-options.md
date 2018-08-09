@@ -76,8 +76,7 @@ If `true` it will enable password recovery process.
 
 #### allowAdminPasswordRecovery (type: `boolean`, default: `true`)
 
-If `true` and `allowPasswordRecovery` is false, it will enable administrator to send a password recovery email to a 
-user.
+If `true` it will enable administrator to send a password recovery email to a user.
 
 #### maxPasswordAge (type: `integer`, default: `null`)
 
