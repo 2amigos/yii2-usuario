@@ -30,7 +30,7 @@ $module = Yii::$app->getModule('user');
 <?php $this->beginContent('@Da/User/resources/views/shared/admin_layout.php') ?>
 
 <?php Pjax::begin() ?>
-
+<div class="table-responsive">
 <?= GridView::widget(
     [
         'dataProvider' => $dataProvider,
@@ -191,7 +191,7 @@ $module = Yii::$app->getModule('user');
         ],
     ]
 ); ?>
-
+</div>
 <?php Pjax::end() ?>
 
 <?php $this->endContent() ?>
