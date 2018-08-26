@@ -14,6 +14,7 @@ return [
         'created_at' => $time,
         'updated_at' => $time,
         'confirmed_at' => $time,
+        'gdpr_consent' => false
     ],
     'unconfirmed' => [
         'id' => 2,

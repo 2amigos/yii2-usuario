@@ -15,7 +15,7 @@ use yii\widgets\ActiveForm;
 //                        'enableClientValidation' => false,
             ]
         ); ?>
-        <div class="panel panel-info">
+        <div class="panel panel-info give-consent-panel">
             <div class="panel-heading">
                 <h1 class="panel-title"><?= Yii::t('usuario', 'Data privacy') ?></h1>
             </div>

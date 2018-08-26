@@ -142,10 +142,10 @@ class GdprCest
         $I->see('Export my data', 'h3');
         $I->see('Delete my account', 'h3');
         $I->amOnRoute('/user/settings/gdprdelete');
-        $I->fillField('#gdprdeleteform-password','wrongpassword');
+        $I->fillField('#gdprdeleteform-password', 'wrongpassword');
         $I->click('Delete');
         $I->see('Invalid password');
-        $I->fillField('#gdprdeleteform-password','qwerty');
+        $I->fillField('#gdprdeleteform-password', 'qwerty');
         $I->click('Delete');
         $I->see('Login');
     }
@@ -159,12 +159,29 @@ class GdprCest
     {
 
         $I->amGoingTo('Try that a user cant access to privacy if GDPR is not enabled');
-        $this->_prepareModule(false, false,false);
+        $this->_prepareModule(false, false, false);
         $I->amLoggedInAs(1);
         $I->amOnRoute('/user/settings/privacy');
         $I->see('Not Found');
         $I->amOnRoute('/user/settings/privacy');
-        $I->see('Not Found');$I->amOnRoute('/user/settings/privacy');
         $I->see('Not Found');
+        $I->amOnRoute('/user/settings/privacy');
+        $I->see('Not Found');
+    }
+
+    public function testForcedConsentRequirement(FunctionalTester $I)
+    {
+        $this->_prepareModule(false,false);
+        /** @var Module $module */
+        $module = Yii::$app->getModule('user');
+        $module->GDPRrequireConsentToAll = true;
+        $I->amGoingTo('Try to access a page without giving data processing consent');
+        $I->amLoggedInAs(1);
+        $I->amOnRoute('/site/index');
+        $I->seeElement('.give-consent-panel');
+        $I->checkOption('#dynamicmodel-gdpr_consent');
+        $I->click("Submit");
+        $I->see('Profile settings');
+
     }
 }
