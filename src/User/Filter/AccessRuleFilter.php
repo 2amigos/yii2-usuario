@@ -27,7 +27,9 @@ class AccessRuleFilter extends AccessRule
             $module = $this->getModule();
 
             if ($module->GDPRrequireConsentToAll) {
-                foreach ($module->GDPRconsentExcludedUrls as $url) {
+                $excludedUrls = $module->GDPRconsentExcludedUrls;
+                $excludedUrls[] = $module->GDPRprivacyPolicyUrl;
+                foreach ($excludedUrls as $url) {
                     if (!fnmatch($url, $action->uniqueId)) {
                         $identity = $user->identity;
                         if (!$identity->gdpr_consent) {
