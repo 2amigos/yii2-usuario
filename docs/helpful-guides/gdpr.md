@@ -18,6 +18,11 @@ GDPR says: [Article 7](https://gdpr.algolia.com/gdpr-article-7)
 All users must give consent of data processing to register.
 Also consent will be stored in db with the user data.
 
+If you have users before GDPR law you can force them to give consent via `GDPRrequireConsentToAll`.
+You must use also in your accessControl behaviors the yii2-usuario accessRuleFilter. Any registerd user
+that has not give consent will be redirected in any action to the consent screen except those defined in
+`GDPRconsentExcludedUrls`
+
 #### Data portability
 
 GDPR says: [Article 20](https://gdpr.algolia.com/gdpr-article-20)
