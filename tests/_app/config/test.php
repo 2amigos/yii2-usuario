@@ -8,8 +8,8 @@ return [
         '@Da/User' => dirname(dirname(dirname(__DIR__))) . '/src/User',
         '@tests' => dirname(dirname(__DIR__)),
         '@vendor' => VENDOR_DIR,
-        '@bower' => VENDOR_DIR . '/bower-asset',
-        '@npm' => VENDOR_DIR . '/npm-asset',
+        '@bower' => VENDOR_DIR . '/bower',
+        '@npm' => VENDOR_DIR . '/npm',
     ],
     'bootstrap' => ['Da\User\Bootstrap'],
     'modules' => [
