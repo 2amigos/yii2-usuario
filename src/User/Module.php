@@ -12,7 +12,9 @@
 namespace Da\User;
 
 use Da\User\Contracts\MailChangeStrategyInterface;
+use Yii;
 use yii\base\Module as BaseModule;
+use yii\helpers\Html;
 
 /**
  * This is the main module class of the yii2-usuario extension.
@@ -56,6 +58,21 @@ class Module extends BaseModule
      * @var string prefix to be used as a replacement when user requeste deletion of his data.
      */
     public $GDPRanonymPrefix = 'GDPR';
+    /**
+     * @var bool if true, all registered users will be prompted to give consent if they have not gave not it earlier.
+     */
+    public $GDPRrequireConsentToAll = false;
+    /**
+     * @var null|string use this to customize the message that will appear as hint in the give consent checkbox
+     */
+    public $GDPRconsentMessage;
+    /**
+     * @var array list of url that does not require explicit data processing consent
+     * to be accessed, like own profile, account... You can use wildcards like `route/to/*` .
+     */
+    public $GDPRconsentExcludedUrls = [
+        'user/settings/*'
+    ];
     /**
      * @var bool whether to enable two factor authentication or not
      */
@@ -173,4 +190,20 @@ class Module extends BaseModule
      * @var integer If != NULL sets a max password age in days
      */
     public $maxPasswordAge = null;
+
+    /**
+     * @return string with the hit to be used with the give consent checkbox
+     */
+    public function getConsentMessage()
+    {
+        $defaultConsentMessage = Yii::t('usuario', 'I agree processing of my personal data and the use of cookies to facilitate the operation of this site. For more information read our {privacyPolicy}',
+            [
+                'privacyPolicy' => Html::a(Yii::t('usuario', 'privacy policy'),
+                    $this->GDPRprivacyPolicyUrl,
+                    ['target' => '_blank']
+                )
+            ]);
+
+        return $this->GDPRconsentMessage ?: $defaultConsentMessage;
+    }
 }

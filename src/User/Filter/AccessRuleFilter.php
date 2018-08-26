@@ -13,15 +13,40 @@ namespace Da\User\Filter;
 
 use Closure;
 use Da\User\Model\User;
+use Da\User\Traits\ModuleAwareTrait;
 use yii\filters\AccessRule;
 
 class AccessRuleFilter extends AccessRule
 {
+    use ModuleAwareTrait;
+
+    public function allows($action, $user, $request)
+    {
+        $consentAction = 'user/settings/consent';
+        if (!$user->isGuest && $action->uniqueId !== $consentAction) {
+            $module = $this->getModule();
+
+            if ($module->GDPRrequireConsentToAll) {
+                foreach ($module->GDPRconsentExcludedUrls as $url) {
+                    if (!fnmatch($url, $action->uniqueId)) {
+                        $identity = $user->identity;
+                        if (!$identity->gdpr_consent) {
+                            \Yii::$app->response->redirect([$consentAction]);
+                        }
+                    }
+                }
+            }
+        }
+
+        return parent::allows($action, $user, $request);
+    }
+
     /**
      * {@inheritdoc}
      * */
     protected function matchRole($user)
     {
+
         if (empty($this->roles)) {
             return true;
         }

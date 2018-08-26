@@ -33,6 +33,7 @@ use Da\User\Traits\ContainerAwareTrait;
 use Da\User\Validator\AjaxRequestModelValidator;
 use Da\User\Validator\TwoFactorCodeValidator;
 use Yii;
+use yii\base\DynamicModel;
 use yii\filters\AccessControl;
 use yii\filters\VerbFilter;
 use yii\helpers\ArrayHelper;
@@ -41,6 +42,11 @@ use yii\web\ForbiddenHttpException;
 use yii\web\NotFoundHttpException;
 use yii\web\Response;
 
+/**
+ * Class SettingsController
+ * @package Da\User\Controller
+ * @property Module $module
+ */
 class SettingsController extends Controller
 {
     use ContainerAwareTrait;
@@ -105,11 +111,12 @@ class SettingsController extends Controller
                             'networks',
                             'privacy',
                             'gdprdelete',
+                            'consent',
                             'disconnect',
                             'delete',
                             'two-factor',
                             'two-factor-enable',
-                            'two-factor-disable'
+                            'two-factor-disable',
                         ],
                         'roles' => ['@'],
                     ],
@@ -347,9 +354,43 @@ class SettingsController extends Controller
         );
     }
 
+    public function actionConsent()
+    {
+        $user = Yii::$app->user->identity;
+
+        if (!!$user->gdpr_consent)
+            $this->redirect(['profile']);
+
+        $model = new DynamicModel(['gdpr_consent']);
+        $model->addRule('gdpr_consent', 'boolean');
+        $model->addRule('gdpr_consent', 'default', ['value' => 0, 'skipOnEmpty' => false]);
+        $model->addRule('gdpr_consent', 'compare', [
+            'compareValue' => true,
+            'message' => Yii::t('usuario', 'Your consent is required to work with this site'),
+            'when' => function () {
+                return $this->module->enableGDPRcompliance;
+            }
+        ]);
+
+        if ($model->load(Yii::$app->request->post()) && $model->validate()) {
+            $user->updateAttributes([
+                'gdpr_consent' => 1,
+                'gdpr_consent_date' => time()
+            ]);
+            $this->redirect(['profile']);
+        }
+
+        return $this->render('consent', [
+            'model' => $model,
+            'gdpr_consent_hint' => $this->module->getConsentMessage()
+        ]);
+
+    }
+
     public function actionDisconnect($id)
     {
         $this->disconnectSocialNetwork($id);
+
         return $this->redirect(['networks']);
     }
 
