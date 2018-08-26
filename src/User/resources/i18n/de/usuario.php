@@ -17,8 +17,10 @@
  * NOTE: this file must be saved in UTF-8 encoding.
  */
 return [
+    'According to the European General Data Protection Regulation (GDPR) we need your consent to work with your personal data.' => '',
     'Are you sure you wish the user to change their password at next login?' => '',
     'Back to privacy settings' => '',
+    'Data privacy' => '',
     'Data processing consent' => '',
     'Delete my account' => '',
     'Delete personal data' => '',
@@ -39,6 +41,7 @@ return [
     'Password age' => '',
     'Privacy' => '',
     'Privacy settings' => '',
+    'Submit' => '',
     'There was an error in saving user' => '',
     'This will disable two factor authentication. Are you sure?' => '',
     'This will remove your personal data from this site. You will no longer be able to sign in.' => '',
@@ -48,9 +51,11 @@ return [
     'Two factor authentication protects you against stolen credentials' => '',
     'Two factor authentication successfully enabled.' => '',
     'Unable to disable Two factor authentication.' => '',
+    'Unfortunately, you can not work with this site without giving us consent to process your data.' => '',
     'User will be required to change password at next login' => '',
     'You are about to delete all your personal data from this site.' => '',
     'Your consent is required to register' => '',
+    'Your consent is required to work with this site' => '',
     'Your password has expired, you must change it now' => '',
     'Your personal information has been removed' => '',
     'privacy policy' => '',
@@ -78,7 +83,6 @@ return [
     'Unable to disable two-factor authorization.' => '@@Unfähig die Zweifaktor-Authentifizierung zu deaktivieren.@@',
     'We couldn\'t re-send the mail to confirm your address. ' => '@@Wir konnte die Bestätigungs E-Mail nicht erneut versenden@@',
     'We have sent confirmation links to both old and new email addresses. ' => '@@Wir haben Bestätigungs E-Mails an die neue und alte E-Mail Adresse versandt.@@',
-    '{0, date, MMM dd, YYYY HH:mm}' => '@@@@',
     '(not set)' => '(nicht gesetzt)',
     'A confirmation message has been sent to your new email address' => 'Eine Bestätigungsnachricht wurde an Ihre neue E-Mail Adresse versandt',
     'A message has been sent to your email address. It contains a confirmation link that you must click to complete registration.' => 'Eine Nachricht wurde an Ihre E-Mail-Adresse gesendet. Sie enthält einen Bestätigungslink den Sie klicken müssen um die Registrierung abzuschließen.',
@@ -293,6 +297,7 @@ return [
     'Your confirmation token is invalid or expired' => 'Ihr Bestätigungs-Token ist falsch oder abgelaufen',
     'Your email address has been changed' => 'Ihre E-Mail Adresse wurde geändert',
     'Your profile has been updated' => 'Ihr Profil wurde gespeichert',
+    '{0, date, MMM dd, YYYY HH:mm}' => '@@@@',
     '{0, date, MMMM dd, YYYY HH:mm}' => '{0, date, dd. MMMM YYYY, HH:mm}',
     '{0} cannot be blank.' => '{0} darf nicht leer sein.',
 ];
