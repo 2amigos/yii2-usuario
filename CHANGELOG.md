@@ -1,6 +1,11 @@
 # CHANGELOG
 
-## 1.1.5 - Work in progress
+## 1.5.0 - Work in progress
+ - Fix: Fix condition in EmailChangeService (it was always false) (borisaeric)
+ - Fix #198: Updated translations by quique, bizley, TonisOrmisson, guogan, Dezinger, maxxer, wautvda, mrbig00
+ - Fix #209: Doc fix. allowAccountDelete default value is false (Dezinger)
+ - Fix #211: Migration boolean default value set to FALSE instead 0 (Dezinger)
+ - Fix #213: Migration sql syntax fix (Dezinger)
  - Ehn #131: 2FA libraries now optional (maxxer)
  - Ehn #187: Add GDPR features (Eseperio)
  - Enh #184: Add `last-login-ip` capture capability (kartik-v)
@@ -8,6 +13,7 @@
  - Fix #169: Fix bug in ReCaptchaComponent (BuTaMuH)
  - Fix #168: Fix spelling in russian language (EvgenyOrekhov)
  - Fix #195: UserCreateService: check if we're from web before setting flash message (maxxer)
+ - Enh: Improvements to the admin responsive design (wautvda)
  
 ## 1.1.4 - February 19, 2018
 - Enh: Check enableEmailConfirmation on registration (faenir)

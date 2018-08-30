@@ -76,8 +76,7 @@ If `true` it will enable password recovery process.
 
 #### allowAdminPasswordRecovery (type: `boolean`, default: `true`)
 
-If `true` and `allowPasswordRecovery` is false, it will enable administrator to send a password recovery email to a 
-user.
+If `true` it will enable administrator to send a password recovery email to a user.
 
 #### maxPasswordAge (type: `integer`, default: `null`)
 
@@ -98,7 +97,7 @@ class SiteController extends Controller
 ```
 This will redirect the user to their account page until the password has been updated.
 
-#### allowAccountDelete (type: `boolean`, default: `true`)
+#### allowAccountDelete (type: `boolean`, default: `false`)
 
 If `true` users will be able to remove their own accounts. 
 
