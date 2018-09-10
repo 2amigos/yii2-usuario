@@ -161,7 +161,7 @@ class User extends ActiveRecord implements IdentityInterface
     public function behaviors()
     {
         $behaviors = [
-            TimestampBehavior::className(),
+            TimestampBehavior::class,
         ];
 
         if ($this->module->enableGDPRcompliance) {
