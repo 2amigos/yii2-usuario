@@ -52,7 +52,7 @@ $this->title = Yii::t('usuario', 'Privacy settings');
                                     'data-confirm' => Yii::t('usuario', 'Are you sure? There is no going back'),
                                 ]
                             ) ?>
-                        <? else:
+                        <?php else:
                             echo Html::a(Yii::t('usuario', 'Delete'),
                                 ['/user/settings/gdprdelete'],
                                 [
