@@ -265,8 +265,12 @@ class SettingsController extends Controller
             $user = Yii::$app->user->identity;
             $data = [$properties, []];
 
+            $formatter = Yii::$app->formatter;
+            // override the default html-specific format for nulls
+            $formatter->nullDisplay = "";
+
             foreach ($properties as $property) {
-                $data[1][] = Yii::$app->formatter->asText(ArrayHelper::getValue($user, $property));
+                $data[1][] = $formatter->asText(ArrayHelper::getValue($user, $property));
             }
 
             array_walk($data[0], function (&$value, $key) {
