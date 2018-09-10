@@ -54,6 +54,9 @@ class SettingsController extends Controller
     protected $userQuery;
     protected $socialNetworkAccountQuery;
 
+    /** @var \Da\User\Module */
+    public $module;
+
     /**
      * SettingsController constructor.
      *

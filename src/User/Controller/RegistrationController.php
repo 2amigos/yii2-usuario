@@ -41,6 +41,9 @@ class RegistrationController extends Controller
     protected $userQuery;
     protected $socialNetworkAccountQuery;
 
+    /** @var \Da\User\Module */
+    public $module;
+
     /**
      * RegistrationController constructor.
      *

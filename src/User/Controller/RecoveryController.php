@@ -37,6 +37,9 @@ class RecoveryController extends Controller
     protected $userQuery;
     protected $tokenQuery;
 
+    /** @var \Da\User\Module */
+    public $module;
+
     /**
      * RecoveryController constructor.
      *

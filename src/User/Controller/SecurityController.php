@@ -36,6 +36,9 @@ class SecurityController extends Controller
 
     protected $socialNetworkAccountQuery;
 
+    /** @var \Da\User\Module */
+    public $module;
+
     /**
      * SecurityController constructor.
      *
