@@ -51,9 +51,9 @@ abstract class AbstractAuthItemController extends Controller
     {
         return [
             'access' => [
-                'class' => AccessControl::className(),
+                'class' => AccessControl::class,
                 'ruleConfig' => [
-                    'class' => AccessRuleFilter::className(),
+                    'class' => AccessRuleFilter::class,
                 ],
                 'rules' => [
                     [

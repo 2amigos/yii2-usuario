@@ -36,15 +36,15 @@ class RuleController extends Controller
     {
         return [
             'verbs' => [
-                'class' => VerbFilter::className(),
+                'class' => VerbFilter::class,
                 'actions' => [
                     'delete' => ['POST'],
                 ],
             ],
             'access' => [
-                'class' => AccessControl::className(),
+                'class' => AccessControl::class,
                 'ruleConfig' => [
-                    'class' => AccessRuleFilter::className(),
+                    'class' => AccessRuleFilter::class,
                 ],
                 'rules' => [
                     [
