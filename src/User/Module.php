@@ -22,7 +22,7 @@ class Module extends BaseModule
     /**
      * @var bool whether to enable european G.D.P.R. compliance.
      *           This will add a few elements to comply with european general data protection regulation.
-     *           This regulation affects to all companys in Europe a those companies outside that offer their
+     *           This regulation affects to all companies in Europe a those companies outside that offer their
      *           services to the E.U.
      *           List of elements that will be added when this is enabled:
      *           - Checkbox to request consent on register form
@@ -53,7 +53,7 @@ class Module extends BaseModule
         'profile.bio'
     ];
     /**
-     * @var string prefix to be used as a replacement when user requeste deletion of his data.
+     * @var string prefix to be used as a replacement when user requests deletion of his data.
      */
     public $GDPRanonymPrefix = 'GDPR';
     /**
