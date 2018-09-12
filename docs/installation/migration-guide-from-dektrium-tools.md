@@ -53,6 +53,18 @@ In `config/web.php` remove *module > rbac* configuration and change the *modules
 *  If you had `modelMap` customization you have to replace them with `classMap`.
 *  In your extended model replace the `BaseUser` inheritance from `dektrium\user\models\User` to `Da\User\Model\User`
 *  If you had controller remapping replace the inheritance from `dektrium\user\controllers\XX` to `Da\User\Controller\XX`
+*  Some properties has been renamed: from `enableConfirmation` to `enableEmailConfirmation`; from `enableGeneratingPassword` to `generatePasswords`
+*  Restore Identity url rule has been renamed: from `/user/admin/switch` to `/user/admin/switch-identity`
+*  Restore Identity session checker has changes: from
+```php
+if (Yii::$app->session->has(\dektrium\user\controllers\AdminController::ORIGINAL_USER_SESSION_KEY))
+```
+to
+```php
+/** @var Da\User\Module $module */
+$module = Yii::$app->getModule('user');
+if(Yii::$app->session->has($module->switchIdentitySessionKey))
+```
 
 ## Rbac migrations
 
