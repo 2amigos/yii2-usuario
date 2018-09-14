@@ -162,9 +162,6 @@ class GdprCest
         $this->_prepareModule(false, false,false);
         $I->amLoggedInAs(1);
         $I->amOnRoute('/user/settings/privacy');
-        $I->see('Not Found');
-        $I->amOnRoute('/user/settings/privacy');
-        $I->see('Not Found');$I->amOnRoute('/user/settings/privacy');
-        $I->see('Not Found');
+        $I->seeResponseCodeIs(404);
     }
 }
