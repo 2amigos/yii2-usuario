@@ -12,6 +12,8 @@
 
 namespace Da\User\Filter;
 
+use Da\User\Model\User;
+use Da\User\Module;
 use Yii;
 use yii\base\ActionFilter;
 
@@ -19,7 +21,9 @@ class PasswordAgeEnforceFilter extends ActionFilter
 {
     public function beforeAction($action)
     {
-        $maxPasswordAge = Yii::$app->getModule('user')->maxPasswordAge;
+        /** @var Module $module */
+        $module = Yii::$app->getModule('user');
+        $maxPasswordAge = $module->maxPasswordAge;
         // If feature is not set do nothing (or raise a configuration error?)
         if (is_null($maxPasswordAge)) {
             return parent::beforeAction($action);
@@ -28,7 +32,9 @@ class PasswordAgeEnforceFilter extends ActionFilter
             // Not our business
             return parent::beforeAction($action);
         }
-        if (Yii::$app->user->identity->password_age >= $maxPasswordAge) {
+        /** @var User $identity */
+        $identity = Yii::$app->user->identity;
+        if ($identity->password_age >= $maxPasswordAge) {
             // Force password change
             Yii::$app->getSession()->setFlash('warning', Yii::t('usuario', 'Your password has expired, you must change it now'));
             return Yii::$app->response->redirect(['/user/settings/account'])->send();
