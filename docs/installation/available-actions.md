@@ -14,8 +14,9 @@ The following is the list of action provided by the module:
 - **/user/settings/account**      Displays account settings form (email, username, password)
 - **/user/settings/networks**     Displays social network accounts settings page
 - **/user/settings/confirm**      Confirms a new email (requires *id* and *token* query params)
-- **/user/settings/privacy**      Displays GDPR data page
-- **/user/settings/gdprdelete**   Displays delete personal data page
+- **/user/settings/privacy**      Displays GDPR data page
+- **/user/settings/export**       Download personal data in a comma separated values format
+- **/user/settings/gdprdelete**   Displays delete personal data page
 - **/user/profile/show**          Displays user's profile (requires *id* query param)
 - **/user/admin/index**           Displays user management interface
 - **/user/admin/create**          Displays create user form
