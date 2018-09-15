@@ -64,7 +64,7 @@ class SecurityController extends Controller
     {
         return [
             'access' => [
-                'class' => AccessControl::className(),
+                'class' => AccessControl::class,
                 'rules' => [
                     [
                         'allow' => true,
@@ -79,7 +79,7 @@ class SecurityController extends Controller
                 ],
             ],
             'verbs' => [
-                'class' => VerbFilter::className(),
+                'class' => VerbFilter::class,
                 'actions' => [
                     'logout' => ['post'],
                 ],
@@ -94,7 +94,7 @@ class SecurityController extends Controller
     {
         return [
             'auth' => [
-                'class' => AuthAction::className(),
+                'class' => AuthAction::class,
                 // if user is not logged in, will try to log him in, otherwise
                 // will try to connect social account to user.
                 'successCallback' => Yii::$app->user->isGuest

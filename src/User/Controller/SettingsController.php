@@ -89,7 +89,7 @@ class SettingsController extends Controller
     {
         return [
             'verbs' => [
-                'class' => VerbFilter::className(),
+                'class' => VerbFilter::class,
                 'actions' => [
                     'disconnect' => ['post'],
                     'delete' => ['post'],
@@ -97,7 +97,7 @@ class SettingsController extends Controller
                 ],
             ],
             'access' => [
-                'class' => AccessControl::className(),
+                'class' => AccessControl::class,
                 'rules' => [
                     [
                         'allow' => true,

@@ -11,7 +11,7 @@
 
 namespace Da\User\Helper;
 
-use yii\base\InvalidParamException;
+use yii\base\InvalidArgumentException;
 
 class ClassMapHelper
 {
@@ -39,7 +39,7 @@ class ClassMapHelper
     /**
      * @param $key
      *
-     * @throws InvalidParamException
+     * @throws \InvalidArgumentException
      * @return mixed
      *
      */
@@ -48,6 +48,6 @@ class ClassMapHelper
         if (array_key_exists($key, $this->map)) {
             return $this->map[$key];
         }
-        throw new InvalidParamException('Unknown model map key: ' . $key);
+        throw new InvalidArgumentException('Unknown model map key: ' . $key);
     }
 }
