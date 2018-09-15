@@ -30,6 +30,7 @@ use Da\User\Query\UserQuery;
 use Da\User\Service\EmailChangeService;
 use Da\User\Service\TwoFactorQrCodeUriGeneratorService;
 use Da\User\Traits\ContainerAwareTrait;
+use Da\User\Traits\ModuleAwareTrait;
 use Da\User\Validator\AjaxRequestModelValidator;
 use Da\User\Validator\TwoFactorCodeValidator;
 use Yii;
@@ -44,6 +45,7 @@ use yii\web\Response;
 class SettingsController extends Controller
 {
     use ContainerAwareTrait;
+    use ModuleAwareTrait;
 
     /**
      * {@inheritdoc}
@@ -53,6 +55,7 @@ class SettingsController extends Controller
     protected $profileQuery;
     protected $userQuery;
     protected $socialNetworkAccountQuery;
+
 
     /**
      * SettingsController constructor.

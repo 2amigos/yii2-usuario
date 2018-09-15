@@ -19,6 +19,7 @@ use Da\User\Query\SocialNetworkAccountQuery;
 use Da\User\Service\SocialNetworkAccountConnectService;
 use Da\User\Service\SocialNetworkAuthenticateService;
 use Da\User\Traits\ContainerAwareTrait;
+use Da\User\Traits\ModuleAwareTrait;
 use Yii;
 use yii\authclient\AuthAction;
 use yii\base\InvalidConfigException;
@@ -33,8 +34,10 @@ use yii\widgets\ActiveForm;
 class SecurityController extends Controller
 {
     use ContainerAwareTrait;
+    use ModuleAwareTrait;
 
     protected $socialNetworkAccountQuery;
+
 
     /**
      * SecurityController constructor.
