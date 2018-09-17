@@ -20,14 +20,14 @@ $user = $I->grabFixture('user', 'unconfirmed');
 $I->fillField('#recoveryform-email', $user->email);
 $I->click('Continue');
 
-$I->see('An email has been sent with instructions for resetting your password');
+$I->see('An email with instructions to create a new password has been sent to ' . $user->email); // ... truncate full message text by email
 
 $I->amGoingTo('try to request recovery token for non-existing email');
 $I->amOnRoute('/user/recovery/request');
 $I->fillField('#recoveryform-email', 'any@email.com');
 $I->click('Continue');
 
-$I->see('An email with instructions to create a new password has been sent to ' . 'any@email.com'); // ... truncate full message text by email
+$I->see('An email with instructions to create a new password has been sent to ' . 'any@email.com');
 
 $I->amGoingTo('try to request recovery token');
 $I->amOnRoute('/user/recovery/request');
