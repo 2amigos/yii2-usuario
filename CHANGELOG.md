@@ -15,7 +15,8 @@
  - Fix #195: UserCreateService: check if we're from web before setting flash message (maxxer)
  - Enh: Improvements to the admin responsive design (wautvda)
  - Enh: Replace the deprecated InvalidParamException in ClassMapHelper (TonisOrmisson)
- 
+ - Fix #242: Add POST filter for `admin/force-password-change` action (bscheshirwork)
+
 ## 1.1.4 - February 19, 2018
 - Enh: Check enableEmailConfirmation on registration (faenir)
 - Fix #154: Fix DateTime constructor with Unix timestamps (tonydspaniard)
