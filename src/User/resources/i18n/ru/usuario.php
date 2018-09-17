@@ -81,6 +81,7 @@ to facilitate the operation of this site. For more information read our {privacy
     'Account settings' => 'Настройки аккаунта',
     'Already registered? Sign in!' => 'Уже зарегистрированы? Войдите!',
     'An email has been sent with instructions for resetting your password' => 'Вам отправлено письмо с инструкциями по смене пароля',
+    'An email with instructions to create a new password has been sent to {email} if it is associated with an {appName} account. Your existing password has not been changed.' => 'Сообщение с инструкциями по созданию нового пароля было отправлено на адрес {email}, если он привязан к учетной записи {appName}. Ваш текущий пароль изменен не был.',
     'An error occurred processing your request' => 'Во время выполнения запроса произошла ошибка',
     'Are you sure you want to block this user?' => 'Вы действительно хотите заблокировать этого пользователя?',
     'Are you sure you want to confirm this user?' => 'Вы уверены, что хотите подтвердить аккаунт пользователя?',

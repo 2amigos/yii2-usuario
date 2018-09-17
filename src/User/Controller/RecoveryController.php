@@ -101,15 +101,15 @@ class RecoveryController extends Controller
 
             if ($this->make(PasswordRecoveryService::class, [$form->email, $mailService])->run()) {
                 $this->trigger(FormEvent::EVENT_AFTER_REQUEST, $event);
-
-                return $this->render(
-                    '/shared/message',
-                    [
-                        'title' => Yii::t('usuario', 'Recovery message sent'),
-                        'module' => $this->module,
-                    ]
-                );
             }
+
+            return $this->render(
+                '/shared/message',
+                [
+                    'title' => Yii::t('usuario', 'Recovery message sent'),
+                    'module' => $this->module,
+                ]
+            );
         }
 
         return $this->render('request', ['model' => $form]);
