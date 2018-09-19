@@ -16,7 +16,8 @@
  - Enh: Improvements to the admin responsive design (wautvda)
  - Enh: Add controller module class reference (TonisOrmisson)
  - Enh: Replace the deprecated InvalidParamException in ClassMapHelper (TonisOrmisson)
- 
+ - Fix #242: Add POST filter for `admin/force-password-change` action (bscheshirwork)
+
 ## 1.1.4 - February 19, 2018
 - Enh: Check enableEmailConfirmation on registration (faenir)
 - Fix #154: Fix DateTime constructor with Unix timestamps (tonydspaniard)

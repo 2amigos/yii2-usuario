@@ -86,7 +86,8 @@ class AdminController extends Controller
                     'confirm' => ['post'],
                     'block' => ['post'],
                     'switch-identity' => ['post'],
-                    'password-reset' => ['post']
+                    'password-reset' => ['post'],
+                    'force-password-change' => ['post'],
                 ],
             ],
             'access' => [
