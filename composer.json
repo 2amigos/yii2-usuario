@@ -80,7 +80,8 @@
             "*": "auto"
         },
         "fxp-asset": {
-            "enabled": false        }
+            "enabled": false
+        }
     },
     "conflict": {
         "dektrium/yii2-rbac": "*",
