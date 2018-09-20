@@ -25,6 +25,7 @@ use Da\User\Service\UserBlockService;
 use Da\User\Service\UserConfirmationService;
 use Da\User\Service\UserCreateService;
 use Da\User\Traits\ContainerAwareTrait;
+use Da\User\Traits\ModuleAwareTrait;
 use Da\User\Validator\AjaxRequestModelValidator;
 use Yii;
 use yii\base\Module;
@@ -37,6 +38,7 @@ use yii\web\Controller;
 class AdminController extends Controller
 {
     use ContainerAwareTrait;
+    use ModuleAwareTrait;
 
     /**
      * @var UserQuery
@@ -84,7 +86,8 @@ class AdminController extends Controller
                     'confirm' => ['post'],
                     'block' => ['post'],
                     'switch-identity' => ['post'],
-                    'password-reset' => ['post']
+                    'password-reset' => ['post'],
+                    'force-password-change' => ['post'],
                 ],
             ],
             'access' => [
@@ -300,9 +303,7 @@ class AdminController extends Controller
 
     public function actionSwitchIdentity($id = null)
     {
-        /** @var \Da\User\Module $module */
-        $module = $this->module;
-        if (false === $module->enableSwitchIdentities) {
+        if (false === $this->module->enableSwitchIdentities) {
             Yii::$app->getSession()->setFlash('danger', Yii::t('usuario', 'Switch identities is disabled.'));
 
             return $this->redirect(['index']);

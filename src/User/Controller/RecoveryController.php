@@ -22,6 +22,7 @@ use Da\User\Query\UserQuery;
 use Da\User\Service\PasswordRecoveryService;
 use Da\User\Service\ResetPasswordService;
 use Da\User\Traits\ContainerAwareTrait;
+use Da\User\Traits\ModuleAwareTrait;
 use Da\User\Validator\AjaxRequestModelValidator;
 use Yii;
 use yii\base\InvalidConfigException;
@@ -33,9 +34,11 @@ use yii\web\NotFoundHttpException;
 class RecoveryController extends Controller
 {
     use ContainerAwareTrait;
+    use ModuleAwareTrait;
 
     protected $userQuery;
     protected $tokenQuery;
+
 
     /**
      * RecoveryController constructor.
