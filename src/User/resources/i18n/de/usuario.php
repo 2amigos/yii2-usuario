@@ -17,6 +17,7 @@
  * NOTE: this file must be saved in UTF-8 encoding.
  */
 return [
+    'An email with instructions to create a new password has been sent to {email} if it is associated with an {appName} account. Your existing password has not been changed.' => '',
     'Are you sure you wish the user to change their password at next login?' => '',
     'Back to privacy settings' => '',
     'Data processing consent' => '',
@@ -55,6 +56,7 @@ return [
     'Your personal information has been removed' => '',
     'privacy policy' => '',
     'A message has been sent to your email address. ' => '@@Eine Nachricht wurde an ihre E-Mail Adresse versandt@@',
+    'An email has been sent with instructions for resetting your password' => '@@Eine E-Mail mit den weiteren Schritten zur Passwort-Wiederherstellung wurde versandt@@',
     'Awesome, almost there. ' => '@@Fast geschafft. @@',
     'Class "{0}" does not exist' => '@@Klasse "{0}" existiert nicht@@',
     'Disable Two-Factor Auth' => '@@Zweifaktor-Authentifizierung deaktivieren@@',
@@ -78,7 +80,6 @@ return [
     'Unable to disable two-factor authorization.' => '@@Unfähig die Zweifaktor-Authentifizierung zu deaktivieren.@@',
     'We couldn\'t re-send the mail to confirm your address. ' => '@@Wir konnte die Bestätigungs E-Mail nicht erneut versenden@@',
     'We have sent confirmation links to both old and new email addresses. ' => '@@Wir haben Bestätigungs E-Mails an die neue und alte E-Mail Adresse versandt.@@',
-    '{0, date, MMM dd, YYYY HH:mm}' => '@@@@',
     '(not set)' => '(nicht gesetzt)',
     'A confirmation message has been sent to your new email address' => 'Eine Bestätigungsnachricht wurde an Ihre neue E-Mail Adresse versandt',
     'A message has been sent to your email address. It contains a confirmation link that you must click to complete registration.' => 'Eine Nachricht wurde an Ihre E-Mail-Adresse gesendet. Sie enthält einen Bestätigungslink den Sie klicken müssen um die Registrierung abzuschließen.',
@@ -90,7 +91,6 @@ return [
     'Account details have been updated' => 'Kontodetails gespeichert',
     'Account settings' => 'Kontoeinstellungen',
     'Already registered? Sign in!' => 'Bereits registriert? Zur Anmeldung!',
-    'An email has been sent with instructions for resetting your password' => 'Eine E-Mail mit den weiteren Schritten zur Passwort-Wiederherstellung wurde versandt',
     'An error occurred processing your request' => 'Es ist ein Fehler aufgetreten',
     'Are you sure you want to block this user?' => 'Sind Sie sicher, dass Sie diesen Benutzer blockieren wollen?',
     'Are you sure you want to confirm this user?' => 'Sind Sie sicher, dass Sie diesen Benutzer bestätigen wollen?',
@@ -293,6 +293,7 @@ return [
     'Your confirmation token is invalid or expired' => 'Ihr Bestätigungs-Token ist falsch oder abgelaufen',
     'Your email address has been changed' => 'Ihre E-Mail Adresse wurde geändert',
     'Your profile has been updated' => 'Ihr Profil wurde gespeichert',
+    '{0, date, MMM dd, YYYY HH:mm}' => '@@@@',
     '{0, date, MMMM dd, YYYY HH:mm}' => '{0, date, dd. MMMM YYYY, HH:mm}',
     '{0} cannot be blank.' => '{0} darf nicht leer sein.',
 ];
