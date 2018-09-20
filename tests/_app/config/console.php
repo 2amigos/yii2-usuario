@@ -6,6 +6,8 @@ return [
     'aliases' => [
         '@Da/User' => dirname(dirname(dirname(__DIR__))) . '/src/User',
         '@tests' => dirname(dirname(__DIR__)),
+        '@bower' => '@vendor/bower-asset',
+        '@npm'   => '@vendor/npm-asset',
     ],
     'components' => [
         'log' => null,
