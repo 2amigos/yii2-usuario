@@ -15,6 +15,7 @@
  - Fix #195: UserCreateService: check if we're from web before setting flash message (maxxer)
  - Enh: Improvements to the admin responsive design (wautvda)
  - Enh: Replace the deprecated InvalidParamException in ClassMapHelper (TonisOrmisson)
+ - Enh #249: Show message `email send if possible` any time on reset password request (bscheshirwork)
  
 ## 1.1.4 - February 19, 2018
 - Enh: Check enableEmailConfirmation on registration (faenir)
