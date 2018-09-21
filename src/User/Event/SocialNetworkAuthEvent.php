@@ -15,6 +15,13 @@ use Da\User\Model\SocialNetworkAccount;
 use yii\authclient\ClientInterface;
 use yii\base\Event;
 
+/**
+ * Class SocialNetworkAuthEvent
+ * @package Da\User\Event
+ *
+ * @property SocialNetworkAccount $account
+ * @property ClientInterface $client
+ */
 class SocialNetworkAuthEvent extends Event
 {
     const EVENT_BEFORE_AUTHENTICATE = 'beforeAuthenticate';

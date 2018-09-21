@@ -15,6 +15,13 @@ use Da\User\Form\RecoveryForm;
 use Da\User\Model\Token;
 use yii\base\Event;
 
+/**
+ * Class ResetPasswordEvent
+ * @package Da\User\Event
+ *
+ * @property Token $token
+ * @property RecoveryForm $form
+ */
 class ResetPasswordEvent extends Event
 {
     const EVENT_BEFORE_TOKEN_VALIDATE = 'beforeTokenValidate';

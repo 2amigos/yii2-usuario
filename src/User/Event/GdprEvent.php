@@ -14,6 +14,12 @@ namespace Da\User\Event;
 use Da\User\Model\User;
 use yii\base\Event;
 
+/**
+ * Class GdprEvent
+ * @package Da\User\Event
+ *
+ * @property User $user
+ */
 class GdprEvent extends Event
 {
 

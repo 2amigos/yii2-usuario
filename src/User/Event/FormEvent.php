@@ -14,6 +14,12 @@ namespace Da\User\Event;
 use yii\base\Event;
 use yii\base\Model;
 
+/**
+ * Class FormEvent
+ * @package Da\User\Event
+ *
+ * @property Model $form
+ */
 class FormEvent extends Event
 {
     const EVENT_BEFORE_REQUEST = 'beforeRequest';
