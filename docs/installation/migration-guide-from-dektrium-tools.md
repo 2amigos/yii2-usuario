@@ -65,6 +65,10 @@ to
 $module = Yii::$app->getModule('user');
 if(Yii::$app->session->has($module->switchIdentitySessionKey))
 ```
+* If you use event of Controllers see [events](../events) chapter of this docs. **All** of relative controller constant has been move to events class:  
+from `\dektrium\user\controllers\RecoveryController::EVENT_AFTER_REQUEST` to `\Da\User\Event\FormEvent::EVENT_AFTER_REQUEST`,   
+from `\dektrium\user\controllers\RecoveryController::EVENT_AFTER_RESET` to `\Da\User\Event\ResetPasswordEvent::EVENT_AFTER_RESET`, etc.  
+Map of constants can be find in [events](../events) chapter of this docs. 
 
 ## Rbac migrations
 
