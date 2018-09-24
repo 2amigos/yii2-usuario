@@ -68,7 +68,7 @@ class GdprCest
         $module = Yii::$app->getModule('user');
         $module->enableEmailConfirmation = $emailConfirmation;
         $module->generatePasswords = $generatePasswords;
-        $module->enableGDPRcompliance = $enableGdpr;
+        $module->enableGdprCompliance = $enableGdpr;
     }
 
     protected function register(FunctionalTester $I, $email, $username = null, $password = null, $gdpr_consent = true)
