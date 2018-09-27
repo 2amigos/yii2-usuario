@@ -29,12 +29,12 @@ class Module extends BaseModule
      *           - Forgot me button in profile view.
      *           - Download my data button in profile
      */
-    public $enableGDPRcompliance = false;
+    public $enableGdprCompliance = false;
     /**
      * @var null|array|string with the url to privacy policy.
      *                        Must be in the same format as yii/helpers/Url::to requires.
      */
-    public $GDPRprivacyPolicyUrl = null;
+    public $gdprPrivacyPolicyUrl = null;
     /**
      * @var array with the name of the user identity properties to be included when user request download of his data.
      *            Names can include relations like `profile.name`.
@@ -42,7 +42,7 @@ class Module extends BaseModule
      *            > The data subject shall have the right to receive the personal data concerning him or her, which he
      *            > or she has provided to a controller, in a structured, commonly used and machine-readable format
      */
-    public $GDPRexportProperties = [
+    public $gdprExportProperties = [
         'email',
         'username',
         'profile.public_email',
@@ -55,7 +55,7 @@ class Module extends BaseModule
     /**
      * @var string prefix to be used as a replacement when user requests deletion of his data.
      */
-    public $GDPRanonymPrefix = 'GDPR';
+    public $gdprAnonymizePrefix = 'GDPR';
     /**
      * @var bool whether to enable two factor authentication or not
      */

@@ -5,8 +5,8 @@ The General Data Protection Regulation (GDPR) (EU) 2016/679 is a regulation in E
 
 ## Enable GDPR
 
-To enable support in yii2-usuario set `enableGDPRcompliance` to `true` and set
-  `GDPRprivacyPolicyUrl` with an url pointing to your privacy policy.
+To enable support in yii2-usuario set `enableGdprCompliance` to `true` and set
+  `gdprPrivacyPolicyUrl` with an url pointing to your privacy policy.
 
 ### At this moment a few measures apply to your app:
 
@@ -27,7 +27,7 @@ GDPR says: [Article 20](https://gdpr.algolia.com/gdpr-article-20)
 Users now have a privacy page in their account settings where they can export his/her personal data
 in a csv file.
 If you collect additional personal information you can to export by adding to
-`GDPRexportProperties`.
+`gdprExportProperties`.
 > Export use `ArrayHelper::getValue()` to extract information, so you can use links to relations.
 
 
@@ -41,7 +41,7 @@ The behavior differs depending module configuration.
 
 If  `$allowAccountDelete` is set to `true` the account will be fully deleted when clicking *Delete* button,
 while when if that setting is set to `false` the module will remove social network connections and
-replace the personal data with a custom alias defined in `$GDPRanonymPrefix`.
+replace the personal data with a custom alias defined in `$gdprAnonymizePrefix`.
 
 The account will be blocked and marked as `gdpr_deleted`.
 
