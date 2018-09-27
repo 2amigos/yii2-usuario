@@ -82,7 +82,7 @@ class RegistrationForm extends Model
                 'compareValue' => true,
                 'message' => Yii::t('usuario', 'Your consent is required to register'),
                 'when' => function () {
-                    return $this->module->enableGDPRcompliance;
+                    return $this->module->enableGdprCompliance;
                 }]
         ];
     }
@@ -106,7 +106,7 @@ class RegistrationForm extends Model
             'gdpr_consent' => Yii::t('usuario', 'I agree processing of my personal data and the use of cookies to facilitate the operation of this site. For more information read our {privacyPolicy}',
                 [
                     'privacyPolicy' => Html::a(Yii::t('usuario', 'privacy policy'),
-                        $this->module->GDPRprivacyPolicyUrl,
+                        $this->module->gdprPrivacyPolicyUrl,
                         ['target' => '_blank']
                     )
                 ])
