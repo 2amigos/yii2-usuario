@@ -12,14 +12,14 @@ Setting this attribute will allow users to configure their login process with tw
 By default, Google Authenticator App for two-factor authentication cycles in periods of 30 seconds. In order to allow 
 a bigger period so to avoid out of sync issues.
 
-#### enableGDPRcompliance (type: `boolean`, default: `false`)
+#### enableGdprCompliance (type: `boolean`, default: `false`)
 
 Setting this attribute enables a serie of measures to comply with EU GDPR regulation, like data consent, right to be forgotten and data portability.
 
-#### GDPRprivacyPolicyUrl (type: `array`, default: null)
+#### gdprPrivacyPolicyUrl (type: `array`, default: null)
 The link to privacy policy. This will be used on registration form as "read our pivacy policy". It must follow the same format as `yii\helpers\Url::to`
 
-#### GDPRexportProperties (type: `array`)
+#### gdprExportProperties (type: `array`)
 
 An array with the name of the user identity properties to be included when user request download of his data.
 Names can include relations like `profile.name`.
@@ -39,7 +39,7 @@ Defaults to:
 ```
 
 
-#### GDPRanonymPrefix (type: `string`, default: `GDPR`)
+#### gdprAnonymizePrefix (type: `string`, default: `GDPR`)
 Prefix to be used as a replacement when user requeste deletion of his data
 
 

@@ -45,7 +45,7 @@ $this->params['breadcrumbs'][] = $this->title;
                     <?= $form->field($model, 'password')->passwordInput() ?>
                 <?php endif ?>
 
-                <?php if ($module->enableGDPRcompliance): ?>
+                <?php if ($module->enableGdprCompliance): ?>
                     <?= $form->field($model, 'gdpr_consent')->checkbox(['value' => 1]) ?>
                 <?php endif ?>
 
