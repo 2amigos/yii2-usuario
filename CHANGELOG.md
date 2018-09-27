@@ -18,6 +18,8 @@
  - Enh: Replace the deprecated InvalidParamException in ClassMapHelper (TonisOrmisson)
  - Fix #242: Add POST filter for `admin/force-password-change` action (bscheshirwork)
  - Enh #249: Show message `email send if possible` any time on reset password request (bscheshirwork)
+ - Fix #252: Delete check for unexpected property `allowPasswordRecovery` for resend email by admin (bscheshirwork)
+ - Fix #254: Rename `GDPR` properties to `lowerCamelCase` style (bscheshirwork)
 
 ## 1.1.4 - February 19, 2018
 - Enh: Check enableEmailConfirmation on registration (faenir)
