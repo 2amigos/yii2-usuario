@@ -152,7 +152,7 @@ $module = Yii::$app->getModule('user');
                         return null;
                     },
                     'reset' => function ($url, $model) use ($module) {
-                        if(!$module->allowPasswordRecovery && $module->allowAdminPasswordRecovery) {
+                        if($module->allowAdminPasswordRecovery) {
                             return Html::a(
                                 '<span class="glyphicon glyphicon-flash"></span>',
                                 ['/user/admin/password-reset', 'id' => $model->id],
