@@ -5,7 +5,39 @@ Maybe you need to override the default's functionality of the module's controlle
 Yii2 Modules have an attribute named `controllerMap` that you can configure with your very own controllers.
 
 Please, before you override a controller's action, make sure that it won't be enough with using the 
-(controller's events)[../events/controller-events.md].
+[events](../events). For example you can use event for redirect after finish confirmation or recovery:
+
+```php
+    'modules' => [
+        'user' => [
+            'controllerMap' => [
+               'recovery' => [
+                    'class' => \Da\User\Controller\RecoveryController::class,
+                    'on ' . \Da\User\Event\FormEvent::EVENT_AFTER_REQUEST => function (\Da\User\Event\FormEvent $event) {
+                        \Yii::$app->controller->redirect(['/user/security/login']);
+                        \Yii::$app->end();
+                    },
+                    'on ' . \Da\User\Event\ResetPasswordEvent::EVENT_AFTER_RESET => function (\Da\User\Event\ResetPasswordEvent $event) {
+                        if ($event->token->user ?? false) {
+                            \Yii::$app->user->login($event->token->user);
+                        }
+                        \Yii::$app->controller->redirect(\Yii::$app->getUser()->getReturnUrl());
+                        \Yii::$app->end();
+                    },
+                ],
+                'registration' => [
+                    'class' => \Da\User\Controller\RegistrationController::class,
+                    'on ' . \Da\User\Event\FormEvent::EVENT_AFTER_REGISTER => function (\Da\User\Event\FormEvent $event) {
+                        \Yii::$app->controller->redirect(['/user/security/login']);
+                        \Yii::$app->end();
+                    },
+                    'on ' . \Da\User\Event\FormEvent::EVENT_AFTER_RESEND => function (\Da\User\Event\FormEvent $event) {
+                        \Yii::$app->controller->redirect(['/user/security/login']);
+                        \Yii::$app->end();
+                    },
+                ],
+...
+```
 
 > See more about this attribute on 
 > [ The Definitive Guide to Yii 2.0](http://www.yiiframework.com/doc-2.0/guide-structure-controllers.html#controller-map) 
