@@ -17,6 +17,7 @@
  * NOTE: this file must be saved in UTF-8 encoding.
  */
 return [
+    'Two factor authentication protects you in case of stolen credentials' => '',
     '(not set)' => '(não selecionado)',
     'A confirmation message has been sent to your new email address' => 'Foi enviada uma mensagem de confirmação para o seu endereço de email',
     'A message has been sent to your email address. It contains a confirmation link that you must click to complete registration.' => 'Foi enviada uma mensagem para o seu endereço de email com o link de confirmação para completar o seu registo.',
@@ -204,7 +205,6 @@ return [
     'Two Factor Authentication (2FA)' => 'Autenticação de Dois Passos (2FA)',
     'Two factor authentication code' => 'Código da autenticação de dois passos',
     'Two factor authentication has been disabled.' => 'Autenticação de dois passos foi desativada',
-    'Two factor authentication protects you against stolen credentials' => 'Autenticação de dois passos protege-o do roubo de credenciais de acesso',
     'Two factor authentication successfully enabled.' => 'Autenticação de dois passos ativada com sucesso',
     'Unable to confirm user. Please, try again.' => 'Não foi possível confirmar utilizador. Por favor tente novamente.',
     'Unable to create an account.' => 'Não foi possível criar uma conta.',
@@ -285,6 +285,7 @@ return [
     'Rule class must extend "yii\\rbac\\Rule"' => '@@@@',
     'This will disable two-factor auth. Are you sure?' => '@@@@',
     'Two Factor Authentication' => '@@@@',
+    'Two factor authentication protects you against stolen credentials' => '@@Autenticação de dois passos protege-o do roubo de credenciais de acesso@@',
     'Two factor successfully enabled.' => '@@@@',
     'Two-Factor Authentication' => '@@@@',
     'Two-factor auth protects you against stolen credentials' => '@@@@',

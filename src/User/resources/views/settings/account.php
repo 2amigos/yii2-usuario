@@ -100,7 +100,7 @@ $module = Yii::$app->getModule('user');
                 </div>
                 <div class="panel-body">
                     <p>
-                        <?= Yii::t('usuario', 'Two factor authentication protects you against stolen credentials') ?>.
+                        <?= Yii::t('usuario', 'Two factor authentication protects you in case of stolen credentials') ?>.
                     </p>
                     <div class="text-right">
                         <?= Html::a(
