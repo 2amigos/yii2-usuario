@@ -159,7 +159,7 @@ class SettingsController extends Controller
 
     public function actionPrivacy()
     {
-        if (!$this->module->enableGDPRcompliance)
+        if (!$this->module->enableGdprCompliance)
             throw new NotFoundHttpException();
 
         return $this->render('privacy', [
@@ -169,7 +169,7 @@ class SettingsController extends Controller
 
     public function actionGdprdelete()
     {
-        if (!$this->module->enableGDPRcompliance)
+        if (!$this->module->enableGdprCompliance)
             throw new NotFoundHttpException();
 
         /** @var GdprDeleteForm $form */
@@ -192,7 +192,7 @@ class SettingsController extends Controller
 
                 /* @var $security SecurityHelper */
                 $security = $this->make(SecurityHelper::class);
-                $anonymReplacement = $this->module->GDPRanonymPrefix . $user->id;
+                $anonymReplacement = $this->module->gdprAnonymizePrefix . $user->id;
 
                 $user->updateAttributes([
                     'email' => $anonymReplacement . "@example.com",
@@ -260,11 +260,11 @@ class SettingsController extends Controller
      */
     public function actionExport()
     {
-        if (!$this->module->enableGDPRcompliance)
+        if (!$this->module->enableGdprCompliance)
             throw new NotFoundHttpException();
 
         try {
-            $properties = $this->module->GDPRexportProperties;
+            $properties = $this->module->gdprExportProperties;
             $user = Yii::$app->user->identity;
             $data = [$properties, []];
 
