@@ -17,8 +17,10 @@
  * NOTE: this file must be saved in UTF-8 encoding.
  */
 return [
+    'An email with instructions to create a new password has been sent to {email} if it is associated with an {appName} account. Your existing password has not been changed.' => '',
     'Two factor authentication protects you in case of stolen credentials' => '',
     'A message has been sent to your email address. ' => '@@Uma mensagem foi enviada para o seu endereço de e-mail.@@',
+    'An email has been sent with instructions for resetting your password' => '@@Um e-mail foi enviado com instruções para redefinir sua senha@@',
     'Awesome, almost there. ' => '@@Incrível, quase lá.@@',
     'Class "{0}" does not exist' => '@@A classe "{0}" não existe@@',
     'Disable Two-Factor Auth' => '@@Desabilitar autenticação em dois fatores@@',
@@ -54,7 +56,6 @@ return [
     'Account details have been updated' => 'Os detalhes da conta foram atualizados',
     'Account settings' => 'Configurações da conta',
     'Already registered? Sign in!' => 'Já registrado? Acesse!',
-    'An email has been sent with instructions for resetting your password' => 'Um e-mail foi enviado com instruções para redefinir sua senha',
     'An error occurred processing your request' => 'Ocorreu um erro ao processar seu pedido',
     'Are you sure you want to block this user?' => 'Tem certeza de que deseja bloquear esse usuário?',
     'Are you sure you want to confirm this user?' => 'Tem certeza de que deseja confirmar esse usuário?',
