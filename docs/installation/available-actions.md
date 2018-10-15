@@ -20,7 +20,7 @@ The following is the list of action provided by the module:
 | **/user/settings/delete** | Delete self account | | POST only
 | **/user/settings/disconnect** | Disconnect social account | | POST only
 | **/user/settings/export** | Download personal data in a comma separated values format
-| **/user/settings/gdprdelete** | Displays delete personal data page |
+| **/user/settings/gdpr-delete** | Displays delete personal data page |
 | **/user/settings/networks** | Displays social network accounts settings page
 | **/user/settings/privacy** | Displays GDPR data page
 | **/user/settings/profile** | Displays profile settings form
