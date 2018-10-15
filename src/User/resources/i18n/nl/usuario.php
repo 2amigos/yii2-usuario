@@ -17,9 +17,8 @@
  * NOTE: this file must be saved in UTF-8 encoding.
  */
 return [
-    'An email with instructions to create a new password has been sent to {email} if it is associated with an {appName} account. Your existing password has not been changed.' => '',
+    'Two factor authentication protects you in case of stolen credentials' => '',
     'A message has been sent to your email address. ' => '@@Een bericht werd naar jouw emailadres verzonden@@',
-    'An email has been sent with instructions for resetting your password' => '@@Er werd een email verstuurd met instructies om jouw wachtwoord te resetten@@',
     'Awesome, almost there. ' => '@@Super, bijna klaar.@@',
     'Class "{0}" does not exist' => '@@Class "{0} bestaat niet@@',
     'Disable Two-Factor Auth' => '@@Tweetraps authenticatie uitschakelen@@',
@@ -34,6 +33,7 @@ return [
     'Rule class must extend "yii\\rbac\\Rule"' => '@@Regel klasse moet worden uitgebreid met "yii\\rbac\\Rule"@@',
     'This will disable two-factor auth. Are you sure?' => '@@Dit zal de tweetraps authenticatie uitschakelen. Ben je zeker?@@',
     'Two Factor Authentication' => '@@Tweetraps authenticatie@@',
+    'Two factor authentication protects you against stolen credentials' => '@@Tweetraps authenticatie beschermt je tegen gestolen inloggegevens@@',
     'Two factor successfully enabled.' => '@@Tweetraps authenticatie ingeschakeld@@',
     'Two-Factor Authentication' => '@@Tweetraps authenticatie@@',
     'Two-factor auth protects you against stolen credentials' => '@@Tweetraps authenticatie beschermt je tegen gestolen authenticatie gegevens@@',
@@ -54,6 +54,7 @@ return [
     'Account details have been updated' => 'Account details werden geupdate',
     'Account settings' => 'Account instellingen',
     'Already registered? Sign in!' => 'Reeds geregistreerd? Log in!',
+    'An email has been sent with instructions for resetting your password' => 'Er werd een email verstuurd met instructies om jouw wachtwoord te resetten',
     'An error occurred processing your request' => 'Een error trad op terwijl we uw aanvraag verwerkten',
     'Are you sure you want to block this user?' => 'Ben je zeker dat je deze gebruiker wil blokkeren?',
     'Are you sure you want to confirm this user?' => 'Ben je zeker dat je deze gebruiker wil bevestigen?',
@@ -229,7 +230,6 @@ return [
     'Two Factor Authentication (2FA)' => 'Tweetraps authenticatie (2FA)',
     'Two factor authentication code' => 'Tweetraps authenticatie code',
     'Two factor authentication has been disabled.' => 'Tweetraps authenticatie is uitgeschakeld',
-    'Two factor authentication protects you against stolen credentials' => 'Tweetraps authenticatie beschermt je tegen gestolen inloggegevens',
     'Two factor authentication successfully enabled.' => 'Tweetraps authenticatie met succes ingeschakeld',
     'Unable to confirm user. Please, try again.' => 'Onmogelijk om de gebruiker te bevestigen. Probeer opnieuw.',
     'Unable to create an account.' => 'Onmogelijk om een account aan te maken.',

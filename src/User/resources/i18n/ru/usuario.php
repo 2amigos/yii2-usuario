@@ -17,14 +17,12 @@
  * NOTE: this file must be saved in UTF-8 encoding.
  */
 return [
+    'Two factor authentication protects you in case of stolen credentials' => '',
     'A message has been sent to your email address. ' => '@@Сообщение было отправлено на вашу электронную почту@@',
-    'An email has been sent with instructions for resetting your password' => '@@Вам отправлено письмо с инструкциями по смене пароля@@',
     'Awesome, almost there. ' => '@@Замечательно, почти готово!@@',
     'Class "{0}" does not exist' => '@@Класс "{0}" не найден@@',
     'Disable Two-Factor Auth' => '@@Отключить двухфакторную авторизацию@@',
     'Enable Two-factor auth' => '@@Включить двухфакторную авторизацию@@',
-    'I aggree processing of my personal data and the use of cookies 
-to facilitate the operation of this site. For more information read our {privacyPolicy}' => '@@@@',
     'I aggree processing of my personal data and the use of cookies to facilitate the operation of this site. For more information read our {privacyPolicy}' => '@@@@',
     'Invalid two-factor code' => '@@Неверный код двухфакторной авторизации@@',
     'Last login' => '@@Последний вход@@',
@@ -33,6 +31,7 @@ to facilitate the operation of this site. For more information read our {privacy
     'Rule class must extend "yii\\rbac\\Rule"' => '@@Класс правила должен наследоваться от "yii\\rbac\\Rule"@@',
     'This will disable two-factor auth. Are you sure?' => '@@Вы уверены, что хотите отключить двухфакторную авторизацию?@@',
     'Two Factor Authentication' => '@@Двухфакторная авторизация@@',
+    'Two factor authentication protects you against stolen credentials' => '@@Двухфакторная авторизация защитит вас от кражи параметров доступа@@',
     'Two factor successfully enabled.' => '@@Включена двухфакторная авторизация.@@',
     'Two-Factor Authentication' => '@@Двухфакторная авторизация@@',
     'Two-factor auth protects you against stolen credentials' => '@@Двухфакторная авторизация предотвращает кражу ваших данных для входа.@@',
@@ -53,7 +52,7 @@ to facilitate the operation of this site. For more information read our {privacy
     'Account details have been updated' => 'Аккаунт был обновлен',
     'Account settings' => 'Настройки аккаунта',
     'Already registered? Sign in!' => 'Уже зарегистрированы? Войдите!',
-    'An email with instructions to create a new password has been sent to {email} if it is associated with an {appName} account. Your existing password has not been changed.' => 'Сообщение с инструкциями по созданию нового пароля было отправлено на адрес {email}, если он привязан к учетной записи {appName}. Ваш текущий пароль изменен не был.',
+    'An email has been sent with instructions for resetting your password' => 'Вам отправлено письмо с инструкциями по смене пароля',
     'An error occurred processing your request' => 'Во время выполнения запроса произошла ошибка',
     'Are you sure you want to block this user?' => 'Вы действительно хотите заблокировать этого пользователя?',
     'Are you sure you want to confirm this user?' => 'Вы уверены, что хотите подтвердить аккаунт пользователя?',
@@ -229,7 +228,6 @@ to facilitate the operation of this site. For more information read our {privacy
     'Two Factor Authentication (2FA)' => 'Двухфакторная авторизация (2FA)',
     'Two factor authentication code' => 'Код двухфакторной авторизации',
     'Two factor authentication has been disabled.' => 'Двухфакторная авторизация отключена.',
-    'Two factor authentication protects you against stolen credentials' => 'Двухфакторная авторизация защитит вас от кражи параметров доступа',
     'Two factor authentication successfully enabled.' => 'Двухфакторная авторизация успешно включена.',
     'Unable to confirm user. Please, try again.' => 'Не удалось активировать пользователя. Пожалуйста, попробуйте ещё раз.',
     'Unable to create an account.' => 'Не удалось создать аккаунт.',

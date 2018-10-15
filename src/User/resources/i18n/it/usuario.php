@@ -17,9 +17,9 @@
  * NOTE: this file must be saved in UTF-8 encoding.
  */
 return [
-    'An email with instructions to create a new password has been sent to {email} if it is associated with an {appName} account. Your existing password has not been changed.' => '',
+    'Two factor authentication protects you in case of stolen credentials' => '',
     '{0, date, MMM dd, YYYY HH:mm}' => '',
-    'An email has been sent with instructions for resetting your password' => '@@È stata inviata un\'email con le istruzioni per azzerare la tua password@@',
+    'Two factor authentication protects you against stolen credentials' => '@@L\'autenticazione a due fattori può proteggerti dal furto di credenziali@@',
     '(not set)' => '(non impostato)',
     'A confirmation message has been sent to your new email address' => 'È stato inviato un messaggio di conferma al tuo nuovo indirizzo email',
     'A message has been sent to your email address. It contains a confirmation link that you must click to complete registration.' => 'È stato inviato un messaggio al tuo indirizzo email. Contiene un collegamento di verifica che devi aprire per completare la registrazione.',
@@ -31,6 +31,7 @@ return [
     'Account details have been updated' => 'I dettagli del tuo account sono stati aggiornati',
     'Account settings' => 'Impostazioni account',
     'Already registered? Sign in!' => 'Già registrato? Acccedi!',
+    'An email has been sent with instructions for resetting your password' => 'È stata inviata un\'email con le istruzioni per azzerare la tua password',
     'An error occurred processing your request' => 'Si è verificato un errore durante l\'elaborazione della richiesta',
     'Are you sure you want to block this user?' => 'Sicuro di voler bloccare questo utente?',
     'Are you sure you want to confirm this user?' => 'Sicuro di voler confermare questo utente?',
@@ -206,7 +207,6 @@ return [
     'Two Factor Authentication (2FA)' => 'Autenticazione a due fattori (2FA)',
     'Two factor authentication code' => 'Codice di autenticazione a due fattori',
     'Two factor authentication has been disabled.' => 'Autenticazione a due fattori disabilitata.',
-    'Two factor authentication protects you against stolen credentials' => 'L\'autenticazione a due fattori può proteggerti dal furto di credenziali',
     'Two factor authentication successfully enabled.' => 'Autenticazione a due fattori abilitata con successo.',
     'Unable to confirm user. Please, try again.' => 'Impossibile confermare l\'utente, per favore ritenta.',
     'Unable to create an account.' => 'Impossibile creare l\'account.',

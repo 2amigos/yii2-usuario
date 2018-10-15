@@ -17,19 +17,17 @@
  * NOTE: this file must be saved in UTF-8 encoding.
  */
 return [
-    'An email with instructions to create a new password has been sent to {email} if it is associated with an {appName} account. Your existing password has not been changed.' => '',
+    'Two factor authentication protects you in case of stolen credentials' => '',
     'A message has been sent to your email address. ' => '@@Üzenet érkezett az e-mail címedre.@@',
-    'An email has been sent with instructions for resetting your password' => '@@E-mailt küldtek a jelszó visszaállításával kapcsolatos utasításokkal@@',
     'Awesome, almost there. ' => '@@Hurrá, majdnem kész.@@',
     'Disable Two-Factor Auth' => '@@Letiltja a kétütemű hitelesítést@@',
     'Enable Two-factor auth' => '@@Engedélyezze a kétütemű hitelesítést@@',
-    'I aggree processing of my personal data and the use of cookies 
-            to facilitate the operation of this site. For more information read our {privacyPolicy}' => '@@Aggregálom a személyes adataim feldolgozását és a cookie-k használatát a webhely működésének megkönnyítése érdekében. További információért olvassa el a {privacyPolicy}@@',
     'I aggree processing of my personal data and the use of cookies to facilitate the operation of this site. For more information read our {privacyPolicy}' => '@@Aggregálom a személyes adataim feldolgozását és a cookie-k használatát a webhely működésének megkönnyítése érdekében. További információért olvassa el a {privacyPolicy}@@',
     'Invalid two-factor code' => '@@Érvénytelen kétütemű kód@@',
     'Last login' => '@@Utolsó bejelentkezés@@',
     'This will disable two-factor auth. Are you sure?' => '@@Ez letiltja a kétütemű hitelesítést. biztos vagy ebben?@@',
     'Two Factor Authentication' => '@@Két tényező hitelesítés@@',
+    'Two factor authentication protects you against stolen credentials' => '@@Két tényező-hitelesítés megvédi az ellopott hitelesítő adatokat@@',
     'Two factor successfully enabled.' => '@@Két tényező sikeresen bekapcsolt.@@',
     'Two-Factor Authentication' => '@@Két faktoros hitelesítés@@',
     'Two-factor auth protects you against stolen credentials' => '@@A kétütemű auth védelmet nyújt az ellopott hitelesítő adatok ellen@@',
@@ -50,6 +48,7 @@ return [
     'Account details have been updated' => 'A fiókadatok frissítve lettek',
     'Account settings' => 'Fiók beállítások',
     'Already registered? Sign in!' => 'Már regisztrált? Bejelentkezés!',
+    'An email has been sent with instructions for resetting your password' => 'E-mailt küldtek a jelszó visszaállításával kapcsolatos utasításokkal',
     'An error occurred processing your request' => 'Hiba történt a kérelem feldolgozása során',
     'Are you sure you want to block this user?' => 'Biztos benne, hogy letiltja ezt a felhasználót?',
     'Are you sure you want to confirm this user?' => 'Biztosan megerősíted ezt a felhasználót?',
@@ -225,7 +224,6 @@ return [
     'Two Factor Authentication (2FA)' => 'Két faktorhitelesítés (2FA)',
     'Two factor authentication code' => 'Két tényező hitelesítési kód',
     'Two factor authentication has been disabled.' => 'Két tényező hitelesítés le van tiltva.',
-    'Two factor authentication protects you against stolen credentials' => 'Két tényező-hitelesítés megvédi az ellopott hitelesítő adatokat',
     'Two factor authentication successfully enabled.' => 'A két tényező hitelesítés sikeresen engedélyezett.',
     'Unable to confirm user. Please, try again.' => 'Nem sikerült megerősíteni a felhasználót. Kérlek próbáld újra.',
     'Unable to create an account.' => 'Nem lehet létrehozni egy fiókot.',

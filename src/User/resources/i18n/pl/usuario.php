@@ -17,8 +17,7 @@
  * NOTE: this file must be saved in UTF-8 encoding.
  */
 return [
-    'An email with instructions to create a new password has been sent to {email} if it is associated with an {appName} account. Your existing password has not been changed.' => '',
-    'An email has been sent with instructions for resetting your password' => '@@Email z instrukcją resetowania hasła został wysłany@@',
+    'Two factor authentication protects you in case of stolen credentials' => '',
     'Disable Two-Factor Auth' => '@@Wyłącz uwierzytelnianie dwuetapowe@@',
     'Enable Two-factor auth' => '@@Włącz uwierzytelnianie dwuetapowe@@',
     'I aggree processing of my personal data and the use of cookies 
@@ -28,6 +27,7 @@ return [
     'Last login' => '@@Data ostatniego logowania@@',
     'This will disable two-factor auth. Are you sure?' => '@@To wyłączy uwierzytelnianie dwuetapowe. Czy jesteś pewny?@@',
     'Two Factor Authentication' => '@@Uwierzytelnianie dwuetapowe@@',
+    'Two factor authentication protects you against stolen credentials' => '@@Uwierzytelnianie dwuetapowe chroni Cię przed kradzieżą danych logowania@@',
     'Two factor successfully enabled.' => '@@Dwuetapowe uwierzytelnianie poprawnie włączone.@@',
     'Two-Factor Authentication' => '@@Uwierzytelnianie dwuetapowe@@',
     'Two-factor auth protects you against stolen credentials' => '@@Uwierzytelnianie dwuetapowe chroni Cię przed kradzieżą danych logowania@@',
@@ -46,6 +46,7 @@ return [
     'Account details have been updated' => 'Szczegóły konta zostały zaktualizowane',
     'Account settings' => 'Ustawienia konta',
     'Already registered? Sign in!' => 'Masz już konto? Zaloguj się!',
+    'An email has been sent with instructions for resetting your password' => 'Email z instrukcją resetowania hasła został wysłany',
     'An error occurred processing your request' => 'Wystąpił błąd podczas przetwarzania Twojego zapytania',
     'Are you sure you want to block this user?' => 'Czy na pewno chcesz zablokować tego użytkownika?',
     'Are you sure you want to confirm this user?' => 'Czy na pewno chcesz aktywować tego użytkownika?',
@@ -221,7 +222,6 @@ return [
     'Two Factor Authentication (2FA)' => 'Uwierzytelnianie dwuetapowe (2FA)',
     'Two factor authentication code' => 'Kod uwierzytelniania dwuetapowego',
     'Two factor authentication has been disabled.' => 'Uwierzytelnianie dwuetapowe zostało wyłączone',
-    'Two factor authentication protects you against stolen credentials' => 'Uwierzytelnianie dwuetapowe chroni Cię przed kradzieżą danych logowania',
     'Two factor authentication successfully enabled.' => 'Uwierzytelnianie dwuetapowe zostało pomyślnie włączone.',
     'Unable to confirm user. Please, try again.' => 'Nie można aktywować użytkownika. Proszę spróbować ponownie.',
     'Unable to create an account.' => 'Nie można utworzyć konta.',

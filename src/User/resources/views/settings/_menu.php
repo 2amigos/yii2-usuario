@@ -43,7 +43,7 @@ $networksVisible = count(Yii::$app->authClientCollection->clients) > 0;
                     ['label' => Yii::t('usuario', 'Account'), 'url' => ['/user/settings/account']],
                     ['label' => Yii::t('usuario', 'Privacy'),
                         'url' => ['/user/settings/privacy'],
-                        'visible' => $module->enableGDPRcompliance
+                        'visible' => $module->enableGdprCompliance
                     ],
                     [
                         'label' => Yii::t('usuario', 'Networks'),

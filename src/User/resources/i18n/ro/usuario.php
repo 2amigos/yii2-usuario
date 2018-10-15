@@ -17,9 +17,8 @@
  * NOTE: this file must be saved in UTF-8 encoding.
  */
 return [
-    'An email with instructions to create a new password has been sent to {email} if it is associated with an {appName} account. Your existing password has not been changed.' => '',
+    'Two factor authentication protects you in case of stolen credentials' => '',
     'A message has been sent to your email address. ' => '@@A fost trimis un mesaj la adresa dvs. de e-mail.@@',
-    'An email has been sent with instructions for resetting your password' => '@@A fost trimis un e-mail cu instrucțiuni pentru resetarea parolei@@',
     'Awesome, almost there. ' => '@@Minunat, aproape gata.@@',
     'Disable Two-Factor Auth' => '@@Dezactivați autentificarea cu două factori@@',
     'Enable Two-factor auth' => '@@Activați Auth@@',
@@ -30,6 +29,7 @@ return [
     'Last login' => '@@Ultima logare@@',
     'This will disable two-factor auth. Are you sure?' => '@@Aceasta va dezactiva auth-ul cu două factori. Esti sigur?@@',
     'Two Factor Authentication' => '@@Două autentificare cu factori@@',
+    'Two factor authentication protects you against stolen credentials' => '@@Autentificarea cu două factori vă protejează împotriva acreditărilor furate@@',
     'Two factor successfully enabled.' => '@@Doi factori activat cu succes.@@',
     'Two-Factor Authentication' => '@@Două factori de autentificare@@',
     'Two-factor auth protects you against stolen credentials' => '@@Autostradă cu două factori vă protejează împotriva acreditărilor furate@@',
@@ -50,6 +50,7 @@ return [
     'Account details have been updated' => 'Detaliile contului au fost actualizate',
     'Account settings' => 'Setările contului',
     'Already registered? Sign in!' => 'Deja înregistrat? Conectare!',
+    'An email has been sent with instructions for resetting your password' => 'A fost trimis un e-mail cu instrucțiuni pentru resetarea parolei',
     'An error occurred processing your request' => 'A apărut o eroare la procesarea solicitării dvs.',
     'Are you sure you want to block this user?' => 'Sigur doriți să blocați acest utilizator?',
     'Are you sure you want to confirm this user?' => 'Sigur doriți să confirmați acest utilizator?',
@@ -225,7 +226,6 @@ return [
     'Two Factor Authentication (2FA)' => 'Două autentificare cu factori (2FA)',
     'Two factor authentication code' => 'Cod de autentificare cu doi factori',
     'Two factor authentication has been disabled.' => 'A fost dezactivată autentificarea cu doi factori.',
-    'Two factor authentication protects you against stolen credentials' => 'Autentificarea cu două factori vă protejează împotriva acreditărilor furate',
     'Two factor authentication successfully enabled.' => 'Două autentificare cu factori a fost activată cu succes.',
     'Unable to confirm user. Please, try again.' => 'Nu am putut confirma utilizatorul. Vă rugăm să încercați din nou.',
     'Unable to create an account.' => 'Imposibil de creat un cont.',
@@ -289,7 +289,7 @@ return [
     'Your personal information has been removed' => 'Informațiile dvs. personale au fost eliminate',
     'Your profile has been updated' => 'Profilul dvs. a fost actualizat',
     'privacy policy' => 'politica de confidentialitate',
-    '{0, date, MMM dd, YYYY HH:mm}' => '{0, data, MMM dd, YYYY HH: mm}',
+    '{0, date, MMM dd, YYYY HH:mm}' => '@@@@',
     '{0, date, MMMM dd, YYYY HH:mm}' => '{0, data, MMMM dd, AAAA HH: mm}',
     '{0} cannot be blank.' => '{0} nu poate fi gol.',
 ];
