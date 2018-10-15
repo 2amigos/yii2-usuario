@@ -25,7 +25,7 @@ use yii\console\Application as ConsoleApplication;
 use yii\i18n\PhpMessageSource;
 use yii\web\Application as WebApplication;
 
-use yii\base\Event as YiiEvent;
+use yii\base\Event;
 use Da\User\Event\FormEvent;
 use Da\User\Controller\SecurityController;
 
@@ -153,7 +153,7 @@ class Bootstrap implements BootstrapInterface
 
             // Attach an event to check if the password has expired
             if (!is_null(Yii::$app->getModule('user')->maxPasswordAge)) {
-                YiiEvent::on(SecurityController::class, FormEvent::EVENT_AFTER_LOGIN, function (FormEvent $event) {
+                Event::on(SecurityController::class, FormEvent::EVENT_AFTER_LOGIN, function (FormEvent $event) {
                     $user = $event->form->user;
                     if ($user->password_age >= Yii::$app->getModule('user')->maxPasswordAge) {
                         // Force password change
