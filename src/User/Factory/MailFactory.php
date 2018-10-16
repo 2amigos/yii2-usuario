@@ -118,7 +118,7 @@ class MailFactory
      * Builds a MailerService.
      *
      * @param string $type
-     * @param string $from
+     * @param string|array|\Closure $from
      * @param string $to
      * @param string $subject
      * @param string $view
@@ -130,6 +130,9 @@ class MailFactory
      */
     public static function makeMailerService($type, $from, $to, $subject, $view, $params = [])
     {
+        if ($from instanceof \Closure){
+            $from = $from($type);
+        }
         /** @noinspection PhpIncompatibleReturnTypeInspection */
         return Yii::$container->get(
             MailService::class,

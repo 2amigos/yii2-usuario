@@ -250,7 +250,9 @@ class Bootstrap implements BootstrapInterface
     protected function initMailServiceConfiguration(Application $app, Module $module)
     {
         $defaults = [
-            'fromEmail' => 'no-reply@example.com',
+            'fromEmail' => function() use ($app) {
+                return [\Yii::$app->params['supportEmail'] => Yii::t('usuario', '{0} robot', $app->name)];
+            },
             'welcomeMailSubject' => Yii::t('usuario', 'Welcome to {0}', $app->name),
             'confirmationMailSubject' => Yii::t('usuario', 'Confirm account on {0}', $app->name),
             'reconfirmationMailSubject' => Yii::t('usuario', 'Confirm email change on {0}', $app->name),
