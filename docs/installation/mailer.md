@@ -71,4 +71,35 @@ public function run()
 }
 ```
 
+> Tip: You can separate `from` by type of mailer of this module:
+```php
+    ...
+    'modules' => [
+        'user' => [
+            'class' => Da\User\Module::class,
+            'mailParams' => [
+                'fromEmail' =>
+                    /**
+                     * @param $type string The type of mail 
+                     *   Da\User\Event\MailEvent::TYPE_WELCOME|Da\User\Event\MailEvent::TYPE_RECOVERY|
+                     *   Da\User\Event\MailEvent::TYPE_CONFIRM|Da\User\Event\MailEvent::TYPE_RECONFIRM
+                     * @return array
+                     */
+                    function ($type) {
+                        switch ($type) {
+                            case Da\User\Event\MailEvent::TYPE_WELCOME:
+                                return [Yii::$app->params['supportEmail'] => Yii::t('app', '{0} welcome!', Yii::$app->name)];
+                            break;
+                            default:
+                                return [Yii::$app->params['supportEmail'] => Yii::t('app', '{0} robot', Yii::$app->name)];
+                            break;
+                        }
+                    },
+            ],
+        ],
+    ],
+    ...
+```
+
+
 © [2amigos](http://www.2amigos.us/) 2013-2017
