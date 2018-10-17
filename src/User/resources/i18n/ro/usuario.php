@@ -289,7 +289,7 @@ return [
     'Your personal information has been removed' => 'Informațiile dvs. personale au fost eliminate',
     'Your profile has been updated' => 'Profilul dvs. a fost actualizat',
     'privacy policy' => 'politica de confidentialitate',
-    '{0, date, MMM dd, YYYY HH:mm}' => '@@@@',
+    '{0, date, MMM dd, YYYY HH:mm}' => '{0, data, MMM dd, AAAA HH: mm}',
     '{0, date, MMMM dd, YYYY HH:mm}' => '{0, data, MMMM dd, AAAA HH: mm}',
     '{0} cannot be blank.' => '{0} nu poate fi gol.',
 ];
