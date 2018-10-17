@@ -20,9 +20,18 @@ values:
 Actually, the only thing required is the `fromEmail` value. 
 May be we need to set this is equal to `supportEmail` from your `params` configs (like yii2-app-advanced template):
 ```php
-    'fromEmail' => function() use ($app) {
-        return [Yii::$app->params['supportEmail'] => Yii::t('app', '{0} robot', $app->name)];
-    },
+    ...
+    'modules' => [
+        'user' => [
+            'class' => Da\User\Module::class,
+            'mailParams' => [
+                'fromEmail' => function() {
+                    return [Yii::$app->params['supportEmail'] => Yii::t('app', '{0} robot', Yii::$app->name)];
+                }
+            ],
+        ],
+    ],
+    ...
 ```
 If you look at the code of `Da\User\Factory\MailFactory.php` 
 you will easily find the reason why: 
