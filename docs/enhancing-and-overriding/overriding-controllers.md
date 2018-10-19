@@ -33,6 +33,7 @@ Please, before you override a controller's action, make sure that it won't be en
                         \Yii::$app->end();
                     },
                     'on ' . \Da\User\Event\FormEvent::EVENT_AFTER_RESEND => function (\Da\User\Event\FormEvent $event) {
+                        \Yii::$app->session->setFlash('info', Yii::t('usuario', 'A message has been sent to your email address. It contains a confirmation link that you must click to complete registration.'));
                         \Yii::$app->controller->redirect(['/user/security/login']);
                         \Yii::$app->end();
                     },
