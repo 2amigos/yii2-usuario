@@ -13,6 +13,10 @@ namespace Da\User\Contracts;
 
 use yii\authclient\ClientInterface;
 
+/**
+ * @property-read string $email
+ * @property-read string $username
+ */
 interface AuthClientInterface extends ClientInterface
 {
     /**

@@ -16,11 +16,8 @@ use yii\authclient\ClientInterface;
 use yii\base\Event;
 
 /**
- * Class SocialNetworkAuthEvent
- * @package Da\User\Event
- *
- * @property SocialNetworkAccount $account
- * @property ClientInterface $client
+ * @property-read SocialNetworkAccount $account
+ * @property-read ClientInterface $client
  */
 class SocialNetworkAuthEvent extends Event
 {

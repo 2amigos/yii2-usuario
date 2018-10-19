@@ -16,11 +16,8 @@ use Da\User\Model\Token;
 use yii\base\Event;
 
 /**
- * Class ResetPasswordEvent
- * @package Da\User\Event
- *
- * @property Token $token
- * @property RecoveryForm $form
+ * @property-read Token $token
+ * @property-read RecoveryForm $form
  */
 class ResetPasswordEvent extends Event
 {

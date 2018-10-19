@@ -16,11 +16,8 @@ use Da\User\Model\User;
 use yii\base\Event;
 
 /**
- * Class SocialNetworkConnectEvent
- * @package Da\User\Event
- *
- * @property User $user
- * @property SocialNetworkAccount $account
+ * @property-read User $user
+ * @property-read SocialNetworkAccount $account
  */
 class SocialNetworkConnectEvent extends Event
 {

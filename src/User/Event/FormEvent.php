@@ -15,10 +15,7 @@ use yii\base\Event;
 use yii\base\Model;
 
 /**
- * Class FormEvent
- * @package Da\User\Event
- *
- * @property Model $form
+ * @property-read Model $form
  */
 class FormEvent extends Event
 {

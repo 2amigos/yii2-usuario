@@ -16,13 +16,10 @@ use Da\User\Service\MailService;
 use yii\base\Event;
 
 /**
- * Class MailEvent
- * @package Da\User\Event
- *
- * @property string $type
- * @property User $user
- * @property MailService $mailService
- * @property mixed|\Exception $exception
+ * @property-read string $type
+ * @property-read User $user
+ * @property-read MailService $mailService
+ * @property-read mixed|\Exception $exception
  */
 class MailEvent extends Event
 {

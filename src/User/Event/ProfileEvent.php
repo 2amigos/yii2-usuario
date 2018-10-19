@@ -15,10 +15,7 @@ use Da\User\Model\Profile;
 use yii\base\Event;
 
 /**
- * Class ProfileEvent
- * @package Da\User\Event
- *
- * @property Profile $profile
+ * @property-read Profile $profile
  */
 class ProfileEvent extends Event
 {

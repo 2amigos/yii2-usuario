@@ -15,10 +15,7 @@ use Da\User\Model\User;
 use yii\base\Event;
 
 /**
- * Class GdprEvent
- * @package Da\User\Event
- *
- * @property User $user
+ * @property-read User $user
  */
 class GdprEvent extends Event
 {

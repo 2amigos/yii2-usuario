@@ -15,10 +15,7 @@ use Da\User\Model\User;
 use yii\base\Event;
 
 /**
- * Class UserEvent
- * @package Da\User\Event
- *
- * @property User $user
+ * @property-read User $user
  */
 class UserEvent extends Event
 {
