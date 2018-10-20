@@ -21,6 +21,39 @@ if(Yii::$app->session->has($module->switchIdentitySessionKey)) {
    echo Html::a('Switch to Admin', ['/user/admin/switch-identity'], ['data-method' => 'post']);
 }
 ```
+> Note: If you use RBAC we can add access for all user to to this action for back to original user available.
+```php
+...
+    'modules' => [
+        'user' => [
+            'controllerMap' => [
+                'admin' => [
+                    'class' => Da\User\Controller\AdminController::class,
+                    'as access' => [
+                        'class' => yii\filters\AccessControl::class,
+                        'rules' => [
+                            ['allow' => true, 'actions' => ['switch-identity']],
+                            ['allow' => true, 'permissions' => ['administrateUser']],
+                        ],
+                    ],
+                ],
+            ],
+        ],
+    ],
+...
+``` 
+> Also you can define access role `'administratorPermissionName' => 'admin',` where `admin` is have `administrateUser` permission
+```php
+...
+    'modules' => [
+        'user' => [
+            'class' => Da\User\Module::class,
+            'administratorPermissionName' => 'admin',
+        ],
+    ],
+...
+``` 
+
 
 Check the [switchIdentitySessionKey](../installation/configuration-options.md#switchidentitysessionkey) documentation  
 for further information regarding this configuration option. 
