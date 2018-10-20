@@ -70,9 +70,7 @@ if(Yii::$app->session->has($module->switchIdentitySessionKey))
 BackendFilter disable this controllers: 'profile', 'recovery', 'registration', 'settings';
 FrontendFilter disable this controller: 'admin';
 
-This functional is dropped. 
-Use `deny` rule in your configuration directly. 
-For example change `frontend` config like this:
+This functionality has been dropped. Use `deny` rule in your configuration directly. For example change `frontend` config like this:
 
 ```
     'modules' => [
