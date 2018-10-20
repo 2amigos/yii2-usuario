@@ -70,6 +70,50 @@ from `\dektrium\user\controllers\RecoveryController::EVENT_AFTER_REQUEST` to `\D
 from `\dektrium\user\controllers\RecoveryController::EVENT_AFTER_RESET` to `\Da\User\Event\ResetPasswordEvent::EVENT_AFTER_RESET`, etc.  
 Map of constants can be find in [events](../events) chapter of this docs. 
 
+## BackendFilter and FrontendFilter
+BackendFilter disable this controllers: 'profile', 'recovery', 'registration', 'settings';
+FrontendFilter disable this controller: 'admin';
+
+This functionality has been dropped. Use `deny` rule in your configuration directly. For example change `frontend` config like this:
+
+```
+    'modules' => [
+        'user' => [
+            'controllerMap' => [
+                'admin' => [
+                    'class' => Da\User\Controller\AdminController::class,
+                    'as access' => [
+                        'class' => yii\filters\AccessControl::class,
+                        'rules' => [['allow' => false]],
+                    ],
+                ],
+                'role' => [
+                    'class' => Da\User\Controller\RoleController::class,
+                    'as access' => [
+                        'class' => yii\filters\AccessControl::class,
+                        'rules' => [['allow' => false]],
+                    ],
+                ],
+                'permission' => [
+                    'class' => Da\User\Controller\PermissionController::class,
+                    'as access' => [
+                        'class' => yii\filters\AccessControl::class,
+                        'rules' => [['allow' => false]],
+                    ],
+                ],
+                'rule' => [
+                    'class' => Da\User\Controller\RuleController::class,
+                    'as access' => [
+                        'class' => yii\filters\AccessControl::class,
+                        'rules' => [['allow' => false]],
+                    ],
+                ],
+            ],
+        ],
+    ],
+
+``` 
+
 ## Rbac migrations
 
 [yii2-rbac](https://github.com/dektrium/yii2-rbac) have a nice tool which are rbac migrations, which help writing new permissions and roles.
