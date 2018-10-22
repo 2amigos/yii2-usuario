@@ -17,6 +17,8 @@
  * NOTE: this file must be saved in UTF-8 encoding.
  */
 return [
+    'Rule class name' => '',
+    'Select rule...' => '',
     'Two factor authentication protects you in case of stolen credentials' => '',
     'A message has been sent to your email address. ' => '@@Сообщение было отправлено на вашу электронную почту@@',
     'Awesome, almost there. ' => '@@Замечательно, почти готово!@@',

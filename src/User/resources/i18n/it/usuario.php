@@ -17,6 +17,8 @@
  * NOTE: this file must be saved in UTF-8 encoding.
  */
 return [
+    'Rule class name' => '',
+    'Select rule...' => '',
     'Two factor authentication protects you in case of stolen credentials' => '',
     '{0, date, MMM dd, YYYY HH:mm}' => '',
     'Two factor authentication protects you against stolen credentials' => '@@L\'autenticazione a due fattori può proteggerti dal furto di credenziali@@',

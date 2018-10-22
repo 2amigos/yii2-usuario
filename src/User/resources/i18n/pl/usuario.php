@@ -17,6 +17,8 @@
  * NOTE: this file must be saved in UTF-8 encoding.
  */
 return [
+    'Rule class name' => '',
+    'Select rule...' => '',
     'Two factor authentication protects you in case of stolen credentials' => '',
     'Disable Two-Factor Auth' => '@@Wyłącz uwierzytelnianie dwuetapowe@@',
     'Enable Two-factor auth' => '@@Włącz uwierzytelnianie dwuetapowe@@',

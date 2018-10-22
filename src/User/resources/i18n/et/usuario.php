@@ -19,6 +19,8 @@
 return [
     'Authentication rule class {0} can not be instantiated' => '',
     'Rule class must extend "yii\\rbac\\Rule".' => '',
+    'Rule class name' => '',
+    'Select rule...' => '',
     'VKontakte' => '',
     'Yandex' => '',
     '{0, date, MMM dd, YYYY HH:mm}' => '',
