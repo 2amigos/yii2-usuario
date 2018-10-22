@@ -10,6 +10,7 @@
 
 use yii\widgets\ActiveForm;
 use yii\helpers\Html;
+
 /* @var $model \Da\User\Form\GdprDeleteForm */
 ?>
 
@@ -46,7 +47,7 @@ use yii\helpers\Html;
                 <hr>
                 <div class="row">
                     <div class="col-md-12 text-center">
-                        <?= Html::a(Yii::t('usuario','Back to privacy settings'),['/user/settings/privacy'],['class'=>'btn btn-info']) ?>
+                        <?= Html::a(Yii::t('usuario', 'Back to privacy settings'), ['/user/settings/privacy'], ['class' => 'btn btn-info']) ?>
                     </div>
                 </div>
                 <?php

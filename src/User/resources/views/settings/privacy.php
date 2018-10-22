@@ -54,7 +54,7 @@ $this->title = Yii::t('usuario', 'Privacy settings');
                             ) ?>
                         <?php else:
                             echo Html::a(Yii::t('usuario', 'Delete'),
-                                ['/user/settings/gdprdelete'],
+                                ['/user/settings/gdpr-delete'],
                                 [
                                     'class' => 'btn btn-danger',
                                     'id' => 'gdpr-del-button',

@@ -294,7 +294,7 @@ return [
     'Your confirmation token is invalid or expired' => 'Ihr Bestätigungs-Token ist falsch oder abgelaufen',
     'Your email address has been changed' => 'Ihre E-Mail Adresse wurde geändert',
     'Your profile has been updated' => 'Ihr Profil wurde gespeichert',
-    '{0, date, MMM dd, YYYY HH:mm}' => '@@@@',
+    '{0, date, MMM dd, YYYY HH:mm}' => '{0, date, dd. MMM YYYY, HH:mm}',
     '{0, date, MMMM dd, YYYY HH:mm}' => '{0, date, dd. MMMM YYYY, HH:mm}',
     '{0} cannot be blank.' => '{0} darf nicht leer sein.',
 ];
