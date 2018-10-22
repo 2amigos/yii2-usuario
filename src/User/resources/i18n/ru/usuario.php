@@ -291,7 +291,7 @@ return [
     'Your personal information has been removed' => 'Ваша персональная информация удалена',
     'Your profile has been updated' => 'Настройки профиля были успешно сохранены',
     'privacy policy' => 'политикой конфиденциальности',
-    '{0, date, MMM dd, YYYY HH:mm}' => '@@@@',
+    '{0, date, MMM dd, YYYY HH:mm}' => '{0, date, d MMM YYYY в HH:mm}',
     '{0, date, MMMM dd, YYYY HH:mm}' => '{0, date, d MMMM YYYY в HH:mm}',
     '{0} cannot be blank.' => '{0} не может быть пустым.',
 ];

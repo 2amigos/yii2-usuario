@@ -107,7 +107,7 @@ class SettingsController extends Controller
                             'export',
                             'networks',
                             'privacy',
-                            'gdprdelete',
+                            'gdpr-delete',
                             'disconnect',
                             'delete',
                             'two-factor',
@@ -167,7 +167,7 @@ class SettingsController extends Controller
         ]);
     }
 
-    public function actionGdprdelete()
+    public function actionGdprDelete()
     {
         if (!$this->module->enableGdprCompliance)
             throw new NotFoundHttpException();
@@ -220,7 +220,7 @@ class SettingsController extends Controller
 
         }
 
-        return $this->render('gdprdelete', [
+        return $this->render('gdpr-delete', [
             'model' => $form,
         ]);
     }

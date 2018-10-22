@@ -285,7 +285,7 @@ return [
     'Your personal information has been removed' => 'Twoje dane osobowe zostały usunięte',
     'Your profile has been updated' => 'Twój profil został zaktualizowany',
     'privacy policy' => 'polityką prywatności',
-    '{0, date, MMM dd, YYYY HH:mm}' => '@@@@',
+    '{0, date, MMM dd, YYYY HH:mm}' => '{0, date, dd MMM YYYY, HH:mm}',
     '{0, date, MMMM dd, YYYY HH:mm}' => '{0, date, dd MMMM YYYY, HH:mm}',
     '{0} cannot be blank.' => '{0} nie może pozostać bez wartości',
 ];
