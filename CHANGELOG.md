@@ -23,6 +23,7 @@
  - Fix #258: Rename `GDPR` delete action to `lowerCamelCase`/`dash` style (bscheshirwork)
  - Fix #271: Add closure support for `from` email address; Change default sender to `supportEmail` (bscheshirwork)
  - Fix #276: Fix missing translatable strings
+ - Enh #249: Show message `email send if possible` any time on reset password request (bscheshirwork)
 
 ## 1.1.4 - February 19, 2018
 - Enh: Check enableEmailConfirmation on registration (faenir)

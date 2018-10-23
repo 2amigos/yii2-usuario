@@ -17,6 +17,7 @@
  * NOTE: this file must be saved in UTF-8 encoding.
  */
 return [
+    'An email with instructions to create a new password has been sent to {email} if it is associated with an {appName} account. Your existing password has not been changed.' => '',
     'Are you sure you wish the user to change their password at next login?' => '',
     'Back to privacy settings' => '',
     'Data processing consent' => '',
@@ -57,6 +58,7 @@ return [
     'Your personal information has been removed' => '',
     'privacy policy' => '',
     'A message has been sent to your email address. ' => '@@Eine Nachricht wurde an ihre E-Mail Adresse versandt@@',
+    'An email has been sent with instructions for resetting your password' => '@@Eine E-Mail mit den weiteren Schritten zur Passwort-Wiederherstellung wurde versandt@@',
     'Awesome, almost there. ' => '@@Fast geschafft. @@',
     'Class "{0}" does not exist' => '@@Klasse "{0}" existiert nicht@@',
     'Disable Two-Factor Auth' => '@@Zweifaktor-Authentifizierung deaktivieren@@',
@@ -92,7 +94,6 @@ return [
     'Account details have been updated' => 'Kontodetails gespeichert',
     'Account settings' => 'Kontoeinstellungen',
     'Already registered? Sign in!' => 'Bereits registriert? Zur Anmeldung!',
-    'An email has been sent with instructions for resetting your password' => 'Eine E-Mail mit den weiteren Schritten zur Passwort-Wiederherstellung wurde versandt',
     'An error occurred processing your request' => 'Es ist ein Fehler aufgetreten',
     'Are you sure you want to block this user?' => 'Sind Sie sicher, dass Sie diesen Benutzer blockieren wollen?',
     'Are you sure you want to confirm this user?' => 'Sind Sie sicher, dass Sie diesen Benutzer bestätigen wollen?',

@@ -17,10 +17,12 @@
  * NOTE: this file must be saved in UTF-8 encoding.
  */
 return [
-    'Rule class name' => '',
-    'Select rule...' => '',
-    'Two factor authentication protects you in case of stolen credentials' => '',
+    'An email with instructions to create a new password has been sent to {email} if it is associated with an {appName} account. Your existing password has not been changed.' => 'Письмо с инструкциями по созданию нового пароля было выслано на {email}, в случае если данный адрес связан с {appName} аккаунтом',
+    'Rule class name' => 'Имя класса правила',
+    'Select rule...' => 'Выберите правило...',
+    'Two factor authentication protects you in case of stolen credentials' => 'Двухфакторная аутентификация защищает вас в случае кражи учетных данных',
     'A message has been sent to your email address. ' => '@@Сообщение было отправлено на вашу электронную почту@@',
+    'An email has been sent with instructions for resetting your password' => '@@Вам отправлено письмо с инструкциями по смене пароля@@',
     'Awesome, almost there. ' => '@@Замечательно, почти готово!@@',
     'Class "{0}" does not exist' => '@@Класс "{0}" не найден@@',
     'Disable Two-Factor Auth' => '@@Отключить двухфакторную авторизацию@@',
@@ -54,7 +56,6 @@ return [
     'Account details have been updated' => 'Аккаунт был обновлен',
     'Account settings' => 'Настройки аккаунта',
     'Already registered? Sign in!' => 'Уже зарегистрированы? Войдите!',
-    'An email has been sent with instructions for resetting your password' => 'Вам отправлено письмо с инструкциями по смене пароля',
     'An error occurred processing your request' => 'Во время выполнения запроса произошла ошибка',
     'Are you sure you want to block this user?' => 'Вы действительно хотите заблокировать этого пользователя?',
     'Are you sure you want to confirm this user?' => 'Вы уверены, что хотите подтвердить аккаунт пользователя?',
