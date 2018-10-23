@@ -9,6 +9,7 @@ use Da\User\Model\User;
 use tests\_fixtures\TokenFixture;
 use tests\_fixtures\UserFixture;
 use yii\helpers\Html;
+use Yii;
 
 $I = new FunctionalTester($scenario);
 $I->wantTo('ensure that password recovery works');
@@ -20,7 +21,13 @@ $user = $I->grabFixture('user', 'unconfirmed');
 $I->fillField('#recoveryform-email', $user->email);
 $I->click('Continue');
 
-$I->see('An email has been sent with instructions for resetting your password');
+$I->see('An email with instructions to create a new password has been sent to {email} if it is associated with an {appName} account. Your existing password has not been changed.', ['email' => $user->email, 'appName' => Yii::$app->name]));
+
+$I->amGoingTo('try to request recovery token for nothing');
+$I->amOnRoute('/user/recovery/request');
+$I->fillField('#recoveryform-email', $email = 'nothing.matter@some.test');
+$I->click('Continue');
+$I->see('An email with instructions to create a new password has been sent to {email} if it is associated with an {appName} account. Your existing password has not been changed.', ['email' => $email, 'appName' => Yii::$app->name]));
 
 $I->amGoingTo('try to request recovery token');
 $I->amOnRoute('/user/recovery/request');
@@ -28,7 +35,7 @@ $user = $I->grabFixture('user', 'user');
 $I->fillField('#recoveryform-email', $user->email);
 $I->click('Continue');
 
-$I->see('An email has been sent with instructions for resetting your password');
+$I->see('An email with instructions to create a new password has been sent to {email} if it is associated with an {appName} account. Your existing password has not been changed.', ['email' => $user->email, 'appName' => Yii::$app->name]));
 $user = $I->grabRecord(User::className(), ['email' => $user->email]);
 $token = $I->grabRecord(Token::className(), ['user_id' => $user->id, 'type' => Token::TYPE_RECOVERY]);
 /** @var yii\swiftmailer\Message $message */
