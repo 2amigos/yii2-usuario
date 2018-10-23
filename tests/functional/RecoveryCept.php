@@ -21,13 +21,13 @@ $user = $I->grabFixture('user', 'unconfirmed');
 $I->fillField('#recoveryform-email', $user->email);
 $I->click('Continue');
 
-$I->see('An email with instructions to create a new password has been sent to {email} if it is associated with an {appName} account. Your existing password has not been changed.', ['email' => $user->email, 'appName' => Yii::$app->name]));
+$I->see('An email with instructions to create a new password has been sent to {email} if it is associated with an {appName} account. Your existing password has not been changed.', ['email' => $user->email, 'appName' => Yii::$app->name]);
 
 $I->amGoingTo('try to request recovery token for nothing');
 $I->amOnRoute('/user/recovery/request');
 $I->fillField('#recoveryform-email', $email = 'nothing.matter@some.test');
 $I->click('Continue');
-$I->see('An email with instructions to create a new password has been sent to {email} if it is associated with an {appName} account. Your existing password has not been changed.', ['email' => $email, 'appName' => Yii::$app->name]));
+$I->see('An email with instructions to create a new password has been sent to {email} if it is associated with an {appName} account. Your existing password has not been changed.', ['email' => $email, 'appName' => Yii::$app->name]);
 
 $I->amGoingTo('try to request recovery token');
 $I->amOnRoute('/user/recovery/request');
@@ -35,7 +35,7 @@ $user = $I->grabFixture('user', 'user');
 $I->fillField('#recoveryform-email', $user->email);
 $I->click('Continue');
 
-$I->see('An email with instructions to create a new password has been sent to {email} if it is associated with an {appName} account. Your existing password has not been changed.', ['email' => $user->email, 'appName' => Yii::$app->name]));
+$I->see('An email with instructions to create a new password has been sent to {email} if it is associated with an {appName} account. Your existing password has not been changed.', ['email' => $user->email, 'appName' => Yii::$app->name]);
 $user = $I->grabRecord(User::className(), ['email' => $user->email]);
 $token = $I->grabRecord(Token::className(), ['user_id' => $user->id, 'type' => Token::TYPE_RECOVERY]);
 /** @var yii\swiftmailer\Message $message */
