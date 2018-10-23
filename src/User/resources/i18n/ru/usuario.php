@@ -17,10 +17,10 @@
  * NOTE: this file must be saved in UTF-8 encoding.
  */
 return [
-    'An email with instructions to create a new password has been sent to {email} if it is associated with an {appName} account. Your existing password has not been changed.' => '',
-    'Rule class name' => '',
-    'Select rule...' => '',
-    'Two factor authentication protects you in case of stolen credentials' => '',
+    'An email with instructions to create a new password has been sent to {email} if it is associated with an {appName} account. Your existing password has not been changed.' => 'Письмо с инструкциями по созданию нового пароля было выслано на {email}, в случае если данный адрес связан с {appName} аккаунтом',
+    'Rule class name' => 'Имя класса правила',
+    'Select rule...' => 'Выберите правило...',
+    'Two factor authentication protects you in case of stolen credentials' => 'Двухфакторная аутентификация защищает вас в случае кражи учетных данных',
     'A message has been sent to your email address. ' => '@@Сообщение было отправлено на вашу электронную почту@@',
     'An email has been sent with instructions for resetting your password' => '@@Вам отправлено письмо с инструкциями по смене пароля@@',
     'Awesome, almost there. ' => '@@Замечательно, почти готово!@@',
