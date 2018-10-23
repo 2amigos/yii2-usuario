@@ -17,11 +17,10 @@
  * NOTE: this file must be saved in UTF-8 encoding.
  */
 return [
-    'An email with instructions to create a new password has been sent to {email} if it is associated with an {appName} account. Your existing password has not been changed.' => '',
-    'Two factor authentication protects you in case of stolen credentials' => '',
+    'Rule class name' => 'Nome classe regola',
+    'Select rule...' => 'Seleziona una regola...',
+    'Two factor authentication protects you in case of stolen credentials' => 'L\'autenticazione a due fattura ti protegge in caso di furto di credenziali',
     '{0, date, MMM dd, YYYY HH:mm}' => '',
-    'An email has been sent with instructions for resetting your password' => '@@È stata inviata un\'email con le istruzioni per azzerare la tua password@@',
-    'Two factor authentication protects you against stolen credentials' => '@@L\'autenticazione a due fattori può proteggerti dal furto di credenziali@@',
     '(not set)' => '(non impostato)',
     'A confirmation message has been sent to your new email address' => 'È stato inviato un messaggio di conferma al tuo nuovo indirizzo email',
     'A message has been sent to your email address. It contains a confirmation link that you must click to complete registration.' => 'È stato inviato un messaggio al tuo indirizzo email. Contiene un collegamento di verifica che devi aprire per completare la registrazione.',
@@ -32,7 +31,8 @@ return [
     'Account details' => 'Dettagli account',
     'Account details have been updated' => 'I dettagli del tuo account sono stati aggiornati',
     'Account settings' => 'Impostazioni account',
-    'Already registered? Sign in!' => 'Già registrato? Acccedi!',
+    'Already registered? Sign in!' => 'Già registrato? Accedi!',
+    'An email has been sent with instructions for resetting your password' => 'È stata inviata un\'email con le istruzioni per azzerare la tua password',
     'An error occurred processing your request' => 'Si è verificato un errore durante l\'elaborazione della richiesta',
     'Are you sure you want to block this user?' => 'Sicuro di voler bloccare questo utente?',
     'Are you sure you want to confirm this user?' => 'Sicuro di voler confermare questo utente?',
@@ -50,7 +50,7 @@ return [
     'Authorization item successfully created.' => 'Elemento di autorizzazione creato con successo.',
     'Authorization item successfully removed.' => 'Elemento di autorizzazione eliminato con successo.',
     'Authorization item successfully updated.' => 'Elemento di autorizzazione aggiornato con successo.',
-    'Authorization rule has been added.' => 'Regola di autoerizzazione aggiunta.',
+    'Authorization rule has been added.' => 'Regola di autorizzazione aggiunta.',
     'Authorization rule has been removed.' => 'Regola di autorizzazione rimossa.',
     'Authorization rule has been updated.' => 'Regola di autorizzazione modificata.',
     'Awesome, almost there. Now you need to click the confirmation link sent to your new email address.' => 'Fantastico, ci siamo quasi. Ora devi solo visitare il collegamento di conferma che è stato inviato al tuo nuovo indirizzo email.',

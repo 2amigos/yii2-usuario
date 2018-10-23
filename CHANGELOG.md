@@ -21,6 +21,7 @@
  - Fix #252: Delete check for unexpected property `allowPasswordRecovery` for resend email by admin (bscheshirwork)
  - Fix #254: Rename `GDPR` properties to `lowerCamelCase` style (bscheshirwork)
  - Fix #258: Rename `GDPR` delete action to `lowerCamelCase`/`dash` style (bscheshirwork)
+ - Fix #276: Fix missing translatable strings
  - Enh #249: Show message `email send if possible` any time on reset password request (bscheshirwork)
 
 ## 1.1.4 - February 19, 2018

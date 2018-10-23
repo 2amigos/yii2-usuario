@@ -17,10 +17,10 @@
  * NOTE: this file must be saved in UTF-8 encoding.
  */
 return [
-    'An email with instructions to create a new password has been sent to {email} if it is associated with an {appName} account. Your existing password has not been changed.' => '',
+    'Rule class name' => '',
+    'Select rule...' => '',
     'Two factor authentication protects you in case of stolen credentials' => '',
     'A message has been sent to your email address. ' => '@@Een bericht werd naar jouw emailadres verzonden@@',
-    'An email has been sent with instructions for resetting your password' => '@@Er werd een email verstuurd met instructies om jouw wachtwoord te resetten@@',
     'Awesome, almost there. ' => '@@Super, bijna klaar.@@',
     'Class "{0}" does not exist' => '@@Class "{0} bestaat niet@@',
     'Disable Two-Factor Auth' => '@@Tweetraps authenticatie uitschakelen@@',
@@ -56,6 +56,7 @@ return [
     'Account details have been updated' => 'Account details werden geupdate',
     'Account settings' => 'Account instellingen',
     'Already registered? Sign in!' => 'Reeds geregistreerd? Log in!',
+    'An email has been sent with instructions for resetting your password' => 'Er werd een email verstuurd met instructies om jouw wachtwoord te resetten',
     'An error occurred processing your request' => 'Een error trad op terwijl we uw aanvraag verwerkten',
     'Are you sure you want to block this user?' => 'Ben je zeker dat je deze gebruiker wil blokkeren?',
     'Are you sure you want to confirm this user?' => 'Ben je zeker dat je deze gebruiker wil bevestigen?',
