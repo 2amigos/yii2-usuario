@@ -17,6 +17,7 @@
  * NOTE: this file must be saved in UTF-8 encoding.
  */
 return [
+    'An email with instructions to create a new password has been sent to {email} if it is associated with an {appName} account. Your existing password has not been changed.' => '',
     'Awesome, almost there. Now you need to click the confirmation link sent to your new email address.' => '',
     'Awesome, almost there. Now you need to click the confirmation link sent to your old email address.' => '',
     'Children' => '',
@@ -33,6 +34,7 @@ return [
     'Yandex' => '',
     '{0, date, MMMM dd, YYYY HH:mm}' => '',
     'A message has been sent to your email address. ' => '@@@@',
+    'An email has been sent with instructions for resetting your password' => '@@Foi enviado um email com as instruções para restaurar a sua password@@',
     'Awesome, almost there. ' => '@@@@',
     'Class "{0}" does not exist' => '@@@@',
     'Disable Two-Factor Auth' => '@@@@',
@@ -68,7 +70,6 @@ return [
     'Account details have been updated' => 'Detalhes da conta foram atualizados',
     'Account settings' => 'Definições da conta',
     'Already registered? Sign in!' => 'Já está registado? Entre na sua conta!',
-    'An email has been sent with instructions for resetting your password' => 'Foi enviado um email com as instruções para restaurar a sua password',
     'An error occurred processing your request' => 'Ocorreu um erro ao processar o seu pedido',
     'Are you sure you want to block this user?' => 'Tem a certeza que pretende bloquear este utilizador?',
     'Are you sure you want to confirm this user?' => 'Tem a certeza que pretende confirmar este utilizador?',

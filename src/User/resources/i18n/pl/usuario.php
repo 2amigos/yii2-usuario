@@ -17,9 +17,11 @@
  * NOTE: this file must be saved in UTF-8 encoding.
  */
 return [
+    'An email with instructions to create a new password has been sent to {email} if it is associated with an {appName} account. Your existing password has not been changed.' => '',
     'Rule class name' => '',
     'Select rule...' => '',
     'Two factor authentication protects you in case of stolen credentials' => '',
+    'An email has been sent with instructions for resetting your password' => '@@Email z instrukcją resetowania hasła został wysłany@@',
     'Disable Two-Factor Auth' => '@@Wyłącz uwierzytelnianie dwuetapowe@@',
     'Enable Two-factor auth' => '@@Włącz uwierzytelnianie dwuetapowe@@',
     'I aggree processing of my personal data and the use of cookies 
@@ -48,7 +50,6 @@ return [
     'Account details have been updated' => 'Szczegóły konta zostały zaktualizowane',
     'Account settings' => 'Ustawienia konta',
     'Already registered? Sign in!' => 'Masz już konto? Zaloguj się!',
-    'An email has been sent with instructions for resetting your password' => 'Email z instrukcją resetowania hasła został wysłany',
     'An error occurred processing your request' => 'Wystąpił błąd podczas przetwarzania Twojego zapytania',
     'Are you sure you want to block this user?' => 'Czy na pewno chcesz zablokować tego użytkownika?',
     'Are you sure you want to confirm this user?' => 'Czy na pewno chcesz aktywować tego użytkownika?',

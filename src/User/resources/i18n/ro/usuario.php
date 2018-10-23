@@ -17,10 +17,12 @@
  * NOTE: this file must be saved in UTF-8 encoding.
  */
 return [
+    'An email with instructions to create a new password has been sent to {email} if it is associated with an {appName} account. Your existing password has not been changed.' => '',
     'Rule class name' => '',
     'Select rule...' => '',
     'Two factor authentication protects you in case of stolen credentials' => '',
     'A message has been sent to your email address. ' => '@@A fost trimis un mesaj la adresa dvs. de e-mail.@@',
+    'An email has been sent with instructions for resetting your password' => '@@A fost trimis un e-mail cu instrucțiuni pentru resetarea parolei@@',
     'Awesome, almost there. ' => '@@Minunat, aproape gata.@@',
     'Disable Two-Factor Auth' => '@@Dezactivați autentificarea cu două factori@@',
     'Enable Two-factor auth' => '@@Activați Auth@@',
@@ -52,7 +54,6 @@ return [
     'Account details have been updated' => 'Detaliile contului au fost actualizate',
     'Account settings' => 'Setările contului',
     'Already registered? Sign in!' => 'Deja înregistrat? Conectare!',
-    'An email has been sent with instructions for resetting your password' => 'A fost trimis un e-mail cu instrucțiuni pentru resetarea parolei',
     'An error occurred processing your request' => 'A apărut o eroare la procesarea solicitării dvs.',
     'Are you sure you want to block this user?' => 'Sigur doriți să blocați acest utilizator?',
     'Are you sure you want to confirm this user?' => 'Sigur doriți să confirmați acest utilizator?',
