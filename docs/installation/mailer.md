@@ -18,7 +18,7 @@ values:
 ```
 
 Actually, the only thing required is the `fromEmail` value. 
-May be we need to set this is equal to `supportEmail` from your `params` configs (like yii2-app-advanced template):
+If you want to set it the same as supportEmail from your config params (like yii2-app-advanced template):
 ```php
     ...
     'modules' => [
