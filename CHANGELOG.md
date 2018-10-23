@@ -22,6 +22,7 @@
  - Fix #254: Rename `GDPR` properties to `lowerCamelCase` style (bscheshirwork)
  - Fix #258: Rename `GDPR` delete action to `lowerCamelCase`/`dash` style (bscheshirwork)
  - Fix #271: Add closure support for `from` email address; Change default sender to `supportEmail` (bscheshirwork)
+ - Fix #276: Fix missing translatable strings
 
 ## 1.1.4 - February 19, 2018
 - Enh: Check enableEmailConfirmation on registration (faenir)

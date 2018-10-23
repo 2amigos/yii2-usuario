@@ -36,7 +36,7 @@ use yii\widgets\ActiveForm;
 <?= $form->field($model, 'rule')->widget(SelectizeDropDownList::class, [
     'items' => ArrayHelper::map(Yii::$app->getAuthManager()->getRules(), 'name', 'name'),
     'options' => [
-        'prompt' => 'Select rule...'
+        'prompt' => Yii::t('usuario', 'Select rule...'),
     ]
 ]) ?>
 

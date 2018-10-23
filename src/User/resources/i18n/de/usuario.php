@@ -39,6 +39,8 @@ return [
     'Password age' => '',
     'Privacy' => '',
     'Privacy settings' => '',
+    'Rule class name' => '',
+    'Select rule...' => '',
     'There was an error in saving user' => '',
     'This will disable two factor authentication. Are you sure?' => '',
     'This will remove your personal data from this site. You will no longer be able to sign in.' => '',
