@@ -162,6 +162,14 @@ protected against brute-force attacks, set it to the highest value that is toler
 taken to compute the hash doubles for every increment by one of `$blowfishCost`.
 
 
+#### consoleControllerNamespace (type: `string`, default: `Da\User\Command`)
+
+Allows customization of the console application controller namespace for the module.
+
+#### controllerNamespace (type: `string`, default: `Da\User\Controller`)
+
+Allows customization of the web application controller namespace for the module.
+
 #### classMap (type: `array`, default: `[]`)
 
 Configures the definitions of the classes as they have to be override. For more information see 
