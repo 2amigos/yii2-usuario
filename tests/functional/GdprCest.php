@@ -141,7 +141,7 @@ class GdprCest
         $I->amOnRoute('/user/settings/privacy');
         $I->see('Export my data', 'h3');
         $I->see('Delete my account', 'h3');
-        $I->amOnRoute('/user/settings/gdprdelete');
+        $I->amOnRoute('/user/settings/gdpr-delete');
         $I->fillField('#gdprdeleteform-password','wrongpassword');
         $I->click('Delete');
         $I->see('Invalid password');

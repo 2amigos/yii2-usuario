@@ -82,5 +82,10 @@ class GdprDeleteForm extends Model
         return $this->user;
     }
 
-
+    public function attributeLabels()
+    {
+        return [
+            'password' => Yii::t('usuario', 'Password'),
+        ];
+    }
 }

@@ -281,7 +281,7 @@ class Bootstrap implements BootstrapInterface
      */
     protected function initConsoleCommands(ConsoleApplication $app)
     {
-        $app->getModule('user')->controllerNamespace = 'Da\User\Command';
+        $app->getModule('user')->controllerNamespace = $app->getModule('user')->consoleControllerNamespace;
     }
 
     /**
@@ -291,7 +291,7 @@ class Bootstrap implements BootstrapInterface
      */
     protected function initControllerNamespace(WebApplication $app)
     {
-        $app->getModule('user')->controllerNamespace = 'Da\User\Controller';
+        $app->getModule('user')->controllerNamespace = $app->getModule('user')->controllerNamespace;
         $app->getModule('user')->setViewPath('@Da/User/resources/views');
     }
 

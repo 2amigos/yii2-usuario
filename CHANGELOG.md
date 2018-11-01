@@ -1,6 +1,6 @@
 # CHANGELOG
 
-## 1.5.0 - Work in progress
+## 1.1.5 - Work in progress
  - Fix: Fix condition in EmailChangeService (it was always false) (borisaeric)
  - Fix #198: Updated translations by quique, bizley, TonisOrmisson, guogan, Dezinger, maxxer, wautvda, mrbig00, fabiomlferreira
  - Fix #209: Doc fix. allowAccountDelete default value is false (Dezinger)
@@ -17,9 +17,16 @@
  - Enh: Add controller module class reference (TonisOrmisson)
  - Enh: Replace the deprecated InvalidParamException in ClassMapHelper (TonisOrmisson)
  - Fix #242: Add POST filter for `admin/force-password-change` action (bscheshirwork)
+ - Enh #251: Use `asset-packagist` instead of `fxp-asset` if you run it as a module without having a project around (bscheshirwork)
  - Fix #252: Delete check for unexpected property `allowPasswordRecovery` for resend email by admin (bscheshirwork)
  - Fix #254: Rename `GDPR` properties to `lowerCamelCase` style (bscheshirwork)
  - Enh #253: Add PHPDoc for events class (bscheshirwork)
+ - Fix #258: Rename `GDPR` delete action to `lowerCamelCase`/`dash` style (bscheshirwork)
+ - Fix #271: Add closure support for `from` email address; Change default sender to `supportEmail` (bscheshirwork)
+ - Fix #276: Fix missing translatable strings
+ - Enh #249: Show message `email send if possible` any time on reset password request (bscheshirwork)
+ - Enh #282: Allows customization of controller namespace (maxxer)
+
 
 ## 1.1.4 - February 19, 2018
 - Enh: Check enableEmailConfirmation on registration (faenir)

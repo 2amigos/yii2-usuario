@@ -17,8 +17,12 @@
  * NOTE: this file must be saved in UTF-8 encoding.
  */
 return [
+    'An email with instructions to create a new password has been sent to {email} if it is associated with an {appName} account. Your existing password has not been changed.' => '',
+    'Rule class name' => '',
+    'Select rule...' => '',
     'Two factor authentication protects you in case of stolen credentials' => '',
     'A message has been sent to your email address. ' => '@@Üzenet érkezett az e-mail címedre.@@',
+    'An email has been sent with instructions for resetting your password' => '@@E-mailt küldtek a jelszó visszaállításával kapcsolatos utasításokkal@@',
     'Awesome, almost there. ' => '@@Hurrá, majdnem kész.@@',
     'Disable Two-Factor Auth' => '@@Letiltja a kétütemű hitelesítést@@',
     'Enable Two-factor auth' => '@@Engedélyezze a kétütemű hitelesítést@@',
@@ -48,7 +52,6 @@ return [
     'Account details have been updated' => 'A fiókadatok frissítve lettek',
     'Account settings' => 'Fiók beállítások',
     'Already registered? Sign in!' => 'Már regisztrált? Bejelentkezés!',
-    'An email has been sent with instructions for resetting your password' => 'E-mailt küldtek a jelszó visszaállításával kapcsolatos utasításokkal',
     'An error occurred processing your request' => 'Hiba történt a kérelem feldolgozása során',
     'Are you sure you want to block this user?' => 'Biztos benne, hogy letiltja ezt a felhasználót?',
     'Are you sure you want to confirm this user?' => 'Biztosan megerősíted ezt a felhasználót?',
