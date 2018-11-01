@@ -14,6 +14,9 @@ namespace Da\User\Event;
 use Da\User\Model\User;
 use yii\base\Event;
 
+/**
+ * @property-read User $user
+ */
 class UserEvent extends Event
 {
     const EVENT_BEFORE_CREATE = 'beforeCreate';

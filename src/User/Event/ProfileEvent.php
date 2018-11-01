@@ -14,6 +14,9 @@ namespace Da\User\Event;
 use Da\User\Model\Profile;
 use yii\base\Event;
 
+/**
+ * @property-read Profile $profile
+ */
 class ProfileEvent extends Event
 {
     protected $profile;

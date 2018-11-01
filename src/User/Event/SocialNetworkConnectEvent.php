@@ -15,6 +15,10 @@ use Da\User\Model\SocialNetworkAccount;
 use Da\User\Model\User;
 use yii\base\Event;
 
+/**
+ * @property-read User $user
+ * @property-read SocialNetworkAccount $account
+ */
 class SocialNetworkConnectEvent extends Event
 {
     const EVENT_BEFORE_CONNECT = 'beforeConnect';

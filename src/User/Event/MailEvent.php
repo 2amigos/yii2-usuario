@@ -15,6 +15,12 @@ use Da\User\Model\User;
 use Da\User\Service\MailService;
 use yii\base\Event;
 
+/**
+ * @property-read string $type
+ * @property-read User $user
+ * @property-read MailService $mailService
+ * @property-read mixed|\Exception $exception
+ */
 class MailEvent extends Event
 {
     const TYPE_WELCOME = 'welcome';
