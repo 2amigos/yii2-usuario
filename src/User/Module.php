@@ -146,6 +146,14 @@ class Module extends BaseModule
      */
     public $blowfishCost = 10;
     /**
+     * @var string Web controller namespace
+     */
+    public $controllerNamespace = 'Da\User\Controller';
+    /**
+     * @var string Console controller namespace
+     */
+    public $consoleControllerNamespace = 'Da\User\Command';
+    /**
      * @var array the class map. How the container should load specific classes
      * @see Bootstrap::buildClassMap() for more details
      */
