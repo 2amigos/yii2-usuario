@@ -78,7 +78,7 @@ Event::on(AdminController::class, UserEvent::EVENT_BEFORE_CREATE, function (User
     $user = $event->getUser();
     
     // ... your logic here
-}
+});
 
 // This will happen at the model's level
 Event::on(User::class, UserEvent::EVENT_BEFORE_CREATE, function (UserEvent $event) {
@@ -86,7 +86,7 @@ Event::on(User::class, UserEvent::EVENT_BEFORE_CREATE, function (UserEvent $even
     $user = $event->getUser();
     
     // ... your logic here
-}
+});
 
 ```
 
