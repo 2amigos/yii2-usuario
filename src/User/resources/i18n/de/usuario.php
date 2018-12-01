@@ -17,75 +17,103 @@
  * NOTE: this file must be saved in UTF-8 encoding.
  */
 return [
-    'An email with instructions to create a new password has been sent to {email} if it is associated with an {appName} account. Your existing password has not been changed.' => '',
-    'Are you sure you wish the user to change their password at next login?' => '',
-    'Back to privacy settings' => '',
-    'Data processing consent' => '',
-    'Delete my account' => '',
-    'Delete personal data' => '',
-    'Deleted by GDPR request' => '',
-    'Disable two factor authentication' => '',
-    'Download my data' => '',
-    'Enable two factor authentication' => '',
-    'Export my data' => '',
-    'Force password change at next login' => '',
-    'Here you can download your personal data in a comma separated values format.' => '',
-    'I agree processing of my personal data and the use of cookies to facilitate the operation of this site. For more information read our {privacyPolicy}' => '',
-    'Invalid password' => '',
-    'Invalid two factor authentication code' => '',
-    'Last login IP' => '',
-    'Last login time' => '',
-    'Last password change' => '',
-    'Once you have deleted your data, you will not longer be able to sign in with this account.' => '',
-    'Password age' => '',
-    'Privacy' => '',
-    'Privacy settings' => '',
-    'Rule class name' => '',
-    'Select rule...' => '',
-    'There was an error in saving user' => '',
-    'This will disable two factor authentication. Are you sure?' => '',
-    'This will remove your personal data from this site. You will no longer be able to sign in.' => '',
-    'Two Factor Authentication (2FA)' => '',
-    'Two factor authentication code' => '',
-    'Two factor authentication has been disabled.' => '',
-    'Two factor authentication protects you in case of stolen credentials' => '',
-    'Two factor authentication successfully enabled.' => '',
-    'Unable to disable Two factor authentication.' => '',
-    'User will be required to change password at next login' => '',
-    'You are about to delete all your personal data from this site.' => '',
-    'Your consent is required to register' => '',
-    'Your password has expired, you must change it now' => '',
-    'Your personal information has been removed' => '',
-    'privacy policy' => '',
+    'An email with instructions to create a new password has been sent to {email} if '.
+        'it is associated with an {appName} account. Your existing password has not been changed.'
+        => 'Eine Email mit Hinweisen, wie ein Kennwort erstellt wirdm wurde an {email} gesendet, '.
+        'sofern es mit dem Konto {appName} verbindund ist. Das aktuelle Kennwort wurde nicht geändert.',
+    'Are you sure you wish the user to change their password at next login?'
+        => 'Sind Sie sicher, dass der benutzer sein Kennwort beim nächsten Anmeldenändern soll?',
+    'Back to privacy settings' => 'Zurück zu Privatsphäre-Einstellungen',
+    'Data processing consent' => 'Zustimmung zur Datenverarbeitung',
+    'Delete my account' => 'Mein Benutzerkonto löschen',
+    'Delete personal data' => 'Persönliche Daten löschen',
+    'Deleted by GDPR request' => 'Geköscht gemäß DSGVO-Anforderung',
+    'Disable two factor authentication' => 'Zwei-Faktor-Authentifizierung deaktivieren',
+    'Download my data' => 'Eigene Daten herunterladen',
+    'Enable two factor authentication' => 'Zwei-Faktor-Authentifizierung aktivieren',
+    'Export my data' => 'Eigene Daten exportieren',
+    'Force password change at next login' => 'Kennwort-Änderung beim nächsten Anmelden erzwingen',
+    'Here you can download your personal data in a comma separated values format.'
+        => 'Hier können Sie eigene persönliche Daten in komma-separiertem Format herunterladen',
+    'I agree processing of my personal data and the use of cookies to facilitate the operation of this site. '.
+        'For more information read our {privacyPolicy}'
+        => 'Ich stimme der Verarbeitung meiner persönlichen Daten und der Benutzung von Cookies zur '.
+            'Vereinfachung der Benutzer dieses Services zu. Weitere Informationen stehen in unserer  {privacyPolicy}',
+    'Invalid password' => 'Ungültiges Kennwort',
+    'Invalid two factor authentication code' => 'Ungültiger Zwei-Faktor-Authentifizierungs-Code',
+    'Last login IP' => 'Letzte Anmeldung von IP',
+    'Last login time' => 'Letzte Anmeldung',
+    'Last password change' => 'Letzte Kennwort-Änderung',
+    'Once you have deleted your data, you will not longer be able to sign in with this account.'
+        => 'Wenn Sie die eigenen Daten gelöscht haben, können Sie sich mit diesem Benutzernamen nicht mehr anmelden.',
+    'Password age' => 'Kennwort-Alter',
+    'Privacy' => 'Privatsphäre',
+    'Privacy settings' => 'Privatsphäre-Einstellungen',
+    'Rule class name' => 'Regel-Klassen-Name',
+    'Select rule...' => 'Regel auswählen...',
+    'There was an error in saving user' => 'Fehler beim Speichern des Benutzers',
+    'This will disable two factor authentication. Are you sure?'
+        => 'Hiermit deaktivieren Sie die Zwei-Faktor-Authentifizierung. Sind Sie sicher?',
+    'This will remove your personal data from this site. You will no longer be able to sign in.'
+        => 'Hiermit löschen Sie Ihre persönlichen Daten von diesem Service. '.
+            'Sie werden sich nun nicht mehr anmelden können.',
+    'Two Factor Authentication (2FA)' => 'Zwei-Faktor-Authentifizierung (2FA)',
+    'Two factor authentication code' => 'Zwei-Faktor-Authentifizierungs-Code',
+    'Two factor authentication has been disabled.' => 'Zwei-Faktor-Authentifizierung wurde deaktiviert',
+    'Two factor authentication protects you in case of stolen credentials'
+        => 'Zwei-Faktor-Authentifizierung schützt Sie bei gestohlenen Zugangsdaten',
+    'Two factor authentication successfully enabled.' => 'Zwei-Faktor-Authentifizierung wurde erfolgreich aktiviert',
+    'Unable to disable Two factor authentication.'
+        => 'Fehler beim Deaktivieren der Zwei-Faktor-Authentifizierung',
+    'User will be required to change password at next login'
+        => 'Der Benutzer wird bei der nchsten Aneldung zur Kennwort-Änderungen gezwungen',
+    'You are about to delete all your personal data from this site.'
+        => 'Sie löschen damit alle persönlichen Daten von diesem Service',
+    'Your consent is required to register' => 'Sie müssen Ihre Zustimmung registrieren',
+    'Your password has expired, you must change it now' => 'Ihr Kennwort ist abgelaufen. Sie müssen es nun ändern',
+    'Your personal information has been removed' => 'Ihre persönlichen Daten wurden gelöscht',
+    'privacy policy' => 'Datenschutzrichtlinie',
     'A message has been sent to your email address. ' => '@@Eine Nachricht wurde an ihre E-Mail Adresse versandt@@',
-    'An email has been sent with instructions for resetting your password' => '@@Eine E-Mail mit den weiteren Schritten zur Passwort-Wiederherstellung wurde versandt@@',
+    'An email has been sent with instructions for resetting your password'
+        => '@@Eine E-Mail mit den weiteren Schritten zur Passwort-Wiederherstellung wurde versandt@@',
     'Awesome, almost there. ' => '@@Fast geschafft. @@',
     'Class "{0}" does not exist' => '@@Klasse "{0}" existiert nicht@@',
     'Disable Two-Factor Auth' => '@@Zweifaktor-Authentifizierung deaktivieren@@',
     'Enable Two-factor auth' => '@@Zweifaktor-Authentifizierung aktivieren@@',
-    'I aggree processing of my personal data and the use of cookies 
-            to facilitate the operation of this site. For more information read our {privacyPolicy}' => '@@@@',
-    'I aggree processing of my personal data and the use of cookies to facilitate the operation of this site. For more information read our {privacyPolicy}' => '@@@@',
+    'I aggree processing of my personal data and the use of cookies '.
+        'to facilitate the operation of this site. For more information read our {privacyPolicy}'
+        => '@@@@',
+    'I aggree processing of my personal data and the use of cookies to facilitate '.
+        'the operation of this site. For more information read our {privacyPolicy}'
+        => '@@@@',
     'Invalid two-factor code' => '@@Ungültiger Zweifaktor Schlüssel@@',
     'Last login' => '@@Letzter Login@@',
     'Registration ip' => '@@Registrierungs-IP@@',
     'Rule class can not be instantiated' => '@@@@',
     'Rule class must extend "yii\\rbac\\Rule"' => '@@@@',
-    'This will disable two-factor auth. Are you sure?' => '@@Dies wird die Zweifaktor-Authentifizierung deaktivieren. Sind Sie sicher?@@',
+    'This will disable two-factor auth. Are you sure?'
+        => '@@Dies wird die Zweifaktor-Authentifizierung deaktivieren. Sind Sie sicher?@@',
     'Two Factor Authentication' => '@@Zweifaktor-Authentifizierung@@',
     'Two factor authentication protects you against stolen credentials' => '@@@@',
     'Two factor successfully enabled.' => '@@Zweifaktor-Authentifizierung erfolgreich aktiviert.@@',
     'Two-Factor Authentication' => '@@Zweifaktor-Authentifizierung@@',
-    'Two-factor auth protects you against stolen credentials' => '@@Zweifaktor-Authentifizierung schützt Sie vor gestohlenen Zugangsdaten@@',
+    'Two-factor auth protects you against stolen credentials'
+        => '@@Zweifaktor-Authentifizierung schützt Sie vor gestohlenen Zugangsdaten@@',
     'Two-factor authentication code' => '@@Zweifaktor-Authentifizierungsschlüssel@@',
     'Two-factor authorization has been disabled.' => '@@Zweifaktor-Authentifizierung wurde deaktiviert.@@',
     'Two-factor code' => '@@Zweifaktor-Schlüssel@@',
     'Unable to disable two-factor authorization.' => '@@Unfähig die Zweifaktor-Authentifizierung zu deaktivieren.@@',
-    'We couldn\'t re-send the mail to confirm your address. ' => '@@Wir konnte die Bestätigungs E-Mail nicht erneut versenden@@',
-    'We have sent confirmation links to both old and new email addresses. ' => '@@Wir haben Bestätigungs E-Mails an die neue und alte E-Mail Adresse versandt.@@',
+    'We couldn\'t re-send the mail to confirm your address. '
+        => '@@Wir konnte die Bestätigungs E-Mail nicht erneut versenden@@',
+    'We have sent confirmation links to both old and new email addresses. '
+        => '@@Wir haben Bestätigungs E-Mails an die neue und alte E-Mail Adresse versandt.@@',
     '(not set)' => '(nicht gesetzt)',
-    'A confirmation message has been sent to your new email address' => 'Eine Bestätigungsnachricht wurde an Ihre neue E-Mail Adresse versandt',
-    'A message has been sent to your email address. It contains a confirmation link that you must click to complete registration.' => 'Eine Nachricht wurde an Ihre E-Mail-Adresse gesendet. Sie enthält einen Bestätigungslink den Sie klicken müssen um die Registrierung abzuschließen.',
+    'A confirmation message has been sent to your new email address'
+        => 'Eine Bestätigungsnachricht wurde an Ihre neue E-Mail Adresse versandt',
+    'A message has been sent to your email address. It contains a confirmation link that you must '.
+        'click to complete registration.'
+        => 'Eine Nachricht wurde an Ihre E-Mail-Adresse gesendet. '.
+            'Sie enthält einen Bestätigungslink den Sie klicken müssen um die Registrierung abzuschließen.',
     'A new confirmation link has been sent' => 'Ein neuer Bestätigungs-Link wurde versendet',
     'A password will be generated automatically if not provided' => 'Leer lassen, um automatisch ein Passwort zu generieren',
     'Account' => 'Konto',
