@@ -2,7 +2,7 @@
 
 ## 1.1.5 - Work in progress
  - Fix: Fix condition in EmailChangeService (it was always false) (borisaeric)
- - Fix #198: Updated translations by quique, bizley, TonisOrmisson, guogan, Dezinger, maxxer, wautvda, mrbig00, fabiomlferreira
+ - Fix #198: Updated translations by quique, bizley, TonisOrmisson, guogan, Dezinger, maxxer, wautvda, mrbig00, fabiomlferreira, WeeSee
  - Fix #209: Doc fix. allowAccountDelete default value is false (Dezinger)
  - Fix #211: Migration boolean default value set to FALSE instead 0 (Dezinger)
  - Fix #213: Migration sql syntax fix (Dezinger)
