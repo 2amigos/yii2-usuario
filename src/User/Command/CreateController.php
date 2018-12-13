@@ -64,7 +64,7 @@ class CreateController extends Controller
         } else {
             $userRole = $auth->getRole($role);
             if (null === $userRole) {
-                $this->stdout(Yii::t('usuario', 'Role "{0}" not found. Creating it.') . "!\n", Console::FG_GREEN);
+                $this->stdout(Yii::t('usuario', 'Role "{0}" not found. Creating it.', [$role]) . "!\n", Console::FG_GREEN);
                 $userRole = $auth->createRole($role);
                 $auth->add($userRole);
             }
