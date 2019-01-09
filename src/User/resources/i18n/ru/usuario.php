@@ -17,10 +17,6 @@
  * NOTE: this file must be saved in UTF-8 encoding.
  */
 return [
-    'An email with instructions to create a new password has been sent to {email} if it is associated with an {appName} account. Your existing password has not been changed.' => 'Письмо с инструкциями по созданию нового пароля было выслано на {email}, в случае если данный адрес связан с {appName} аккаунтом',
-    'Rule class name' => 'Имя класса правила',
-    'Select rule...' => 'Выберите правило...',
-    'Two factor authentication protects you in case of stolen credentials' => 'Двухфакторная аутентификация защищает вас в случае кражи учетных данных',
     'A message has been sent to your email address. ' => '@@Сообщение было отправлено на вашу электронную почту@@',
     'An email has been sent with instructions for resetting your password' => '@@Вам отправлено письмо с инструкциями по смене пароля@@',
     'Awesome, almost there. ' => '@@Замечательно, почти готово!@@',
@@ -56,6 +52,7 @@ return [
     'Account details have been updated' => 'Аккаунт был обновлен',
     'Account settings' => 'Настройки аккаунта',
     'Already registered? Sign in!' => 'Уже зарегистрированы? Войдите!',
+    'An email with instructions to create a new password has been sent to {email} if it is associated with an {appName} account. Your existing password has not been changed.' => 'Письмо с инструкциями по созданию нового пароля было выслано на {email}, в случае если данный адрес связан с {appName} аккаунтом',
     'An error occurred processing your request' => 'Во время выполнения запроса произошла ошибка',
     'Are you sure you want to block this user?' => 'Вы действительно хотите заблокировать этого пользователя?',
     'Are you sure you want to confirm this user?' => 'Вы уверены, что хотите подтвердить аккаунт пользователя?',
@@ -202,6 +199,7 @@ return [
     'Roles' => 'Роли',
     'Rule' => 'Правило',
     'Rule class must extend "yii\\rbac\\Rule".' => 'Класс с правилами должен наследовать "yii\\rbac\\Rule".',
+    'Rule class name' => 'Имя класса правила',
     'Rule name' => 'Название правила',
     'Rule name {0} is already in use' => 'Название правила {0} уже занято',
     'Rule {0} does not exists' => 'Правила {0} не существует',
@@ -209,6 +207,7 @@ return [
     'Rules' => 'Правила',
     'Save' => 'Сохранить',
     'Scan the QrCode with Google Authenticator App, then insert its temporary code on the box and submit.' => 'Просканируйте QR-код приложением Google Authenticator App, затем вставьте временный код в поле и отправьте.',
+    'Select rule...' => 'Выберите правило...',
     'Send password recovery email' => 'Отправить письмо с восстановлением пароля',
     'Sign in' => 'Войти',
     'Sign up' => 'Зарегистрироваться',
@@ -231,6 +230,7 @@ return [
     'Two Factor Authentication (2FA)' => 'Двухфакторная авторизация (2FA)',
     'Two factor authentication code' => 'Код двухфакторной авторизации',
     'Two factor authentication has been disabled.' => 'Двухфакторная авторизация отключена.',
+    'Two factor authentication protects you in case of stolen credentials' => 'Двухфакторная аутентификация защищает вас в случае кражи учетных данных',
     'Two factor authentication successfully enabled.' => 'Двухфакторная авторизация успешно включена.',
     'Unable to confirm user. Please, try again.' => 'Не удалось активировать пользователя. Пожалуйста, попробуйте ещё раз.',
     'Unable to create an account.' => 'Не удалось создать аккаунт.',

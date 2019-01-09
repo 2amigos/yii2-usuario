@@ -17,16 +17,15 @@
  * NOTE: this file must be saved in UTF-8 encoding.
  */
 return [
-    'An email with instructions to create a new password has been sent to {email} if it is associated with an {appName} account. Your existing password has not been changed.' => '',
+    'An email with instructions to create a new password has been sent to {email} if it is associated with an {appName} account. Your existing password has not been changed.' => 'Saatsime aadressile {email} juhendi, kuidas saad oma parooli uuendada, kui see aadress on seotud mõne {appName} kontoga. Me ei muutnud sinu praegust parooli.',
     'Authentication rule class {0} can not be instantiated' => '',
     'Rule class must extend "yii\\rbac\\Rule".' => '',
-    'Rule class name' => '',
-    'Select rule...' => '',
+    'Rule class name' => 'Reegli klassi nimi',
+    'Select rule...' => 'Vali reegel',
     'VKontakte' => '',
     'Yandex' => '',
     '{0, date, MMM dd, YYYY HH:mm}' => '',
     '{0, date, MMMM dd, YYYY HH:mm}' => '',
-    'An email has been sent with instructions for resetting your password' => '@@Saatsime sulle e-kirja juhendiga, kuidas saad oma parooli uuendada@@',
     '(not set)' => '(määramata)',
     'A confirmation message has been sent to your new email address' => 'Saatsime sinu uuele e-maili aadressile kinnituskirja',
     'A message has been sent to your email address. It contains a confirmation link that you must click to complete registration.' => 'Saatsime sulle kinnituseks e-kirja. Registreerumise kinnitamiseks pead klikkma saadetud kirjas olevale lingile.',
