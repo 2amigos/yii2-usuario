@@ -27,7 +27,7 @@
  - Enh #249: Show message `email send if possible` any time on reset password request (bscheshirwork)
  - Enh #282: Allows customization of controller namespace (maxxer)
  - Enh #303: Added French translation (pde159)
- - Fix: Fixed broken regex character class (CheckeredFlag)
+ - Fix #304: Fixed broken regex character class (CheckeredFlag)
 
 ## 1.1.4 - February 19, 2018
 - Enh: Check enableEmailConfirmation on registration (faenir)
