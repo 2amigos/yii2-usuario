@@ -35,12 +35,6 @@
             "email": "hola@2amigos.us",
             "homepage": "http://2amigos.us",
             "role": "Developer"
-        },
-        {
-            "name": "Timur Ruziev",
-            "email": "resurtm@2amigos.us",
-            "homepage": "http://resurtm.com",
-            "role": "Developer"
         }
     ],
     "minimum-stability": "dev",
