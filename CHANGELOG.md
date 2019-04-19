@@ -1,6 +1,6 @@
 # CHANGELOG
 
-## 1.1.5 - Work in progress
+## 1.5.0 April 19, 2019
  - Fix: Fix condition in EmailChangeService (it was always false) (borisaeric)
  - Fix #198: Updated translations by quique, bizley, TonisOrmisson, guogan, Dezinger, maxxer, wautvda, mrbig00, fabiomlferreira, WeeSee
  - Fix #209: Doc fix. allowAccountDelete default value is false (Dezinger)
