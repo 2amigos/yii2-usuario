@@ -53,7 +53,7 @@ class Rule extends Model
         return [
             [['name', 'className'], 'trim'],
             [['name', 'className'], 'required'],
-            [['name', 'previousName'], 'match', 'pattern' => '/^[\w][\w.:-]+[\w]$/'],
+            [['name', 'previousName'], 'match', 'pattern' => '/^\w[\w.:\-]+\w$/'],
             [['name'], RbacRuleNameValidator::class, 'previousName' => $this->previousName],
             [['className'], RbacRuleValidator::class],
         ];

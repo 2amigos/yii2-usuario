@@ -98,7 +98,7 @@ abstract class AbstractAuthItem extends Model
         return [
             ['itemName', 'safe'],
             ['name', 'required'],
-            ['name', 'match', 'pattern' => '/^[\w][\w.:-]+[\w]$/'],
+            ['name', 'match', 'pattern' => '/^\w[\w.:\-]+\w$/'],
             [['name', 'description', 'rule'], 'trim'],
             [
                 'name',
