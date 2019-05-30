@@ -52,7 +52,7 @@ return [
     'Account details have been updated' => 'Kontodetails gespeichert',
     'Account settings' => 'Kontoeinstellungen',
     'Already registered? Sign in!' => 'Bereits registriert? Zur Anmeldung!',
-    'An email with instructions to create a new password has been sent to {email} if it is associated with an {appName} account. Your existing password has not been changed.' => 'Eine Email mit Hinweisen, wie ein Kennwort erstellt wirdm wurde an {email} gesendet, sofern es mit dem Konto {appName} verbindund ist. Das aktuelle Kennwort wurde nicht geändert.',
+    'An email with instructions to create a new password has been sent to {email} if it is associated with an {appName} account. Your existing password has not been changed.' => 'Eine E-Mail mit Hinweisen, wie ein Kennwort erstellt wird wurde an {email} gesendet, sofern es mit dem Konto {appName} verbunden ist. Das aktuelle Kennwort wurde nicht geändert.',
     'An error occurred processing your request' => 'Es ist ein Fehler aufgetreten',
     'Are you sure you want to block this user?' => 'Sind Sie sicher, dass Sie diesen Benutzer blockieren wollen?',
     'Are you sure you want to confirm this user?' => 'Sind Sie sicher, dass Sie diesen Benutzer bestätigen wollen?',
