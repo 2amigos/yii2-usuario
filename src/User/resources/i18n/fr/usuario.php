@@ -272,4 +272,5 @@ return [
     'privacy policy' => 'politique de confidentialité',
     '{0, date, MMMM dd, YYYY HH:mm}' => '{0, date, dd MMMM YYYY HH:mm}',
     '{0} cannot be blank.' => '{0} ne peut être vide.',
+    '{0, date, MMM dd, YYYY HH:mm}' => '',
 ];
