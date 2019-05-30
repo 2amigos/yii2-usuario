@@ -17,6 +17,7 @@
  * NOTE: this file must be saved in UTF-8 encoding.
  */
 return [
+    '{0, date, MMM dd, YYYY HH:mm}' => '@@@@',
     '(not set)' => '',
     'A confirmation message has been sent to your new email address' => '',
     'A message has been sent to your email address. It contains a confirmation link that you must click to complete registration.' => '',
@@ -298,5 +299,4 @@ return [
     'Unable to disable two-factor authorization.' => '@@@@',
     'We couldn\'t re-send the mail to confirm your address. ' => '@@@@',
     'We have sent confirmation links to both old and new email addresses. ' => '@@@@',
-    '{0, date, MMM dd, YYYY HH:mm}' => '@@@@',
 ];

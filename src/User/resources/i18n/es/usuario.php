@@ -17,13 +17,6 @@
  * NOTE: this file must be saved in UTF-8 encoding.
  */
 return [
-    'An email with instructions to create a new password has been sent to {email} if it is associated with an {appName} account. Your existing password has not been changed.' => '',
-    'Rule class name' => '',
-    'Select rule...' => '',
-    'Two factor authentication protects you in case of stolen credentials' => '',
-    '{0, date, MMM dd, YYYY HH:mm}' => '',
-    'An email has been sent with instructions for resetting your password' => '@@Se ha enviado un correo electrónico con instrucciones para restablecer su contraseña@@',
-    'Two factor authentication protects you against stolen credentials' => '@@La autenticación de dos factores le protege del robo de credenciales@@',
     '(not set)' => '(sin establecer)',
     'A confirmation message has been sent to your new email address' => 'Se ha enviado un mensaje de confirmación a su nueva dirección de correo electrónico',
     'A message has been sent to your email address. It contains a confirmation link that you must click to complete registration.' => 'Se ha enviado un mensaje a su dirección de correo electrónico. Contiene un enlace de confirmación que tiene que seguir para completar el registro.',
@@ -275,4 +268,11 @@ return [
     'privacy policy' => 'política de privacidad',
     '{0, date, MMMM dd, YYYY HH:mm}' => '{0, date, dd MMMM, YYYY HH:mm}',
     '{0} cannot be blank.' => '{0} no puede estar vacío.',
+    'An email with instructions to create a new password has been sent to {email} if it is associated with an {appName} account. Your existing password has not been changed.' => '',
+    'Rule class name' => '',
+    'Select rule...' => '',
+    'Two factor authentication protects you in case of stolen credentials' => '',
+    '{0, date, MMM dd, YYYY HH:mm}' => '',
+    'An email has been sent with instructions for resetting your password' => '@@Se ha enviado un correo electrónico con instrucciones para restablecer su contraseña@@',
+    'Two factor authentication protects you against stolen credentials' => '@@La autenticación de dos factores le protege del robo de credenciales@@',
 ];
