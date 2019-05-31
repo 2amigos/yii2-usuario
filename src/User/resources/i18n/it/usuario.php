@@ -17,9 +17,6 @@
  * NOTE: this file must be saved in UTF-8 encoding.
  */
 return [
-    'An email with instructions to create a new password has been sent to {email} if it is associated with an {appName} account. Your existing password has not been changed.' => '',
-    '{0, date, MMM dd, YYYY HH:mm}' => '',
-    'An email has been sent with instructions for resetting your password' => '@@È stata inviata un\'email con le istruzioni per azzerare la tua password@@',
     '(not set)' => '(non impostato)',
     'A confirmation message has been sent to your new email address' => 'È stato inviato un messaggio di conferma al tuo nuovo indirizzo email',
     'A message has been sent to your email address. It contains a confirmation link that you must click to complete registration.' => 'È stato inviato un messaggio al tuo indirizzo email. Contiene un collegamento di verifica che devi aprire per completare la registrazione.',
@@ -274,4 +271,7 @@ return [
     'privacy policy' => 'politica della privacy',
     '{0, date, MMMM dd, YYYY HH:mm}' => '{0, date, dd MMMM YYYY HH:mm}',
     '{0} cannot be blank.' => '{0} non può essere vuoto.',
+    'An email with instructions to create a new password has been sent to {email} if it is associated with an {appName} account. Your existing password has not been changed.' => '',
+    '{0, date, MMM dd, YYYY HH:mm}' => '',
+    'An email has been sent with instructions for resetting your password' => '@@È stata inviata un\'email con le istruzioni per azzerare la tua password@@',
 ];
