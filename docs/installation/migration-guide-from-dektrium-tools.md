@@ -13,7 +13,7 @@ composer remove dektrium/yii2-rbac
 
 ## Install yii2-usuario
 ```
-composer add 2amigos/yii2-usuario
+composer require 2amigos/yii2-usuario
 ```
 
 ## Configuration
