@@ -22,9 +22,12 @@ class Google extends BaseGoogle implements AuthClientInterface
     public function getEmail()
     {
         $userAttributes = $this->getUserAttributes();
-        if (isset($userAttributes['emails']) && isset($userAttributes['emails'][0]['value'])) {
+
+        if (isset($userAttributes['emails'][0]['value'])) {
             return $userAttributes['emails'][0]['value'];
-        } elseif (isset($userAttributes['email'])) {
+        }
+
+        if (isset($userAttributes['email'])) {
             return $userAttributes['email'];
         }
 
