@@ -1,5 +1,6 @@
 # CHANGELOG
  - Fix #307: Fix French translation (arollmann)
+ - Fix #316: Fix New Response from Google OAuth Api
 
 ## 1.5.0 April 19, 2019
  - Fix: Fix condition in EmailChangeService (it was always false) (borisaeric)
