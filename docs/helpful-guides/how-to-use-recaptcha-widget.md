@@ -139,4 +139,4 @@ Finally, we have to configure the module and the application to ensure is using 
 
 ```
 
-© [2amigos](http://www.2amigos.us/) 2013-2017
+© [2amigos](http://www.2amigos.us/) 2013-2019

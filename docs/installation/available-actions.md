@@ -79,4 +79,4 @@ So they become:
 You can override them by setting the module's routes to an empty array. Then, configure the routes as you please.
 
 
-© [2amigos](http://www.2amigos.us/) 2013-2017
+© [2amigos](http://www.2amigos.us/) 2013-2019

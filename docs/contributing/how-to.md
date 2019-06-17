@@ -29,4 +29,4 @@ All contributions should follow our [templates guidelines](https://github.com/2a
 - Follow the guidelines at [Clean Code](clean-code.md) 
 
 
-© [2amigos](http://www.2amigos.us/) 2013-2017
+© [2amigos](http://www.2amigos.us/) 2013-2019

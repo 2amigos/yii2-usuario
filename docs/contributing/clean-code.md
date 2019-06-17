@@ -57,4 +57,4 @@ We are using `Codeception` for testing the module. To run tests do the following
 We still need to add `unit` tests to the module. Feel free to add your tests to it as long as it makes use of 
 `Codeception`. 
 
-© [2amigos](http://www.2amigos.us/) 2013-2017
+© [2amigos](http://www.2amigos.us/) 2013-2019

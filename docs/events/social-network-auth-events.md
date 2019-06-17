@@ -45,4 +45,4 @@ Event::on(
 > [guide](../helpful-guides/social-network-authentication.md)
 
 
-© [2amigos](http://www.2amigos.us/) 2013-2017
+© [2amigos](http://www.2amigos.us/) 2013-2019

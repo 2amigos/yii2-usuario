@@ -55,4 +55,4 @@ For further information about how to configure the clients, please visit the
 [Official Yii Auth Client Extension documentation](https://github.com/yiisoft/yii2-authclient/blob/master/docs/guide/installation.md).
 
 
-© [2amigos](http://www.2amigos.us/) 2013-2017
+© [2amigos](http://www.2amigos.us/) 2013-2019

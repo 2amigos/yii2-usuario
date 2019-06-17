@@ -201,4 +201,4 @@ Configures the name of the session key that will be used to hold the original ad
 
 
 
-© [2amigos](http://www.2amigos.us/) 2013-2017
+© [2amigos](http://www.2amigos.us/) 2013-2019
