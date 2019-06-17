@@ -57,7 +57,8 @@
         "phpmd/phpmd": "@stable",
         "codeception/specify": "^0.4.3",
         "codeception/verify": "^0.3.1",
-        "codeception/codeception": "*"
+        "codeception/codeception": "*",
+        "roave/security-advisories": "dev-master"
     },
     "autoload": {
         "psr-4": {
