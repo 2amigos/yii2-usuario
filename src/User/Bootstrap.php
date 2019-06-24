@@ -13,8 +13,14 @@ namespace Da\User;
 
 use Da\User\Component\AuthDbManagerComponent;
 use Da\User\Contracts\AuthManagerInterface;
+use Da\User\Controller\AdminController;
+use Da\User\Controller\RecoveryController;
+use Da\User\Controller\RegistrationController;
 use Da\User\Controller\SecurityController;
 use Da\User\Event\FormEvent;
+use Da\User\Event\UserEvent;
+use Da\User\Event\ResetPasswordEvent;
+use Da\User\Event\SocialNetworkAuthEvent;
 use Da\User\Helper\ClassMapHelper;
 use Da\User\Model\User;
 use Yii;
@@ -161,6 +167,9 @@ class Bootstrap implements BootstrapInterface
                     }
                 });
             }
+
+            // Attach events for logging
+            $this->attachAuditLogging();
 
             if ($app instanceof WebApplication) {
                 // override Yii
@@ -378,5 +387,72 @@ class Bootstrap implements BootstrapInterface
             }
         }
         throw new Exception("Unknown configuration class name '{$name}'");
+    }
+
+    /**
+     * Attach events for audit logging in usuario
+     */
+    private function attachAuditLogging() 
+    {
+        if (Yii::$app->getModule('user')->enableAuditLogging != true) {
+            return;
+        }
+
+        YiiEvent::on(SecurityController::class, FormEvent::EVENT_AFTER_LOGIN, function (FormEvent $event) {
+            Yii::info(Yii::t('usuario', "User {user} logged in from {ip}", [
+                'user' => $event->form->user->username,
+                'ip' => Yii::$app->request->remoteIP,
+            ]), "usuario.audit");
+        });
+        YiiEvent::on(SecurityController::class, UserEvent::EVENT_AFTER_LOGOUT, function (UserEvent $event) {
+            Yii::info(Yii::t('usuario', "User {user} logged out from {ip}", [
+                'user' => $event->user->username,
+                'ip' => Yii::$app->request->remoteIP,
+            ]), "usuario.audit");
+        });
+        YiiEvent::on(RegistrationController::class, FormEvent::EVENT_AFTER_REGISTER, function (FormEvent $event) {
+            Yii::info(Yii::t('usuario', "User {user} registered from {ip}", [
+                'user' => $event->form->username,
+                'ip' => Yii::$app->request->remoteIP,
+            ]), "usuario.audit");
+        });
+        YiiEvent::on(RegistrationController::class, UserEvent::EVENT_AFTER_CONFIRMATION, function (UserEvent $event) {
+            Yii::info(Yii::t('usuario', "User {user} confirmed from {ip}", [
+                'user' => $event->user->username,
+                'ip' => Yii::$app->request->remoteIP,
+            ]), "usuario.audit");
+        });
+        YiiEvent::on(AdminController::class, UserEvent::EVENT_AFTER_CREATE, function (UserEvent $event) {
+            Yii::info(Yii::t('usuario', "User {user} created from {ip}", [
+                'user' => $event->user->username,
+                'ip' => Yii::$app->request->remoteIP,
+            ]), "usuario.audit");
+        });
+        YiiEvent::on(User::class, UserEvent::EVENT_AFTER_REGISTER, function (UserEvent $event) {
+            Yii::info(Yii::t('usuario', "User {user} registered from {ip}", [
+                'user' => $event->user->username,
+                'ip' => Yii::$app->request->remoteIP,
+            ]), "usuario.audit");
+        });
+        YiiEvent::on(SecurityController::class, SocialNetworkAuthEvent::EVENT_AFTER_CONNECT, function (SocialNetworkAuthEvent $event) {
+            Yii::info(Yii::t('usuario', "User {user} connnected to social network {sn} from {ip}", [
+                'user' => $event->form->user->username,
+                'ip' => Yii::$app->request->remoteIP,
+                'sn' => $event->account->provider,
+            ]), "usuario.audit");
+        });
+        YiiEvent::on(SecurityController::class, SocialNetworkAuthEvent::EVENT_AFTER_AUTHENTICATE, function (SocialNetworkAuthEvent $event) {
+            Yii::info(Yii::t('usuario', "User {user} logged in via social network {sn} from {ip}", [
+                'user' => $event->form->user->username,
+                'ip' => Yii::$app->request->remoteIP,
+                'sn' => $event->account->provider,
+            ]), "usuario.audit");
+        });
+        YiiEvent::on(RecoveryController::class, ResetPasswordEvent::EVENT_AFTER_RESET, function (ResetPasswordEvent $event) {
+            Yii::info(Yii::t('usuario', "User {user} has reset password from {ip}", [
+                'user' => $event->token->user->username,
+                'ip' => Yii::$app->request->remoteIP,
+            ]), "usuario.audit");
+        });
     }
 }

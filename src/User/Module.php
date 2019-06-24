@@ -66,6 +66,10 @@ class Module extends BaseModule
      */
     public $twoFactorAuthenticationCycles = 1;
     /**
+     * @var bool whether to enable audit logging
+     */
+    public $enableAuditLogging = false;
+    /**
      * @var bool whether to allow auto login or not
      */
     public $enableAutoLogin = true;

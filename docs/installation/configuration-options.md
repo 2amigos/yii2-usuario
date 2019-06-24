@@ -42,6 +42,21 @@ Defaults to:
 #### gdprAnonymizePrefix (type: `string`, default: `GDPR`)
 Prefix to be used as a replacement when user requeste deletion of his data
 
+#### enableAuditLogging (type: `boolean`, default: `false`)
+
+Setting this attribute to `true` makes the module log all user security related events (login, logout, 
+password reset...).
+Events are logged using `usuario.audit` category, so you can customize log output with a target 
+like this:
+
+```
+[
+    'class' => 'yii\log\FileTarget',
+    'levels' => ['info'],
+    'categories' => ['usuario.audit'],
+    'logFile' => "@runtime/logs/audit.log",
+],
+```
 
 #### enableRegistration (type: `boolean`, default: `true`)
 
