@@ -32,6 +32,8 @@ class MigrationHelper
             case 'mssql':
             case 'sqlsrv':
                 return null;
+            case 'sqlite':
+                return null;
             default:
                 throw new RuntimeException('Your database is not supported!');
         }
@@ -55,6 +57,8 @@ class MigrationHelper
             case 'mssql':
             case 'sqlsrv':
                 return 'sqlsrv';
+            case 'sqlite':
+                return $driverName;
             default:
                 throw new RuntimeException('Your database is not supported!');
         }
