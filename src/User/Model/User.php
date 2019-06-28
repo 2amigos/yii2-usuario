@@ -248,7 +248,7 @@ class User extends ActiveRecord implements IdentityInterface
             // two factor auth rules
             'twoFactorSecretTrim' => ['auth_tf_key', 'trim'],
             'twoFactorSecretLength' => ['auth_tf_key', 'string', 'max' => 16],
-            'twoFactorEnabledNumber' => ['auth_tf_enabled', 'integer']
+            'twoFactorEnabledNumber' => ['auth_tf_enabled', 'boolean']
         ];
     }
 

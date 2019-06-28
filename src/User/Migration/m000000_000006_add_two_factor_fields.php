@@ -11,15 +11,19 @@
 
 namespace Da\User\Migration;
 
-use yii\db\Migration;
 use Da\User\Helper\MigrationHelper;
+use yii\db\Migration;
 
 class m000000_000006_add_two_factor_fields extends Migration
 {
     public function safeUp()
     {
         $this->addColumn('{{%user}}', 'auth_tf_key', $this->string(16));
-        $this->addColumn('{{%user}}', 'auth_tf_enabled', $this->boolean()->defaultValue(MigrationHelper::getBooleanValue($this->db->driverName,false)));
+        $this->addColumn(
+            '{{%user}}',
+            'auth_tf_enabled',
+            $this->boolean()->defaultValue(MigrationHelper::getBooleanValue($this->db->driverName))
+        );
     }
 
     public function safeDown()
