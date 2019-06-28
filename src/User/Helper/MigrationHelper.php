@@ -31,6 +31,7 @@ class MigrationHelper
             case 'dblib':
             case 'mssql':
             case 'sqlsrv':
+            case 'sqlite':
                 return null;
             default:
                 throw new RuntimeException('Your database is not supported!');
@@ -48,8 +49,8 @@ class MigrationHelper
     {
         switch ($driverName) {
             case 'mysql':
-                return $driverName;
             case 'pgsql':
+            case 'sqlite':
                 return $driverName;
             case 'dblib':
             case 'mssql':
@@ -72,10 +73,16 @@ class MigrationHelper
         return self::resolveDbType($driverName) === 'sqlsrv';
     }
 
-    public static function getBooleanValue($driverName,$value=false)
+    /**
+     * @param $driverName
+     * @param bool $value
+     *
+     * @return bool|int
+     */
+    public static function getBooleanValue($driverName, $value = false)
     {
-        if(self::isMicrosoftSQLServer($driverName)) {
-            return $value? 1: 0; 
+        if (self::isMicrosoftSQLServer($driverName)) {
+            return $value ? 1 : 0;
         }
         return $value;
     }

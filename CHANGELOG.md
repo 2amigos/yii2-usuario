@@ -3,6 +3,8 @@
  - Fix #316: Fix new response from Google OAuth Api (Julian-B90)
  - Fix #321: Fix new response from LinkedIn OAuth Api (tonydspaniard) 
  - Fix #322: Fix boolean values in migrations for SQL server (tsdogs)
+ - Enh #325: Added support for sqlite3 (santilin)
+ - Fix #326: Fix rule for the user auth_tf_enabled field (santilin)
 
 ## 1.5.0 April 19, 2019
  - Fix: Fix condition in EmailChangeService (it was always false) (borisaeric)
