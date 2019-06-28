@@ -74,15 +74,9 @@ class MigrationHelper
 
     public static function getBooleanValue($driverName,$value=false)
     {
-	switch (self::resolveDbType($driverName)) {
-            case 'sqlsrv':
-                return $value?1:0;
-                break;
-            case 'pgsql':
-                return $value?true:false;
-                break;
-            default:
-              return $value;
+        if(self::isMicrosoftSQLServer($driverName)) {
+            return $value? 1: 0; 
         }
+        return $value;
     }
 }
