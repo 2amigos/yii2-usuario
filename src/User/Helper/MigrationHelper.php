@@ -71,4 +71,12 @@ class MigrationHelper
     {
         return self::resolveDbType($driverName) === 'sqlsrv';
     }
+
+    public static function getBooleanValue($driverName,$value=false)
+    {
+        if(self::isMicrosoftSQLServer($driverName)) {
+            return $value? 1: 0; 
+        }
+        return $value;
+    }
 }
