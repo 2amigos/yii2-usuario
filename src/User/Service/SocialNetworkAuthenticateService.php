@@ -15,7 +15,6 @@ use Da\User\Contracts\AuthClientInterface;
 use Da\User\Contracts\ServiceInterface;
 use Da\User\Controller\SecurityController;
 use Da\User\Event\SocialNetworkAuthEvent;
-use Da\User\Factory\MailFactory;
 use Da\User\Model\SocialNetworkAccount;
 use Da\User\Model\User;
 use Da\User\Query\SocialNetworkAccountQuery;
