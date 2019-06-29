@@ -117,12 +117,12 @@ class MailFactory
     /**
      * Builds a MailerService.
      *
-     * @param string $type
+     * @param string                $type
      * @param string|array|\Closure $from
-     * @param string $to
-     * @param string $subject
-     * @param string $view
-     * @param array  $params
+     * @param string                $to
+     * @param string                $subject
+     * @param string                $view
+     * @param array                 $params
      *
      * @throws InvalidConfigException
      * @return MailService
@@ -130,7 +130,7 @@ class MailFactory
      */
     public static function makeMailerService($type, $from, $to, $subject, $view, $params = [])
     {
-        if ($from instanceof \Closure){
+        if ($from instanceof \Closure) {
             $from = $from($type);
         }
         /** @noinspection PhpIncompatibleReturnTypeInspection */

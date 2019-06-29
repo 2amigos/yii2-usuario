@@ -75,7 +75,7 @@ class SocialNetworkAccount extends ActiveRecord
     /**
      * @throws Exception
      * @throws InvalidParamException
-     * @return string the connection url
+     * @return string                the connection url
      */
     public function getConnectionUrl()
     {

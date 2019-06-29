@@ -19,7 +19,6 @@ use yii\base\Event;
  */
 class GdprEvent extends Event
 {
-
     const EVENT_BEFORE_DELETE = 'beforeDelete';
     const EVENT_AFTER_DELETE = 'afterDelete';
     /**

@@ -38,7 +38,6 @@ class SecurityController extends Controller
 
     protected $socialNetworkAccountQuery;
 
-
     /**
      * SecurityController constructor.
      *

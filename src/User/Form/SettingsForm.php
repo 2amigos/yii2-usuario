@@ -55,7 +55,7 @@ class SettingsForm extends Model
      * SettingsForm constructor.
      *
      * @param SecurityHelper $securityHelper
-     * @param array $config
+     * @param array          $config
      */
     public function __construct(SecurityHelper $securityHelper, array $config = [])
     {

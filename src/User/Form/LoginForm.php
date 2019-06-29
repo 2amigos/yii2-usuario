@@ -142,7 +142,7 @@ class LoginForm extends Model
      * Validates form and logs the user in.
      *
      * @throws InvalidParamException
-     * @return bool whether the user is logged in successfully
+     * @return bool                  whether the user is logged in successfully
      */
     public function login()
     {

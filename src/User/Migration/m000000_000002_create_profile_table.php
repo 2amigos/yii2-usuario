@@ -34,7 +34,7 @@ class m000000_000002_create_profile_table extends Migration
             MigrationHelper::resolveTableOptions($this->db->driverName)
         );
 
-        $this->addPrimaryKey('{{%profile_pk}}','{{%profile}}','user_id');
+        $this->addPrimaryKey('{{%profile_pk}}', '{{%profile}}', 'user_id');
 
         $restrict = MigrationHelper::isMicrosoftSQLServer($this->db->driverName) ? 'NO ACTION' : 'RESTRICT';
 

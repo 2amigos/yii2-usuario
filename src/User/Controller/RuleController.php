@@ -11,18 +11,18 @@
 
 namespace Da\User\Controller;
 
+use Da\User\Filter\AccessRuleFilter;
 use Da\User\Model\Rule;
 use Da\User\Search\RuleSearch;
 use Da\User\Service\AuthRuleEditionService;
 use Da\User\Traits\AuthManagerAwareTrait;
 use Da\User\Traits\ContainerAwareTrait;
 use Da\User\Validator\AjaxRequestModelValidator;
-use Da\User\Filter\AccessRuleFilter;
 use Yii;
+use yii\filters\AccessControl;
 use yii\filters\VerbFilter;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
-use yii\filters\AccessControl;
 
 class RuleController extends Controller
 {

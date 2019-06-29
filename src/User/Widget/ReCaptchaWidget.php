@@ -83,7 +83,7 @@ class ReCaptchaWidget extends InputWidget
 
     /**
      * @throws InvalidConfigException
-     * @return array the google recaptcha options.
+     * @return array                  the google recaptcha options.
      */
     protected function getCaptchaOptions()
     {

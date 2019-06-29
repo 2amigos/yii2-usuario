@@ -59,6 +59,7 @@ class UserCreateService implements ServiceInterface
                 ? $model->password
                 : $this->securityHelper->generatePassword(8);
 
+            /** @var UserEvent $event */
             $event = $this->make(UserEvent::class, [$model]);
             $model->trigger(UserEvent::EVENT_BEFORE_CREATE, $event);
 
@@ -75,15 +76,15 @@ class UserCreateService implements ServiceInterface
                     ['email' => $model->email]
                 );
                 // from web display a flash message (if enabled)
-                if($this->getModule()->enableFlashMessages == TRUE && is_a(Yii::$app, yii\web\Application::class)) {
+                if ($this->getModule()->enableFlashMessages === true && is_a(Yii::$app, yii\web\Application::class)) {
                     Yii::$app->session->setFlash(
                         'warning',
                         $error_msg
                     );
                 }
                 // if we're from console add an error to the model in order to return an error message
-                if(is_a(Yii::$app, yii\console\Application::class)) {
-                    $model->addError("username", $error_msg);
+                if (is_a(Yii::$app, yii\console\Application::class)) {
+                    $model->addError('username', $error_msg);
                 }
                 $transaction->rollBack();
                 return false;

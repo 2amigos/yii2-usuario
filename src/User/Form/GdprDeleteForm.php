@@ -4,14 +4,12 @@
  * This file is part of the 2amigos/yii2-usuario project.
  *
  * (c) 2amigOS! <http://2amigos.us/>
- * @author E. Alamo <erosdelalamo@gmail.com>
  *
  * For the full copyright and license information, please view
  * the LICENSE file that was distributed with this source code.
  */
 
 namespace Da\User\Form;
-
 
 use Da\User\Helper\SecurityHelper;
 use Da\User\Model\User;
@@ -42,7 +40,7 @@ class GdprDeleteForm extends Model
 
     /**
      * @param SecurityHelper $securityHelper
-     * @param array $config
+     * @param array          $config
      */
     public function __construct(SecurityHelper $securityHelper, $config = [])
     {

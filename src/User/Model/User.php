@@ -286,7 +286,7 @@ class User extends ActiveRecord implements IdentityInterface
 
     /**
      * @throws InvalidConfigException
-     * @return bool whether the user is an admin or not
+     * @return bool                   whether the user is an admin or not
      */
     public function getIsAdmin()
     {

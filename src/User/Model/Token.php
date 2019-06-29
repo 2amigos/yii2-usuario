@@ -101,7 +101,7 @@ class Token extends ActiveRecord
 
     /**
      * @throws RuntimeException
-     * @return bool Whether token has expired
+     * @return bool             Whether token has expired
      */
     public function getIsExpired()
     {

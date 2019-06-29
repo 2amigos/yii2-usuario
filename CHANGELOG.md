@@ -6,6 +6,7 @@
  - Enh #325: Added support for sqlite3 (santilin)
  - Fix #326: Fix rule for the user auth_tf_enabled field (santilin)
  - Fix #290: Fix wrong email message for resending confirmation (tonydspaniard)
+ - Enh #269: Added help documentation to console commands (tonydspaniard)
 
 ## 1.5.0 April 19, 2019
  - Fix: Fix condition in EmailChangeService (it was always false) (borisaeric)

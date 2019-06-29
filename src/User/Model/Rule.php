@@ -14,8 +14,8 @@ namespace Da\User\Model;
 use Da\User\Traits\AuthManagerAwareTrait;
 use Da\User\Validator\RbacRuleNameValidator;
 use Da\User\Validator\RbacRuleValidator;
-use yii\base\Model;
 use Yii;
+use yii\base\Model;
 
 class Rule extends Model
 {

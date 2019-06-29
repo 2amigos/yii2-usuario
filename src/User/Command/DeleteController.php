@@ -12,9 +12,11 @@
 namespace Da\User\Command;
 
 use Da\User\Query\UserQuery;
+use Throwable;
 use Yii;
 use yii\base\Module;
 use yii\console\Controller;
+use yii\db\StaleObjectException;
 use yii\helpers\Console;
 
 class DeleteController extends Controller
@@ -27,6 +29,15 @@ class DeleteController extends Controller
         parent::__construct($id, $module, $config);
     }
 
+    /**
+     * This command deletes a user.
+     *
+     * @param string $usernameOrEmail Email or username of the user to delete
+     *
+     *
+     * @throws Throwable
+     * @throws StaleObjectException
+     */
     public function actionIndex($usernameOrEmail)
     {
         if ($this->confirm(Yii::t('usuario', 'Are you sure? Deleted user can not be restored'))) {

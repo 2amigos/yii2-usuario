@@ -43,7 +43,6 @@ class RegistrationController extends Controller
     protected $userQuery;
     protected $socialNetworkAccountQuery;
 
-
     /**
      * RegistrationController constructor.
      *
