@@ -1,7 +1,7 @@
 <?php
 
 
-namespace Da\Usuario\Base\Contracts;
+namespace Da\Usuario\Base\Model;
 
 
 interface UsuarioProfile
