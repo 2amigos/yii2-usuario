@@ -19,14 +19,14 @@ use yii\base\Model;
  */
 class FormEvent extends Event
 {
-    const EVENT_BEFORE_REQUEST = 'beforeRequest';
-    const EVENT_AFTER_REQUEST = 'afterRequest';
-    const EVENT_BEFORE_RESEND = 'beforeResend';
-    const EVENT_AFTER_RESEND = 'afterResend';
-    const EVENT_BEFORE_LOGIN = 'beforeLogin';
-    const EVENT_AFTER_LOGIN = 'afterLogin';
-    const EVENT_BEFORE_REGISTER = 'beforeRegister';
-    const EVENT_AFTER_REGISTER = 'afterRegister';
+    public const EVENT_BEFORE_REQUEST = 'beforeRequest';
+    public const EVENT_AFTER_REQUEST = 'afterRequest';
+    public const EVENT_BEFORE_RESEND = 'beforeResend';
+    public const EVENT_AFTER_RESEND = 'afterResend';
+    public const EVENT_BEFORE_LOGIN = 'beforeLogin';
+    public const EVENT_AFTER_LOGIN = 'afterLogin';
+    public const EVENT_BEFORE_REGISTER = 'beforeRegister';
+    public const EVENT_AFTER_REGISTER = 'afterRegister';
 
     protected $form;
 
