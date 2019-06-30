@@ -11,40 +11,107 @@
 
 namespace Da\Usuario\Base\Strategy;
 
-use Da\User\Factory\MailFactory;
-use Da\User\Factory\TokenFactory;
-use Da\User\Form\SettingsForm;
-use Da\User\Traits\ContainerAwareTrait;
-use Da\Usuario\Base\Contracts\MailChangeStrategy;
+use Da\User\Model\UsuarioToken;
+use Da\Usuario\Base\Event\MailEvent;
+use Da\Usuario\Base\Event\MailProcessEvent;
+use Da\Usuario\Base\Model\Usuario;
+use Da\Usuario\Base\Service\MailService;
 use Yii;
+use yii\base\InvalidConfigException;
+use yii\di\NotInstantiableException;
 
 class DefaultMailChange implements MailChangeStrategy
 {
-    use ContainerAwareTrait;
+    /**
+     * @var Usuario
+     */
+    protected $user;
 
-    protected $form;
-
-    public function __construct(SettingsForm $form)
+    /**
+     * DefaultMailChange constructor.
+     * @param Usuario $user
+     * @param string  $unconfirmed New email
+     */
+    public function __construct(Usuario $user, string $unconfirmed)
     {
-        $this->form = $form;
+        $this->user = $user;
+        $this->user->unconfirmed_email = $unconfirmed;
     }
 
-    public function run()
+    /**
+     * @throws InvalidConfigException
+     * @return bool
+     */
+    public function run(): bool
     {
-        $this->form->getUser()->unconfirmed_email = $this->form->email;
+        $token = $this->createConfirmationToken($this->user->id);
 
-        $token = TokenFactory::makeConfirmNewMailToken($this->form->getUser()->id);
-
-        $mailService = MailFactory::makeReconfirmationMailerService($this->form->getUser(), $token);
+        $mailService = $this->createReconfirmationMailerService($token);
 
         if ($mailService->run()) {
             Yii::$app
                 ->session
                 ->setFlash('info', Yii::t('usuario', 'A confirmation message has been sent to your new email address'));
 
-            return $this->form->getUser()->save();
+            return $this->user->save();
         }
 
         return false;
+    }
+
+    /**
+     * @param int $id
+     *
+     * @throws \yii\base\InvalidConfigException
+     * @return UsuarioToken
+     *
+     */
+    private function createConfirmationToken(int $id): UsuarioToken
+    {
+        $token = Yii::createObject([
+            'class' => UsuarioToken::class,
+            'user_id' => $id,
+            'type' => MailEvent::CONFIRM_EMAIL,
+        ]);
+
+        $token->save(false);
+
+        return $token;
+    }
+
+    /**
+     * @param UsuarioToken $token
+     *
+     * @throws NotInstantiableException
+     * @throws InvalidConfigException
+     * @return MailService
+     *
+     */
+    private function createReconfirmationMailerService(UsuarioToken $token): MailService
+    {
+        $config = Yii::$app->user->parameters['mail'];
+
+        $from = $config['from'];
+        $to = $this->user->unconfirmed_email;
+        $subject = $config['subject']['reconfirmation'];
+        $params = [
+            'user' => $token->user ?? null,
+            'token' => $token,
+        ];
+
+        /** @var MailService $mailer */
+        $mailer = Yii::$container->get(
+            MailService::class,
+            [
+                MailProcessEvent::RECONFIRM_EMAIL,
+                $from,
+                $to,
+                $subject,
+                'reconfirmation',
+                $params,
+            ]
+        );
+
+        return $mailer;
     }
 }
