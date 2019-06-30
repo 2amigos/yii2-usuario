@@ -12,26 +12,27 @@
 namespace Da\Usuario\Base\Model\Query;
 
 use Da\User\Model\Token;
+use Da\User\Model\UsuarioToken;
 use yii\db\ActiveQuery;
 
 class TokenQuery extends ActiveQuery
 {
     /**
-     * @param $userId
+     * @param int $id
      *
      * @return $this
      */
-    public function whereUserId($userId)
+    public function whereUserIdIs(int $id): self
     {
-        return $this->andWhere(['user_id' => $userId]);
+        return $this->andWhere(['user_id' => $id]);
     }
 
     /**
-     * @param $code
+     * @param string $code
      *
      * @return $this
      */
-    public function whereCode($code)
+    public function whereCodeIs(string $code): self
     {
         return $this->andWhere(['code' => $code]);
     }
@@ -39,17 +40,17 @@ class TokenQuery extends ActiveQuery
     /**
      * @return $this
      */
-    public function whereIsRecoveryType()
+    public function whereIsOfRecoveryType(): self
     {
-        return $this->andWhere(['type' => Token::TYPE_RECOVERY]);
+        return $this->andWhere(['type' => UsuarioToken::TYPE_RECOVERY]);
     }
 
     /**
      * @return $this
      */
-    public function whereIsConfirmationType()
+    public function whereIsOfConfirmationType(): self
     {
-        return $this->andWhere(['type' => Token::TYPE_CONFIRMATION]);
+        return $this->andWhere(['type' => UsuarioToken::TYPE_CONFIRMATION]);
     }
 
     /**
@@ -57,7 +58,7 @@ class TokenQuery extends ActiveQuery
      *
      * @return $this
      */
-    public function whereIsTypes(array $types)
+    public function whereInTypes(array $types): self
     {
         return $this->andWhere(['in', 'type', $types]);
     }

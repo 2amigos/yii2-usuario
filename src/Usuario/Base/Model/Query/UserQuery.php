@@ -16,53 +16,53 @@ use yii\db\ActiveQuery;
 class UserQuery extends ActiveQuery
 {
     /**
-     * @param $usernameOrEmail
+     * @param string $usernameOrEmail
      *
      * @return $this
      */
-    public function whereUsernameOrEmail($usernameOrEmail)
+    public function whereUsernameOrEmailIs(string $usernameOrEmail): self
     {
         return filter_var($usernameOrEmail, FILTER_VALIDATE_EMAIL)
-            ? $this->whereEmail($usernameOrEmail)
-            : $this->whereUsername($usernameOrEmail);
+            ? $this->whereEmailIs($usernameOrEmail)
+            : $this->whereUsernameIs($usernameOrEmail);
     }
 
     /**
-     * @param $email
+     * @param string $email
      *
      * @return $this
      */
-    public function whereEmail($email)
+    public function whereEmailIs(string $email): self
     {
         return $this->andWhere(['email' => $email]);
     }
 
     /**
-     * @param $username
+     * @param string $username
      *
      * @return $this
      */
-    public function whereUsername($username)
+    public function whereUsernameIs(string $username): self
     {
         return $this->andWhere(['username' => $username]);
     }
 
     /**
-     * @param $id
+     * @param int $id
      *
      * @return $this
      */
-    public function whereId($id)
+    public function whereIdIs(int $id): self
     {
         return $this->andWhere(['id' => $id]);
     }
 
     /**
-     * @param $id
+     * @param int $id
      *
      * @return $this
      */
-    public function whereNotId($id)
+    public function whereIdIsNot($id): self
     {
         return $this->andWhere(['<>', 'id', $id]);
     }
