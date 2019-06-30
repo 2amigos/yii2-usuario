@@ -29,14 +29,14 @@ class Security
     /**
      * Generates a secure hash from a password and a random salt.
      *
-     * @param string $password
+     * @param string   $password
      * @param null|int $cost
      *
+     * @throws Exception
      * @return string
      *
-     * @throws Exception
      */
-    public function generatePasswordHash($password, $cost = null)
+    public function generatePasswordHash(string $password, int $cost = null): string
     {
         return $this->security->generatePasswordHash($password, $cost);
     }
@@ -46,21 +46,30 @@ class Security
      *
      * @param int $length
      *
+     * @throws Exception
      * @return string
      *
-     * @throws Exception
      */
-    public function generateRandomString($length = 32)
+    public function generateRandomString(int $length = 32): string
     {
         return $this->security->generateRandomString($length);
     }
 
-    public function validatePassword($password, $hash)
+    /**
+     * @param  string $password
+     * @param  string $hash
+     * @return bool
+     */
+    public function validatePassword(string $password, string $hash): bool
     {
         return $this->security->validatePassword($password, $hash);
     }
 
-    public function generatePassword($length)
+    /**
+     * @param  int    $length
+     * @return string
+     */
+    public function generatePassword(int $length): string
     {
         $sets = [
             'abcdefghjkmnpqrstuvwxyz',

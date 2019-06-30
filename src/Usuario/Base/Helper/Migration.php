@@ -22,7 +22,7 @@ class Migration
      * @return null|string
      *
      */
-    public static function resolveTableOptions($driverName)
+    public static function resolveTableOptions(string $driverName): ?string
     {
         switch ($driverName) {
             case 'mysql':
@@ -44,7 +44,7 @@ class Migration
      * @return string
      *
      */
-    public static function resolveDbType($driverName)
+    public static function resolveDbType(string $driverName): string
     {
         switch ($driverName) {
             case 'mysql':
@@ -67,7 +67,7 @@ class Migration
      * @return bool
      *
      */
-    public static function isMicrosoftSQLServer($driverName)
+    public static function isMicrosoftSQLServer(string $driverName): bool
     {
         return self::resolveDbType($driverName) === 'sqlsrv';
     }

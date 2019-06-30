@@ -31,7 +31,7 @@ class ClassMap
      * @param $key
      * @param $class
      */
-    public function set($key, $class)
+    public function set($key, $class): void
     {
         $this->map[$key] = $class;
     }

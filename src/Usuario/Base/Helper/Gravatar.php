@@ -13,12 +13,12 @@ namespace Da\Usuario\Base\Helper;
 
 class Gravatar
 {
-    public function buildId($email)
+    public function buildId(string $email): string
     {
         return md5(strtolower(trim($email)));
     }
 
-    public function getUrl($id, $size = 200)
+    public function getUrl(int $id, int $size = 200): string
     {
         return '//gravatar.com/avatar/' . $id . '?s=' . $size;
     }
