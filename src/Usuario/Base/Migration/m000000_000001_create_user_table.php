@@ -11,7 +11,7 @@
 
 namespace Da\Usuario\Base\Migration;
 
-use Da\User\Helper\MigrationHelper;
+use Da\Usuario\Base\Helper\Migration as MigrationHelper;
 use yii\db\Migration;
 
 class m000000_000001_create_user_table extends Migration
