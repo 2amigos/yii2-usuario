@@ -12,7 +12,6 @@
 namespace Da\User\Migration;
 
 use yii\db\Migration;
-use yii\db\Schema;
 
 /**
  * Class m000000_000008_add_last_login_ip

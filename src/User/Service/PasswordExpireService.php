@@ -13,7 +13,6 @@ namespace Da\User\Service;
 
 use Da\User\Contracts\ServiceInterface;
 use Da\User\Model\User;
-use Yii;
 
 class PasswordExpireService implements ServiceInterface
 {
