@@ -18,13 +18,14 @@ class Migration
     /**
      * Ensures correct boolean value for sql server
      *
-     * @param $driverName
-     * @param bool $value
+     * @param string $driverName
+     * @param bool   $value
+     *
      * @return bool|int
      */
-    public static function getBooleanValue($driverName,$value=false)
+    public static function getBooleanValue(string $driverName, bool $value = false)
     {
-        if(self::isMicrosoftSQLServer($driverName)) {
+        if (self::isMicrosoftSQLServer($driverName)) {
             return $value? 1: 0;
         }
         return $value;
