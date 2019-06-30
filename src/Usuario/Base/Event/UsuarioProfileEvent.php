@@ -12,24 +12,11 @@
 namespace Da\Usuario\Base\Event;
 
 use Da\Usuario\Base\Model\UsuarioProfile;
-use yii\base\Event;
 
 /**
  * @property-read UsuarioProfile $profile
  */
-class ProfileEvent extends Event implements UsuarioProfileEvent
+interface UsuarioProfileEvent
 {
-    protected $profile;
-
-    public function __construct(UsuarioProfile $profile, array $config = [])
-    {
-        $this->profile = $profile;
-
-        parent::__construct($config);
-    }
-
-    public function getProfile(): UsuarioProfile
-    {
-        return $this->profile;
-    }
+    public function getProfile(): UsuarioProfile;
 }

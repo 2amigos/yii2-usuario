@@ -11,32 +11,25 @@
 
 namespace Da\Usuario\Base\Event;
 
-use Da\User\Model\User;
-use Da\User\Service\MailService;
+use Da\Usuario\Base\Exception\MailerException;
+use Da\Usuario\Base\Model\Usuario;
+use Da\Usuario\Base\Service\MailService;
 use yii\base\Event;
 
 /**
  * @property-read string $type
- * @property-read User $user
+ * @property-read Usuario $user
  * @property-read MailService $mailService
  * @property-read mixed|\Exception $exception
  */
-class MailEvent extends Event
+class MailEvent extends Event implements MailProcessEvent
 {
-    const TYPE_WELCOME = 'welcome';
-    const TYPE_RECOVERY = 'recovery';
-    const TYPE_CONFIRM = 'confirm';
-    const TYPE_RECONFIRM = 'reconfirm';
-
-    const EVENT_BEFORE_SEND_MAIL = 'beforeSendMail';
-    const EVENT_AFTER_SEND_MAIL = 'afterSendMail';
-
     protected $type;
     protected $user;
     protected $mailService;
     protected $exception;
 
-    public function __construct($type, User $user, MailService $mailService, $exception, $config = [])
+    public function __construct($type, Usuario $user, MailService $mailService, $exception, $config = [])
     {
         $this->type = $type;
         $this->user = $user;
@@ -46,22 +39,22 @@ class MailEvent extends Event
         parent::__construct($config);
     }
 
-    public function getType()
+    public function getType(): string
     {
         return $this->type;
     }
 
-    public function getUser()
+    public function getUser(): Usuario
     {
         return $this->user;
     }
 
-    public function getMailService()
+    public function getMailService(): MailService
     {
         return $this->mailService;
     }
 
-    public function getException()
+    public function getException(): MailerException
     {
         return $this->exception;
     }
