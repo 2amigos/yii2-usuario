@@ -9,6 +9,8 @@ On Controllers
 - **AdminController**
     - **UserEvent::EVENT_BEFORE_CREATE**: Occurs before a user has been created
     - **UserEvent::EVENT_AFTER_CREATE**: Occurs after a user has been created 
+    - **UserEvent::EVENT_BEFORE_ACCOUNT_UPDATE**: Occurs before a user's account has been updated
+    - **UserEvent::EVENT_AFTER_ACCOUNT_UPDATE**: Occurs after a user's account has been updated
     - **UserEvent::EVENT_BEFORE_PROFILE_UPDATE**: Occurs before a user's profile has been updated
     - **UserEvent::EVENT_AFTER_PROFILE_UPDATE**: Occurs after a user's profile has been updated
     - **UserEvent::EVENT_BEFORE_CONFIRMATION**: Occurs before a user's email has been confirmed
