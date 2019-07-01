@@ -8,6 +8,7 @@
  - Fix #290: Fix wrong email message for resending confirmation (tonydspaniard)
  - Enh #269: Added help documentation to console commands (tonydspaniard)
  - Fix #244: Fix forced inclusion of a suggested class (tonydspaniard)
+ - Fix user event triggering in admin controller (maxxer)
 
 ## 1.5.0 April 19, 2019
  - Fix: Fix condition in EmailChangeService (it was always false) (borisaeric)

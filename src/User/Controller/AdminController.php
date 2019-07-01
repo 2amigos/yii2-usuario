@@ -160,11 +160,11 @@ class AdminController extends Controller
         $this->make(AjaxRequestModelValidator::class, [$user])->validate();
 
         if ($user->load(Yii::$app->request->post())) {
-            $this->trigger(ActiveRecord::EVENT_BEFORE_UPDATE, $event);
+            $this->trigger(UserEvent::EVENT_BEFORE_ACCOUNT_UPDATE, $event);
 
             if ($user->save()) {
                 Yii::$app->getSession()->setFlash('success', Yii::t('usuario', 'Account details have been updated'));
-                $this->trigger(ActiveRecord::EVENT_AFTER_UPDATE, $event);
+                $this->trigger(UserEvent::EVENT_AFTER_ACCOUNT_UPDATE, $event);
 
                 return $this->refresh();
             }
