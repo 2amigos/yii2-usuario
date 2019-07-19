@@ -10,6 +10,7 @@
  - Fix #244: Fix forced inclusion of a suggested class (tonydspaniard)
  - Fix user event triggering in admin controller (maxxer)
  - Enh #331: Added Ukrainian translations (kwazaro)
+ - Enh #324: Added option to restrict user assignments to roles only (CheckeredFlag)
 
 ## 1.5.0 April 19, 2019
  - Fix: Fix condition in EmailChangeService (it was always false) (borisaeric)

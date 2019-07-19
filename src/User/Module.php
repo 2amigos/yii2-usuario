@@ -181,4 +181,8 @@ class Module extends BaseModule
      * @var integer If != NULL sets a max password age in days
      */
     public $maxPasswordAge = null;
+    /**
+     * @var boolean whether to restrict assignment of permissions to users
+     */
+    public $restrictUserPermissionAssignment = false;
 }

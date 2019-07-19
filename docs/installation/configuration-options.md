@@ -199,6 +199,11 @@ Configures the root directory of the view files. See [overriding views](../enhan
 
 Configures the name of the session key that will be used to hold the original admin identifier.
 
+#### restrictUserPermissionAssignment (type: `boolean`, default: `false`)
+
+If `false`, allow the assignment of both roles and permissions to users.
+Set to `true` to restrict user assignments to roles only.
+
 
 
 © [2amigos](http://www.2amigos.us/) 2013-2019
