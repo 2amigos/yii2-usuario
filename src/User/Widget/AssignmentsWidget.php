@@ -79,9 +79,10 @@ class AssignmentsWidget extends Widget
 
     /**
      * Returns available auth items to be attached to the user.
-     * 
+     *
      * @param int|null type of auth items or null to return all
-     * 
+     * @param null|mixed $type
+     *
      * @return array
      */
     protected function getAvailableItems($type = null)

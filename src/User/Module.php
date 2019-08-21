@@ -12,6 +12,7 @@
 namespace Da\User;
 
 use Da\User\Contracts\MailChangeStrategyInterface;
+use Da\User\Filter\AccessRuleFilter;
 use yii\base\Module as BaseModule;
 
 /**
@@ -56,6 +57,24 @@ class Module extends BaseModule
      * @var string prefix to be used as a replacement when user requests deletion of his data.
      */
     public $gdprAnonymizePrefix = 'GDPR';
+    /**
+     * @var bool if true, all registered users will be prompted to give consent if they have not gave it earlier.
+     */
+    public $gdprRequireConsentToAll = false;
+    /**
+     * @var null|string use this to customize the message that will appear as hint in the give consent checkbox
+     */
+    public $gdprConsentMessage;
+    /**
+     * @var array list of url that does not require explicit data processing consent
+     *            to be accessed, like own profile, account... You can use wildcards like `route/to/*`. Do not prefix
+     *            "/" required for redirection, they are used to match against action ids.
+     *
+     * @see AccessRuleFilter
+     */
+    public $gdprConsentExcludedUrls = [
+        'user/settings/*'
+    ];
     /**
      * @var bool whether to enable two factor authentication or not
      */

@@ -33,6 +33,7 @@ use Da\User\Traits\ModuleAwareTrait;
 use Da\User\Validator\AjaxRequestModelValidator;
 use Da\User\Validator\TwoFactorCodeValidator;
 use Yii;
+use yii\base\DynamicModel;
 use yii\filters\AccessControl;
 use yii\filters\VerbFilter;
 use yii\helpers\ArrayHelper;
@@ -104,6 +105,7 @@ class SettingsController extends Controller
                             'export',
                             'networks',
                             'privacy',
+                            'gdpr-consent',
                             'gdpr-delete',
                             'disconnect',
                             'delete',
@@ -123,6 +125,10 @@ class SettingsController extends Controller
         ];
     }
 
+    /**
+     * @throws \yii\base\InvalidConfigException
+     * @return string|Response
+     */
     public function actionProfile()
     {
         $profile = $this->profileQuery->whereUserId(Yii::$app->user->identity->getId())->one();
@@ -132,6 +138,7 @@ class SettingsController extends Controller
             $profile->link('user', Yii::$app->user->identity);
         }
 
+        /** @var ProfileEvent $event */
         $event = $this->make(ProfileEvent::class, [$profile]);
 
         $this->make(AjaxRequestModelValidator::class, [$profile])->validate();
@@ -154,6 +161,10 @@ class SettingsController extends Controller
         );
     }
 
+    /**
+     * @throws NotFoundHttpException
+     * @return string
+     */
     public function actionPrivacy()
     {
         if (!$this->module->enableGdprCompliance) {
@@ -164,6 +175,15 @@ class SettingsController extends Controller
         ]);
     }
 
+    /**
+     * @throws NotFoundHttpException
+     * @throws \Throwable
+     * @throws \yii\base\Exception
+     * @throws \yii\base\InvalidConfigException
+     * @throws \yii\db\StaleObjectException
+     * @throws ForbiddenHttpException
+     * @return string|Response
+     */
     public function actionGdprDelete()
     {
         if (!$this->module->enableGdprCompliance) {
@@ -216,6 +236,37 @@ class SettingsController extends Controller
 
         return $this->render('gdpr-delete', [
             'model' => $form,
+        ]);
+    }
+
+    public function actionGdprConsent()
+    {
+        /** @var User $user */
+        $user = Yii::$app->user->identity;
+        if ($user->gdpr_consent) {
+            return $this->redirect(['profile']);
+        }
+        $model = new DynamicModel(['gdpr_consent']);
+        $model->addRule('gdpr_consent', 'boolean');
+        $model->addRule('gdpr_consent', 'default', ['value' => 0, 'skipOnEmpty' => false]);
+        $model->addRule('gdpr_consent', 'compare', [
+            'compareValue' => true,
+            'message' => Yii::t('usuario', 'Your consent is required to work with this site'),
+            'when' => function () {
+                return $this->module->enableGdprCompliance;
+            },
+        ]);
+        if ($model->load(Yii::$app->request->post()) && $model->validate()) {
+            $user->updateAttributes([
+                'gdpr_consent' => 1,
+                'gdpr_consent_date' => time(),
+            ]);
+            return $this->redirect(['profile']);
+        }
+
+        return $this->render('gdpr-consent', [
+            'model' => $model,
+            'gdpr_consent_hint' => $this->module->getConsentMessage(),
         ]);
     }
 
