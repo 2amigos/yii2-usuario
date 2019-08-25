@@ -13,7 +13,9 @@ namespace Da\User;
 
 use Da\User\Contracts\MailChangeStrategyInterface;
 use Da\User\Filter\AccessRuleFilter;
+use Yii;
 use yii\base\Module as BaseModule;
+use yii\helpers\Html;
 
 /**
  * This is the main module class of the yii2-usuario extension.
@@ -199,9 +201,29 @@ class Module extends BaseModule
     /**
      * @var integer If != NULL sets a max password age in days
      */
-    public $maxPasswordAge = null;
+    public $maxPasswordAge;
     /**
      * @var boolean whether to restrict assignment of permissions to users
      */
     public $restrictUserPermissionAssignment = false;
+
+    /**
+     * @return string with the hit to be used with the give consent checkbox
+     */
+    public function getConsentMessage()
+    {
+        $defaultConsentMessage = Yii::t(
+            'usuario',
+            'I agree processing of my personal data and the use of cookies to facilitate the operation of this site. For more information read our {privacyPolicy}',
+            [
+                'privacyPolicy' => Html::a(
+                    Yii::t('usuario', 'privacy policy'),
+                    $this->gdprPrivacyPolicyUrl,
+                    ['target' => '_blank']
+                ),
+            ]
+        );
+
+        return $this->gdprConsentMessage ?: $defaultConsentMessage;
+    }
 }

@@ -17,6 +17,8 @@
  * NOTE: this file must be saved in UTF-8 encoding.
  */
 return [
+    'I agree processing of my personal data and the use of cookies to facilitate the operation of this site. For more information read our {privacyPolicy}' => '@@@@',
+    'privacy policy' => '@@@@',
     '{0, date, MMM dd, YYYY HH:mm}' => '@@@@',
     '(not set)' => '',
     'A confirmation message has been sent to your new email address' => '',
@@ -285,7 +287,6 @@ return [
     'I aggree processing of my personal data and the use of cookies 
             to facilitate the operation of this site. For more information read our {privacyPolicy}' => '@@@@',
     'I aggree processing of my personal data and the use of cookies to facilitate the operation of this site. For more information read our {privacyPolicy}' => '@@@@',
-    'I agree processing of my personal data and the use of cookies to facilitate the operation of this site. For more information read our {privacyPolicy}' => '@@@@',
     'Invalid two-factor code' => '@@@@',
     'Last login' => '@@@@',
     'Registration ip' => '@@@@',
@@ -303,5 +304,4 @@ return [
     'Unable to disable two-factor authorization.' => '@@@@',
     'We couldn\'t re-send the mail to confirm your address. ' => '@@@@',
     'We have sent confirmation links to both old and new email addresses. ' => '@@@@',
-    'privacy policy' => '@@@@',
 ];

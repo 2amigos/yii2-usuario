@@ -109,6 +109,7 @@ return [
     'Gravatar email' => 'Email z Gravatara',
     'Hello' => 'Witaj',
     'Here you can download your personal data in a comma separated values format.' => 'Tutaj możesz pobrać swoje dane osobowe w formacie CSV.',
+    'I agree processing of my personal data and the use of cookies to facilitate the operation of this site. For more information read our {privacyPolicy}' => '@@Zgadzam się na przetwarzanie moich danych osobowych i na użycie cookies w celu zapewnienia możliwości poprawnego działania tego serwisu. Aby dowiedzieć się więcej na ten temat, zapoznaj się z naszą {privacyPolicy}.@@',
     'If you already registered, sign in and connect this account on settings page' => 'Jeśli jesteś już zarejestrowany, zaloguj się i podłącz to konto na stronie ustawień',
     'If you cannot click the link, please try pasting the text into your browser' => 'Jeśli kliknięcie w link nie działa, spróbuj skopiować go i wkleić w pasku adresu przeglądarki',
     'If you did not make this request you can ignore this email' => 'Jeśli nie jesteś autorem tego żądania, prosimy o zignorowanie emaila.',
@@ -264,6 +265,7 @@ return [
     'Your password has expired, you must change it now' => 'Twoje hasło zostało zdezaktualizowane, musisz je teraz zmienić',
     'Your personal information has been removed' => 'Twoje dane osobowe zostały usunięte',
     'Your profile has been updated' => 'Twój profil został zaktualizowany',
+    'privacy policy' => '@@polityką prywatności@@',
     '{0, date, MMM dd, YYYY HH:mm}' => '{0, date, dd MMM YYYY, HH:mm}',
     '{0, date, MMMM dd, YYYY HH:mm}' => '{0, date, dd MMMM YYYY, HH:mm}',
     '{0} cannot be blank.' => '{0} nie może pozostać bez wartości',
@@ -282,7 +284,6 @@ return [
     'I aggree processing of my personal data and the use of cookies 
             to facilitate the operation of this site. For more information read our {privacyPolicy}' => '@@@@',
     'I aggree processing of my personal data and the use of cookies to facilitate the operation of this site. For more information read our {privacyPolicy}' => '@@@@',
-    'I agree processing of my personal data and the use of cookies to facilitate the operation of this site. For more information read our {privacyPolicy}' => '@@Zgadzam się na przetwarzanie moich danych osobowych i na użycie cookies w celu zapewnienia możliwości poprawnego działania tego serwisu. Aby dowiedzieć się więcej na ten temat, zapoznaj się z naszą {privacyPolicy}.@@',
     'Invalid two-factor code' => '@@Nieprawidłowy kod uwierzytelniania dwuetapowego@@',
     'Last login' => '@@Data ostatniego logowania@@',
     'This will disable two-factor auth. Are you sure?' => '@@To wyłączy uwierzytelnianie dwuetapowe. Czy jesteś pewny?@@',
@@ -295,5 +296,4 @@ return [
     'Two-factor authorization has been disabled.' => '@@Dwuetapowa autoryzacja została wyłączona.@@',
     'Two-factor code' => '@@Kod dwuetapowy@@',
     'Unable to disable two-factor authorization.' => '@@Nie można wyłączyć dwuetapowej autoryzacji.@@',
-    'privacy policy' => '@@polityką prywatności@@',
 ];
