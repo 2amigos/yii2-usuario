@@ -11,7 +11,7 @@
  - Fix user event triggering in admin controller (maxxer)
  - Enh #331: Added Ukrainian translations (kwazaro)
  - Enh #324: Added option to restrict user assignments to roles only (CheckeredFlag)
- - Enh #224: Added option to require consent (esperio)
+ - Enh #224: Added option to require consent (eseperio)
 
 ## 1.5.0 April 19, 2019
  - Fix: Fix condition in EmailChangeService (it was always false) (borisaeric)
