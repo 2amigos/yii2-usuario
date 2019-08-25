@@ -12,6 +12,9 @@ php:
   - 7.4snapshot
   - nightly
 
+services:
+  - mysql
+
 matrix:
   fast_finish: true
   allow_failures:
