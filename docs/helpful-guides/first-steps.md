@@ -34,6 +34,14 @@ Put this in your migration:
             $administratorRole->description = 'Administrator';
             $auth->add($administratorRole);
 
+            // create permission for certain tasks
+            $permission = $auth->createPermission('user-management');
+            $permission->description = 'User Management';
+            $auth->add($permission);
+
+            // let administrators do user management
+            $auth->addChild($administratorRole, $auth->getPermission('user-management'));
+
             // create user "admin" with password "verysecret"
             $user = new \Da\User\Model\User([
                 'scenario' => 'create', 
@@ -52,11 +60,15 @@ Put this in your migration:
         {
             $auth = Yii::$app->authManager;
 
+            // delete permission
+            $auth->remove($auth->getPermission('user-management'));
+
             // delete admin-user and administrator role
-            $administratorRole = $auth->getRole("xw-administrator");
+            $administratorRole = $auth->getRole("administrator");
             $user = \Da\User\Model\User::findOne(['name'=>"admin"]);
             $auth->revoke($administratorRole, $user->id);
             $user->delete();
+            
         }
 
 ## User Management
@@ -66,6 +78,29 @@ Having setup the ```admin``` user you can start using user management at
     http://yourapp/index.php?r=user/admin
 
 You should be prompted a login screen and the enter ```admin/verysecret```.
+
+## Working with authentication
+
+Usually access restrictions to controller actions care specified in 
+[```behaviors()```](http://stuff.cebe.cc/yii2docs/guide-security-authorization.html).
+
+Additionally, in your code you can directly use permission checks. This is
+helpful e.g. in ```./views/layouts/main.php```.
+
+Examples:
+
+    // Is current user a guest (not signed in?)
+    if (Yii::$app->user->isGuest) {
+        ...
+    }
+
+    // Get roles of user
+    $roles = Yii::$app->authManager->getRolesByUser(Yii::$app->user->getId());
+
+    // Does current user have permission to do "user-management"?
+    if (Yii::$app->user->can("user-management")) {
+        ...
+    }
 
 ### Recommended Reading
 
