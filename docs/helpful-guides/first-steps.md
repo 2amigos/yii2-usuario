@@ -1,5 +1,5 @@
-first steps to work with Yii2-usuario
-=====================================
+First steps to use Yii2-usuario
+===============================
 
 After installing the extension and having configured everything, you need setup your application with the all the user related stuff, e.g.
 
@@ -13,7 +13,7 @@ After installing the extension and having configured everything, you need setup 
 There are several ways to do that:
 
 * using migrations
-* using the Command line (-> installation description)
+* using the Command line [Console Commands](../installation/console-commands.md)
 
 ### Creating the first Administrator during a migration
 
