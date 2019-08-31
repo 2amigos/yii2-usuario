@@ -58,4 +58,4 @@ if(Yii::$app->session->has($module->switchIdentitySessionKey)) {
 Check the [switchIdentitySessionKey](../installation/configuration-options.md#switchidentitysessionkey) documentation  
 for further information regarding this configuration option. 
 
-© [2amigos](http://www.2amigos.us/) 2013-2017
+© [2amigos](http://www.2amigos.us/) 2013-2019

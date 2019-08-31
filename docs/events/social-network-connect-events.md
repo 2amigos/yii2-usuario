@@ -28,8 +28,12 @@ This event when triggered will contain a `Da\User\Model\User` model instance and
 // events.php file
 
 use Da\User\Controller\RegistrationController;
+use Da\User\Controller\SecurityController;
 use Da\User\Event\SocialNetworkConnectEvent;
+use Da\User\Event\SocialNetworkAuthEvent;
 use yii\base\Event;
+
+// on RegistrationController
 
 Event::on(
     RegistrationController::class, 
@@ -42,6 +46,20 @@ Event::on(
         // ... your logic here
     });
 
-```
+// on SecurityController
 
-© [2amigos](http://www.2amigos.us/) 2013-2017
+Event::on(
+    SecurityController::class, 
+    SocialNetworkAuthEvent::EVENT_BEFORE_AUTHENTICATE, 
+    function (SocialNetworkAuthEvent $event) {
+    
+        $client = $event->getClient();
+        $account = $event->getAccount(); // $account is a Da\User\Model\SocialNetworkAccount
+
+        // ... your logic here
+    });
+
+```
+ 
+
+© [2amigos](http://www.2amigos.us/) 2013-2019

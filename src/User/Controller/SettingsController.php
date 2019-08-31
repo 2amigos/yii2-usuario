@@ -11,7 +11,6 @@
 
 namespace Da\User\Controller;
 
-
 use Da\User\Contracts\MailChangeStrategyInterface;
 use Da\User\Event\GdprEvent;
 use Da\User\Event\ProfileEvent;
@@ -56,16 +55,15 @@ class SettingsController extends Controller
     protected $userQuery;
     protected $socialNetworkAccountQuery;
 
-
     /**
      * SettingsController constructor.
      *
-     * @param string $id
-     * @param Module $module
-     * @param ProfileQuery $profileQuery
-     * @param UserQuery $userQuery
+     * @param string                    $id
+     * @param Module                    $module
+     * @param ProfileQuery              $profileQuery
+     * @param UserQuery                 $userQuery
      * @param SocialNetworkAccountQuery $socialNetworkAccountQuery
-     * @param array $config
+     * @param array                     $config
      */
     public function __construct(
         $id,
@@ -74,8 +72,7 @@ class SettingsController extends Controller
         UserQuery $userQuery,
         SocialNetworkAccountQuery $socialNetworkAccountQuery,
         array $config = []
-    )
-    {
+    ) {
         $this->profileQuery = $profileQuery;
         $this->userQuery = $userQuery;
         $this->socialNetworkAccountQuery = $socialNetworkAccountQuery;
@@ -159,9 +156,9 @@ class SettingsController extends Controller
 
     public function actionPrivacy()
     {
-        if (!$this->module->enableGdprCompliance)
+        if (!$this->module->enableGdprCompliance) {
             throw new NotFoundHttpException();
-
+        }
         return $this->render('privacy', [
             'module' => $this->module
         ]);
@@ -169,9 +166,9 @@ class SettingsController extends Controller
 
     public function actionGdprDelete()
     {
-        if (!$this->module->enableGdprCompliance)
+        if (!$this->module->enableGdprCompliance) {
             throw new NotFoundHttpException();
-
+        }
         /** @var GdprDeleteForm $form */
         $form = $this->make(GdprDeleteForm::class);
 
@@ -209,46 +206,17 @@ class SettingsController extends Controller
                     'website' => $anonymReplacement . ".tld",
                     'bio' => Yii::t('usuario', 'Deleted by GDPR request')
                 ]);
-
-
             }
             $this->trigger(GdprEvent::EVENT_AFTER_DELETE, $event);
 
             Yii::$app->session->setFlash('info', Yii::t('usuario', 'Your personal information has been removed'));
 
             return $this->goHome();
-
         }
 
         return $this->render('gdpr-delete', [
             'model' => $form,
         ]);
-    }
-
-    /**
-     * @param $id
-     * @throws ForbiddenHttpException
-     * @throws NotFoundHttpException
-     * @throws \Exception
-     * @throws \Throwable
-     * @throws \yii\db\StaleObjectException
-     */
-    protected function disconnectSocialNetwork($id)
-    {
-        /** @var SocialNetworkAccount $account */
-        $account = $this->socialNetworkAccountQuery->whereId($id)->one();
-
-        if ($account === null) {
-            throw new NotFoundHttpException();
-        }
-        if ($account->user_id !== Yii::$app->user->id) {
-            throw new ForbiddenHttpException();
-        }
-        $event = $this->make(SocialNetworkConnectEvent::class, [Yii::$app->user->identity, $account]);
-
-        $this->trigger(SocialNetworkConnectEvent::EVENT_BEFORE_DISCONNECT, $event);
-        $account->delete();
-        $this->trigger(SocialNetworkConnectEvent::EVENT_AFTER_DISCONNECT, $event);
     }
 
     /**
@@ -260,9 +228,9 @@ class SettingsController extends Controller
      */
     public function actionExport()
     {
-        if (!$this->module->enableGdprCompliance)
+        if (!$this->module->enableGdprCompliance) {
             throw new NotFoundHttpException();
-
+        }
         try {
             $properties = $this->module->gdprExportProperties;
             $user = Yii::$app->user->identity;
@@ -294,7 +262,6 @@ class SettingsController extends Controller
         } catch (\Throwable $e) {
             throw $e;
         }
-
     }
 
     public function actionAccount()
@@ -443,5 +410,31 @@ class SettingsController extends Controller
         }
 
         $this->redirect(['account']);
+    }
+
+    /**
+     * @param $id
+     * @throws ForbiddenHttpException
+     * @throws NotFoundHttpException
+     * @throws \Exception
+     * @throws \Throwable
+     * @throws \yii\db\StaleObjectException
+     */
+    protected function disconnectSocialNetwork($id)
+    {
+        /** @var SocialNetworkAccount $account */
+        $account = $this->socialNetworkAccountQuery->whereId($id)->one();
+
+        if ($account === null) {
+            throw new NotFoundHttpException();
+        }
+        if ($account->user_id !== Yii::$app->user->id) {
+            throw new ForbiddenHttpException();
+        }
+        $event = $this->make(SocialNetworkConnectEvent::class, [Yii::$app->user->identity, $account]);
+
+        $this->trigger(SocialNetworkConnectEvent::EVENT_BEFORE_DISCONNECT, $event);
+        $account->delete();
+        $this->trigger(SocialNetworkConnectEvent::EVENT_AFTER_DISCONNECT, $event);
     }
 }

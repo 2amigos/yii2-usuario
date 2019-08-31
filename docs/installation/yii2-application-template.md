@@ -85,6 +85,6 @@ is very convenient way to track new migration classes coming from this and possi
 > Namespaced migrations were introduced in Yii 2.0.10, so before using them consider updating your framework
 > installation version.
 
-© [2amigos](http://www.2amigos.us/) 2013-2017
+© [2amigos](http://www.2amigos.us/) 2013-2019
 
 

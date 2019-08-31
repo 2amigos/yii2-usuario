@@ -1,8 +1,20 @@
 # CHANGELOG
+ - Fix #307: Fix French translation (arollmann)
+ - Fix #316: Fix new response from Google OAuth Api (Julian-B90)
+ - Fix #321: Fix new response from LinkedIn OAuth Api (tonydspaniard) 
+ - Fix #322: Fix boolean values in migrations for SQL server (tsdogs)
+ - Enh #325: Added support for sqlite3 (santilin)
+ - Fix #326: Fix rule for the user auth_tf_enabled field (santilin)
+ - Fix #290: Fix wrong email message for resending confirmation (tonydspaniard)
+ - Enh #269: Added help documentation to console commands (tonydspaniard)
+ - Fix #244: Fix forced inclusion of a suggested class (tonydspaniard)
+ - Fix user event triggering in admin controller (maxxer)
+ - Enh #331: Added Ukrainian translations (kwazaro)
+ - Enh #324: Added option to restrict user assignments to roles only (CheckeredFlag)
 
-## 1.1.5 - Work in progress
+## 1.5.0 April 19, 2019
  - Fix: Fix condition in EmailChangeService (it was always false) (borisaeric)
- - Fix #198: Updated translations by quique, bizley, TonisOrmisson, guogan, Dezinger, maxxer, wautvda, mrbig00, fabiomlferreira
+ - Fix #198: Updated translations by quique, bizley, TonisOrmisson, guogan, Dezinger, maxxer, wautvda, mrbig00, fabiomlferreira, WeeSee
  - Fix #209: Doc fix. allowAccountDelete default value is false (Dezinger)
  - Fix #211: Migration boolean default value set to FALSE instead 0 (Dezinger)
  - Fix #213: Migration sql syntax fix (Dezinger)
@@ -26,7 +38,8 @@
  - Fix #276: Fix missing translatable strings
  - Enh #249: Show message `email send if possible` any time on reset password request (bscheshirwork)
  - Enh #282: Allows customization of controller namespace (maxxer)
-
+ - Enh #303: Added French translation (pde159)
+ - Fix #304: Fixed broken regex character class (CheckeredFlag)
 
 ## 1.1.4 - February 19, 2018
 - Enh: Check enableEmailConfirmation on registration (faenir)

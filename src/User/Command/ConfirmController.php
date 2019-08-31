@@ -32,17 +32,22 @@ class ConfirmController extends Controller
         parent::__construct($id, $module, $config);
     }
 
+    /**
+     * Confirms a a user by setting its field `confirmed_at` to current time.
+     *
+     * @param string $usernameOrEmail Username or email of the user
+     *
+     * @throws \yii\base\InvalidConfigException
+     */
     public function actionIndex($usernameOrEmail)
     {
         $user = $this->userQuery->whereUsernameOrEmail($usernameOrEmail)->one();
         if ($user === null) {
             $this->stdout(Yii::t('usuario', 'User is not found') . "\n", Console::FG_RED);
+        } elseif ($this->make(UserConfirmationService::class, [$user])->run()) {
+            $this->stdout(Yii::t('usuario', 'User has been confirmed') . "\n", Console::FG_GREEN);
         } else {
-            if ($this->make(UserConfirmationService::class, [$user])->run()) {
-                $this->stdout(Yii::t('usuario', 'User has been confirmed') . "\n", Console::FG_GREEN);
-            } else {
-                $this->stdout(Yii::t('usuario', 'Error occurred while confirming user') . "\n", Console::FG_RED);
-            }
+            $this->stdout(Yii::t('usuario', 'Error occurred while confirming user') . "\n", Console::FG_RED);
         }
     }
 }

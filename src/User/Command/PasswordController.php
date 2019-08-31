@@ -16,6 +16,7 @@ use Da\User\Query\UserQuery;
 use Da\User\Service\ResetPasswordService;
 use Da\User\Traits\ContainerAwareTrait;
 use Yii;
+use yii\base\InvalidConfigException;
 use yii\base\Module;
 use yii\console\Controller;
 use yii\helpers\Console;
@@ -32,6 +33,14 @@ class PasswordController extends Controller
         parent::__construct($id, $module, $config);
     }
 
+    /**
+     * This command updates the user's password.
+     *
+     * @param string $usernameOrEmail Username or email of the user who's password needs to be updated
+     * @param string $password        The new password
+     *
+     * @throws InvalidConfigException
+     */
     public function actionIndex($usernameOrEmail, $password)
     {
         /** @var User $user */

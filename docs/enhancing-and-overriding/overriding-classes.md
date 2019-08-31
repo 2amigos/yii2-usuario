@@ -106,4 +106,4 @@ The definition can be any of the following (from Yii2's DI container):
 
 > See [how to enhance a User model](how-to-enhance-a-user-model.md) guide to see a practical example.
 
-© [2amigos](http://www.2amigos.us/) 2013-2017
+© [2amigos](http://www.2amigos.us/) 2013-2019

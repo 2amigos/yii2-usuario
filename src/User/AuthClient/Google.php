@@ -21,9 +21,17 @@ class Google extends BaseGoogle implements AuthClientInterface
      */
     public function getEmail()
     {
-        return isset($this->getUserAttributes()['emails'][0]['value'])
-            ? $this->getUserAttributes()['emails'][0]['value']
-            : null;
+        $userAttributes = $this->getUserAttributes();
+
+        if (isset($userAttributes['emails'][0]['value'])) {
+            return $userAttributes['emails'][0]['value'];
+        }
+
+        if (isset($userAttributes['email'])) {
+            return $userAttributes['email'];
+        }
+
+        return null;
     }
 
     /**

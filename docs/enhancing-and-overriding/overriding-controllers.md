@@ -77,6 +77,6 @@ Now, the only thing that is missing is to add your brand new controller to the m
 ]
 ```
 
-© [2amigos](http://www.2amigos.us/) 2013-2017
+© [2amigos](http://www.2amigos.us/) 2013-2019
 
 

@@ -13,21 +13,20 @@ namespace Da\User;
 
 use Da\User\Component\AuthDbManagerComponent;
 use Da\User\Contracts\AuthManagerInterface;
+use Da\User\Controller\SecurityController;
+use Da\User\Event\FormEvent;
 use Da\User\Helper\ClassMapHelper;
 use Da\User\Model\User;
 use Yii;
 use yii\authclient\Collection;
 use yii\base\Application;
 use yii\base\BootstrapInterface;
+use yii\base\Event as YiiEvent;
 use yii\base\Exception;
 use yii\base\InvalidConfigException;
 use yii\console\Application as ConsoleApplication;
 use yii\i18n\PhpMessageSource;
 use yii\web\Application as WebApplication;
-
-use yii\base\Event as YiiEvent;
-use Da\User\Event\FormEvent;
-use Da\User\Controller\SecurityController;
 
 /**
  * Bootstrap class of the yii2-usuario extension. Configures container services, initializes translations,
@@ -127,7 +126,7 @@ class Bootstrap implements BootstrapInterface
             foreach ($map as $class => $definition) {
                 $di->set($class, $definition);
                 $model = is_array($definition) ? $definition['class'] : $definition;
-                $name = (substr($class, strrpos($class, '\\') + 1));
+                $name = substr($class, strrpos($class, '\\') + 1);
                 $modelClassMap[$class] = $model;
                 if (in_array($name, ['User', 'Profile', 'Token', 'SocialNetworkAccount'])) {
                     $di->set(
@@ -152,7 +151,7 @@ class Bootstrap implements BootstrapInterface
             }
 
             // Attach an event to check if the password has expired
-            if (!is_null(Yii::$app->getModule('user')->maxPasswordAge)) {
+            if (null !== Yii::$app->getModule('user')->maxPasswordAge) {
                 YiiEvent::on(SecurityController::class, FormEvent::EVENT_AFTER_LOGIN, function (FormEvent $event) {
                     $user = $event->form->user;
                     if ($user->password_age >= Yii::$app->getModule('user')->maxPasswordAge) {

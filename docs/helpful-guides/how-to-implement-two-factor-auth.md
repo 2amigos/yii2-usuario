@@ -51,4 +51,4 @@ process.
 
 - [2amigos Two Factor Library Docs]()http://2fa-library.readthedocs.io/en/latest/)
 
-© [2amigos](http://www.2amigos.us/) 2013-2017
+© [2amigos](http://www.2amigos.us/) 2013-2019

@@ -15,10 +15,12 @@ use Da\User\Model\Assignment;
 use Da\User\Service\UpdateAuthAssignmentsService;
 use Da\User\Traits\AuthManagerAwareTrait;
 use Da\User\Traits\ContainerAwareTrait;
+use Yii;
 use yii\base\InvalidConfigException;
 use yii\base\InvalidParamException;
 use yii\base\Widget;
 use yii\helpers\ArrayHelper;
+use yii\rbac\Item;
 
 class AssignmentsWidget extends Widget
 {
@@ -61,24 +63,31 @@ class AssignmentsWidget extends Widget
             $this->make(UpdateAuthAssignmentsService::class, [$model])->run();
         }
 
+        $items[Yii::t('usuario', 'Roles')] = $this->getAvailableItems(Item::TYPE_ROLE);
+        if (!Yii::$app->getModule('user')->restrictUserPermissionAssignment) {
+            $items[Yii::t('usuario', 'Permissions')] = $this->getAvailableItems(Item::TYPE_PERMISSION);
+        }
+
         return $this->render(
             '/widgets/assignments/form',
             [
                 'model' => $model,
-                'availableItems' => $this->getAvailableItems(),
+                'availableItems' => $items,
             ]
         );
     }
 
     /**
-     * Returns all available auth items to be attached to the user.
-     *
+     * Returns available auth items to be attached to the user.
+     * 
+     * @param int|null type of auth items or null to return all
+     * 
      * @return array
      */
-    protected function getAvailableItems()
+    protected function getAvailableItems($type = null)
     {
         return ArrayHelper::map(
-            $this->getAuthManager()->getItems(),
+            $this->getAuthManager()->getItems($type),
             'name',
             function ($item) {
                 return empty($item->description)

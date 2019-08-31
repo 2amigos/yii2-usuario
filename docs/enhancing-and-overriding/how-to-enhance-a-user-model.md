@@ -74,4 +74,4 @@ class ProfileController extends Controller
 > This is absolutely good way to extend almost any class of the extension. For more information you could
 > check `Da\User\Bootstrap` class file to see what you have in your control.
 
-© [2amigos](http://www.2amigos.us/) 2013-2017
+© [2amigos](http://www.2amigos.us/) 2013-2019

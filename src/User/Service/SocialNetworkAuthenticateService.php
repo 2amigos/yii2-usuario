@@ -15,7 +15,6 @@ use Da\User\Contracts\AuthClientInterface;
 use Da\User\Contracts\ServiceInterface;
 use Da\User\Controller\SecurityController;
 use Da\User\Event\SocialNetworkAuthEvent;
-use Da\User\Factory\MailFactory;
 use Da\User\Model\SocialNetworkAccount;
 use Da\User\Model\User;
 use Da\User\Query\SocialNetworkAccountQuery;
@@ -104,40 +103,13 @@ class SocialNetworkAuthenticateService implements ServiceInterface
         if (($user = $this->getUser($account)) instanceof User) {
             $account->user_id = $user->id;
             $account->save(false);
-
-            return $account;
         }
 
-        return false;
+        return $account;
     }
 
     protected function getUser(SocialNetworkAccount $account)
     {
-        $user = $this->userQuery->whereEmail($account->email)->one();
-        if (null !== $user) {
-            return $user;
-        }
-        /** @var User $user */
-        $user = $this->controller->make(
-            User::class,
-            [],
-            [
-                'scenario' => 'connect',
-                'username' => $account->username,
-                'email' => $account->email,
-            ]
-        );
-
-        if (!$user->validate(['email'])) {
-            $user->email = null;
-        }
-
-        if (!$user->validate(['username'])) {
-            $user->username = null;
-        }
-
-        $mailService = MailFactory::makeWelcomeMailerService($user);
-
-        return $this->controller->make(UserCreateService::class, [$user, $mailService])->run() ? $user : false;
+        return $this->userQuery->whereEmail($account->email)->one();
     }
 }

@@ -60,4 +60,4 @@ You can update a user's password whether by using its email or username.
 ```
 
 
-© [2amigos](http://www.2amigos.us/) 2013-2017
+© [2amigos](http://www.2amigos.us/) 2013-2019

@@ -11,7 +11,6 @@
 
 namespace Da\User\Form;
 
-use Da\TwoFA\Exception\InvalidSecretKeyException;
 use Da\User\Helper\SecurityHelper;
 use Da\User\Model\User;
 use Da\User\Query\UserQuery;
@@ -82,7 +81,7 @@ class LoginForm extends Model
     /**
      * {@inheritdoc}
      *
-     * @throws InvalidSecretKeyException
+     * @throws \Da\TwoFA\Exception\InvalidSecretKeyException (only if package is being used)
      */
     public function rules()
     {
@@ -142,7 +141,7 @@ class LoginForm extends Model
      * Validates form and logs the user in.
      *
      * @throws InvalidParamException
-     * @return bool whether the user is logged in successfully
+     * @return bool                  whether the user is logged in successfully
      */
     public function login()
     {

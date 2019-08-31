@@ -54,4 +54,4 @@ There is another way, and is by setting the `viewPath` attribute of the module:
 But it will force you to override **ALL** views from the module. The recommended way is throughout the `theme` property 
 of `view` component as previously mentioned.
 
-© [2amigos](http://www.2amigos.us/) 2013-2017
+© [2amigos](http://www.2amigos.us/) 2013-2019

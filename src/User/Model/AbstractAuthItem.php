@@ -14,7 +14,6 @@ namespace Da\User\Model;
 use Da\User\Traits\AuthManagerAwareTrait;
 use Da\User\Validator\RbacItemsValidator;
 use Da\User\Validator\RbacRuleExistsValidator;
-use Da\User\Validator\RbacRuleValidator;
 use Yii;
 use yii\base\Model;
 use yii\rbac\Item;
@@ -98,7 +97,7 @@ abstract class AbstractAuthItem extends Model
         return [
             ['itemName', 'safe'],
             ['name', 'required'],
-            ['name', 'match', 'pattern' => '/^[\w][\w-.:]+[\w]$/'],
+            ['name', 'match', 'pattern' => '/^\w[\w.:\-]+\w$/'],
             [['name', 'description', 'rule'], 'trim'],
             [
                 'name',

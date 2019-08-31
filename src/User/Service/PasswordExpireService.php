@@ -11,7 +11,6 @@
 
 namespace Da\User\Service;
 
-use Yii;
 use Da\User\Contracts\ServiceInterface;
 use Da\User\Model\User;
 
@@ -27,8 +26,7 @@ class PasswordExpireService implements ServiceInterface
     public function run()
     {
         return $this->model->updateAttributes([
-            'last_login_at' => time(),
-            'last_login_ip' => Yii::$app->request->getUserIP(),
+            'password_changed_at' => null,
         ]);
     }
 }

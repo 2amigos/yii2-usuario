@@ -53,8 +53,7 @@ Event::on(RecoveryController::class, FormEvent::EVENT_BEFORE_REQUEST, function (
     $form = $event->getForm();
     
     // ... your logic here
-}
-
+});
 ```
 
 Now, include `events.php` file to your entry script (i.e. `index.php`). The following is taken from the Yii 2 Advanced 
@@ -84,5 +83,5 @@ $application->run();
 
 ```
 
-© [2amigos](http://www.2amigos.us/) 2013-2017
+© [2amigos](http://www.2amigos.us/) 2013-2019
 

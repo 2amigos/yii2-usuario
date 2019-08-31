@@ -103,13 +103,17 @@ class RegistrationForm extends Model
     public function attributeHints()
     {
         return [
-            'gdpr_consent' => Yii::t('usuario', 'I agree processing of my personal data and the use of cookies to facilitate the operation of this site. For more information read our {privacyPolicy}',
+            'gdpr_consent' => Yii::t(
+                'usuario',
+                'I agree processing of my personal data and the use of cookies to facilitate the operation of this site. For more information read our {privacyPolicy}',
                 [
-                    'privacyPolicy' => Html::a(Yii::t('usuario', 'privacy policy'),
+                    'privacyPolicy' => Html::a(
+                        Yii::t('usuario', 'privacy policy'),
                         $this->module->gdprPrivacyPolicyUrl,
                         ['target' => '_blank']
                     )
-                ])
+                ]
+            )
         ];
     }
 }

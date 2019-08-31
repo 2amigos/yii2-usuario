@@ -23,6 +23,18 @@ class CreateController extends Controller
 {
     use ContainerAwareTrait;
 
+    /**
+     * This command creates a new user account. If no password is not set, an 8-char password will be generated. After
+     * saving user to database, this command uses mailer component to send credentials (username and password) to user
+     * via email. A role can be also assigned but it must exists previously on the database.
+     *
+     * @param string      $email    Email
+     * @param string      $username Username
+     * @param string|null $password The password. If null it will be generated automatically
+     * @param string|null $role     Role to assign (must already exist)
+     *
+     * @throws \yii\base\InvalidConfigException
+     */
     public function actionIndex($email, $username, $password = null, $role = null)
     {
         /** @var User $user */
@@ -64,7 +76,7 @@ class CreateController extends Controller
         } else {
             $userRole = $auth->getRole($role);
             if (null === $userRole) {
-                $this->stdout(Yii::t('usuario', 'Role "{0}" not found. Creating it.') . "!\n", Console::FG_GREEN);
+                $this->stdout(Yii::t('usuario', 'Role "{0}" not found. Creating it.', [$role]) . "!\n", Console::FG_GREEN);
                 $userRole = $auth->createRole($role);
                 $auth->add($userRole);
             }
