@@ -19,7 +19,7 @@
 return [
     '(not set)' => '(nicht gesetzt)',
     'A confirmation message has been sent to your new email address'
-        => 'Eine Bestätigungsnachricht wurde an Ihre neue E-Mail Adresse versandt',
+        => 'Eine Bestätigungsnachricht wurde an Ihre neue E-Mail Adresse versendet',
     'A message has been sent to your email address. It contains a confirmation link that you must '.
         'click to complete registration.'
         => 'Eine Nachricht wurde an Ihre E-Mail-Adresse gesendet. '.
@@ -265,7 +265,7 @@ return [
     'Your account has been completely deleted' => 'Ihr Konto wurde komplett gelöscht',
     'Your account has been connected' => 'Ihr Konto wurde verbunden',
     'Your account has been created' => 'Ihr Konto wurde erstellt',
-    'Your account has been created and a message with further instructions has been sent to your email' => 'Ihr Konto wurde erstellt und eine Nachricht mit weiteren Anweisungen wurde an ihre E-Mail Adresse versandt',
+    'Your account has been created and a message with further instructions has been sent to your email' => 'Ihr Konto wurde erstellt und eine Nachricht mit weiteren Anweisungen wurde an ihre E-Mail Adresse versendet',
     'Your account on {0} has been created' => 'Ihr Konto auf {0} wurde erstellt',
     'Your confirmation token is invalid or expired' => 'Ihr Bestätigungs-Token ist falsch oder abgelaufen',
     'Your consent is required to register' => 'Sie müssen Ihre Zustimmung registrieren',
@@ -277,28 +277,4 @@ return [
     '{0, date, MMM dd, YYYY HH:mm}' => '{0, date, dd. MMM YYYY, HH:mm}',
     '{0, date, MMMM dd, YYYY HH:mm}' => '{0, date, dd. MMMM YYYY, HH:mm}',
     '{0} cannot be blank.' => '{0} darf nicht leer sein.',
-    'A message has been sent to your email address. ' => '@@Eine Nachricht wurde an ihre E-Mail Adresse versandt@@',
-    'An email has been sent with instructions for resetting your password' => '@@Eine E-Mail mit den weiteren Schritten zur Passwort-Wiederherstellung wurde versandt@@',
-    'Awesome, almost there. ' => '@@Fast geschafft. @@',
-    'Class "{0}" does not exist' => '@@Klasse "{0}" existiert nicht@@',
-    'Disable Two-Factor Auth' => '@@Zweifaktor-Authentifizierung deaktivieren@@',
-    'Enable Two-factor auth' => '@@Zweifaktor-Authentifizierung aktivieren@@',
-    'I aggree processing of my personal data and the use of cookies to facilitate the operation of this site. For more information read our {privacyPolicy}' => '@@@@',
-    'Invalid two-factor code' => '@@Ungültiger Zweifaktor Schlüssel@@',
-    'Last login' => '@@Letzter Login@@',
-    'Registration ip' => '@@Registrierungs-IP@@',
-    'Rule class can not be instantiated' => '@@@@',
-    'Rule class must extend "yii\\rbac\\Rule"' => '@@@@',
-    'This will disable two-factor auth. Are you sure?' => '@@Dies wird die Zweifaktor-Authentifizierung deaktivieren. Sind Sie sicher?@@',
-    'Two Factor Authentication' => '@@Zweifaktor-Authentifizierung@@',
-    'Two factor authentication protects you against stolen credentials' => '@@@@',
-    'Two factor successfully enabled.' => '@@Zweifaktor-Authentifizierung erfolgreich aktiviert.@@',
-    'Two-Factor Authentication' => '@@Zweifaktor-Authentifizierung@@',
-    'Two-factor auth protects you against stolen credentials' => '@@Zweifaktor-Authentifizierung schützt Sie vor gestohlenen Zugangsdaten@@',
-    'Two-factor authentication code' => '@@Zweifaktor-Authentifizierungsschlüssel@@',
-    'Two-factor authorization has been disabled.' => '@@Zweifaktor-Authentifizierung wurde deaktiviert.@@',
-    'Two-factor code' => '@@Zweifaktor-Schlüssel@@',
-    'Unable to disable two-factor authorization.' => '@@Unfähig die Zweifaktor-Authentifizierung zu deaktivieren.@@',
-    'We couldn\'t re-send the mail to confirm your address. ' => '@@Wir konnte die Bestätigungs E-Mail nicht erneut versenden@@',
-    'We have sent confirmation links to both old and new email addresses. ' => '@@Wir haben Bestätigungs E-Mails an die neue und alte E-Mail Adresse versandt.@@',
 ];
