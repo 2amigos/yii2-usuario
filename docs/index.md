@@ -146,6 +146,11 @@ See also all the possible configuration options available:
 - [Available Actions](installation/available-actions.md)
 - [Migration guide from Dektrium tools](installation/migration-guide-from-dektrium-tools.md)
 
+#### Step 4 - First steps to use Yii2-usuario
+
+Proceed with [First steps to use Yii2-usuario](helpful-guides/first-steps.md)
+
+
 Enhancing and Overriding
 ------------------------
 
