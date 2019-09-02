@@ -42,6 +42,18 @@ Defaults to:
 #### gdprAnonymizePrefix (type: `string`, default: `GDPR`)
 Prefix to be used as a replacement when user requeste deletion of his data
 
+#### gdprConsentMessage (type: `string`)
+Use this to customize the message that will appear as hint in the give consent checkbox.
+If you leave it empty the next message will be used:
+
+>I agree processing of my personal data and the use of cookies to facilitate the operation of this site. For more information read our privacy policy
+
+#### GdprRequireConsentToAll (type `boolean`, default `false`)
+Whether require to already registered user give consent to process their data. According to GDPR this is mandatory.
+To forbid user access to any function, until it gives consent, use the AccessRuleFilter included with this module.
+
+#### GdprConsentExcludedUrls (type `array`, default `['user/settings/*']`)
+List of urls that does not require explicit data processing consent to be accessed, like own profile, account... You can use wildcards like `route/to/*` .
 
 #### enableRegistration (type: `boolean`, default: `true`)
 
