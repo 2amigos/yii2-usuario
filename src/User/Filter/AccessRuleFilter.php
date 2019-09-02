@@ -26,7 +26,7 @@ class AccessRuleFilter extends AccessRule
      */
     public function allows($action, $user, $request)
     {
-        $consentAction = 'user/settings/consent';
+        $consentAction = 'user/settings/gdpr-consent';
         if (!$user->isGuest && $action->uniqueId !== $consentAction) {
             $module = $this->getModule();
             if ($module->gdprRequireConsentToAll) {
@@ -34,6 +34,7 @@ class AccessRuleFilter extends AccessRule
                 $excludedUrls[] = $module->gdprPrivacyPolicyUrl;
                 foreach ($excludedUrls as $url) {
                     if (!fnmatch($url, $action->uniqueId)) {
+                        /** @var User $identity */
                         $identity = $user->identity;
                         if (!$identity->gdpr_consent) {
                             Yii::$app->response->redirect([ "/$consentAction"])->send();
