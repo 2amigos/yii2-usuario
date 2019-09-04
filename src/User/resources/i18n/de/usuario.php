@@ -23,7 +23,7 @@ return [
     'A message has been sent to your email address. It contains a confirmation link that you must '.
         'click to complete registration.'
         => 'Eine Nachricht wurde an Ihre E-Mail-Adresse gesendet. '.
-            'Sie enthält einen Bestätigungslink den Sie klicken müssen um die Registrierung abzuschließen.',
+            'Sie enthält einen Bestätigungslink den Sie anklicken müssen, um die Registrierung abzuschließen.',
     'A new confirmation link has been sent' => 'Ein neuer Bestätigungs-Link wurde versendet',
     'A password will be generated automatically if not provided' => 'Leer lassen, um automatisch ein Passwort zu generieren',
     'Account' => 'Konto',
