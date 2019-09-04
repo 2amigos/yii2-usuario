@@ -156,7 +156,7 @@ return [
     'Password has been changed' => 'Passwort wurde geändert',
     'Permissions' => 'Berechtigungen',
     'Please be certain' => 'Sind Sie sich wirklich sicher?',
-    'Please click the link below to complete your password reset' => 'Bitte klicken Sie den link unten um ihre Passwort-Wiederherstellung abzuschliessen',
+    'Please click the link below to complete your password reset' => 'Bitte klicken Sie auf den Link unten um ihre Passwort-Wiederherstellung abzuschliessen',
     'Please fix following errors:' => 'Bitte beheben Sie die folgenden Fehler',
     'Privacy' => 'Privatsphäre',
     'Privacy settings' => 'Privatsphäre-Einstellungen',
