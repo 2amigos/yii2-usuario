@@ -130,7 +130,7 @@ return [
     'Invalid value' => 'Falscher Wert',
     'It will be deleted forever' => 'Es wird permanent gelöscht',
     'Items' => 'Elemente',
-    'Joined on {0, date}' => 'Mitglies seit {0, date}',
+    'Joined on {0, date}' => 'Mitglied seit {0, date}',
     'Last login IP' => 'Letzte Anmeldung von IP',
     'Last login time' => 'Letzte Anmeldung',
     'Last password change' => 'Letzte Kennwort-Änderung',
