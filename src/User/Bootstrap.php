@@ -325,6 +325,8 @@ class Bootstrap implements BootstrapInterface
             'LoginForm' => 'Da\User\Form\LoginForm',
             'SettingsForm' => 'Da\User\Form\SettingsForm',
             'RecoveryForm' => 'Da\User\Form\RecoveryForm',
+            // --- services
+            'MailService' => 'Da\User\Service\MailService',
         ];
 
         $routes = [
@@ -348,6 +350,9 @@ class Bootstrap implements BootstrapInterface
                 'LoginForm',
                 'SettingsForm',
                 'RecoveryForm',
+            ],
+            'Da\User\Service' => [
+                'MailService',
             ],
         ];
 
