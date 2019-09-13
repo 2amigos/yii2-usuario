@@ -33,23 +33,33 @@ Override the Form
 For the sake of the example, we are going to override the `Da\User\Form\RecoveryForm` class: 
 
 ```php 
+<?php
 namespace app\forms;
+use Da\User\Form\RecoveryForm as BaseForm;
 
-class RecoveryForm extends Da\User\Form\RecoveryForm {
-    
+class RecoveryForm extends BaseForm {
+
     public $captcha;
-    
+
     public function rules() {
-    
+
         $rules = parent::rules();
-        
+
         $rules[] = [['captcha'], 'required'];
         $rules[] = [['captcha'], 'Da\User\Validator\ReCaptchaValidator'];
-        
+
         return $rules;
     }
-}
 
+    public function scenarios()
+    {
+        return [
+            self::SCENARIO_REQUEST => ['email', 'captcha'],
+            self::SCENARIO_RESET   => ['password'],
+        ];
+    }
+}
+?>
 ```
 
 Overriding the View
@@ -59,7 +69,6 @@ Create a new file and name it `request.php` and add it in `@app/views/user/recov
 
 ```php 
 <?php
-
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
 use Da\User\Widget\ReCaptchaWidget;
@@ -83,24 +92,22 @@ $this->params['breadcrumbs'][] = $this->title;
                 <?php $form = ActiveForm::begin(
                     [
                         'id' => $model->formName(),
-                        'enableAjaxValidation' => true,
+                        'enableAjaxValidation' => false,
                         'enableClientValidation' => false,
                     ]
                 ); ?>
 
-                <?= $form->field($model, 'email')->textInput(['autofocus' => true]) ?>
-                
-                <?= $form->field($model, 'captcha')->widget(ReCaptchaWidget::className(), ['theme' => 'dark']) ?>
-
-                <?= Html::submitButton(Yii::t('usuario', 'Continue'), ['class' => 'btn btn-primary btn-block']) ?><br>
+                    <?= $form->field($model, 'email')->textInput(['autofocus' => true]) ?>
+                    <?= $form->field($model, 'captcha')->widget(ReCaptchaWidget::className(),['theme' => 'lite']) ?>
+                    <?= Html::submitButton(Yii::t('usuario', 'Continue'),['class' => 'btn btn-primary btn-block']) ?>
+                    <br>
 
                 <?php ActiveForm::end(); ?>
             </div>
         </div>
     </div>
 </div>
-
-```
+````
 
 Configure Module and Application
 --------------------------------
@@ -117,11 +124,6 @@ Finally, we have to configure the module and the application to ensure is using 
         'classMap' => [
             'RecoveryForm' => 'app\forms\RecoveryForm'
         ], 
-        'controllerMap' => [
-            'recovery' => [
-                 'class' => '\app\controllers\RecoveryController' 
-             ]
-        ]
     ]
 ], 
 
