@@ -102,9 +102,14 @@ class RegistrationController extends Controller
 
         if ($form->load(Yii::$app->request->post()) && $form->validate()) {
             $this->trigger(FormEvent::EVENT_BEFORE_REGISTER, $event);
+
             /** @var User $user */
-            $user = $this->make(User::class, [], $form->attributes);
-            $user->setScenario('register');
+            $user = $this->make(User::class, [],
+                  [ 'email'    => $form->attributes['email'],
+                    'username' => $form->attributes['username'],
+                    'password' => $form->attributes['password']
+                  ]);            $user->setScenario('register');
+
             $mailService = MailFactory::makeWelcomeMailerService($user);
 
             if ($this->make(UserRegisterService::class, [$user, $mailService])->run()) {
