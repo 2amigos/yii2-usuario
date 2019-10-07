@@ -226,10 +226,14 @@ class Bootstrap implements BootstrapInterface
     {
         /** @var $module Module */
         $module = $app->getModule('user');
+        $routesRules = $module->routes;
+        if(true === $module->allowProfilesShow){
+            $routesRules = array_merge($routesRules, $module->profileShowRoute);
+        }
         $config = [
             'class' => 'yii\web\GroupUrlRule',
             'prefix' => $module->prefix,
-            'rules' => $module->routes,
+            'rules' => $routesRules,
         ];
 
         if ($module->prefix !== 'user') {

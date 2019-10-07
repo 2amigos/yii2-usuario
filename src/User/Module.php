@@ -127,6 +127,10 @@ class Module extends BaseModule
      */
     public $allowAccountDelete = false;
     /**
+     * @var bool whether user can see profile by ID
+     */
+    public $allowProfilesShow = true;
+    /**
      * @var string the class name of the strategy class to handle user's email change
      */
     public $emailChangeStrategy = MailChangeStrategyInterface::TYPE_DEFAULT;
@@ -183,12 +187,17 @@ class Module extends BaseModule
      * @var array the url rules (routes)
      */
     public $routes = [
-        '<id:\d+>' => 'profile/show',
         '<action:(login|logout)>' => 'security/<action>',
         '<action:(register|resend)>' => 'registration/<action>',
         'confirm/<id:\d+>/<code:[A-Za-z0-9_-]+>' => 'registration/confirm',
         'forgot' => 'recovery/request',
         'recover/<id:\d+>/<code:[A-Za-z0-9_-]+>' => 'recovery/reset'
+    ];
+    /**
+     * @var array the url rules for show user profile by user id (routes)
+     */
+    public $profileShowRoute = [
+        '<id:\d+>' => 'profile/show'
     ];
     /**
      * @var string
