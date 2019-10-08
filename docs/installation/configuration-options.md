@@ -217,10 +217,9 @@ If `false`, allow the assignment of both roles and permissions to users.
 Set to `true` to restrict user assignments to roles only.
 
 
-#### allowProfilesShow (type: `boolean`, default: `true`)
+#### disableProfilePage (type: `boolean`, default: `false`)
 
-If `true` users will be able to show user profile page by user id. 
-Set to `false` to restrict user public profile page.
+Set to `true` to restrict user public profile page.
 
 
 © [2amigos](http://www.2amigos.us/) 2013-2019

@@ -129,7 +129,7 @@ class Module extends BaseModule
     /**
      * @var bool whether user can see profile by ID
      */
-    public $allowProfilesShow = true;
+    public $disableProfilePage = false;
     /**
      * @var string the class name of the strategy class to handle user's email change
      */

@@ -227,7 +227,7 @@ class Bootstrap implements BootstrapInterface
         /** @var $module Module */
         $module = $app->getModule('user');
         $routesRules = $module->routes;
-        if(true === $module->allowProfilesShow){
+        if(false === $module->disableProfilePage){
             $routesRules = array_merge($routesRules, $module->profileShowRoute);
         }
         $config = [
