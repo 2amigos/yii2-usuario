@@ -135,6 +135,7 @@ class RuleController extends Controller
         $this->getAuthManager()->invalidateCache();
 
         Yii::$app->getSession()->setFlash('success', Yii::t('usuario', 'Authorization rule has been removed.'));
+        return $this->redirect(['index']);
     }
 
     /**
