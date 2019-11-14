@@ -17,9 +17,11 @@ use Da\User\Filter\AccessRuleFilter;
 use Da\User\Model\Profile;
 use Da\User\Model\User;
 use Da\User\Query\UserQuery;
+use Da\User\Search\SessionHistorySearch;
 use Da\User\Search\UserSearch;
 use Da\User\Service\PasswordExpireService;
 use Da\User\Service\PasswordRecoveryService;
+use Da\User\Service\SessionHistory\TerminateUserSessionsService;
 use Da\User\Service\SwitchIdentityService;
 use Da\User\Service\UserBlockService;
 use Da\User\Service\UserConfirmationService;
@@ -66,7 +68,7 @@ class AdminController extends Controller
      */
     public function beforeAction($action)
     {
-        if (in_array($action->id, ['index', 'update', 'update-profile', 'info', 'assignments'], true)) {
+        if (in_array($action->id, ['index', 'update', 'update-profile', 'info', 'assignments', 'session-history'], true)) {
             Url::remember('', 'actions-redirect');
         }
 
@@ -88,6 +90,7 @@ class AdminController extends Controller
                     'switch-identity' => ['post'],
                     'password-reset' => ['post'],
                     'force-password-change' => ['post'],
+                    'terminate-sessions' => ['post'],
                 ],
             ],
             'access' => [
@@ -345,5 +348,34 @@ class AdminController extends Controller
             Yii::$app->session->setFlash("danger", Yii::t('usuario', 'There was an error in saving user'));
         }
         $this->redirect(['index']);
+    }
+
+    /**
+     * Display list session history
+     */
+    public function actionSessionHistory($id)
+    {
+        $searchModel = new SessionHistorySearch([
+            'user_id' => $id,
+        ]);
+        $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
+
+        $user = $this->userQuery->where(['id' => $id])->one();
+
+        return $this->render('_session-history', [
+            'searchModel' => $searchModel,
+            'dataProvider' => $dataProvider,
+            'user' => $user,
+        ]);
+    }
+
+    /**
+     * Terminate all session user
+     */
+    public function actionTerminateSessions($id)
+    {
+        $this->make(TerminateUserSessionsService::class, [$id])->run();
+
+        return $this->redirect(Url::previous('actions-redirect'));
     }
 }

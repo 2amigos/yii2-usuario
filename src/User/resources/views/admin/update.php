@@ -67,6 +67,10 @@ $this->params['breadcrumbs'][] = $this->title;
                                                 'label' => Yii::t('usuario', 'Assignments'),
                                                 'url' => ['/user/admin/assignments', 'id' => $user->id],
                                             ],
+                                            [
+                                                'label' => Yii::t('usuario', 'Session history'),
+                                                'url' => ['/user/admin/session-history', 'id' => $user->id],
+                                            ],
                                             '<hr>',
                                             [
                                                 'label' => Yii::t('usuario', 'Confirm'),

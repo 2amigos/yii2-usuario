@@ -26,7 +26,9 @@ use Da\User\Module;
 use Da\User\Query\ProfileQuery;
 use Da\User\Query\SocialNetworkAccountQuery;
 use Da\User\Query\UserQuery;
+use Da\User\Search\SessionHistorySearch;
 use Da\User\Service\EmailChangeService;
+use Da\User\Service\SessionHistory\TerminateUserSessionsService;
 use Da\User\Service\TwoFactorQrCodeUriGeneratorService;
 use Da\User\Traits\ContainerAwareTrait;
 use Da\User\Traits\ModuleAwareTrait;
@@ -91,7 +93,8 @@ class SettingsController extends Controller
                 'actions' => [
                     'disconnect' => ['post'],
                     'delete' => ['post'],
-                    'two-factor-disable' => ['post']
+                    'two-factor-disable' => ['post'],
+                    'terminate-sessions' => ['post'],
                 ],
             ],
             'access' => [
@@ -111,7 +114,9 @@ class SettingsController extends Controller
                             'delete',
                             'two-factor',
                             'two-factor-enable',
-                            'two-factor-disable'
+                            'two-factor-disable',
+                            'session-history',
+                            'terminate-sessions',
                         ],
                         'roles' => ['@'],
                     ],
@@ -461,6 +466,32 @@ class SettingsController extends Controller
         }
 
         $this->redirect(['account']);
+    }
+
+    /**
+     * Display list session history.
+     */
+    public function actionSessionHistory()
+    {
+        $searchModel = new SessionHistorySearch([
+            'user_id' => Yii::$app->user->id,
+        ]);
+        $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
+
+        return $this->render('session-history', [
+            'searchModel' => $searchModel,
+            'dataProvider' => $dataProvider,
+        ]);
+    }
+
+    /**
+     * Terminate all session user
+     */
+    public function actionTerminateSessions()
+    {
+        $this->make(TerminateUserSessionsService::class, [Yii::$app->user->id])->run();
+
+        return $this->redirect(['session-history']);
     }
 
     /**

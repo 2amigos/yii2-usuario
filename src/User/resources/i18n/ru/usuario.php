@@ -302,4 +302,12 @@ return [
     'Unable to disable two-factor authorization.' => '@@Не удалось отключить двухфакторную авторизацию.@@',
     'We couldn\'t re-send the mail to confirm your address. ' => '@@Мы не можем повторно отправить письмо для подтверждения вашего адреса электронной почты.@@',
     'We have sent confirmation links to both old and new email addresses. ' => '@@Мы отправили письма на ваш старый и новый почтовые ящики. Вы должны перейти по обеим, чтобы завершить процесс смены адреса.@@',
+    'User agent' => '',
+    'Status' => 'Статус',
+    'Last activity' => 'Последняя активность',
+    'Session history' => 'История сессий',
+    'Active' => 'Активно',
+    'Inactive' => 'Не автивно',
+    'Current' => 'Текущий',
+    'Terminate all sessions' => 'Прекратить другие сеансы',
 ];
