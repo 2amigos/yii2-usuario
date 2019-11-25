@@ -1,4 +1,7 @@
 # CHANGELOG
+ - Fix #347: Only pass fields known to User model in registrationControl->actionRegister() (BillHeaton)
+ - Fix #346: Update ReCaptcha guide to not use AJAX  (BillHeaton)
+ - Fix #345: Update ReCaptcha guide to add scenarios() in recoveryForm  (BillHeaton)
  - Fix #307: Fix French translation (arollmann)
  - Fix #316: Fix new response from Google OAuth Api (Julian-B90)
  - Fix #321: Fix new response from LinkedIn OAuth Api (tonydspaniard) 

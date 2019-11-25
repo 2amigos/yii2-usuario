@@ -30,34 +30,47 @@ Once you have the API site key you will also be displayed a secret key. You have
 Override the Form 
 -----------------
 
-For the sake of the example, we are going to override the `Da\User\Form\RecoveryForm` class: 
+For the sake of the example, we are going to override the `Da\User\Form\RecoveryForm` class. Create a new file `RecoveryForm`
+add it to @app/models/Forms/ and put the following in it:
 
-```php 
-namespace app\forms;
+```
+<?php 
+namespace app\models\Forms;
 
-class RecoveryForm extends Da\User\Form\RecoveryForm {
-    
+use Da\User\Form\RecoveryForm as BaseForm;
+
+class RecoveryForm extends BaseForm {
+
     public $captcha;
-    
+
     public function rules() {
-    
+
         $rules = parent::rules();
-        
+
         $rules[] = [['captcha'], 'required'];
         $rules[] = [['captcha'], 'Da\User\Validator\ReCaptchaValidator'];
-        
+
         return $rules;
+    }
+    
+    public function scenarios()
+    {
+        return [
+            self::SCENARIO_REQUEST => ['email', 'captcha'],
+            self::SCENARIO_RESET => ['password'],
+        ];
     }
 }
 
 ```
+
 
 Overriding the View
 -------------------
 
 Create a new file and name it `request.php` and add it in `@app/views/user/recovery`. Add the captcha widget to it: 
 
-```php 
+``` 
 <?php
 
 use yii\helpers\Html;
@@ -83,14 +96,14 @@ $this->params['breadcrumbs'][] = $this->title;
                 <?php $form = ActiveForm::begin(
                     [
                         'id' => $model->formName(),
-                        'enableAjaxValidation' => true,
+                        'enableAjaxValidation' => false,
                         'enableClientValidation' => false,
                     ]
                 ); ?>
 
                 <?= $form->field($model, 'email')->textInput(['autofocus' => true]) ?>
                 
-                <?= $form->field($model, 'captcha')->widget(ReCaptchaWidget::className(), ['theme' => 'dark']) ?>
+                <?= $form->field($model, 'captcha')->widget(ReCaptchaWidget::className(), ['theme' => 'light']) ?>
 
                 <?= Html::submitButton(Yii::t('usuario', 'Continue'), ['class' => 'btn btn-primary btn-block']) ?><br>
 
@@ -115,13 +128,8 @@ Finally, we have to configure the module and the application to ensure is using 
     'user' => [
         'class' => Da\User\Module::class,
         'classMap' => [
-            'RecoveryForm' => 'app\forms\RecoveryForm'
+             'RecoveryForm' => 'app\models\Forms\RecoveryForm'
         ], 
-        'controllerMap' => [
-            'recovery' => [
-                 'class' => '\app\controllers\RecoveryController' 
-             ]
-        ]
     ]
 ], 
 
@@ -136,7 +144,15 @@ Finally, we have to configure the module and the application to ensure is using 
         ]
     ]
 ]
-
 ```
+
+Notes For Other Forms
+---------------------
+
+The outward facing forms (i.e. forms that you don't need to login to use) also include `registrationForm`, `resendForm`. 
+
+- All three forms need `'enableAjaxValidation' => false` in the view override.
+- `registrationForm` & `resendForm` do not need `scenarios()` in the form override.
+- `registrationForm` needs fix #347 to work.
 
 © [2amigos](http://www.2amigos.us/) 2013-2019
