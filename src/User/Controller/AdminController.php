@@ -105,6 +105,11 @@ class AdminController extends Controller
                         'roles' => ['@'],
                     ],
                     [
+                        'allow' => $this->getModule()->enableSessionHistory,
+                        'actions' => ['session-history', 'terminate-sessions'],
+                        'roles' => ['admin'],
+                    ],
+                    [
                         'allow' => true,
                         'roles' => ['admin'],
                     ],

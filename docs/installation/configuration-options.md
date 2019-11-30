@@ -17,7 +17,7 @@ Number of expired storing records `session history`, values:
 
 How long store `session history` after expiring, values:
 - `false` Store all records without deleting
-- `integer` Time for storing after expiring
+- `integer` Time for storing after expiring in seconds
 
 #### enableTwoFactorAuthentication (type: `boolean`, default: `false`)
 

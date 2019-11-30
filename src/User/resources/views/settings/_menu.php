@@ -11,9 +11,12 @@
 
 use yii\helpers\Html;
 use yii\widgets\Menu;
+use Da\User\Module as UserModule;
+use Da\User\Model\User;
 
-/** @var \Da\User\Model\User $user */
+/** @var User $user */
 $user = Yii::$app->user->identity;
+/** @var UserModule $module */
 $module = Yii::$app->getModule('user');
 $networksVisible = count(Yii::$app->authClientCollection->clients) > 0;
 
@@ -43,7 +46,8 @@ $networksVisible = count(Yii::$app->authClientCollection->clients) > 0;
                     ['label' => Yii::t('usuario', 'Account'), 'url' => ['/user/settings/account']],
                     [
                         'label' => Yii::t('usuario', 'Session history'),
-                        'url' => ['/user/settings/session-history']
+                        'url' => ['/user/settings/session-history'],
+                        'visible' => $module->enableSessionHistory,
                     ],
                     ['label' => Yii::t('usuario', 'Privacy'),
                         'url' => ['/user/settings/privacy'],

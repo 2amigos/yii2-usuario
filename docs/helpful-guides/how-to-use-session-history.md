@@ -1,9 +1,9 @@
 How to enable session history
 ============================
 
-Session history is list user sessions.
+Session history list user sessions.
 
-User can delete all session except current.
+User can delete all sessions except current.
 
 Configure Module and Application
 --------------------------------
