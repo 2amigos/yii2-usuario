@@ -1,4 +1,5 @@
 # CHANGELOG
+ - Fix #306: Add event for failed login (ivan-cc)
  - Fix #347: Only pass fields known to User model in registrationControl->actionRegister() (BillHeaton)
  - Fix #346: Update ReCaptcha guide to not use AJAX  (BillHeaton)
  - Fix #345: Update ReCaptcha guide to add scenarios() in recoveryForm  (BillHeaton)

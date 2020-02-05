@@ -21,6 +21,7 @@ On Controllers
 - **SecurityController**
     - **FormEvent::EVENT_BEFORE_LOGIN**: Occurs before a user logs into the system
     - **FormEvent::EVENT_AFTER_LOGIN**: Occurs after a user logs into the system
+    - **FormEvent::EVENT_FAILED_LOGIN**: Occurs when user failed login
 
 How to Work With Form Events
 ----------------------------

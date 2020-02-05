@@ -148,6 +148,10 @@ class SecurityController extends Controller
 
                 return $this->goBack();
             }
+            else
+            {
+                $this->trigger(FormEvent::EVENT_FAILED_LOGIN, $event);    
+            }
         }
 
         return $this->render(
