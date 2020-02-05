@@ -9,7 +9,7 @@ php:
   - 7.1
   - 7.2
   - 7.3
-  - 7.4snapshot
+  - 7.4
   - nightly
 
 services:
@@ -18,7 +18,7 @@ services:
 matrix:
   fast_finish: true
   allow_failures:
-    - php: 7.4snapshot
+    - php: 7.4
     - php: nightly
 
 # cache vendor dirs
