@@ -18,7 +18,7 @@ values:
 ```
 
 Actually, the only thing required is the `fromEmail` value. 
-If you want to set it the same as supportEmail from your config params (like yii2-app-advanced template):
+If you want to set it the same as senderEmail and senderName from your config params (like yii2-app-advanced template):
 ```php
     ...
     'modules' => [
@@ -26,7 +26,7 @@ If you want to set it the same as supportEmail from your config params (like yii
             'class' => Da\User\Module::class,
             'mailParams' => [
                 'fromEmail' => function() {
-                    return [Yii::$app->params['supportEmail'] => Yii::t('app', '{0} robot', Yii::$app->name)];
+                    return [Yii::$app->params['senderEmail'] => Yii::$app->params['senderName']];
                 }
             ],
         ],
