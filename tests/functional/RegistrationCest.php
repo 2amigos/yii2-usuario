@@ -73,7 +73,7 @@ class RegistrationCest
         /** @var yii\swiftmailer\Message $message */
         $message = $I->grabLastSentEmail();
         $I->assertArrayHasKey($user->email, $message->getTo());
-        $I->assertContains(Html::encode($token->getUrl()), utf8_encode(quoted_printable_decode($message->getSwiftMessage()->toString())));
+        $I->assertStringContainsString(Html::encode($token->getUrl()), utf8_encode(quoted_printable_decode($message->getSwiftMessage()->toString())));
         $I->assertFalse($user->isConfirmed);
     }
 
@@ -94,7 +94,7 @@ class RegistrationCest
         /** @var yii\swiftmailer\Message $message */
         $message = $I->grabLastSentEmail();
         $I->assertArrayHasKey($user->email, $message->getTo());
-        $I->assertContains('We have generated a password for you', utf8_encode(quoted_printable_decode($message->getSwiftMessage()->toString())));
+        $I->assertStringContainsString('We have generated a password for you', utf8_encode(quoted_printable_decode($message->getSwiftMessage()->toString())));
     }
 
     protected function register(FunctionalTester $I, $email, $username = null, $password = null) {

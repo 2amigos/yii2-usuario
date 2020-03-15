@@ -39,7 +39,7 @@ $token = $I->grabRecord(Token::className(), ['user_id' => $user->id, 'type' => T
 /** @var yii\swiftmailer\Message $message */
 $message = $I->grabLastSentEmail();
 $I->assertArrayHasKey($user->unconfirmed_email, $message->getTo());
-$I->assertContains(Html::encode($token->getUrl()), utf8_encode(quoted_printable_decode($message->getSwiftMessage()->toString())));
+$I->assertStringContainsString(Html::encode($token->getUrl()), utf8_encode(quoted_printable_decode($message->getSwiftMessage()->toString())));
 Yii::$app->user->logout();
 
 $I->amGoingTo('log in using new email address before clicking the confirmation link');

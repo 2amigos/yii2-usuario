@@ -41,7 +41,7 @@ $token = $I->grabRecord(Token::className(), ['user_id' => $user->id, 'type' => T
 /** @var yii\swiftmailer\Message $message */
 $message = $I->grabLastSentEmail();
 $I->assertArrayHasKey($user->email, $message->getTo());
-$I->assertContains(
+$I->assertStringContainsString(
     Html::encode($token->getUrl()),
     utf8_encode(quoted_printable_decode($message->getSwiftMessage()->toString()))
 );

@@ -47,9 +47,9 @@ before_script:
   - php tests/_app/yii.php migrate/up --interactive=0
   - php tests/_app/yii.php migrate/up --interactive=0 --migrationPath=@yii/rbac/migrations
 
-  # enable code coverage on PHP 7.1, only one PHP version needs to generate coverage data
+  # enable code coverage on PHP 7.2, only one PHP version needs to generate coverage data
   - |
-    if [ $TRAVIS_PHP_VERSION = '7.1' ]; then
+    if [ $TRAVIS_PHP_VERSION = '7.2' ]; then
       CODECEPTION_FLAGS="--coverage-xml"
     fi
 
@@ -59,7 +59,7 @@ script:
 
 after_script:
   - |
-    if [ $TRAVIS_PHP_VERSION = '7.1' ]; then
+    if [ $TRAVIS_PHP_VERSION = '7.2' ]; then
       travis_retry wget https://scrutinizer-ci.com/ocular.phar
       php ocular.phar code-coverage:upload --format=php-clover tests/_output/coverage.xml
     fi
