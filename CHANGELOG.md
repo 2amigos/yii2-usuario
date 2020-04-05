@@ -1,4 +1,8 @@
 # CHANGELOG
+
+## work in progress
+
+## 1.5.1 April 5, 2020
  - Fix #370: Extending view fix (effsoft)
  - Fix #306: Add event for failed login (ivan-cc)
  - Fix #347: Only pass fields known to User model in registrationControl->actionRegister() (BillHeaton)
@@ -18,7 +22,7 @@
  - Enh #324: Added option to restrict user assignments to roles only (CheckeredFlag)
  - Enh #224: Added option to require consent (eseperio)
  - Enh: Added classMap for MailService (necrox87)
-  
+
 ## 1.5.0 April 19, 2019
  - Fix: Fix condition in EmailChangeService (it was always false) (borisaeric)
  - Fix #198: Updated translations by quique, bizley, TonisOrmisson, guogan, Dezinger, maxxer, wautvda, mrbig00, fabiomlferreira, WeeSee
