@@ -47,6 +47,7 @@ $module = Yii::$app->getModule('user');
                         : $model->registration_ip;
                 },
                 'format' => 'html',
+                'visible' => !$module->disableIpLogging,
             ],
             [
                 'attribute' => 'created_at',
@@ -78,6 +79,7 @@ $module = Yii::$app->getModule('user');
                         : $model->last_login_ip;
                 },
                 'format' => 'html',
+                'visible' => !$module->disableIpLogging,
             ],
             [
                 'header' => Yii::t('usuario', 'Confirmation'),
