@@ -218,8 +218,7 @@ Set to `true` to restrict user assignments to roles only.
 
 #### disableIpLogging (type: `boolean`, default: `false`)
 
-If `false`, then the users IP is stored in `registration_ip` and `last_login_ip`.
-If set to `true` then the dummy IP `127.0.0.1` is saved.
+If true registration and last login IPs are not logged into users table, instead a dummy 127.0.0.1 is used
 
 
 © [2amigos](http://www.2amigos.us/) 2013-2019
