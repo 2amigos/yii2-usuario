@@ -207,7 +207,7 @@ class Module extends BaseModule
      */
     public $restrictUserPermissionAssignment = false;
     /**
-     * @var boolean whether to disable IP logging in user table
+     * @var boolean whether to disable IP logging into user table
      */
     public $disableIpLogging = false;
 
