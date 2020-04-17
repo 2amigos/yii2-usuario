@@ -206,6 +206,10 @@ class Module extends BaseModule
      * @var boolean whether to restrict assignment of permissions to users
      */
     public $restrictUserPermissionAssignment = false;
+    /**
+     * @var boolean whether to disable IP logging into user table
+     */
+    public $disableIpLogging = false;
 
     /**
      * @return string with the hit to be used with the give consent checkbox

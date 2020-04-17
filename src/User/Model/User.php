@@ -125,7 +125,7 @@ class User extends ActiveRecord implements IdentityInterface
         if ($insert) {
             $this->setAttribute('auth_key', $security->generateRandomString());
             if (Yii::$app instanceof Application) {
-                $this->setAttribute('registration_ip', Yii::$app->request->getUserIP());
+                $this->setAttribute('registration_ip', $this->module->disableIpLogging ? '127.0.0.1' : Yii::$app->request->getUserIP());
             }
         }
 

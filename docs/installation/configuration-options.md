@@ -216,6 +216,9 @@ Configures the name of the session key that will be used to hold the original ad
 If `false`, allow the assignment of both roles and permissions to users.
 Set to `true` to restrict user assignments to roles only.
 
+#### disableIpLogging (type: `boolean`, default: `false`)
+
+If `true` registration and last login IPs are not logged into users table, instead a dummy 127.0.0.1 is used
 
 
 © [2amigos](http://www.2amigos.us/) 2013-2019
