@@ -48,38 +48,21 @@ class AccessRuleFilter extends AccessRule
 
     /**
      * {@inheritdoc}
-     * */
+     **/
     protected function matchRole($user)
     {
         if (empty($this->roles)) {
-            return true;
+            return parent::matchRole($user);
         }
 
-        foreach ($this->roles as $role) {
-            if ($role === '?') {
-                if ($user->getIsGuest()) {
-                    return true;
-                }
-            } elseif ($role === '@') {
-                if (!$user->getIsGuest()) {
-                    return true;
-                }
-            } elseif ($role === 'admin') {
-                /** @var User $identity */
-                $identity = $user->getIdentity();
-
-                if (!$user->getIsGuest() && $identity->getIsAdmin()) {
-                    return true;
-                }
-            } else {
-                $roleParams = $this->roleParams instanceof Closure
-                    ? call_user_func($this->roleParams, $this)
-                    : $this->roleParams;
-
-                if ($user->can($role, $roleParams)) {
-                    return true;
-                }
-            }
+        // We just check our custom role "admin" otherwise call back the original implementation
+        if (!in_array("admin", $this->roles)) {
+            return parent::matchRole($user);
+        }
+        /** @var User $identity */
+        $identity = $user->getIdentity();
+        if (!$user->getIsGuest() && $identity->getIsAdmin()) {
+            return true;
         }
 
         return false;
