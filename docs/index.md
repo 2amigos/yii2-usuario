@@ -188,6 +188,7 @@ Helpful Guides
 - [How to Switch Identities](helpful-guides/how-to-switch-identities.md)
 - [Separate Frontend and Backend Sessions](helpful-guides/separate-frontend-and-backend-sessions.md)
 - [Social Network Authentication](helpful-guides/social-network-authentication.md)
+- [How to Enable session history](helpful-guides/how-to-use-session-history.md)
 
 Contributing
 ------------

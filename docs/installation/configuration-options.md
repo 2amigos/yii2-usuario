@@ -3,6 +3,22 @@ Configuration Options
 
 The module comes with a set of attributes to configure. The following is the list of all available options: 
 
+#### enableSessionHistory (Type: `boolean, integer`, Default value: `false`)
+
+If this option is to `true`, session history will be kept, [more](../helpful-guides/how-to-use-session-history.md).
+
+#### numberSessionHistory (Type: `boolean, integer`, Default value: `false`)
+
+Number of expired storing records `session history`, values:
+- `false` Store all records without deleting
+- `integer` Count of records for storing
+
+#### timeoutSessionHistory (Type: `boolean, integer`, Default value: `false`)
+
+How long store `session history` after expiring, values:
+- `false` Store all records without deleting
+- `integer` Time for storing after expiring in seconds
+
 #### enableTwoFactorAuthentication (type: `boolean`, default: `false`)
 
 Setting this attribute will allow users to configure their login process with two-factor authentication. 

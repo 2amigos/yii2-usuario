@@ -20,7 +20,9 @@ On Controllers
     - **UserEvent::EVENT_BEFORE_UNBLOCK**: Occurs before a user is being un-blocked
     - **UserEvent::EVENT_AFTER_UNBLOCK**: Occurs after a user is being un-blocked
     - **UserEvent::EVENT_BEFORE_SWITCH_IDENTITY**: Occurs before a user is being impersonated by admin
-    - **UserEvent::EVENT_AFTER_SWITCH_IDENTITY**: Occurs after a user his being impersonated by admin
+    - **UserEvent::EVENT_AFTER_SWITCH_IDENTITY**: Occurs after a user his being impersonated by admin    
+    - **SessionEvent::EVENT_BEFORE_TERMINATE_USER_SESSIONS**
+    - **SessionEvent::EVENT_AFTER_TERMINATE_USER_SESSIONS**
 
 
 - **RegistrationController**
@@ -40,6 +42,10 @@ On Controllers
     - **UserEvent::EVENT_AFTER_ACCOUNT_UPDATE**: Occurs after the user account is updated
     - **UserEvent::EVENT_BEFORE_DELETE**: Occurs before the user account is deleted
     - **UserEvent::EVENT_AFTER_DELETE**: Occurs after the user account is deleted
+
+- **SessionController**
+    - **SessionEvent::EVENT_BEFORE_TERMINATE_USER_SESSIONS**: Occurs before the user sessions is terminated
+    - **SessionEvent::EVENT_AFTER_TERMINATE_USER_SESSIONS**: Occurs after the user sessions is terminated
 
 On Models
 ---------
