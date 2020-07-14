@@ -2,6 +2,7 @@
 
 ## work in progress
  - Fix #378: Add module attribute 'disableIpLogging' (jkmssoft)
+ - Fix #384: Delete flash messages after consuming (cgsmith)
 
 ## 1.5.1 April 5, 2020
  - Fix #370: Extending view fix (effsoft)
