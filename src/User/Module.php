@@ -103,10 +103,6 @@ class Module extends BaseModule
      */
     public $enableFlashMessages = true;
     /**
-     * @var bool whether to display the view from shared resources - this is set to false if you are using your own view
-     */
-    public $enableFlashMessagesView = true;
-    /**
      * @var bool whether to be able to, as an admin, impersonate other users
      */
     public $enableSwitchIdentities = true;
