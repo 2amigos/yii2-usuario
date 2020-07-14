@@ -3,6 +3,7 @@
 ## work in progress
  - Fix #380: Avoid rewriting AccessRule::matchRole (maxxer)
  - Fix #378: Add module attribute 'disableIpLogging' (jkmssoft)
+ - Fix #384: Delete flash messages after consuming (cgsmith)
  - Enh #387: Added Persian translation (hadi-aj)
 
 ## 1.5.1 April 5, 2020
