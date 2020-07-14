@@ -69,10 +69,6 @@ registration process.
 
 If `true` views will display flash messages.
 
-#### enableFlashMessagesView (type: `boolean`, default: `true`)
-
-If `true` we will use our shared _alert under resources. Set this to `false` if you are handling alerts in your own layout.
- 
 #### enableSwitchIdentities (type: `boolean`, default: `true`)
  
 If `true` allows switching identities for the admin user.
