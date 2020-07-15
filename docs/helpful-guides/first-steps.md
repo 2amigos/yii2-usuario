@@ -68,7 +68,7 @@ Put this in your migration:
             $user = \Da\User\Model\User::findOne(['name'=>"admin"]);
             $auth->revoke($administratorRole, $user->id);
             $user->delete();
-            
+            $auth->remove($administratorRole);
         }
 
 ## User Management
