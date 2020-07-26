@@ -1,6 +1,7 @@
 # CHANGELOG
 
 ## work in progress
+ - Fix #380: Avoid rewriting AccessRule::matchRole (maxxer)
  - Fix #378: Add module attribute 'disableIpLogging' (jkmssoft)
 
 ## 1.5.1 April 5, 2020
