@@ -67,8 +67,8 @@ registration process.
 
 #### enableFlashMessages (type: `boolean`, default: `true`)
 
-If `true` views will display flash messages.
- 
+If `true` views will display flash messages. Disable this if you want to handle messages display in your views.
+
 #### enableSwitchIdentities (type: `boolean`, default: `true`)
  
 If `true` allows switching identities for the admin user.
