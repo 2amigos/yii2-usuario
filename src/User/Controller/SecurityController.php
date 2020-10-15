@@ -67,7 +67,7 @@ class SecurityController extends Controller
                 'rules' => [
                     [
                         'allow' => true,
-                        'actions' => ['login', 'confirm', 'auth', 'blocked'],
+                        'actions' => ['login', 'confirm', 'auth'],
                         'roles' => ['?'],
                     ],
                     [
