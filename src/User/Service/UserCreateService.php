@@ -75,8 +75,8 @@ class UserCreateService implements ServiceInterface
                     'Error sending welcome message to "{email}". Please try again later.',
                     ['email' => $model->email]
                 );
-                // from web display a flash message (if enabled)
-                if ($this->getModule()->enableFlashMessages === true && is_a(Yii::$app, yii\web\Application::class)) {
+                // from web generate a flash message
+                if (is_a(Yii::$app, yii\web\Application::class)) {
                     Yii::$app->session->setFlash(
                         'warning',
                         $error_msg
