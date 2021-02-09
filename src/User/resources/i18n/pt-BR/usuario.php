@@ -109,7 +109,7 @@ return [
     'Gravatar email' => 'E-mail do Gravatar',
     'Hello' => 'Olá',
     'Here you can download your personal data in a comma separated values format.' => 'Aqui você pode baixar seus dados pessoais em um formato de valores separados por vírgulas.',
-    'I agree processing of my personal data and the use of cookies to facilitate the operation of this site. For more information read our {privacyPolicy}' => '@@Concordo com o processamento de meus dados pessoais e o uso de cookies para facilitar a operação deste site. Para mais informações, leia nossa {privacyPolicy}@@',
+    'I agree processing of my personal data and the use of cookies to facilitate the operation of this site. For more information read our {privacyPolicy}' => 'Concordo com o processamento de meus dados pessoais e o uso de cookies para facilitar a operação deste site. Para mais informações, leia nossa {privacyPolicy}',
     'If you already registered, sign in and connect this account on settings page' => 'Se você já se registrou, faça login e conecte esta conta na página de configurações',
     'If you cannot click the link, please try pasting the text into your browser' => 'Se você não pode clicar no link, tente colar o texto em seu navegador',
     'If you did not make this request you can ignore this email' => 'Se você não fez essa solicitação, ignore este e-mail',
@@ -265,7 +265,7 @@ return [
     'Your password has expired, you must change it now' => 'Sua senha expirou, você deve alterá-la agora',
     'Your personal information has been removed' => 'Suas informações pessoais foram removidas',
     'Your profile has been updated' => 'Seu perfil foi atualizado',
-    'privacy policy' => '@@política de Privacidade@@',
+    'privacy policy' => 'política de Privacidade',
     '{0, date, MMM dd, YYYY HH:mm}' => '{0, date, MMM dd, YYYY HH:mm}',
     '{0, date, MMMM dd, YYYY HH:mm}' => '{0, date, MMMM dd, YYYY HH:mm}',
     '{0} cannot be blank.' => '{0} não pode estar em branco',
@@ -284,7 +284,7 @@ return [
     'Class "{0}" does not exist' => '@@A classe "{0}" não existe@@',
     'Disable Two-Factor Auth' => '@@Desabilitar autenticação em dois fatores@@',
     'Enable Two-factor auth' => '@@Habilitar autenticação em dois fatores@@',
-    'I aggree processing of my personal data and the use of cookies 
+    'I aggree processing of my personal data and the use of cookies
             to facilitate the operation of this site. For more information read our {privacyPolicy}' => '@@Concordo com o processamento de meus dados pessoais e o uso de cookies para facilitar a operação deste site. Para mais informações, leia nosso {privacyPolicy}@@',
     'I aggree processing of my personal data and the use of cookies to facilitate the operation of this site. For more information read our {privacyPolicy}' => '@@Concordo com o processamento de meus dados pessoais e o uso de cookies para facilitar a operação deste site. Para mais informações, leia nosso {privacyPolicy}@@',
     'Invalid two-factor code' => '@@Código de dois fatores inválido@@',
