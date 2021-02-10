@@ -18,12 +18,8 @@
  */
 return [
     '(not set)' => '(nicht gesetzt)',
-    'A confirmation message has been sent to your new email address'
-        => 'Eine Bestätigungsnachricht wurde an Ihre neue E-Mail Adresse versendet',
-    'A message has been sent to your email address. It contains a confirmation link that you must '.
-        'click to complete registration.'
-        => 'Eine Nachricht wurde an Ihre E-Mail-Adresse gesendet. '.
-            'Sie enthält einen Bestätigungslink den Sie anklicken müssen, um die Registrierung abzuschließen.',
+    'A confirmation message has been sent to your new email address' => 'Eine Bestätigungsnachricht wurde an Ihre neue E-Mail Adresse versendet',
+    'A message has been sent to your email address. It contains a confirmation link that you must click to complete registration.' => 'Eine Nachricht wurde an Ihre E-Mail-Adresse gesendet. Sie enthält einen Bestätigungslink den Sie anklicken müssen, um die Registrierung abzuschließen.',
     'A new confirmation link has been sent' => 'Ein neuer Bestätigungs-Link wurde versendet',
     'A password will be generated automatically if not provided' => 'Leer lassen, um automatisch ein Passwort zu generieren',
     'Account' => 'Konto',
@@ -32,9 +28,7 @@ return [
     'Account details have been updated' => 'Kontodetails gespeichert',
     'Account settings' => 'Kontoeinstellungen',
     'Already registered? Sign in!' => 'Bereits registriert? Zur Anmeldung!',
-    'An email with instructions to create a new password has been sent to {email} if it is associated with an {appName} account. Your existing password has not been changed.' => 
-        'Eine E-Mail mit Hinweisen, wie ein Kennwort erstellt wird wurde an {email} gesendet, '.
-        'sofern es mit dem Konto {appName} verbunden ist. Das aktuelle Kennwort wurde nicht geändert.',
+    'An email with instructions to create a new password has been sent to {email} if it is associated with an {appName} account. Your existing password has not been changed.' => 'Eine E-Mail mit Hinweisen, wie ein Kennwort erstellt wird wurde an {email} gesendet, sofern es mit dem Konto {appName} verbunden ist. Das aktuelle Kennwort wurde nicht geändert.',
     'An error occurred processing your request' => 'Es ist ein Fehler aufgetreten',
     'Are you sure you want to block this user?' => 'Sind Sie sicher, dass Sie diesen Benutzer blockieren wollen?',
     'Are you sure you want to confirm this user?' => 'Sind Sie sicher, dass Sie diesen Benutzer bestätigen wollen?',
@@ -116,7 +110,7 @@ return [
     'Gravatar email' => 'Gravatar E-Mail',
     'Hello' => 'Hallo',
     'Here you can download your personal data in a comma separated values format.' => 'Hier können Sie eigene persönliche Daten in komma-separiertem Format herunterladen',
-    'I agree processing of my personal data and the use of cookies to facilitate the operation of this site. For more information read our {privacyPolicy}' => '@@Ich stimme der Verarbeitung meiner persönlichen Daten und der Benutzung von Cookies zur Vereinfachung der Benutzer dieses Services zu. Weitere Informationen stehen in unserer  {privacyPolicy}@@',
+    'I agree processing of my personal data and the use of cookies to facilitate the operation of this site. For more information read our {privacyPolicy}' => 'Ich stimme der Verarbeitung meiner persönlichen Daten und der Benutzung von Cookies zur Vereinfachung der Benutzer dieses Services zu. Weitere Informationen stehen in unserer  {privacyPolicy}',
     'If you already registered, sign in and connect this account on settings page' => 'Wenn Sie sich bereits registriert haben, melden Sie sich an und verbinden Sie dieses Konto auf der Einstellungs-Seite',
     'If you cannot click the link, please try pasting the text into your browser' => 'Wenn Sie den Link nicht anklicken können, versuchen Sie, diesen in ihre Browser-Leiste einzufügen',
     'If you did not make this request you can ignore this email' => 'Wenn Sie diese Anfrage nicht gemacht haben, können Sie diese E-Mail ignorieren',
@@ -275,8 +269,13 @@ return [
     'Your password has expired, you must change it now' => 'Ihr Kennwort ist abgelaufen. Sie müssen es nun ändern',
     'Your personal information has been removed' => 'Ihre persönlichen Daten wurden gelöscht',
     'Your profile has been updated' => 'Ihr Profil wurde gespeichert',
-    'privacy policy' => '@@Datenschutzrichtlinie@@',
+    'privacy policy' => 'Datenschutzrichtlinie',
     '{0, date, MMM dd, YYYY HH:mm}' => '{0, date, dd. MMM YYYY, HH:mm}',
     '{0, date, MMMM dd, YYYY HH:mm}' => '{0, date, dd. MMMM YYYY, HH:mm}',
     '{0} cannot be blank.' => '{0} darf nicht leer sein.',
+    'According to the European General Data Protection Regulation (GDPR) we need your consent to work with your personal data.' => '',
+    'Data privacy' => '',
+    'Submit' => '',
+    'Unfortunately, you can not work with this site without giving us consent to process your data.' => '',
+    'Your consent is required to work with this site' => '',
 ];
