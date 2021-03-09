@@ -65,7 +65,7 @@ Put this in your migration:
 
             // delete admin-user and administrator role
             $administratorRole = $auth->getRole("administrator");
-            $user = \Da\User\Model\User::findOne(['name'=>"admin"]);
+            $user = \Da\User\Model\User::findOne(['username'=>"admin"]);
             $auth->revoke($administratorRole, $user->id);
             $user->delete();
             $auth->remove($administratorRole);
