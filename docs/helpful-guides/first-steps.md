@@ -30,7 +30,7 @@ Put this in your migration:
             $auth = Yii::$app->authManager;
                 
             // create a role named "administrator"
-            $administratorRole = $auth->createRole('administrator');
+            $administratorRole = $auth->createRole('admin');
             $administratorRole->description = 'Administrator';
             $auth->add($administratorRole);
 
