@@ -31,6 +31,6 @@ class ResetPasswordService implements ServiceInterface
     public function run()
     {
         $this->model->password = $this->password;
-        return (bool)$this->model->save(false, ['password_hash']);
+        return (bool)$this->model->save(false, ['password_hash','password_changed_at']);
     }
 }
