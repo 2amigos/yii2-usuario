@@ -91,7 +91,7 @@ return [
     'Didn\'t receive confirmation message?' => 'Nie otrzymałeś emaila aktywacyjnego?',
     'Disable two factor authentication' => 'Wyłącz uwierzytelnianie dwuetapowe',
     'Disconnect' => 'Odłącz',
-    'Don\'t have an account? Sign up!' => 'Nie masz jeszcze konto? Zarejestruj się!',
+    'Don\'t have an account? Sign up!' => 'Nie masz jeszcze konta? Zarejestruj się!',
     'Download my data' => 'Pobierz swoje dane',
     'Email' => 'Email',
     'Email (public)' => 'Email (publiczny)',
