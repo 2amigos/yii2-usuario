@@ -276,6 +276,6 @@ return [
     'Your consent is required to work with this site' => '',
     '{0, date, MMM dd, YYYY HH:mm}' => '',
     '{0, date, MMMM dd, YYYY HH:mm}' => '',
-    'I agree processing of my personal data and the use of cookies to facilitate the operation of this site. For more information read our {privacyPolicy}' => '@@Nõusutn oma isikuandmete töötlemise ning küpsiste kasutamisega, et selle lehe kasutamiset hõlbustada. Lisainfot loe lehelt {privacyPolicy}.@@',
-    'privacy policy' => '@@privaatsuspoliitika@@',
+    'I agree processing of my personal data and the use of cookies to facilitate the operation of this site. For more information read our {privacyPolicy}' => 'Nõusutn oma isikuandmete töötlemise ning küpsiste kasutamisega, et selle lehe kasutamiset hõlbustada. Lisainfot loe lehelt {privacyPolicy}.',
+    'privacy policy' => 'privaatsuspoliitika',
 ];

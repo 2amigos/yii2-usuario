@@ -276,6 +276,6 @@ return [
     'Unfortunately, you can not work with this site without giving us consent to process your data.' => '',
     'Your consent is required to work with this site' => '',
     '{0, date, MMM dd, YYYY HH:mm}' => '',
-    'I agree processing of my personal data and the use of cookies to facilitate the operation of this site. For more information read our {privacyPolicy}' => '@@J\'accepte le traitement de mes données personnelles et l\'utilisation de cookies pour faciliter le fonctionnement de ce site. Pour plus d\'information, lisez notre {privacyPolicy}@@',
-    'privacy policy' => '@@politique de confidentialité@@',
+    'I agree processing of my personal data and the use of cookies to facilitate the operation of this site. For more information read our {privacyPolicy}' => 'J\'accepte le traitement de mes données personnelles et l\'utilisation de cookies pour faciliter le fonctionnement de ce site. Pour plus d\'information, lisez notre {privacyPolicy}',
+    'privacy policy' => 'politique de confidentialité',
 ];

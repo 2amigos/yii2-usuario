@@ -10,7 +10,7 @@
  */
 
 use dosamigos\selectize\SelectizeDropDownList;
-use yii\bootstrap\Alert;
+use yii\bootstrap4\Alert;
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
 
