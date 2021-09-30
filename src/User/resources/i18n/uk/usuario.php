@@ -110,7 +110,7 @@ return [
     'Gravatar email' => 'Gravatar email',
     'Hello' => 'Привіт',
     'Here you can download your personal data in a comma separated values format.' => 'Тут Ви можете скачати Ваші персональні дані у форматі CSV.',
-    'I agree processing of my personal data and the use of cookies to facilitate the operation of this site. For more information read our {privacyPolicy}' => '@@Я даю згоду на обробку моїх персональних даних та на використання cookie даним сайтом. Для більш детальної інформації ознайомтесь з {privacyPolicy}@@',
+    'I agree processing of my personal data and the use of cookies to facilitate the operation of this site. For more information read our {privacyPolicy}' => 'Я даю згоду на обробку моїх персональних даних та на використання cookie даним сайтом. Для більш детальної інформації ознайомтесь з {privacyPolicy}',
     'If you already registered, sign in and connect this account on settings page' => 'Якщо Ви вже зареєстровані - увійдіть та підключіть цей акаунт в налаштуваннях.',
     'If you cannot click the link, please try pasting the text into your browser' => 'Якщо Ви не можете натиснути на посилання, спробуйте вставити його адресу у Ваш браузер.',
     'If you did not make this request you can ignore this email' => 'Якщо Ви не робили запит - можете ігнорувати дане повідомлення.',
