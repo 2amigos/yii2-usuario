@@ -9,7 +9,7 @@
  * the LICENSE file that was distributed with this source code.
  */
 
-use yii\grid\GridView;
+use kartik\grid\GridView;
 use yii\helpers\Html;
 use yii\web\View;
 use yii\widgets\Pjax;
@@ -132,13 +132,13 @@ $module = Yii::$app->getModule('user');
                 'format' => 'raw',
             ],
             [
-                'class' => 'yii\grid\ActionColumn',
+                'class' => 'kartik\grid\ActionColumn',
                 'template' => '{switch} {reset} {force-password-change} {update} {delete}',
                 'buttons' => [
                     'switch' => function ($url, $model) use ($module) {
                         if ($model->id != Yii::$app->user->id && $module->enableSwitchIdentities) {
                             return Html::a(
-                                '<span class="glyphicon glyphicon-user"></span>',
+                                '<span class="fa fa-user"></span>',
                                 ['/user/admin/switch-identity', 'id' => $model->id],
                                 [
                                     'title' => Yii::t('usuario', 'Impersonate this user'),
@@ -156,7 +156,7 @@ $module = Yii::$app->getModule('user');
                     'reset' => function ($url, $model) use ($module) {
                         if($module->allowAdminPasswordRecovery) {
                             return Html::a(
-                                '<span class="glyphicon glyphicon-flash"></span>',
+                                '<span class="fa fa-bolt"></span>',
                                 ['/user/admin/password-reset', 'id' => $model->id],
                                 [
                                     'title' => Yii::t('usuario', 'Send password recovery email'),
@@ -176,7 +176,7 @@ $module = Yii::$app->getModule('user');
                             return null;
                         }
                         return Html::a(
-                            '<span class="glyphicon glyphicon-time"></span>',
+                            '<span class="fas fa-stopwatch"></span>',
                             ['/user/admin/force-password-change', 'id' => $model->id],
                             [
                                 'title' => Yii::t('usuario', 'Force password change at next login'),

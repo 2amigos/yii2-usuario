@@ -14,8 +14,8 @@
  * @var $this         yii\web\View
  * @var $searchModel  \Da\User\Search\PermissionSearch
  */
-use yii\grid\ActionColumn;
-use yii\grid\GridView;
+use kartik\grid\ActionColumn;
+use kartik\grid\GridView;
 use yii\helpers\Url;
 
 $this->title = Yii::t('usuario', 'Permissions');

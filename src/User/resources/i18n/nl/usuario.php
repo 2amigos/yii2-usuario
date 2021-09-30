@@ -109,7 +109,7 @@ return [
     'Gravatar email' => 'Gravatar email',
     'Hello' => 'Hallo',
     'Here you can download your personal data in a comma separated values format.' => 'Hier kan je al jouw persoonlijke data downloaden in een komma\'s gescheiden formaat.',
-    'I agree processing of my personal data and the use of cookies to facilitate the operation of this site. For more information read our {privacyPolicy}' => '@@Ik ga akkoord met het verwerken van mijn persoonlijke data en het gebruik van cookies om de werking van deze website te vergemakkelijken. Voor meer, lees onze {privacyPolicy}@@',
+    'I agree processing of my personal data and the use of cookies to facilitate the operation of this site. For more information read our {privacyPolicy}' => 'Ik ga akkoord met het verwerken van mijn persoonlijke data en het gebruik van cookies om de werking van deze website te vergemakkelijken. Voor meer, lees onze {privacyPolicy}',
     'If you already registered, sign in and connect this account on settings page' => 'Als je reeds geregistreerd bent, meldt je aan en verbind deze account via de instellingen pagina',
     'If you cannot click the link, please try pasting the text into your browser' => 'Als je niet op deze link kan klikken, kopieer en plak de tekst in jouw browser',
     'If you did not make this request you can ignore this email' => 'Als je deze aanvraag niet deed mag je deze email negeren',
@@ -265,7 +265,7 @@ return [
     'Your password has expired, you must change it now' => 'Jouw wachtwoord is vervallen. Gelieve het onmiddelijk te wijzigen',
     'Your personal information has been removed' => 'Jouw persoonlijke gegevens werden verwijderd',
     'Your profile has been updated' => 'Jouw profiel werd geupdate',
-    'privacy policy' => '@@privacy policy@@',
+    'privacy policy' => 'privacy policy',
     '{0, date, MMM dd, YYYY HH:mm}' => '{0, date, MMM dd, YYYY HH:mm}',
     '{0, date, MMMM dd, YYYY HH:mm}' => '{0, date, MMMM dd, YYYY HH:mm}\'',
     '{0} cannot be blank.' => '{0} kan niet leeg zijn.',
@@ -284,7 +284,7 @@ return [
     'Class "{0}" does not exist' => '@@Class "{0} bestaat niet@@',
     'Disable Two-Factor Auth' => '@@Tweetraps authenticatie uitschakelen@@',
     'Enable Two-factor auth' => '@@Tweetraps authenticatie inschakelen@@',
-    'I aggree processing of my personal data and the use of cookies 
+    'I aggree processing of my personal data and the use of cookies
             to facilitate the operation of this site. For more information read our {privacyPolicy}' => '@@Ik ga akkoord dat mijn persoonlijke data en cookies worden verwerkt voor het gebruik van deze website. Voor meer informatie lees onze {privacyPolicy}@@',
     'I aggree processing of my personal data and the use of cookies to facilitate the operation of this site. For more information read our {privacyPolicy}' => '@@Ik ga akkoord dat mijn persoonlijke data en cookies worden verwerkt voor het gebruik van deze website. Voor meer informatie lees onze {privacyPolicy}@@',
     'Invalid two-factor code' => '@@Ongeldige tweetraps authenticatie code@@',

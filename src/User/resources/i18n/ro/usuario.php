@@ -109,7 +109,7 @@ return [
     'Gravatar email' => 'Gravatar email',
     'Hello' => 'buna',
     'Here you can download your personal data in a comma separated values format.' => 'Aici puteți descărca datele personale într-un format de valori separate prin virgulă.',
-    'I agree processing of my personal data and the use of cookies to facilitate the operation of this site. For more information read our {privacyPolicy}' => '@@Sunt de acord cu prelucrarea datelor mele personale și utilizarea cookie-urilor pentru a facilita funcționarea acestui site. Pentru mai multe informații, citiți {privacyPolicy}@@',
+    'I agree processing of my personal data and the use of cookies to facilitate the operation of this site. For more information read our {privacyPolicy}' => 'Sunt de acord cu prelucrarea datelor mele personale și utilizarea cookie-urilor pentru a facilita funcționarea acestui site. Pentru mai multe informații, citiți {privacyPolicy}',
     'If you already registered, sign in and connect this account on settings page' => 'Dacă v-ați înregistrat deja, conectați-vă și conectați-l pe pagina de setări',
     'If you cannot click the link, please try pasting the text into your browser' => 'Dacă nu puteți da clic pe link, încercați să inserați textul în browser',
     'If you did not make this request you can ignore this email' => 'Dacă nu ați făcut această solicitare, puteți ignora acest e-mail',
@@ -265,7 +265,7 @@ return [
     'Your password has expired, you must change it now' => 'Parola dvs. a expirat, trebuie să o modificați acum',
     'Your personal information has been removed' => 'Informațiile dvs. personale au fost eliminate',
     'Your profile has been updated' => 'Profilul dvs. a fost actualizat',
-    'privacy policy' => '@@politica de confidentialitate@@',
+    'privacy policy' => 'politica de confidentialitate',
     '{0, date, MMM dd, YYYY HH:mm}' => '{0, data, MMM dd, AAAA HH: mm}',
     '{0, date, MMMM dd, YYYY HH:mm}' => '{0, data, MMMM dd, AAAA HH: mm}',
     '{0} cannot be blank.' => '{0} nu poate fi gol.',
@@ -283,7 +283,7 @@ return [
     'Awesome, almost there. ' => '@@Minunat, aproape gata.@@',
     'Disable Two-Factor Auth' => '@@Dezactivați autentificarea cu două factori@@',
     'Enable Two-factor auth' => '@@Activați Auth@@',
-    'I aggree processing of my personal data and the use of cookies 
+    'I aggree processing of my personal data and the use of cookies
             to facilitate the operation of this site. For more information read our {privacyPolicy}' => '@@Am agregat prelucrarea datelor mele personale și utilizarea cookie-urilor pentru a facilita funcționarea acestui site. Pentru mai multe informații, citiți {privacyPolicy}@@',
     'I aggree processing of my personal data and the use of cookies to facilitate the operation of this site. For more information read our {privacyPolicy}' => '@@Am agregat prelucrarea datelor mele personale și utilizarea cookie-urilor pentru a facilita funcționarea acestui site. Pentru mai multe informații, citiți {privacyPolicy}@@',
     'Invalid two-factor code' => '@@Cod de două factori nevalid@@',

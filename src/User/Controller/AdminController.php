@@ -189,8 +189,8 @@ class AdminController extends Controller
         $this->make(AjaxRequestModelValidator::class, [$profile])->validate();
 
         if ($profile->load(Yii::$app->request->post())) {
+            $this->trigger(UserEvent::EVENT_BEFORE_PROFILE_UPDATE, $event);
             if ($profile->save()) {
-                $this->trigger(UserEvent::EVENT_BEFORE_PROFILE_UPDATE, $event);
                 Yii::$app->getSession()->setFlash('success', Yii::t('usuario', 'Profile details have been updated'));
                 $this->trigger(UserEvent::EVENT_AFTER_PROFILE_UPDATE, $event);
 
@@ -330,7 +330,7 @@ class AdminController extends Controller
 
         return $this->redirect(['index']);
     }
-    
+
     /**
      * Forces the user to change password at next login
      * @param integer $id
