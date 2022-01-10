@@ -210,6 +210,23 @@ class Module extends BaseModule
      * @var boolean whether to disable IP logging into user table
      */
     public $disableIpLogging = false;
+    
+    /**
+     * @var array Minimum requirements when a new password is automatically generated.
+     * Array structure: `requirement => minimum number characters`.
+     * 
+     * Possible array keys:
+     *  - lower: minimum number of lowercase characters;
+     *  - upper: minimum number of uppercase characters;
+     *  - digit: minimum number of digits;
+     *  - special: minimum number of special characters;
+     *  - min: minimum number of characters (= minimum length).
+     */
+    public $minPasswordRequirements = [
+        'lower' => 1,
+        'digit' => 1,
+        'upper' => 1,
+    ];
 
     /**
      * @return string with the hit to be used with the give consent checkbox
