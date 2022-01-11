@@ -11,6 +11,7 @@
 
 namespace Da\User\Helper;
 
+use Yii;
 use yii\base\Exception;
 use yii\base\Security;
 use yii\base\InvalidConfigException;
@@ -61,17 +62,29 @@ class SecurityHelper
         return $this->security->validatePassword($password, $hash);
     }
 
-    public function generatePassword($length, $minPasswordRequirements)
+    public function generatePassword($length, $minPasswordRequirements = null)
     {
         $sets = [
             'lower' => 'abcdefghjkmnpqrstuvwxyz',
             'upper' => 'ABCDEFGHJKMNPQRSTUVWXYZ',
             'digit' => '123456789',
-            'special' => '!#$%&()*+,-./:;<=>?@[\]^_{|}~'
+            'special' => '!#$%&*+,-.:;<=>?@_~'
         ];
         $all = '';
         $password = '';
 
+        if (!isset($minPasswordRequirements)) {
+            if (isset(Yii::$app->getModule('user')->minPasswordRequirements)) {
+                $minPasswordRequirements = Yii::$app->getModule('user')->minPasswordRequirements;
+            }
+            else {
+                $minPasswordRequirements = [
+                    'lower' => 1,
+                    'digit' => 1,
+                    'upper' => 1,
+                ];
+            }
+        }
         if (isset($minPasswordRequirements['min']) && $length < $minPasswordRequirements['min']) {
             $length = $minPasswordRequirements['min'];
         }
