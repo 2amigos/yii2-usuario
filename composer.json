@@ -41,7 +41,7 @@
     "prefer-stable": true,
     "require": {
         "php": ">=5.5",
-        "2amigos/yii2-selectize-widget": "^1.1",
+        "2amigos/yii2-selectize-widget": "dev-bootstrap4",
         "yiisoft/yii2-authclient": "^2.1",
         "yiisoft/yii2-httpclient": "^2.0",
         "yiisoft/yii2-bootstrap4": "^1.0",
