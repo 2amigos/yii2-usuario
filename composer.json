@@ -92,6 +92,10 @@
         {
             "type": "composer",
             "url": "https://asset-packagist.org"
+        },
+        {
+            "type": "vcs",
+            "url": "https://github.com/lhfi/yii2-selectize-widget"
         }
     ]
 }
