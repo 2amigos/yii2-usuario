@@ -1,6 +1,7 @@
 # CHANGELOG
 
 ## work in progress
+ - Enh: Added minimum requirements when a new password is automatically generated (MatteoF96)
  - Fix #380: Avoid rewriting AccessRule::matchRole (maxxer)
  - Fix #378: Add module attribute 'disableIpLogging' (jkmssoft)
  - Enh #387: Added Persian translation (hadi-aj)
