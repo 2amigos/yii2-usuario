@@ -45,6 +45,21 @@ return [
                 ],
             ],
         ],
+        'log' => [
+            'traceLevel' => 0,
+            'flushInterval' => 1,
+            'targets' => [
+                [
+                    'microtime' => true,
+                    'class' => 'yii\log\FileTarget',
+                    'categories' => ['*'],
+                    'logFile'=> 'tests/_output/logs/error.log',
+                    'levels' => ['error'],
+                    'exportInterval' => 1
+                ],
+            ]
+
+        ]
     ],
     'params' => [],
 ];
