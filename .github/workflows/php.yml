@@ -15,6 +15,8 @@ jobs:
         services:
             mariadb:
                 image: mariadb:latest
+                ports:
+                    - 3306:3306
                 env:
                     MYSQL_USER: user
                     MYSQL_PASSWORD: password
@@ -55,4 +57,6 @@ jobs:
 
 
             - name: Verify db connection & databases
-              run: mysql -e "SHOW DATABASES;"-uroot -ppassword
+              run: mysql -e "SHOW DATABASES;" -h127.0.0.1  -uroot -ppassword
+
+
