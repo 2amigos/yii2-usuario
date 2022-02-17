@@ -13,7 +13,7 @@ modules:
         Db:
             dsn: 'mysql:host=127.0.0.1;dbname=yii2-usuario-test'
             user: 'root'
-            password: ''
+            password: 'password'
             dump: tests/_data/schema.sql
         Yii2:
             configFile: 'tests/_app/config/test.php'
