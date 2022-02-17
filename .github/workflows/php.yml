@@ -10,7 +10,7 @@ jobs:
         strategy:
             matrix:
                 operating-system: ['ubuntu-latest']
-                php-versions: ['7.3', '7.4','8.0','8.1']
+                php-versions: ['8.1', '8.0', '7.4','7.3','7.1']
 
         services:
             mariadb:
@@ -62,11 +62,11 @@ jobs:
             - name: Install
               run: composer install --prefer-dist --no-interaction
 
-            - name: Run RBAC migrations
+            - name: Run migrations
               run: php tests/_app/yii.php migrate/up --interactive=0 --migrationPath=@yii/rbac/migrations
 
-            - name: Run Usuario migrations
-              run: php tests/_app/yii.php migrate/up --interactive=0
+            - name: Run tests
+              run: XDEBUG_MODE=coverage php vendor/bin/codecept run --coverage --coverage-xml
 
 
 
