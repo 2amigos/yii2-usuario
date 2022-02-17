@@ -8,6 +8,7 @@ jobs:
         runs-on: ubuntu-latest
 
         strategy:
+            fail-fast: false
             matrix:
                 operating-system: ['ubuntu-latest']
                 php-versions: ['8.1', '8.0','7.4']
