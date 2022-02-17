@@ -45,19 +45,6 @@ return [
                 ],
             ],
         ],
-        'log' => [
-            'flushInterval' => 1,
-            'targets' => [
-                [
-                    'class' => 'yii\log\FileTarget',
-                    'categories' => ['*'],
-                    'logFile'=> '@tests/_output/error.log',
-                    'levels' => ['error'],
-                    'exportInterval' => 1
-                ],
-            ]
-
-        ]
     ],
     'params' => [],
 ];
