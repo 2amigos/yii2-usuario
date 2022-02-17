@@ -59,4 +59,14 @@ jobs:
             - name: Verify db connection & databases
               run: mysql -e "SHOW DATABASES;" -h127.0.0.1  -uroot -ppassword
 
+            - name: Install
+              run: composer install --prefer-dist --no-interaction
+
+            - name: Run RBAC migrations
+              run: php tests/_app/yii.php migrate/up --interactive=0 --migrationPath=@yii/rbac/migrations
+
+            - name: Run Usuario migrations
+              run: php tests/_app/yii.php migrate/up --interactive=0
+
+
 
