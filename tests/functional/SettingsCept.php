@@ -39,7 +39,7 @@ $token = $I->grabRecord(Token::class, ['user_id' => $user->id, 'type' => Token::
 /** @var \yii\mail\MessageInterface $message */
 $message = $I->grabLastSentEmail();
 $I->assertArrayHasKey($user->unconfirmed_email, $message->getTo());
-$I->assertStringContainsString(Html::encode($token->getUrl()), utf8_encode(quoted_printable_decode($message->getSwiftMessage()->toString())));
+$I->assertStringContainsString(Html::encode($token->getUrl()), utf8_encode(quoted_printable_decode($message->toString())));
 Yii::$app->user->logout();
 
 $I->amGoingTo('log in using new email address before clicking the confirmation link');

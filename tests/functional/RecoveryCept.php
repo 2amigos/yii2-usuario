@@ -43,7 +43,7 @@ $message = $I->grabLastSentEmail();
 $I->assertArrayHasKey($user->email, $message->getTo());
 $I->assertStringContainsString(
     Html::encode($token->getUrl()),
-    utf8_encode(quoted_printable_decode($message->getSwiftMessage()->toString()))
+    utf8_encode(quoted_printable_decode($message->toString()))
 );
 
 $I->amGoingTo('reset password with invalid token');
