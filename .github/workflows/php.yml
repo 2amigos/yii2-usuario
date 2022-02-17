@@ -1,4 +1,4 @@
-name: PHP Composer
+name: Build
 
 on: [push, pull_request]
 
@@ -10,7 +10,7 @@ jobs:
         strategy:
             matrix:
                 operating-system: ['ubuntu-latest']
-                php-versions: ['8.1', '8.0']
+                php-versions: ['8.1', '8.0','7.4']
 
         services:
             mariadb:
