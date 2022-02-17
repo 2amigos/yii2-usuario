@@ -68,9 +68,9 @@ class RegistrationCest
         $I->amOnRoute('/user/registration/register');
         $this->register($I, 'tester@example.com', 'tester', 'tester');
         $I->see('Your account has been created and a message with further instructions has been sent to your email');
-        $user = $I->grabRecord(User::className(), ['email' => 'tester@example.com']);
-        $token = $I->grabRecord(Token::className(), ['user_id' => $user->id, 'type' => Token::TYPE_CONFIRMATION]);
-        /** @var yii\swiftmailer\Message $message */
+        $user = $I->grabRecord(User::class, ['email' => 'tester@example.com']);
+        $token = $I->grabRecord(Token::class, ['user_id' => $user->id, 'type' => Token::TYPE_CONFIRMATION]);
+        /** @var \yii\mail\MessageInterface $message */
         $message = $I->grabLastSentEmail();
         $I->assertArrayHasKey($user->email, $message->getTo());
         $I->assertStringContainsString(Html::encode($token->getUrl()), utf8_encode(quoted_printable_decode($message->getSwiftMessage()->toString())));
@@ -91,7 +91,7 @@ class RegistrationCest
         $I->see('Your account has been created');
         $user = $I->grabRecord(User::className(), ['email' => 'tester@example.com']);
         $I->assertEquals('tester', $user->username);
-        /** @var yii\swiftmailer\Message $message */
+        /** @var \yii\mail\MessageInterface $message */
         $message = $I->grabLastSentEmail();
         $I->assertArrayHasKey($user->email, $message->getTo());
         $I->assertStringContainsString('We have generated a password for you', utf8_encode(quoted_printable_decode($message->getSwiftMessage()->toString())));
