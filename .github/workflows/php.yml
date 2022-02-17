@@ -69,17 +69,11 @@ jobs:
             - name: Run tests
               run: XDEBUG_MODE=coverage php vendor/bin/codecept run --coverage --coverage-xml
 
-            - name: Archive failed tests artifacts - test output
+            - name: Archive failed tests artifacts - test output & log
               uses: actions/upload-artifact@v2
               if: failure()
               with:
                   name: test-outputs-php-${{ matrix.php-versions }}
                   path:  tests/_output
 
-            - name: Archive failed tests artifacts - runtime files
-              uses: actions/upload-artifact@v2
-              if: failure()
-              with:
-                  name: test-runtime-php-${{ matrix.php-versions }}
-                  path: runtime
 

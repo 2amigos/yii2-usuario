@@ -87,6 +87,7 @@ class UserCreateService implements ServiceInterface
                     $model->addError('username', $error_msg);
                 }
                 $transaction->rollBack();
+                Yii::error($error_msg, 'usuario');
                 return false;
             }
             $transaction->commit();
