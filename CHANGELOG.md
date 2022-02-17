@@ -1,6 +1,7 @@
 # CHANGELOG
 
 ## work in progress
+ - Fix replace non-working travis build with working github actions build (TonisOrmisson)
  - Fix user login events not triggered on ajax requests (TonisOrmisson)
  - Enh: Added minimum requirements when a new password is automatically generated (MatteoF96)
  - Fix #380: Avoid rewriting AccessRule::matchRole (maxxer)
