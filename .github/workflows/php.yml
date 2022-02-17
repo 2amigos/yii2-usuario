@@ -69,5 +69,10 @@ jobs:
             - name: Run tests
               run: XDEBUG_MODE=coverage php vendor/bin/codecept run --coverage --coverage-xml
 
-
+            - name: Archive production artifacts
+              uses: actions/upload-artifact@v2
+              with:
+                  name: test-outputs
+                  path: |
+                      tests/_output
 
