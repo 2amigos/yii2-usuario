@@ -24,7 +24,11 @@ return [
         ],
         'db' => require __DIR__ . '/db.php',
         'mailer' => [
-            'useFileTransport' => true,
+            'messageClass' => \yii\symfonymailer\Message::class,
+            [
+                'class' => \yii\symfonymailer\Mailer::class,
+            ],
+            'useFileTransport' => false
         ],
         'urlManager' => [
             'showScriptName' => true,
