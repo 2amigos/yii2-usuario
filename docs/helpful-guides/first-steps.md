@@ -30,7 +30,7 @@ Put this in your migration:
             $auth = Yii::$app->authManager;
                 
             // create a role named "administrator"
-            $administratorRole = $auth->createRole('administrator');
+            $administratorRole = $auth->createRole('admin');
             $administratorRole->description = 'Administrator';
             $auth->add($administratorRole);
 
@@ -65,7 +65,7 @@ Put this in your migration:
 
             // delete admin-user and administrator role
             $administratorRole = $auth->getRole("administrator");
-            $user = \Da\User\Model\User::findOne(['name'=>"admin"]);
+            $user = \Da\User\Model\User::findOne(['username'=>"admin"]);
             $auth->revoke($administratorRole, $user->id);
             $user->delete();
             $auth->remove($administratorRole);

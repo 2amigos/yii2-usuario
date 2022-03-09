@@ -220,5 +220,17 @@ Set to `true` to restrict user assignments to roles only.
 
 If `true` registration and last login IPs are not logged into users table, instead a dummy 127.0.0.1 is used
 
+#### minPasswordRequirements (type: `array`, default: `['lower' => 1, 'digit' => 1, 'upper' => 1]`)
+
+Minimum requirements when a new password is automatically generated.
+Array structure: `"requirement" => minimum_number_characters`.
+
+Possible array keys:
+- lower: minimum number of lowercase characters;
+- upper: minimum number of uppercase characters;
+- digit: minimum number of digits;
+- special: minimum number of special characters;
+- min: minimum number of characters (= minimum length).
+
 
 © [2amigos](http://www.2amigos.us/) 2013-2019

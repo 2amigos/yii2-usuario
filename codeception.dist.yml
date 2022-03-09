@@ -4,8 +4,8 @@ paths:
     log: tests/_output
     data: tests/_data
     helpers: tests/_support
+bootstrap: _bootstrap.php
 settings:
-    bootstrap: _bootstrap.php
     colors: true
     memory_limit: 1024M
 modules:
@@ -13,11 +13,12 @@ modules:
         Db:
             dsn: 'mysql:host=127.0.0.1;dbname=yii2-usuario-test'
             user: 'root'
-            password: ''
+            password: 'password'
             dump: tests/_data/schema.sql
         Yii2:
             configFile: 'tests/_app/config/test.php'
             cleanup: false
+            transaction: false
 coverage:
     enabled: true
     whitelist:
