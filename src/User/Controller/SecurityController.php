@@ -125,10 +125,8 @@ class SecurityController extends Controller
         if (Yii::$app->request->isAjax && $form->load(Yii::$app->request->post())) {
             Yii::$app->response->format = Response::FORMAT_JSON;
 
-            $this->trigger(FormEvent::EVENT_BEFORE_LOGIN, $event);
             $errors = ActiveForm::validate($form);
             if(empty($errors)) {
-                $this->trigger(FormEvent::EVENT_AFTER_LOGIN, $event);
                 return $errors;
             }
             $this->trigger(FormEvent::EVENT_FAILED_LOGIN, $event);
