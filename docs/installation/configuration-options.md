@@ -12,6 +12,10 @@ Setting this attribute will allow users to configure their login process with tw
 By default, Google Authenticator App for two-factor authentication cycles in periods of 30 seconds. In order to allow 
 a bigger period so to avoid out of sync issues.
 
+#### twoFactorAuthenticationForcedPermissions (type: `array`, default: `[]`)
+
+The list of permissions for which two factor authentication is mandatory.
+
 #### enableGdprCompliance (type: `boolean`, default: `false`)
 
 Setting this attribute enables a serie of measures to comply with EU GDPR regulation, like data consent, right to be forgotten and data portability.

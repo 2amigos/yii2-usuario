@@ -1,6 +1,6 @@
 <?php
 
-/*
+/**
  * This file is part of the 2amigos/yii2-usuario project.
  *
  * (c) 2amigOS! <http://2amigos.us/>
@@ -67,7 +67,7 @@ class SecurityController extends Controller
                 'rules' => [
                     [
                         'allow' => true,
-                        'actions' => ['login', 'confirm', 'auth'],
+                        'actions' => ['login', 'confirm', 'auth', 'force-two-factor-authentication'],
                         'roles' => ['?'],
                     ],
                     [
@@ -116,17 +116,26 @@ class SecurityController extends Controller
             return $this->goHome();
         }
 
-        /** @var LoginForm $form */
+        /**
+* 
+         *
+ * @var LoginForm $form 
+*/
         $form = $this->make(LoginForm::class);
 
-        /** @var FormEvent $event */
+        /**
+* 
+         *
+ * @var FormEvent $event 
+*/
         $event = $this->make(FormEvent::class, [$form]);
 
         if (Yii::$app->request->isAjax && $form->load(Yii::$app->request->post())) {
             Yii::$app->response->format = Response::FORMAT_JSON;
 
-            $errors = ActiveForm::validate($form);
-            if(empty($errors)) {
+            $activeForm = new ActiveForm();
+            $errors = $activeForm::validate($form);
+            if (empty($errors)) {
                 return $errors;
             }
             $this->trigger(FormEvent::EVENT_FAILED_LOGIN, $event);
@@ -135,28 +144,39 @@ class SecurityController extends Controller
 
         if ($form->load(Yii::$app->request->post())) {
             if ($this->module->enableTwoFactorAuthentication && $form->validate()) {
-                if ($form->getUser()->auth_tf_enabled) {
-                    Yii::$app->session->set('credentials', ['login' => $form->login, 'pwd' => $form->password]);
+                $user = $form->getUser();
+                $module = $this->getModule();
+                $permissions = $module -> twoFactorAuthenticationForcedPermissions;
 
+                // if the user hasn't enabled 2FA and his permission is in the set of which 2FA authentication is mandatory
+                // you have to force 2FA enabling
+                foreach ( $permissions as $permission){
+                    if (!$user->auth_tf_enabled && Yii::$app->authManager->checkAccess($user->id, $permission) ) {
+                        Yii::$app->session->set('credentials', ['login' => $form->login, 'pwd' => $form->password]);
+                        return $this->redirect(['force-two-factor-authentication','id' => $user->id]);
+                    }
+                }
+                
+                if ($user->auth_tf_enabled) {
+                    Yii::$app->session->set('credentials', ['login' => $form->login, 'pwd' => $form->password]);
                     return $this->redirect(['confirm']);
                 }
             }
 
             $this->trigger(FormEvent::EVENT_BEFORE_LOGIN, $event);
             if ($form->login()) {
-                $form->getUser()->updateAttributes([
+                $form->getUser()->updateAttributes(
+                    [
                     'last_login_at' => time(),
                     'last_login_ip' => $this->module->disableIpLogging ? '127.0.0.1' : Yii::$app->request->getUserIP(),
-                ]);
+                    ]
+                );
 
                 $this->trigger(FormEvent::EVENT_AFTER_LOGIN, $event);
 
                 return $this->goBack();
             }
-            else
-            {
-                $this->trigger(FormEvent::EVENT_FAILED_LOGIN, $event);
-            }
+            $this->trigger(FormEvent::EVENT_FAILED_LOGIN, $event);            
         }
 
         return $this->render(
@@ -179,13 +199,21 @@ class SecurityController extends Controller
         }
 
         $credentials = Yii::$app->session->get('credentials');
-        /** @var LoginForm $form */
+        /**
+* 
+         *
+ * @var LoginForm $form 
+*/
         $form = $this->make(LoginForm::class);
         $form->login = $credentials['login'];
         $form->password = $credentials['pwd'];
         $form->setScenario('2fa');
 
-        /** @var FormEvent $event */
+        /**
+* 
+         *
+ * @var FormEvent $event 
+*/
         $event = $this->make(FormEvent::class, [$form]);
 
         if (Yii::$app->request->isAjax && $form->load(Yii::$app->request->post())) {
@@ -244,5 +272,22 @@ class SecurityController extends Controller
         }
 
         $this->make(SocialNetworkAccountConnectService::class, [$this, $client])->run();
+    }
+
+
+     /**
+      * This action forces 2FA for the users who have permissions specified in twoFactorAuthenticationForcedPermissions parameter
+      *
+      * @param integer $id
+      *
+      * @return type
+      */
+    public function actionForceTwoFactorAuthentication($id)
+    {
+        return $this->render(
+            'force-two-factor-authentication', [
+            'user_id' => $id, 
+            ]
+        );
     }
 }

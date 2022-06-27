@@ -1,6 +1,6 @@
 <?php
 
-/*
+/**
  * This file is part of the 2amigos/yii2-usuario project.
  *
  * (c) 2amigOS! <http://2amigos.us/>
@@ -120,6 +120,14 @@ class SettingsController extends Controller
                         'actions' => ['confirm'],
                         'roles' => ['?', '@'],
                     ],
+                    [
+                        'allow' => true,
+                        'actions' => [
+                            'two-factor-forced',
+                            'two-factor-enable-forced',
+                        ],
+                        'roles' => ['?'],
+                    ],
                 ],
             ],
         ];
@@ -138,7 +146,11 @@ class SettingsController extends Controller
             $profile->link('user', Yii::$app->user->identity);
         }
 
-        /** @var ProfileEvent $event */
+        /**
+* 
+         *
+ * @var ProfileEvent $event 
+*/
         $event = $this->make(ProfileEvent::class, [$profile]);
 
         $this->make(AjaxRequestModelValidator::class, [$profile])->validate();
@@ -170,9 +182,11 @@ class SettingsController extends Controller
         if (!$this->module->enableGdprCompliance) {
             throw new NotFoundHttpException();
         }
-        return $this->render('privacy', [
+        return $this->render(
+            'privacy', [
             'module' => $this->module
-        ]);
+            ]
+        );
     }
 
     /**
@@ -189,7 +203,11 @@ class SettingsController extends Controller
         if (!$this->module->enableGdprCompliance) {
             throw new NotFoundHttpException();
         }
-        /** @var GdprDeleteForm $form */
+        /**
+* 
+         *
+ * @var GdprDeleteForm $form 
+*/
         $form = $this->make(GdprDeleteForm::class);
 
         $user = $form->getUser();
@@ -211,21 +229,25 @@ class SettingsController extends Controller
                 $security = $this->make(SecurityHelper::class);
                 $anonymReplacement = $this->module->gdprAnonymizePrefix . $user->id;
 
-                $user->updateAttributes([
+                $user->updateAttributes(
+                    [
                     'email' => $anonymReplacement . "@example.com",
                     'username' => $anonymReplacement,
                     'gdpr_deleted' => 1,
                     'blocked_at' => time(),
                     'auth_key' => $security->generateRandomString()
-                ]);
-                $user->profile->updateAttributes([
+                    ]
+                );
+                $user->profile->updateAttributes(
+                    [
                     'public_email' => $anonymReplacement . "@example.com",
                     'name' => $anonymReplacement,
                     'gravatar_email' => $anonymReplacement . "@example.com",
                     'location' => $anonymReplacement,
                     'website' => $anonymReplacement . ".tld",
                     'bio' => Yii::t('usuario', 'Deleted by GDPR request')
-                ]);
+                    ]
+                );
             }
             $this->trigger(GdprEvent::EVENT_AFTER_DELETE, $event);
 
@@ -234,14 +256,20 @@ class SettingsController extends Controller
             return $this->goHome();
         }
 
-        return $this->render('gdpr-delete', [
+        return $this->render(
+            'gdpr-delete', [
             'model' => $form,
-        ]);
+            ]
+        );
     }
 
     public function actionGdprConsent()
     {
-        /** @var User $user */
+        /**
+* 
+         *
+ * @var User $user 
+*/
         $user = Yii::$app->user->identity;
         if ($user->gdpr_consent) {
             return $this->redirect(['profile']);
@@ -249,30 +277,37 @@ class SettingsController extends Controller
         $model = new DynamicModel(['gdpr_consent']);
         $model->addRule('gdpr_consent', 'boolean');
         $model->addRule('gdpr_consent', 'default', ['value' => 0, 'skipOnEmpty' => false]);
-        $model->addRule('gdpr_consent', 'compare', [
+        $model->addRule(
+            'gdpr_consent', 'compare', [
             'compareValue' => true,
             'message' => Yii::t('usuario', 'Your consent is required to work with this site'),
             'when' => function () {
                 return $this->module->enableGdprCompliance;
             },
-        ]);
+            ]
+        );
         if ($model->load(Yii::$app->request->post()) && $model->validate()) {
-            $user->updateAttributes([
+            $user->updateAttributes(
+                [
                 'gdpr_consent' => 1,
                 'gdpr_consent_date' => time(),
-            ]);
+                ]
+            );
             return $this->redirect(['profile']);
         }
 
-        return $this->render('gdpr-consent', [
+        return $this->render(
+            'gdpr-consent', [
             'model' => $model,
             'gdpr_consent_hint' => $this->module->getConsentMessage(),
-        ]);
+            ]
+        );
     }
 
     /**
      * Exports the data from the current user in a mechanical readable format (csv). Properties exported can be defined
      * in the module configuration.
+     *
      * @throws NotFoundHttpException if gdpr compliance is not enabled
      * @throws \Exception
      * @throws \Throwable
@@ -295,10 +330,12 @@ class SettingsController extends Controller
                 $data[1][] = $formatter->asText(ArrayHelper::getValue($user, $property));
             }
 
-            array_walk($data[0], function (&$value, $key) {
-                $splitted = explode('.', $value);
-                $value = array_pop($splitted);
-            });
+            array_walk(
+                $data[0], function (&$value, $key) {
+                    $splitted = explode('.', $value);
+                    $value = array_pop($splitted);
+                }
+            );
 
             Yii::$app->response->headers->removeAll();
             Yii::$app->response->headers->add('Content-type', 'text/csv');
@@ -317,7 +354,11 @@ class SettingsController extends Controller
 
     public function actionAccount()
     {
-        /** @var SettingsForm $form */
+        /**
+* 
+         *
+ * @var SettingsForm $form 
+*/
         $form = $this->make(SettingsForm::class);
         $event = $this->make(UserEvent::class, [$form->getUser()]);
 
@@ -384,7 +425,11 @@ class SettingsController extends Controller
             throw new NotFoundHttpException(Yii::t('usuario', 'Not found'));
         }
 
-        /** @var User $user */
+        /**
+* 
+         *
+ * @var User $user 
+*/
         $user = Yii::$app->user->identity;
         $event = $this->make(UserEvent::class, [$user]);
         Yii::$app->user->logout();
@@ -400,7 +445,11 @@ class SettingsController extends Controller
 
     public function actionTwoFactor($id)
     {
-        /** @var User $user */
+        /**
+* 
+         *
+ * @var User $user 
+*/
         $user = $this->userQuery->whereId($id)->one();
 
         if (null === $user) {
@@ -416,7 +465,11 @@ class SettingsController extends Controller
     {
         Yii::$app->response->format = Response::FORMAT_JSON;
 
-        /** @var User $user */
+        /**
+* 
+         *
+ * @var User $user 
+*/
         $user = $this->userQuery->whereId($id)->one();
 
         if (null === $user) {
@@ -443,9 +496,13 @@ class SettingsController extends Controller
 
     public function actionTwoFactorDisable($id)
     {
-        /** @var User $user */
+        /**
+* 
+         *
+ * @var User $user 
+*/
         $user = $this->userQuery->whereId($id)->one();
-
+        
         if (null === $user) {
             throw new NotFoundHttpException();
         }
@@ -464,7 +521,7 @@ class SettingsController extends Controller
     }
 
     /**
-     * @param $id
+     * @param  $id
      * @throws ForbiddenHttpException
      * @throws NotFoundHttpException
      * @throws \Exception
@@ -473,7 +530,11 @@ class SettingsController extends Controller
      */
     protected function disconnectSocialNetwork($id)
     {
-        /** @var SocialNetworkAccount $account */
+        /**
+* 
+         *
+ * @var SocialNetworkAccount $account 
+*/
         $account = $this->socialNetworkAccountQuery->whereId($id)->one();
 
         if ($account === null) {
@@ -488,4 +549,81 @@ class SettingsController extends Controller
         $account->delete();
         $this->trigger(SocialNetworkConnectEvent::EVENT_AFTER_DISCONNECT, $event);
     }
+
+    /**
+     * This action is called when the user is forced to use two factor authentication based on his role.
+     * The action calls the service that enables two factor authentication for the user.
+     * In more details, it opens a modal window that shows the QRcode that have to be scanned by Google Authenticator o Authy.
+     * The app generates a code that the user has to insert in the form to enable two factor authentication.
+     * The user is enabled to two factor authentication by the action actionTwoFactorEnableForced.
+     *
+     * @param type $id
+     * 
+     * @return type
+     */
+    public function actionTwoFactorForced($id)
+    {
+        if (!Yii::$app->session->has('credentials')) {
+            return $this->redirect(['/user/security/login']);
+        }
+        /**
+* 
+         *
+ * @var User $user 
+*/
+        $user = $this->userQuery->whereId($id)->one();
+       
+        if (null === $user) {
+            throw new NotFoundHttpException();
+        }
+
+        $uri = $this->make(TwoFactorQrCodeUriGeneratorService::class, [$user])->run();
+
+        return $this->renderAjax('two-factor', ['id' => $id, 'uri' => $uri]);
+    }
+
+    /**
+     * Action called by the action actionTwoFactorForced.
+     * The action checks that the enabling code inserted by the user is valid
+     *
+     * @param type $id
+     * 
+     * @return type
+     */
+    public function actionTwoFactorEnableForced($id)
+    {
+        if (!Yii::$app->session->has('credentials')) {
+            return $this->redirect(['login']);
+        }
+        Yii::$app->response->format = Response::FORMAT_JSON;
+
+        /**
+* 
+         *
+ * @var User $user 
+*/
+        $user = $this->userQuery->whereId($id)->one();
+        
+        if (null === $user) {
+            return [
+                'success' => false,
+                'message' => Yii::t('usuario', 'User not found.'),
+            ];
+        }
+        $code = Yii::$app->request->get('code');
+
+        $success = $this
+            ->make(TwoFactorCodeValidator::class, [$user, $code, $this->module->twoFactorAuthenticationCycles])
+            ->validate();
+
+        $success = $success && $user->updateAttributes(['auth_tf_enabled' => '1']);
+
+        return [
+            'success' => $success,
+            'message' => $success
+                ? Yii::t('usuario', 'Two factor authentication successfully enabled.')
+                : Yii::t('usuario', 'Verification failed. Please, enter new code.'),
+        ];
+    }
+
 }
