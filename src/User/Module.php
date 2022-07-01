@@ -84,7 +84,7 @@ class Module extends BaseModule
      /**
      * @var array list of permissions for which two factor authentication is mandatory
      */
-    public $twoFactorAuthenticationForcedPermissions = ['admin'];
+    public $twoFactorAuthenticationForcedPermissions = [];
     /**
      * @var int cycles of key generation are set on 30 sec. To avoid sync issues, increased validity up to 60 sec.
      * @see http://2fa-library.readthedocs.io/en/latest/

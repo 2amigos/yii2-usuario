@@ -147,10 +147,10 @@ class SettingsController extends Controller
         }
 
         /**
-* 
-         *
- * @var ProfileEvent $event 
-*/
+        * 
+        *
+        * @var ProfileEvent $event 
+        */
         $event = $this->make(ProfileEvent::class, [$profile]);
 
         $this->make(AjaxRequestModelValidator::class, [$profile])->validate();
@@ -204,10 +204,10 @@ class SettingsController extends Controller
             throw new NotFoundHttpException();
         }
         /**
-* 
-         *
- * @var GdprDeleteForm $form 
-*/
+        * 
+        *
+        * @var GdprDeleteForm $form 
+        */
         $form = $this->make(GdprDeleteForm::class);
 
         $user = $form->getUser();
@@ -266,10 +266,10 @@ class SettingsController extends Controller
     public function actionGdprConsent()
     {
         /**
-* 
-         *
- * @var User $user 
-*/
+        * 
+        *
+        * @var User $user 
+        */
         $user = Yii::$app->user->identity;
         if ($user->gdpr_consent) {
             return $this->redirect(['profile']);
@@ -330,12 +330,10 @@ class SettingsController extends Controller
                 $data[1][] = $formatter->asText(ArrayHelper::getValue($user, $property));
             }
 
-            array_walk(
-                $data[0], function (&$value, $key) {
-                    $splitted = explode('.', $value);
-                    $value = array_pop($splitted);
-                }
-            );
+            array_walk($data[0], function (&$value, $key) {
+                $splitted = explode('.', $value);
+                $value = array_pop($splitted);
+            });
 
             Yii::$app->response->headers->removeAll();
             Yii::$app->response->headers->add('Content-type', 'text/csv');
@@ -426,10 +424,10 @@ class SettingsController extends Controller
         }
 
         /**
-* 
-         *
- * @var User $user 
-*/
+        * 
+        *
+        * @var User $user 
+        */
         $user = Yii::$app->user->identity;
         $event = $this->make(UserEvent::class, [$user]);
         Yii::$app->user->logout();
@@ -446,10 +444,10 @@ class SettingsController extends Controller
     public function actionTwoFactor($id)
     {
         /**
-* 
-         *
- * @var User $user 
-*/
+        * 
+        *
+        * @var User $user 
+        */
         $user = $this->userQuery->whereId($id)->one();
 
         if (null === $user) {
@@ -466,10 +464,10 @@ class SettingsController extends Controller
         Yii::$app->response->format = Response::FORMAT_JSON;
 
         /**
-* 
-         *
- * @var User $user 
-*/
+        * 
+        *
+        * @var User $user 
+        */
         $user = $this->userQuery->whereId($id)->one();
 
         if (null === $user) {
@@ -497,10 +495,10 @@ class SettingsController extends Controller
     public function actionTwoFactorDisable($id)
     {
         /**
-* 
-         *
- * @var User $user 
-*/
+        * 
+        *
+        * @var User $user 
+        */
         $user = $this->userQuery->whereId($id)->one();
         
         if (null === $user) {
@@ -531,10 +529,10 @@ class SettingsController extends Controller
     protected function disconnectSocialNetwork($id)
     {
         /**
-* 
-         *
- * @var SocialNetworkAccount $account 
-*/
+        * 
+        *
+        * @var SocialNetworkAccount $account 
+        */
         $account = $this->socialNetworkAccountQuery->whereId($id)->one();
 
         if ($account === null) {
@@ -567,10 +565,10 @@ class SettingsController extends Controller
             return $this->redirect(['/user/security/login']);
         }
         /**
-* 
+        * 
          *
- * @var User $user 
-*/
+        * @var User $user 
+        */
         $user = $this->userQuery->whereId($id)->one();
        
         if (null === $user) {
@@ -598,10 +596,10 @@ class SettingsController extends Controller
         Yii::$app->response->format = Response::FORMAT_JSON;
 
         /**
-* 
-         *
- * @var User $user 
-*/
+        * 
+        *
+        * @var User $user 
+        */
         $user = $this->userQuery->whereId($id)->one();
         
         if (null === $user) {

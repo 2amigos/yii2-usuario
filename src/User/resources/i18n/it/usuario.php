@@ -105,6 +105,7 @@ return [
     'Error occurred while deleting user' => 'Si è verificato un errore durante l\'eliminazione dell\'utente',
     'Error sending registration message to "{email}". Please try again later.' => 'C\'è stato un errore nell\'invio del messaggio di registrazione all\'indirizzo "{email}". Per favore ritenta più tardi.',
     'Error sending welcome message to "{email}". Please try again later.' => 'C\'è stato un errore nell\'invio del messaggio di benvenuto all\'indirizzo "{email}". Per favore ritenta più tardi.',
+    'Every user having your role has two factor authentication mandatory, you must enable it' => 'Ogni utente con il tuo ruolo ha l\'autenticazione a due fattori obbligatoria, devi abilitarla',
     'Export my data' => 'Esporta i miei dati',
     'Finish' => 'Completa',
     'Force password change at next login' => 'Forza il cambio password al prossimo accesso',
@@ -147,7 +148,6 @@ return [
     'New user' => 'Nuovo utente',
     'Not blocked' => 'Non bloccato',
     'Not found' => 'Non trovato',
-    'Now you can resume the login process' => 'Ora puoi riprendere il processo di autenticazione',
     'Once you delete your account, there is no going back' => 'Una volta eliminato il tuo account non sarà più possibile ripristinarlo',
     'Once you have deleted your data, you will not longer be able to sign in with this account.' => 'Una volta che avrai eliminato i tuoi dati non potrai più entrare con questo account.',
     'Password' => 'Password',
@@ -280,4 +280,5 @@ return [
     '{0, date, MMMM dd, YYYY HH:mm}' => '{0, date, dd MMMM YYYY HH:mm}',
     '{0} cannot be blank.' => '{0} non può essere vuoto.',
     'An email has been sent with instructions for resetting your password' => '@@È stata inviata un\'email con le istruzioni per azzerare la tua password@@',
+    'Now you can resume the login process' => '@@Ora puoi riprendere il processo di autenticazione@@',
 ];

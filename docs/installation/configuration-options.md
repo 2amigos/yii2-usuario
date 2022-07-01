@@ -14,7 +14,21 @@ a bigger period so to avoid out of sync issues.
 
 #### twoFactorAuthenticationForcedPermissions (type: `array`, default: `[]`)
 
-The list of permissions for which two factor authentication is mandatory.
+The list of permissions for which two factor authentication is mandatory. This enforcement is done only at login stage. In order to perform the check in every action you must configure a filter into your config file like this:
+
+use Da\User\Filter\TwoFactorAuthenticationEnforceFilter;
+...
+'on beforeAction' => function() {
+        Yii::$app->controller->attachBehavior(
+            'enforceTwoFactorAuthentication',[
+                'class' => TwoFactorAuthenticationEnforceFilter::class,
+                'except' => ['login', 'logout','account','two-factor', 'two-factor-enable'],
+            ]
+        );
+    },
+...   
+This will redirect the user to her account page until the two factor authentication is enabled.
+
 
 #### enableGdprCompliance (type: `boolean`, default: `false`)
 
