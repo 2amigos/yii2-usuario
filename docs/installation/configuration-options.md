@@ -14,7 +14,7 @@ a bigger period so to avoid out of sync issues.
 
 #### twoFactorAuthenticationForcedPermissions (type: `array`, default: `[]`)
 
-The list of permissions for which two factor authentication is mandatory. This enforcement is done only at login stage. In order to perform the check in every action you must configure a filter into your config file like this:
+The list of permissions for which two factor authentication is mandatory. In order to perform the check in every action you must configure a filter into your config file like this:
 
 use Da\User\Filter\TwoFactorAuthenticationEnforceFilter;
 ...
