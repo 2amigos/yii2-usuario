@@ -44,6 +44,8 @@ use yii\web\IdentityInterface;
  * @property string $auth_key
  * @property string $auth_tf_key
  * @property int $auth_tf_enabled
+ * @property string $auth_tf_type
+ * @property string $auth_tf_mobile_phone
  * @property string $registration_ip
  * @property int $confirmed_at
  * @property int $blocked_at
@@ -248,7 +250,9 @@ class User extends ActiveRecord implements IdentityInterface
             // two factor auth rules
             'twoFactorSecretTrim' => ['auth_tf_key', 'trim'],
             'twoFactorSecretLength' => ['auth_tf_key', 'string', 'max' => 16],
-            'twoFactorEnabledNumber' => ['auth_tf_enabled', 'boolean']
+            'twoFactorEnabledNumber' => ['auth_tf_enabled', 'boolean'],
+            'twoFactorTypeLength' => ['auth_tf_type', 'string', 'max' => 20],
+            'twoFactorTypeLength' => ['auth_tf_mobile_phone', 'string', 'max' => 20],
         ];
     }
 
@@ -360,5 +364,23 @@ class User extends ActiveRecord implements IdentityInterface
         $d = new \DateTime("@{$this->password_changed_at}");
 
         return $d->diff(new \DateTime(), true)->format("%a");
+    }
+
+    /**
+     * Returns authentication two factor type enabled for the user
+     * @return integer
+     */
+    public function getAuthTfType()
+    {
+        return $this->getAttribute('auth_tf_type');
+    }
+
+    /**
+     * Returns the mobile phone number used for sms authentication two factor for the user
+     * @return string
+     */
+    public function getAuthTfMobilePhone()
+    {
+        return $this->getAttribute('auth_tf_mobile_phone');
     }
 }

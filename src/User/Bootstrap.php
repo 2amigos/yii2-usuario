@@ -162,6 +162,37 @@ class Bootstrap implements BootstrapInterface
                 });
             }
 
+            // Initialize array of two factor authentication validators available
+            if(is_null(Yii::$app->getModule('user')->twoFactorAuthenticationValidators)){
+                Yii::$app->getModule('user')->twoFactorAuthenticationValidators=[
+                    'google-authenticator'=>[
+                        'class'=>\Da\User\Validator\TwoFactorCodeValidator::class,
+                        'description'=>Yii::t('usuario', 'Google Authenticator'),
+                        'configurationUrl'=>'user/settings/two-factor'
+                    ],
+                    'email'=>[
+                        'class'=>\Da\User\Validator\TwoFactorEmailValidator::class,
+                        'description'=>Yii::t('usuario', 'Email'),
+                        'configurationUrl'=>'user/settings/two-factor-email',
+                        // Time duration of the code in seconds
+                        'codeDurationTime'=>300
+                    ],
+                    'sms'=>[
+                        'class'=>\Da\User\Validator\TwoFactorTextMessageValidator::class,
+                        'description'=>Yii::t('usuario', 'Text message'),
+                        'configurationUrl'=>'user/settings/two-factor-sms',
+                        // component for sending sms
+                        'smsSender'=>'smsSender',
+                        // Time duration of the code in seconds
+                        'codeDurationTime'=>300
+                    ]
+                ];
+
+            }
+           
+
+
+
             if ($app instanceof WebApplication) {
                 // override Yii
                 $di->set(
@@ -173,6 +204,11 @@ class Bootstrap implements BootstrapInterface
                     ]
                 );
             }
+
+
+
+
+
         } catch (Exception $e) {
             die($e);
         }
