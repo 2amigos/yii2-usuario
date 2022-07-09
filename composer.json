@@ -45,7 +45,8 @@
         "yiisoft/yii2-authclient": "^2.1",
         "yiisoft/yii2-httpclient": "^2.0",
         "yiisoft/yii2-bootstrap": "^2.0",
-        "yiisoft/yii2-swiftmailer": "^2.0"
+        "yiisoft/yii2-swiftmailer": "^2.0",
+        "yetopen/yii2-sms-sender-interface": "^0.1.1"
     },
     "suggest": {
         "2amigos/2fa-library": "Needed if you want to enable 2 Factor Authentication. Require version ^1.0",

@@ -86,10 +86,18 @@ class Module extends BaseModule
      */
     public $twoFactorAuthenticationForcedPermissions = [];
     /**
+     * @var array list of channel for two factor authentication availables
+     */
+    public $twoFactorAuthenticationValidators = null;
+    /**
      * @var int cycles of key generation are set on 30 sec. To avoid sync issues, increased validity up to 60 sec.
      * @see http://2fa-library.readthedocs.io/en/latest/
      */
     public $twoFactorAuthenticationCycles = 1;
+     /**
+     * @var int the number of seconds for which the code sent by email or by mobile phone is valid
+     * */
+    public $twoFactorEmailAuthenticationValidity = 300;
     /**
      * @var bool whether to allow auto login or not
      */

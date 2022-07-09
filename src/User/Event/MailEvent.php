@@ -27,6 +27,7 @@ class MailEvent extends Event
     const TYPE_RECOVERY = 'recovery';
     const TYPE_CONFIRM = 'confirm';
     const TYPE_RECONFIRM = 'reconfirm';
+    const TYPE_TWOFACTORCODE = 'twofactorcode';
 
     const EVENT_BEFORE_SEND_MAIL = 'beforeSendMail';
     const EVENT_AFTER_SEND_MAIL = 'afterSendMail';

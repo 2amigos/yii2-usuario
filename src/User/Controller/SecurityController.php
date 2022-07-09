@@ -20,6 +20,9 @@ use Da\User\Service\SocialNetworkAccountConnectService;
 use Da\User\Service\SocialNetworkAuthenticateService;
 use Da\User\Traits\ContainerAwareTrait;
 use Da\User\Traits\ModuleAwareTrait;
+use Da\User\Validator\TwoFactorEmailValidator;
+use Da\User\Validator\TwoFactorTextMessageValidator;
+use Da\User\Model\User;
 use Yii;
 use yii\authclient\AuthAction;
 use yii\base\InvalidConfigException;
@@ -30,6 +33,7 @@ use yii\filters\VerbFilter;
 use yii\web\Controller;
 use yii\web\Response;
 use yii\widgets\ActiveForm;
+use yii\helpers\ArrayHelper;
 
 class SecurityController extends Controller
 {
@@ -212,13 +216,30 @@ class SecurityController extends Controller
 
                 return $this->goBack();
             }
-        }
+        }    
+        else{           
+            $module = Yii::$app->getModule('user');
+            $validators = $module->twoFactorAuthenticationValidators; 
+            $credentials=Yii::$app->session->get('credentials');
+            $login= $credentials['login'];
+            $user = User::findOne(['email'=>$login]);
+            if( $user==null)
+                $user = User::findOne(['username'=>$login]);
+            $tfType = $user->getAuthTfType();
+            
+            $class = ArrayHelper::getValue($validators,$tfType.'.class');
+            $object = $this
+            ->make($class, [$user, null, $this->module->twoFactorAuthenticationCycles]);
 
+            $object->generateCode();
+
+        }
+               
         return $this->render(
             'confirm',
             [
                 'model' => $form,
-                'module' => $this->module,
+                'module' => $this->module
             ]
         );
     }
