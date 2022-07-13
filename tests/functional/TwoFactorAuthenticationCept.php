@@ -26,6 +26,7 @@ $I->click('Sign in');
 $I->expectTo('See form to insert two factor authentication code');
 $I->see('Two factor authentication code');
 
+
 $I->amGoingTo('try to login with user permission admin, having two factor authentication disabled');
 Yii::$app->getModule('user')->enableTwoFactorAuthentication = true;
 Yii::$app->getModule('user')->twoFactorAuthenticationForcedPermissions = ['admin'];
@@ -36,7 +37,7 @@ $I->fillField('#loginform-login', $user->email);
 $I->fillField('#loginform-password', 'qwerty');
 $I->click('Sign in');
 $I->expectTo('The user must be forced to enable two factor authentication');
-$I->see('Every user having your role has two factor authentication mandatory, you must enable it');
+$I->see('Your role requires 2FA, you won\'t be able to use the application until you enable it');
 Yii::$app->user->logout();
 
 $I->amGoingTo('try to login with correct credentials when two factor authentication is disabled on the module');

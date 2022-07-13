@@ -275,10 +275,11 @@ return [
     '{0} cannot be blank.' => '{0} darf nicht leer sein.',
     'According to the European General Data Protection Regulation (GDPR) we need your consent to work with your personal data.' => '',
     'Data privacy' => '',
-    'Every user having your role has two factor authentication mandatory, you must enable it' => '',
     'Submit' => '',
     'Unfortunately, you can not work with this site without giving us consent to process your data.' => '',
     'Your consent is required to work with this site' => '',
+    'Your role requires 2FA, you won\'t be able to use the application until you enable it' => '',
     'A message has been sent to your email address. ' => '@@Eine Nachricht wurde an Deine E-Mail Adresse gesendet@@',
+    'Every user having your role has two factor authentication mandatory, you must enable it' => '@@@@',
     'Now you can resume the login process' => '@@@@',
 ];

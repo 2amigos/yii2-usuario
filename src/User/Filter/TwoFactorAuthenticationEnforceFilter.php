@@ -15,9 +15,13 @@ use Da\User\Model\User;
 use Da\User\Module;
 use Yii;
 use yii\base\ActionFilter;
+use Da\User\Traits\AuthManagerAwareTrait;
+
 
 class TwoFactorAuthenticationEnforceFilter extends ActionFilter
 {
+    use AuthManagerAwareTrait;
+
     public function beforeAction($action)
     {
         /** @var Module $module */
@@ -34,15 +38,13 @@ class TwoFactorAuthenticationEnforceFilter extends ActionFilter
             return parent::beforeAction($action);
         }
 
-        /** @var User $identity */
-        $permissions =  $module->twoFactorAuthenticationForcedPermissions;
-        $identity = Yii::$app->user->identity;
-        foreach ( $permissions as $permission){
-            if (!$identity->auth_tf_enabled && Yii::$app->authManager->checkAccess($identity->id, $permission) ) {
-                Yii::$app->session->setFlash('warning', Yii::t('usuario', 'Every user having your role has two factor authentication mandatory, you must enable it'));
+        $permissions = $module->twoFactorAuthenticationForcedPermissions;
+        $itemsByUser = array_keys($this->getAuthManager()->getItemsByUser(Yii::$app->user->identity->id));
+        if(!empty(array_intersect($permissions, $itemsByUser))){
+            Yii::$app->session->setFlash('warning', Yii::t('usuario', 'Your role requires 2FA, you won\'t be able to use the application until you enable it'));
                 return Yii::$app->response->redirect(['/user/settings/account'])->send();
-            }
         }
+        
         return parent::beforeAction($action);
     }
 }

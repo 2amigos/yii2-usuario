@@ -119,15 +119,7 @@ class SettingsController extends Controller
                         'allow' => true,
                         'actions' => ['confirm'],
                         'roles' => ['?', '@'],
-                    ],
-                    [
-                        'allow' => true,
-                        'actions' => [
-                            'two-factor-forced',
-                            'two-factor-enable-forced',
-                        ],
-                        'roles' => ['?'],
-                    ],
+                    ]
                 ],
             ],
         ];
@@ -547,81 +539,4 @@ class SettingsController extends Controller
         $account->delete();
         $this->trigger(SocialNetworkConnectEvent::EVENT_AFTER_DISCONNECT, $event);
     }
-
-    /**
-     * This action is called when the user is forced to use two factor authentication based on his role.
-     * The action calls the service that enables two factor authentication for the user.
-     * In more details, it opens a modal window that shows the QRcode that have to be scanned by Google Authenticator o Authy.
-     * The app generates a code that the user has to insert in the form to enable two factor authentication.
-     * The user is enabled to two factor authentication by the action actionTwoFactorEnableForced.
-     *
-     * @param type $id
-     * 
-     * @return type
-     */
-    public function actionTwoFactorForced($id)
-    {
-        if (!Yii::$app->session->has('credentials')) {
-            return $this->redirect(['/user/security/login']);
-        }
-        /**
-        * 
-         *
-        * @var User $user 
-        */
-        $user = $this->userQuery->whereId($id)->one();
-       
-        if (null === $user) {
-            throw new NotFoundHttpException();
-        }
-
-        $uri = $this->make(TwoFactorQrCodeUriGeneratorService::class, [$user])->run();
-
-        return $this->renderAjax('two-factor', ['id' => $id, 'uri' => $uri]);
-    }
-
-    /**
-     * Action called by the action actionTwoFactorForced.
-     * The action checks that the enabling code inserted by the user is valid
-     *
-     * @param type $id
-     * 
-     * @return type
-     */
-    public function actionTwoFactorEnableForced($id)
-    {
-        if (!Yii::$app->session->has('credentials')) {
-            return $this->redirect(['login']);
-        }
-        Yii::$app->response->format = Response::FORMAT_JSON;
-
-        /**
-        * 
-        *
-        * @var User $user 
-        */
-        $user = $this->userQuery->whereId($id)->one();
-        
-        if (null === $user) {
-            return [
-                'success' => false,
-                'message' => Yii::t('usuario', 'User not found.'),
-            ];
-        }
-        $code = Yii::$app->request->get('code');
-
-        $success = $this
-            ->make(TwoFactorCodeValidator::class, [$user, $code, $this->module->twoFactorAuthenticationCycles])
-            ->validate();
-
-        $success = $success && $user->updateAttributes(['auth_tf_enabled' => '1']);
-
-        return [
-            'success' => $success,
-            'message' => $success
-                ? Yii::t('usuario', 'Two factor authentication successfully enabled.')
-                : Yii::t('usuario', 'Verification failed. Please, enter new code.'),
-        ];
-    }
-
 }

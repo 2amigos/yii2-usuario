@@ -22,12 +22,12 @@ use Da\User\Filter\TwoFactorAuthenticationEnforceFilter;
         Yii::$app->controller->attachBehavior(
             'enforceTwoFactorAuthentication',[
                 'class' => TwoFactorAuthenticationEnforceFilter::class,
-                'except' => ['login', 'logout','account','two-factor', 'two-factor-enable'],
+                'except' => ['login', 'logout', 'account', 'two-factor', 'two-factor-enable'],
             ]
         );
     },
 ...   
-This will redirect the user to her account page until the two factor authentication is enabled.
+This will redirect the user to their account page until the two factor authentication is enabled.
 
 
 #### enableGdprCompliance (type: `boolean`, default: `false`)
