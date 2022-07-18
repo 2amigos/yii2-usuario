@@ -30,4 +30,4 @@
     <?= Yii::t('usuario', 'If you cannot click the link, please try pasting the text into your browser') ?>.
 <?php endif ?>
 
-<?= Yii::t('usuario', 'If you did not make this request you can ignore this email') ?>.
+<?= Yii::t('usuario', 'You received this email because someone, possibly you or someone on your behalf, have created an account at {app_name}', ['app_name' => Yii::$app->name]) ?>.
