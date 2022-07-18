@@ -12,6 +12,38 @@ Setting this attribute will allow users to configure their login process with tw
 By default, Google Authenticator App for two-factor authentication cycles in periods of 30 seconds. In order to allow 
 a bigger period so to avoid out of sync issues.
 
+#### twoFactorAuthenticationValidators (type: `array`)
+
+An array of arrays of channels availables for two factor authentication. The keys in the arrays have the following meaning:
+class: it will be the validator class with namespace
+name: the name that will be displayed in the section to the user
+configurationUrl: the url to the action that will dispaly the configuration form for the validator
+codeDurationTime: time duration of the code in session in seconds (not applicable for Google authenticator)
+smsSender: the reference to SmsSenderInterface for managing SMS send.
+
+The following is the deafult configuration:
+
+'google-authenticator'=>[
+    'class'=>\Da\User\Validator\TwoFactorCodeValidator::class,
+    'description'=>Yii::t('usuario', 'Google Authenticator'),
+    'configurationUrl'=>'user/settings/two-factor'
+],
+'email'=>[
+    'class'=>\Da\User\Validator\TwoFactorEmailValidator::class,
+    'description'=>Yii::t('usuario', 'Email'),
+    'configurationUrl'=>'user/settings/two-factor-email',
+    'codeDurationTime'=>300
+],
+'sms'=>[
+    'class'=>\Da\User\Validator\TwoFactorTextMessageValidator::class,
+    'description'=>Yii::t('usuario', 'Text message'),
+    'configurationUrl'=>'user/settings/two-factor-sms',
+    'codeDurationTime'=>300,
+    'smsSender'=>'smsSender'
+]
+
+For instructions about implementation of SMS sending see at the following link: https://www.yiiframework.com/extension/yetopen/yii2-sms-aruba
+
 #### enableGdprCompliance (type: `boolean`, default: `false`)
 
 Setting this attribute enables a serie of measures to comply with EU GDPR regulation, like data consent, right to be forgotten and data portability.

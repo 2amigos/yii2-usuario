@@ -453,11 +453,10 @@ class SettingsController extends Controller
         $class = ArrayHelper::getValue($validators,$choice.'.class');
 
         $object = $this
-        ->make($class, [$user, $code, $this->module->twoFactorAuthenticationCycles]);
+            ->make($class, [$user, $code, $this->module->twoFactorAuthenticationCycles]);
         $success = $object->validate();
         $success = $success && $user->updateAttributes(['auth_tf_enabled' => '1','auth_tf_type' => $choice]);
-        $message = $success
-        ? $object->getSuccessMessage():$object->getUnsuccessMessage($codeDurationTime);
+        $message = $success? $object->getSuccessMessage():$object->getUnsuccessMessage($codeDurationTime);
         
         return [
             'success' => $success,
@@ -544,7 +543,7 @@ class SettingsController extends Controller
                     'success' => $success,
                     'message' => $success
                     ? Yii::t('usuario', 'Mobile phone number successfully enabled.')
-                    : Yii::t('usuario', 'Mobile phone number not registered.'),
+                    : Yii::t('usuario', 'Error while enabling SMS two factor authentication.'),
                 ];
     }
 }

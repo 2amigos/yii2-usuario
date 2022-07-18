@@ -18,7 +18,7 @@
         <p>
             <?= Yii::t(
                 'usuario',
-                'Insert the mobile phone number on which to receive text message.'
+                'Insert the mobile phone number where you want to receive text message in international format'
             ) ?>
         </p>
     </div>

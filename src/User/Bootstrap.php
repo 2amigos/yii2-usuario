@@ -131,7 +131,7 @@ class Bootstrap implements BootstrapInterface
                 if (in_array($name, ['User', 'Profile', 'Token', 'SocialNetworkAccount'])) {
                     $di->set(
                         "Da\\User\\Query\\{$name}Query",
-                        function () use ($model) {
+                        function() use($model) {
                             return $model::find();
                         }
                     );

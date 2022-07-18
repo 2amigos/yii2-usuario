@@ -15,7 +15,7 @@
 ?>
 <?= Yii::t('usuario', 'Hello') ?>,
 
-<?= Yii::t('usuario', 'This is the code to insert to enable two factor authentication') ?>.
+<?= Yii::t('usuario', 'This is the code to insert to enable two factor authentication') ?>:
 
 <?= $code ?>
 

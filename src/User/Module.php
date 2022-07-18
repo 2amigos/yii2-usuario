@@ -82,7 +82,7 @@ class Module extends BaseModule
      */
     public $enableTwoFactorAuthentication = false;
     /**
-     * @var array list of channel for two factor authentication availables
+     * @var array list of channels for two factor authentication availables
      */
     public $twoFactorAuthenticationValidators = null;
     /**
@@ -90,10 +90,6 @@ class Module extends BaseModule
      * @see http://2fa-library.readthedocs.io/en/latest/
      */
     public $twoFactorAuthenticationCycles = 1;
-     /**
-     * @var int the number of seconds for which the code sent by email or by mobile phone is valid
-     * */
-    public $twoFactorEmailAuthenticationValidity = 300;
     /**
      * @var bool whether to allow auto login or not
      */

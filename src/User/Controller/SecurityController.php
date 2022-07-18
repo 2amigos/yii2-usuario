@@ -217,13 +217,14 @@ class SecurityController extends Controller
             $credentials=Yii::$app->session->get('credentials');
             $login= $credentials['login'];
             $user = User::findOne(['email'=>$login]);
-            if( $user==null)
+            if( $user==null){
                 $user = User::findOne(['username'=>$login]);
+            }
             $tfType = $user->getAuthTfType();
             
             $class = ArrayHelper::getValue($validators,$tfType.'.class');
             $object = $this
-            ->make($class, [$user, null, $this->module->twoFactorAuthenticationCycles]);
+                ->make($class, [$user, null, $this->module->twoFactorAuthenticationCycles]);
 
             $object->generateCode();
 
