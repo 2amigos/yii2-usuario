@@ -278,5 +278,7 @@ return [
     '{0, date, MMM dd, YYYY HH:mm}' => '{0, date, MMM dd, YYYY HH:mm}',
     '{0, date, MMMM dd, YYYY HH:mm}' => '{0, date, dd MMMM YYYY HH:mm}',
     '{0} cannot be blank.' => '{0} non può essere vuoto.',
+    'If you haven\'t received a password, you can reset it at' => '',
+    'You received this email because someone, possibly you or someone on your behalf, have created an account at {app_name}' => '',
     'An email has been sent with instructions for resetting your password' => '@@È stata inviata un\'email con le istruzioni per azzerare la tua password@@',
 ];

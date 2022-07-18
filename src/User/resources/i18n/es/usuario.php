@@ -276,6 +276,8 @@ return [
     'privacy policy' => 'política de privacidad',
     '{0, date, MMMM dd, YYYY HH:mm}' => '{0, date, dd MMMM, YYYY HH:mm}',
     '{0} cannot be blank.' => '{0} no puede estar vacío.',
+    'If you haven\'t received a password, you can reset it at' => '',
+    'You received this email because someone, possibly you or someone on your behalf, have created an account at {app_name}' => '',
     'Your consent is required to work with this site' => '',
     '{0, date, MMM dd, YYYY HH:mm}' => '',
     'An email has been sent with instructions for resetting your password' => '@@Se ha enviado un correo electrónico con instrucciones para restablecer su contraseña@@',

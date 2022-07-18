@@ -265,6 +265,7 @@ return [
     'Data privacy' => '',
     'Email' => '',
     'Gravatar email' => '',
+    'If you haven\'t received a password, you can reset it at' => '',
     'Items' => '',
     'Password' => '',
     'Rule class name' => '',
@@ -275,6 +276,8 @@ return [
     'VKontakte' => '',
     'Website' => '',
     'Yandex' => '',
+    'You received this email because someone, possibly you or someone on your behalf, have created an account at {app_name}' => '',
     'Your consent is required to work with this site' => '',
+    '{0, date, MMM dd, YYYY HH:mm}' => '',
     '{0, date, MMMM dd, YYYY HH:mm}' => '',
 ];
