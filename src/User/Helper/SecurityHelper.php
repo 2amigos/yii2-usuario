@@ -13,8 +13,8 @@ namespace Da\User\Helper;
 
 use Yii;
 use yii\base\Exception;
-use yii\base\Security;
 use yii\base\InvalidConfigException;
+use yii\base\Security;
 
 class SecurityHelper
 {
@@ -76,8 +76,7 @@ class SecurityHelper
         if (!isset($minPasswordRequirements)) {
             if (isset(Yii::$app->getModule('user')->minPasswordRequirements)) {
                 $minPasswordRequirements = Yii::$app->getModule('user')->minPasswordRequirements;
-            }
-            else {
+            } else {
                 $minPasswordRequirements = [
                     'lower' => 1,
                     'digit' => 1,

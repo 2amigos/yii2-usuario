@@ -25,7 +25,7 @@ use yii\base\InvalidParamException;
 use yii\db\ActiveRecord;
 
 /**
- * @property int $user_id
+ * @property int    $user_id
  * @property string $name
  * @property string $public_email
  * @property string $gravatar_email
@@ -34,7 +34,7 @@ use yii\db\ActiveRecord;
  * @property string $website
  * @property string $bio
  * @property string $timezone
- * @property User $user
+ * @property User   $user
  */
 class Profile extends ActiveRecord
 {

@@ -126,7 +126,7 @@ class SecurityController extends Controller
             Yii::$app->response->format = Response::FORMAT_JSON;
 
             $errors = ActiveForm::validate($form);
-            if(empty($errors)) {
+            if (empty($errors)) {
                 return $errors;
             }
             $this->trigger(FormEvent::EVENT_FAILED_LOGIN, $event);
@@ -153,10 +153,8 @@ class SecurityController extends Controller
 
                 return $this->goBack();
             }
-            else
-            {
-                $this->trigger(FormEvent::EVENT_FAILED_LOGIN, $event);
-            }
+
+            $this->trigger(FormEvent::EVENT_FAILED_LOGIN, $event);
         }
 
         return $this->render(

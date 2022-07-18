@@ -24,13 +24,13 @@ use yii\helpers\Url;
 /**
  * Token Active Record model.
  *
- * @property int $user_id
+ * @property int    $user_id
  * @property string $code
- * @property int $type
+ * @property int    $type
  * @property string $url
- * @property bool $isExpired
- * @property int $created_at
- * @property User $user
+ * @property bool   $isExpired
+ * @property int    $created_at
+ * @property User   $user
  */
 class Token extends ActiveRecord
 {

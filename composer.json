@@ -52,7 +52,7 @@
         "2amigos/qrcode-library": "Needed if you want to enable 2FA with QR Code generation. Require version ^1.1"
     },
     "require-dev": {
-        "friendsofphp/php-cs-fixer": "^2.3",
+        "friendsofphp/php-cs-fixer": "^3",
         "squizlabs/php_codesniffer": "*",
         "phpmd/phpmd": "@stable",
         "codeception/verify": "^0.3.3",

@@ -359,7 +359,7 @@ class Bootstrap implements BootstrapInterface
         $mapping = array_merge($defaults, $userClassMap);
 
         foreach ($mapping as $name => $definition) {
-            $map[$this->getRoute($routes, $name) . "\\$name"] = $definition;
+            $map[$this->getRoute($routes, $name) . "\\{$name}"] = $definition;
         }
 
         return $map;
