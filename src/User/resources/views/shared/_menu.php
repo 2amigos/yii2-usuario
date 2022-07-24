@@ -9,7 +9,7 @@
  * the LICENSE file that was distributed with this source code.
  */
 
-use yii\bootstrap\Nav;
+use yii\bootstrap4\Nav;
 
 ?>
 

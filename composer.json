@@ -41,10 +41,10 @@
     "prefer-stable": true,
     "require": {
         "php": ">=5.5",
-        "2amigos/yii2-selectize-widget": "^1.1",
+        "2amigos/yii2-selectize-widget": "dev-bootstrap4",
         "yiisoft/yii2-authclient": "^2.1",
         "yiisoft/yii2-httpclient": "^2.0",
-        "yiisoft/yii2-bootstrap": "^2.0",
+        "yiisoft/yii2-bootstrap4": "^2.0",
         "yiisoft/yii2-swiftmailer": "^2.0"
     },
     "suggest": {
@@ -92,6 +92,10 @@
         {
             "type": "composer",
             "url": "https://asset-packagist.org"
+        },
+        {
+            "type": "vcs",
+            "url": "https://github.com/lhfi/yii2-selectize-widget"
         }
     ]
 }
