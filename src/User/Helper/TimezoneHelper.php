@@ -36,7 +36,7 @@ class TimezoneHelper
             $timeZones[] = [
                 'timezone' => $timeZone,
                 'name' => "{$timeZone} (UTC " . ($offset > 0 ? '+' : '') . "{$offset})",
-                'offset' => "$offset",
+                'offset' => sprintf("%.3f", $offset),
             ];
         }
 
