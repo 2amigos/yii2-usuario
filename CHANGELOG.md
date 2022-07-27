@@ -12,6 +12,9 @@
  - Fix: allow password_changed_at to be saved when reseting password (p4blojf)
  - Fix #430: Moved EVENT_BEFORE_PROFILE_UPDATE to correct place (eluhr)
 
+## 1.5.2 July 27, 2022
+ - Fix #462: offset as string instead of float, otherwise it cannot be used as array key in PHP 8.1+.
+ 
 ## 1.5.1 April 5, 2020
  - Fix #370: Extending view fix (effsoft)
  - Fix #306: Add event for failed login (ivan-cc)
