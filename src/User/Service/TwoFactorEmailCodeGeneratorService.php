@@ -53,6 +53,7 @@ class TwoFactorEmailCodeGeneratorService implements ServiceInterface
         // check the sending emailYii::t(
         if(!$mailService->run()){
             Yii::$app->session->addFlash('error', Yii::t('usuario','The email sending failed, please check your configuration.'));
+            return false;
         }else{
             // put key in session
             Yii::$app->session->set("email_code_time",  date('Y-m-d H:i:s'));

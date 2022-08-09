@@ -65,20 +65,19 @@ class TwoFactorSmsCodeGeneratorService implements ServiceInterface
         $user = $this->user;
         $mobilePhone=$user->getAuthTfMobilePhone();
         
-        if( !(null===$mobilePhone) && $mobilePhone!='' ){
-            // send sms
-            $success = $this->smsSender->send($mobilePhone, $code);
-            if($success){
-                // put key in session
-                Yii::$app->session->set("sms_code_time",  date('Y-m-d H:i:s'));
-                Yii::$app->session->set("sms_code", $code);
-            }else{
-                Yii::$app->session->addFlash('error', Yii::t('usuario','The sms sending failed, please check your configuration.'));
-                return false;
-            }
-        } else{
+        if( null===$mobilePhone || $mobilePhone=='' ){
             Yii::$app->session->addFlash('error', Yii::t('usuario','Mobile phone not found, please check your profile'));  
             return false;  
+        }    
+        // send sms
+        $success = $this->smsSender->send($mobilePhone, $code);
+        if($success){
+            // put key in session
+            Yii::$app->session->set("sms_code_time",  date('Y-m-d H:i:s'));
+            Yii::$app->session->set("sms_code", $code);
+        }else{
+            Yii::$app->session->addFlash('error', Yii::t('usuario','The sms sending failed, please check your configuration.'));
+            return false;
         }
         return true;
     }

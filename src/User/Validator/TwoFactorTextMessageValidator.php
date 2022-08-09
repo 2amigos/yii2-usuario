@@ -59,8 +59,9 @@ class TwoFactorTextMessageValidator extends TwoFactorCodeValidator
         $validators = $module->twoFactorAuthenticationValidators;
         $codeDurationTime = ArrayHelper::getValue($validators,$this->type.'.codeDurationTime', 300);
         
-        if($interval > $codeDurationTime )
+        if($interval > $codeDurationTime ){
             return false;
+        }
         $smsCode = Yii::$app->session->get("sms_code");
         return $this->code==$smsCode;
     }
