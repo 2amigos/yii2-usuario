@@ -120,7 +120,7 @@ class LoginForm extends Model
                         $validators = $module->twoFactorAuthenticationValidators; 
                         $type = $this->user->auth_tf_type;
                         $class = ArrayHelper::getValue($validators,$type.'.class');
-                        $codeDurationTime = ArrayHelper::getValue($validators,$type.'.codeDurationTime', 0);
+                        $codeDurationTime = ArrayHelper::getValue($validators,$type.'.codeDurationTime', 300);
                         $validator =  $this
                         ->make($class, [$this->user, $this->twoFactorAuthenticationCode, $this->module->twoFactorAuthenticationCycles]);
                         $success = $validator->validate();

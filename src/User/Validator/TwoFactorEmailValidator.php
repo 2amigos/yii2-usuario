@@ -50,13 +50,15 @@ class TwoFactorEmailValidator extends TwoFactorCodeValidator
      */
     public function validate()
     {
+        if(is_null($this->code) ||  $this->code == '' )
+            return false;
         $emailCodeTime = new \DateTime(Yii::$app->session->get("email_code_time"));
         $currentTime = new \DateTime('now');
         $interval = $currentTime->getTimestamp()-$emailCodeTime->getTimestamp();
        
         $module = Yii::$app->getModule('user');
         $validators = $module->twoFactorAuthenticationValidators;
-        $codeDurationTime = ArrayHelper::getValue($validators,$this->type.'.codeDurationTime', 0);
+        $codeDurationTime = ArrayHelper::getValue($validators,$this->type.'.codeDurationTime', 300);
         
         if($interval > $codeDurationTime )
             return false;

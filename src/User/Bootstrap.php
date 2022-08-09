@@ -27,6 +27,7 @@ use yii\base\InvalidConfigException;
 use yii\console\Application as ConsoleApplication;
 use yii\i18n\PhpMessageSource;
 use yii\web\Application as WebApplication;
+use yii\helpers\ArrayHelper;
 
 /**
  * Bootstrap class of the yii2-usuario extension. Configures container services, initializes translations,
@@ -163,19 +164,21 @@ class Bootstrap implements BootstrapInterface
             }
 
             // Initialize array of two factor authentication validators available
-            if(is_null(Yii::$app->getModule('user')->twoFactorAuthenticationValidators)){
-                Yii::$app->getModule('user')->twoFactorAuthenticationValidators=[
+            $defaultTwoFactorAuthenticationValidators = 
+               [
                     'google-authenticator'=>[
                         'class'=>\Da\User\Validator\TwoFactorCodeValidator::class,
                         'description'=>Yii::t('usuario', 'Google Authenticator'),
-                        'configurationUrl'=>'user/settings/two-factor'
+                        'configurationUrl'=>'user/settings/two-factor',
+                        'enabled'=>true
                     ],
                     'email'=>[
                         'class'=>\Da\User\Validator\TwoFactorEmailValidator::class,
                         'description'=>Yii::t('usuario', 'Email'),
                         'configurationUrl'=>'user/settings/two-factor-email',
                         // Time duration of the code in seconds
-                        'codeDurationTime'=>300
+                        'codeDurationTime'=>300,
+                        'enabled'=>true
                     ],
                     'sms'=>[
                         'class'=>\Da\User\Validator\TwoFactorTextMessageValidator::class,
@@ -184,13 +187,14 @@ class Bootstrap implements BootstrapInterface
                         // component for sending sms
                         'smsSender'=>'smsSender',
                         // Time duration of the code in seconds
-                        'codeDurationTime'=>300
+                        'codeDurationTime'=>300,
+                        'enabled'=>true
                     ]
                 ];
 
-            }
-           
-
+            $app->getModule('user')->twoFactorAuthenticationValidators =  
+                    ArrayHelper::merge($app->getModule('user')->twoFactorAuthenticationValidators, $defaultTwoFactorAuthenticationValidators); 
+              
 
 
             if ($app instanceof WebApplication) {

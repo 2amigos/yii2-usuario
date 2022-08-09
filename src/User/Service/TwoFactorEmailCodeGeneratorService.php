@@ -50,12 +50,14 @@ class TwoFactorEmailCodeGeneratorService implements ServiceInterface
         $code = str_pad($code, 6, 0, STR_PAD_LEFT);
         // send email
         $mailService = MailFactory::makeTwoFactorCodeMailerService($user, $code);
-        $mailService->run();
-
-        // put key in session
-        Yii::$app->session->set("email_code_time",  date('Y-m-d H:i:s'));
-        Yii::$app->session->set("email_code", $code);
-     
+        // check the sending emailYii::t(
+        if(!$mailService->run()){
+            Yii::$app->session->addFlash('error', Yii::t('usuario','The email sending failed, please check your configuration.'));
+        }else{
+            // put key in session
+            Yii::$app->session->set("email_code_time",  date('Y-m-d H:i:s'));
+            Yii::$app->session->set("email_code", $code);
+        }        
         return $code;
     }
 }

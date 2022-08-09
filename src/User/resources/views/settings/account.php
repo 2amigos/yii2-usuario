@@ -12,6 +12,7 @@
 use yii\helpers\Html;
 use yii\helpers\Url;
 use yii\widgets\ActiveForm;
+use dmstr\widgets\Alert;
 
 /**
  * @var yii\web\View               $this
@@ -102,43 +103,70 @@ $module = Yii::$app->getModule('user');
                     <p>
                         <?= Yii::t('usuario', 'Two factor authentication protects you in case of stolen credentials') ?>.
                     </p>
-                    <?php if ($module->enableTwoFactorAuthentication && !$model->getUser()->auth_tf_enabled):  
-                        $validators = $module->twoFactorAuthenticationValidators; 
+                    <?php if (!$model->getUser()->auth_tf_enabled):  
+                        $validators = $module->twoFactorAuthenticationValidators;
+                        $theFirstFound = false; 
                         foreach( $validators as $name => $validator ) {
-                            $description = $validator[ "description" ];
-                            $checked = $name=='google-authenticator'?'checked':'';
-                            ?>
-                            <div class="form-check">
-                                <input class="form-check-input" type="radio" name="2famethod" id="<?= $name?>" value="<?= $name?>" <?= $checked?>>
-                                <label class="form-check-label" for="<?= $name?>">
-                                    <?= $description?>
-                                </label>
-                                </div>
-                            <?php
+                            if($validator[ "enabled" ]){
+                                // I want to check in the radio field the first validator I get
+                                if(!$theFirstFound){
+                                    $checked = 'checked';
+                                    $theFirstFound = true; 
+                                }
+                                $description = $validator[ "description" ];
+                                ?>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="2famethod" id="<?= $name?>" value="<?= $name?>" <?= $checked?>>
+                                    <label class="form-check-label" for="<?= $name?>">
+                                        <?= $description?>
+                                    </label>
+                                    </div>
+                                <?php
+                                $checked = '';
+                            }
                         } ;
-                    endif; ?>
-                    <div class="text-right">
-                        <?= Html::a(
-                            Yii::t('usuario', 'Disable two factor authentication'),
-                            ['two-factor-disable', 'id' => $model->getUser()->id],
-                            [
-                                'id' => 'disable_tf_btn',
-                                'class' => 'btn btn-warning ' . ($model->getUser()->auth_tf_enabled ? '' : 'hide'),
-                                'data-method' => 'post',
-                                'data-confirm' => Yii::t('usuario', 'This will disable two factor authentication. Are you sure?'),
-                            ]
-                        ) ?>
+                    ?>
                         <?= Html::a(
                             Yii::t('usuario', 'Enable two factor authentication'),
                             '#tfmodal',
                             [
                                 'id' => 'enable_tf_btn',
-                                'class' => 'btn btn-info ' . ($model->getUser()->auth_tf_enabled ? 'hide' : ''),
+                                'class' => 'btn btn-info',
                                 'data-toggle' => 'modal',
                                 'data-target' => '#tfmodal'
                             ]
                         ) ?>
-                    </div>
+                    <?php else:
+                         ?>
+                            <p>
+                                <?php 
+                                    $method = $model->getUser()->auth_tf_type;
+                                    $message = '';
+                                    switch ($method) {
+                                        case 'email':
+                                            $message = Yii::t('usuario', 'The email address set is: "{0}".', [ $model->getUser()->email] );
+                                            break;
+                                        case 'sms':
+                                            $message = Yii::t('usuario', 'The phone number set is: "{0}".', [ $model->getUser()->auth_tf_mobile_phone]);
+                                            break;
+                                    }
+                                ?>
+                                <?= Yii::t('usuario', 'Your two factor authentication method is based on "{0}".', [$method] ) .' ' . $message ?>
+                            </p>
+                            <div class="text-right">
+                            <?= Html::a(
+                                Yii::t('usuario', 'Disable two factor authentication'),
+                                ['two-factor-disable', 'id' => $model->getUser()->id],
+                                [
+                                    'id' => 'disable_tf_btn',
+                                    'class' => 'btn btn-warning ',
+                                    'data-method' => 'post',
+                                    'data-confirm' => Yii::t('usuario', 'This will disable two factor authentication. Are you sure?'),
+                                ]
+                            ) ?>
+                           </div>
+                    <?php
+                    endif; ?>
                 </div>
             </div>
         <?php endif; ?>
