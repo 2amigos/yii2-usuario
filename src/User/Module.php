@@ -81,6 +81,10 @@ class Module extends BaseModule
      * @var bool whether to enable two factor authentication or not
      */
     public $enableTwoFactorAuthentication = false;
+     /**
+     * @var array list of permissions for which two factor authentication is mandatory
+     */
+    public $twoFactorAuthenticationForcedPermissions = [];
     /**
      * @var array list of channels for two factor authentication availables
      */

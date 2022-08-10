@@ -293,11 +293,10 @@ return [
     'Your personal information has been removed' => 'I tuoi dati personali sono stati rimossi',
     'Your profile has been updated' => 'Il tuo profilo è stato aggiornato',
     'Your two factor authentication method is based on "{0}".' => 'La tua autenticazione a due fattori è basata su "{0}".',
+    'Your role requires 2FA, you won\'t be able to use the application until you enable it' => 'Il tuo ruolo richiede l\'autenticazione a due fattori, non potrai usare l\'applicazione finché non l\'avrai abilitata',
     'privacy policy' => 'politica della privacy',
     '{0, date, MMM dd, YYYY HH:mm}' => '{0, date, MMM dd, YYYY HH:mm}',
     '{0, date, MMMM dd, YYYY HH:mm}' => '{0, date, dd MMMM YYYY HH:mm}',
     '{0} cannot be blank.' => '{0} non può essere vuoto.',
     'This is the code to insert to enable two factor authentication' => '',
-    'An email has been sent with instructions for resetting your password' => '@@È stata inviata un\'email con le istruzioni per azzerare la tua password@@',
-    'Now you can resume the login process' => '@@Ora puoi riprendere il processo di autenticazione@@',
 ];

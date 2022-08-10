@@ -298,10 +298,5 @@ return [
     'Unfortunately, you can not work with this site without giving us consent to process your data.' => '',
     'Your consent is required to work with this site' => '',
     'Your two factor authentication method is based on "{0}".' => '',
-    'A message has been sent to your email address. ' => '@@Eine Nachricht wurde an Deine E-Mail Adresse gesendet@@',
-    'Every user having your role has two factor authentication mandatory, you must enable it' => '@@@@',
-    'Insert the mobile phone number on which to receive text message.' => '@@@@',
-    'Insert the mobile phone number where you want to receive text message in international format.' => '@@@@',
-    'Insert the mobile phone number where you want to receive text message.' => '@@@@',
-    'Mobile phone number not registered.' => '@@@@',
+    'Your role requires 2FA, you won\'t be able to use the application until you enable it' => '',
 ];

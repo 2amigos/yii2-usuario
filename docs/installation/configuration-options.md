@@ -48,6 +48,23 @@ The following is the default configuration:
 
 For instructions about implementation of SMS sending see at the following link: https://www.yiiframework.com/extension/yetopen/yii2-sms-aruba
 
+#### twoFactorAuthenticationForcedPermissions (type: `array`, default: `[]`)
+
+The list of permissions for which two factor authentication is mandatory. In order to perform the check in every action you must configure a filter into your config file like this:
+
+use Da\User\Filter\TwoFactorAuthenticationEnforceFilter;
+...
+'on beforeAction' => function() {
+        Yii::$app->controller->attachBehavior(
+            'enforceTwoFactorAuthentication',[
+                'class' => TwoFactorAuthenticationEnforceFilter::class,
+                'except' => ['login', 'logout', 'account', 'two-factor', 'two-factor-enable'],
+            ]
+        );
+    },
+...   
+This will redirect the user to their account page until the two factor authentication is enabled.
+
 #### enableGdprCompliance (type: `boolean`, default: `false`)
 
 Setting this attribute enables a serie of measures to comply with EU GDPR regulation, like data consent, right to be forgotten and data portability.
