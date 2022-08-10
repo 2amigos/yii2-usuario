@@ -54,6 +54,7 @@
     },
     "require-dev": {
         "2amigos/2fa-library": "^1.0",
+        "2amigos/qrcode-library": "^1.1",
         "friendsofphp/php-cs-fixer": "^2.3",
         "squizlabs/php_codesniffer": "*",
         "phpmd/phpmd": "@stable",
