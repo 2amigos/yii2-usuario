@@ -276,5 +276,9 @@ return [
     'Website' => '',
     'Yandex' => '',
     'Your consent is required to work with this site' => '',
+    'Your role requires 2FA, you won\'t be able to use the application until you enable it' => '',
+    '{0, date, MMM dd, YYYY HH:mm}' => '',
     '{0, date, MMMM dd, YYYY HH:mm}' => '',
+    'Every user having your role has two factor authentication mandatory, you must enable it' => '@@@@',
+    'Now you can resume the login process' => '@@@@',
 ];

@@ -1,6 +1,6 @@
 <?php
 
-/*
+/**
  * This file is part of the 2amigos/yii2-usuario project.
  *
  * (c) 2amigOS! <http://2amigos.us/>
@@ -116,10 +116,14 @@ class SecurityController extends Controller
             return $this->goHome();
         }
 
-        /** @var LoginForm $form */
+        /**
+        * @var LoginForm $form 
+        */
         $form = $this->make(LoginForm::class);
 
-        /** @var FormEvent $event */
+        /**
+        * @var FormEvent $event 
+        */
         $event = $this->make(FormEvent::class, [$form]);
 
         if (Yii::$app->request->isAjax && $form->load(Yii::$app->request->post())) {
@@ -135,9 +139,10 @@ class SecurityController extends Controller
 
         if ($form->load(Yii::$app->request->post())) {
             if ($this->module->enableTwoFactorAuthentication && $form->validate()) {
-                if ($form->getUser()->auth_tf_enabled) {
+                $user = $form->getUser();
+                
+                if ($user->auth_tf_enabled) {
                     Yii::$app->session->set('credentials', ['login' => $form->login, 'pwd' => $form->password]);
-
                     return $this->redirect(['confirm']);
                 }
             }
@@ -153,8 +158,7 @@ class SecurityController extends Controller
 
                 return $this->goBack();
             }
-
-            $this->trigger(FormEvent::EVENT_FAILED_LOGIN, $event);
+            $this->trigger(FormEvent::EVENT_FAILED_LOGIN, $event);            
         }
 
         return $this->render(
@@ -177,13 +181,17 @@ class SecurityController extends Controller
         }
 
         $credentials = Yii::$app->session->get('credentials');
-        /** @var LoginForm $form */
+        /**
+        * @var LoginForm $form 
+        */
         $form = $this->make(LoginForm::class);
         $form->login = $credentials['login'];
         $form->password = $credentials['pwd'];
         $form->setScenario('2fa');
 
-        /** @var FormEvent $event */
+        /**
+        * @var FormEvent $event 
+        */
         $event = $this->make(FormEvent::class, [$form]);
 
         if (Yii::$app->request->isAjax && $form->load(Yii::$app->request->post())) {
@@ -243,4 +251,5 @@ class SecurityController extends Controller
 
         $this->make(SocialNetworkAccountConnectService::class, [$this, $client])->run();
     }
+
 }

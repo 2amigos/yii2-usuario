@@ -277,7 +277,10 @@ return [
     '{0, date, MMMM dd, YYYY HH:mm}' => '{0, date, dd MMMM, YYYY HH:mm}',
     '{0} cannot be blank.' => '{0} no puede estar vacío.',
     'Your consent is required to work with this site' => '',
+    'Your role requires 2FA, you won\'t be able to use the application until you enable it' => '',
     '{0, date, MMM dd, YYYY HH:mm}' => '',
     'An email has been sent with instructions for resetting your password' => '@@Se ha enviado un correo electrónico con instrucciones para restablecer su contraseña@@',
+    'Every user having your role has two factor authentication mandatory, you must enable it' => '@@@@',
+    'Now you can resume the login process' => '@@@@',
     'Two factor authentication protects you against stolen credentials' => '@@La autenticación de dos factores le protege del robo de credenciales@@',
 ];

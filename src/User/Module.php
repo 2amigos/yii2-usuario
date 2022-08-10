@@ -81,6 +81,10 @@ class Module extends BaseModule
      * @var bool whether to enable two factor authentication or not
      */
     public $enableTwoFactorAuthentication = false;
+     /**
+     * @var array list of permissions for which two factor authentication is mandatory
+     */
+    public $twoFactorAuthenticationForcedPermissions = [];
     /**
      * @var int cycles of key generation are set on 30 sec. To avoid sync issues, increased validity up to 60 sec.
      * @see http://2fa-library.readthedocs.io/en/latest/
