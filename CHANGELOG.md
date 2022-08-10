@@ -1,6 +1,12 @@
 # CHANGELOG
 
 ## 1.6.0 work in progress
+
+**WARNING**: this release (long time due) makes a step forward in PHP
+compatibility, leaving behind obsolete versions. While yii2-usuario should
+still work without issues on 5.6, from now on testing and development will
+look forward and manitain only >=7.4 versions.
+
  - Fix replace non-working travis build with working github actions build (TonisOrmisson)
  - Fix user login events not triggered on ajax requests (TonisOrmisson)
  - Enh: Added minimum requirements when a new password is automatically generated (MatteoF96)
