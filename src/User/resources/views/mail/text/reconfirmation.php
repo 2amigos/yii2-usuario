@@ -10,7 +10,7 @@
  */
 
 /**
- * @var \Da\User\Model\Token
+ * @var \Da\User\Model\Token $token
  */
 ?>
 <?= Yii::t('usuario', 'Hello') ?>,

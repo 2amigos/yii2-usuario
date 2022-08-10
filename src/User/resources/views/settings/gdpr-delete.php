@@ -11,7 +11,7 @@
 use yii\widgets\ActiveForm;
 use yii\helpers\Html;
 
-/** @var $model \Da\User\Form\GdprDeleteForm */
+/** @var \Da\User\Form\GdprDeleteForm $model */
 ?>
 
 <div class="row">
