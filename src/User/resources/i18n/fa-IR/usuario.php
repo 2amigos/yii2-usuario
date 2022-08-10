@@ -173,6 +173,7 @@ return [
     'Children' => '',
     'Class' => '',
     'Close' => '',
+    'Code for two factor authentication' => '',
     'Create new permission' => '',
     'Create new role' => '',
     'Create new rule' => '',
@@ -190,7 +191,7 @@ return [
     'Enable two factor authentication' => '',
     'Error sending registration message to "{email}". Please try again later.' => '',
     'Error sending welcome message to "{email}". Please try again later.' => '',
-    'Error while enabling SMS two factor authentication.' => '',
+    'Error while enabling SMS two factor authentication. Please reload the page.' => '',
     'Export my data' => '',
     'Force password change at next login' => '',
     'Google Authenticator' => '',
@@ -294,23 +295,9 @@ return [
     'Your consent is required to work with this site' => '',
     'Your password has expired, you must change it now' => '',
     'Your personal information has been removed' => '',
-<<<<<<< HEAD
-    'Your two factor authentication method is based on "{0}".' => '',
-=======
     'Your role requires 2FA, you won\'t be able to use the application until you enable it' => '',
->>>>>>> upstream/master
+    'Your two factor authentication method is based on "{0}".' => '',
     'privacy policy' => '',
     '{0, date, MMM dd, YYYY HH:mm}' => '',
     '{0} cannot be blank.' => '',
-    'An email has been sent with instructions for resetting your password' => '@@ایمیلی حاوی راهنمایی برای تنظیم مجدد رمز عبور به شما ارسال شد@@',
-<<<<<<< HEAD
-    'Insert the mobile phone number on which to receive text message.' => '@@@@',
-    'Insert the mobile phone number where you want to receive text message in international format.' => '@@@@',
-    'Insert the mobile phone number where you want to receive text message.' => '@@@@',
-    'Mobile phone number not registered.' => '@@@@',
-=======
-    'Every user having your role has two factor authentication mandatory, you must enable it' => '@@@@',
-    'Now you can resume the login process' => '@@@@',
->>>>>>> upstream/master
-    'Registration ip' => '@@ای پی ثبت نام@@',
 ];

@@ -583,14 +583,14 @@ class SettingsController extends Controller
             $success=true;    
         }else{
             $success = $user->updateAttributes(['auth_tf_mobile_phone' => $mobilePhone]);
-            $this->make(TwoFactorSmsCodeGeneratorService::class, [$user])->run();
-        }
-        
+        }    
+        $success = $success && $this->make(TwoFactorSmsCodeGeneratorService::class, [$user])->run();
+     
         return [
                     'success' => $success,
                     'message' => $success
                     ? Yii::t('usuario', 'Mobile phone number successfully enabled.')
-                    : Yii::t('usuario', 'Error while enabling SMS two factor authentication.'),
+                    : Yii::t('usuario', 'Error while enabling SMS two factor authentication. Please reload the page.'),
                 ];
     }
 }

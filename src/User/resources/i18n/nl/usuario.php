@@ -271,8 +271,9 @@ return [
     '{0} cannot be blank.' => '{0} kan niet leeg zijn.',
     'According to the European General Data Protection Regulation (GDPR) we need your consent to work with your personal data.' => '',
     'An email with instructions to create a new password has been sent to {email} if it is associated with an {appName} account. Your existing password has not been changed.' => '',
+    'Code for two factor authentication' => '',
     'Data privacy' => '',
-    'Error while enabling SMS two factor authentication.' => '',
+    'Error while enabling SMS two factor authentication. Please reload the page.' => '',
     'Google Authenticator' => '',
     'Insert' => '',
     'Insert the code you received by SMS.' => '',
@@ -297,6 +298,6 @@ return [
     'Two factor authentication protects you in case of stolen credentials' => '',
     'Unfortunately, you can not work with this site without giving us consent to process your data.' => '',
     'Your consent is required to work with this site' => '',
-    'Your two factor authentication method is based on "{0}".' => '',
     'Your role requires 2FA, you won\'t be able to use the application until you enable it' => '',
+    'Your two factor authentication method is based on "{0}".' => '',
 ];

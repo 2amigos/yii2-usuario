@@ -277,7 +277,8 @@ return [
     '{0, date, MMM dd, YYYY HH:mm}' => '{0, date, dd. MMM YYYY, HH:mm}',
     '{0, date, MMMM dd, YYYY HH:mm}' => '{0, date, dd. MMMM YYYY, HH:mm}',
     '{0} cannot be blank.' => '{0} darf nicht leer sein.',
-    'Error while enabling SMS two factor authentication.' => '',
+    'Code for two factor authentication' => '',
+    'Error while enabling SMS two factor authentication. Please reload the page.' => '',
     'Google Authenticator' => '',
     'Information' => '',
     'Insert' => '',
@@ -297,7 +298,6 @@ return [
     'This is the code to insert to enable two factor authentication' => '',
     'Two factor authentication code by SMS' => '',
     'Two factor authentication code by email' => '',
-    'Your two factor authentication method is based on "{0}".' => '',
-    'Information' => '',
     'Your role requires 2FA, you won\'t be able to use the application until you enable it' => '',
+    'Your two factor authentication method is based on "{0}".' => '',
 ];

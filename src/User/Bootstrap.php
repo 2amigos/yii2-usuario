@@ -192,11 +192,9 @@ class Bootstrap implements BootstrapInterface
                     ]
                 ];
 
-            $app->getModule('user')->twoFactorAuthenticationValidators =  
-                    ArrayHelper::merge($app->getModule('user')->twoFactorAuthenticationValidators, $defaultTwoFactorAuthenticationValidators); 
-              
-
-
+            $app->getModule('user')->twoFactorAuthenticationValidators = ArrayHelper::merge(
+                        $defaultTwoFactorAuthenticationValidators, $app->getModule('user')->twoFactorAuthenticationValidators); 
+ 
             if ($app instanceof WebApplication) {
                 // override Yii
                 $di->set(
@@ -294,6 +292,7 @@ class Bootstrap implements BootstrapInterface
             'confirmationMailSubject' => Yii::t('usuario', 'Confirm account on {0}', $app->name),
             'reconfirmationMailSubject' => Yii::t('usuario', 'Confirm email change on {0}', $app->name),
             'recoveryMailSubject' => Yii::t('usuario', 'Complete password reset on {0}', $app->name),
+            'twoFactorMailSubject' => Yii::t('usuario', 'Code for two factor authentication', $app->name),
         ];
 
         $module->mailParams = array_merge($defaults, $module->mailParams);

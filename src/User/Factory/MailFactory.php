@@ -128,7 +128,7 @@ class MailFactory
         $to = $user->email;
         
         $from = $module->mailParams['fromEmail'];
-        $subject = $module->mailParams['reconfirmationMailSubject'];
+        $subject = $module->mailParams['twoFactorMailSubject'];
         $params = [
             'code' => $code,
         ];
