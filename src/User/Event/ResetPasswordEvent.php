@@ -19,7 +19,7 @@ use yii\base\Event;
  * @property-read Token $token
  * @property-read RecoveryForm $form
  */
-class ResetPasswordEvent extends Event
+final class ResetPasswordEvent extends Event
 {
     const EVENT_BEFORE_TOKEN_VALIDATE = 'beforeTokenValidate';
     const EVENT_AFTER_TOKEN_VALIDATE = 'afterTokenValidate';
