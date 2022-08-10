@@ -57,7 +57,7 @@ class UserCreateService implements ServiceInterface
             $model->confirmed_at = time();
             $model->password = !empty($model->password)
                 ? $model->password
-                : $this->securityHelper->generatePassword(8, $this->getModule('user')->minPasswordRequirements);
+                : $this->securityHelper->generatePassword(8, $this->getModule()->minPasswordRequirements);
 
             /** @var UserEvent $event */
             $event = $this->make(UserEvent::class, [$model]);
