@@ -61,7 +61,8 @@
         "codeception/module-filesystem": "^1.0",
         "codeception/module-yii2": "^1.1",
         "codeception/module-asserts": "^1.1",
-        "codeception/module-db": "^1.0"
+        "codeception/module-db": "^1.0",
+        "phpstan/phpstan": "^1.8"
     },
     "autoload": {
         "psr-4": {
@@ -74,6 +75,9 @@
         }
     },
     "config": {
+        "platform": {
+            "php": "7.3"
+        },
         "preferred-install": {
             "*": "auto"
         },

@@ -69,6 +69,9 @@ jobs:
             - name: Run tests
               run: XDEBUG_MODE=coverage php vendor/bin/codecept run --coverage --coverage-xml
 
+            - name: Run static code analysis
+              run:  vendor/bin/phpstan analyse
+
             - name: Archive failed tests artifacts - test output & log
               uses: actions/upload-artifact@v2
               if: failure()
