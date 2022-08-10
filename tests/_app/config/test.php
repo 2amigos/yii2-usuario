@@ -1,5 +1,7 @@
 <?php
 
+use Da\User\Filter\TwoFactorAuthenticationEnforceFilter;
+
 return [
     'id' => 'yii2-user-tests',
     'basePath' => dirname(__DIR__),
@@ -47,4 +49,12 @@ return [
         ],
     ],
     'params' => [],
+    'on beforeAction' => function() {
+        Yii::$app->controller->attachBehavior(
+            'enforceTwoFactorAuthentication',[
+                'class' => TwoFactorAuthenticationEnforceFilter::class,
+                'except' => ['login', 'logout','account','two-factor', 'two-factor-enable'],
+            ]
+        );
+    },
 ];

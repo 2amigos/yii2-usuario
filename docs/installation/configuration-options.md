@@ -12,6 +12,24 @@ Setting this attribute will allow users to configure their login process with tw
 By default, Google Authenticator App for two-factor authentication cycles in periods of 30 seconds. In order to allow 
 a bigger period so to avoid out of sync issues.
 
+#### twoFactorAuthenticationForcedPermissions (type: `array`, default: `[]`)
+
+The list of permissions for which two factor authentication is mandatory. In order to perform the check in every action you must configure a filter into your config file like this:
+
+use Da\User\Filter\TwoFactorAuthenticationEnforceFilter;
+...
+'on beforeAction' => function() {
+        Yii::$app->controller->attachBehavior(
+            'enforceTwoFactorAuthentication',[
+                'class' => TwoFactorAuthenticationEnforceFilter::class,
+                'except' => ['login', 'logout', 'account', 'two-factor', 'two-factor-enable'],
+            ]
+        );
+    },
+...   
+This will redirect the user to their account page until the two factor authentication is enabled.
+
+
 #### enableGdprCompliance (type: `boolean`, default: `false`)
 
 Setting this attribute enables a serie of measures to comply with EU GDPR regulation, like data consent, right to be forgotten and data portability.
