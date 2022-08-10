@@ -31,4 +31,3 @@ $this->params['breadcrumbs'][] = $this->title;
 ) ?>
 
 <?php $this->endContent() ?>
-
