@@ -81,6 +81,7 @@ return [
         'auth_key' => '39HU0m5lpjWtqstFVGFjj6lFb7UZDeRq',
         'auth_tf_key' => '',
         'auth_tf_enabled' => true,
+        'auth_tf_type' => 'google-authenticator',
         'created_at' => $time,
         'updated_at' => $time,
         'confirmed_at' => $time,

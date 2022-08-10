@@ -16,7 +16,7 @@ use Da\TwoFA\Manager;
 use Da\User\Contracts\ValidatorInterface;
 use Da\User\Model\User;
 use Da\User\Traits\ContainerAwareTrait;
-use Da\User\Service\TwoFactorEmailCodeGeneratorService;
+use Da\User\Service\TwoFactorQrCodeUriGeneratorService;
 use Yii;
 
 class TwoFactorCodeValidator implements ValidatorInterface
@@ -94,6 +94,6 @@ class TwoFactorCodeValidator implements ValidatorInterface
      */
     public function generateCode()
     {
-        return $this->make(TwoFactorEmailCodeGeneratorService::class,[$this->user])->run();
+        return $this->make(TwoFactorQrCodeUriGeneratorService::class,[$this->user])->run();
     }
 }

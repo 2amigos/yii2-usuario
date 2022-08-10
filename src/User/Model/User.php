@@ -252,7 +252,7 @@ class User extends ActiveRecord implements IdentityInterface
             'twoFactorSecretLength' => ['auth_tf_key', 'string', 'max' => 16],
             'twoFactorEnabledNumber' => ['auth_tf_enabled', 'boolean'],
             'twoFactorTypeLength' => ['auth_tf_type', 'string', 'max' => 20],
-            'twoFactorTypeLength' => ['auth_tf_mobile_phone', 'string', 'max' => 20],
+            'twoFactorMobilePhoneLength' => ['auth_tf_mobile_phone', 'string', 'max' => 20],
         ];
     }
 
