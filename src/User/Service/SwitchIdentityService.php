@@ -65,5 +65,6 @@ class SwitchIdentityService implements ServiceInterface
         /** @var IdentityInterface $user */
         Yii::$app->user->switchIdentity($user, $session->timeout);
         $this->controller->trigger(UserEvent::EVENT_AFTER_SWITCH_IDENTITY, $event);
+        return true;
     }
 }
