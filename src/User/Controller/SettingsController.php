@@ -583,9 +583,9 @@ class SettingsController extends Controller
             $success=true;    
         }else{
             $success = $user->updateAttributes(['auth_tf_mobile_phone' => $mobilePhone]);
+            $success = $success && $this->make(TwoFactorSmsCodeGeneratorService::class, [$user])->run();
         }    
-        $success = $success && $this->make(TwoFactorSmsCodeGeneratorService::class, [$user])->run();
-     
+        
         return [
                     'success' => $success,
                     'message' => $success

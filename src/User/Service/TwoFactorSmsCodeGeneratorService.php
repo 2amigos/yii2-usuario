@@ -66,7 +66,6 @@ class TwoFactorSmsCodeGeneratorService implements ServiceInterface
         $mobilePhone=$user->getAuthTfMobilePhone();
         
         if( null===$mobilePhone || $mobilePhone=='' ){
-            Yii::$app->session->addFlash('error', Yii::t('usuario','Mobile phone not found, please check your profile'));  
             return false;  
         }    
         // send sms

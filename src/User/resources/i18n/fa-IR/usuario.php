@@ -173,7 +173,7 @@ return [
     'Children' => '',
     'Class' => '',
     'Close' => '',
-    'Code for two factor authentication' => '',
+    'Code for two factor authentication on {0}' => '',
     'Create new permission' => '',
     'Create new role' => '',
     'Create new rule' => '',
@@ -300,4 +300,5 @@ return [
     'privacy policy' => '',
     '{0, date, MMM dd, YYYY HH:mm}' => '',
     '{0} cannot be blank.' => '',
+    'Code for two factor authentication' => '@@@@',
 ];

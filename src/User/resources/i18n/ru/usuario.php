@@ -274,7 +274,7 @@ return [
     '{0, date, MMMM dd, YYYY HH:mm}' => '{0, date, d MMMM YYYY в HH:mm}',
     '{0} cannot be blank.' => '{0} не может быть пустым.',
     'According to the European General Data Protection Regulation (GDPR) we need your consent to work with your personal data.' => '',
-    'Code for two factor authentication' => '',
+    'Code for two factor authentication on {0}' => '',
     'Data privacy' => '',
     'Error while enabling SMS two factor authentication. Please reload the page.' => '',
     'Google Authenticator' => '',
@@ -300,4 +300,5 @@ return [
     'Your consent is required to work with this site' => '',
     'Your role requires 2FA, you won\'t be able to use the application until you enable it' => '',
     'Your two factor authentication method is based on "{0}".' => '',
+    'Code for two factor authentication' => '@@@@',
 ];

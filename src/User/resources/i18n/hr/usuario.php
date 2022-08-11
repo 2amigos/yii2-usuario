@@ -63,7 +63,7 @@ return [
     'Children' => '',
     'Class' => '',
     'Close' => '',
-    'Code for two factor authentication' => '',
+    'Code for two factor authentication on {0}' => '',
     'Complete password reset on {0}' => '',
     'Confirm' => '',
     'Confirm account on {0}' => '',
@@ -300,4 +300,5 @@ return [
     '{0, date, MMM dd, YYYY HH:mm}' => '',
     '{0, date, MMMM dd, YYYY HH:mm}' => '',
     '{0} cannot be blank.' => '',
+    'Code for two factor authentication' => '@@@@',
 ];

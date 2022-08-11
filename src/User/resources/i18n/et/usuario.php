@@ -269,7 +269,7 @@ return [
     '{0} cannot be blank.' => '{0} ei või olla tühi.',
     'According to the European General Data Protection Regulation (GDPR) we need your consent to work with your personal data.' => '',
     'Authentication rule class {0} can not be instantiated' => '',
-    'Code for two factor authentication' => '',
+    'Code for two factor authentication on {0}' => '',
     'Data privacy' => '',
     'Error while enabling SMS two factor authentication. Please reload the page.' => '',
     'Google Authenticator' => '',
@@ -300,4 +300,5 @@ return [
     'Your two factor authentication method is based on "{0}".' => '',
     '{0, date, MMM dd, YYYY HH:mm}' => '',
     '{0, date, MMMM dd, YYYY HH:mm}' => '',
+    'Code for two factor authentication' => '@@@@',
 ];

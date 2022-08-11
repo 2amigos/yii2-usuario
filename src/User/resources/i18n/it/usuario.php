@@ -63,7 +63,7 @@ return [
     'Children' => 'Figli',
     'Class' => 'Classe',
     'Close' => 'Chiudi',
-    'Code for two factor authentication' => 'Codice per l\'autenticazione a due fattori',
+    'Code for two factor authentication on {0}' => 'Codice per l\'autenticazione a due fattori su {0}',
     'Complete password reset on {0}' => 'Completa la procedura di reset della password su {0}',
     'Confirm' => 'Conferma',
     'Confirm account on {0}' => 'Conferma l\'account su {0}',

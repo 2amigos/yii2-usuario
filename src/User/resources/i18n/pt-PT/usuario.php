@@ -262,7 +262,7 @@ return [
     'Awesome, almost there. Now you need to click the confirmation link sent to your old email address.' => '',
     'Children' => '',
     'Class' => '',
-    'Code for two factor authentication' => '',
+    'Code for two factor authentication on {0}' => '',
     'Data privacy' => '',
     'Email' => '',
     'Error while enabling SMS two factor authentication. Please reload the page.' => '',
@@ -300,4 +300,5 @@ return [
     'Your two factor authentication method is based on "{0}".' => '',
     '{0, date, MMM dd, YYYY HH:mm}' => '',
     '{0, date, MMMM dd, YYYY HH:mm}' => '',
+    'Code for two factor authentication' => '@@@@',
 ];

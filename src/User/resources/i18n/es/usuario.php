@@ -276,7 +276,7 @@ return [
     'privacy policy' => 'política de privacidad',
     '{0, date, MMMM dd, YYYY HH:mm}' => '{0, date, dd MMMM, YYYY HH:mm}',
     '{0} cannot be blank.' => '{0} no puede estar vacío.',
-    'Code for two factor authentication' => '',
+    'Code for two factor authentication on {0}' => '',
     'Error while enabling SMS two factor authentication. Please reload the page.' => '',
     'Google Authenticator' => '',
     'Insert' => '',
@@ -300,4 +300,5 @@ return [
     'Your role requires 2FA, you won\'t be able to use the application until you enable it' => '',
     'Your two factor authentication method is based on "{0}".' => '',
     '{0, date, MMM dd, YYYY HH:mm}' => '',
+    'Code for two factor authentication' => '@@@@',
 ];
