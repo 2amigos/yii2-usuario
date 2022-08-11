@@ -76,7 +76,7 @@ class UserCreateService implements ServiceInterface
                     ['email' => $model->email]
                 );
                 // from web display a flash message (if enabled)
-                if ($this->getModule()->enableFlashMessages === true && is_a(Yii::$app, "yii\web\Application")) {
+                if ($this->getModule()->enableFlashMessages === true && is_a(Yii::$app, yii\web\Application::class)) {
                     Yii::$app->session->setFlash(
                         'warning',
                         $error_msg

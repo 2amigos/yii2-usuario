@@ -6,6 +6,8 @@ compatibility, leaving behind obsolete versions. While yii2-usuario should
 still work without issues on 5.6, from now on testing and development will
 look forward and manitain only >=7.4 versions.
 
+There's a change in flash messages handling, please see #391
+
 - Ehn: update welcome and confirmation email ending line (maxxer)
 - Ehn #361: Record and manage user session history (maranqz)
 - Fix: replace non-working travis build with working github actions build (TonisOrmisson)
@@ -24,6 +26,7 @@ look forward and manitain only >=7.4 versions.
 - Ehn #448: Remove deprecated SwiftMailer, use SymfonyMailer instead (TonisOrmisson)
 - Ehn #428: Translations of the placeholders in the login widget (anapaulaxenon)
 - Update PHP-CS-Fixer configuration to new version (maxxer)
+- Fix #391: Always create flash messages, allow `enableFlashMessages` only to dictate display (ajmedway)
 
 ## 1.5.1 April 5, 2020
 
