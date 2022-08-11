@@ -21,6 +21,7 @@ look forward and manitain only >=7.4 versions.
  - Ehn #412: Allow role names to support UTF-8 chars (4khobta)
  - Ehn #448: Remove deprecated SwiftMailer, use SymfonyMailer instead (TonisOrmisson)
  - Ehn #428: Translations of the placeholders in the login widget (anapaulaxenon)
+ - Ehn #361: Record and manage user session history (maranqz)
 
 ## 1.5.1 April 5, 2020
  - Fix #370: Extending view fix (effsoft)
