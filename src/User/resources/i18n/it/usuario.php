@@ -279,6 +279,8 @@ return [
     '{0, date, MMM dd, YYYY HH:mm}' => '{0, date, MMM dd, YYYY HH:mm}',
     '{0, date, MMMM dd, YYYY HH:mm}' => '{0, date, dd MMMM YYYY HH:mm}',
     '{0} cannot be blank.' => '{0} non può essere vuoto.',
+    'If you haven\'t received a password, you can reset it at' => '',
+    'You received this email because someone, possibly you or someone on your behalf, have created an account at {app_name}' => '',
     'According to the European General Data Protection Regulation (GDPR) we need your consent to work with your personal data.' => '',
     'Active' => '',
     'An email with instructions to create a new password has been sent to {email} if it is associated with an {appName} account. Your existing password has not been changed.' => '',
@@ -297,6 +299,4 @@ return [
     'User agent' => '',
     'Your consent is required to work with this site' => '',
     '{0, date, MMM dd, YYYY HH:mm}' => '',
-    'An email has been sent with instructions for resetting your password' => '@@È stata inviata un\'email con le istruzioni per azzerare la tua password@@',
-    'Now you can resume the login process' => '@@Ora puoi riprendere il processo di autenticazione@@',
 ];

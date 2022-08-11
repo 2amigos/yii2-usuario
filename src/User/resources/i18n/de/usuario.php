@@ -295,6 +295,7 @@ return [
     'Your consent is required to work with this site' => '',
     'Information' => '',
     'Your role requires 2FA, you won\'t be able to use the application until you enable it' => '',
-    'Every user having your role has two factor authentication mandatory, you must enable it' => '@@@@',
-    'Now you can resume the login process' => '@@@@',
+    'If you haven\'t received a password, you can reset it at' => '',
+    'Information' => '',
+    'You received this email because someone, possibly you or someone on your behalf, have created an account at {app_name}' => '',
 ];

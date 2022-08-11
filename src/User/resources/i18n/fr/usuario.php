@@ -276,6 +276,7 @@ return [
     'Active' => '',
     'Current' => '',
     'Data privacy' => '',
+    'If you haven\'t received a password, you can reset it at' => '',
     'IP' => '',
     'Inactive' => '',
     'Last activity' => '',

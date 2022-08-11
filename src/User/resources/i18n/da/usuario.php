@@ -119,6 +119,7 @@ return [
     'If you already registered, sign in and connect this account on settings page' => '',
     'If you cannot click the link, please try pasting the text into your browser' => '',
     'If you did not make this request you can ignore this email' => '',
+    'If you haven\'t received a password, you can reset it at' => '',
     'Impersonate this user' => '',
     'In order to complete your registration, please click the link below' => '',
     'In order to complete your request, please click the link below' => '',
@@ -270,6 +271,7 @@ return [
     'You can connect multiple accounts to be able to log in using them' => '',
     'You cannot remove your own account' => '',
     'You need to confirm your email address' => '',
+    'You received this email because someone, possibly you or someone on your behalf, have created an account at {app_name}' => '',
     'Your account details have been updated' => '',
     'Your account has been blocked' => '',
     'Your account has been blocked.' => '',
@@ -290,6 +292,4 @@ return [
     '{0, date, MMM dd, YYYY HH:mm}' => '',
     '{0, date, MMMM dd, YYYY HH:mm}' => '',
     '{0} cannot be blank.' => '',
-    'Every user having your role has two factor authentication mandatory, you must enable it' => '@@@@',
-    'Now you can resume the login process' => '@@@@',
 ];
