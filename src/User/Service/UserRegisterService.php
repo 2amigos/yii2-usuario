@@ -51,7 +51,7 @@ class UserRegisterService implements ServiceInterface
         try {
             $model->confirmed_at = $this->getModule()->enableEmailConfirmation ? null : time();
             $model->password = $this->getModule()->generatePasswords
-                ? $this->securityHelper->generatePassword(8)
+                ? $this->securityHelper->generatePassword(8, $this->getModule('user')->minPasswordRequirements)
                 : $model->password;
 
             $event = $this->make(UserEvent::class, [$model]);

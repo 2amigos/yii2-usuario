@@ -57,7 +57,7 @@ class UserCreateService implements ServiceInterface
             $model->confirmed_at = time();
             $model->password = !empty($model->password)
                 ? $model->password
-                : $this->securityHelper->generatePassword(8);
+                : $this->securityHelper->generatePassword(8, $this->getModule('user')->minPasswordRequirements);
 
             /** @var UserEvent $event */
             $event = $this->make(UserEvent::class, [$model]);
@@ -87,6 +87,7 @@ class UserCreateService implements ServiceInterface
                     $model->addError('username', $error_msg);
                 }
                 $transaction->rollBack();
+                Yii::error($error_msg, 'usuario');
                 return false;
             }
             $transaction->commit();

@@ -6,7 +6,7 @@ Yii 2 Usuario Extension
 [![Packagist Version](https://img.shields.io/packagist/v/2amigos/yii2-usuario.svg?style=flat-square)](https://packagist.org/packages/2amigos/yii2-usuario)
 [![Latest Stable Version](https://poser.pugx.org/2amigos/yii2-usuario/version)](https://packagist.org/packages/2amigos/yii2-usuario)
 [![Total Downloads](https://poser.pugx.org/2amigos/yii2-usuario/downloads)](https://packagist.org/packages/2amigos/yii2-usuario)
-[![Build Status](https://travis-ci.org/2amigos/yii2-usuario.svg?branch=master)](https://travis-ci.org/2amigos/yii2-usuario)
+[![Build Status](https://github.com/2amigos/yii2-usuario/actions/workflows/php.yml/badge.svg)](https://github.com/2amigos/yii2-usuario/actions/)
 [![Latest Unstable Version](https://poser.pugx.org/2amigos/yii2-usuario/v/unstable)](//packagist.org/packages/2amigos/yii2-usuario)  
 [![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/2amigos/yii2-usuario/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/2amigos/yii2-usuario/?branch=master)
 

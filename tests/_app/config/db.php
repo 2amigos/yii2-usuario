@@ -2,9 +2,9 @@
 
 $db = [
     'class' => 'yii\db\Connection',
-    'dsn' => 'mysql:host=localhost;dbname=yii2-usuario-test',
+    'dsn' => 'mysql:host=127.0.0.1;dbname=yii2-usuario-test',
     'username' => 'root',
-    'password' => '',
+    'password' => 'password',
     'charset' => 'utf8',
 ];
 

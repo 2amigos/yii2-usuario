@@ -44,14 +44,17 @@
         "2amigos/yii2-selectize-widget": "^1.1",
         "yiisoft/yii2-authclient": "^2.1",
         "yiisoft/yii2-httpclient": "^2.0",
-        "yiisoft/yii2-bootstrap": "^2.0",
-        "yiisoft/yii2-swiftmailer": "^2.0"
+        "yiisoft/yii2-bootstrap": "^2.0"
     },
     "suggest": {
+        "yiisoft/yii2-symfonymailer": "A mailer driver is needed to send e-mails. Older versions use abandoned Swiftmailer which can be replaced with symfonymailer",
         "2amigos/2fa-library": "Needed if you want to enable 2 Factor Authentication. Require version ^1.0",
         "2amigos/qrcode-library": "Needed if you want to enable 2FA with QR Code generation. Require version ^1.1"
     },
     "require-dev": {
+        "php": ">=7.4",
+
+        "yiisoft/yii2-symfonymailer": "~2.0.0",
         "friendsofphp/php-cs-fixer": "^2.3",
         "squizlabs/php_codesniffer": "*",
         "phpmd/phpmd": "@stable",
@@ -79,6 +82,9 @@
         },
         "fxp-asset": {
             "enabled": false
+        },
+        "allow-plugins": {
+            "yiisoft/yii2-composer": true
         }
     },
     "conflict": {
