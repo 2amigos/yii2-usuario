@@ -14,11 +14,10 @@ use yii\bootstrap\Alert;
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
 
-/**
- * @var $this           yii\web\View
- * @var $model          Da\User\Model\Assignment
- * @var $availableItems string[]
- */
+/** @var \yii\web\View $this */
+/** @var string[] $availableItems */
+/** @var Da\User\Model\Assignment $model */
+
 
 ?>
 

@@ -14,9 +14,9 @@ use yii\grid\GridView;
 use yii\helpers\Url;
 
 /**
- * @var $dataProvider array
- * @var $searchModel  \Da\User\Search\RoleSearch
- * @var $this         yii\web\View
+ * @var \yii\data\DataProviderInterface $dataProvider
+ * @var \Da\User\Search\RoleSearch $searchModel
+ * @var yii\web\View $this
  */
 
 $this->title = Yii::t('usuario', 'Roles');

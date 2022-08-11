@@ -57,7 +57,7 @@ class UserCreateService implements ServiceInterface
             $model->confirmed_at = time();
             $model->password = !empty($model->password)
                 ? $model->password
-                : $this->securityHelper->generatePassword(8, $this->getModule('user')->minPasswordRequirements);
+                : $this->securityHelper->generatePassword(8, $this->getModule()->minPasswordRequirements);
 
             /** @var UserEvent $event */
             $event = $this->make(UserEvent::class, [$model]);
@@ -76,14 +76,14 @@ class UserCreateService implements ServiceInterface
                     ['email' => $model->email]
                 );
                 // from web display a flash message (if enabled)
-                if ($this->getModule()->enableFlashMessages === true && is_a(Yii::$app, yii\web\Application::class)) {
+                if ($this->getModule()->enableFlashMessages === true && is_a(Yii::$app, "yii\web\Application")) {
                     Yii::$app->session->setFlash(
                         'warning',
                         $error_msg
                     );
                 }
                 // if we're from console add an error to the model in order to return an error message
-                if (is_a(Yii::$app, yii\console\Application::class)) {
+                if (is_a(Yii::$app, "yii\console\Application")) {
                     $model->addError('username', $error_msg);
                 }
                 $transaction->rollBack();

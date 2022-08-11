@@ -6,9 +6,9 @@ use yii\helpers\Url;
 use yii\rbac\Rule;
 
 /**
- * @var $dataProvider \yii\data\ActiveDataProvider
- * @var $searchModel  \Da\User\Search\RuleSearch
- * @var $this         yii\web\View
+ * @var \yii\data\ActiveDataProvider $dataProvider
+ * @var \Da\User\Search\RuleSearch $searchModel
+ * @var yii\web\View $this
  */
 
 $this->title = Yii::t('usuario', 'Rules');

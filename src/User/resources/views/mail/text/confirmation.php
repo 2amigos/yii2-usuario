@@ -10,7 +10,6 @@
  */
 
 /**
- * @var \Da\User\Model\User
  * @var \Da\User\Model\Token $token
  */
 ?>

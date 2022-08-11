@@ -11,9 +11,8 @@
 
 use yii\bootstrap\Alert;
 
-/**
- * @var $module Da\User\Module
- */
+/** @var \Da\User\Module $module */
+
 ?>
 
 <?php if ($module->enableFlashMessages): ?>
