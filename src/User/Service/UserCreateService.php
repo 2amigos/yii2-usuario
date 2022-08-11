@@ -20,6 +20,7 @@ use Da\User\Traits\ModuleAwareTrait;
 use Exception;
 use Yii;
 use yii\base\InvalidCallException;
+use yii\web\Application;
 
 class UserCreateService implements ServiceInterface
 {
@@ -76,7 +77,7 @@ class UserCreateService implements ServiceInterface
                     ['email' => $model->email]
                 );
                 // from web display a flash message (if enabled)
-                if ($this->getModule()->enableFlashMessages === true && is_a(Yii::$app, yii\web\Application::class)) {
+                if ($this->getModule()->enableFlashMessages === true && is_a(Yii::$app, Application::class)) {
                     Yii::$app->session->setFlash(
                         'warning',
                         $error_msg
