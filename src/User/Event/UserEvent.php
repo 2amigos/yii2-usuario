@@ -23,8 +23,8 @@ class UserEvent extends Event
     const EVENT_AFTER_CREATE = 'afterCreate';
     const EVENT_BEFORE_DELETE = 'beforeDelete';
     const EVENT_AFTER_DELETE = 'afterDelete';
-    const EVENT_BEFORE_REGISTER = 'beforeRegister';
-    const EVENT_AFTER_REGISTER = 'afterRegister';
+    const EVENT_BEFORE_REGISTER = 'beforeRegistration';
+    const EVENT_AFTER_REGISTER = 'afterRegistration';
     const EVENT_BEFORE_ACCOUNT_UPDATE = 'beforeAccountUpdate';
     const EVENT_AFTER_ACCOUNT_UPDATE = 'afterAccountUpdate';
     const EVENT_BEFORE_PROFILE_UPDATE = 'beforeProfileUpdate';
