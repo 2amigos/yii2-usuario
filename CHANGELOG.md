@@ -14,6 +14,7 @@ look forward and manitain only >=7.4 versions.
  - Fix #378: Add module attribute 'disableIpLogging' (jkmssoft)
  - Enh #387: Added Persian translation (hadi-aj)
  - Fix #384: Delete flash messages after consuming (cgsmith)
+ - Fix #381: Renamed events in `UserEvent` to avoid conflicts with events in `FormEvent` (Slayvin)
  - Enh: Added SK translations (snickom)
  - Fix: allow `password_changed_at` to be saved when reseting password (p4blojf)
  - Fix #430: Moved `EVENT_BEFORE_PROFILE_UPDATE` to correct place (eluhr)
