@@ -116,7 +116,6 @@ return [
     'Here you can download your personal data in a comma separated values format.' => '',
     'IP' => '',
     'I agree processing of my personal data and the use of cookies to facilitate the operation of this site. For more information read our {privacyPolicy}' => '',
-    'I agree processing of my personal data and the use of cookies to facilitate the operation of this site. For more information read our {privacyPolicy}' => '',
     'If you already registered, sign in and connect this account on settings page' => '',
     'If you cannot click the link, please try pasting the text into your browser' => '',
     'If you did not make this request you can ignore this email' => '',

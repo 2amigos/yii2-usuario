@@ -19,9 +19,9 @@ use yii\data\ActiveDataProvider;
 use Da\User\Widget\SessionStatusWidget;
 
 /**
- * @var $this View
- * @var $searchModel SessionHistorySearch
- * @var $dataProvider ActiveDataProvider
+ * @var View $this
+ * @var SessionHistorySearch $searchModel
+ * @var ActiveDataProvider $dataProvider
  */
 
 $this->title = Yii::t('usuario', 'Session history');

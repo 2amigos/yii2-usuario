@@ -226,7 +226,7 @@ class SessionHistoryDecorator extends Session
         return $this->session->writeSession($id, $data) &&
             (
                 false === $this->getModule()->enableSessionHistory ||
-                $this->getDb()->transaction(function () use ($id, $data) {
+                $this->getDb()->transaction(function () {
                     if (Yii::$app->user->getIsGuest()) {
                         return true;
                     }
@@ -278,7 +278,7 @@ class SessionHistoryDecorator extends Session
         return $this->session->gcSession($maxLifetime) &&
             (
                 false === $this->getModule()->enableSessionHistory ||
-                $this->getDb()->transaction(function () use ($maxLifetime) {
+                $this->getDb()->transaction(function () {
                     $this->getDb()->createCommand()->update(
                         $this->sessionHistoryTable,
                         $this->condition->inactiveData(),
