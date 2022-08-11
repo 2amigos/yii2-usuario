@@ -1,7 +1,6 @@
 # CHANGELOG
 
 ## 1.6.0 work in progress
-
 **WARNING**: this release (long time due) makes a step forward in PHP
 compatibility, leaving behind obsolete versions. While yii2-usuario should
 still work without issues on 5.6, from now on testing and development will
@@ -24,6 +23,7 @@ look forward and manitain only >=7.4 versions.
 - Ehn #412: Allow role names to support UTF-8 chars (4khobta)
 - Ehn #448: Remove deprecated SwiftMailer, use SymfonyMailer instead (TonisOrmisson)
 - Ehn #428: Translations of the placeholders in the login widget (anapaulaxenon)
+- Update PHP-CS-Fixer configuration to new version (maxxer)
 
 ## 1.5.1 April 5, 2020
 

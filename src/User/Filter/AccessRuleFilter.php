@@ -37,7 +37,7 @@ class AccessRuleFilter extends AccessRule
                         /** @var User $identity */
                         $identity = $user->identity;
                         if (!$identity->gdpr_consent) {
-                            Yii::$app->response->redirect([ "/$consentAction"])->send();
+                            Yii::$app->response->redirect(["/{$consentAction}"])->send();
                         }
                     }
                 }
