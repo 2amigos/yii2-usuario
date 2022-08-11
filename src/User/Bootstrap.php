@@ -16,7 +16,9 @@ use Da\User\Contracts\AuthManagerInterface;
 use Da\User\Controller\SecurityController;
 use Da\User\Event\FormEvent;
 use Da\User\Helper\ClassMapHelper;
+use Da\User\Model\SessionHistory;
 use Da\User\Model\User;
+use Da\User\Search\SessionHistorySearch;
 use Yii;
 use yii\authclient\Collection;
 use yii\base\Application;
@@ -128,7 +130,7 @@ class Bootstrap implements BootstrapInterface
                 $model = is_array($definition) ? $definition['class'] : $definition;
                 $name = substr($class, strrpos($class, '\\') + 1);
                 $modelClassMap[$class] = $model;
-                if (in_array($name, ['User', 'Profile', 'Token', 'SocialNetworkAccount'])) {
+                if (in_array($name, ['User', 'Profile', 'Token', 'SocialNetworkAccount', 'SessionHistory'])) {
                     $di->set(
                         "Da\\User\\Query\\{$name}Query",
                         function () use ($model) {
@@ -315,10 +317,12 @@ class Bootstrap implements BootstrapInterface
             'Assignment' => 'Da\User\Model\Assignment',
             'Permission' => 'Da\User\Model\Permission',
             'Role' => 'Da\User\Model\Role',
+            'SessionHistory' => SessionHistory::class,
             // --- search
             'UserSearch' => 'Da\User\Search\UserSearch',
             'PermissionSearch' => 'Da\User\Search\PermissionSearch',
             'RoleSearch' => 'Da\User\Search\RoleSearch',
+            'SessionHistorySearch' => SessionHistorySearch::class,
             // --- forms
             'RegistrationForm' => 'Da\User\Form\RegistrationForm',
             'ResendForm' => 'Da\User\Form\ResendForm',
@@ -338,11 +342,13 @@ class Bootstrap implements BootstrapInterface
                 'Assignment',
                 'Permission',
                 'Role',
+                'SessionHistory'
             ],
             'Da\User\Search' => [
                 'UserSearch',
                 'PermissionSearch',
                 'RoleSearch',
+                'SessionHistorySearch',
             ],
             'Da\User\Form' => [
                 'RegistrationForm',

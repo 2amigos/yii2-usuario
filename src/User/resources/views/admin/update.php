@@ -13,6 +13,7 @@ use Da\User\Model\User;
 use yii\bootstrap\Nav;
 use yii\helpers\Html;
 use yii\web\View;
+use Da\User\Module as UserModule;
 
 /**
  * @var View   $this
@@ -24,12 +25,14 @@ $this->title = Yii::t('usuario', 'Update user account');
 $this->params['breadcrumbs'][] = ['label' => Yii::t('usuario', 'Users'), 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 
+/** @var UserModule $module */
+$module = Yii::$app->getModule('user');
 ?>
 <div class="clearfix"></div>
 <?= $this->render(
     '/shared/_alert',
     [
-        'module' => Yii::$app->getModule('user'),
+        'module' => $module,
     ]
 ) ?>
 
@@ -66,6 +69,11 @@ $this->params['breadcrumbs'][] = $this->title;
                                             [
                                                 'label' => Yii::t('usuario', 'Assignments'),
                                                 'url' => ['/user/admin/assignments', 'id' => $user->id],
+                                            ],
+                                            [
+                                                'label' => Yii::t('usuario', 'Session history'),
+                                                'url' => ['/user/admin/session-history', 'id' => $user->id],
+                                                'visible' => $module->enableSessionHistory,
                                             ],
                                             '<hr>',
                                             [
