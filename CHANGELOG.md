@@ -18,6 +18,9 @@ look forward and manitain only >=7.4 versions.
  - Fix: allow `password_changed_at` to be saved when reseting password (p4blojf)
  - Fix #430: Moved `EVENT_BEFORE_PROFILE_UPDATE` to correct place (eluhr)
  - Ehn #456: Added filter to allow forcing 2FA for specific user roles (acordeddu)
+ - Ehn #412: Allow role names to support UTF-8 chars (4khobta)
+ - Ehn #448: Remove deprecated SwiftMailer, use SymfonyMailer instead (TonisOrmisson)
+ - Ehn #428: Translations of the placeholders in the login widget (anapaulaxenon)
 
 ## 1.5.1 April 5, 2020
  - Fix #370: Extending view fix (effsoft)
