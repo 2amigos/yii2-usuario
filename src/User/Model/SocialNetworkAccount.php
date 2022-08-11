@@ -22,17 +22,17 @@ use yii\helpers\Url;
 
 /**
  * /**
- * @property int $id          Id
- * @property int $user_id     User id, null if account is not bind to user
- * @property string $provider     Name of service
- * @property string $client_id    Account id
- * @property string $data         Account properties returned by social network (json encoded)
- * @property string $decodedData  Json-decoded properties
+ * @property int    $id          Id
+ * @property int    $user_id     User id, null if account is not bind to user
+ * @property string $provider    Name of service
+ * @property string $client_id   Account id
+ * @property string $data        Account properties returned by social network (json encoded)
+ * @property string $decodedData Json-decoded properties
  * @property string $code
  * @property string $email
  * @property string $username
- * @property int $created_at
- * @property User $user        User that this account is connected for
+ * @property int    $created_at
+ * @property User   $user        User that this account is connected for
  */
 class SocialNetworkAccount extends ActiveRecord
 {

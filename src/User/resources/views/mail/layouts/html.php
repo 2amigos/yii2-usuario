@@ -10,8 +10,8 @@
  */
 
 /**
- * @var \yii\web\View
- * @var yii\mail\BaseMessage $content
+ * @var \yii\web\View $this
+ * @var string $content
  */
 ?>
 <?php $this->beginPage() ?>

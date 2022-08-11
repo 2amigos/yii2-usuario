@@ -10,7 +10,9 @@
  */
 
 /**
- * @var string main view render result
+/**
+ * @var \yii\web\View $this
+ * @var string $content
  */
 ?>
 

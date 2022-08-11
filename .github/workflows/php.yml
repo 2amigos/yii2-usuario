@@ -11,7 +11,7 @@ jobs:
             fail-fast: false
             matrix:
                 operating-system: ['ubuntu-latest']
-                php-versions: ['8.1', '8.0','7.4','7.3', '7.2','7.1','7.0', '5.6']
+                php-versions: ['8.1', '8.0','7.4']
 
         services:
             mariadb:
@@ -68,6 +68,9 @@ jobs:
 
             - name: Run tests
               run: XDEBUG_MODE=coverage php vendor/bin/codecept run --coverage --coverage-xml
+
+            - name: Run static code analysis
+              run:  vendor/bin/phpstan analyse
 
             - name: Archive failed tests artifacts - test output & log
               uses: actions/upload-artifact@v2

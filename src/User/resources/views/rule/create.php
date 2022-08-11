@@ -10,9 +10,9 @@
  */
 
 /**
+ * @var yii\web\View $this
  * @var \Da\User\Model\Rule $model
- * @var $this               yii\web\View
- * @var $unassignedItems    string[]
+ * @var string[] $unassignedItems
  */
 $this->title = Yii::t('usuario', 'Create new rule');
 $this->params['breadcrumbs'][] = $this->title;

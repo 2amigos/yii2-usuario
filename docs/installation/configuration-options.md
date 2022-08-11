@@ -3,6 +3,22 @@ Configuration Options
 
 The module comes with a set of attributes to configure. The following is the list of all available options: 
 
+#### enableSessionHistory (Type: `boolean, integer`, Default value: `false`)
+
+If this option is to `true`, session history will be kept, [more](../helpful-guides/how-to-use-session-history.md).
+
+#### numberSessionHistory (Type: `boolean, integer`, Default value: `false`)
+
+Number of expired storing records `session history`, values:
+- `false` Store all records without deleting
+- `integer` Count of records for storing
+
+#### timeoutSessionHistory (Type: `boolean, integer`, Default value: `false`)
+
+How long store `session history` after expiring, values:
+- `false` Store all records without deleting
+- `integer` Time for storing after expiring in seconds
+
 #### enableTwoFactorAuthentication (type: `boolean`, default: `false`)
 
 Setting this attribute will allow users to configure their login process with two-factor authentication. 
@@ -11,6 +27,24 @@ Setting this attribute will allow users to configure their login process with tw
 
 By default, Google Authenticator App for two-factor authentication cycles in periods of 30 seconds. In order to allow 
 a bigger period so to avoid out of sync issues.
+
+#### twoFactorAuthenticationForcedPermissions (type: `array`, default: `[]`)
+
+The list of permissions for which two factor authentication is mandatory. In order to perform the check in every action you must configure a filter into your config file like this:
+
+use Da\User\Filter\TwoFactorAuthenticationEnforceFilter;
+...
+'on beforeAction' => function() {
+        Yii::$app->controller->attachBehavior(
+            'enforceTwoFactorAuthentication',[
+                'class' => TwoFactorAuthenticationEnforceFilter::class,
+                'except' => ['login', 'logout', 'account', 'two-factor', 'two-factor-enable'],
+            ]
+        );
+    },
+...   
+This will redirect the user to their account page until the two factor authentication is enabled.
+
 
 #### enableGdprCompliance (type: `boolean`, default: `false`)
 

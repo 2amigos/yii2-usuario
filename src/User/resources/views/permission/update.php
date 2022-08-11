@@ -10,9 +10,9 @@
  */
 
 /**
- * @var \Da\User\Model\Permission
- * @var $this                     yii\web\View
- * @var $unassignedItems          string[]
+ * @var yii\web\View $this
+ * @var Da\User\Model\Permission $model
+ * @var string[] $unassignedItems
  */
 
 $this->title = Yii::t('usuario', 'Update permission');
@@ -31,4 +31,3 @@ $this->params['breadcrumbs'][] = $this->title;
 ) ?>
 
 <?php $this->endContent() ?>
-

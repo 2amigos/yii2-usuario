@@ -36,14 +36,14 @@ $I->fillField('#recoveryform-email', $user->email);
 $I->click('Continue');
 
 $I->see('An email with instructions to create a new password has been sent to ' . $user->email);
-$user = $I->grabRecord(User::className(), ['email' => $user->email]);
-$token = $I->grabRecord(Token::className(), ['user_id' => $user->id, 'type' => Token::TYPE_RECOVERY]);
-/** @var yii\swiftmailer\Message $message */
+$user = $I->grabRecord(User::class, ['email' => $user->email]);
+$token = $I->grabRecord(Token::class, ['user_id' => $user->id, 'type' => Token::TYPE_RECOVERY]);
+/** @var \yii\mail\MessageInterface $message */
 $message = $I->grabLastSentEmail();
 $I->assertArrayHasKey($user->email, $message->getTo());
 $I->assertStringContainsString(
     Html::encode($token->getUrl()),
-    utf8_encode(quoted_printable_decode($message->getSwiftMessage()->toString()))
+    utf8_encode(quoted_printable_decode($message->toString()))
 );
 
 $I->amGoingTo('reset password with invalid token');

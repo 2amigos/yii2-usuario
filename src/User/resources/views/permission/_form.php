@@ -15,9 +15,9 @@ use yii\helpers\Html;
 use yii\widgets\ActiveForm;
 
 /**
- * @var $this            yii\web\View
- * @var $model           Da\User\Model\Permission
- * @var $unassignedItems string[]
+ * @var yii\web\View $this
+ * @var Da\User\Model\Permission $model
+ * @var string[] $unassignedItems
  */
 
 ?>
