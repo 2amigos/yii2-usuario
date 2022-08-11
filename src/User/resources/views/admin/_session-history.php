@@ -19,9 +19,10 @@ use yii\web\View;
 use yii\data\ActiveDataProvider;
 
 /**
- * @var $this View
- * @var $searchModel SessionHistorySearch
- * @var $dataProvider ActiveDataProvider
+ * @var View $this
+ * @var SessionHistorySearch $searchModel
+ * @var ActiveDataProvider $dataProvider
+ * @var \Da\User\Model\User $user
  */
 ?>
 

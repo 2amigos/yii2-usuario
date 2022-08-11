@@ -12,6 +12,7 @@
 namespace Da\User\Widget;
 
 use Da\User\Model\SessionHistory;
+use Da\User\Traits\AuthManagerAwareTrait;
 use Da\User\Traits\ContainerAwareTrait;
 use Yii;
 use yii\base\InvalidConfigException;
@@ -22,6 +23,7 @@ use yii\helpers\ArrayHelper;
 class SessionStatusWidget extends Widget
 {
     use ContainerAwareTrait;
+    use AuthManagerAwareTrait;
 
     /**
      * @var SessionHistory
