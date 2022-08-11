@@ -7,22 +7,23 @@ compatibility, leaving behind obsolete versions. While yii2-usuario should
 still work without issues on 5.6, from now on testing and development will
 look forward and manitain only >=7.4 versions.
 
-- Fix replace non-working travis build with working github actions build (TonisOrmisson)
-- Fix user login events not triggered on ajax requests (TonisOrmisson)
+- Ehn: update welcome and confirmation email ending line (maxxer)
+- Ehn #361: Record and manage user session history (maranqz)
+- Fix: replace non-working travis build with working github actions build (TonisOrmisson)
+- Fix: user login events not triggered on ajax requests (TonisOrmisson)
 - Enh: Added minimum requirements when a new password is automatically generated (MatteoF96)
 - Fix #380: Avoid rewriting AccessRule::matchRole (maxxer)
 - Fix #378: Add module attribute 'disableIpLogging' (jkmssoft)
 - Enh #387: Added Persian translation (hadi-aj)
 - Fix #384: Delete flash messages after consuming (cgsmith)
+- Fix #381: Renamed events in `UserEvent` to avoid conflicts with events in `FormEvent` (Slayvin)
 - Enh: Added SK translations (snickom)
 - Fix: allow `password_changed_at` to be saved when reseting password (p4blojf)
 - Fix #430: Moved `EVENT_BEFORE_PROFILE_UPDATE` to correct place (eluhr)
-- Ehn: update welcome and confirmation email ending line (maxxer)
 - Ehn #456: Added filter to allow forcing 2FA for specific user roles (acordeddu)
 - Ehn #412: Allow role names to support UTF-8 chars (4khobta)
 - Ehn #448: Remove deprecated SwiftMailer, use SymfonyMailer instead (TonisOrmisson)
 - Ehn #428: Translations of the placeholders in the login widget (anapaulaxenon)
-- Ehn #361: Record and manage user session history (maranqz)
 
 ## 1.5.1 April 5, 2020
 
