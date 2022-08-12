@@ -115,6 +115,28 @@ class MailFactory
     }
 
     /**
+     * @param User  $user
+     * @param String $code
+     *
+     * @throws InvalidConfigException
+     * @return MailService
+     */
+    public static function makeTwoFactorCodeMailerService(User $user, String $code)
+    {
+        /** @var Module $module */
+        $module = Yii::$app->getModule('user');
+        $to = $user->email;
+        
+        $from = $module->mailParams['fromEmail'];
+        $subject = $module->mailParams['twoFactorMailSubject'];
+        $params = [
+            'code' => $code,
+        ];
+
+        return static::makeMailerService(MailEvent::TYPE_TWOFACTORCODE, $from, $to, $subject, 'twofactorcode', $params);
+    }
+
+    /**
      * Builds a MailerService.
      *
      * @param string                $type
