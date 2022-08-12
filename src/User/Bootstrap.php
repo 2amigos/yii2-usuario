@@ -29,6 +29,7 @@ use yii\base\InvalidConfigException;
 use yii\console\Application as ConsoleApplication;
 use yii\i18n\PhpMessageSource;
 use yii\web\Application as WebApplication;
+use yii\helpers\ArrayHelper;
 
 /**
  * Bootstrap class of the yii2-usuario extension. Configures container services, initializes translations,
@@ -133,7 +134,7 @@ class Bootstrap implements BootstrapInterface
                 if (in_array($name, ['User', 'Profile', 'Token', 'SocialNetworkAccount', 'SessionHistory'])) {
                     $di->set(
                         "Da\\User\\Query\\{$name}Query",
-                        function () use ($model) {
+                        function() use($model) {
                             return $model::find();
                         }
                     );
@@ -164,6 +165,38 @@ class Bootstrap implements BootstrapInterface
                 });
             }
 
+            // Initialize array of two factor authentication validators available
+            $defaultTwoFactorAuthenticationValidators = 
+               [
+                    'google-authenticator'=>[
+                        'class'=>\Da\User\Validator\TwoFactorCodeValidator::class,
+                        'description'=>Yii::t('usuario', 'Google Authenticator'),
+                        'configurationUrl'=>'user/settings/two-factor',
+                        'enabled'=>true
+                    ],
+                    'email'=>[
+                        'class'=>\Da\User\Validator\TwoFactorEmailValidator::class,
+                        'description'=>Yii::t('usuario', 'Email'),
+                        'configurationUrl'=>'user/settings/two-factor-email',
+                        // Time duration of the code in seconds
+                        'codeDurationTime'=>300,
+                        'enabled'=>true
+                    ],
+                    'sms'=>[
+                        'class'=>\Da\User\Validator\TwoFactorTextMessageValidator::class,
+                        'description'=>Yii::t('usuario', 'Text message'),
+                        'configurationUrl'=>'user/settings/two-factor-sms',
+                        // component for sending sms
+                        'smsSender'=>'smsSender',
+                        // Time duration of the code in seconds
+                        'codeDurationTime'=>300,
+                        'enabled'=>true
+                    ]
+                ];
+
+            $app->getModule('user')->twoFactorAuthenticationValidators = ArrayHelper::merge(
+                        $defaultTwoFactorAuthenticationValidators, $app->getModule('user')->twoFactorAuthenticationValidators); 
+ 
             if ($app instanceof WebApplication) {
                 // override Yii
                 $di->set(
@@ -175,6 +208,11 @@ class Bootstrap implements BootstrapInterface
                     ]
                 );
             }
+
+
+
+
+
         } catch (Exception $e) {
             die($e);
         }
@@ -256,6 +294,7 @@ class Bootstrap implements BootstrapInterface
             'confirmationMailSubject' => Yii::t('usuario', 'Confirm account on {0}', $app->name),
             'reconfirmationMailSubject' => Yii::t('usuario', 'Confirm email change on {0}', $app->name),
             'recoveryMailSubject' => Yii::t('usuario', 'Complete password reset on {0}', $app->name),
+            'twoFactorMailSubject' => Yii::t('usuario', 'Code for two factor authentication on {0}', $app->name),
         ];
 
         $module->mailParams = array_merge($defaults, $module->mailParams);

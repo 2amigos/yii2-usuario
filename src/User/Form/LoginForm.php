@@ -15,14 +15,19 @@ use Da\User\Helper\SecurityHelper;
 use Da\User\Model\User;
 use Da\User\Query\UserQuery;
 use Da\User\Traits\ModuleAwareTrait;
+use Da\User\Traits\ContainerAwareTrait;
 use Da\User\Validator\TwoFactorCodeValidator;
+use Da\User\Validator\TwoFactorEmailValidator;
+use Da\User\Validator\TwoFactorTextMessageValidator;
 use Yii;
 use yii\base\InvalidParamException;
 use yii\base\Model;
+use yii\helpers\ArrayHelper;
 
 class LoginForm extends Model
 {
     use ModuleAwareTrait;
+    use ContainerAwareTrait;
 
     /**
      * @var string login User's email or username
@@ -107,14 +112,21 @@ class LoginForm extends Model
             'twoFactorAuthenticationCodeValidate' => [
                 'twoFactorAuthenticationCode',
                 function ($attribute) {
-                    if ($this->user === null ||
-                        !(new TwoFactorCodeValidator(
-                            $this->user,
-                            $this->twoFactorAuthenticationCode,
-                            $this->module->twoFactorAuthenticationCycles
-                        ))
-                            ->validate()) {
+
+                    if ($this->user === null ) {
                         $this->addError($attribute, Yii::t('usuario', 'Invalid two factor authentication code'));
+                    }else{
+                        $module = Yii::$app->getModule('user');
+                        $validators = $module->twoFactorAuthenticationValidators; 
+                        $type = $this->user->auth_tf_type;
+                        $class = ArrayHelper::getValue($validators,$type.'.class');
+                        $codeDurationTime = ArrayHelper::getValue($validators,$type.'.codeDurationTime', 300);
+                        $validator =  $this
+                        ->make($class, [$this->user, $this->twoFactorAuthenticationCode, $this->module->twoFactorAuthenticationCycles]);
+                        $success = $validator->validate();
+                        if (!$success) {
+                            $this->addError($attribute, $validator->getUnsuccessLoginMessage($codeDurationTime));
+                        }
                     }
                 }
             ],

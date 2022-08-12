@@ -28,6 +28,42 @@ Setting this attribute will allow users to configure their login process with tw
 By default, Google Authenticator App for two-factor authentication cycles in periods of 30 seconds. In order to allow 
 a bigger period so to avoid out of sync issues.
 
+#### twoFactorAuthenticationValidators (type: `array`)
+
+An array of arrays of channels availables for two factor authentication. The keys in the arrays have the following meaning:
+class: it will be the validator class with namespace;
+name: the name that will be displayed in the section to the user;
+configurationUrl: the url to the action that will dispaly the configuration form for the validator;
+codeDurationTime: time duration of the code in session in seconds (not applicable for Google authenticator);
+smsSender: the reference to SmsSenderInterface for managing SMS send;
+enabled: true if you want to enable the channel, false otherwise.
+
+The following is the default configuration:
+
+'google-authenticator'=>[
+    'class'=>\Da\User\Validator\TwoFactorCodeValidator::class,
+    'description'=>Yii::t('usuario', 'Google Authenticator'),
+    'configurationUrl'=>'user/settings/two-factor',
+    'enabled'=>true
+],
+'email'=>[
+    'class'=>\Da\User\Validator\TwoFactorEmailValidator::class,
+    'description'=>Yii::t('usuario', 'Email'),
+    'configurationUrl'=>'user/settings/two-factor-email',
+    'codeDurationTime'=>300,
+    'enabled'=>true
+],
+'sms'=>[
+    'class'=>\Da\User\Validator\TwoFactorTextMessageValidator::class,
+    'description'=>Yii::t('usuario', 'Text message'),
+    'configurationUrl'=>'user/settings/two-factor-sms',
+    'codeDurationTime'=>300,
+    'smsSender'=>'smsSender',
+    'enabled'=>true
+]
+
+For instructions about implementation of SMS sending see at the following link: https://www.yiiframework.com/extension/yetopen/yii2-sms-aruba
+
 #### twoFactorAuthenticationForcedPermissions (type: `array`, default: `[]`)
 
 The list of permissions for which two factor authentication is mandatory. In order to perform the check in every action you must configure a filter into your config file like this:
@@ -44,7 +80,6 @@ use Da\User\Filter\TwoFactorAuthenticationEnforceFilter;
     },
 ...   
 This will redirect the user to their account page until the two factor authentication is enabled.
-
 
 #### enableGdprCompliance (type: `boolean`, default: `false`)
 
@@ -197,6 +232,7 @@ Configures the parameter values used on [MailFactory](../../src/User/Factory/Mai
     'confirmationMailSubject' => Yii::t('usuario', 'Confirm account on {0}', $app->name),
     'reconfirmationMailSubject' => Yii::t('usuario', 'Confirm email change on {0}', $app->name),
     'recoveryMailSubject' => Yii::t('usuario', 'Complete password reset on {0}', $app->name),
+    'twoFactorMailSubject' => Yii::t('usuario', 'Code for two factor authentication on {0}', $app->name),
 ]
 ```
 

@@ -1,6 +1,7 @@
 # CHANGELOG
 
 ## 1.6.0 work in progress
+
 **WARNING**: this release (long time due) makes a step forward in PHP
 compatibility, leaving behind obsolete versions. While yii2-usuario should
 still work without issues on 5.6, from now on testing and development will
@@ -27,6 +28,7 @@ There's a change in flash messages handling, please see #391
 - Ehn #428: Translations of the placeholders in the login widget (anapaulaxenon)
 - Update PHP-CS-Fixer configuration to new version (maxxer)
 - Fix #391: Always create flash messages, allow `enableFlashMessages` only to dictate display (ajmedway)
+- Ehn #458: Multiple 2FA channels (email, sms) (acordeddu)
 
 ## 1.5.1 April 5, 2020
 
