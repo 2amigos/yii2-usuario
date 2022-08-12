@@ -106,6 +106,7 @@ $module = Yii::$app->getModule('user');
                     <?php if (!$model->getUser()->auth_tf_enabled):  
                         $validators = $module->twoFactorAuthenticationValidators;
                         $theFirstFound = false; 
+                        $checked = '';
                         foreach( $validators as $name => $validator ) {
                             if($validator[ "enabled" ]){
                                 // I want to check in the radio field the first validator I get

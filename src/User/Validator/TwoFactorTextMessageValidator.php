@@ -26,6 +26,7 @@ class TwoFactorTextMessageValidator extends TwoFactorCodeValidator
     protected $user;
     protected $code;
     protected $cycles;
+    protected $type;
 
     /**
      * TwoFactorCodeValidator constructor.

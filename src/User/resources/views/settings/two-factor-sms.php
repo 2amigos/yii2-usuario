@@ -10,7 +10,7 @@
 
 /** @var string $id */
 /** @var string $uri */
-/** @var string $mobilePhoneRegistration */
+/** @var string $mobilePhone */
 ?>
 
 <div id="phonenumbersection">

@@ -32,7 +32,7 @@ class TwoFactorEmailValidator extends TwoFactorCodeValidator
      * TwoFactorCodeValidator constructor.
      *
      * @param User $user
-     * @param $code
+     * @param string $code
      * @param int $cycles
      */
     public function __construct(User $user, $code, $cycles = 0)
