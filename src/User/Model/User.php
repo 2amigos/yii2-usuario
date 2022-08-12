@@ -67,8 +67,8 @@ class User extends ActiveRecord implements IdentityInterface
     use ContainerAwareTrait;
 
     // following constants are used on secured email changing process
-    const OLD_EMAIL_CONFIRMED = 0b01;
-    const NEW_EMAIL_CONFIRMED = 0b10;
+    public const OLD_EMAIL_CONFIRMED = 0b01;
+    public const NEW_EMAIL_CONFIRMED = 0b10;
 
     /**
      * @var string Plain password. Used for model validation

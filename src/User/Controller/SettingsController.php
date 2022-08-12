@@ -397,7 +397,7 @@ class SettingsController extends Controller
     public function actionConfirm($id, $code)
     {
         $user = $this->userQuery->whereId($id)->one();
-        
+
         if ($user === null || MailChangeStrategyInterface::TYPE_INSECURE === $this->module->emailChangeStrategy) {
             throw new NotFoundHttpException();
         }
@@ -454,15 +454,14 @@ class SettingsController extends Controller
     public function actionTwoFactor($id)
     {
         $choice=Yii::$app->request->post('choice');
-        /** @var User $user */        
+        /** @var User $user */
         $user = $this->userQuery->whereId($id)->one();
 
         if (null === $user) {
             throw new NotFoundHttpException();
         }
-        
-        switch($choice)
-        {
+
+        switch ($choice) {
             case 'google-authenticator':
                 $uri = $this->make(TwoFactorQrCodeUriGeneratorService::class, [$user])->run();
                 return $this->renderAjax('two-factor', ['id' => $id, 'uri' => $uri]);
@@ -473,9 +472,8 @@ class SettingsController extends Controller
                 // get mobile phone, if exists
                 $mobilePhone=$user->getAuthTfMobilePhone();
                 $smsCode = $this->make(TwoFactorSmsCodeGeneratorService::class, [$user])->run();
-                return $this->renderAjax('two-factor-sms', ['id' => $id, 'code' => $smsCode, 'mobilePhone' => $mobilePhone] );
+                return $this->renderAjax('two-factor-sms', ['id' => $id, 'code' => $smsCode, 'mobilePhone' => $mobilePhone]);
         }
-       
     }
 
     public function actionTwoFactorEnable($id)
@@ -497,17 +495,17 @@ class SettingsController extends Controller
         }
         $code = Yii::$app->request->get('code');
         $module = Yii::$app->getModule('user');
-        $validators = $module->twoFactorAuthenticationValidators; 
+        $validators = $module->twoFactorAuthenticationValidators;
         $choice = Yii::$app->request->get('choice');
-        $codeDurationTime = ArrayHelper::getValue($validators,$choice.'.codeDurationTime', 300);
-        $class = ArrayHelper::getValue($validators,$choice.'.class');
+        $codeDurationTime = ArrayHelper::getValue($validators, $choice.'.codeDurationTime', 300);
+        $class = ArrayHelper::getValue($validators, $choice.'.class');
 
         $object = $this
             ->make($class, [$user, $code, $this->module->twoFactorAuthenticationCycles]);
         $success = $object->validate();
         $success = $success && $user->updateAttributes(['auth_tf_enabled' => '1','auth_tf_type' => $choice]);
-        $message = $success? $object->getSuccessMessage():$object->getUnsuccessMessage($codeDurationTime);
-        
+        $message = $success ? $object->getSuccessMessage() : $object->getUnsuccessMessage($codeDurationTime);
+
         return [
             'success' => $success,
             'message' => $message
@@ -601,9 +599,9 @@ class SettingsController extends Controller
         Yii::$app->response->format = Response::FORMAT_JSON;
 
         /**
-        * 
         *
-        * @var User $user 
+        *
+        * @var User $user
         */
         $user = $this->userQuery->whereId($id)->one();
 
@@ -616,13 +614,13 @@ class SettingsController extends Controller
         $mobilePhone = Yii::$app->request->get('mobilephone');
         $currentMobilePhone = $user->getAuthTfMobilePhone();
         $success=false;
-        if($currentMobilePhone==$mobilePhone){
-            $success=true;    
-        }else{
+        if ($currentMobilePhone==$mobilePhone) {
+            $success=true;
+        } else {
             $success = $user->updateAttributes(['auth_tf_mobile_phone' => $mobilePhone]);
             $success = $success && $this->make(TwoFactorSmsCodeGeneratorService::class, [$user])->run();
-        }    
-        
+        }
+
         return [
                     'success' => $success,
                     'message' => $success
