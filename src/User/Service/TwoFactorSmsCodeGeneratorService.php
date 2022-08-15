@@ -48,7 +48,7 @@ class TwoFactorSmsCodeGeneratorService implements ServiceInterface
         $this->type = 'sms';
         $module = Yii::$app->getModule('user');
         $validators = $module->twoFactorAuthenticationValidators;
-        $smsSender = ArrayHelper::getValue($validators, 'sms'.'.smsSender');
+        $smsSender = ArrayHelper::getValue($validators, 'sms.smsSender');
         $this->smsSender = Instance::ensure($smsSender, SmsSenderInterface::class);
     }
 
