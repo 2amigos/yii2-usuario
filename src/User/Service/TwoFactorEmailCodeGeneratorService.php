@@ -13,9 +13,8 @@ namespace Da\User\Service;
 
 use Da\TwoFA\Manager;
 use Da\User\Contracts\ServiceInterface;
-use Da\User\Model\User;
 use Da\User\Factory\MailFactory;
-
+use Da\User\Model\User;
 use Yii;
 
 class TwoFactorEmailCodeGeneratorService implements ServiceInterface
@@ -51,14 +50,14 @@ class TwoFactorEmailCodeGeneratorService implements ServiceInterface
         // send email
         $mailService = MailFactory::makeTwoFactorCodeMailerService($user, $code);
         // check the sending emailYii::t(
-        if(!$mailService->run()){
-            Yii::$app->session->addFlash('error', Yii::t('usuario','The email sending failed, please check your configuration.'));
+        if (!$mailService->run()) {
+            Yii::$app->session->addFlash('error', Yii::t('usuario', 'The email sending failed, please check your configuration.'));
             return false;
-        }else{
-            // put key in session
-            Yii::$app->session->set("email_code_time",  date('Y-m-d H:i:s'));
-            Yii::$app->session->set("email_code", $code);
-        }        
+        }
+        // put key in session
+        Yii::$app->session->set("email_code_time", date('Y-m-d H:i:s'));
+        Yii::$app->session->set("email_code", $code);
+
         return $code;
     }
 }

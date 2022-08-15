@@ -11,7 +11,6 @@
 
 namespace Da\User\Service\SessionHistory;
 
-
 use yii\web\DbSession;
 
 class DBTerminateSessionsService implements TerminateSessionsServiceInterface

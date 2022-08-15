@@ -14,7 +14,6 @@ namespace Da\User\Migration\Session;
 use Da\User\Helper\MigrationHelper;
 use yii\db\Migration;
 
-
 class m000000_000001_create_session_history_table extends Migration
 {
     const SESSION_HISTORY_TABLE = '{{%session_history}}';

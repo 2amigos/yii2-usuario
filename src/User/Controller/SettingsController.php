@@ -1,6 +1,6 @@
 <?php
 
-/**
+/*
  * This file is part of the 2amigos/yii2-usuario project.
  *
  * (c) 2amigOS! <http://2amigos.us/>
@@ -29,8 +29,8 @@ use Da\User\Query\UserQuery;
 use Da\User\Search\SessionHistorySearch;
 use Da\User\Service\EmailChangeService;
 use Da\User\Service\SessionHistory\TerminateUserSessionsService;
-use Da\User\Service\TwoFactorQrCodeUriGeneratorService;
 use Da\User\Service\TwoFactorEmailCodeGeneratorService;
+use Da\User\Service\TwoFactorQrCodeUriGeneratorService;
 use Da\User\Service\TwoFactorSmsCodeGeneratorService;
 use Da\User\Traits\ContainerAwareTrait;
 use Da\User\Traits\ModuleAwareTrait;
@@ -453,7 +453,7 @@ class SettingsController extends Controller
 
     public function actionTwoFactor($id)
     {
-        $choice=Yii::$app->request->post('choice');
+        $choice = Yii::$app->request->post('choice');
         /** @var User $user */
         $user = $this->userQuery->whereId($id)->one();
 
@@ -470,7 +470,7 @@ class SettingsController extends Controller
                 return $this->renderAjax('two-factor-email', ['id' => $id, 'code' => $emailCode]);
             case 'sms':
                 // get mobile phone, if exists
-                $mobilePhone=$user->getAuthTfMobilePhone();
+                $mobilePhone = $user->getAuthTfMobilePhone();
                 $smsCode = $this->make(TwoFactorSmsCodeGeneratorService::class, [$user])->run();
                 return $this->renderAjax('two-factor-sms', ['id' => $id, 'code' => $smsCode, 'mobilePhone' => $mobilePhone]);
         }
@@ -564,6 +564,41 @@ class SettingsController extends Controller
         return $this->redirect(['session-history']);
     }
 
+    public function actionTwoFactorMobilePhone($id)
+    {
+        Yii::$app->response->format = Response::FORMAT_JSON;
+
+        /**
+        *
+        *
+        * @var User $user
+        */
+        $user = $this->userQuery->whereId($id)->one();
+
+        if (null === $user) {
+            return [
+                'success' => false,
+                'message' => Yii::t('usuario', 'User not found.')
+            ];
+        }
+        $mobilePhone = Yii::$app->request->get('mobilephone');
+        $currentMobilePhone = $user->getAuthTfMobilePhone();
+        $success = false;
+        if ($currentMobilePhone == $mobilePhone) {
+            $success = true;
+        } else {
+            $success = $user->updateAttributes(['auth_tf_mobile_phone' => $mobilePhone]);
+            $success = $success && $this->make(TwoFactorSmsCodeGeneratorService::class, [$user])->run();
+        }
+
+        return [
+                    'success' => $success,
+                    'message' => $success
+                    ? Yii::t('usuario', 'Mobile phone number successfully enabled.')
+                    : Yii::t('usuario', 'Error while enabling SMS two factor authentication. Please reload the page.'),
+                ];
+    }
+
     /**
      * @param $id
      * @throws ForbiddenHttpException
@@ -592,40 +627,5 @@ class SettingsController extends Controller
         $this->trigger(SocialNetworkConnectEvent::EVENT_BEFORE_DISCONNECT, $event);
         $account->delete();
         $this->trigger(SocialNetworkConnectEvent::EVENT_AFTER_DISCONNECT, $event);
-    }
-
-    public function actionTwoFactorMobilePhone($id)
-    {
-        Yii::$app->response->format = Response::FORMAT_JSON;
-
-        /**
-        *
-        *
-        * @var User $user
-        */
-        $user = $this->userQuery->whereId($id)->one();
-
-        if (null === $user) {
-            return [
-                'success' => false,
-                'message' => Yii::t('usuario', 'User not found.')
-            ];
-        }
-        $mobilePhone = Yii::$app->request->get('mobilephone');
-        $currentMobilePhone = $user->getAuthTfMobilePhone();
-        $success=false;
-        if ($currentMobilePhone==$mobilePhone) {
-            $success=true;
-        } else {
-            $success = $user->updateAttributes(['auth_tf_mobile_phone' => $mobilePhone]);
-            $success = $success && $this->make(TwoFactorSmsCodeGeneratorService::class, [$user])->run();
-        }
-
-        return [
-                    'success' => $success,
-                    'message' => $success
-                    ? Yii::t('usuario', 'Mobile phone number successfully enabled.')
-                    : Yii::t('usuario', 'Error while enabling SMS two factor authentication. Please reload the page.'),
-                ];
     }
 }

@@ -17,7 +17,6 @@ use yii\base\InvalidConfigException;
 use yii\base\InvalidParamException;
 use yii\data\ActiveDataProvider;
 
-
 class SessionHistorySearch extends SessionHistory
 {
     use ContainerAwareTrait;

@@ -115,7 +115,7 @@ class MailFactory
     }
 
     /**
-     * @param User  $user
+     * @param User   $user
      * @param String $code
      *
      * @throws InvalidConfigException
@@ -126,7 +126,7 @@ class MailFactory
         /** @var Module $module */
         $module = Yii::$app->getModule('user');
         $to = $user->email;
-        
+
         $from = $module->mailParams['fromEmail'];
         $subject = $module->mailParams['twoFactorMailSubject'];
         $params = [

@@ -16,16 +16,16 @@ use Da\User\Query\SessionHistoryQuery;
 use Da\User\Traits\ModuleAwareTrait;
 use Yii;
 use yii\behaviors\TimestampBehavior;
-use yii\db\ActiveRecord;
 use yii\db\ActiveQuery;
+use yii\db\ActiveRecord;
 
 /**
- * @property int $user_id
+ * @property int    $user_id
  * @property string $session_id
  * @property string $user_agent
  * @property string $ip
- * @property int $created_at
- * @property int $updated_at
+ * @property int    $created_at
+ * @property int    $updated_at
  *
  * @property User $user
  * @property bool $isActive

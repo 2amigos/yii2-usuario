@@ -12,8 +12,8 @@
 namespace Da\User\Query;
 
 use Da\User\Traits\ModuleAwareTrait;
-use yii\db\ActiveQuery;
 use Yii;
+use yii\db\ActiveQuery;
 
 class SessionHistoryQuery extends ActiveQuery
 {
@@ -33,7 +33,6 @@ class SessionHistoryQuery extends ActiveQuery
     {
         return $this->andWhere($this->getCondition()->inactive($userId));
     }
-
 
     public function whereExpired($userId)
     {

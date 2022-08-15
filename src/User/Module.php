@@ -24,17 +24,17 @@ class Module extends BaseModule
 {
     /**
      * @var bool Enable the 'session history' function
-     * Using with {@see SessionHistoryDecorator}
+     *           Using with {@see SessionHistoryDecorator}
      */
     public $enableSessionHistory = false;
     /**
      * @var int|bool The number of 'session history' records will be stored for user
-     * if equals false records will not be deleted
+     *               if equals false records will not be deleted
      */
     public $numberSessionHistory = false;
     /**
      * @var int|bool The time after which the expired 'session history' will be deleted
-     * if equals false records will not be deleted
+     *               if equals false records will not be deleted
      */
     public $timeoutSessionHistory = false;
     /**
@@ -96,9 +96,9 @@ class Module extends BaseModule
      * @var bool whether to enable two factor authentication or not
      */
     public $enableTwoFactorAuthentication = false;
-     /**
-     * @var array list of permissions for which two factor authentication is mandatory
-     */
+    /**
+    * @var array list of permissions for which two factor authentication is mandatory
+    */
     public $twoFactorAuthenticationForcedPermissions = [];
     /**
      * @var array list of channels for two factor authentication availables

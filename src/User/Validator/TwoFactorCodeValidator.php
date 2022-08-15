@@ -15,8 +15,8 @@ use Da\TwoFA\Exception\InvalidSecretKeyException;
 use Da\TwoFA\Manager;
 use Da\User\Contracts\ValidatorInterface;
 use Da\User\Model\User;
-use Da\User\Traits\ContainerAwareTrait;
 use Da\User\Service\TwoFactorQrCodeUriGeneratorService;
+use Da\User\Traits\ContainerAwareTrait;
 use Yii;
 
 class TwoFactorCodeValidator implements ValidatorInterface
@@ -61,18 +61,19 @@ class TwoFactorCodeValidator implements ValidatorInterface
         return false;
     }
 
-     /**
-     * @return string
-     *
-     */
+    /**
+    * @return string
+    *
+    */
     public function getSuccessMessage()
     {
         return Yii::t('usuario', 'Two factor authentication successfully enabled.');
     }
 
     /**
-     * @return string
      *
+     * @param  mixed  $codeDurationTime
+     * @return string
      */
     public function getUnsuccessMessage($codeDurationTime)
     {
@@ -80,20 +81,21 @@ class TwoFactorCodeValidator implements ValidatorInterface
     }
 
     /**
-     * @return string
      *
+     * @param  mixed  $codeDurationTime
+     * @return string
      */
     public function getUnsuccessLoginMessage($codeDurationTime)
     {
         return Yii::t('usuario', 'Verification failed. Please, enter new code.');
     }
-   
-     /**
-     * @return string
-     *
-     */
+
+    /**
+    * @return string
+    *
+    */
     public function generateCode()
     {
-        return $this->make(TwoFactorQrCodeUriGeneratorService::class,[$this->user])->run();
+        return $this->make(TwoFactorQrCodeUriGeneratorService::class, [$this->user])->run();
     }
 }

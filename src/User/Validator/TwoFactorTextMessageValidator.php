@@ -13,16 +13,15 @@ namespace Da\User\Validator;
 
 use Da\TwoFA\Exception\InvalidSecretKeyException;
 use Da\User\Model\User;
+use Da\User\Service\TwoFactorSmsCodeGeneratorService;
+use Da\User\Traits\ContainerAwareTrait;
 use Yii;
 use yii\helpers\ArrayHelper;
-use Da\User\Traits\ContainerAwareTrait;
-use Da\User\Service\TwoFactorSmsCodeGeneratorService;
-
 
 class TwoFactorTextMessageValidator extends TwoFactorCodeValidator
 {
     use ContainerAwareTrait;
-    
+
     protected $user;
     protected $code;
     protected $cycles;
@@ -38,7 +37,7 @@ class TwoFactorTextMessageValidator extends TwoFactorCodeValidator
     public function __construct(User $user, $code, $cycles = 0)
     {
         $this->user = $user;
-        
+
         $this->code = $code;
         $this->cycles = $cycles;
         $this->type = 'sms';
@@ -51,20 +50,21 @@ class TwoFactorTextMessageValidator extends TwoFactorCodeValidator
      */
     public function validate()
     {
-        if(is_null($this->code) ||  $this->code == '' )
-            return false;        
+        if (is_null($this->code) || $this->code == '') {
+            return false;
+        }
         $smsCodeTime = new \DateTime(Yii::$app->session->get("sms_code_time"));
         $currentTime = new \DateTime('now');
-        $interval = $currentTime->getTimestamp()-$smsCodeTime->getTimestamp();
+        $interval = $currentTime->getTimestamp() - $smsCodeTime->getTimestamp();
         $module = Yii::$app->getModule('user');
         $validators = $module->twoFactorAuthenticationValidators;
-        $codeDurationTime = ArrayHelper::getValue($validators,$this->type.'.codeDurationTime', 300);
-        
-        if($interval > $codeDurationTime ){
+        $codeDurationTime = ArrayHelper::getValue($validators, $this->type.'.codeDurationTime', 300);
+
+        if ($interval > $codeDurationTime) {
             return false;
         }
         $smsCode = Yii::$app->session->get("sms_code");
-        return $this->code==$smsCode;
+        return $this->code == $smsCode;
     }
 
     /**
@@ -77,8 +77,9 @@ class TwoFactorTextMessageValidator extends TwoFactorCodeValidator
     }
 
     /**
-     * @return string
      *
+     * @param  mixed  $codeDurationTime
+     * @return string
      */
     public function getUnsuccessMessage($codeDurationTime)
     {
@@ -86,21 +87,22 @@ class TwoFactorTextMessageValidator extends TwoFactorCodeValidator
     }
 
     /**
-     * @return string
      *
+     * @param  mixed  $codeDurationTime
+     * @return string
      */
     public function getUnsuccessLoginMessage($codeDurationTime)
     {
         return Yii::t('usuario', 'Please, enter the right code. The code is valid for {0} seconds. If you want to get a new code, please click on \'Cancel\' and repeat the login request.', [$codeDurationTime]);
     }
 
-     /**
-     * @return string
-     *
-     */
+    /**
+    * @return string
+    *
+    */
     public function generateCode()
     {
-        $object = $this->make(TwoFactorSmsCodeGeneratorService::class,[$this->user]);
+        $object = $this->make(TwoFactorSmsCodeGeneratorService::class, [$this->user]);
         return $object->run();
     }
 }

@@ -16,9 +16,9 @@ use Da\User\Query\SessionHistoryCondition;
 use Da\User\Query\SessionHistoryQuery;
 use Da\User\Traits\ModuleAwareTrait;
 use Yii;
+use yii\base\InvalidArgumentException as BaseInvalidArgumentException;
 use yii\db\Exception;
 use yii\web\Session;
-use yii\base\InvalidArgumentException as BaseInvalidArgumentException;
 
 /**
  * Decorator for the {@see Session} class for storing the 'session history'
@@ -255,7 +255,6 @@ class SessionHistoryDecorator extends Session
                     return $result;
                 })
             );
-
     }
 
     /** @inheritdoc */
@@ -404,9 +403,9 @@ class SessionHistoryDecorator extends Session
     }
 
     /**
-     * @param string $id
-     * @return bool
+     * @param  string    $id
      * @throws Exception
+     * @return bool
      */
     protected function unbindSessionHistory($id)
     {
@@ -419,9 +418,9 @@ class SessionHistoryDecorator extends Session
 
     /**
      *
-     * @param int $userId
-     * @return bool
+     * @param  int       $userId
      * @throws Exception
+     * @return bool
      */
     protected function displacementHistory($userId)
     {

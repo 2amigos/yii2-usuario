@@ -14,8 +14,8 @@ namespace Da\User\Form;
 use Da\User\Helper\SecurityHelper;
 use Da\User\Model\User;
 use Da\User\Query\UserQuery;
-use Da\User\Traits\ModuleAwareTrait;
 use Da\User\Traits\ContainerAwareTrait;
+use Da\User\Traits\ModuleAwareTrait;
 use Da\User\Validator\TwoFactorCodeValidator;
 use Da\User\Validator\TwoFactorEmailValidator;
 use Da\User\Validator\TwoFactorTextMessageValidator;
@@ -112,16 +112,15 @@ class LoginForm extends Model
             'twoFactorAuthenticationCodeValidate' => [
                 'twoFactorAuthenticationCode',
                 function ($attribute) {
-
-                    if ($this->user === null ) {
+                    if ($this->user === null) {
                         $this->addError($attribute, Yii::t('usuario', 'Invalid two factor authentication code'));
-                    }else{
+                    } else {
                         $module = Yii::$app->getModule('user');
-                        $validators = $module->twoFactorAuthenticationValidators; 
+                        $validators = $module->twoFactorAuthenticationValidators;
                         $type = $this->user->auth_tf_type;
-                        $class = ArrayHelper::getValue($validators,$type.'.class');
-                        $codeDurationTime = ArrayHelper::getValue($validators,$type.'.codeDurationTime', 300);
-                        $validator =  $this
+                        $class = ArrayHelper::getValue($validators, $type.'.class');
+                        $codeDurationTime = ArrayHelper::getValue($validators, $type.'.codeDurationTime', 300);
+                        $validator = $this
                         ->make($class, [$this->user, $this->twoFactorAuthenticationCode, $this->module->twoFactorAuthenticationCycles]);
                         $success = $validator->validate();
                         if (!$success) {

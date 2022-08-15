@@ -357,6 +357,7 @@ class AdminController extends Controller
 
     /**
      * Display list session history
+     * @param mixed $id
      */
     public function actionSessionHistory($id)
     {
@@ -376,6 +377,7 @@ class AdminController extends Controller
 
     /**
      * Terminate all session user
+     * @param mixed $id
      */
     public function actionTerminateSessions($id)
     {

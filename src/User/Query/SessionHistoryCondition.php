@@ -12,8 +12,8 @@
 namespace Da\User\Query;
 
 use Da\User\Traits\ModuleAwareTrait;
-use yii\web\Session;
 use Yii;
+use yii\web\Session;
 
 class SessionHistoryCondition
 {

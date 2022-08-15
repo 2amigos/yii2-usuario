@@ -11,7 +11,6 @@
 
 namespace Da\User\Service\SessionHistory;
 
-
 use Da\User\Contracts\ServiceInterface;
 
 interface TerminateSessionsServiceInterface extends ServiceInterface

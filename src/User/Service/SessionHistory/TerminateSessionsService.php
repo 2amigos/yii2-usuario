@@ -11,7 +11,6 @@
 
 namespace Da\User\Service\SessionHistory;
 
-
 class TerminateSessionsService implements TerminateSessionsServiceInterface
 {
     protected $sessionIds;
