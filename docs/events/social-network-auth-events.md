@@ -42,7 +42,7 @@ Event::on(
 ```
 
 > For further information about how to authenticate via social networks and the available clients, please visit the 
-> [guide](../helpful-guides/social-network-authentication.md)
+> [guide](../guides/social-network-authentication.md)
 
 
 © [2amigos](http://www.2amigos.us/) 2013-2019

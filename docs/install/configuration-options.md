@@ -5,7 +5,7 @@ The module comes with a set of attributes to configure. The following is the lis
 
 #### enableSessionHistory (Type: `boolean, integer`, Default value: `false`)
 
-If this option is to `true`, session history will be kept, [more](../helpful-guides/how-to-use-session-history.md).
+If this option is to `true`, session history will be kept, [more](../guides/how-to-use-session-history.md).
 
 #### numberSessionHistory (Type: `boolean, integer`, Default value: `false`)
 
@@ -255,7 +255,7 @@ Allows customization of the web application controller namespace for the module.
 #### classMap (type: `array`, default: `[]`)
 
 Configures the definitions of the classes as they have to be override. For more information see 
-[Overriding Classes](../enhancing-and-overriding/overriding-classes.md). 
+[Overriding Classes](../customizing/overriding-classes.md). 
 
 #### routes (type: `array`, default: `[]` )
 
@@ -275,7 +275,7 @@ The routes (url rules) of the module for the URL management. The default values 
 
 #### viewPath (type: `string`, default: `@Da/User/resources/views`)
 
-Configures the root directory of the view files. See [overriding views](../enhancing-and-overriding/overriding-views.md).
+Configures the root directory of the view files. See [overriding views](../customizing/overriding-views.md).
 
 #### switchIdentitySessionKey (type: `string`, default: `yuik_usuario`) 
 
