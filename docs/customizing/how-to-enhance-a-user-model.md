@@ -8,8 +8,8 @@ provide sensible defaults where it's possible, we encourage and keep in mind use
 Very often you have to override and add your own domain (or application specific code) to your user model. With this
 extension this is very easy and can be done in a few minutes!
 
-For the case if you're using [Sidekit Application Template](../installation/sidekit-application-template.md) or
-[Advanced Application Template](../installation/advanced-application-template.md) create the following class file
+For the case if you're using [Sidekit Application Template](../install/sidekit-application-template.md) or
+[Advanced Application Template](../install/advanced-application-template.md) create the following class file
 at the `%PROJECT_DIR%/common/models/User.php` path:
 
 ```php
