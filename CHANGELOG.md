@@ -5,7 +5,7 @@
 **WARNING**: this release (long time due) makes a step forward in PHP
 compatibility, leaving behind obsolete versions. While yii2-usuario should
 still work without issues on 5.6, from now on testing and development will
-look forward and manitain only >=7.4 versions.
+look forward and maintain only >=7.4 versions.
 
 There's a change in flash messages handling, please see #391
 
@@ -29,6 +29,7 @@ There's a change in flash messages handling, please see #391
 - Update PHP-CS-Fixer configuration to new version (maxxer)
 - Fix #391: Always create flash messages, allow `enableFlashMessages` only to dictate display (ajmedway)
 - Ehn #458: Multiple 2FA channels (email, sms) (acordeddu)
+- Fix #432: Fix documentation overlap by shortening page names (cgsmith)
 
 ## 1.5.1 April 5, 2020
 
