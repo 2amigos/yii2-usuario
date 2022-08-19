@@ -66,7 +66,7 @@ class UserSearch extends Model
     public function rules()
     {
         return [
-            'safeFields' => [['username', 'email', 'registration_ip', 'created_at', 'last_login_at, last_login_ip'], 'safe'],
+            'safeFields' => [['username', 'email', 'registration_ip', 'created_at', 'last_login_at', 'last_login_ip'], 'safe'],
             'createdDefault' => [['created_at', 'last_login_at'], 'default', 'value' => null],
         ];
     }
