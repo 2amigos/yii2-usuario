@@ -46,8 +46,8 @@ class Bootstrap implements BootstrapInterface
     {
         if ($app->hasModule('user') && $app->getModule('user') instanceof Module) {
             $map = $this->buildClassMap($app->getModule('user')->classMap);
-            $this->initContainer($app, $map);
             $this->initTranslations($app);
+            $this->initContainer($app, $map);
             $this->initMailServiceConfiguration($app, $app->getModule('user'));
 
             if ($app instanceof WebApplication) {
