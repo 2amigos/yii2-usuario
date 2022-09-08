@@ -27,7 +27,7 @@ $this->params['breadcrumbs'][] = $this->title;
 $module = Yii::$app->getModule('user');
 ?>
 
-<?php $this->beginContent('@Da/User/resources/views/shared/admin_layout.php') ?>
+<?php $this->beginContent($module->viewPath . '/shared/admin_layout.php') ?>
 
 <?php Pjax::begin() ?>
 <div class="table-responsive">

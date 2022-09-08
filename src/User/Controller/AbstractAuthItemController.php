@@ -74,6 +74,7 @@ abstract class AbstractAuthItemController extends Controller
             [
                 'searchModel' => $searchModel,
                 'dataProvider' => $searchModel->search(Yii::$app->request->get()),
+                'module' => $this->module
             ]
         );
     }
@@ -101,6 +102,7 @@ abstract class AbstractAuthItemController extends Controller
             [
                 'model' => $model,
                 'unassignedItems' => $this->authHelper->getUnassignedItems($model),
+                'module' => $this->module
             ]
         );
     }
@@ -130,6 +132,7 @@ abstract class AbstractAuthItemController extends Controller
             [
                 'model' => $model,
                 'unassignedItems' => $this->authHelper->getUnassignedItems($model),
+                'module' => $this->module
             ]
         );
     }

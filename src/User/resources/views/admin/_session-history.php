@@ -23,10 +23,11 @@ use yii\data\ActiveDataProvider;
  * @var SessionHistorySearch $searchModel
  * @var ActiveDataProvider $dataProvider
  * @var \Da\User\Model\User $user
+ * @var \Da\User\Module $module
  */
 ?>
 
-<?php $this->beginContent('@Da/User/resources/views/admin/update.php', ['user' => $user]) ?>
+<?php $this->beginContent($module->viewPath. '/admin/update.php', ['user' => $user]) ?>
     <div class="row">
         <div class="col-xs-12">
             <?= Html::a(
