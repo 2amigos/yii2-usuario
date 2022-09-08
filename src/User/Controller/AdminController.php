@@ -128,6 +128,7 @@ class AdminController extends Controller
             [
                 'dataProvider' => $dataProvider,
                 'searchModel' => $searchModel,
+                'module' => $this->module
             ]
         );
     }

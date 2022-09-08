@@ -24,7 +24,6 @@ use yii\widgets\Pjax;
 $this->title = Yii::t('usuario', 'Manage users');
 $this->params['breadcrumbs'][] = $this->title;
 
-$module = Yii::$app->getModule('user');
 ?>
 
 <?php $this->beginContent($module->viewPath . '/shared/admin_layout.php') ?>
