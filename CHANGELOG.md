@@ -9,8 +9,8 @@ look forward and maintain only >=7.4 versions.
 
 There's a change in flash messages handling, please see #391
 
-- Ehn: update welcome and confirmation email ending line (maxxer)
-- Ehn #361: Record and manage user session history (maranqz)
+- Enh: update welcome and confirmation email ending line (maxxer)
+- Enh #361: Record and manage user session history (maranqz)
 - Fix: replace non-working travis build with working github actions build (TonisOrmisson)
 - Fix: user login events not triggered on ajax requests (TonisOrmisson)
 - Enh: Added minimum requirements when a new password is automatically generated (MatteoF96)
@@ -22,14 +22,15 @@ There's a change in flash messages handling, please see #391
 - Enh: Added SK translations (snickom)
 - Fix: allow `password_changed_at` to be saved when reseting password (p4blojf)
 - Fix #430: Moved `EVENT_BEFORE_PROFILE_UPDATE` to correct place (eluhr)
-- Ehn #456: Added filter to allow forcing 2FA for specific user roles (acordeddu)
-- Ehn #412: Allow role names to support UTF-8 chars (4khobta)
-- Ehn #448: Remove deprecated SwiftMailer, use SymfonyMailer instead (TonisOrmisson)
-- Ehn #428: Translations of the placeholders in the login widget (anapaulaxenon)
+- Enh #456: Added filter to allow forcing 2FA for specific user roles (acordeddu)
+- Enh #412: Allow role names to support UTF-8 chars (4khobta)
+- Enh #448: Remove deprecated SwiftMailer, use SymfonyMailer instead (TonisOrmisson)
+- Enh #428: Translations of the placeholders in the login widget (anapaulaxenon)
 - Update PHP-CS-Fixer configuration to new version (maxxer)
 - Fix #391: Always create flash messages, allow `enableFlashMessages` only to dictate display (ajmedway)
-- Ehn #458: Multiple 2FA channels (email, sms) (acordeddu)
+- Enh #458: Multiple 2FA channels (email, sms) (acordeddu)
 - Fix #432: Fix documentation overlap by shortening page names (cgsmith)
+- Enh #472: implement module viewPath in all views instead of static file reference (tonisormisson)
 
 ## 1.5.1 April 5, 2020
 
@@ -60,8 +61,8 @@ There's a change in flash messages handling, please see #391
 - Fix #209: Doc fix. allowAccountDelete default value is false (Dezinger)
 - Fix #211: Migration boolean default value set to FALSE instead 0 (Dezinger)
 - Fix #213: Migration sql syntax fix (Dezinger)
-- Ehn #131: 2FA libraries now optional (maxxer)
-- Ehn #187: Add GDPR features (Eseperio)
+- Enh #131: 2FA libraries now optional (maxxer)
+- Enh #187: Add GDPR features (Eseperio)
 - Enh #184: Add `last-login-ip` capture capability (kartik-v)
 - Enh: Changed `View::render()` calls in views to use absolute paths (ajmedway)
 - Fix #169: Fix bug in ReCaptchaComponent (BuTaMuH)

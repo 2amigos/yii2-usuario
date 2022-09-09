@@ -128,6 +128,7 @@ class AdminController extends Controller
             [
                 'dataProvider' => $dataProvider,
                 'searchModel' => $searchModel,
+                'module' => $this->module
             ]
         );
     }
@@ -178,7 +179,10 @@ class AdminController extends Controller
             }
         }
 
-        return $this->render('_account', ['user' => $user]);
+        return $this->render('_account', [
+            'user' => $user,
+            'module' => $this->module
+        ]);
     }
 
     public function actionUpdateProfile($id)
@@ -211,6 +215,7 @@ class AdminController extends Controller
             [
                 'user' => $user,
                 'profile' => $profile,
+                'module' => $this->module
             ]
         );
     }
@@ -224,6 +229,7 @@ class AdminController extends Controller
             '_info',
             [
                 'user' => $user,
+                'module' => $this->module
             ]
         );
     }
@@ -238,6 +244,7 @@ class AdminController extends Controller
             [
                 'user' => $user,
                 'params' => Yii::$app->request->post(),
+                'module' => $this->module
             ]
         );
     }
@@ -372,6 +379,7 @@ class AdminController extends Controller
             'searchModel' => $searchModel,
             'dataProvider' => $dataProvider,
             'user' => $user,
+            'module' => $this->module
         ]);
     }
 

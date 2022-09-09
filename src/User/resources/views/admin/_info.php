@@ -11,10 +11,11 @@
 
 /** @var yii\web\View $this */
 /** @var Da\User\Model\User $user */
+/** @var \Da\User\Module $module */
 
 ?>
 
-<?php $this->beginContent('@Da/User/resources/views/admin/update.php', ['user' => $user]) ?>
+<?php $this->beginContent($module->viewPath. '/admin/update.php', ['user' => $user]) ?>
 
 <table class="table">
     <tr>
