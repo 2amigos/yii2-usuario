@@ -453,6 +453,10 @@ class SettingsController extends Controller
 
     public function actionTwoFactor($id)
     {
+        if($id != Yii::$app->user->id) {
+            throw new ForbiddenHttpException();
+        } 
+        
         $choice = Yii::$app->request->post('choice');
         /** @var User $user */
         $user = $this->userQuery->whereId($id)->one();
