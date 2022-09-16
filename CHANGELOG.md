@@ -7,6 +7,11 @@ compatibility, leaving behind obsolete versions. While yii2-usuario should
 still work without issues on 5.6, from now on testing and development will
 look forward and maintain only >=7.4 versions.
 
+There's also a **security issue** for 2FA tokens: `settings/two-factor` route
+wasn't checking for the currently logged in user, so any authenticated account
+could access to all user's 2FA root code. If you cannot upgrade, check
+[24d5d5744fe0](https://github.com/2amigos/yii2-usuario/commit/24d5d5744fe03f3173ea180f106865ffaf4f48a4).
+
 There's a change in flash messages handling, please see #391
 
 - Enh: update welcome and confirmation email ending line (maxxer)
