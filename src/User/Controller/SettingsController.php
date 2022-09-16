@@ -453,6 +453,9 @@ class SettingsController extends Controller
 
     public function actionTwoFactor($id)
     {
+        if($this->module->twoFactorAuthenticationCycles){
+            throw new ForbiddenHttpException();
+        }
         $choice = Yii::$app->request->post('choice');
         /** @var User $user */
         $user = $this->userQuery->whereId($id)->one();
@@ -478,6 +481,10 @@ class SettingsController extends Controller
 
     public function actionTwoFactorEnable($id)
     {
+        if($this->module->twoFactorAuthenticationCycles){
+            throw new ForbiddenHttpException();
+        }
+        
         Yii::$app->response->format = Response::FORMAT_JSON;
 
         /**
@@ -514,6 +521,10 @@ class SettingsController extends Controller
 
     public function actionTwoFactorDisable($id)
     {
+        if($this->module->twoFactorAuthenticationCycles){
+            throw new ForbiddenHttpException();
+        } 
+        
         if($id != Yii::$app->user->id) {
             throw new ForbiddenHttpException();
         }
