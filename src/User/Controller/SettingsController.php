@@ -453,6 +453,10 @@ class SettingsController extends Controller
 
     public function actionTwoFactor($id)
     {
+        if(!$this->module->enableTwoFactorAuthentication){ 
+            throw new ForbiddenHttpException(Yii::t('usuario','Application not configured for two factor authentication.'));
+        }
+        
         if($this->module->enableTwoFactorAuthentication){
             throw new ForbiddenHttpException();
         }
@@ -481,6 +485,10 @@ class SettingsController extends Controller
 
     public function actionTwoFactorEnable($id)
     {
+        if(!$this->module->enableTwoFactorAuthentication){ 
+            throw new ForbiddenHttpException(Yii::t('usuario','Application not configured for two factor authentication.'));
+        }
+        
         if($this->module->enableTwoFactorAuthentication){
             throw new ForbiddenHttpException();
         }
@@ -521,6 +529,10 @@ class SettingsController extends Controller
 
     public function actionTwoFactorDisable($id)
     {
+        if(!$this->module->enableTwoFactorAuthentication){ 
+            throw new ForbiddenHttpException(Yii::t('usuario','Application not configured for two factor authentication.'));
+        }
+        
         if($this->module->enableTwoFactorAuthentication){
             throw new ForbiddenHttpException();
         } 
