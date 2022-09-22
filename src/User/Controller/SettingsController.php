@@ -454,14 +454,14 @@ class SettingsController extends Controller
 
     public function actionTwoFactor($id)
     {
-        if(!$this->module->enableTwoFactorAuthentication){ 
-            throw new ForbiddenHttpException(Yii::t('usuario','Application not configured for two factor authentication.'));
+        if (!$this->module->enableTwoFactorAuthentication) {
+            throw new ForbiddenHttpException(Yii::t('usuario', 'Application not configured for two factor authentication.'));
         }
 
-        if($id != Yii::$app->user->id) {
+        if ($id != Yii::$app->user->id) {
             throw new ForbiddenHttpException();
-        } 
-        
+        }
+
         $choice = Yii::$app->request->post('choice');
         /** @var User $user */
         $user = $this->userQuery->whereId($id)->one();
@@ -489,10 +489,10 @@ class SettingsController extends Controller
 
     public function actionTwoFactorEnable($id)
     {
-        if(!$this->module->enableTwoFactorAuthentication){ 
-            throw new ForbiddenHttpException(Yii::t('usuario','Application not configured for two factor authentication.'));
+        if (!$this->module->enableTwoFactorAuthentication) {
+            throw new ForbiddenHttpException(Yii::t('usuario', 'Application not configured for two factor authentication.'));
         }
-        
+
         Yii::$app->response->format = Response::FORMAT_JSON;
 
         /** @var User $user */
@@ -525,14 +525,14 @@ class SettingsController extends Controller
 
     public function actionTwoFactorDisable($id)
     {
-        if(!$this->module->enableTwoFactorAuthentication){ 
-            throw new ForbiddenHttpException(Yii::t('usuario','Application not configured for two factor authentication.'));
+        if (!$this->module->enableTwoFactorAuthentication) {
+            throw new ForbiddenHttpException(Yii::t('usuario', 'Application not configured for two factor authentication.'));
         }
-        
-        if($id != Yii::$app->user->id) {
+
+        if ($id != Yii::$app->user->id) {
             throw new ForbiddenHttpException();
         }
-        
+
         /**
         * @var User $user
         */
@@ -542,7 +542,7 @@ class SettingsController extends Controller
             throw new NotFoundHttpException();
         }
 
-        if ($user->updateAttributes(['auth_tf_enabled' => '0', 'auth_tf_key' => NULL])) {
+        if ($user->updateAttributes(['auth_tf_enabled' => '0', 'auth_tf_key' => null])) {
             Yii::$app
                 ->getSession()
                 ->setFlash('success', Yii::t('usuario', 'Two factor authentication has been disabled.'));
