@@ -139,6 +139,10 @@ class AdminController extends ActiveController
      */
     public function checkAccess($action, $model = null, $params = [])
     {
+        // Check if the REST APIs are enabled
+        if (!$this->module->enableRestApi) {
+            throw new NotFoundHttpException(Yii::t('usuario', 'The requested page does not exist.'));
+        }
         // Access for admins only
         if (!Yii::$app->user->can('admin')) {
             throw new ForbiddenHttpException(Yii::t('usuario', 'User does not have sufficient permissions.'));

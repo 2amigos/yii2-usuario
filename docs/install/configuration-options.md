@@ -317,6 +317,10 @@ Possible array keys:
 - special: minimum number of special characters;
 - min: minimum number of characters (= minimum length).
 
+#### enableRestApi (type: `boolean`, default: `false`)
+
+Whether to enable REST APIs.
+
 #### authenticatorClass (type: `string`, default: `yii\filters\auth\QueryParamAuth`)
 
 Which class to use as authenticator for REST API.
