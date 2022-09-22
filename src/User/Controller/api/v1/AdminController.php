@@ -190,7 +190,7 @@ class AdminController extends ActiveController
         // Get user model
         /** @var User $user */
         $user = $this->userQuery->where(['id' => $id])->one();
-        if (empty($user)) { // Check user, so `$id` parameter
+        if (is_null($user)) { // Check user, so `$id` parameter
             $this->throwUser404();
         }
         $user->setScenario($this->updateScenario);
@@ -231,7 +231,7 @@ class AdminController extends ActiveController
         // Get user model
         /** @var User $user */
         $user = $this->userQuery->where(['id' => $id])->one();
-        if (empty($user)) { // Check user, so `$id` parameter
+        if (is_null($user)) { // Check user, so `$id` parameter
             $this->throwUser404();
         }
         
@@ -262,7 +262,7 @@ class AdminController extends ActiveController
         // Get user model
         /** @var User $user */
         $user = $this->userQuery->where(['id' => $id])->one();
-        if (empty($user)) { // Check user, so `$id` parameter
+        if (is_null($user)) { // Check user, so `$id` parameter
             $this->throwUser404();
         }
 
@@ -300,7 +300,7 @@ class AdminController extends ActiveController
         // Get user model
         /** @var User $user */
         $user = $this->userQuery->where(['id' => $id])->one();
-        if (empty($user)) { // Check user, so `$id` parameter
+        if (is_null($user)) { // Check user, so `$id` parameter
             $this->throwUser404();
         }
 
@@ -321,7 +321,7 @@ class AdminController extends ActiveController
         // Get user model
         /** @var User $user */
         $user = $this->userQuery->where(['id' => $id])->one();
-        if (empty($user)) { // Check user, so `$id` parameter
+        if (is_null($user)) { // Check user, so `$id` parameter
             $this->throwUser404();
         }
 
@@ -357,7 +357,7 @@ class AdminController extends ActiveController
         // Get user model
         /** @var User $user */
         $user = $this->userQuery->where(['id' => $id])->one();
-        if (empty($user)) { // Check user, so `$id` parameter
+        if (is_null($user)) { // Check user, so `$id` parameter
             $this->throwUser404();
         }
 
@@ -386,7 +386,7 @@ class AdminController extends ActiveController
         // Get user model
         /** @var User $user */
         $user = $this->userQuery->where(['id' => $id])->one();
-        if (empty($user)) { // Check user, so `$id` parameter
+        if (is_null($user)) { // Check user, so `$id` parameter
             $this->throwUser404();
         }
 
@@ -412,7 +412,7 @@ class AdminController extends ActiveController
         // Get user model
         /** @var User $user */
         $user = $this->userQuery->where(['id' => $id])->one();
-        if (empty($user)) { // Check user, so `$id` parameter
+        if (is_null($user)) { // Check user, so `$id` parameter
             $this->throwUser404();
         }
 
