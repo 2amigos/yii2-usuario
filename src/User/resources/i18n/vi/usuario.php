@@ -149,7 +149,6 @@ return [
     'Login' => '',
     'Logout' => '',
     'Manage users' => '',
-    'Mobile phone not found, please check your profile' => '',
     'Mobile phone number' => '',
     'Mobile phone number successfully enabled.' => '',
     'Name' => '',
@@ -313,4 +312,5 @@ return [
     '{0, date, MMM dd, YYYY HH:mm}' => '',
     '{0, date, MMMM dd, YYYY HH:mm}' => '',
     '{0} cannot be blank.' => '',
+    'Mobile phone not found, please check your profile' => '@@@@',
 ];
