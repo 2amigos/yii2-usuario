@@ -36,6 +36,7 @@ There's a change in flash messages handling, please see #391
 - Enh #458: Multiple 2FA channels (email, sms) (acordeddu)
 - Fix #432: Fix documentation overlap by shortening page names (cgsmith)
 - Enh #472: implement module viewPath in all views instead of static file reference (tonisormisson)
+- Fix: Clear 2FA auth key when feature is disabled by user
 - Fix: check user before accessing 2FA code
 
 ## 1.5.1 April 5, 2020
