@@ -40,6 +40,7 @@ use Da\User\Validator\TwoFactorEmailValidator;
 use Da\User\Validator\TwoFactorTextMessageValidator;
 use Yii;
 use yii\base\DynamicModel;
+use yii\base\InvalidParamException;
 use yii\filters\AccessControl;
 use yii\filters\VerbFilter;
 use yii\helpers\ArrayHelper;
@@ -453,6 +454,10 @@ class SettingsController extends Controller
 
     public function actionTwoFactor($id)
     {
+        if(!$this->module->enableTwoFactorAuthentication){ 
+            throw new ForbiddenHttpException(Yii::t('usuario','Application not configured for two factor authentication.'));
+        }
+
         if($id != Yii::$app->user->id) {
             throw new ForbiddenHttpException();
         } 
@@ -477,18 +482,20 @@ class SettingsController extends Controller
                 $mobilePhone = $user->getAuthTfMobilePhone();
                 $smsCode = $this->make(TwoFactorSmsCodeGeneratorService::class, [$user])->run();
                 return $this->renderAjax('two-factor-sms', ['id' => $id, 'code' => $smsCode, 'mobilePhone' => $mobilePhone]);
+            default:
+                throw new InvalidParamException("Invalid 2FA choice");
         }
     }
 
     public function actionTwoFactorEnable($id)
     {
+        if(!$this->module->enableTwoFactorAuthentication){ 
+            throw new ForbiddenHttpException(Yii::t('usuario','Application not configured for two factor authentication.'));
+        }
+        
         Yii::$app->response->format = Response::FORMAT_JSON;
 
-        /**
-        *
-        *
-        * @var User $user
-        */
+        /** @var User $user */
         $user = $this->userQuery->whereId($id)->one();
 
         if (null === $user) {
@@ -518,9 +525,15 @@ class SettingsController extends Controller
 
     public function actionTwoFactorDisable($id)
     {
+        if(!$this->module->enableTwoFactorAuthentication){ 
+            throw new ForbiddenHttpException(Yii::t('usuario','Application not configured for two factor authentication.'));
+        }
+        
+        if($id != Yii::$app->user->id) {
+            throw new ForbiddenHttpException();
+        }
+        
         /**
-        *
-        *
         * @var User $user
         */
         $user = $this->userQuery->whereId($id)->one();
@@ -529,7 +542,7 @@ class SettingsController extends Controller
             throw new NotFoundHttpException();
         }
 
-        if ($user->updateAttributes(['auth_tf_enabled' => '0'])) {
+        if ($user->updateAttributes(['auth_tf_enabled' => '0', 'auth_tf_key' => NULL])) {
             Yii::$app
                 ->getSession()
                 ->setFlash('success', Yii::t('usuario', 'Two factor authentication has been disabled.'));
