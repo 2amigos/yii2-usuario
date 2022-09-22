@@ -488,10 +488,7 @@ class SettingsController extends Controller
         if(!$this->module->enableTwoFactorAuthentication){ 
             throw new ForbiddenHttpException(Yii::t('usuario','Application not configured for two factor authentication.'));
         }
-        
-        if($this->module->enableTwoFactorAuthentication){
-            throw new ForbiddenHttpException();
-        }
+
         
         Yii::$app->response->format = Response::FORMAT_JSON;
 
@@ -532,10 +529,6 @@ class SettingsController extends Controller
         if(!$this->module->enableTwoFactorAuthentication){ 
             throw new ForbiddenHttpException(Yii::t('usuario','Application not configured for two factor authentication.'));
         }
-        
-        if($this->module->enableTwoFactorAuthentication){
-            throw new ForbiddenHttpException();
-        } 
         
         if($id != Yii::$app->user->id) {
             throw new ForbiddenHttpException();
