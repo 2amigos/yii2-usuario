@@ -40,6 +40,7 @@ use Da\User\Validator\TwoFactorEmailValidator;
 use Da\User\Validator\TwoFactorTextMessageValidator;
 use Yii;
 use yii\base\DynamicModel;
+use yii\base\InvalidParamException;
 use yii\filters\AccessControl;
 use yii\filters\VerbFilter;
 use yii\helpers\ArrayHelper;
@@ -456,6 +457,10 @@ class SettingsController extends Controller
         if(!$this->module->enableTwoFactorAuthentication){ 
             throw new ForbiddenHttpException(Yii::t('usuario','Application not configured for two factor authentication.'));
         }
+
+        if($id != Yii::$app->user->id) {
+            throw new ForbiddenHttpException();
+        } 
         
         $choice = Yii::$app->request->post('choice');
         /** @var User $user */
@@ -477,6 +482,8 @@ class SettingsController extends Controller
                 $mobilePhone = $user->getAuthTfMobilePhone();
                 $smsCode = $this->make(TwoFactorSmsCodeGeneratorService::class, [$user])->run();
                 return $this->renderAjax('two-factor-sms', ['id' => $id, 'code' => $smsCode, 'mobilePhone' => $mobilePhone]);
+            default:
+                throw new InvalidParamException("Invalid 2FA choice");
         }
     }
 
@@ -485,15 +492,10 @@ class SettingsController extends Controller
         if(!$this->module->enableTwoFactorAuthentication){ 
             throw new ForbiddenHttpException(Yii::t('usuario','Application not configured for two factor authentication.'));
         }
-
         
         Yii::$app->response->format = Response::FORMAT_JSON;
 
-        /**
-        *
-        *
-        * @var User $user
-        */
+        /** @var User $user */
         $user = $this->userQuery->whereId($id)->one();
 
         if (null === $user) {

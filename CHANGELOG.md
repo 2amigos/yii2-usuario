@@ -7,6 +7,11 @@ compatibility, leaving behind obsolete versions. While yii2-usuario should
 still work without issues on 5.6, from now on testing and development will
 look forward and maintain only >=7.4 versions.
 
+There's also a **security issue** for 2FA tokens: `settings/two-factor` route
+wasn't checking for the currently logged in user, so any authenticated account
+could access to all user's 2FA root code. If you cannot upgrade, check
+[24d5d5744fe0](https://github.com/2amigos/yii2-usuario/commit/24d5d5744fe03f3173ea180f106865ffaf4f48a4).
+
 There's a change in flash messages handling, please see #391
 
 - Enh: update welcome and confirmation email ending line (maxxer)
@@ -31,7 +36,8 @@ There's a change in flash messages handling, please see #391
 - Enh #458: Multiple 2FA channels (email, sms) (acordeddu)
 - Fix #432: Fix documentation overlap by shortening page names (cgsmith)
 - Enh #472: implement module viewPath in all views instead of static file reference (tonisormisson)
-- Fix: Fixed not removing auth key in database once 2FA is disabled
+- Fix: Clear 2FA auth key when feature is disabled by user
+- Fix: check user before accessing 2FA code
 
 ## 1.5.1 April 5, 2020
 
