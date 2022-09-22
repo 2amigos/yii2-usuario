@@ -13,9 +13,11 @@ namespace Da\User\Service;
 
 use Da\User\Contracts\ServiceInterface;
 use Da\User\Controller\AdminController;
+use Da\User\Controller\api\v1\AdminController as AdminControllerRest;
 use Da\User\Event\UserEvent;
 use Da\User\Helper\SecurityHelper;
 use Da\User\Model\User;
+use TypeError;
 
 class UserBlockService implements ServiceInterface
 {
@@ -27,9 +29,13 @@ class UserBlockService implements ServiceInterface
     public function __construct(
         User $model,
         UserEvent $event,
-        AdminController $controller,
+        $controller,
         SecurityHelper $securityHelper
     ) {
+        if (!in_array(get_class($controller), [AdminController::class, AdminControllerRest::class])) {
+            throw new TypeError('Argument controller must be either of type ' 
+                . AdminController::class . ' or ' . AdminControllerRest::class . ', ' . get_class($controller) . ' given');
+        }
         $this->model = $model;
         $this->event = $event;
         $this->controller = $controller;
