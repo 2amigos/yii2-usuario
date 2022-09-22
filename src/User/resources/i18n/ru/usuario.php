@@ -287,6 +287,7 @@ return [
     '{0, date, MMMM dd, YYYY HH:mm}' => '{0, date, d MMMM YYYY в HH:mm}',
     '{0} cannot be blank.' => '{0} не может быть пустым.',
     'According to the European General Data Protection Regulation (GDPR) we need your consent to work with your personal data.' => '',
+    'Application not configured for two factor authentication.' => '',
     'Code for two factor authentication on {0}' => '',
     'Data privacy' => '',
     'Error while enabling SMS two factor authentication. Please reload the page.' => '',

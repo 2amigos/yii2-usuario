@@ -275,6 +275,7 @@ return [
     '{0} cannot be blank.' => '{0} darf nicht leer sein.',
     'According to the European General Data Protection Regulation (GDPR) we need your consent to work with your personal data.' => '',
     'Active' => '',
+    'Application not configured for two factor authentication.' => '',
     'Code for two factor authentication on {0}' => '',
     'Current' => '',
     'Data privacy' => '',

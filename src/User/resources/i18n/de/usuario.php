@@ -278,6 +278,7 @@ return [
     '{0, date, MMMM dd, YYYY HH:mm}' => '{0, date, dd. MMMM YYYY, HH:mm}',
     '{0} cannot be blank.' => '{0} darf nicht leer sein.',
     'Active' => '',
+    'Application not configured for two factor authentication.' => '',
     'Code for two factor authentication on {0}' => '',
     'Current' => '',
     'Error while enabling SMS two factor authentication. Please reload the page.' => '',

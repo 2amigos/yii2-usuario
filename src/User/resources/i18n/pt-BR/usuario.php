@@ -272,6 +272,7 @@ return [
     'According to the European General Data Protection Regulation (GDPR) we need your consent to work with your personal data.' => '',
     'Active' => '',
     'An email with instructions to create a new password has been sent to {email} if it is associated with an {appName} account. Your existing password has not been changed.' => '',
+    'Application not configured for two factor authentication.' => '',
     'Code for two factor authentication on {0}' => '',
     'Current' => '',
     'Data privacy' => '',

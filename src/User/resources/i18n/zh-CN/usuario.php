@@ -32,6 +32,7 @@ return [
     'Already registered? Sign in!' => '',
     'An email with instructions to create a new password has been sent to {email} if it is associated with an {appName} account. Your existing password has not been changed.' => '',
     'An error occurred processing your request' => '',
+    'Application not configured for two factor authentication.' => '',
     'Are you sure you want to block this user?' => '',
     'Are you sure you want to confirm this user?' => '',
     'Are you sure you want to delete this user?' => '',

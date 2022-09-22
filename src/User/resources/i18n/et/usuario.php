@@ -269,6 +269,7 @@ return [
     '{0} cannot be blank.' => '{0} ei või olla tühi.',
     'According to the European General Data Protection Regulation (GDPR) we need your consent to work with your personal data.' => '',
     'Active' => '',
+    'Application not configured for two factor authentication.' => '',
     'Authentication rule class {0} can not be instantiated' => '',
     'Code for two factor authentication on {0}' => '',
     'Current' => '',

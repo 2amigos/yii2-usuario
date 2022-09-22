@@ -299,6 +299,7 @@ return [
     '{0, date, MMMM dd, YYYY HH:mm}' => '{0, date, dd MMMM YYYY HH:mm}',
     '{0} cannot be blank.' => '{0} non può essere vuoto.',
     'Active' => '',
+    'Application not configured for two factor authentication.' => '',
     'Current' => '',
     'IP' => '',
     'If you haven\'t received a password, you can reset it at' => '',
