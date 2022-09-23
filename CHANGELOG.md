@@ -38,6 +38,7 @@ There's a change in flash messages handling, please see #391
 - Enh #472: implement module viewPath in all views instead of static file reference (tonisormisson)
 - Fix: Clear 2FA auth key when feature is disabled by user
 - Fix: check user before accessing 2FA code
+- Enh: added `AdminController` REST controller (MatteoF96)
 
 ## 1.5.1 April 5, 2020
 

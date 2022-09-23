@@ -52,3 +52,6 @@ codeception.yml
 # composer
 composer.lock
 
+# visual studio code
+.vscode
+

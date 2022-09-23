@@ -233,7 +233,6 @@ class Module extends BaseModule
      * @var boolean whether to disable IP logging into user table
      */
     public $disableIpLogging = false;
-
     /**
      * @var array Minimum requirements when a new password is automatically generated.
      *            Array structure: `requirement => minimum number characters`.
@@ -249,6 +248,33 @@ class Module extends BaseModule
         'lower' => 1,
         'digit' => 1,
         'upper' => 1,
+    ];
+    /**
+     * @var boolean Whether to enable REST APIs.
+     */
+    public $enableRestApi = false;
+    /**
+     * @var string Which class to use as authenticator for REST API.
+     * Possible values: `HttpBasicAuth`, `HttpBearerAuth` or `QueryParamAuth`.
+     * Default value = `yii\filters\auth\QueryParamAuth` class, therefore access tokens are sent as query parameter; for instance: `https://example.com/users?access-token=xxxxxxxx`.
+     */
+    public $authenticatorClass = 'yii\filters\auth\QueryParamAuth';
+    /**
+     * @var string Route prefix for REST admin controller.
+     */
+    public $adminRestPrefix = 'user/api/v1';
+    /**
+     * @var array Routes for REST admin controller.
+     */
+    public $adminRestRoutes = [
+        'GET,HEAD users' => 'admin/index',
+        'POST users' => 'admin/create',
+        'PUT,PATCH users/<id>' => 'admin/update',
+        'GET,HEAD users/<id>' => 'admin/view',
+        'DELETE users/<id>' => 'admin/delete',
+        'users/<action>/<id>' => 'admin/<action>',
+        'users/<id>' => 'admin/options',
+        'users' => 'admin/options',
     ];
 
     /**

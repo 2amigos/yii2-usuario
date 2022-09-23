@@ -53,6 +53,7 @@ class Bootstrap implements BootstrapInterface
             if ($app instanceof WebApplication) {
                 $this->initControllerNamespace($app);
                 $this->initUrlRoutes($app);
+                $this->initUrlRestRoutes($app);
                 $this->initAuthCollection($app);
                 $this->initAuthManager($app);
             } else {
@@ -273,6 +274,25 @@ class Bootstrap implements BootstrapInterface
             $config['routePrefix'] = 'user';
         }
 
+        $rule = Yii::createObject($config);
+        $app->getUrlManager()->addRules([$rule], false);
+    }
+
+    /**
+     * Initializes web url for rest routes.
+     * @param WebApplication $app
+     * @throws InvalidConfigException
+     */
+    protected function initUrlRestRoutes(WebApplication $app)
+    {
+        /** @var Module $module */
+        $module = $app->getModule('user');
+        $rules = $module->adminRestRoutes;
+        $config = [
+            'class' => 'yii\web\GroupUrlRule',
+            'prefix' => $module->adminRestPrefix,
+            'rules' => $rules,
+        ];
         $rule = Yii::createObject($config);
         $app->getUrlManager()->addRules([$rule], false);
     }

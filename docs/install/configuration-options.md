@@ -317,4 +317,41 @@ Possible array keys:
 - special: minimum number of special characters;
 - min: minimum number of characters (= minimum length).
 
+#### enableRestApi (type: `boolean`, default: `false`)
+
+Whether to enable REST APIs.
+
+#### authenticatorClass (type: `string`, default: `yii\filters\auth\QueryParamAuth`)
+
+Which class to use as authenticator for REST API.
+Possible values ([official documentation](https://www.yiiframework.com/doc/guide/2.0/en/rest-authentication)):
+- `HttpBasicAuth`
+- `HttpBearerAuth`
+- `QueryParamAuth`.
+
+Default value = `yii\filters\auth\QueryParamAuth` class, therefore access tokens are sent as query parameter; for instance: `https://example.com/users?access-token=xxxxxxxx`.
+
+#### adminRestPrefix (type: `string`, default: `user/api/v1`)
+
+Route prefix for REST admin controller.
+
+#### adminRestRoutes (type `array`)
+
+Routes for REST admin controller.
+
+Default value: 
+```php
+[
+    'GET,HEAD users' => 'admin/index',
+    'POST users' => 'admin/create',
+    'PUT,PATCH users/<id>' => 'admin/update',
+    'GET,HEAD users/<id>' => 'admin/view',
+    'DELETE users/<id>' => 'admin/delete',
+    'users/<action>/<id>' => 'admin/<action>',
+    'users/<id>' => 'admin/options',
+    'users' => 'admin/options',
+];
+```
+
+
 © [2amigos](http://www.2amigos.us/) 2013-2019
