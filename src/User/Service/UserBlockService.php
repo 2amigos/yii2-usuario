@@ -32,8 +32,8 @@ class UserBlockService implements ServiceInterface
         $controller,
         SecurityHelper $securityHelper
     ) {
-        if (!in_array(get_class($controller), [AdminController::class, AdminControllerRest::class])) {
-            throw new TypeError('Argument controller must be either of type ' 
+        if (!($controller instanceof AdminController || $controller instanceof AdminControllerRest)) {
+            throw new TypeError('Argument controller must be either of type '
                 . AdminController::class . ' or ' . AdminControllerRest::class . ', ' . get_class($controller) . ' given');
         }
         $this->model = $model;
