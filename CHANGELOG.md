@@ -1,6 +1,6 @@
 # CHANGELOG
 
-## work in progress
+## 1.6.0 work in progress
  - Fix replace non-working travis build with working github actions build (TonisOrmisson)
  - Fix user login events not triggered on ajax requests (TonisOrmisson)
  - Enh: Added minimum requirements when a new password is automatically generated (MatteoF96)
@@ -9,8 +9,9 @@
  - Enh #387: Added Persian translation (hadi-aj)
  - Fix #384: Delete flash messages after consuming (cgsmith)
  - Enh: Added SK translations (snickom)
- - Fix: allow password_changed_at to be saved when reseting password (p4blojf)
- - Fix #430: Moved EVENT_BEFORE_PROFILE_UPDATE to correct place (eluhr)
+ - Fix: allow `password_changed_at` to be saved when reseting password (p4blojf)
+ - Fix #430: Moved `EVENT_BEFORE_PROFILE_UPDATE` to correct place (eluhr)
+ - Ehn #456: Added filter to allow forcing 2FA for specific user roles (acordeddu)
 
 ## 1.5.1 April 5, 2020
  - Fix #370: Extending view fix (effsoft)
