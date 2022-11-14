@@ -67,6 +67,7 @@ class SocialNetworkAuthenticateService implements ServiceInterface
         $event = Yii::createObject(SocialNetworkAuthEvent::class, [$account, $this->client]);
 
         $this->controller->trigger(SocialNetworkAuthEvent::EVENT_BEFORE_AUTHENTICATE, $event);
+        $result = false;
 
         if ($account->user instanceof User) {
             if ($account->user->getIsBlocked()) {
@@ -75,12 +76,15 @@ class SocialNetworkAuthenticateService implements ServiceInterface
             } else {
                 Yii::$app->user->login($account->user, $this->controller->module->rememberLoginLifespan);
                 $this->authAction->setSuccessUrl(Yii::$app->getUser()->getReturnUrl());
+                $result = true;
             }
         } else {
             $this->authAction->setSuccessUrl($account->getConnectionUrl());
+            $result = true;
         }
 
         $this->controller->trigger(SocialNetworkAuthEvent::EVENT_AFTER_AUTHENTICATE, $event);
+        return $result;
     }
 
     protected function createAccount()

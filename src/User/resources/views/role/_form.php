@@ -10,8 +10,8 @@
  */
 
 /**
- * @var $this  yii\web\View
- * @var $model \Da\User\Model\Role
+ * @var yii\web\View $this
+ * @var \Da\User\Model\Role $model
  */
 
 use Da\User\Helper\AuthHelper;

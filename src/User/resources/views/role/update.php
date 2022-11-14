@@ -10,16 +10,17 @@
  */
 
 /**
+ * @var yii\web\View $this
  * @var \Da\User\Model\Role $model
- * @var $this               yii\web\View
- * @var $unassignedItems    string[]
+ * @var string[] $unassignedItems
+ * @var \Da\User\Module $module
  */
 $this->title = Yii::t('usuario', 'Update role');
 $this->params['breadcrumbs'][] = $this->title;
 
 ?>
 
-<?php $this->beginContent('@Da/User/resources/views/shared/admin_layout.php') ?>
+<?php $this->beginContent($module->viewPath . '/shared/admin_layout.php') ?>
 
 <?= $this->render(
     '/role/_form',

@@ -32,9 +32,12 @@ class AjaxRequestModelValidator implements ValidatorInterface
 
         if ($request->getIsAjax() && $this->model->load($request->post())) {
             Yii::$app->response->format = Response::FORMAT_JSON;
-            Yii::$app->response->data = ActiveForm::validate($this->model);
+            $result = ActiveForm::validate($this->model);
+            Yii::$app->response->data = $result;
             Yii::$app->response->send();
             Yii::$app->end();
+            return $result;
         }
+        return false;
     }
 }

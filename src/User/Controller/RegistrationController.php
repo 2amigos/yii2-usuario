@@ -110,13 +110,13 @@ class RegistrationController extends Controller
 
             // Create a temporay $user so we can get the attributes, then get
             // the intersection between the $form fields  and the $user fields.
-            $user = $this->make(User::class, [] );
+            $user = $this->make(User::class, []);
             $fields = array_intersect_key($form->attributes, $user->attributes);
 
-             // Becomes password_hash
+            // Becomes password_hash
             $fields['password'] = $form['password'];
 
-            $user = $this->make(User::class, [], $fields );
+            $user = $this->make(User::class, [], $fields);
 
             $user->setScenario('register');
             $mailService = MailFactory::makeWelcomeMailerService($user);

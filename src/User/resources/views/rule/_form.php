@@ -1,8 +1,8 @@
 <?php
 
 /**
- * @var $this  yii\web\View
- * @var $model \Da\User\Model\Rule
+ * @var yii\web\View $this
+ * @var \Da\User\Model\Rule $model
  */
 
 use yii\helpers\Html;

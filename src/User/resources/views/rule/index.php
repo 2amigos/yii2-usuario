@@ -6,9 +6,10 @@ use yii\helpers\Url;
 use yii\rbac\Rule;
 
 /**
- * @var $dataProvider \yii\data\ActiveDataProvider
- * @var $searchModel  \Da\User\Search\RuleSearch
- * @var $this         yii\web\View
+ * @var \yii\data\ActiveDataProvider $dataProvider
+ * @var \Da\User\Search\RuleSearch $searchModel
+ * @var yii\web\View $this
+ * @var \Da\User\Module $module
  */
 
 $this->title = Yii::t('usuario', 'Rules');
@@ -16,7 +17,7 @@ $this->params['breadcrumbs'][] = $this->title;
 
 ?>
 
-<?php $this->beginContent('@Da/User/resources/views/shared/admin_layout.php') ?>
+<?php $this->beginContent($module->viewPath . '/shared/admin_layout.php') ?>
 <div class="table-responsive">
 <?= GridView::widget(
     [

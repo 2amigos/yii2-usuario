@@ -13,7 +13,7 @@ After installing the extension and having configured everything, you need setup 
 There are several ways to do that:
 
 * using migrations
-* using the Command line [Console Commands](../installation/console-commands.md)
+* using the Command line [Console Commands](../install/console-commands.md)
 
 ### Creating the first Administrator during a migration
 

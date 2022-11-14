@@ -10,9 +10,10 @@
  */
 
 /**
- * @var $dataProvider \yii\data\ActiveDataProvider
- * @var $this         yii\web\View
- * @var $searchModel  \Da\User\Search\PermissionSearch
+ * @var \yii\data\ActiveDataProvider $dataProvider
+ * @var yii\web\View $this
+ * @var \Da\User\Search\PermissionSearch $searchModel
+ * @var \Da\User\Module $module
  */
 use yii\grid\ActionColumn;
 use yii\grid\GridView;
@@ -23,7 +24,7 @@ $this->params['breadcrumbs'][] = $this->title;
 
 ?>
 
-<?php $this->beginContent('@Da/User/resources/views/shared/admin_layout.php') ?>
+<?php $this->beginContent($module->viewPath . '/shared/admin_layout.php') ?>
 <div class="table-responsive">
 <?= GridView::widget(
     [

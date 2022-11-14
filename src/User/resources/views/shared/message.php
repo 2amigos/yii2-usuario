@@ -9,11 +9,11 @@
  * the LICENSE file that was distributed with this source code.
  */
 
-/**
- * @var yii\web\View
- * @var \Da\User\Module $module
- * @var string          $title
- */
+/** @var \yii\web\View $this */
+/** @var string $content */
+/** @var string $title */
+/** @var \Da\User\Module $module */
+
 
 $this->title = $title;
 

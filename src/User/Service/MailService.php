@@ -12,13 +12,16 @@
 namespace Da\User\Service;
 
 use Da\User\Contracts\ServiceInterface;
+use Da\User\Traits\ModuleAwareTrait;
 use Yii;
 use yii\mail\BaseMailer;
 use yii\mail\MailerInterface;
 
 class MailService implements ServiceInterface
 {
-    protected $viewPath = '@Da/User/resources/views/mail';
+    use ModuleAwareTrait;
+
+    protected $viewPath = '';
 
     protected $type;
     protected $from;
@@ -48,6 +51,7 @@ class MailService implements ServiceInterface
         $this->view = $view;
         $this->params = $params;
         $this->mailer = $mailer;
+        $this->viewPath = $this->getModule()->viewPath . '/mail';
         $this->mailer->setViewPath($this->viewPath);
         $this->mailer->getView()->theme = Yii::$app->view->theme;
     }

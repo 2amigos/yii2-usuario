@@ -47,7 +47,6 @@ $this->params['breadcrumbs'][] = $this->title;
                     'twoFactorAuthenticationCode',
                     ['inputOptions' => ['autofocus' => 'autofocus', 'class' => 'form-control', 'tabindex' => '1']]
                 ) ?>
-
                 <div class="row">
                     <div class="col-md-6">
                         <?= Html::a(

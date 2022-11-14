@@ -16,7 +16,9 @@ use Da\User\Contracts\AuthManagerInterface;
 use Da\User\Controller\SecurityController;
 use Da\User\Event\FormEvent;
 use Da\User\Helper\ClassMapHelper;
+use Da\User\Model\SessionHistory;
 use Da\User\Model\User;
+use Da\User\Search\SessionHistorySearch;
 use Yii;
 use yii\authclient\Collection;
 use yii\base\Application;
@@ -25,6 +27,7 @@ use yii\base\Event as YiiEvent;
 use yii\base\Exception;
 use yii\base\InvalidConfigException;
 use yii\console\Application as ConsoleApplication;
+use yii\helpers\ArrayHelper;
 use yii\i18n\PhpMessageSource;
 use yii\web\Application as WebApplication;
 
@@ -43,13 +46,14 @@ class Bootstrap implements BootstrapInterface
     {
         if ($app->hasModule('user') && $app->getModule('user') instanceof Module) {
             $map = $this->buildClassMap($app->getModule('user')->classMap);
-            $this->initContainer($app, $map);
             $this->initTranslations($app);
+            $this->initContainer($app, $map);
             $this->initMailServiceConfiguration($app, $app->getModule('user'));
 
             if ($app instanceof WebApplication) {
                 $this->initControllerNamespace($app);
                 $this->initUrlRoutes($app);
+                $this->initUrlRestRoutes($app);
                 $this->initAuthCollection($app);
                 $this->initAuthManager($app);
             } else {
@@ -128,7 +132,7 @@ class Bootstrap implements BootstrapInterface
                 $model = is_array($definition) ? $definition['class'] : $definition;
                 $name = substr($class, strrpos($class, '\\') + 1);
                 $modelClassMap[$class] = $model;
-                if (in_array($name, ['User', 'Profile', 'Token', 'SocialNetworkAccount'])) {
+                if (in_array($name, ['User', 'Profile', 'Token', 'SocialNetworkAccount', 'SessionHistory'])) {
                     $di->set(
                         "Da\\User\\Query\\{$name}Query",
                         function () use ($model) {
@@ -161,6 +165,40 @@ class Bootstrap implements BootstrapInterface
                     }
                 });
             }
+
+            // Initialize array of two factor authentication validators available
+            $defaultTwoFactorAuthenticationValidators =
+               [
+                    'google-authenticator' => [
+                        'class' => \Da\User\Validator\TwoFactorCodeValidator::class,
+                        'description' => Yii::t('usuario', 'Google Authenticator'),
+                        'configurationUrl' => 'user/settings/two-factor',
+                        'enabled' => true
+                    ],
+                    'email' => [
+                        'class' => \Da\User\Validator\TwoFactorEmailValidator::class,
+                        'description' => Yii::t('usuario', 'Email'),
+                        'configurationUrl' => 'user/settings/two-factor-email',
+                        // Time duration of the code in seconds
+                        'codeDurationTime' => 300,
+                        'enabled' => true
+                    ],
+                    'sms' => [
+                        'class' => \Da\User\Validator\TwoFactorTextMessageValidator::class,
+                        'description' => Yii::t('usuario', 'Text message'),
+                        'configurationUrl' => 'user/settings/two-factor-sms',
+                        // component for sending sms
+                        'smsSender' => 'smsSender',
+                        // Time duration of the code in seconds
+                        'codeDurationTime' => 300,
+                        'enabled' => true
+                    ]
+                ];
+
+            $app->getModule('user')->twoFactorAuthenticationValidators = ArrayHelper::merge(
+                $defaultTwoFactorAuthenticationValidators,
+                $app->getModule('user')->twoFactorAuthenticationValidators
+            );
 
             if ($app instanceof WebApplication) {
                 // override Yii
@@ -241,6 +279,25 @@ class Bootstrap implements BootstrapInterface
     }
 
     /**
+     * Initializes web url for rest routes.
+     * @param WebApplication $app
+     * @throws InvalidConfigException
+     */
+    protected function initUrlRestRoutes(WebApplication $app)
+    {
+        /** @var Module $module */
+        $module = $app->getModule('user');
+        $rules = $module->adminRestRoutes;
+        $config = [
+            'class' => 'yii\web\GroupUrlRule',
+            'prefix' => $module->adminRestPrefix,
+            'rules' => $rules,
+        ];
+        $rule = Yii::createObject($config);
+        $app->getUrlManager()->addRules([$rule], false);
+    }
+
+    /**
      * Ensures required mail parameters needed for the mail service.
      *
      * @param Application             $app
@@ -254,6 +311,7 @@ class Bootstrap implements BootstrapInterface
             'confirmationMailSubject' => Yii::t('usuario', 'Confirm account on {0}', $app->name),
             'reconfirmationMailSubject' => Yii::t('usuario', 'Confirm email change on {0}', $app->name),
             'recoveryMailSubject' => Yii::t('usuario', 'Complete password reset on {0}', $app->name),
+            'twoFactorMailSubject' => Yii::t('usuario', 'Code for two factor authentication on {0}', $app->name),
         ];
 
         $module->mailParams = array_merge($defaults, $module->mailParams);
@@ -315,10 +373,12 @@ class Bootstrap implements BootstrapInterface
             'Assignment' => 'Da\User\Model\Assignment',
             'Permission' => 'Da\User\Model\Permission',
             'Role' => 'Da\User\Model\Role',
+            'SessionHistory' => SessionHistory::class,
             // --- search
             'UserSearch' => 'Da\User\Search\UserSearch',
             'PermissionSearch' => 'Da\User\Search\PermissionSearch',
             'RoleSearch' => 'Da\User\Search\RoleSearch',
+            'SessionHistorySearch' => SessionHistorySearch::class,
             // --- forms
             'RegistrationForm' => 'Da\User\Form\RegistrationForm',
             'ResendForm' => 'Da\User\Form\ResendForm',
@@ -338,11 +398,13 @@ class Bootstrap implements BootstrapInterface
                 'Assignment',
                 'Permission',
                 'Role',
+                'SessionHistory'
             ],
             'Da\User\Search' => [
                 'UserSearch',
                 'PermissionSearch',
                 'RoleSearch',
+                'SessionHistorySearch',
             ],
             'Da\User\Form' => [
                 'RegistrationForm',
@@ -359,7 +421,7 @@ class Bootstrap implements BootstrapInterface
         $mapping = array_merge($defaults, $userClassMap);
 
         foreach ($mapping as $name => $definition) {
-            $map[$this->getRoute($routes, $name) . "\\$name"] = $definition;
+            $map[$this->getRoute($routes, $name) . "\\{$name}"] = $definition;
         }
 
         return $map;

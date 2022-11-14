@@ -12,17 +12,22 @@
 namespace Da\User\Widget;
 
 use Da\User\Form\LoginForm;
+use Da\User\Traits\ModuleAwareTrait;
 use Yii;
 use yii\base\Widget;
 
+/**
+ * @deprecated this seems to be unused by this module. To be deleted in future!
+ */
 class LoginWidget extends Widget
 {
+    use ModuleAwareTrait;
     public $validate = true;
 
     public function run()
     {
         return $this->render(
-            '@Da/User/resources/views/widgets/login/form',
+            $this->getModule()->$this->viewPath .'/widgets/login/form',
             [
                 'model' => Yii::createObject(LoginForm::class),
             ]

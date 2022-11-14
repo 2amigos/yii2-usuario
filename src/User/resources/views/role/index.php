@@ -14,9 +14,10 @@ use yii\grid\GridView;
 use yii\helpers\Url;
 
 /**
- * @var $dataProvider array
- * @var $searchModel  \Da\User\Search\RoleSearch
- * @var $this         yii\web\View
+ * @var \yii\data\DataProviderInterface $dataProvider
+ * @var \Da\User\Search\RoleSearch $searchModel
+ * @var yii\web\View $this
+ * @var \Da\User\Module $module
  */
 
 $this->title = Yii::t('usuario', 'Roles');
@@ -24,7 +25,7 @@ $this->params['breadcrumbs'][] = $this->title;
 
 ?>
 
-<?php $this->beginContent('@Da/User/resources/views/shared/admin_layout.php') ?>
+<?php $this->beginContent($module->viewPath . '/shared/admin_layout.php') ?>
 <div class="table-responsive">
 <?= GridView::widget(
     [

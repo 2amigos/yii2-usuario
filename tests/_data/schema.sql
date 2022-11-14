@@ -71,6 +71,8 @@ CREATE TABLE `user` (
   `updated_at` int(11) NOT NULL,
   `auth_tf_key` varchar(16) DEFAULT NULL,
   `auth_tf_enabled` tinyint(1) DEFAULT '0',
+  `auth_tf_type` varchar(20) DEFAULT NULL,
+  `auth_tf_mobile_phone` varchar(20) DEFAULT NULL,
   `flags` int(11) NOT NULL DEFAULT '0',
   `last_login_at` int(11) DEFAULT NULL,
   `gdpr_consent` tinyint(1) NULL DEFAULT '0',

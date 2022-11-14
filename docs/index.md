@@ -135,29 +135,29 @@ This will ensure the proper functionality of login/guest user detection etc.
 Configuration may differ from template to template, the following are some guidelines for sidekit app template and 
 the official Yii2 advanced application template: 
 
-- [2amigos Application Template](installation/yii2-application-template.md)
-- [Advanced Application Template](installation/advanced-application-template.md)
+- [2amigos Application Template](install/yii2-application-template.md)
+- [Advanced Application Template](install/advanced-application-template.md)
 
 See also all the possible configuration options available: 
 
-- [Configuration Options](installation/configuration-options.md)
-- [RBAC](installation/rbac.md)
-- [Console Commands](installation/console-commands.md)
-- [Mailer](installation/mailer.md)
-- [Available Actions](installation/available-actions.md)
-- [Migration guide from Dektrium tools](installation/migration-guide-from-dektrium-tools.md)
+- [Configuration Options](install/configuration-options.md)
+- [RBAC](install/rbac.md)
+- [Console Commands](install/console-commands.md)
+- [Mailer](install/mailer.md)
+- [Available Actions](install/available-actions.md)
+- [Migration guide from Dektrium tools](install/migration-guide-from-dektrium-tools.md)
 
 #### Step 4 - First steps to use Yii2-usuario
 
-Proceed with [First steps to use Yii2-usuario](helpful-guides/first-steps.md)
+Proceed with [First steps to use Yii2-usuario](guides/first-steps.md)
 
 
 Enhancing and Overriding
 ------------------------
 
-- [How to Enhance a User Model](enhancing-and-overriding/how-to-enhance-a-user-model.md)
-- [Overriding Classes](enhancing-and-overriding/overriding-classes.md) 
-- [Overriding Views](enhancing-and-overriding/overriding-views.md)
+- [How to Enhance a User Model](customizing/how-to-enhance-a-user-model.md)
+- [Overriding Classes](customizing/overriding-classes.md) 
+- [Overriding Views](customizing/overriding-views.md)
 
 Events
 ------
@@ -182,12 +182,13 @@ there all your events and then include that file on your
 Helpful Guides
 --------------
 
-- [How to Add Captcha Widget](helpful-guides/how-to-add-captcha-widget.md)
-- [How to Add Google reCaptcha Widget](helpful-guides/how-to-use-recaptcha-widget.md)
-- [How to Implement Two-Factor Authentication](helpful-guides/how-to-implement-two-factor-auth.md)
-- [How to Switch Identities](helpful-guides/how-to-switch-identities.md)
-- [Separate Frontend and Backend Sessions](helpful-guides/separate-frontend-and-backend-sessions.md)
-- [Social Network Authentication](helpful-guides/social-network-authentication.md)
+- [How to Add Captcha Widget](guides/how-to-add-captcha-widget.md)
+- [How to Add Google reCaptcha Widget](guides/how-to-use-recaptcha-widget.md)
+- [How to Implement Two-Factor Authentication](guides/how-to-implement-two-factor-auth.md)
+- [How to Switch Identities](guides/how-to-switch-identities.md)
+- [Separate Frontend and Backend Sessions](guides/separate-frontend-and-backend-sessions.md)
+- [Social Network Authentication](guides/social-network-authentication.md)
+- [How to Enable session history](guides/how-to-use-session-history.md)
 
 Contributing
 ------------

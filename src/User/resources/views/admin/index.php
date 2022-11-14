@@ -15,19 +15,18 @@ use yii\web\View;
 use yii\widgets\Pjax;
 
 /**
- * @var $this         yii\web\View
- * @var $dataProvider yii\data\ActiveDataProvider
- * @var $searchModel  Da\User\Search\UserSearch
- * @var $module       Da\User\Module
+ * @var yii\web\View $this
+ * @var yii\data\ActiveDataProvider $dataProvider
+ * @var Da\User\Search\UserSearch $searchModel
+ * @var Da\User\Module $module
  */
 
 $this->title = Yii::t('usuario', 'Manage users');
 $this->params['breadcrumbs'][] = $this->title;
 
-$module = Yii::$app->getModule('user');
 ?>
 
-<?php $this->beginContent('@Da/User/resources/views/shared/admin_layout.php') ?>
+<?php $this->beginContent($module->viewPath . '/shared/admin_layout.php') ?>
 
 <?php Pjax::begin() ?>
 <div class="table-responsive">

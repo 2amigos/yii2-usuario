@@ -67,6 +67,7 @@ class RuleController extends Controller
             [
                 'searchModel' => $searchModel,
                 'dataProvider' => $dataProvider,
+                'module' => $this->module
             ]
         );
     }
@@ -89,7 +90,8 @@ class RuleController extends Controller
         return $this->render(
             'create',
             [
-                'model' => $model
+                'model' => $model,
+                'module' => $this->module
             ]
         );
     }
@@ -104,7 +106,7 @@ class RuleController extends Controller
             [
                 'previousName' => $name,
                 'name' => $rule->name,
-                'className' => get_class($rule)
+                'className' => get_class($rule),
             ]
         );
 
@@ -123,6 +125,7 @@ class RuleController extends Controller
             'update',
             [
                 'model' => $model,
+                'module' => $this->module
             ]
         );
     }

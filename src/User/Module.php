@@ -23,6 +23,21 @@ use yii\helpers\Html;
 class Module extends BaseModule
 {
     /**
+     * @var bool Enable the 'session history' function
+     *           Using with {@see SessionHistoryDecorator}
+     */
+    public $enableSessionHistory = false;
+    /**
+     * @var int|bool The number of 'session history' records will be stored for user
+     *               if equals false records will not be deleted
+     */
+    public $numberSessionHistory = false;
+    /**
+     * @var int|bool The time after which the expired 'session history' will be deleted
+     *               if equals false records will not be deleted
+     */
+    public $timeoutSessionHistory = false;
+    /**
      * @var bool whether to enable european G.D.P.R. compliance.
      *           This will add a few elements to comply with european general data protection regulation.
      *           This regulation affects to all companies in Europe a those companies outside that offer their
@@ -81,10 +96,14 @@ class Module extends BaseModule
      * @var bool whether to enable two factor authentication or not
      */
     public $enableTwoFactorAuthentication = false;
-     /**
-     * @var array list of permissions for which two factor authentication is mandatory
-     */
+    /**
+    * @var array list of permissions for which two factor authentication is mandatory
+    */
     public $twoFactorAuthenticationForcedPermissions = [];
+    /**
+     * @var array list of channels for two factor authentication availables
+     */
+    public $twoFactorAuthenticationValidators = [];
     /**
      * @var int cycles of key generation are set on 30 sec. To avoid sync issues, increased validity up to 60 sec.
      * @see http://2fa-library.readthedocs.io/en/latest/
@@ -214,11 +233,10 @@ class Module extends BaseModule
      * @var boolean whether to disable IP logging into user table
      */
     public $disableIpLogging = false;
-    
     /**
      * @var array Minimum requirements when a new password is automatically generated.
-     * Array structure: `requirement => minimum number characters`.
-     * 
+     *            Array structure: `requirement => minimum number characters`.
+     *
      * Possible array keys:
      *  - lower: minimum number of lowercase characters;
      *  - upper: minimum number of uppercase characters;
@@ -230,6 +248,33 @@ class Module extends BaseModule
         'lower' => 1,
         'digit' => 1,
         'upper' => 1,
+    ];
+    /**
+     * @var boolean Whether to enable REST APIs.
+     */
+    public $enableRestApi = false;
+    /**
+     * @var string Which class to use as authenticator for REST API.
+     * Possible values: `HttpBasicAuth`, `HttpBearerAuth` or `QueryParamAuth`.
+     * Default value = `yii\filters\auth\QueryParamAuth` class, therefore access tokens are sent as query parameter; for instance: `https://example.com/users?access-token=xxxxxxxx`.
+     */
+    public $authenticatorClass = 'yii\filters\auth\QueryParamAuth';
+    /**
+     * @var string Route prefix for REST admin controller.
+     */
+    public $adminRestPrefix = 'user/api/v1';
+    /**
+     * @var array Routes for REST admin controller.
+     */
+    public $adminRestRoutes = [
+        'GET,HEAD users' => 'admin/index',
+        'POST users' => 'admin/create',
+        'PUT,PATCH users/<id>' => 'admin/update',
+        'GET,HEAD users/<id>' => 'admin/view',
+        'DELETE users/<id>' => 'admin/delete',
+        'users/<action>/<id>' => 'admin/<action>',
+        'users/<id>' => 'admin/options',
+        'users' => 'admin/options',
     ];
 
     /**
@@ -250,5 +295,21 @@ class Module extends BaseModule
         );
 
         return $this->gdprConsentMessage ?: $defaultConsentMessage;
+    }
+
+    /**
+     * @return bool
+     */
+    public function hasNumberSessionHistory()
+    {
+        return $this->numberSessionHistory !== false && $this->numberSessionHistory > 0;
+    }
+
+    /**
+     * @return bool
+     */
+    public function hasTimeoutSessionHistory()
+    {
+        return $this->timeoutSessionHistory !== false && $this->timeoutSessionHistory > 0;
     }
 }

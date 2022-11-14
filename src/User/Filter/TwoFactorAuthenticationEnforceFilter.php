@@ -13,10 +13,9 @@ namespace Da\User\Filter;
 
 use Da\User\Model\User;
 use Da\User\Module;
+use Da\User\Traits\AuthManagerAwareTrait;
 use Yii;
 use yii\base\ActionFilter;
-use Da\User\Traits\AuthManagerAwareTrait;
-
 
 class TwoFactorAuthenticationEnforceFilter extends ActionFilter
 {
@@ -40,11 +39,11 @@ class TwoFactorAuthenticationEnforceFilter extends ActionFilter
 
         $permissions = $module->twoFactorAuthenticationForcedPermissions;
         $itemsByUser = array_keys($this->getAuthManager()->getItemsByUser(Yii::$app->user->identity->id));
-        if(!empty(array_intersect($permissions, $itemsByUser))){
+        if (!empty(array_intersect($permissions, $itemsByUser))) {
             Yii::$app->session->setFlash('warning', Yii::t('usuario', 'Your role requires 2FA, you won\'t be able to use the application until you enable it'));
-                return Yii::$app->response->redirect(['/user/settings/account'])->send();
+            return Yii::$app->response->redirect(['/user/settings/account'])->send();
         }
-        
+
         return parent::beforeAction($action);
     }
 }
