@@ -144,11 +144,41 @@ class AdminController extends ActiveController
             throw new NotFoundHttpException(Yii::t('usuario', 'The requested page does not exist.'));
         }
         // Access for admins only
-        if (!Yii::$app->user->can('admin')) {
+        if (!Yii::$app->user->identity->isAdmin) {
             throw new ForbiddenHttpException(Yii::t('usuario', 'User does not have sufficient permissions.'));
         }
     }
 
+
+    /**
+     * Override beforeAction. If the api is called with parameter username get the id of the user and set it in query params
+     */
+    public function beforeAction($action)
+    {
+        if($action == 'create'){
+            return parent::beforeAction($action);
+        }
+
+        $id = Yii::$app->request->getQueryParam('id');
+        if(!is_null($id)){
+            return parent::beforeAction($action);
+        }
+        
+        $username = Yii::$app->request->getQueryParam('username');
+        if(is_null($username)){
+            return parent::beforeAction($action);
+        }
+
+        $user = $this->userQuery->where(['username' => $username])->one();
+        if (is_null($user)) { // Check user, so ` $username` parameter
+            return parent::beforeAction($action);
+        }   
+      
+        $params['id'] = $user->id;
+        Yii::$app->request->setQueryParams($params);
+
+        return parent::beforeAction($action);
+    }
     /**
      * Create a user.
      */
@@ -186,10 +216,11 @@ class AdminController extends ActiveController
      * Update a user.
      * @param int $id ID of the user.
      */
-    public function actionUpdate($id)
+    public function actionUpdate($id = null)
     {
         // Check access
         $this->checkAccess($this->action);
+        $id = Yii::$app->request->getQueryParam('id');
 
         // Get user model
         /** @var User $user */
@@ -198,11 +229,9 @@ class AdminController extends ActiveController
             $this->throwUser404();
         }
         $user->setScenario($this->updateScenario);
-
         // Create event object
         /** @var UserEvent $event */
         $event = $this->make(UserEvent::class, [$user]);
-
         // Save user model + response
         $user->load(Yii::$app->getRequest()->getBodyParams(), '');
         if ($user->validate()) {
@@ -216,42 +245,6 @@ class AdminController extends ActiveController
             $this->throwServerError();
         }
         return $user;
-    }
-
-    /**
-     * Delete a user.
-     * @param int $id ID of the user.
-     */
-    public function actionDelete($id)
-    {
-        // Check access
-        $this->checkAccess($this->action);
-
-        // Check ID parameter (whether own account)
-        if ((int)$id === Yii::$app->user->getId()) {
-            throw new BadRequestHttpException(Yii::t('usuario', 'You cannot remove your own account.'));
-        }
-
-        // Get user model
-        /** @var User $user */
-        $user = $this->userQuery->where(['id' => $id])->one();
-        if (is_null($user)) { // Check user, so `$id` parameter
-            $this->throwUser404();
-        }
-        
-        // Create event object
-        /** @var UserEvent $event */
-        $event = $this->make(UserEvent::class, [$user]);
-
-        // Detele user model + response
-        $this->trigger(ActiveRecord::EVENT_BEFORE_DELETE, $event);
-        if ($user->delete()) {
-            $this->trigger(ActiveRecord::EVENT_AFTER_DELETE, $event);
-            Yii::$app->getResponse()->setStatusCode(204); // 204 = No Content
-        }
-        else {
-            $this->throwServerError();
-        }
     }
 
     /**
@@ -348,10 +341,11 @@ class AdminController extends ActiveController
      * Block and unblock the user.
      * @param int $id ID of the user.
      */
-    public function actionBlock($id)
+    public function actionBlock($id = null)
     {
         // Check access
         $this->checkAccess($this->action);
+        $id = Yii::$app->request->getQueryParam('id');
 
         // Check ID parameter (whether own account)
         if ((int)$id === Yii::$app->user->getId()) {
