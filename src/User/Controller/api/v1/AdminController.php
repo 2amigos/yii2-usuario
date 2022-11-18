@@ -174,6 +174,7 @@ class AdminController extends ActiveController
             return parent::beforeAction($action);
         }   
       
+        $params = Yii::$app->request->getQueryParams();
         $params['id'] = $user->id;
         Yii::$app->request->setQueryParams($params);
 
@@ -245,6 +246,42 @@ class AdminController extends ActiveController
             $this->throwServerError();
         }
         return $user;
+    }
+    
+    /**
+     * Delete a user.
+     * @param int $id ID of the user.
+     */
+    public function actionDelete($id)
+    {
+        // Check access
+        $this->checkAccess($this->action);
+
+        // Check ID parameter (whether own account)
+        if ((int)$id === Yii::$app->user->getId()) {
+            throw new BadRequestHttpException(Yii::t('usuario', 'You cannot remove your own account.'));
+        }
+
+        // Get user model
+        /** @var User $user */
+        $user = $this->userQuery->where(['id' => $id])->one();
+        if (is_null($user)) { // Check user, so `$id` parameter
+            $this->throwUser404();
+        }
+
+        // Create event object
+        /** @var UserEvent $event */
+        $event = $this->make(UserEvent::class, [$user]);
+
+        // Detele user model + response
+        $this->trigger(ActiveRecord::EVENT_BEFORE_DELETE, $event);
+        if ($user->delete()) {
+            $this->trigger(ActiveRecord::EVENT_AFTER_DELETE, $event);
+            Yii::$app->getResponse()->setStatusCode(204); // 204 = No Content
+        }
+        else {
+            $this->throwServerError();
+        }
     }
 
     /**
