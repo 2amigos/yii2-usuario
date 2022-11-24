@@ -333,7 +333,11 @@ Default value = `yii\filters\auth\QueryParamAuth` class, therefore access tokens
 
 #### adminRestPrefix (type: `string`, default: `user/api/v1`)
 
-Route prefix for REST admin controller.
+Prefix for the pattern part of every rule for REST admin controller.
+
+#### adminRestRoutePrefix (type: `string`, default: `user/api/v1`)
+
+Prefix for the route part of every rule for REST admin controller.
 
 #### adminRestRoutes (type `array`)
 
