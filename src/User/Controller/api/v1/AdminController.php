@@ -151,7 +151,8 @@ class AdminController extends ActiveController
 
 
     /**
-     * Override beforeAction. If the api is called with parameter username get the id of the user and set it in query params
+     * Override beforeAction. If the api is called with parameter username or with the parameter email,
+     * get the id of the user and set it in query params
      */
     public function beforeAction($action)
     {
@@ -160,19 +161,29 @@ class AdminController extends ActiveController
         }
 
         $id = Yii::$app->request->getQueryParam('id');
-        if(!is_null($id)){
+        if(!empty($id)){
             return parent::beforeAction($action);
         }
         
+        // Try to get the user by username
         $username = Yii::$app->request->getQueryParam('username');
-        if(is_null($username)){
-            return parent::beforeAction($action);
-        }
-
-        $user = $this->userQuery->where(['username' => $username])->one();
-        if (is_null($user)) { // Check user, so ` $username` parameter
-            return parent::beforeAction($action);
-        }   
+        if(!empty($username)){
+            $user = $this->userQuery->where(['username' => $username])->one();
+            if (is_null($user)) { 
+                return parent::beforeAction($action);
+            }  
+        }else{
+            // Try to get the user by email
+            $email = Yii::$app->request->getQueryParam('email');            
+            if(!empty($email)){
+                $user = $this->userQuery->where(['email' => $email])->one();
+                if (is_null($user)) { 
+                    return parent::beforeAction($action);
+                }  
+            }else{
+                return parent::beforeAction($action);
+            }
+        }       
       
         $params = Yii::$app->request->getQueryParams();
         $params['id'] = $user->id;
@@ -252,10 +263,11 @@ class AdminController extends ActiveController
      * Delete a user.
      * @param int $id ID of the user.
      */
-    public function actionDelete($id)
+    public function actionDelete($id = null)
     {
         // Check access
         $this->checkAccess($this->action);
+        $id = Yii::$app->request->getQueryParam('id');
 
         // Check ID parameter (whether own account)
         if ((int)$id === Yii::$app->user->getId()) {
@@ -288,10 +300,11 @@ class AdminController extends ActiveController
      * Update the user profile.
      * @param int $id ID of the user.
      */
-    public function actionUpdateProfile($id)
+    public function actionUpdateProfile($id = null)
     {
         // Check access
         $this->checkAccess($this->action);
+        $id = Yii::$app->request->getQueryParam('id');
 
         // Get user model
         /** @var User $user */
@@ -326,10 +339,11 @@ class AdminController extends ActiveController
      * Get assignments of the specified user.
      * @param int $id ID of the user.
      */
-    public function actionAssignments($id)
+    public function actionAssignments($id = null)
     {
         // Check access
         $this->checkAccess($this->action);
+        $id = Yii::$app->request->getQueryParam('id');
 
         // Get user model
         /** @var User $user */
@@ -347,10 +361,11 @@ class AdminController extends ActiveController
      * Confirm the user.
      * @param int $id ID of the user.
      */
-    public function actionConfirm($id)
+    public function actionConfirm($id = null)
     {
         // Check access
         $this->checkAccess($this->action);
+        $id = Yii::$app->request->getQueryParam('id');
 
         // Get user model
         /** @var User $user */
@@ -413,10 +428,11 @@ class AdminController extends ActiveController
      * Reset password.
      * @param int $id ID of the user.
      */
-    public function actionPasswordReset($id)
+    public function actionPasswordReset($id = null)
     {
         // Check access
         $this->checkAccess($this->action);
+        $id = Yii::$app->request->getQueryParam('id');
 
         // Get user model
         /** @var User $user */
@@ -439,10 +455,11 @@ class AdminController extends ActiveController
      * Forces the user to change password at next login.
      * @param int $id ID of the user.
      */
-    public function actionForcePasswordChange($id)
+    public function actionForcePasswordChange($id = null)
     {
         // Check access
         $this->checkAccess($this->action);
+        $id = Yii::$app->request->getQueryParam('id');
 
         // Get user model
         /** @var User $user */
@@ -479,7 +496,4 @@ class AdminController extends ActiveController
     {
         throw new NotFoundHttpException(Yii::t('usuario', 'User not found.'));
     }
-
-
-
 }
