@@ -291,6 +291,7 @@ class Bootstrap implements BootstrapInterface
         $config = [
             'class' => 'yii\web\GroupUrlRule',
             'prefix' => $module->adminRestPrefix,
+            'routePrefix' => $module->adminRestRoutePrefix,
             'rules' => $rules,
         ];
         $rule = Yii::createObject($config);

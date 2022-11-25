@@ -260,9 +260,13 @@ class Module extends BaseModule
      */
     public $authenticatorClass = 'yii\filters\auth\QueryParamAuth';
     /**
-     * @var string Route prefix for REST admin controller.
+     * @var string Prefix for the pattern part of every rule for REST admin controller.
      */
     public $adminRestPrefix = 'user/api/v1';
+    /**
+     * @var string Prefix for the route part of every rule for REST admin controller.
+     */
+    public $adminRestRoutePrefix = 'user/api/v1';
     /**
      * @var array Routes for REST admin controller.
      */
