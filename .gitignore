@@ -48,6 +48,7 @@ codeception.yml
 # Code Style Checkers and Mess Detectors
 /phpcs.xml
 .php-cs-fixer.cache
+.php_cs.cache
 
 # composer
 composer.lock

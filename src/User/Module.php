@@ -273,9 +273,9 @@ class Module extends BaseModule
     public $adminRestRoutes = [
         'GET,HEAD users' => 'admin/index',
         'POST users' => 'admin/create',
-        'PUT,PATCH users/<id>' => 'admin/update',
+        'PUT,PATCH users/<id:[\d]*>' => 'admin/update',
         'GET,HEAD users/<id>' => 'admin/view',
-        'DELETE users/<id>' => 'admin/delete',
+        'DELETE users/<id:[\d]*>' => 'admin/delete',
         'users/<action>/<id>' => 'admin/<action>',
         'users/<id>' => 'admin/options',
         'users' => 'admin/options',
