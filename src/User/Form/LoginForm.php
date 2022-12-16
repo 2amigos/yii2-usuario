@@ -23,6 +23,7 @@ use Yii;
 use yii\base\InvalidParamException;
 use yii\base\Model;
 use yii\helpers\ArrayHelper;
+use yii\web\IdentityInterface;
 
 class LoginForm extends Model
 {
@@ -185,5 +186,15 @@ class LoginForm extends Model
     public function getUser()
     {
         return $this->user;
+    }
+    
+    
+    /**
+     * @param IdentityInterface $user
+     * @return User
+     */
+    public function setUser(IdentityInterface $user)
+    {
+        return $this->user = $user;
     }
 }

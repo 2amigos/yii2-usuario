@@ -39,6 +39,7 @@ There's a change in flash messages handling, please see #391
 - Fix: Clear 2FA auth key when feature is disabled by user
 - Fix: check user before accessing 2FA code
 - Enh: added `AdminController` REST controller (MatteoF96)
+- Enh: added method `setUser` for LoginForm model (liviuk2)
 
 ## 1.5.1 April 5, 2020
 
