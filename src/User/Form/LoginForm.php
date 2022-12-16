@@ -23,6 +23,7 @@ use Yii;
 use yii\base\InvalidParamException;
 use yii\base\Model;
 use yii\helpers\ArrayHelper;
+use yii\web\IdentityInterface;
 
 class LoginForm extends Model
 {
