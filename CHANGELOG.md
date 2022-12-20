@@ -40,6 +40,7 @@ There's a change in flash messages handling, please see #391
 - Fix: check user before accessing 2FA code
 - Enh: added `AdminController` REST controller (MatteoF96)
 - Enh: added method `setUser` for LoginForm model (liviuk2)
+- Enh: user model emailTrim validator only if not empty #486 (liviuk2)
 
 ## 1.5.1 April 5, 2020
 

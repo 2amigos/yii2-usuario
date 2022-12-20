@@ -250,7 +250,7 @@ class User extends ActiveRecord implements IdentityInterface
                 'unique',
                 'message' => Yii::t('usuario', 'This email address has already been taken'),
             ],
-            'emailTrim' => ['email', 'trim'],
+            'emailTrim' => ['email', 'trim', 'skipOnEmpty' => true],
 
             // password rules
             'passwordTrim' => ['password', 'trim'],
