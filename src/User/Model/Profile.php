@@ -26,7 +26,8 @@ use yii\db\ActiveRecord;
 
 /**
  * @property int    $user_id
- * @property string $name
+ * @property string $firstname
+ * @property string $lastname
  * @property string $public_email
  * @property string $gravatar_email
  * @property string $gravatar_id
@@ -87,7 +88,7 @@ class Profile extends ActiveRecord
             'publicEmailPattern' => ['public_email', 'email'],
             'gravatarEmailPattern' => ['gravatar_email', 'email'],
             'websiteUrl' => ['website', 'url'],
-            'nameLength' => ['name', 'string', 'max' => 255],
+            'nameLength' => [['firstname', 'lastname'], 'string', 'max' => 255],
             'publicEmailLength' => ['public_email', 'string', 'max' => 255],
             'gravatarEmailLength' => ['gravatar_email', 'string', 'max' => 255],
             'locationLength' => ['location', 'string', 'max' => 255],
@@ -101,7 +102,8 @@ class Profile extends ActiveRecord
     public function attributeLabels()
     {
         return [
-            'name' => Yii::t('usuario', 'Name'),
+            'firstname' => Yii::t('usuario', 'First name'),
+            'lastname' => Yii::t('usuario', 'Last name'),
             'public_email' => Yii::t('usuario', 'Email (public)'),
             'gravatar_email' => Yii::t('usuario', 'Gravatar email'),
             'location' => Yii::t('usuario', 'Location'),
