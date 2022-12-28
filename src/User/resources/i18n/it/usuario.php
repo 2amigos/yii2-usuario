@@ -110,6 +110,7 @@ return [
     'Error while enabling SMS two factor authentication. Please reload the page.' => 'Errore in fase di attivazione dell\'autenticazione a due fattori tramite SMS. Ricarica la pagina',
     'Export my data' => 'Esporta i miei dati',
     'Finish' => 'Completa',
+    'First name' => 'Nome',
     'Force password change at next login' => 'Forza il cambio password al prossimo accesso',
     'Forgot password?' => 'Password dimenticata?',
     'Google Authenticator' => 'Autenticatore di Google',
@@ -139,6 +140,7 @@ return [
     'Joined on {0, date}' => 'Registrato il {0, date}',
     'Last login IP' => 'IP ultimo accesso',
     'Last login time' => 'Data ultimo accesso',
+    'Last name' => 'Cognome',
     'Last password change' => 'Data cambio password',
     'Location' => 'Posizione',
     'Login' => 'Accedi',
@@ -318,4 +320,5 @@ return [
     'You cannot block your own account.' => 'Non puoi bloccare il tuo stesso account.',
     'You cannot remove your own account.' => 'Non puoi eliminare il tuo stesso account.',
     'You received this email because someone, possibly you or someone on your behalf, have created an account at {app_name}' => 'Hai ricevuto questa email perché qualcuno, presumibilmente tu, ha creato un account su {app_name}',
+    'Mobile phone not found, please check your profile' => 'Il numero di telefono non è stato trovato. Verifica il tuo profilo',
 ];

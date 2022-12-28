@@ -16,7 +16,7 @@ use yii\helpers\Html;
  * @var \Da\User\Model\Profile $profile
  */
 
-$this->title = empty($profile->name) ? Html::encode($profile->user->username) : Html::encode($profile->name);
+$this->title = !empty($profile->firstname) && !empty($profile->lastname)? Html::encode($profile->firstname).' '.Html::encode($profile->lastname):Html::encode($profile->user->username);
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="row">
