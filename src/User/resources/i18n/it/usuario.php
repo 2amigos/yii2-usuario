@@ -309,9 +309,13 @@ return [
     'Session history' => '',
     'Status' => '',
     'Terminate all sessions' => '',
+    'The requested page does not exist.' => '',
     'This is the code to insert to enable two factor authentication' => '',
     'User ID' => '',
     'User agent' => '',
+    'User does not have sufficient permissions.' => '',
+    'You cannot block your own account.' => '',
+    'You cannot remove your own account.' => '',
     'You received this email because someone, possibly you or someone on your behalf, have created an account at {app_name}' => '',
     'Mobile phone not found, please check your profile' => '@@Il numero di telefono non è stato trovato. Verifica il tuo profilo@@',
 ];
