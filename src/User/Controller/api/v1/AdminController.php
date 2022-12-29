@@ -1,5 +1,14 @@
 <?php
 
+/*
+ * This file is part of the 2amigos/yii2-usuario project.
+ *
+ * (c) 2amigOS! <http://2amigos.us/>
+ *
+ * For the full copyright and license information, please view
+ * the LICENSE file that was distributed with this source code.
+ */
+
 namespace Da\User\Controller\api\v1;
 
 use Da\User\Event\UserEvent;
@@ -27,8 +36,8 @@ use yii\web\ServerErrorHttpException;
 /**
  * Controller that provides REST APIs to manage users.
  * This controller is equivalent to `Da\User\Controller\AdminController`.
- * 
- * TODO: 
+ *
+ * TODO:
  * - `Info` and `SwitchIdentity` actions were not developed yet.
  * - `Assignments` action implements only GET method (POST method not developed yet).
  */
@@ -45,7 +54,7 @@ class AdminController extends ActiveController
      * {@inheritdoc}
      */
     public $updateScenario = 'update';
-    
+
     /**
      * {@inheritdoc}
      */
@@ -58,10 +67,10 @@ class AdminController extends ActiveController
 
     /**
      * AdminController constructor.
-     * @param string $id
-     * @param Module $module
+     * @param string    $id
+     * @param Module    $module
      * @param UserQuery $userQuery
-     * @param array $config
+     * @param array     $config
      */
     public function __construct($id, Module $module, UserQuery $userQuery, array $config = [])
     {
@@ -87,28 +96,9 @@ class AdminController extends ActiveController
     {
         // Get and then remove some default actions
         $actions = parent::actions();
-        unset($actions['create']);
-        unset($actions['update']);
-        unset($actions['delete']);
+        unset($actions['create'], $actions['update'], $actions['delete']);
+
         return $actions;
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    protected function verbs()
-    {
-        // Get parent verbs
-        $verbs = parent::verbs();
-
-        // Add new verbs and return
-        $verbs['update-profile'] = ['PUT', 'PATCH'];
-        $verbs['assignments'] = ['GET'];
-        $verbs['confirm'] = ['PUT', 'PATCH'];
-        $verbs['block'] = ['PUT', 'PATCH'];
-        $verbs['password-reset'] = ['PUT', 'PATCH'];
-        $verbs['force-password-change'] = ['PUT', 'PATCH'];
-        return $verbs;
     }
 
     /**
@@ -149,31 +139,31 @@ class AdminController extends ActiveController
         }
     }
 
-
     /**
      * Override beforeAction. If the api is called with parameter username get the id of the user and set it in query params
+     * @param mixed $action
      */
     public function beforeAction($action)
     {
-        if($action == 'create'){
+        if ($action == 'create') {
             return parent::beforeAction($action);
         }
 
         $id = Yii::$app->request->getQueryParam('id');
-        if(!is_null($id)){
+        if (!is_null($id)) {
             return parent::beforeAction($action);
         }
-        
+
         $username = Yii::$app->request->getQueryParam('username');
-        if(is_null($username)){
+        if (is_null($username)) {
             return parent::beforeAction($action);
         }
 
         $user = $this->userQuery->where(['username' => $username])->one();
         if (is_null($user)) { // Check user, so ` $username` parameter
             return parent::beforeAction($action);
-        }   
-      
+        }
+
         $params = Yii::$app->request->getQueryParams();
         $params['id'] = $user->id;
         Yii::$app->request->setQueryParams($params);
@@ -247,7 +237,7 @@ class AdminController extends ActiveController
         }
         return $user;
     }
-    
+
     /**
      * Delete a user.
      * @param int $id ID of the user.
@@ -278,8 +268,7 @@ class AdminController extends ActiveController
         if ($user->delete()) {
             $this->trigger(ActiveRecord::EVENT_AFTER_DELETE, $event);
             Yii::$app->getResponse()->setStatusCode(204); // 204 = No Content
-        }
-        else {
+        } else {
             $this->throwServerError();
         }
     }
@@ -369,9 +358,8 @@ class AdminController extends ActiveController
             $this->trigger(UserEvent::EVENT_AFTER_CONFIRMATION, $event);
             return $user;
         }
-        else {
-            $this->throwServerError();
-        }
+
+        $this->throwServerError();
     }
 
     /**
@@ -404,9 +392,8 @@ class AdminController extends ActiveController
         if ($this->make(UserBlockService::class, [$user, $event, $this])->run() || $user->hasErrors()) {
             return $user;
         }
-        else {
-            $this->throwServerError();
-        }
+
+        $this->throwServerError();
     }
 
     /**
@@ -430,11 +417,10 @@ class AdminController extends ActiveController
         if ($this->make(PasswordRecoveryService::class, [$user->email, $mailService])->run()) {
             return $user;
         }
-        else {
-            $this->throwServerError();
-        }
+
+        $this->throwServerError();
     }
-    
+
     /**
      * Forces the user to change password at next login.
      * @param int $id ID of the user.
@@ -455,15 +441,32 @@ class AdminController extends ActiveController
         if ($this->make(PasswordExpireService::class, [$user])->run()) {
             return $user;
         }
-        else {
-            $this->throwServerError();
-        }
+
+        $this->throwServerError();
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    protected function verbs()
+    {
+        // Get parent verbs
+        $verbs = parent::verbs();
+
+        // Add new verbs and return
+        $verbs['update-profile'] = ['PUT', 'PATCH'];
+        $verbs['assignments'] = ['GET'];
+        $verbs['confirm'] = ['PUT', 'PATCH'];
+        $verbs['block'] = ['PUT', 'PATCH'];
+        $verbs['password-reset'] = ['PUT', 'PATCH'];
+        $verbs['force-password-change'] = ['PUT', 'PATCH'];
+        return $verbs;
     }
 
     /**
      * Handle server error (with default Yii2 response).
-     * @return void
      * @throws ServerErrorHttpException
+     * @return void
      */
     protected function throwServerError()
     {
@@ -472,14 +475,11 @@ class AdminController extends ActiveController
 
     /**
      * Handle 404 error for user (usually if the entered ID is not valid).
-     * @return void
      * @throws NotFoundHttpException
+     * @return void
      */
     protected function throwUser404()
     {
         throw new NotFoundHttpException(Yii::t('usuario', 'User not found.'));
     }
-
-
-
 }

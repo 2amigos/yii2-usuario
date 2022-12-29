@@ -187,10 +187,9 @@ class LoginForm extends Model
     {
         return $this->user;
     }
-    
-    
+
     /**
-     * @param IdentityInterface $user
+     * @param  IdentityInterface $user
      * @return User
      */
     public function setUser(IdentityInterface $user)

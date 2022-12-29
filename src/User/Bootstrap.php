@@ -280,7 +280,7 @@ class Bootstrap implements BootstrapInterface
 
     /**
      * Initializes web url for rest routes.
-     * @param WebApplication $app
+     * @param  WebApplication         $app
      * @throws InvalidConfigException
      */
     protected function initUrlRestRoutes(WebApplication $app)
