@@ -12,6 +12,7 @@
 namespace Da\User\Validator;
 
 use Da\User\Contracts\ValidatorInterface;
+use DateTimeZone;
 
 class TimeZoneValidator implements ValidatorInterface
 {
@@ -24,6 +25,6 @@ class TimeZoneValidator implements ValidatorInterface
 
     public function validate()
     {
-        return in_array($this->timezone, timezone_identifiers_list(), false);
+        return in_array($this->timezone, DateTimeZone::listIdentifiers(), false);
     }
 }

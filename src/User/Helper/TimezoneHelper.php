@@ -36,7 +36,8 @@ class TimezoneHelper
             $timeZones[] = [
                 'timezone' => $timeZone,
                 'name' => "{$timeZone} (UTC " . ($offset > 0 ? '+' : '') . "{$offset})",
-                'offset' => $offset,
+                // As of PHP 8.1 array keys cannot be float. Offset is used for sorting only
+                'offset' => $offset * 100,
             ];
         }
 

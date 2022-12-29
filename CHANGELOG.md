@@ -41,6 +41,7 @@ There's a change in flash messages handling, please see #391
 - Enh: added `AdminController` REST controller (MatteoF96)
 - Enh: added method `setUser` for LoginForm model (liviuk2)
 - Enh: user model emailTrim validator only if not empty #486 (liviuk2)
+- Fix #461: TimeZoneHelper: don't use floats for columns that could be array keys (maxxer)
 
 ## 1.5.1 April 5, 2020
 
