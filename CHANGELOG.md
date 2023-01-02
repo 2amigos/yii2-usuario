@@ -15,6 +15,7 @@ could access to all user's 2FA root code. If you cannot upgrade, check
 There's a change in flash messages handling, please see #391
 
 - Updated translations: IT (maxxer)
+- Updated translations: PL (bizley)
 - Enh: update welcome and confirmation email ending line (maxxer)
 - Enh #361: Record and manage user session history (maranqz)
 - Fix: replace non-working travis build with working github actions build (TonisOrmisson)
