@@ -60,13 +60,12 @@
         "yiisoft/yii2-symfonymailer": "^2|^3",
         "squizlabs/php_codesniffer": "*",
         "phpmd/phpmd": "@stable",
-        "codeception/verify": "^2",
-        "codeception/codeception": "^5",
+        "codeception/codeception": "^4|^5",
         "roave/security-advisories": "dev-master",
         "codeception/module-filesystem": "^3.0",
         "codeception/module-yii2": "^1.1",
-        "codeception/module-asserts": "^3.1",
-        "codeception/module-db": "^3.0",
+        "codeception/module-asserts": "^2|^3",
+        "codeception/module-db": "^2|^3",
         "phpstan/phpstan": "^1.8"
     },
     "autoload": {
