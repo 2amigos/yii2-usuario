@@ -1,6 +1,6 @@
 # CHANGELOG
 
-## 1.6.0 work in progress
+## 1.6.0 January 9, 2023
 
 **WARNING**: this release (long time due) makes a step forward in PHP
 compatibility, leaving behind obsolete versions. While yii2-usuario should
@@ -12,7 +12,7 @@ wasn't checking for the currently logged in user, so any authenticated account
 could access to all user's 2FA root code. If you cannot upgrade, check
 [24d5d5744fe0](https://github.com/2amigos/yii2-usuario/commit/24d5d5744fe03f3173ea180f106865ffaf4f48a4).
 
-There's a change in flash messages handling, please see #391
+There's a change in flash messages handling, please see #391.
 
 - Updated translations: IT (maxxer)
 - Enh: update welcome and confirmation email ending line (maxxer)
