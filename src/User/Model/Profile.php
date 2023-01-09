@@ -178,4 +178,47 @@ class Profile extends ActiveRecord
     {
         return new ProfileQuery(static::class);
     }
+
+    /**
+     * After the renaming of the field 'name' in 'firstname' and the addition of the field 'lastname', 
+     * in order to preserve retro compatibility, this method separes by space the value name passed and 
+     * store in yìthe field 'firstname' the first word and in the field 'lastname' the following words separed again by space.
+     *
+     *  @param string $name
+     *      
+     */
+    public function setName($name)
+    { 
+        $items = explode(" ", $name);
+
+        $count=0;
+        foreach ($items as $item) {
+            switch ($count) {
+                case 0:
+                    $this->firstname=$item;
+                    break;
+                case 1:
+                    $this->lastname=$item;
+                    break;
+                default:
+                    $this->lastname=$this->lastname.' '.$item;
+                    break;
+            }
+            $count++;    
+        }
+    }
+
+
+    /**
+     * After the renaming of the field 'name' in 'firstname' and the addition of the field 'lastname', 
+     * in order to preserve retro compatibility, this method returns the concatenation of the field 'firstname' 
+     * and the field 'lastname' separed by space.
+     *
+     * @throws InvalidConfigException
+     * @return string 
+     */
+    public function getName()
+    {
+        return $this->firstname.' '.$this->lastname;
+    }
 }
