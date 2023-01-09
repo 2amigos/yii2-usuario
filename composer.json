@@ -53,20 +53,19 @@
         "2amigos/qrcode-library": "Needed if you want to enable 2FA with QR Code generation. Require version ^1.1"
     },
     "require-dev": {
+        "php": ">=7.4",
         "2amigos/2fa-library": "^2.0",
         "2amigos/qrcode-library": "^2.0",
         "friendsofphp/php-cs-fixer": "^3",
-        "php": ">=7.4",
-        "yiisoft/yii2-symfonymailer": "~2.0.0",
+        "yiisoft/yii2-symfonymailer": "^2|^3",
         "squizlabs/php_codesniffer": "*",
         "phpmd/phpmd": "@stable",
-        "codeception/verify": "^0.3.3",
-        "codeception/codeception": "*",
+        "codeception/codeception": "^4|^5",
         "roave/security-advisories": "dev-master",
-        "codeception/module-filesystem": "^1.0",
+        "codeception/module-filesystem": "^2|^3",
         "codeception/module-yii2": "^1.1",
-        "codeception/module-asserts": "^1.1",
-        "codeception/module-db": "^1.0",
+        "codeception/module-asserts": "^2|^3",
+        "codeception/module-db": "^2|^3",
         "phpstan/phpstan": "^1.8"
     },
     "autoload": {
