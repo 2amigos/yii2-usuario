@@ -14,6 +14,7 @@
  * @var \Da\User\Model\Token $token
  * @var \Da\User\Module $module
  * @var bool $showPassword
+ * @var bool $showPasswordRecovery
  */
 
 use yii\helpers\Url;
@@ -26,7 +27,7 @@ use yii\helpers\Url;
     <?= Yii::t('usuario', 'We have generated a password for you') ?>:
     <?= $user->password ?>
 <?php endif ?>
-<?php if ($module->allowPasswordRecovery): ?>
+<?php if ($showPasswordRecovery): ?>
     <?= Yii::t('usuario', 'If you haven\'t received a password, you can reset it at') ?>:
     <?= Url::to(['/user/recovery/request'], true) ?>
 <?php endif ?>

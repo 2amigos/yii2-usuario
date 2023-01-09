@@ -40,6 +40,7 @@ class MailFactory
             'token' => null,
             'module' => $module,
             'showPassword' => $showPassword,
+            'showPasswordRecovery' => $module->allowPasswordRecovery && !is_a(Yii::$app, "yii\console\Application"),
         ];
 
         return static::makeMailerService(MailEvent::TYPE_WELCOME, $from, $to, $subject, 'welcome', $params);

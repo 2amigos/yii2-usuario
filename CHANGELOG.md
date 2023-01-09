@@ -2,6 +2,7 @@
 
 ## dev
 
+- Fix #498: disable password recovery on cli by default
 - Fix: use correct password recovery url in welcome mail and add functionality to plain text version of the mail
 
 ## 1.6.0 January 9, 2023
