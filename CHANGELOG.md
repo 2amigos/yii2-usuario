@@ -1,5 +1,10 @@
 # CHANGELOG
 
+## Changes after 1.6.0
+
+- Split profile name attribute in two: firstname and last name (acordeddu)
+- API possibility to call the methods either with id, username or email (acordeddu)
+
 ## 1.6.0 January 9, 2023
 
 **WARNING**: this release (long time due) makes a step forward in PHP
