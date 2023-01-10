@@ -33,16 +33,16 @@ $this->params['breadcrumbs'][] = $this->title;
 
 <div class="row">
     <div class="col-md-12">
-        <div class="panel panel-default">
-            <div class="panel-heading">
-                <h3 class="panel-title"><?= Html::encode($this->title) ?></h3>
+        <div class="card">
+            <div class="card-header">
+                <h3 class="m-0"><?= Html::encode($this->title) ?></h3>
             </div>
-            <div class="panel-body">
+            <div class="card-body">
                 <?= $this->render('/shared/_menu') ?>
                 <div class="row">
                     <div class="col-md-3">
-                        <div class="panel panel-default">
-                            <div class="panel-body">
+                        <div class="card">
+                            <div class="card-body">
                                 <?= Nav::widget(
                                     [
                                         'options' => [
@@ -74,8 +74,8 @@ $this->params['breadcrumbs'][] = $this->title;
                         </div>
                     </div>
                     <div class="col-md-9">
-                        <div class="panel panel-default">
-                            <div class="panel-body">
+                        <div class="card">
+                            <div class="card-body">
                                 <div class="alert alert-info">
                                     <?= Yii::t('usuario', 'Credentials will be sent to the user by email') ?>.
                                     <?= Yii::t(
@@ -94,11 +94,13 @@ $this->params['breadcrumbs'][] = $this->title;
                                 <?= $this->render('/admin/_user', ['form' => $form, 'user' => $user]) ?>
 
                                 <div class="form-group">
-                                    <div class="col-lg-offset-3 col-lg-9">
-                                        <?= Html::submitButton(
-                                            Yii::t('usuario', 'Save'),
-                                            ['class' => 'btn btn-block btn-success']
-                                        ) ?>
+                                    <div class="offset-sm-2 col-lg-10">
+                                        <div class="d-grid">
+                                            <?= Html::submitButton(
+                                                Yii::t('usuario', 'Save'),
+                                                ['class' => 'btn btn-success']
+                                            ) ?>
+                                        </div>
                                     </div>
                                 </div>
 

@@ -22,9 +22,9 @@ $networksVisible = count(Yii::$app->authClientCollection->clients) > 0;
 
 ?>
 
-<div class="panel panel-default">
-    <div class="panel-heading">
-        <h3 class="panel-title">
+<div class="card">
+    <div class="card-header">
+        <h3 class="m-0">
             <?= Html::img(
                 $user->profile->getAvatarUrl(24),
                 [
@@ -35,7 +35,7 @@ $networksVisible = count(Yii::$app->authClientCollection->clients) > 0;
             <?= $user->username ?>
         </h3>
     </div>
-    <div class="panel-body">
+    <div class="card-body">
         <?= Menu::widget(
             [
                 'options' => [

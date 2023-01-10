@@ -176,7 +176,7 @@ class GdprCest
         $I->amGoingTo('Try to access a page without giving data processing consent');
         $I->amLoggedInAs(1);
         $I->amOnRoute('/site/index');
-        $I->seeElement('.give-consent-panel');
+        $I->seeElement('.give-consent-card');
         $I->checkOption('#dynamicmodel-gdpr_consent');
         $I->click('Submit');
         $I->see('Profile settings');

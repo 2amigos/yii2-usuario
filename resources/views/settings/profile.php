@@ -35,11 +35,11 @@ $timezoneHelper = $model->make(TimezoneHelper::class);
         <?= $this->render('_menu') ?>
     </div>
     <div class="col-md-9">
-        <div class="panel panel-default">
-            <div class="panel-heading">
-                <h3 class="panel-title"><?= Html::encode($this->title) ?></h3>
+        <div class="card">
+            <div class="card-header">
+                <h3 class="m-0"><?= Html::encode($this->title) ?></h3>
             </div>
-            <div class="panel-body">
+            <div class="card-body">
                 <?php $form = ActiveForm::begin(
                     [
                         'id' => $model->formName(),
@@ -75,8 +75,13 @@ $timezoneHelper = $model->make(TimezoneHelper::class);
                 <?= $form->field($model, 'bio')->textarea() ?>
 
                 <div class="form-group">
-                    <div class="col-lg-offset-3 col-lg-9">
-                        <?= Html::submitButton(Yii::t('usuario', 'Save'), ['class' => 'btn btn-block btn-success']) ?>
+                    <div class="offset-sm-2 col-lg-10">
+                        <div class="d-grid">
+                            <?= Html::submitButton(
+                                Yii::t('usuario', 'Save'),
+                                ['class' => 'btn btn-success']
+                            ) ?>
+                        </div>
                         <br>
                     </div>
                 </div>
