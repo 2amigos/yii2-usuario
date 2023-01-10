@@ -1,9 +1,10 @@
 # CHANGELOG
 
-## Changes after 1.6.0
+## Dev
 
 - Split profile name attribute in two: firstname and last name (acordeddu)
 - API possibility to call the methods either with id, username or email (acordeddu)
+- Fix: use correct password recovery url in welcome mail and add functionality to plain text version of the mail (@eluhr)
 
 ## 1.6.0 January 9, 2023
 
