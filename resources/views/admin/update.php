@@ -10,7 +10,7 @@
  */
 
 use Da\User\Model\User;
-use yii\bootstrap\Nav;
+use yii\bootstrap5\Nav;
 use yii\helpers\Html;
 use yii\web\View;
 use Da\User\Module as UserModule;
