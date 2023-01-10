@@ -95,7 +95,8 @@ $module = Yii::$app->getModule('user');
                     </div>
                 </div>
             </div>
-            <div class="card bg-info">
+
+            <div class="card  mt-4  bg-info">
                 <div class="card-header">
                     <h3 class="m-0"><?= Yii::t('usuario', 'Two Factor Authentication (2FA)') ?></h3>
                 </div>
@@ -132,7 +133,7 @@ $module = Yii::$app->getModule('user');
                             '#tfmodal',
                             [
                                 'id' => 'enable_tf_btn',
-                                'class' => 'btn btn-info',
+                                'class' => 'btn btn-light',
                                 'data-toggle' => 'modal',
                                 'data-target' => '#tfmodal'
                             ]
@@ -160,7 +161,7 @@ $module = Yii::$app->getModule('user');
                                 ['two-factor-disable', 'id' => $model->getUser()->id],
                                 [
                                     'id' => 'disable_tf_btn',
-                                    'class' => 'btn btn-warning ',
+                                    'class' => 'btn btn-light ',
                                     'data-method' => 'post',
                                     'data-confirm' => Yii::t('usuario', 'This will disable two factor authentication. Are you sure?'),
                                 ]
@@ -172,7 +173,7 @@ $module = Yii::$app->getModule('user');
             </div>
         <?php endif; ?>
         <?php if ($model->module->allowAccountDelete): ?>
-            <div class="card bg-danger">
+            <div class="card bg-danger mt-4">
                 <div class="card-header">
                     <h3 class="m-0"><?= Yii::t('usuario', 'Delete account') ?></h3>
                 </div>
@@ -187,7 +188,7 @@ $module = Yii::$app->getModule('user');
                             Yii::t('usuario', 'Delete account'),
                             ['delete'],
                             [
-                                'class' => 'btn btn-danger',
+                                'class' => 'btn btn-light',
                                 'data-method' => 'post',
                                 'data-confirm' => Yii::t('usuario', 'Are you sure? There is no going back'),
                             ]

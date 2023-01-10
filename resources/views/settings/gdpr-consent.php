@@ -26,7 +26,8 @@ use yii\bootstrap5\ActiveForm;
             </div>
             <div class="card-footer">
                 <?= Html::submitButton(Yii::t('usuario', 'Submit'), ['class' => 'btn btn-success']) ?>
-                <p class="pull-right small"><?= Html::a(Yii::t('usuario', 'Account details'), ['/user/settings']) ?></p>
+                <small><?= Html::a(Yii::t('usuario', 'Account details'), ['/user/settings'],
+                        ['class' => "float-right"]) ?></small>
             </div>
         </div>
         <?php ActiveForm::end(); ?>
