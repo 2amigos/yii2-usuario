@@ -1,6 +1,6 @@
 <?php
 use yii\helpers\Html;
-use yii\widgets\ActiveForm;
+use yii\bootstrap5\ActiveForm;
 /** @var \yii\base\DynamicModel $model */
 /** @var string $gdpr_consent_hint */
 ?>
