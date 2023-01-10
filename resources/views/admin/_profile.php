@@ -40,8 +40,13 @@ use yii\helpers\Html;
 
 
 <div class="form-group">
-    <div class="col-lg-offset-3 col-lg-9">
-        <?= Html::submitButton(Yii::t('usuario', 'Update'), ['class' => 'btn btn-block btn-success']) ?>
+    <div class="offset-sm-2 col-lg-10">
+        <div class="d-grid">
+            <?= Html::submitButton(
+                Yii::t('usuario', 'Update'),
+                ['class' => 'btn btn-success']
+            ) ?>
+        </div>
     </div>
 </div>
 

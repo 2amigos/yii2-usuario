@@ -35,8 +35,8 @@ $this->params['breadcrumbs'][] = $this->title;
         <?= $this->render('/settings/_menu') ?>
     </div>
     <div class="col-md-9">
-        <div class="panel panel-default">
-            <div class="panel-heading">
+        <div class="card">
+            <div class="card-header">
                 <?= Html::encode($this->title) ?>
                 <?= Html::a(
                     Yii::t('usuario', 'Terminate all sessions'),
@@ -47,7 +47,7 @@ $this->params['breadcrumbs'][] = $this->title;
                     ]
                 ) ?>
             </div>
-            <div class="panel-body">
+            <div class="card-body">
 
                 <?php Pjax::begin(); ?>
 
