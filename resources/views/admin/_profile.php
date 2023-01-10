@@ -28,11 +28,6 @@ use yii\helpers\Html;
         'layout' => 'horizontal',
         'enableAjaxValidation' => true,
         'enableClientValidation' => false,
-        'fieldConfig' => [
-            'horizontalCssClasses' => [
-                'wrapper' => 'col-sm-9',
-            ],
-        ],
     ]
 ); ?>
 

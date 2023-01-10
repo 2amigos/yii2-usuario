@@ -11,7 +11,7 @@
 
 use yii\helpers\Html;
 use yii\helpers\Url;
-use yii\widgets\ActiveForm;
+use yii\bootstrap5\ActiveForm;
 use dmstr\widgets\Alert;
 
 /**
@@ -43,11 +43,7 @@ $module = Yii::$app->getModule('user');
                 <?php $form = ActiveForm::begin(
                     [
                         'id' => $model->formName(),
-                        'options' => ['class' => 'form-horizontal'],
-                        'fieldConfig' => [
-                            'template' => "{label}\n<div class=\"col-lg-9\">{input}</div>\n<div class=\"col-sm-offset-3 col-lg-9\">{error}\n{hint}</div>",
-                            'labelOptions' => ['class' => 'col-lg-3 control-label'],
-                        ],
+                        'layout' => 'horizontal',
                         'enableAjaxValidation' => true,
                         'enableClientValidation' => false,
                     ]
@@ -87,7 +83,7 @@ $module = Yii::$app->getModule('user');
                         <div class="modal-body">
                             ...
                         </div>
-                        <div class="modal-footer">                            
+                        <div class="modal-footer">
                             <button type="button" class="btn btn-default" data-dismiss="modal" onClick='window.location.reload();'>
                                 <?= Yii::t('usuario', 'Close') ?>
                             </button>
@@ -103,16 +99,16 @@ $module = Yii::$app->getModule('user');
                     <p>
                         <?= Yii::t('usuario', 'Two factor authentication protects you in case of stolen credentials') ?>.
                     </p>
-                    <?php if (!$model->getUser()->auth_tf_enabled):  
+                    <?php if (!$model->getUser()->auth_tf_enabled):
                         $validators = $module->twoFactorAuthenticationValidators;
-                        $theFirstFound = false; 
+                        $theFirstFound = false;
                         $checked = '';
                         foreach( $validators as $name => $validator ) {
                             if($validator[ "enabled" ]){
                                 // I want to check in the radio field the first validator I get
                                 if(!$theFirstFound){
                                     $checked = 'checked';
-                                    $theFirstFound = true; 
+                                    $theFirstFound = true;
                                 }
                                 $description = $validator[ "description" ];
                                 ?>
@@ -140,7 +136,7 @@ $module = Yii::$app->getModule('user');
                     <?php else:
                          ?>
                             <p>
-                                <?php 
+                                <?php
                                     $method = $model->getUser()->auth_tf_type;
                                     $message = '';
                                     switch ($method) {
@@ -207,7 +203,7 @@ $module = Yii::$app->getModule('user');
     $verify = Url::to(['two-factor-enable', 'id' => $model->getUser()->id]);
     $mobilePhoneRegistration = Url::to(['two-factor-mobile-phone', 'id' => $model->getUser()->id]);
     $js = <<<JS
-    var choice = ''; 
+    var choice = '';
     $('#tfmodal')
     .on('show.bs.modal', function(){
         var element = document.getElementsByName('2famethod');
@@ -222,20 +218,20 @@ $module = Yii::$app->getModule('user');
         }
     });
 
-    
+
 
 $(document)
     .on('click', '.btn-submit-code', function(e) {
         e.preventDefault();
         var btn = $(this);
         btn.prop('disabled', true);
-        var choice = ''; 
+        var choice = '';
         var element = document.getElementsByName('2famethod');
         for(i = 0; i < element.length; i++) {
             if(element[i].checked)
                 choice = element[i].value;
         }
-        
+
         $.getJSON('{$verify}', {code: $('#tfcode').val(), choice: choice}, function(data){
             btn.prop('disabled', false);
             if(data.success) {
@@ -266,7 +262,7 @@ $(document)
                 $('#tfmessagephone').removeClass('alert-info').addClass('alert-danger').find('p').text(data.message);
             }
         }).fail(function(){ btn.prop('disabled', false); });
-       
+
     })
 JS;
 

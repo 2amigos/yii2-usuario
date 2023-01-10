@@ -6,7 +6,7 @@
  */
 
 use yii\helpers\Html;
-use yii\widgets\ActiveForm;
+use yii\bootstrap5\ActiveForm;
 
 ?>
 

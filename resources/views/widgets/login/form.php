@@ -11,7 +11,7 @@
 
 use yii\helpers\Html;
 use yii\helpers\Url;
-use yii\widgets\ActiveForm;
+use yii\bootstrap5\ActiveForm;
 
 /**
  * @var yii\web\View           $this
