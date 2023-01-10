@@ -12,7 +12,7 @@ use yii\bootstrap5\ActiveForm;
                 'id' => $model->formName(),
             ]
         ); ?>
-            <div class="card bg-info give-consent-panel">
+            <div class="card bg-info give-consent-card">
                 <div class="card-header">
                 <h1 class="m-0"><?= Yii::t('usuario', 'Data privacy') ?></h1>
             </div>

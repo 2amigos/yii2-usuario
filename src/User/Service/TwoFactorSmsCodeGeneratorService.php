@@ -11,9 +11,7 @@
 
 namespace Da\User\Service;
 
-use Da\TwoFA\Manager;
 use Da\User\Contracts\ServiceInterface;
-use Da\User\Factory\MailFactory;
 use Da\User\Model\User;
 use yetopen\smssender\SmsSenderInterface;
 use Yii;
