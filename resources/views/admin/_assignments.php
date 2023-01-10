@@ -20,7 +20,7 @@ use Da\User\Widget\AssignmentsWidget;
 
 <?php $this->beginContent($module->viewPath. '/admin/update.php', ['user' => $user]) ?>
 
-<?= yii\bootstrap\Alert::widget(
+<?= yii\bootstrap5\Alert::widget(
     [
         'options' => [
             'class' => 'alert-info alert-dismissible',
