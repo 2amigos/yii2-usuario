@@ -46,7 +46,7 @@ $this->params['breadcrumbs'][] = $this->title;
                                 <?= Nav::widget(
                                     [
                                         'options' => [
-                                            'class' => 'nav-pills nav-stacked',
+                                            'class' => 'nav-pills nav-stacked flex-column',
                                         ],
                                         'items' => [
                                             [

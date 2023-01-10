@@ -51,7 +51,7 @@ $module = Yii::$app->getModule('user');
                                 <?= Nav::widget(
                                     [
                                         'options' => [
-                                            'class' => 'nav-pills nav-stacked',
+                                            'class' => 'nav-pills nav-stacked flex-column',
                                         ],
                                         'items' => [
                                             [

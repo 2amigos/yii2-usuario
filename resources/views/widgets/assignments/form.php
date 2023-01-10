@@ -9,10 +9,10 @@
  * the LICENSE file that was distributed with this source code.
  */
 
-use dosamigos\selectize\SelectizeDropDownList;
 use yii\bootstrap5\Alert;
 use yii\helpers\Html;
 use yii\bootstrap5\ActiveForm;
+use kartik\select2\Select2;
 
 /** @var \yii\web\View $this */
 /** @var string[] $availableItems */
@@ -43,17 +43,17 @@ use yii\bootstrap5\ActiveForm;
 
 <?= Html::activeHiddenInput($model, 'user_id') ?>
 
-<?= $form->field($model, 'items')->widget(
-    SelectizeDropDownList::class,
-    [
-        'items' => $availableItems,
-        'options' => [
-            'id' => 'children',
-            'multiple' => true,
-        ],
-    ]
-) ?>
-
-<?= Html::submitButton(Yii::t('usuario', 'Update assignments'), ['class' => 'btn btn-success btn-block']) ?>
-
+<?= $form->field($model, 'items')->widget(Select2::class, [
+    'data' => $availableItems,
+    'options' => [
+        'multiple' => true
+    ],
+    'pluginOptions' => [
+        'allowClear' => true
+    ],
+]);
+?>
+<div class="d-grid gap-2">
+    <?= Html::submitButton(Yii::t('usuario', 'Update assignments'), ['class' => 'btn btn-success  mt-3']) ?>
+</div>
 <?php ActiveForm::end() ?>

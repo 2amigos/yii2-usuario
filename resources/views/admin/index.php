@@ -23,7 +23,7 @@ use yii\widgets\Pjax;
 
 $this->title = Yii::t('usuario', 'Manage users');
 $this->params['breadcrumbs'][] = $this->title;
-
+\yii\bootstrap5\BootstrapIconAsset::register($this);
 ?>
 
 <?php $this->beginContent($module->viewPath . '/shared/admin_layout.php') ?>
@@ -137,7 +137,7 @@ $this->params['breadcrumbs'][] = $this->title;
                     'switch' => function ($url, $model) use ($module) {
                         if ($model->id != Yii::$app->user->id && $module->enableSwitchIdentities) {
                             return Html::a(
-                                '<span class="glyphicon glyphicon-user"></span>',
+                                '<i class="bi-person-fill"></i>',
                                 ['/user/admin/switch-identity', 'id' => $model->id],
                                 [
                                     'title' => Yii::t('usuario', 'Impersonate this user'),
@@ -155,7 +155,7 @@ $this->params['breadcrumbs'][] = $this->title;
                     'reset' => function ($url, $model) use ($module) {
                         if($module->allowAdminPasswordRecovery) {
                             return Html::a(
-                                '<span class="glyphicon glyphicon-flash"></span>',
+                                '<i class="bi-lightning-charge-fill"></i>',
                                 ['/user/admin/password-reset', 'id' => $model->id],
                                 [
                                     'title' => Yii::t('usuario', 'Send password recovery email'),
@@ -175,7 +175,7 @@ $this->params['breadcrumbs'][] = $this->title;
                             return null;
                         }
                         return Html::a(
-                            '<span class="glyphicon glyphicon-time"></span>',
+                            '<i class="fas fa-stopwatch"></i>',
                             ['/user/admin/force-password-change', 'id' => $model->id],
                             [
                                 'title' => Yii::t('usuario', 'Force password change at next login'),
