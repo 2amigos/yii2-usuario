@@ -36,7 +36,7 @@ $networksVisible = count(Yii::$app->authClientCollection->clients) > 0;
         </h3>
     </div>
     <div class="card-body">
-        <?= Menu::widget(
+        <?= \yii\bootstrap5\Nav::widget(
             [
                 'options' => [
                     'class' => 'nav-pills nav-stacked flex-column',
