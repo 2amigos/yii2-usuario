@@ -37,15 +37,15 @@ $this->params['breadcrumbs'][] = $this->title;
     <div class="col-md-9">
         <div class="card">
             <div class="card-header">
-                <?= Html::encode($this->title) ?>
+                <h3 class="m-0 "><?= Html::encode($this->title) ?>
                 <?= Html::a(
                     Yii::t('usuario', 'Terminate all sessions'),
                     ['/user/settings/terminate-sessions'],
                     [
-                        'class' => 'btn btn-danger btn-xs pull-right',
+                        'class' => 'btn btn-danger btn-sm float-end',
                         'data-method' => 'post'
                     ]
-                ) ?>
+                ) ?></h3>
             </div>
             <div class="card-body">
 
