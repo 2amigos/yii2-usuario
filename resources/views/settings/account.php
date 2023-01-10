@@ -9,6 +9,7 @@
  * the LICENSE file that was distributed with this source code.
  */
 
+use yii\bootstrap5\Modal;
 use yii\helpers\Html;
 use yii\helpers\Url;
 use yii\bootstrap5\ActiveForm;
@@ -25,6 +26,7 @@ $this->params['breadcrumbs'][] = $this->title;
 
 /** @var \Da\User\Module $module */
 $module = Yii::$app->getModule('user');
+
 ?>
 <div class="clearfix"></div>
 
@@ -73,28 +75,9 @@ $module = Yii::$app->getModule('user');
                 <?php ActiveForm::end(); ?>
             </div>
         </div>
+
         <?php if ($module->enableTwoFactorAuthentication): ?>
-            <div class="modal fade" id="tfmodal" tabindex="-1" role="dialog" aria-labelledby="tfamodalLabel"
-                 aria-hidden="true">
-                <div class="modal-dialog">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
-                                    aria-hidden="true">&times;</span></button>
-                            <h4 class="modal-title" id="myModalLabel">
-                                <?= Yii::t('usuario', 'Two Factor Authentication (2FA)') ?></h4>
-                        </div>
-                        <div class="modal-body">
-                            ...
-                        </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-default" data-dismiss="modal" onClick='window.location.reload();'>
-                                <?= Yii::t('usuario', 'Close') ?>
-                            </button>
-                        </div>
-                    </div>
-                </div>
-            </div>
+
 
             <div class="card  mt-4  bg-info">
                 <div class="card-header">
@@ -128,16 +111,21 @@ $module = Yii::$app->getModule('user');
                             }
                         } ;
                     ?>
-                        <?= Html::a(
-                            Yii::t('usuario', 'Enable two factor authentication'),
-                            '#tfmodal',
-                            [
+
+                        <?php
+                        Modal::begin([
+                            'id' => 'tfmodal',
+                            'title' =>Yii::t('usuario', 'Two Factor Authentication (2FA)'),
+                            'toggleButton' => [
                                 'id' => 'enable_tf_btn',
+                                'label' => Yii::t('usuario', 'Enable two factor authentication'),
                                 'class' => 'btn btn-light',
-                                'data-toggle' => 'modal',
-                                'data-target' => '#tfmodal'
-                            ]
-                        ) ?>
+                            ],
+                        ]);
+                        ?>
+                        ...
+                        <?php Modal::end(); ?>
+
                     <?php else:
                          ?>
                             <p>
@@ -211,6 +199,7 @@ $module = Yii::$app->getModule('user');
     var choice = '';
     $('#tfmodal')
     .on('show.bs.modal', function(){
+        console.log("show");
         var element = document.getElementsByName('2famethod');
         for(i = 0; i < element.length; i++) {
             if(element[i].checked)
