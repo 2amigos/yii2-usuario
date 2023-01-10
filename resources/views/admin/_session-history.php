@@ -34,7 +34,7 @@ use yii\data\ActiveDataProvider;
                 Yii::t('usuario', 'Terminate all sessions'),
                 ['/user/admin/terminate-sessions', 'id' => $user->id],
                 [
-                    'class' => 'btn btn-danger btn-xs pull-right',
+                    'class' => 'btn btn-danger btn-xs float-right',
                     'data-method' => 'post'
                 ]
             ) ?>
