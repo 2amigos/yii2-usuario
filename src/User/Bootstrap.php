@@ -228,7 +228,7 @@ class Bootstrap implements BootstrapInterface
         if (!isset($app->get('i18n')->translations['usuario*'])) {
             $app->get('i18n')->translations['usuario*'] = [
                 'class' => PhpMessageSource::class,
-                'basePath' => __DIR__ . '/resources/i18n',
+                'basePath' => __DIR__ . '/../../resources/i18n',
                 'sourceLanguage' => 'en-US',
             ];
         }
