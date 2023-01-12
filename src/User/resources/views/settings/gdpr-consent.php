@@ -1,6 +1,6 @@
 <?php
 use yii\helpers\Html;
-use yii\widgets\ActiveForm;
+use yii\bootstrap5\ActiveForm;
 /** @var \yii\base\DynamicModel $model */
 /** @var string $gdpr_consent_hint */
 ?>
@@ -12,11 +12,11 @@ use yii\widgets\ActiveForm;
                 'id' => $model->formName(),
             ]
         ); ?>
-        <div class="panel panel-info give-consent-panel">
-            <div class="panel-heading">
-                <h1 class="panel-title"><?= Yii::t('usuario', 'Data privacy') ?></h1>
+            <div class="card bg-info give-consent-card">
+                <div class="card-header">
+                <h1 class="m-0"><?= Yii::t('usuario', 'Data privacy') ?></h1>
             </div>
-            <div class="panel-body">
+            <div class="card-body">
 
                 <p><?= Yii::t('usuario', 'According to the European General Data Protection Regulation (GDPR) we need your consent to work with your personal data.') ?></p>
                 <p><?php Yii::t('usuario', 'Unfortunately, you can not work with this site without giving us consent to process your data.') ?></p>
@@ -24,9 +24,10 @@ use yii\widgets\ActiveForm;
                 <?= $form->field($model, 'gdpr_consent')->checkbox(['value' => 1, 'label' => $gdpr_consent_hint])?>
 
             </div>
-            <div class="panel-footer">
+            <div class="card-footer">
                 <?= Html::submitButton(Yii::t('usuario', 'Submit'), ['class' => 'btn btn-success']) ?>
-                <p class="pull-right small"><?= Html::a(Yii::t('usuario', 'Account details'), ['/user/settings']) ?></p>
+                <small><?= Html::a(Yii::t('usuario', 'Account details'), ['/user/settings'],
+                        ['class' => "float-end"]) ?></small>
             </div>
         </div>
         <?php ActiveForm::end(); ?>

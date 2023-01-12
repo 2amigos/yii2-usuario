@@ -9,7 +9,7 @@
  * the LICENSE file that was distributed with this source code.
  */
 
-use yii\bootstrap\ActiveForm;
+use yii\bootstrap5\ActiveForm;
 use yii\helpers\Html;
 
 /** @var yii\web\View $this */
@@ -25,19 +25,19 @@ use yii\helpers\Html;
         'layout' => 'horizontal',
         'enableAjaxValidation' => true,
         'enableClientValidation' => false,
-        'fieldConfig' => [
-            'horizontalCssClasses' => [
-                'wrapper' => 'col-sm-9',
-            ],
-        ],
     ]
 ); ?>
 
 <?= $this->render('/admin/_user', ['form' => $form, 'user' => $user]) ?>
 
 <div class="form-group">
-    <div class="col-lg-offset-3 col-lg-9">
-        <?= Html::submitButton(Yii::t('usuario', 'Update'), ['class' => 'btn btn-block btn-success']) ?>
+    <div class="offset-sm-2 col-lg-10">
+        <div class="d-grid">
+            <?= Html::submitButton(
+                Yii::t('usuario', 'Update'),
+                ['class' => 'btn btn-success']
+            ) ?>
+        </div>
     </div>
 </div>
 

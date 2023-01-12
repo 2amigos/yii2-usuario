@@ -8,7 +8,7 @@
  * the LICENSE file that was distributed with this source code.
  */
 
-use yii\widgets\ActiveForm;
+use yii\bootstrap5\ActiveForm;
 use yii\helpers\Html;
 
 /** @var \Da\User\Form\GdprDeleteForm $model */
@@ -16,13 +16,13 @@ use yii\helpers\Html;
 
 <div class="row">
     <div class="col-md-6 col-md-offset-3">
-        <div class="panel panel-danger">
-            <div class="panel-heading">
-                <h3 class="panel-title">
+        <div class="card bg-danger">
+            <div class="card-header">
+                <h3 class="m-0">
                     <?= Yii::t('usuario', 'Delete personal data') ?>
                 </h3>
             </div>
-            <div class="panel-body">
+            <div class="card-body">
                 <p><?= Yii::t('usuario', 'You are about to delete all your personal data from this site.') ?></p>
                 <p class="text-danger">
                     <?= Yii::t(

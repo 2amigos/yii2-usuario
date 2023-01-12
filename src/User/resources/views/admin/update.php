@@ -10,7 +10,7 @@
  */
 
 use Da\User\Model\User;
-use yii\bootstrap\Nav;
+use yii\bootstrap5\Nav;
 use yii\helpers\Html;
 use yii\web\View;
 use Da\User\Module as UserModule;
@@ -38,20 +38,20 @@ $module = Yii::$app->getModule('user');
 
 <div class="row">
     <div class="col-md-12">
-        <div class="panel panel-default">
-            <div class="panel-heading">
-                <h3 class="panel-title"><?= Html::encode($this->title) ?></h3>
+        <div class="card">
+            <div class="card-header">
+                <h3 class="m-0"><?= Html::encode($this->title) ?></h3>
             </div>
-            <div class="panel-body">
+            <div class="card-body">
                 <?= $this->render('/shared/_menu') ?>
                 <div class="row">
                     <div class="col-md-3">
-                        <div class="panel panel-default">
-                            <div class="panel-body">
+                        <div class="card">
+                            <div class="card-body">
                                 <?= Nav::widget(
                                     [
                                         'options' => [
-                                            'class' => 'nav-pills nav-stacked',
+                                            'class' => 'nav-pills nav-stacked flex-column',
                                         ],
                                         'items' => [
                                             [
@@ -134,8 +134,8 @@ $module = Yii::$app->getModule('user');
                         </div>
                     </div>
                     <div class="col-md-9">
-                        <div class="panel panel-default">
-                            <div class="panel-body">
+                        <div class="card">
+                            <div class="card-body">
                                 <?= $content ?>
                             </div>
                         </div>

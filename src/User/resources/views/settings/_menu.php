@@ -22,9 +22,9 @@ $networksVisible = count(Yii::$app->authClientCollection->clients) > 0;
 
 ?>
 
-<div class="panel panel-default">
-    <div class="panel-heading">
-        <h3 class="panel-title">
+<div class="card">
+    <div class="card-header">
+        <h3 class="m-0">
             <?= Html::img(
                 $user->profile->getAvatarUrl(24),
                 [
@@ -35,11 +35,11 @@ $networksVisible = count(Yii::$app->authClientCollection->clients) > 0;
             <?= $user->username ?>
         </h3>
     </div>
-    <div class="panel-body">
-        <?= Menu::widget(
+    <div class="card-body">
+        <?= \yii\bootstrap5\Nav::widget(
             [
                 'options' => [
-                    'class' => 'nav nav-pills nav-stacked',
+                    'class' => 'nav-pills nav-stacked flex-column',
                 ],
                 'items' => [
                     ['label' => Yii::t('usuario', 'Profile'), 'url' => ['/user/settings/profile']],

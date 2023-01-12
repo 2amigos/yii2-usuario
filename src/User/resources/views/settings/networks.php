@@ -31,11 +31,11 @@ $this->params['breadcrumbs'][] = $this->title;
         <?= $this->render('/settings/_menu') ?>
     </div>
     <div class="col-md-9">
-        <div class="panel panel-default">
-            <div class="panel-heading">
+        <div class="card">
+            <div class="card-header">
                 <?= Html::encode($this->title) ?>
             </div>
-            <div class="panel-body">
+            <div class="card-body">
                 <div class="alert alert-info">
                     <p><?= Yii::t('usuario', 'You can connect multiple accounts to be able to log in using them') ?>
                         .</p>
