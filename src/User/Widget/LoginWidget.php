@@ -27,7 +27,7 @@ class LoginWidget extends Widget
     public function run()
     {
         return $this->render(
-            $this->getModule()->$this->viewPath .'/widgets/login/form',
+            $this->getModule()->viewPath .'/widgets/login/form',
             [
                 'model' => Yii::createObject(LoginForm::class),
             ]
