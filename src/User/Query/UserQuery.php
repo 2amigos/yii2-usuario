@@ -16,6 +16,18 @@ use yii\db\ActiveQuery;
 class UserQuery extends ActiveQuery
 {
     /**
+     * @param $idOrUsernameOrEmail
+     *
+     * @return $this
+     */
+    public function whereIdOrUsernameOrEmail($idOrUsernameOrEmail)
+    {
+        return filter_var($idOrUsernameOrEmail, FILTER_VALIDATE_INT)
+            ? $this->whereId($idOrUsernameOrEmail)
+            : $this->whereUsernameOrEmail($idOrUsernameOrEmail);
+    }
+
+    /**
      * @param $usernameOrEmail
      *
      * @return $this

@@ -140,37 +140,6 @@ class AdminController extends ActiveController
     }
 
     /**
-     * Override beforeAction. If the api is called with parameter username get the id of the user and set it in query params
-     * @param mixed $action
-     */
-    public function beforeAction($action)
-    {
-        if ($action == 'create') {
-            return parent::beforeAction($action);
-        }
-
-        $id = Yii::$app->request->getQueryParam('id');
-        if (!is_null($id)) {
-            return parent::beforeAction($action);
-        }
-
-        $username = Yii::$app->request->getQueryParam('username');
-        if (is_null($username)) {
-            return parent::beforeAction($action);
-        }
-
-        $user = $this->userQuery->where(['username' => $username])->one();
-        if (is_null($user)) { // Check user, so ` $username` parameter
-            return parent::beforeAction($action);
-        }
-
-        $params = Yii::$app->request->getQueryParams();
-        $params['id'] = $user->id;
-        Yii::$app->request->setQueryParams($params);
-
-        return parent::beforeAction($action);
-    }
-    /**
      * Create a user.
      */
     public function actionCreate()
@@ -207,15 +176,14 @@ class AdminController extends ActiveController
      * Update a user.
      * @param int $id ID of the user.
      */
-    public function actionUpdate($id = null)
+    public function actionUpdate($id)
     {
         // Check access
         $this->checkAccess($this->action);
-        $id = Yii::$app->request->getQueryParam('id');
 
         // Get user model
         /** @var User $user */
-        $user = $this->userQuery->where(['id' => $id])->one();
+        $user = $this->userQuery->whereIdOrUsernameOrEmail($id)->one();
         if (is_null($user)) { // Check user, so `$id` parameter
             $this->throwUser404();
         }
@@ -247,16 +215,16 @@ class AdminController extends ActiveController
         // Check access
         $this->checkAccess($this->action);
 
-        // Check ID parameter (whether own account)
-        if ((int)$id === Yii::$app->user->getId()) {
-            throw new BadRequestHttpException(Yii::t('usuario', 'You cannot remove your own account.'));
-        }
-
         // Get user model
         /** @var User $user */
-        $user = $this->userQuery->where(['id' => $id])->one();
+        $user = $this->userQuery->whereIdOrUsernameOrEmail($id)->one();
         if (is_null($user)) { // Check user, so `$id` parameter
             $this->throwUser404();
+        }
+
+        // Check ID parameter (whether own account)
+        if ($user->id === Yii::$app->user->getId()) {
+            throw new BadRequestHttpException(Yii::t('usuario', 'You cannot remove your own account.'));
         }
 
         // Create event object
@@ -284,7 +252,7 @@ class AdminController extends ActiveController
 
         // Get user model
         /** @var User $user */
-        $user = $this->userQuery->where(['id' => $id])->one();
+        $user = $this->userQuery->whereIdOrUsernameOrEmail($id)->one();
         if (is_null($user)) { // Check user, so `$id` parameter
             $this->throwUser404();
         }
@@ -322,7 +290,7 @@ class AdminController extends ActiveController
 
         // Get user model
         /** @var User $user */
-        $user = $this->userQuery->where(['id' => $id])->one();
+        $user = $this->userQuery->whereIdOrUsernameOrEmail($id)->one();
         if (is_null($user)) { // Check user, so `$id` parameter
             $this->throwUser404();
         }
@@ -343,7 +311,7 @@ class AdminController extends ActiveController
 
         // Get user model
         /** @var User $user */
-        $user = $this->userQuery->where(['id' => $id])->one();
+        $user = $this->userQuery->whereIdOrUsernameOrEmail($id)->one();
         if (is_null($user)) { // Check user, so `$id` parameter
             $this->throwUser404();
         }
@@ -366,11 +334,10 @@ class AdminController extends ActiveController
      * Block and unblock the user.
      * @param int $id ID of the user.
      */
-    public function actionBlock($id = null)
+    public function actionBlock($id)
     {
         // Check access
         $this->checkAccess($this->action);
-        $id = Yii::$app->request->getQueryParam('id');
 
         // Check ID parameter (whether own account)
         if ((int)$id === Yii::$app->user->getId()) {
@@ -379,7 +346,7 @@ class AdminController extends ActiveController
 
         // Get user model
         /** @var User $user */
-        $user = $this->userQuery->where(['id' => $id])->one();
+        $user = $this->userQuery->whereIdOrUsernameOrEmail($id)->one();
         if (is_null($user)) { // Check user, so `$id` parameter
             $this->throwUser404();
         }
@@ -407,7 +374,7 @@ class AdminController extends ActiveController
 
         // Get user model
         /** @var User $user */
-        $user = $this->userQuery->where(['id' => $id])->one();
+        $user = $this->userQuery->whereIdOrUsernameOrEmail($id)->one();
         if (is_null($user)) { // Check user, so `$id` parameter
             $this->throwUser404();
         }
@@ -432,7 +399,7 @@ class AdminController extends ActiveController
 
         // Get user model
         /** @var User $user */
-        $user = $this->userQuery->where(['id' => $id])->one();
+        $user = $this->userQuery->whereIdOrUsernameOrEmail($id)->one();
         if (is_null($user)) { // Check user, so `$id` parameter
             $this->throwUser404();
         }
