@@ -221,9 +221,10 @@ class SecurityController extends Controller
             $validators = $module->twoFactorAuthenticationValidators;
             $credentials = Yii::$app->session->get('credentials');
             $login = $credentials['login'];
-            $user = User::findOne(['email' => $login]);
+            $userModel = $this->getClassMap()->get(User::class);
+            $user = $userModel::findOne(['email' => $login]);
             if ($user == null) {
-                $user = User::findOne(['username' => $login]);
+                $user = $userModel::findOne(['username' => $login]);
             }
             $tfType = $user->getAuthTfType();
 
