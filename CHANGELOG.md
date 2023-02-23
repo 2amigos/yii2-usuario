@@ -5,6 +5,7 @@
 - Fix: use correct password recovery url in welcome mail and add functionality to plain text version of the mail (@eluhr)
 - Fix: correct viewPath error in LoginWidget (niciz)
 - Enh: possibility to call all the api endpoints with either id or username or email (liviuk2)
+- Fix: use configured User model in SecurityController 2FA confirmation (jussiaho)
 
 ## 1.6.0 January 9, 2023
 
