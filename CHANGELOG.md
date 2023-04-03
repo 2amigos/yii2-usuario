@@ -6,6 +6,7 @@
 - Fix: correct viewPath error in LoginWidget (niciz)
 - Enh: possibility to call all the api endpoints with either id or username or email (liviuk2)
 - Fix: use configured User model in SecurityController 2FA confirmation (jussiaho)
+- Enh: possibility to get user ids from roles recursively (mp1509)
 
 ## 1.6.0 January 9, 2023
 
