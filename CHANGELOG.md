@@ -1,6 +1,6 @@
 # CHANGELOG
 
-## dev
+## 1.6.1 March 4th, 2023
 
 - Fix: use correct password recovery url in welcome mail and add functionality to plain text version of the mail (@eluhr)
 - Fix: correct viewPath error in LoginWidget (niciz)
