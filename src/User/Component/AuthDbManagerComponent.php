@@ -87,7 +87,8 @@ class AuthDbManagerComponent extends DbManager implements AuthManagerInterface
 
     /**
      * @inheritdoc
-     * @param bool $recursive
+     * @param bool|integer $recursive If the roles are to be calculated recursively. If an integer is passed it will limit the depth of the
+     *  recursion to the given number (e.g. 1 would also get ids from users assigned to only the parents of the given role).
      * @override to add possibility to get the ids of users assigned to roles that are parents of the given one.
      * @since 1.6.1
      */
@@ -97,7 +98,7 @@ class AuthDbManagerComponent extends DbManager implements AuthManagerInterface
             return parent::getUserIdsByRole($roleName);
         }
 
-        $roles = $this->getParentRoles($roleName);
+        $roles = $this->getParentRoles($roleName, $recursive === true ? null : $recursive);
         $userIds = array_reduce($roles, function ($ids, $role) {
             $roleIds = parent::getUserIdsByRole($role->name);
             return array_merge($ids, $roleIds);
@@ -109,12 +110,13 @@ class AuthDbManagerComponent extends DbManager implements AuthManagerInterface
     /**
      * Returns parent roles of the role specified. Depth isn't limited.
      * @param string $roleName name of the role to file parent roles for
+     * @param null|integer $depth The depth to which to search for parents recursively, if null it won't have any limit. Defaults to `null`.
      * @return Role[] Child roles. The array is indexed by the role names.
      * First element is an instance of the parent Role itself.
      * @throws \yii\base\InvalidParamException if Role was not found that are getting by $roleName
      * @since 1.6.1
      */
-    public function getParentRoles($roleName)
+    public function getParentRoles($roleName, $depth = null)
     {
         $role = $this->getRole($roleName);
 
@@ -123,7 +125,7 @@ class AuthDbManagerComponent extends DbManager implements AuthManagerInterface
         }
 
         $result = [];
-        $this->getParentsRecursive($roleName, $result);
+        $this->getParentsRecursive($roleName, $result, $depth);
 
         $roles = [$roleName => $role];
 
@@ -136,10 +138,12 @@ class AuthDbManagerComponent extends DbManager implements AuthManagerInterface
      * Recursively finds all parents and grandparents of the specified item.
      * @param string $name the name of the item whose children are to be looked for.
      * @param array $result the children and grand children (in array keys)
+     * @param null|integer $depth The depth to which to search recursively, if null it won't have any limit. Defaults to `null`.
      * @since 1.6.1
      */
-    protected function getParentsRecursive($name, &$result = [])
+    protected function getParentsRecursive($name, &$result = [], &$depth = null)
     {
+        $depth -= 1; // Cannot use -- because we have to cast `null` to integer
         $query = (new Query())
             ->select(['name', 'type', 'description', 'rule_name', 'data', 'created_at', 'updated_at'])
             ->from([$this->itemTable, $this->itemChildTable])
@@ -150,7 +154,11 @@ class AuthDbManagerComponent extends DbManager implements AuthManagerInterface
                 continue;
             }
             $result[$row['name']] = $this->populateItem($row);
-            $this->getParentsRecursive($row['name'], $result);
+            // If we have yet to reach the maximum depth, we continue.
+            // If $depth was orginally `null` it'd start from -1 so decrements will never make reach 0
+            if($depth !== 0) {
+                $this->getParentsRecursive($row['name'], $result);
+            }
         }
     }
 }

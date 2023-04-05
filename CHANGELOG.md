@@ -1,5 +1,9 @@
 # CHANGELOG
 
+## dev
+
+- Enh: possibility to limit the depth of the recursion when getting user ids from roles (mp1509)
+
 ## 1.6.1 March 4th, 2023
 
 - Fix: use correct password recovery url in welcome mail and add functionality to plain text version of the mail (@eluhr)
