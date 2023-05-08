@@ -1,5 +1,17 @@
 # CHANGELOG
 
+## dev
+
+- Enh: possibility to limit the depth of the recursion when getting user ids from roles (mp1509)
+
+## 1.6.1 March 4th, 2023
+
+- Fix: use correct password recovery url in welcome mail and add functionality to plain text version of the mail (@eluhr)
+- Fix: correct viewPath error in LoginWidget (niciz)
+- Enh: possibility to call all the api endpoints with either id or username or email (liviuk2)
+- Fix: use configured User model in SecurityController 2FA confirmation (jussiaho)
+- Enh: possibility to get user ids from roles recursively (mp1509)
+
 ## 1.6.0 January 9, 2023
 
 **WARNING**: this release (long time due) makes a step forward in PHP

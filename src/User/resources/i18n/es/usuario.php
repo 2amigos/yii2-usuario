@@ -114,7 +114,7 @@ return [
     'Here you can download your personal data in a comma separated values format.' => 'Aquí puede descargar su información personal en formato de valores separados por comas.',
     'I agree processing of my personal data and the use of cookies to facilitate the operation of this site. For more information read our {privacyPolicy}' => 'Doy mi consentimiento para el procesamiento de mis datos personales y el uso de «cookies» para facilitar el funcionamiento de este sitio.  Para más información lea nuestra {privacyPolicy}',
     'If you already registered, sign in and connect this account on settings page' => 'Si ya está registrado, inicie sesión y conecte esta cuenta en la página de configuración',
-    'If you cannot click the link, please try pasting the text into your browser' => 'Si no puede pulsar en el enlace, intente pegar el siguiente texto en su navegador web',
+    'If you cannot click the link, please try pasting the text into your browser' => 'Si no puede pulsar en el enlace, intente pegar el texto en su navegador web',
     'If you did not make this request you can ignore this email' => 'Si no hizo esta petición, puede ignorar este mensaje',
     'Impersonate this user' => 'Personificar este usuario',
     'In order to complete your registration, please click the link below' => 'Para completar el registro, pulse el siguiente enlace',
