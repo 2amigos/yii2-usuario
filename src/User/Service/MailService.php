@@ -83,8 +83,7 @@ class MailService implements ServiceInterface
      */
     public function run()
     {
-
-        $result =  $this->mailer
+        $result = $this->mailer
             ->compose(['html' => $this->view, 'text' => "text/{$this->view}"], $this->params)
             ->setFrom($this->from)
             ->setTo($this->to)
