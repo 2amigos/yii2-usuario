@@ -56,6 +56,7 @@ return [
     'Block' => 'Verrouiller',
     'Block status' => 'État du verrouillage',
     'Blocked at {0, date, MMMM dd, YYYY HH:mm}' => 'Verrouillé depuis le {0, date, dd MMMM YYYY HH:mm}',
+    'Can\'t scan? Copy the code instead.' => 'Ne peut pas numériser? Copiez le code.',
     'Cancel' => 'Annuler',
     'Cannot assign role "{0}" as the AuthManager is not configured on your console application.' => 'Impossible d\'assigner le rôle {0} tant que l\'AuthManager n\'est pas configuré depuis la console de l\'application.',
     'Change your avatar at Gravatar.com' => 'Changez votre avatar depuis Gravatar.com',

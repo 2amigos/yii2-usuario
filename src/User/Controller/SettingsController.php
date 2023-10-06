@@ -473,7 +473,7 @@ class SettingsController extends Controller
         switch ($choice) {
             case 'google-authenticator':
                 $uri = $this->make(TwoFactorQrCodeUriGeneratorService::class, [$user])->run();
-                return $this->renderAjax('two-factor', ['id' => $id, 'uri' => $uri]);
+                return $this->renderAjax('two-factor', ['id' => $id, 'uri' => $uri, 'user' => $user]);
             case 'email':
                 $emailCode = $this->make(TwoFactorEmailCodeGeneratorService::class, [$user])->run();
                 return $this->renderAjax('two-factor-email', ['id' => $id, 'code' => $emailCode]);

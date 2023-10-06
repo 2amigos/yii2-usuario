@@ -10,6 +10,7 @@
 
 /** @var string $id */
 /** @var string $uri */
+/** @var Da\User\Model\User $user */
 ?>
 
 <div class="alert alert-info" id="tfmessage">
@@ -24,6 +25,12 @@
 <div class="row">
     <div class="col-md-offset-3 col-md-6 text-center">
         <img id="qrCode" src="<?= $uri ?>"/>
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-offset-3 col-md-6 text-center">
+        <a href="#" onclick="this.nextElementSibling.style.display = (this.nextElementSibling.style.display === '' ? 'none' : '');"><?= Yii::t('usuario', 'Can\'t scan? Copy the code instead.') ?></a>
+        <pre style="display:none;"><?= $user->auth_tf_key ?></pre>
     </div>
 </div>
 <div class="row">
