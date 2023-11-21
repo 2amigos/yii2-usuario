@@ -25,8 +25,11 @@ class PasswordExpireService implements ServiceInterface
 
     public function run()
     {
-        return $this->model->updateAttributes([
-            'password_changed_at' => null,
-        ]);
+        if ($this->model->password_changed_at !== null) {
+            return $this->model->updateAttributes([
+                'password_changed_at' => null,
+            ]);
+        }
+        return true;
     }
 }
