@@ -2,6 +2,7 @@
 
 ## dev
 
+- Fix: Two Factor Authentication - Filter - Blocks even when two factor authentication is enabled
 - Fix: update Dutch (nl) translations (squio)
 - Enh: possibility to limit the depth of the recursion when getting user ids from roles (mp1509)
 
