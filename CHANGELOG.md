@@ -6,6 +6,7 @@
 - Fix: update Dutch (nl) translations (squio)
 - Enh: possibility to limit the depth of the recursion when getting user ids from roles (mp1509)
 - Fix: UserSearch avoid fields name conflict if joined with other tables (liviuk2)
+- Fix: PasswordExpireService return false when user model attribute "password_changed_at" is already set at null.
 
 ## 1.6.1 March 4th, 2023
 
