@@ -111,6 +111,6 @@ class TwoFactorEmailValidator extends TwoFactorCodeValidator
     */
     public function generateCode()
     {
-        return $this->make(TwoFactorEmailCodeGeneratorService::class, $this->user)->run();
+        return $this->make(TwoFactorEmailCodeGeneratorService::class, [$this->user])->run();
     }
 }
