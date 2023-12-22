@@ -11,7 +11,9 @@
 
 namespace Da\User\Search;
 
+use Da\User\Model\User;
 use Da\User\Query\UserQuery;
+use Da\User\Traits\ContainerAwareTrait;
 use Yii;
 use yii\base\InvalidParamException;
 use yii\base\Model;
@@ -19,6 +21,8 @@ use yii\data\ActiveDataProvider;
 
 class UserSearch extends Model
 {
+    use ContainerAwareTrait;
+
     /**
      * @var string
      */
@@ -106,21 +110,23 @@ class UserSearch extends Model
             return $dataProvider;
         }
 
+        $userClass = $this->getClassMap()->get(User::class);
+
         if ($this->created_at !== null) {
             $date = strtotime($this->created_at);
-            $query->andFilterWhere(['between', 'created_at', $date, $date + 3600 * 24]);
+            $query->andFilterWhere(['between', $userClass::tableName().'.created_at', $date, $date + 3600 * 24]);
         }
 
         if ($this->last_login_at !== null) {
             $date = strtotime($this->last_login_at);
-            $query->andFilterWhere(['between', 'last_login_at', $date, $date + 3600 * 24]);
+            $query->andFilterWhere(['between', $userClass::tableName().'.last_login_at', $date, $date + 3600 * 24]);
         }
 
         $query
-            ->andFilterWhere(['like', 'username', $this->username])
-            ->andFilterWhere(['like', 'email', $this->email])
-            ->andFilterWhere(['registration_ip' => $this->registration_ip])
-            ->andFilterWhere(['last_login_ip' => $this->last_login_ip]);
+            ->andFilterWhere(['like', $userClass::tableName().'.username', $this->username])
+            ->andFilterWhere(['like', $userClass::tableName().'.email', $this->email])
+            ->andFilterWhere([$userClass::tableName().'.registration_ip' => $this->registration_ip])
+            ->andFilterWhere([$userClass::tableName().'.last_login_ip' => $this->last_login_ip]);
 
         return $dataProvider;
     }
