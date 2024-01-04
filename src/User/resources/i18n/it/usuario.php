@@ -53,6 +53,7 @@ return [
     'Authorization rule has been updated.' => 'Regola di autorizzazione modificata.',
     'Awesome, almost there. Now you need to click the confirmation link sent to your new email address.' => 'Fantastico, ci siamo quasi. Ora devi solo visitare il collegamento di conferma che è stato inviato al tuo nuovo indirizzo email.',
     'Awesome, almost there. Now you need to click the confirmation link sent to your old email address.' => 'Fantastico, ci siamo quasi. Ora devi solo visitare il collegamento di conferma che è stato inviato al tuo vecchio indirizzo email.',
+    'Can\'t scan? Copy the code instead.' => 'Non puoi scansionare? Copia il codice.',
     'Back to privacy settings' => 'Torna alle impostazioni di privacy',
     'Bio' => 'Bio',
     'Block' => 'Blocca',

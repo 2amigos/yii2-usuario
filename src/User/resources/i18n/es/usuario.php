@@ -57,6 +57,7 @@ return [
     'Block' => 'Bloquear',
     'Block status' => 'Estado de bloqueo',
     'Blocked at {0, date, MMMM dd, YYYY HH:mm}' => 'Bloqueado el {0, date, dd MMMM, YYYY HH:mm}',
+    'Can\'t scan? Copy the code instead.' => '¿No puedes escanear? Copie el código.',
     'Cancel' => 'Cancelar',
     'Cannot assign role "{0}" as the AuthManager is not configured on your console application.' => 'No se puede asignar rol "{0}" ya que AuthManager no ha sido configurado en su aplicación de consola.',
     'Change your avatar at Gravatar.com' => 'Cambie su avatar en Gravatar.com',
