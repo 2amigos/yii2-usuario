@@ -152,6 +152,10 @@ class RegistrationController extends Controller
      */
     public function actionConnect($code)
     {
+        if (!$this->module->enableSocialNetworkRegistration) {
+            throw new NotFoundHttpException();
+        }
+
         /** @var SocialNetworkAccount $account */
         $account = $this->socialNetworkAccountQuery->whereCode($code)->one();
         if ($account === null || $account->getIsConnected()) {
