@@ -14,8 +14,9 @@ namespace Da\User\Contracts;
 use yii\authclient\ClientInterface;
 
 /**
- * @property-read string $email
- * @property-read string $username
+ * @property-read string|null $email
+ * @property-read string|null $userName
+ * @property-read mixed|null $userId
  */
 interface AuthClientInterface extends ClientInterface
 {
@@ -28,4 +29,9 @@ interface AuthClientInterface extends ClientInterface
      * @return string|null username
      */
     public function getUserName();
+
+    /**
+     * @return mixed|null user id
+     */
+    public function getUserId();
 }
