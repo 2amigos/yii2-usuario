@@ -12,11 +12,14 @@
 namespace Da\User\AuthClient;
 
 use Da\User\Contracts\AuthClientInterface;
+use Da\User\Traits\AuthClientUserIdTrait;
 use Yii;
 use yii\authclient\clients\Yandex as BaseYandex;
 
 class Yandex extends BaseYandex implements AuthClientInterface
 {
+    use AuthClientUserIdTrait;
+    
     /**
      * {@inheritdoc}
      */

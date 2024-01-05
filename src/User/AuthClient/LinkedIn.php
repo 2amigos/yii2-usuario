@@ -12,10 +12,13 @@
 namespace Da\User\AuthClient;
 
 use Da\User\Contracts\AuthClientInterface;
+use Da\User\Traits\AuthClientUserIdTrait;
 use yii\authclient\clients\LinkedIn as BaseLinkedIn;
 
 class LinkedIn extends BaseLinkedIn implements AuthClientInterface
 {
+    use AuthClientUserIdTrait;
+    
     /**
      * {@inheritdoc}
      */

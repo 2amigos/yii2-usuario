@@ -12,10 +12,12 @@
 namespace Da\User\AuthClient;
 
 use Da\User\Contracts\AuthClientInterface;
+use Da\User\Traits\AuthClientUserIdTrait;
 use yii\authclient\clients\GitHub as BaseGitHub;
 
 class GitHub extends BaseGitHub implements AuthClientInterface
 {
+    use AuthClientUserIdTrait;
     /**
      * {@inheritdoc}
      */
