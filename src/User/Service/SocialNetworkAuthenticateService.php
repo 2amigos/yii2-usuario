@@ -48,7 +48,7 @@ class SocialNetworkAuthenticateService implements ServiceInterface
     public function run()
     {
         $account = $this->socialNetworkAccountQuery->whereClient($this->client)->one();
-        if (!$this->controller->module->enableRegistration && ($account === null || $account->user === null)) {
+        if (!$this->controller->module->enableSocialNetworkRegistration && ($account === null || $account->user === null)) {
             Yii::$app->session->setFlash('danger', Yii::t('usuario', 'Registration on this website is disabled'));
             $this->authAction->setSuccessUrl(Url::to(['/user/security/login']));
 

@@ -143,6 +143,11 @@ List of urls that does not require explicit data processing consent to be access
 Setting this attribute allows the registration process. If you set it to `false`, the module won't allow users to
 register by throwing a `NotFoundHttpException` if the `RegistrationController::actionRegister()` is accessed.
 
+#### enableSocialNetworkRegistration (type: `boolean`, default: `true`)
+
+Setting this attribute allows the registration process via social networks. If you set it to `false`, the module won't allow users to
+register.
+
 #### enableEmailConfirmation (type: `boolean`, default: `true`)
 
 If `true`, the module will send an email with a confirmation link that user needs to click through to complete its
