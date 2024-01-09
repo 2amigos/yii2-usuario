@@ -31,7 +31,7 @@ class UserCreateService implements ServiceInterface
     protected $securityHelper;
     protected $mailService;
 
-    public function __construct(User $model, MailService $mailService, SecurityHelper $securityHelper)
+    public function __construct(User $model, ?MailService $mailService, SecurityHelper $securityHelper)
     {
         $this->model = $model;
         $this->mailService = $mailService;
@@ -70,7 +70,7 @@ class UserCreateService implements ServiceInterface
             }
 
             $model->trigger(UserEvent::EVENT_AFTER_CREATE, $event);
-            if (!$this->sendMail($model)) {
+            if ($this->mailService instanceof MailService && !$this->sendMail($model)) {
                 $error_msg = Yii::t(
                     'usuario',
                     'Error sending welcome message to "{email}". Please try again later.',

@@ -12,11 +12,14 @@
 namespace Da\User\AuthClient;
 
 use Da\User\Contracts\AuthClientInterface;
+use Da\User\Traits\AuthClientUserIdTrait;
 use Yii;
 use yii\authclient\clients\VKontakte as BaseVKontakte;
 
 class VKontakte extends BaseVKontakte implements AuthClientInterface
 {
+    use AuthClientUserIdTrait;
+    
     /**
      * {@inheritdoc}
      */
