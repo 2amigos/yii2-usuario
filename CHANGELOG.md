@@ -2,6 +2,8 @@
 
 ## dev
 
+- Fix: Social Network Auth (eluhr)
+
 ## 1.6.2 Jan 4th, 2024
 
 - Fix: Two Factor Authentication - Filter - Blocks even when two factor authentication is enabled

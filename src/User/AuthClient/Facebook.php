@@ -12,10 +12,14 @@
 namespace Da\User\AuthClient;
 
 use Da\User\Contracts\AuthClientInterface;
+use Da\User\Traits\AuthClientUserIdTrait;
 use yii\authclient\clients\Facebook as BaseFacebook;
 
 class Facebook extends BaseFacebook implements AuthClientInterface
 {
+
+    use AuthClientUserIdTrait;
+    
     /**
      * {@inheritdoc}
      */

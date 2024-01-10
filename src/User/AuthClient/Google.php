@@ -12,10 +12,12 @@
 namespace Da\User\AuthClient;
 
 use Da\User\Contracts\AuthClientInterface;
+use Da\User\Traits\AuthClientUserIdTrait;
 use yii\authclient\clients\Google as BaseGoogle;
 
 class Google extends BaseGoogle implements AuthClientInterface
 {
+    use AuthClientUserIdTrait;
     /**
      * {@inheritdoc}
      */

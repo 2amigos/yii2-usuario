@@ -118,6 +118,14 @@ class Module extends BaseModule
      */
     public $enableRegistration = true;
     /**
+     * @var bool whether to allow registration process for social network or not
+     */
+    public $enableSocialNetworkRegistration = true;
+    /**
+     * @var bool whether to send a welcome mail after the registration process for social network
+     */
+    public $sendWelcomeMailAfterSocialNetworkRegistration = true;
+    /**
      * @var bool whether to force email confirmation to
      */
     public $enableEmailConfirmation = true;
