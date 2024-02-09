@@ -46,6 +46,7 @@ The following is the list of clients supported by the module:
 - **Facebook** - `Da\User\AuthClient\Facebook`
 - **Github** - `Da\User\AuthClient\Github`
 - **Google** - `Da\User\AuthClient\Google`
+- **Keycloak** - `Da\User\AuthClient\Keycloak`
 - **LinkedIn** - `Da\User\AuthClient\LinkedIn`
 - **Twitter** - `Da\User\AuthClient\Twitter`
 - **VKontakte** - `Da\User\AuthClient\VKontakte`
