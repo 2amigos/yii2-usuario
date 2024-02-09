@@ -5,6 +5,26 @@ namespace Da\User\AuthClient;
 use Da\User\Contracts\AuthClientInterface;
 use yii\authclient\OpenIdConnect;
 
+/**
+ * Example application configuration:
+ *
+ * ```php
+ * 'components' => [
+ *     'authClientCollection' => [
+ *         'class' => 'yii\authclient\Collection',
+ *         'clients' => [
+ *             'github' => [
+ *                 'class' => 'yii\authclient\clients\Keycloak',
+ *                 'clientId' => 'keycloak_client_id',
+ *                 'clientSecret' => 'keycloak_client_secret',
+ *                 'issuerUrl' => 'http://keycloak/realms/your-realm',
+ *             ],
+ *         ],
+ *     ]
+ *     // ...
+ * ]
+ * ```
+*/
 class Keycloak extends OpenIdConnect implements AuthClientInterface
 {
     /**
