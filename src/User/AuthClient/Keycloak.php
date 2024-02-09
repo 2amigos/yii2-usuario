@@ -13,7 +13,7 @@ use yii\authclient\OpenIdConnect;
  *     'authClientCollection' => [
  *         'class' => 'yii\authclient\Collection',
  *         'clients' => [
- *             'github' => [
+ *             'keycloak' => [
  *                 'class' => 'yii\authclient\clients\Keycloak',
  *                 'clientId' => 'keycloak_client_id',
  *                 'clientSecret' => 'keycloak_client_secret',
