@@ -2,6 +2,7 @@
 
 ## dev
 
+- Enh: Keycloak auth client (e.luhr)
 - Fix: Social Network Auth (eluhr)
 
 ## 1.6.2 Jan 4th, 2024
