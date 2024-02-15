@@ -17,6 +17,7 @@ use Da\User\Event\UserEvent;
 use Da\User\Factory\MailFactory;
 use Da\User\Form\RegistrationForm;
 use Da\User\Form\ResendForm;
+use Da\User\Helper\SecurityHelper;
 use Da\User\Model\SocialNetworkAccount;
 use Da\User\Model\User;
 use Da\User\Query\SocialNetworkAccountQuery;
@@ -152,6 +153,10 @@ class RegistrationController extends Controller
      */
     public function actionConnect($code)
     {
+        if (!$this->module->enableSocialNetworkRegistration) {
+            throw new NotFoundHttpException();
+        }
+
         /** @var SocialNetworkAccount $account */
         $account = $this->socialNetworkAccountQuery->whereCode($code)->one();
         if ($account === null || $account->getIsConnected()) {
@@ -171,7 +176,11 @@ class RegistrationController extends Controller
         if ($user->load(Yii::$app->request->post()) && $user->validate()) {
             $this->trigger(SocialNetworkConnectEvent::EVENT_BEFORE_CONNECT, $event);
 
-            $mailService = MailFactory::makeWelcomeMailerService($user);
+            if ($this->module->sendWelcomeMailAfterSocialNetworkRegistration) {
+                $mailService = MailFactory::makeWelcomeMailerService($user);
+            } else {
+                $mailService = null;
+            }
             if ($this->make(UserCreateService::class, [$user, $mailService])->run()) {
                 $account->connect($user);
                 $this->trigger(SocialNetworkConnectEvent::EVENT_AFTER_CONNECT, $event);

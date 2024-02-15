@@ -12,10 +12,13 @@
 namespace Da\User\AuthClient;
 
 use Da\User\Contracts\AuthClientInterface;
+use Da\User\Traits\AuthClientUserIdTrait;
 use yii\authclient\clients\Twitter as BaseTwitter;
 
 class Twitter extends BaseTwitter implements AuthClientInterface
 {
+    use AuthClientUserIdTrait;
+    
     /**
      * @return string
      */
