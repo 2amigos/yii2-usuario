@@ -224,7 +224,7 @@ class Module extends BaseModule
     /**
      * @var string
      */
-    public $viewPath = '@Da/User/resources/views';
+    public $viewPath = '@Da/User/resources/views/bootstrap5';
     /**
      * @var string the session key name to impersonate users. Please, modify it for security reasons!
      */
