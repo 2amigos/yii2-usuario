@@ -4,5 +4,6 @@ parameters:
         - src
     excludePaths:
         - 'src/resources/i18n/*'
+        - 'src/views/bootstrap3/*'
     bootstrapFiles:
         - stan_autoload.php
