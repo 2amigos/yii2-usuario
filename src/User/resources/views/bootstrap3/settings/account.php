@@ -9,10 +9,9 @@
  * the LICENSE file that was distributed with this source code.
  */
 
-use yii\bootstrap5\Modal;
 use yii\helpers\Html;
 use yii\helpers\Url;
-use yii\bootstrap5\ActiveForm;
+use yii\widgets\ActiveForm;
 use dmstr\widgets\Alert;
 
 /**
@@ -26,7 +25,6 @@ $this->params['breadcrumbs'][] = $this->title;
 
 /** @var \Da\User\Module $module */
 $module = Yii::$app->getModule('user');
-
 ?>
 <div class="clearfix"></div>
 
@@ -37,15 +35,19 @@ $module = Yii::$app->getModule('user');
         <?= $this->render('/settings/_menu') ?>
     </div>
     <div class="col-md-9">
-        <div class="card">
-            <div class="card-header">
-                <h3 class="m-0"><?= Html::encode($this->title) ?></h3>
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h3 class="panel-title"><?= Html::encode($this->title) ?></h3>
             </div>
-            <div class="card-body">
+            <div class="panel-body">
                 <?php $form = ActiveForm::begin(
                     [
                         'id' => $model->formName(),
-                        'layout' => 'horizontal',
+                        'options' => ['class' => 'form-horizontal'],
+                        'fieldConfig' => [
+                            'template' => "{label}\n<div class=\"col-lg-9\">{input}</div>\n<div class=\"col-sm-offset-3 col-lg-9\">{error}\n{hint}</div>",
+                            'labelOptions' => ['class' => 'col-lg-3 control-label'],
+                        ],
                         'enableAjaxValidation' => true,
                         'enableClientValidation' => false,
                     ]
@@ -62,41 +64,55 @@ $module = Yii::$app->getModule('user');
                 <?= $form->field($model, 'current_password')->passwordInput() ?>
 
                 <div class="form-group">
-                    <div class="offset-sm-2 col-lg-10">
-                        <div class="d-grid">
-                            <?= Html::submitButton(
-                                Yii::t('usuario', 'Save'),
-                                ['class' => 'btn btn-success']
-                            ) ?>
-                        </div>
+                    <div class="col-lg-offset-3 col-lg-9">
+                        <?= Html::submitButton(Yii::t('usuario', 'Save'), ['class' => 'btn btn-block btn-success']) ?>
+                        <br>
                     </div>
                 </div>
 
                 <?php ActiveForm::end(); ?>
             </div>
         </div>
-
         <?php if ($module->enableTwoFactorAuthentication): ?>
-
-
-            <div class="card  mt-4  bg-info">
-                <div class="card-header">
-                    <h3 class="m-0"><?= Yii::t('usuario', 'Two Factor Authentication (2FA)') ?></h3>
+            <div class="modal fade" id="tfmodal" tabindex="-1" role="dialog" aria-labelledby="tfamodalLabel"
+                 aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                                    aria-hidden="true">&times;</span></button>
+                            <h4 class="modal-title" id="myModalLabel">
+                                <?= Yii::t('usuario', 'Two Factor Authentication (2FA)') ?></h4>
+                        </div>
+                        <div class="modal-body">
+                            ...
+                        </div>
+                        <div class="modal-footer">                            
+                            <button type="button" class="btn btn-default" data-dismiss="modal" onClick='window.location.reload();'>
+                                <?= Yii::t('usuario', 'Close') ?>
+                            </button>
+                        </div>
+                    </div>
                 </div>
-                <div class="card-body">
+            </div>
+            <div class="panel panel-info">
+                <div class="panel-heading">
+                    <h3 class="panel-title"><?= Yii::t('usuario', 'Two Factor Authentication (2FA)') ?></h3>
+                </div>
+                <div class="panel-body">
                     <p>
                         <?= Yii::t('usuario', 'Two factor authentication protects you in case of stolen credentials') ?>.
                     </p>
-                    <?php if (!$model->getUser()->auth_tf_enabled):
+                    <?php if (!$model->getUser()->auth_tf_enabled):  
                         $validators = $module->twoFactorAuthenticationValidators;
-                        $theFirstFound = false;
+                        $theFirstFound = false; 
                         $checked = '';
                         foreach( $validators as $name => $validator ) {
                             if($validator[ "enabled" ]){
                                 // I want to check in the radio field the first validator I get
                                 if(!$theFirstFound){
                                     $checked = 'checked';
-                                    $theFirstFound = true;
+                                    $theFirstFound = true; 
                                 }
                                 $description = $validator[ "description" ];
                                 ?>
@@ -111,25 +127,20 @@ $module = Yii::$app->getModule('user');
                             }
                         } ;
                     ?>
-
-                        <?php
-                        Modal::begin([
-                            'id' => 'tfmodal',
-                            'title' =>Yii::t('usuario', 'Two Factor Authentication (2FA)'),
-                            'toggleButton' => [
+                        <?= Html::a(
+                            Yii::t('usuario', 'Enable two factor authentication'),
+                            '#tfmodal',
+                            [
                                 'id' => 'enable_tf_btn',
-                                'label' => Yii::t('usuario', 'Enable two factor authentication'),
-                                'class' => 'btn btn-light',
-                            ],
-                        ]);
-                        ?>
-                        ...
-                        <?php Modal::end(); ?>
-
+                                'class' => 'btn btn-info',
+                                'data-toggle' => 'modal',
+                                'data-target' => '#tfmodal'
+                            ]
+                        ) ?>
                     <?php else:
                          ?>
                             <p>
-                                <?php
+                                <?php 
                                     $method = $model->getUser()->auth_tf_type;
                                     $message = '';
                                     switch ($method) {
@@ -149,7 +160,7 @@ $module = Yii::$app->getModule('user');
                                 ['two-factor-disable', 'id' => $model->getUser()->id],
                                 [
                                     'id' => 'disable_tf_btn',
-                                    'class' => 'btn btn-light ',
+                                    'class' => 'btn btn-warning ',
                                     'data-method' => 'post',
                                     'data-confirm' => Yii::t('usuario', 'This will disable two factor authentication. Are you sure?'),
                                 ]
@@ -161,11 +172,11 @@ $module = Yii::$app->getModule('user');
             </div>
         <?php endif; ?>
         <?php if ($model->module->allowAccountDelete): ?>
-            <div class="card bg-danger mt-4">
-                <div class="card-header">
-                    <h3 class="m-0"><?= Yii::t('usuario', 'Delete account') ?></h3>
+            <div class="panel panel-danger">
+                <div class="panel-heading">
+                    <h3 class="panel-title"><?= Yii::t('usuario', 'Delete account') ?></h3>
                 </div>
-                <div class="card-body">
+                <div class="panel-body">
                     <p>
                         <?= Yii::t('usuario', 'Once you delete your account, there is no going back') ?>.
                         <?= Yii::t('usuario', 'It will be deleted forever') ?>.
@@ -176,7 +187,7 @@ $module = Yii::$app->getModule('user');
                             Yii::t('usuario', 'Delete account'),
                             ['delete'],
                             [
-                                'class' => 'btn btn-light',
+                                'class' => 'btn btn-danger',
                                 'data-method' => 'post',
                                 'data-confirm' => Yii::t('usuario', 'Are you sure? There is no going back'),
                             ]
@@ -196,10 +207,9 @@ $module = Yii::$app->getModule('user');
     $verify = Url::to(['two-factor-enable', 'id' => $model->getUser()->id]);
     $mobilePhoneRegistration = Url::to(['two-factor-mobile-phone', 'id' => $model->getUser()->id]);
     $js = <<<JS
-    var choice = '';
+    var choice = ''; 
     $('#tfmodal')
     .on('show.bs.modal', function(){
-        console.log("show");
         var element = document.getElementsByName('2famethod');
         for(i = 0; i < element.length; i++) {
             if(element[i].checked)
@@ -212,20 +222,20 @@ $module = Yii::$app->getModule('user');
         }
     });
 
-
+    
 
 $(document)
     .on('click', '.btn-submit-code', function(e) {
         e.preventDefault();
         var btn = $(this);
         btn.prop('disabled', true);
-        var choice = '';
+        var choice = ''; 
         var element = document.getElementsByName('2famethod');
         for(i = 0; i < element.length; i++) {
             if(element[i].checked)
                 choice = element[i].value;
         }
-
+        
         $.getJSON('{$verify}', {code: $('#tfcode').val(), choice: choice}, function(data){
             btn.prop('disabled', false);
             if(data.success) {
@@ -256,7 +266,7 @@ $(document)
                 $('#tfmessagephone').removeClass('alert-info').addClass('alert-danger').find('p').text(data.message);
             }
         }).fail(function(){ btn.prop('disabled', false); });
-
+       
     })
 JS;
 
