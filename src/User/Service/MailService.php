@@ -51,7 +51,7 @@ class MailService implements ServiceInterface
         $this->view = $view;
         $this->params = $params;
         $this->mailer = $mailer;
-        $this->viewPath = $this->getModule()->viewPath . '/mail';
+        $this->viewPath = $this->getModule()->mailViewPath;
         $this->mailer->setViewPath($this->viewPath);
         $this->mailer->getView()->theme = Yii::$app->view->theme;
     }

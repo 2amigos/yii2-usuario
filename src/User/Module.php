@@ -226,6 +226,10 @@ class Module extends BaseModule
      */
     public $viewPath = '@Da/User/resources/views/bootstrap5';
     /**
+     * @var string the mail views path is UI framework independent
+     */
+    public $mailViewPath = '@Da/User/resources/views/mail';
+    /**
      * @var string the session key name to impersonate users. Please, modify it for security reasons!
      */
     public $switchIdentitySessionKey = 'yuik_usuario';
