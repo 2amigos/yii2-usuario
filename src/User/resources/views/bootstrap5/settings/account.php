@@ -14,7 +14,6 @@ use yii\helpers\Html;
 use yii\helpers\Url;
 use yii\bootstrap5\ActiveForm;
 use dmstr\widgets\Alert;
-
 /**
  * @var yii\web\View               $this
  * @var yii\widgets\ActiveForm     $form
@@ -79,7 +78,7 @@ $module = Yii::$app->getModule('user');
         <?php if ($module->enableTwoFactorAuthentication): ?>
 
 
-            <div class="card  mt-4  bg-info">
+            <div class="card  mt-4">
                 <div class="card-header">
                     <h3 class="m-0"><?= Yii::t('usuario', 'Two Factor Authentication (2FA)') ?></h3>
                 </div>
