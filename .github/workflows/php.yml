@@ -18,7 +18,7 @@ jobs:
 
         services:
             mariadb:
-                image: mariadb:10
+                image: mariadb:latest
                 ports:
                     - 3306:3306
                 env:
@@ -26,7 +26,7 @@ jobs:
                     MYSQL_PASSWORD: password
                     MYSQL_DATABASE: yii2-usuario-test
                     MYSQL_ROOT_PASSWORD: password
-                options: --health-cmd="mysqladmin ping" --health-interval=5s --health-timeout=2s --health-retries=3
+                options: --health-cmd="healthcheck.sh --connect --innodb_initialized" --health-interval=5s --health-timeout=5s --health-retries=3
 
         steps:
 
