@@ -21,7 +21,8 @@ $this->title = Yii::t('usuario', 'Request new confirmation message');
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="row">
-    <div class="col-md-4 col-md-offset-4 col-sm-6 col-sm-offset-3">
+    <div class="col"></div>
+    <div class="col">
         <div class="card">
             <div class="card-header">
                 <h3 class="m-0"><?= Html::encode($this->title) ?></h3>
@@ -43,4 +44,5 @@ $this->params['breadcrumbs'][] = $this->title;
             </div>
         </div>
     </div>
+    <div class="col"></div>
 </div>

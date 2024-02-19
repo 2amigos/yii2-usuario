@@ -29,7 +29,7 @@ use yii\data\ActiveDataProvider;
 
 <?php $this->beginContent($module->viewPath. '/admin/update.php', ['user' => $user]) ?>
     <div class="row">
-        <div class="col-xs-12">
+        <div class="col">
             <?= Html::a(
                 Yii::t('usuario', 'Terminate all sessions'),
                 ['/user/admin/terminate-sessions', 'id' => $user->id],

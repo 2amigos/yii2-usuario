@@ -25,8 +25,9 @@ $this->params['breadcrumbs'][] = $this->title;
 
 <?= $this->render('/shared/_alert', ['module' => Yii::$app->getModule('user')]) ?>
 
-<div class="row">
-    <div class="col-md-4 col-md-offset-4 col-sm-6 col-sm-offset-3">
+<div class="row align-items-center">
+    <div class="col"></div>
+    <div class="col">
         <div class="card">
             <div class="card-header">
                 <h3 class="m-0"><?= Html::encode($this->title) ?></h3>
@@ -96,4 +97,5 @@ $this->params['breadcrumbs'][] = $this->title;
             ]
         ) ?>
     </div>
+    <div class="col"></div>
 </div>
