@@ -32,7 +32,7 @@ $this->params['breadcrumbs'][] = $this->title;
 ) ?>
 
 <div class="row">
-    <div class="col-md-12">
+    <div class="col">
         <div class="card">
             <div class="card-header">
                 <h3 class="m-0"><?= Html::encode($this->title) ?></h3>
