@@ -27,7 +27,7 @@ $this->params['breadcrumbs'][] = $this->title;
 
 <div class="row align-items-center">
     <div class="col"></div>
-    <div class="col">
+    <div class="col-xs-8 col-sm-7 col-md-6 col-lg-5 col-xl-4 ">
         <div class="card">
             <div class="card-header">
                 <h3 class="m-0"><?= Html::encode($this->title) ?></h3>
