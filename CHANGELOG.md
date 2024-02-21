@@ -4,6 +4,7 @@
 
 - Enh: Keycloak auth client (e.luhr)
 - Fix: Social Network Auth (eluhr)
+- Enh #532: /user/registration/register now shows form validation errors
 
 ## 1.6.2 Jan 4th, 2024
 
