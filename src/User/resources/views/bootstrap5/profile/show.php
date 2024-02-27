@@ -60,7 +60,7 @@ $this->params['breadcrumbs'][] = $this->title;
                     <?php endif; ?>
                     <li>
                         <i class="bi-stopwatch text-muted"></i>
-                        <?= Yii::t('usuario', 'Joined on {0, date}', $profile->user->created_at) ?>
+                        <?= Yii::t('usuario', 'Joined on {0, date}', [$profile->user->created_at]) ?>
                     </li>
                 </ul>
                 <?php if (!empty($profile->bio)): ?>

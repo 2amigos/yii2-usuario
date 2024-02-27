@@ -22,7 +22,7 @@ use yii\helpers\Html;
     <?= Yii::t(
         'usuario',
         'We have received a request to change the email address for your account on {0}',
-        Yii::$app->name
+        [Yii::$app->name]
     ) ?>.
     <?= Yii::t('usuario', 'In order to complete your request, please click the link below') ?>.
 </p>

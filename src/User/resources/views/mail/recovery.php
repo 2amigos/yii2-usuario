@@ -23,7 +23,7 @@ use yii\helpers\Html;
     <?= Yii::t(
         'usuario',
         'We have received a request to reset the password for your account on {0}',
-        Yii::$app->name
+        [Yii::$app->name]
     ) ?>.
     <?= Yii::t('usuario', 'Please click the link below to complete your password reset') ?>.
 </p>

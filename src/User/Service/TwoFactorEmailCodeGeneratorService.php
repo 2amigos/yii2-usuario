@@ -46,7 +46,7 @@ class TwoFactorEmailCodeGeneratorService implements StringGeneratorServiceInterf
         }
         // generate key
         $code = random_int(0, 999999);
-        $code = str_pad($code, 6, 0, STR_PAD_LEFT);
+        $code = str_pad((string) $code, 6, "0", STR_PAD_LEFT);
         // send email
         $mailService = MailFactory::makeTwoFactorCodeMailerService($user, $code);
         // check the sending emailYii::t(

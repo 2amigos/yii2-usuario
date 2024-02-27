@@ -113,12 +113,12 @@ class UserSearch extends Model
         $userClass = $this->getClassMap()->get(User::class);
 
         if ($this->created_at !== null) {
-            $date = strtotime($this->created_at);
+            $date = strtotime((string)$this->created_at);
             $query->andFilterWhere(['between', $userClass::tableName().'.created_at', $date, $date + 3600 * 24]);
         }
 
         if ($this->last_login_at !== null) {
-            $date = strtotime($this->last_login_at);
+            $date = strtotime((string)$this->last_login_at);
             $query->andFilterWhere(['between', $userClass::tableName().'.last_login_at', $date, $date + 3600 * 24]);
         }
 

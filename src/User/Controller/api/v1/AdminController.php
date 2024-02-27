@@ -24,6 +24,7 @@ use Da\User\Service\UserConfirmationService;
 use Da\User\Service\UserCreateService;
 use Da\User\Traits\ContainerAwareTrait;
 use Yii;
+use yii\base\Action;
 use yii\base\Module;
 use yii\db\ActiveRecord;
 use yii\filters\Cors;
@@ -129,6 +130,7 @@ class AdminController extends ActiveController
 
     /**
      * {@inheritdoc}
+     * @param string|Action $action
      */
     public function checkAccess($action, $model = null, $params = [])
     {
