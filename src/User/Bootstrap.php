@@ -61,7 +61,9 @@ class Bootstrap implements BootstrapInterface
                 $this->initAuthCollection($app);
                 $this->initAuthManager($app);
             } else {
-                /* @var $app ConsoleApplication */
+                if(!($app instanceof ConsoleApplication)) {
+                    throw new InvalidConfigException();
+                }
                 $this->initConsoleCommands($app);
                 $this->initAuthManager($app);
             }
@@ -310,11 +312,11 @@ class Bootstrap implements BootstrapInterface
     {
         $defaults = [
             'fromEmail' => 'no-reply@example.com',
-            'welcomeMailSubject' => Yii::t('usuario', 'Welcome to {0}', $app->name),
-            'confirmationMailSubject' => Yii::t('usuario', 'Confirm account on {0}', $app->name),
-            'reconfirmationMailSubject' => Yii::t('usuario', 'Confirm email change on {0}', $app->name),
-            'recoveryMailSubject' => Yii::t('usuario', 'Complete password reset on {0}', $app->name),
-            'twoFactorMailSubject' => Yii::t('usuario', 'Code for two factor authentication on {0}', $app->name),
+            'welcomeMailSubject' => Yii::t('usuario', 'Welcome to {0}', [$app->name]),
+            'confirmationMailSubject' => Yii::t('usuario', 'Confirm account on {0}', [$app->name]),
+            'reconfirmationMailSubject' => Yii::t('usuario', 'Confirm email change on {0}', [$app->name]),
+            'recoveryMailSubject' => Yii::t('usuario', 'Complete password reset on {0}', [$app->name]),
+            'twoFactorMailSubject' => Yii::t('usuario', 'Code for two factor authentication on {0}', [$app->name]),
         ];
 
         $module->mailParams = array_merge($defaults, $module->mailParams);

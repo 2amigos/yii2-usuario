@@ -60,7 +60,7 @@ class TwoFactorSmsCodeGeneratorService implements ServiceInterface
     {
         // generate key
         $code = random_int(0, 999999);
-        $code = str_pad($code, 6, 0, STR_PAD_LEFT);
+        $code = str_pad((string)$code, 6, "0", STR_PAD_LEFT);
         // get the mobile phone of the user
         $user = $this->user;
         $mobilePhone = $user->getAuthTfMobilePhone();

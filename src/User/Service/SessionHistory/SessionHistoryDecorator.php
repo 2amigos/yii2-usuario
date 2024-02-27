@@ -245,7 +245,7 @@ class SessionHistoryDecorator extends Session
                             ] + $this->condition->currentUserData() + $updatedAt);
                         if (!$result = $model->save()) {
                             throw new BaseInvalidArgumentException(
-                                print_r($model->errors, 1)
+                                print_r($model->errors, true)
                             );
                         }
 

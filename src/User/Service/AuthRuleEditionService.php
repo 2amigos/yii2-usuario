@@ -36,7 +36,7 @@ class AuthRuleEditionService implements ServiceInterface
             return false;
         }
 
-        /** @var Rule $rule */
+        /** @var \yii\rbac\Rule $rule */
         $rule = $this->make($this->model->className, [], ['name' => $this->model->name]);
 
         try {
