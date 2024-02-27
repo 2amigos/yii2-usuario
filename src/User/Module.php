@@ -224,7 +224,11 @@ class Module extends BaseModule
     /**
      * @var string
      */
-    public $viewPath = '@Da/User/resources/views';
+    public $viewPath = '@Da/User/resources/views/bootstrap5';
+    /**
+     * @var string the mail views path is UI framework independent
+     */
+    public $mailViewPath = '@Da/User/resources/views/mail';
     /**
      * @var string the session key name to impersonate users. Please, modify it for security reasons!
      */
