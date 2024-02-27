@@ -135,7 +135,6 @@ class SecurityController extends Controller
 
             $errors = ActiveForm::validate($form);
             if (empty($errors)) {
-                throw new \Exception(json_encode($errors));
                 return $errors;
             }
             $this->trigger(FormEvent::EVENT_FAILED_LOGIN, $event);

@@ -39,7 +39,7 @@ class EmailChangeService implements ServiceInterface
 
     public function run()
     {
-        /** @var Token $token */
+        /** @var ?Token $token */
         $token = $this->tokenQuery
             ->whereUserId($this->model->id)
             ->whereCode($this->code)

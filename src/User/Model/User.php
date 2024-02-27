@@ -59,7 +59,7 @@ use yii\web\IdentityInterface;
  * @property int                    $password_age
  *                                                         Defined relations:
  * @property SocialNetworkAccount[] $socialNetworkAccounts
- * @property Profile                $profile
+ * @property ?Profile               $profile
  */
 class User extends ActiveRecord implements IdentityInterface
 {
@@ -387,7 +387,7 @@ class User extends ActiveRecord implements IdentityInterface
 
     /**
      * Returns the mobile phone number used for sms authentication two factor for the user
-     * @return string
+     * @return ?string
      */
     public function getAuthTfMobilePhone()
     {
