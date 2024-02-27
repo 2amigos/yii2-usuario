@@ -62,7 +62,7 @@
         "yiisoft/yii2-symfonymailer": "^2|^3",
         "squizlabs/php_codesniffer": "*",
         "phpmd/phpmd": "@stable",
-        "codeception/codeception": "^4|^5",
+        "codeception/codeception": "^5",
         "roave/security-advisories": "dev-master",
         "codeception/module-filesystem": "^2|^3",
         "codeception/module-yii2": "^1.1",

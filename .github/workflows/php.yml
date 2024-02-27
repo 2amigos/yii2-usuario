@@ -38,7 +38,7 @@ jobs:
                   ini-values: post_max_size=256M, max_execution_time=180
                   coverage: xdebug
 
-            - uses: actions/checkout@v2
+            - uses: actions/checkout@v4
 
 
             - name: Verify MariaDB connection
