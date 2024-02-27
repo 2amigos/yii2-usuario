@@ -9,7 +9,6 @@
  * the LICENSE file that was distributed with this source code.
  */
 
-use Da\User\Widget\ConnectWidget;
 use yii\helpers\Html;
 use yii\bootstrap5\ActiveForm;
 

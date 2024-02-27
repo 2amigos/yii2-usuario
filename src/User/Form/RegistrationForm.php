@@ -16,7 +16,6 @@ use Da\User\Traits\ContainerAwareTrait;
 use Da\User\Traits\ModuleAwareTrait;
 use Yii;
 use yii\base\Model;
-use yii\helpers\Html;
 
 class RegistrationForm extends Model
 {

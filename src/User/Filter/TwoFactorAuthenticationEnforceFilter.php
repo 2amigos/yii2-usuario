@@ -12,7 +12,6 @@
 namespace Da\User\Filter;
 
 use Da\User\Model\User;
-use Da\User\Module;
 use Da\User\Traits\AuthManagerAwareTrait;
 use Da\User\Traits\ModuleAwareTrait;
 use Yii;

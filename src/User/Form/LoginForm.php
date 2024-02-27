@@ -16,14 +16,10 @@ use Da\User\Model\User;
 use Da\User\Query\UserQuery;
 use Da\User\Traits\ContainerAwareTrait;
 use Da\User\Traits\ModuleAwareTrait;
-use Da\User\Validator\TwoFactorCodeValidator;
-use Da\User\Validator\TwoFactorEmailValidator;
-use Da\User\Validator\TwoFactorTextMessageValidator;
 use Yii;
 use yii\base\InvalidParamException;
 use yii\base\Model;
 use yii\helpers\ArrayHelper;
-use yii\web\IdentityInterface;
 
 class LoginForm extends Model
 {

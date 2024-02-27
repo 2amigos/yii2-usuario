@@ -17,7 +17,6 @@ use Da\User\Event\UserEvent;
 use Da\User\Factory\MailFactory;
 use Da\User\Form\RegistrationForm;
 use Da\User\Form\ResendForm;
-use Da\User\Helper\SecurityHelper;
 use Da\User\Model\SocialNetworkAccount;
 use Da\User\Model\User;
 use Da\User\Query\SocialNetworkAccountQuery;

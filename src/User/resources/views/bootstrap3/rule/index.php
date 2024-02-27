@@ -3,7 +3,6 @@
 use yii\grid\ActionColumn;
 use yii\grid\GridView;
 use yii\helpers\Url;
-use yii\rbac\Rule;
 
 /**
  * @var \yii\data\ActiveDataProvider $dataProvider

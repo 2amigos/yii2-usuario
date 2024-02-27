@@ -11,7 +11,6 @@
 
 use yii\grid\GridView;
 use yii\helpers\Html;
-use yii\web\View;
 use yii\widgets\Pjax;
 
 /**
