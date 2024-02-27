@@ -6,7 +6,7 @@
 - Fix: Social Network Auth (eluhr)
 - Enh: Added Bootstrap 5 UI, UI related dependencies are suggested not required (you may choose your UI frmawork)  (TonisOrmisson)
 - Enh: Raised phpstan static code analyzer level 1=>5 with fixes (TonisOrmisson)
-- Enh: raised minimum PHP version 7.4=>8.0 
+- Enh: Raised minimum PHP version 7.4=>8.0 (TonisOrmisson)
 
 ## 1.6.2 Jan 4th, 2024
 
