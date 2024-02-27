@@ -175,10 +175,9 @@ class LoginForm extends Model
             $identity = $this->query->whereUsernameOrEmail(trim($this->login))->one();
             if($identity instanceof User) {
                 $this->user = $identity;
-                return true;
             }
+            return true;
         }
-
         return false;
     }
 
