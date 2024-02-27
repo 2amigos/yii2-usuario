@@ -40,9 +40,9 @@ class MailService implements ServiceInterface
      * @param string                     $subject the email subject
      * @param string                     $view    the view to render mail
      * @param array                      $params  view parameters
-     * @param BaseMailer|MailerInterface $mailer  mailer interface
+     * @param BaseMailer $mailer  mailer interface
      */
-    public function __construct($type, $from, $to, $subject, $view, array $params, MailerInterface $mailer)
+    public function __construct($type, $from, $to, $subject, $view, array $params, BaseMailer $mailer)
     {
         $this->type = $type;
         $this->from = $from;

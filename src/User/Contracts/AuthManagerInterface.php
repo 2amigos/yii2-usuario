@@ -11,6 +11,7 @@
 
 namespace Da\User\Contracts;
 
+use yii\rbac\Item;
 use yii\rbac\ManagerInterface;
 
 interface AuthManagerInterface extends ManagerInterface
@@ -19,7 +20,7 @@ interface AuthManagerInterface extends ManagerInterface
      * @param int|null $type
      * @param array    $excludeItems
      *
-     * @return mixed
+     * @return Item[]
      */
     public function getItems($type = null, $excludeItems = []);
 

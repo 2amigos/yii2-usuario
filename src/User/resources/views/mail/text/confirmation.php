@@ -15,7 +15,7 @@
 ?>
 <?= Yii::t('usuario', 'Hello') ?>,
 
-<?= Yii::t('usuario', 'Thank you for signing up on {0}', Yii::$app->name) ?>.
+<?= Yii::t('usuario', 'Thank you for signing up on {0}', [Yii::$app->name]) ?>.
 <?= Yii::t('usuario', 'In order to complete your registration, please click the link below') ?>.
 
 <?= $token->url ?>

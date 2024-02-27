@@ -60,7 +60,7 @@ class MailFactory
         $from = $module->mailParams['fromEmail'];
         $subject = $module->mailParams['recoveryMailSubject'];
         $params = [
-            'user' => $token && $token->user ? $token->user : null,
+            'user' => $token ? $token->user : null,
             'token' => $token,
         ];
 
@@ -82,7 +82,7 @@ class MailFactory
         $from = $module->mailParams['fromEmail'];
         $subject = $module->mailParams['confirmationMailSubject'];
         $params = [
-            'user' => $token && $token->user ? $token->user : null,
+            'user' => $token ? $token->user : null,
             'token' => $token,
         ];
 
@@ -107,7 +107,7 @@ class MailFactory
         $from = $module->mailParams['fromEmail'];
         $subject = $module->mailParams['reconfirmationMailSubject'];
         $params = [
-            'user' => $token && $token->user ? $token->user : null,
+            'user' => $token->user,
             'token' => $token,
         ];
 

@@ -38,6 +38,7 @@ use Da\User\Validator\AjaxRequestModelValidator;
 use Da\User\Validator\TwoFactorCodeValidator;
 use Da\User\Validator\TwoFactorEmailValidator;
 use Da\User\Validator\TwoFactorTextMessageValidator;
+use http\Exception\InvalidArgumentException;
 use Yii;
 use yii\base\DynamicModel;
 use yii\base\InvalidParamException;
@@ -463,7 +464,7 @@ class SettingsController extends Controller
         }
 
         $choice = Yii::$app->request->post('choice');
-        /** @var User $user */
+        /** @var ?User $user */
         $user = $this->userQuery->whereId($id)->one();
 
         if (null === $user) {
@@ -483,7 +484,7 @@ class SettingsController extends Controller
                 $smsCode = $this->make(TwoFactorSmsCodeGeneratorService::class, [$user])->run();
                 return $this->renderAjax('two-factor-sms', ['id' => $id, 'code' => $smsCode, 'mobilePhone' => $mobilePhone]);
             default:
-                throw new InvalidParamException("Invalid 2FA choice");
+                throw new InvalidArgumentException("Invalid 2FA choice");
         }
     }
 
@@ -495,7 +496,7 @@ class SettingsController extends Controller
 
         Yii::$app->response->format = Response::FORMAT_JSON;
 
-        /** @var User $user */
+        /** @var ?User $user */
         $user = $this->userQuery->whereId($id)->one();
 
         if (null === $user) {
@@ -505,7 +506,7 @@ class SettingsController extends Controller
             ];
         }
         $code = Yii::$app->request->get('code');
-        $module = Yii::$app->getModule('user');
+        $module = $this->getModule();
         $validators = $module->twoFactorAuthenticationValidators;
         $choice = Yii::$app->request->get('choice');
         $codeDurationTime = ArrayHelper::getValue($validators, $choice.'.codeDurationTime', 300);
@@ -533,9 +534,7 @@ class SettingsController extends Controller
             throw new ForbiddenHttpException();
         }
 
-        /**
-        * @var User $user
-        */
+        /** @var ?User $user */
         $user = $this->userQuery->whereId($id)->one();
 
         if (null === $user) {
@@ -585,11 +584,7 @@ class SettingsController extends Controller
     {
         Yii::$app->response->format = Response::FORMAT_JSON;
 
-        /**
-        *
-        *
-        * @var User $user
-        */
+        /** @var ?User $user */
         $user = $this->userQuery->whereId($id)->one();
 
         if (null === $user) {
@@ -626,11 +621,7 @@ class SettingsController extends Controller
      */
     protected function disconnectSocialNetwork($id)
     {
-        /**
-        *
-        *
-        * @var SocialNetworkAccount $account
-        */
+        /** @var ?SocialNetworkAccount $account */
         $account = $this->socialNetworkAccountQuery->whereId($id)->one();
 
         if ($account === null) {

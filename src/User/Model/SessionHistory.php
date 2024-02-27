@@ -103,6 +103,9 @@ class SessionHistory extends ActiveRecord
         return ['user_id', 'session_id'];
     }
 
+    /**
+     * @return SessionHistoryQuery
+     */
     public static function find()
     {
         return new SessionHistoryQuery(static::class);

@@ -24,6 +24,7 @@ use Da\User\Service\UserConfirmationService;
 use Da\User\Service\UserCreateService;
 use Da\User\Traits\ContainerAwareTrait;
 use Yii;
+use yii\base\Action;
 use yii\base\Module;
 use yii\db\ActiveRecord;
 use yii\filters\Cors;
@@ -106,6 +107,9 @@ class AdminController extends ActiveController
      */
     public function behaviors()
     {
+        /** @var \Da\User\Module $module */
+        $module = $this->module;
+
         $behaviors = parent::behaviors();
         // Remove the (default) authentication filter
         unset($behaviors['authenticator']);
@@ -117,7 +121,7 @@ class AdminController extends ActiveController
 
         // Re-add authentication filter
         $behaviors['authenticator'] = [
-            'class' => $this->module->authenticatorClass, // Class depends on the module parameter
+            'class' => $module->authenticatorClass, // Class depends on the module parameter
             'except' => ['options']
         ];
         // Return
@@ -126,15 +130,20 @@ class AdminController extends ActiveController
 
     /**
      * {@inheritdoc}
+     * @param string|Action $action
      */
     public function checkAccess($action, $model = null, $params = [])
     {
+        /** @var \Da\User\Module $module */
+        $module = $this->module;
         // Check if the REST APIs are enabled
-        if (!$this->module->enableRestApi) {
+        if (!$module->enableRestApi) {
             throw new NotFoundHttpException(Yii::t('usuario', 'The requested page does not exist.'));
         }
         // Access for admins only
-        if (!Yii::$app->user->identity->isAdmin) {
+
+        $user = Yii::$app->user->identity;
+        if (!($user instanceof User) or !$user->isAdmin) {
             throw new ForbiddenHttpException(Yii::t('usuario', 'User does not have sufficient permissions.'));
         }
     }
@@ -182,7 +191,7 @@ class AdminController extends ActiveController
         $this->checkAccess($this->action);
 
         // Get user model
-        /** @var User $user */
+        /** @var ?User $user */
         $user = $this->userQuery->whereIdOrUsernameOrEmail($id)->one();
         if (is_null($user)) { // Check user, so `$id` parameter
             $this->throwUser404();
@@ -216,7 +225,7 @@ class AdminController extends ActiveController
         $this->checkAccess($this->action);
 
         // Get user model
-        /** @var User $user */
+        /** @var ?User $user */
         $user = $this->userQuery->whereIdOrUsernameOrEmail($id)->one();
         if (is_null($user)) { // Check user, so `$id` parameter
             $this->throwUser404();
@@ -251,14 +260,14 @@ class AdminController extends ActiveController
         $this->checkAccess($this->action);
 
         // Get user model
-        /** @var User $user */
+        /** @var ?User $user */
         $user = $this->userQuery->whereIdOrUsernameOrEmail($id)->one();
         if (is_null($user)) { // Check user, so `$id` parameter
             $this->throwUser404();
         }
 
         // Get profile model
-        /** @var Profile $profile */
+        /** @var ?Profile $profile */
         $profile = $user->profile;
         if ($profile === null) {
             $profile = $this->make(Profile::class);
@@ -289,7 +298,7 @@ class AdminController extends ActiveController
         $this->checkAccess($this->action);
 
         // Get user model
-        /** @var User $user */
+        /** @var ?User $user */
         $user = $this->userQuery->whereIdOrUsernameOrEmail($id)->one();
         if (is_null($user)) { // Check user, so `$id` parameter
             $this->throwUser404();
@@ -310,7 +319,7 @@ class AdminController extends ActiveController
         $this->checkAccess($this->action);
 
         // Get user model
-        /** @var User $user */
+        /** @var ?User $user */
         $user = $this->userQuery->whereIdOrUsernameOrEmail($id)->one();
         if (is_null($user)) { // Check user, so `$id` parameter
             $this->throwUser404();
@@ -345,7 +354,7 @@ class AdminController extends ActiveController
         }
 
         // Get user model
-        /** @var User $user */
+        /** @var ?User $user */
         $user = $this->userQuery->whereIdOrUsernameOrEmail($id)->one();
         if (is_null($user)) { // Check user, so `$id` parameter
             $this->throwUser404();
@@ -373,7 +382,7 @@ class AdminController extends ActiveController
         $this->checkAccess($this->action);
 
         // Get user model
-        /** @var User $user */
+        /** @var ?User $user */
         $user = $this->userQuery->whereIdOrUsernameOrEmail($id)->one();
         if (is_null($user)) { // Check user, so `$id` parameter
             $this->throwUser404();
@@ -398,7 +407,7 @@ class AdminController extends ActiveController
         $this->checkAccess($this->action);
 
         // Get user model
-        /** @var User $user */
+        /** @var ?User $user */
         $user = $this->userQuery->whereIdOrUsernameOrEmail($id)->one();
         if (is_null($user)) { // Check user, so `$id` parameter
             $this->throwUser404();

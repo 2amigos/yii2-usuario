@@ -64,7 +64,7 @@ class CreateController extends Controller
     protected function assignRole(User $user, $role)
     {
         $auth = Yii::$app->getAuthManager();
-        if (false === $auth) {
+        if (empty($auth)) {
             $this->stdout(
                 Yii::t(
                     'usuario',

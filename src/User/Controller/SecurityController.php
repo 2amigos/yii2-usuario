@@ -217,7 +217,7 @@ class SecurityController extends Controller
                 return $this->goBack();
             }
         } else {
-            $module = Yii::$app->getModule('user');
+            $module = $this->getModule();
             $validators = $module->twoFactorAuthenticationValidators;
             $credentials = Yii::$app->session->get('credentials');
             $login = $credentials['login'];

@@ -21,7 +21,7 @@ class RbacRuleNameValidator extends Validator
     use AuthManagerAwareTrait;
 
     /**
-     * @var
+     * @var string $previousName
      */
     public $previousName;
 

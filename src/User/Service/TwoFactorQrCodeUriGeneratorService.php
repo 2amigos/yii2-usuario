@@ -11,14 +11,14 @@
 
 namespace Da\User\Service;
 
+use Da\TwoFA\Contracts\StringGeneratorServiceInterface;
 use Da\TwoFA\Manager;
 use Da\TwoFA\Service\QrCodeDataUriGeneratorService;
 use Da\TwoFA\Service\TOTPSecretKeyUriGeneratorService;
-use Da\User\Contracts\ServiceInterface;
 use Da\User\Model\User;
 use Yii;
 
-class TwoFactorQrCodeUriGeneratorService implements ServiceInterface
+class TwoFactorQrCodeUriGeneratorService implements StringGeneratorServiceInterface
 {
     /**
      * @var User
@@ -38,7 +38,7 @@ class TwoFactorQrCodeUriGeneratorService implements ServiceInterface
     /**
      * @inheritdoc
      */
-    public function run()
+    public function run() : string
     {
         $user = $this->user;
         if (!$user->auth_tf_key) {

@@ -124,7 +124,7 @@ abstract class AbstractAuthItem extends Model
     }
 
     /**
-     * @return Item
+     * @return int
      */
     abstract public function getType();
 }

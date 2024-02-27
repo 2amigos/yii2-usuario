@@ -116,13 +116,13 @@ class LoginForm extends Model
                     if ($this->user === null) {
                         $this->addError($attribute, Yii::t('usuario', 'Invalid two factor authentication code'));
                     } else {
-                        $module = Yii::$app->getModule('user');
+                        $module = $this->getModule();
                         $validators = $module->twoFactorAuthenticationValidators;
                         $type = $this->user->auth_tf_type;
                         $class = ArrayHelper::getValue($validators, $type.'.class');
                         $codeDurationTime = ArrayHelper::getValue($validators, $type.'.codeDurationTime', 300);
                         $validator = $this
-                        ->make($class, [$this->user, $this->twoFactorAuthenticationCode, $this->module->twoFactorAuthenticationCycles]);
+                        ->make($class, [$this->user, $this->twoFactorAuthenticationCode, $module->twoFactorAuthenticationCycles]);
                         $success = $validator->validate();
                         if (!$success) {
                             $this->addError($attribute, $validator->getUnsuccessLoginMessage($codeDurationTime));
@@ -172,11 +172,12 @@ class LoginForm extends Model
     public function beforeValidate()
     {
         if (parent::beforeValidate()) {
-            $this->user = $this->query->whereUsernameOrEmail(trim($this->login))->one();
-
+            $identity = $this->query->whereUsernameOrEmail(trim($this->login))->one();
+            if($identity instanceof User) {
+                $this->user = $identity;
+            }
             return true;
         }
-
         return false;
     }
 
@@ -189,10 +190,9 @@ class LoginForm extends Model
     }
 
     /**
-     * @param  IdentityInterface $user
      * @return User
      */
-    public function setUser(IdentityInterface $user)
+    public function setUser(User $user)
     {
         return $this->user = $user;
     }

@@ -48,7 +48,7 @@ class SettingsForm extends Model
      */
     protected $securityHelper;
 
-    /** @var User */
+    /** @var ?User */
     protected $user;
 
     /**
@@ -121,12 +121,15 @@ class SettingsForm extends Model
     }
 
     /**
-     * @return User|null|\yii\web\IdentityInterface
+     * @return ?User
      */
     public function getUser()
     {
         if (null === $this->user) {
-            $this->user = Yii::$app->user->identity;
+            $identity = Yii::$app->user->identity;
+            if($identity instanceof User) {
+                $this->user = $identity;
+            }
         }
 
         return $this->user;

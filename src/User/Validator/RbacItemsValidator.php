@@ -30,5 +30,6 @@ class RbacItemsValidator extends Validator
                 return [Yii::t('usuario', 'There is neither role nor permission with name "{0}"', [$item]), []];
             }
         }
+        return null;
     }
 }
