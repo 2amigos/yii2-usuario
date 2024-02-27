@@ -15,7 +15,6 @@ use Da\User\Contracts\ServiceInterface;
 use Da\User\Traits\ModuleAwareTrait;
 use Yii;
 use yii\mail\BaseMailer;
-use yii\mail\MailerInterface;
 
 class MailService implements ServiceInterface
 {

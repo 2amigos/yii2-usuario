@@ -11,7 +11,6 @@
 
 namespace Da\User\Filter;
 
-use Closure;
 use Da\User\Model\User;
 use Da\User\Traits\ModuleAwareTrait;
 use Yii;
