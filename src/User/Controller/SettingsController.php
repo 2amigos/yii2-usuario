@@ -38,6 +38,7 @@ use Da\User\Validator\AjaxRequestModelValidator;
 use Da\User\Validator\TwoFactorCodeValidator;
 use Da\User\Validator\TwoFactorEmailValidator;
 use Da\User\Validator\TwoFactorTextMessageValidator;
+use http\Exception\InvalidArgumentException;
 use Yii;
 use yii\base\DynamicModel;
 use yii\base\InvalidParamException;
@@ -483,7 +484,7 @@ class SettingsController extends Controller
                 $smsCode = $this->make(TwoFactorSmsCodeGeneratorService::class, [$user])->run();
                 return $this->renderAjax('two-factor-sms', ['id' => $id, 'code' => $smsCode, 'mobilePhone' => $mobilePhone]);
             default:
-                throw new InvalidParamException("Invalid 2FA choice");
+                throw new InvalidArgumentException("Invalid 2FA choice");
         }
     }
 

@@ -27,7 +27,6 @@ use yii\helpers\Url;
  * @property string $provider    Name of service
  * @property string $client_id   Account id
  * @property string $data        Account properties returned by social network (json encoded)
- * @property string $decodedData Json-decoded properties
  * @property string $code
  * @property string $email
  * @property string $username
@@ -42,7 +41,7 @@ class SocialNetworkAccount extends ActiveRecord
     /**
      * @var array json decoded properties
      */
-    protected $decodedData;
+    protected $decodedData = [];
 
     /**
      * {@inheritdoc}
@@ -66,7 +65,10 @@ class SocialNetworkAccount extends ActiveRecord
     public function getDecodedData()
     {
         if ($this->data !== null && $this->decodedData === null) {
-            $this->decodedData = json_decode($this->data);
+            $decoded = json_decode($this->data);
+            if(is_array($decoded)) {
+                $this->decodedData = $decoded;
+            }
         }
 
         return $this->decodedData;

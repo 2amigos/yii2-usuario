@@ -172,9 +172,11 @@ class LoginForm extends Model
     public function beforeValidate()
     {
         if (parent::beforeValidate()) {
-            $this->user = $this->query->whereUsernameOrEmail(trim($this->login))->one();
-
-            return true;
+            $identity = $this->query->whereUsernameOrEmail(trim($this->login))->one();
+            if($identity instanceof User) {
+                $this->user = $identity;
+                return true;
+            }
         }
 
         return false;
@@ -189,10 +191,9 @@ class LoginForm extends Model
     }
 
     /**
-     * @param  IdentityInterface $user
      * @return User
      */
-    public function setUser(IdentityInterface $user)
+    public function setUser(User $user)
     {
         return $this->user = $user;
     }
