@@ -73,9 +73,9 @@ class SessionHistoryDecorator extends Session
     }
 
     /** @inheritdoc */
-    public function setHasSessionId($value)
+    public function setHasSessionId($value) : void
     {
-        return $this->session->setHasSessionId($value);
+        $this->session->setHasSessionId($value);
     }
 
     /** @inheritdoc */
@@ -85,9 +85,9 @@ class SessionHistoryDecorator extends Session
     }
 
     /** @inheritdoc */
-    public function setId($value)
+    public function setId($value) : void
     {
-        return $this->session->setId($value);
+        $this->session->setId($value);
     }
 
     /** @inheritdoc */
@@ -125,9 +125,9 @@ class SessionHistoryDecorator extends Session
     }
 
     /** @inheritdoc */
-    public function setName($value)
+    public function setName($value) : void
     {
-        return $this->session->setName($value);
+        $this->session->setName($value);
     }
 
     /** @inheritdoc */
@@ -137,9 +137,9 @@ class SessionHistoryDecorator extends Session
     }
 
     /** @inheritdoc */
-    public function setSavePath($value)
+    public function setSavePath($value) : void
     {
-        return $this->session->setSavePath($value);
+        $this->session->setSavePath($value);
     }
 
     /** @inheritdoc */
@@ -149,9 +149,9 @@ class SessionHistoryDecorator extends Session
     }
 
     /** @inheritdoc */
-    public function setCookieParams(array $value)
+    public function setCookieParams(array $value) : void
     {
-        return $this->session->setCookieParams($value);
+        $this->session->setCookieParams($value);
     }
 
     /** @inheritdoc */
@@ -161,9 +161,9 @@ class SessionHistoryDecorator extends Session
     }
 
     /** @inheritdoc */
-    public function setUseCookies($value)
+    public function setUseCookies($value) : void
     {
-        return $this->session->setUseCookies($value);
+        $this->session->setUseCookies($value);
     }
 
     /** @inheritdoc */
@@ -173,9 +173,9 @@ class SessionHistoryDecorator extends Session
     }
 
     /** @inheritdoc */
-    public function setGCProbability($value)
+    public function setGCProbability($value) : void
     {
-        return $this->session->setGCProbability($value);
+        $this->session->setGCProbability($value);
     }
 
     /** @inheritdoc */
@@ -185,9 +185,9 @@ class SessionHistoryDecorator extends Session
     }
 
     /** @inheritdoc */
-    public function setUseTransparentSessionID($value)
+    public function setUseTransparentSessionID($value) : void
     {
-        return $this->session->setUseTransparentSessionID($value);
+        $this->session->setUseTransparentSessionID($value);
     }
 
     /** @inheritdoc */
@@ -197,9 +197,9 @@ class SessionHistoryDecorator extends Session
     }
 
     /** @inheritdoc */
-    public function setTimeout($value)
+    public function setTimeout($value) : void
     {
-        return $this->session->setTimeout($value);
+        $this->session->setTimeout($value);
     }
 
     /** @inheritdoc */
@@ -313,9 +313,9 @@ class SessionHistoryDecorator extends Session
     }
 
     /** @inheritdoc */
-    public function removeAll()
+    public function removeAll() : void
     {
-        return $this->session->removeAll();
+        $this->session->removeAll();
     }
 
     /** @inheritdoc */
@@ -337,15 +337,15 @@ class SessionHistoryDecorator extends Session
     }
 
     /** @inheritdoc */
-    public function setFlash($key, $value = true, $removeAfterAccess = true)
+    public function setFlash($key, $value = true, $removeAfterAccess = true) : void
     {
-        return $this->session->setFlash($key, $value, $removeAfterAccess);
+        $this->session->setFlash($key, $value, $removeAfterAccess);
     }
 
     /** @inheritdoc */
-    public function addFlash($key, $value = true, $removeAfterAccess = true)
+    public function addFlash($key, $value = true, $removeAfterAccess = true) : void
     {
-        return $this->session->addFlash($key, $value, $removeAfterAccess);
+        $this->session->addFlash($key, $value, $removeAfterAccess);
     }
 
     /** @inheritdoc */
@@ -355,9 +355,9 @@ class SessionHistoryDecorator extends Session
     }
 
     /** @inheritdoc */
-    public function removeAllFlashes()
+    public function removeAllFlashes() : void
     {
-        return $this->session->removeAllFlashes();
+        $this->session->removeAllFlashes();
     }
 
     /** @inheritdoc */

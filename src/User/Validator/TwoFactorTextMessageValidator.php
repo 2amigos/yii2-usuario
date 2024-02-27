@@ -38,10 +38,7 @@ class TwoFactorTextMessageValidator extends TwoFactorCodeValidator
      */
     public function __construct(User $user, $code, $cycles = 0)
     {
-        $this->user = $user;
-
-        $this->code = $code;
-        $this->cycles = $cycles;
+        parent::__construct($user, $code, $cycles);
         $this->type = 'sms';
     }
 
