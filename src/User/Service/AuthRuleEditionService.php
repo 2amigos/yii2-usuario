@@ -16,13 +16,14 @@ use Da\User\Model\Rule;
 use Da\User\Traits\AuthManagerAwareTrait;
 use Da\User\Traits\ContainerAwareTrait;
 use Exception;
+use yii\rbac\DbManager;
 
 class AuthRuleEditionService implements ServiceInterface
 {
     use AuthManagerAwareTrait;
     use ContainerAwareTrait;
 
-    protected $model;
+    protected Rule $model;
 
     public function __construct(Rule $model)
     {
@@ -35,6 +36,7 @@ class AuthRuleEditionService implements ServiceInterface
             return false;
         }
 
+        /** @var Rule $rule */
         $rule = $this->make($this->model->className, [], ['name' => $this->model->name]);
 
         try {
@@ -43,7 +45,9 @@ class AuthRuleEditionService implements ServiceInterface
             } else {
                 $this->getAuthManager()->update($this->model->previousName, $rule);
             }
-            $this->getAuthManager()->invalidateCache();
+            if($this->getAuthManager() instanceof DbManager) {
+                $this->getAuthManager()->invalidateCache();
+            }
         } catch (Exception $e) {
             return false;
         }

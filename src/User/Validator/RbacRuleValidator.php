@@ -32,5 +32,6 @@ class RbacRuleValidator extends Validator
         } catch (Exception $e) {
             return [Yii::t('usuario', 'Authentication rule class {0} can not be instantiated', $value), []];
         }
+        return null;
     }
 }

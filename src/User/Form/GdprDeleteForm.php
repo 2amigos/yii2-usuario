@@ -69,12 +69,15 @@ class GdprDeleteForm extends Model
     }
 
     /**
-     * @return User|null|\yii\web\IdentityInterface
+     * @return User|null
      */
     public function getUser()
     {
         if ($this->user == null) {
-            $this->user = Yii::$app->user->identity;
+            $user = Yii::$app->user->identity;
+            if($user instanceof User) {
+                $this->user = $user;
+            }
         }
 
         return $this->user;

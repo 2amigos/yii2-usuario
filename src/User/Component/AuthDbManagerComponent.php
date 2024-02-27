@@ -16,6 +16,7 @@ use yii\base\InvalidArgumentException;
 use yii\db\Expression;
 use yii\db\Query;
 use yii\rbac\DbManager;
+use yii\rbac\Item;
 use yii\rbac\Role;
 
 class AuthDbManagerComponent extends DbManager implements AuthManagerInterface
@@ -24,7 +25,7 @@ class AuthDbManagerComponent extends DbManager implements AuthManagerInterface
      * @param int|null $type         If null will return all auth items
      * @param array    $excludeItems Items that should be excluded from result array
      *
-     * @return array
+     * @return Item[]
      */
     public function getItems($type = null, $excludeItems = [])
     {

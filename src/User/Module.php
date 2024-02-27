@@ -234,9 +234,9 @@ class Module extends BaseModule
      */
     public $switchIdentitySessionKey = 'yuik_usuario';
     /**
-     * @var integer If != NULL sets a max password age in days
+     * @var ?integer If != NULL sets a max password age in days
      */
-    public $maxPasswordAge;
+    public $maxPasswordAge = null;
     /**
      * @var boolean whether to restrict assignment of permissions to users
      */

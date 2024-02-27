@@ -505,7 +505,7 @@ class SettingsController extends Controller
             ];
         }
         $code = Yii::$app->request->get('code');
-        $module = Yii::$app->getModule('user');
+        $module = $this->getModule();
         $validators = $module->twoFactorAuthenticationValidators;
         $choice = Yii::$app->request->get('choice');
         $codeDurationTime = ArrayHelper::getValue($validators, $choice.'.codeDurationTime', 300);

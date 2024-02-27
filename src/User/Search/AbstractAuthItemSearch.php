@@ -11,11 +11,13 @@
 
 namespace Da\User\Search;
 
+use Da\User\Exception\NotImplementedException;
 use Da\User\Traits\AuthManagerAwareTrait;
 use Da\User\Traits\ContainerAwareTrait;
 use yii\base\Model;
 use yii\data\ArrayDataProvider;
 use yii\db\Query;
+use yii\rbac\DbManager;
 
 abstract class AbstractAuthItemSearch extends Model
 {
@@ -52,13 +54,18 @@ abstract class AbstractAuthItemSearch extends Model
 
     public function search($params = [])
     {
+        $authManager = $this->getAuthManager();
+        if(!($authManager instanceof DbManager)) {
+            throw new NotImplementedException();
+        }
+
         /** @var ArrayDataProvider $dataProvider */
         $dataProvider = $this->make(ArrayDataProvider::class);
 
         $query = (new Query())
             ->select(['name', 'description', 'rule_name'])
             ->andWhere(['type' => $this->getType()])
-            ->from($this->getAuthManager()->itemTable);
+            ->from($authManager->itemTable);
 
         if ($this->load($params) && $this->validate()) {
             $query
@@ -67,7 +74,7 @@ abstract class AbstractAuthItemSearch extends Model
                 ->andFilterWhere(['like', 'rule_name', $this->rule_name]);
         }
 
-        $dataProvider->allModels = $query->all($this->getAuthManager()->db);
+        $dataProvider->allModels = $query->all($authManager->db);
 
         return $dataProvider;
     }

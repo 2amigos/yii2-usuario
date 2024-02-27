@@ -36,6 +36,7 @@ use yii\filters\AccessControl;
 use yii\filters\VerbFilter;
 use yii\helpers\Url;
 use yii\web\Controller;
+use yii\web\NotFoundHttpException;
 
 class AdminController extends Controller
 {
@@ -161,7 +162,11 @@ class AdminController extends Controller
 
     public function actionUpdate($id)
     {
+        /** @var ?User $user */
         $user = $this->userQuery->where(['id' => $id])->one();
+        if($user === null) {
+            throw new NotFoundHttpException();
+        }
         $user->setScenario('update');
         /** @var UserEvent $event */
         $event = $this->make(UserEvent::class, [$user]);
