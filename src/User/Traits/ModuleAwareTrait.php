@@ -13,17 +13,20 @@ namespace Da\User\Traits;
 
 use Da\User\Module;
 use Yii;
+use yii\base\InvalidConfigException;
 
 /**
  * @property-read Module $module
  */
 trait ModuleAwareTrait
 {
-    /**
-     * @return Module
-     */
-    public function getModule()
+
+    public function getModule() : Module
     {
-        return Yii::$app->getModule('user');
+        $module = Yii::$app->getModule('user');
+        if($module instanceof Module) {
+            return $module;
+        }
+        throw new InvalidConfigException("Expecting Da\User\Module here!");
     }
 }

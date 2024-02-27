@@ -126,7 +126,10 @@ class SettingsForm extends Model
     public function getUser()
     {
         if (null === $this->user) {
-            $this->user = Yii::$app->user->identity;
+            $identity = Yii::$app->user->identity;
+            if($identity instanceof User) {
+                $this->user = $identity;
+            }
         }
 
         return $this->user;

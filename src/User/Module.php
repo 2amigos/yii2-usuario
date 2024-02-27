@@ -157,8 +157,9 @@ class Module extends BaseModule
      * @var bool whether user can remove his account
      */
     public $allowAccountDelete = false;
+
     /**
-     * @var string the class name of the strategy class to handle user's email change
+     * @var int the class name of the strategy class to handle user's email change
      */
     public $emailChangeStrategy = MailChangeStrategyInterface::TYPE_DEFAULT;
     /**

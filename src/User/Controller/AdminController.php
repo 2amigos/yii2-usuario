@@ -141,7 +141,6 @@ class AdminController extends Controller
 
         /** @var UserEvent $event */
         $event = $this->make(UserEvent::class, [$user]);
-
         $this->make(AjaxRequestModelValidator::class, [$user])->validate();
 
         if ($user->load(Yii::$app->request->post()) && $user->validate()) {
