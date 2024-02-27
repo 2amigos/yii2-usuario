@@ -37,13 +37,8 @@ class AuthHelper
      */
     public function hasRole($userId, $role)
     {
-        if ($this->getAuthManager()) {
-            $roles = array_keys($this->getAuthManager()->getRolesByUser($userId));
-
-            return in_array($role, $roles, true);
-        }
-
-        return false;
+        $roles = array_keys($this->getAuthManager()->getRolesByUser($userId));
+        return in_array($role, $roles, true);
     }
 
     /**
@@ -54,7 +49,8 @@ class AuthHelper
     public function isAdmin($username)
     {
         $module = $this->getModule();
-        $hasAdministratorPermissionName = $this->getAuthManager() && $module->administratorPermissionName
+        $this->getAuthManager();
+        $hasAdministratorPermissionName =  $module->administratorPermissionName
             ? Yii::$app->getUser()->can($module->administratorPermissionName)
             : false;
 

@@ -191,9 +191,8 @@ class AdminController extends Controller
 
     public function actionUpdateProfile($id)
     {
-        /** @var User $user */
+        /** @var ?User $user */
         $user = $this->userQuery->where(['id' => $id])->one();
-        /** @var Profile $profile */
         $profile = $user->profile;
         if ($profile === null) {
             $profile = $this->make(Profile::class);

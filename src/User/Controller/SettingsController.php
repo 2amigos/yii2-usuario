@@ -464,7 +464,7 @@ class SettingsController extends Controller
         }
 
         $choice = Yii::$app->request->post('choice');
-        /** @var User $user */
+        /** @var ?User $user */
         $user = $this->userQuery->whereId($id)->one();
 
         if (null === $user) {
@@ -496,7 +496,7 @@ class SettingsController extends Controller
 
         Yii::$app->response->format = Response::FORMAT_JSON;
 
-        /** @var User $user */
+        /** @var ?User $user */
         $user = $this->userQuery->whereId($id)->one();
 
         if (null === $user) {
@@ -534,9 +534,7 @@ class SettingsController extends Controller
             throw new ForbiddenHttpException();
         }
 
-        /**
-        * @var User $user
-        */
+        /** @var ?User $user */
         $user = $this->userQuery->whereId($id)->one();
 
         if (null === $user) {
@@ -586,11 +584,7 @@ class SettingsController extends Controller
     {
         Yii::$app->response->format = Response::FORMAT_JSON;
 
-        /**
-        *
-        *
-        * @var User $user
-        */
+        /** @var ?User $user */
         $user = $this->userQuery->whereId($id)->one();
 
         if (null === $user) {
@@ -627,11 +621,7 @@ class SettingsController extends Controller
      */
     protected function disconnectSocialNetwork($id)
     {
-        /**
-        *
-        *
-        * @var SocialNetworkAccount $account
-        */
+        /** @var ?SocialNetworkAccount $account */
         $account = $this->socialNetworkAccountQuery->whereId($id)->one();
 
         if ($account === null) {

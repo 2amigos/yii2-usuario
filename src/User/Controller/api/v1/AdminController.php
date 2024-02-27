@@ -189,7 +189,7 @@ class AdminController extends ActiveController
         $this->checkAccess($this->action);
 
         // Get user model
-        /** @var User $user */
+        /** @var ?User $user */
         $user = $this->userQuery->whereIdOrUsernameOrEmail($id)->one();
         if (is_null($user)) { // Check user, so `$id` parameter
             $this->throwUser404();
@@ -223,7 +223,7 @@ class AdminController extends ActiveController
         $this->checkAccess($this->action);
 
         // Get user model
-        /** @var User $user */
+        /** @var ?User $user */
         $user = $this->userQuery->whereIdOrUsernameOrEmail($id)->one();
         if (is_null($user)) { // Check user, so `$id` parameter
             $this->throwUser404();
@@ -258,14 +258,14 @@ class AdminController extends ActiveController
         $this->checkAccess($this->action);
 
         // Get user model
-        /** @var User $user */
+        /** @var ?User $user */
         $user = $this->userQuery->whereIdOrUsernameOrEmail($id)->one();
         if (is_null($user)) { // Check user, so `$id` parameter
             $this->throwUser404();
         }
 
         // Get profile model
-        /** @var Profile $profile */
+        /** @var ?Profile $profile */
         $profile = $user->profile;
         if ($profile === null) {
             $profile = $this->make(Profile::class);
@@ -296,7 +296,7 @@ class AdminController extends ActiveController
         $this->checkAccess($this->action);
 
         // Get user model
-        /** @var User $user */
+        /** @var ?User $user */
         $user = $this->userQuery->whereIdOrUsernameOrEmail($id)->one();
         if (is_null($user)) { // Check user, so `$id` parameter
             $this->throwUser404();
@@ -317,7 +317,7 @@ class AdminController extends ActiveController
         $this->checkAccess($this->action);
 
         // Get user model
-        /** @var User $user */
+        /** @var ?User $user */
         $user = $this->userQuery->whereIdOrUsernameOrEmail($id)->one();
         if (is_null($user)) { // Check user, so `$id` parameter
             $this->throwUser404();
@@ -352,7 +352,7 @@ class AdminController extends ActiveController
         }
 
         // Get user model
-        /** @var User $user */
+        /** @var ?User $user */
         $user = $this->userQuery->whereIdOrUsernameOrEmail($id)->one();
         if (is_null($user)) { // Check user, so `$id` parameter
             $this->throwUser404();
@@ -380,7 +380,7 @@ class AdminController extends ActiveController
         $this->checkAccess($this->action);
 
         // Get user model
-        /** @var User $user */
+        /** @var ?User $user */
         $user = $this->userQuery->whereIdOrUsernameOrEmail($id)->one();
         if (is_null($user)) { // Check user, so `$id` parameter
             $this->throwUser404();
@@ -405,7 +405,7 @@ class AdminController extends ActiveController
         $this->checkAccess($this->action);
 
         // Get user model
-        /** @var User $user */
+        /** @var ?User $user */
         $user = $this->userQuery->whereIdOrUsernameOrEmail($id)->one();
         if (is_null($user)) { // Check user, so `$id` parameter
             $this->throwUser404();
