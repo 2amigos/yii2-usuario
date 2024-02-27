@@ -18,7 +18,10 @@ use Da\User\Model\User;
 $user = Yii::$app->user->identity;
 /** @var UserModule $module */
 $module = Yii::$app->getModule('user');
-$networksVisible = count(Yii::$app->authClientCollection->clients) > 0;
+
+/** @var \yii\authclient\Collection $authClientCollection */
+$authClientCollection = Yii::$app->get('authClientCollection');
+$networksVisible = count($authClientCollection->clients) > 0;
 
 ?>
 

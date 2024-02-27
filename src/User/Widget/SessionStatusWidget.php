@@ -19,6 +19,7 @@ use yii\base\InvalidConfigException;
 use yii\base\InvalidParamException;
 use yii\base\Widget;
 use yii\helpers\ArrayHelper;
+use yii\rbac\Item;
 
 class SessionStatusWidget extends Widget
 {
@@ -68,17 +69,17 @@ class SessionStatusWidget extends Widget
     /**
      * Returns available auth items to be attached to the user.
      *
-     * @param int|null type of auth items or null to return all
-     * @param null|mixed $type
+     * @param null|mixed $type type of auth items or null to return all
      *
      * @return array
      */
     protected function getAvailableItems($type = null)
     {
+        $items = $this->getAuthManager()->getItems($type);
         return ArrayHelper::map(
-            $this->getAuthManager()->getItems($type),
+            $items,
             'name',
-            function ($item) {
+            function (Item $item) {
                 return empty($item->description)
                     ? $item->name
                     : $item->name . ' (' . $item->description . ')';

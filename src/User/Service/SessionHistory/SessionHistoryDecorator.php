@@ -379,21 +379,21 @@ class SessionHistoryDecorator extends Session
     }
 
     /** @inheritdoc */
-    public function offsetSet($offset, $item)
+    public function offsetSet($offset, $item) : void
     {
-        return $this->session->offsetSet($offset, $item);
+        $this->session->offsetSet($offset, $item);
     }
 
     /** @inheritdoc */
-    public function offsetUnset($offset)
+    public function offsetUnset($offset) : void
     {
-        return $this->session->offsetUnset($offset);
+        $this->session->offsetUnset($offset);
     }
 
     /** @inheritdoc */
-    public function setCacheLimiter($cacheLimiter)
+    public function setCacheLimiter($cacheLimiter) : void
     {
-        return $this->session->setCacheLimiter($cacheLimiter);
+        $this->session->setCacheLimiter($cacheLimiter);
     }
 
     /** @inheritdoc */

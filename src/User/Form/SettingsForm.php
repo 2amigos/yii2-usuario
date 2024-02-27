@@ -48,7 +48,7 @@ class SettingsForm extends Model
      */
     protected $securityHelper;
 
-    /** @var User */
+    /** @var ?User */
     protected $user;
 
     /**
@@ -121,7 +121,7 @@ class SettingsForm extends Model
     }
 
     /**
-     * @return User|null|\yii\web\IdentityInterface
+     * @return ?User
      */
     public function getUser()
     {

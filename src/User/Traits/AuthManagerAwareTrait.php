@@ -11,16 +11,21 @@
 
 namespace Da\User\Traits;
 
-use Da\User\Component\AuthDbManagerComponent;
+use Da\User\Contracts\AuthManagerInterface;
 use Yii;
+use yii\base\InvalidConfigException;
 
 trait AuthManagerAwareTrait
 {
     /**
-     * @return AuthDbManagerComponent|\yii\rbac\ManagerInterface
+     * @return AuthManagerInterface
      */
     public function getAuthManager()
     {
-        return Yii::$app->getAuthManager();
+        $authManager = Yii::$app->getAuthManager();
+        if($authManager instanceof AuthManagerInterface) {
+            return $authManager;
+        }
+        throw new InvalidConfigException("AuthManager must implement Da\User\Contracts\AuthManagerInterface");
     }
 }

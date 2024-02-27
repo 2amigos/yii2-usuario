@@ -26,5 +26,6 @@ class RbacRuleExistsValidator extends Validator
         if (!$rule) {
             return [Yii::t('usuario', 'Rule {0} does not exists', $value), []];
         }
+        return null;
     }
 }

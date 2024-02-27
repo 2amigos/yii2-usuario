@@ -81,10 +81,12 @@ class TokenFactory
      * @param $type
      *
      * @throws InvalidConfigException
-     * @return Token|\object
+     * @return Token
      */
     protected static function make($userId, $type)
     {
-        return Yii::createObject(['class' => Token::class, 'user_id' => $userId, 'type' => $type]);
+        /** @var Token $model */
+        $model = Yii::createObject(['class' => Token::class, 'user_id' => $userId, 'type' => $type]);
+        return $model;
     }
 }

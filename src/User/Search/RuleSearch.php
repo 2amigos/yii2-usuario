@@ -11,6 +11,7 @@
 
 namespace Da\User\Search;
 
+use Da\User\Exception\NotImplementedException;
 use Da\User\Model\Rule;
 use Da\User\Traits\ContainerAwareTrait;
 use yii\base\InvalidConfigException;
@@ -18,6 +19,7 @@ use yii\base\InvalidParamException;
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
 use yii\db\Query;
+use yii\rbac\DbManager;
 
 class RuleSearch extends Rule
 {
@@ -55,9 +57,13 @@ class RuleSearch extends Rule
      */
     public function search(array $params = [])
     {
+        $authManager = $this->getAuthManager();
+        if(!($authManager instanceof DbManager)) {
+            throw new NotImplementedException();
+        }
         $query = (new Query())
             ->select(['name', 'data', 'created_at', 'updated_at'])
-            ->from($this->getAuthManager()->ruleTable)
+            ->from($authManager->ruleTable)
             ->orderBy(['name' => SORT_ASC]);
 
         if ($this->load($params)) {
@@ -73,7 +79,7 @@ class RuleSearch extends Rule
             [],
             [
                 'query' => $query,
-                'db' => $this->getAuthManager()->db,
+                'db' => $authManager->db,
                 'sort' => [
                     'attributes' => ['name', 'created_at', 'updated_at']
                 ]

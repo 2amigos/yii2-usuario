@@ -15,12 +15,14 @@ use Da\TwoFA\Exception\InvalidSecretKeyException;
 use Da\User\Model\User;
 use Da\User\Service\TwoFactorEmailCodeGeneratorService;
 use Da\User\Traits\ContainerAwareTrait;
+use Da\User\Traits\ModuleAwareTrait;
 use Yii;
 use yii\helpers\ArrayHelper;
 
 class TwoFactorEmailValidator extends TwoFactorCodeValidator
 {
     use ContainerAwareTrait;
+    use ModuleAwareTrait;
 
     protected $user;
     protected $code;
@@ -56,7 +58,7 @@ class TwoFactorEmailValidator extends TwoFactorCodeValidator
         $currentTime = new \DateTime('now');
         $interval = $currentTime->getTimestamp() - $emailCodeTime->getTimestamp();
 
-        $module = Yii::$app->getModule('user');
+        $module = $this->getModule();
         $validators = $module->twoFactorAuthenticationValidators;
         $codeDurationTime = ArrayHelper::getValue($validators, $this->type.'.codeDurationTime', 300);
 

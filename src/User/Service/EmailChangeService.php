@@ -24,12 +24,12 @@ class EmailChangeService implements ServiceInterface
 {
     use ModuleAwareTrait;
 
-    protected $code;
-    protected $model;
-    protected $tokenQuery;
-    protected $userQuery;
+    protected string $code;
+    protected User $model;
+    protected TokenQuery $tokenQuery;
+    protected UserQuery $userQuery;
 
-    public function __construct($code, User $model, TokenQuery $tokenQuery, UserQuery $userQuery)
+    public function __construct(string $code, User $model, TokenQuery $tokenQuery, UserQuery $userQuery)
     {
         $this->code = $code;
         $this->model = $model;

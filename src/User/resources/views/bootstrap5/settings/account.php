@@ -13,7 +13,7 @@ use yii\bootstrap5\Modal;
 use yii\helpers\Html;
 use yii\helpers\Url;
 use yii\bootstrap5\ActiveForm;
-use dmstr\widgets\Alert;
+
 /**
  * @var yii\web\View               $this
  * @var yii\widgets\ActiveForm     $form
@@ -25,7 +25,6 @@ $this->params['breadcrumbs'][] = $this->title;
 
 /** @var \Da\User\Module $module */
 $module = Yii::$app->getModule('user');
-
 ?>
 <div class="clearfix"></div>
 
@@ -86,7 +85,7 @@ $module = Yii::$app->getModule('user');
                     <p>
                         <?= Yii::t('usuario', 'Two factor authentication protects you in case of stolen credentials') ?>.
                     </p>
-                    <?php if (!$model->getUser()->auth_tf_enabled):
+                    <?php if ($model->getUser()!==  null && !$model->getUser()->auth_tf_enabled):
                         $validators = $module->twoFactorAuthenticationValidators;
                         $theFirstFound = false;
                         $checked = '';

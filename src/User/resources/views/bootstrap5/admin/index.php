@@ -100,7 +100,7 @@ $this->params['breadcrumbs'][] = $this->title;
                     );
                 },
                 'format' => 'raw',
-                'visible' => Yii::$app->getModule('user')->enableEmailConfirmation,
+                'visible' => $module->enableEmailConfirmation,
             ],
             'password_age',
             [

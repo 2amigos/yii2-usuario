@@ -106,6 +106,9 @@ class AdminController extends ActiveController
      */
     public function behaviors()
     {
+        /** @var \Da\User\Module $module */
+        $module = $this->module;
+
         $behaviors = parent::behaviors();
         // Remove the (default) authentication filter
         unset($behaviors['authenticator']);
@@ -117,7 +120,7 @@ class AdminController extends ActiveController
 
         // Re-add authentication filter
         $behaviors['authenticator'] = [
-            'class' => $this->module->authenticatorClass, // Class depends on the module parameter
+            'class' => $module->authenticatorClass, // Class depends on the module parameter
             'except' => ['options']
         ];
         // Return
@@ -129,12 +132,16 @@ class AdminController extends ActiveController
      */
     public function checkAccess($action, $model = null, $params = [])
     {
+        /** @var \Da\User\Module $module */
+        $module = $this->module;
         // Check if the REST APIs are enabled
-        if (!$this->module->enableRestApi) {
+        if (!$module->enableRestApi) {
             throw new NotFoundHttpException(Yii::t('usuario', 'The requested page does not exist.'));
         }
         // Access for admins only
-        if (!Yii::$app->user->identity->isAdmin) {
+
+        $user = Yii::$app->user->identity;
+        if (!($user instanceof User) or !$user->isAdmin) {
             throw new ForbiddenHttpException(Yii::t('usuario', 'User does not have sufficient permissions.'));
         }
     }
