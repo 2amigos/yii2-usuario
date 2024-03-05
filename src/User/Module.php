@@ -33,6 +33,10 @@ class Module extends BaseModule
      */
     public $numberSessionHistory = false;
     /**
+     * @var bool Enable LDAP to sync local users with LDAP users
+     */
+    public $searchUsersInLdap = false;
+    /**
      * @var int|bool The time after which the expired 'session history' will be deleted
      *               if equals false records will not be deleted
      */
