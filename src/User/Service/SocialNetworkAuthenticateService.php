@@ -74,9 +74,14 @@ class SocialNetworkAuthenticateService implements ServiceInterface
                 Yii::$app->session->setFlash('danger', Yii::t('usuario', 'Your account has been blocked.'));
                 $this->authAction->setSuccessUrl(Url::to(['/user/security/login']));
             } else {
-                Yii::$app->user->login($account->user, $this->controller->module->rememberLoginLifespan);
-                $this->authAction->setSuccessUrl(Yii::$app->getUser()->getReturnUrl());
-                $result = true;
+                $result = Yii::$app->user->login($account->user, $this->controller->module->rememberLoginLifespan);
+                if ($result) {
+                    $account->user->updateAttributes([
+                        'last_login_at' => time(),
+                        'last_login_ip' => $this->controller->module->disableIpLogging ? '127.0.0.1' : Yii::$app->request->getUserIP(),
+                    ]);
+                    $this->authAction->setSuccessUrl(Yii::$app->getUser()->getReturnUrl());
+                }
             }
         } else {
             $this->authAction->setSuccessUrl($account->getConnectionUrl());
