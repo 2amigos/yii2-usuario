@@ -12,6 +12,7 @@
 namespace Da\User;
 
 use Da\User\Contracts\MailChangeStrategyInterface;
+use Da\User\Controller\ProfileController;
 use Da\User\Filter\AccessRuleFilter;
 use Yii;
 use yii\base\Module as BaseModule;
@@ -181,6 +182,12 @@ class Module extends BaseModule
      * @var string the administrator permission name
      */
     public $administratorPermissionName;
+    /**
+     * @var int $profileVisibility Defines the level of user's profile page visibility.
+     *          Defaults to ProfileController::PROFILE_VISIBILITY_OWNER meaning no-one except the user itself can view
+     *          the profile. @see ProfileController constants for prssible options
+     */
+    public $profileVisibility = ProfileController::PROFILE_VISIBILITY_OWNER;
     /**
      * @var string the route prefix
      */

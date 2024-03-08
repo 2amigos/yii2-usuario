@@ -25,6 +25,15 @@ class ProfileController extends Controller
 {
     use ModuleAwareTrait;
 
+    /** @var int will allow only profile owner */
+    const PROFILE_VISIBILITY_OWNER = 0;
+    /** @var int will allow profile owner and admin users */
+    const PROFILE_VISIBILITY_ADMIN = 1;
+    /** @var int will allow any logged-in user */
+    const PROFILE_VISIBILITY_USERS = 2;
+    /** @var int will allow anyone, including gusets */
+    public const PROFILE_VISIBILITY_PUBLIC = 3;
+
     protected $profileQuery;
 
     /**
@@ -73,10 +82,32 @@ class ProfileController extends Controller
     public function actionShow($id)
     {
         $user = Yii::$app->user;
-        /** @var User $identity */
+        $id = (int) $id;
+
+        /** @var ?User $identity */
         $identity = $user->getIdentity();
-        if($user->getId() != $id && $this->module->disableProfileViewsForRegularUsers && !$identity->getIsAdmin()) {
-            throw new ForbiddenHttpException();
+
+        switch($this->module->profileVisibility) {
+            case static::PROFILE_VISIBILITY_OWNER:
+                if($identity === null || $id !== $user->getId()) {
+                    throw new ForbiddenHttpException("1");
+                }
+                break;
+            case static::PROFILE_VISIBILITY_ADMIN:
+                if($id === $user->getId() || ($identity !== null && $identity->getIsAdmin())) {
+                    break;
+                }
+                throw new ForbiddenHttpException();
+            case static::PROFILE_VISIBILITY_USERS:
+                if((!$user->getIsGuest())) {
+                    break;
+                }
+                throw new ForbiddenHttpException();
+            case static::PROFILE_VISIBILITY_PUBLIC:
+                break;
+            default:
+                throw new ForbiddenHttpException();
+
         }
 
         $profile = $this->profileQuery->whereUserId($id)->one();
