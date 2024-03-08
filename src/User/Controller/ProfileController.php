@@ -29,9 +29,9 @@ class ProfileController extends Controller
     const PROFILE_VISIBILITY_OWNER = 0;
     /** @var int will allow profile owner and admin users */
     const PROFILE_VISIBILITY_ADMIN = 1;
-    /** @var int will allow any logged-in user */
+    /** @var int will allow any logged-in users */
     const PROFILE_VISIBILITY_USERS = 2;
-    /** @var int will allow anyone, including gusets */
+    /** @var int will allow anyone, including guests */
     public const PROFILE_VISIBILITY_PUBLIC = 3;
 
     protected $profileQuery;
