@@ -90,7 +90,7 @@ class ProfileController extends Controller
         switch($this->module->profileVisibility) {
             case static::PROFILE_VISIBILITY_OWNER:
                 if($identity === null || $id !== $user->getId()) {
-                    throw new ForbiddenHttpException("1");
+                    throw new ForbiddenHttpException();
                 }
                 break;
             case static::PROFILE_VISIBILITY_ADMIN:
