@@ -185,7 +185,7 @@ class Module extends BaseModule
     /**
      * @var int $profileVisibility Defines the level of user's profile page visibility.
      *          Defaults to ProfileController::PROFILE_VISIBILITY_OWNER meaning no-one except the user itself can view
-     *          the profile. @see ProfileController constants for prssible options
+     *          the profile. @see ProfileController constants for possible options
      */
     public $profileVisibility = ProfileController::PROFILE_VISIBILITY_OWNER;
     /**
