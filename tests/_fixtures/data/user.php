@@ -78,7 +78,7 @@ return [
         'username' => 'user2fa',
         'email' => 'user2faenabled@example.com',
         'password_hash' => '$2y$13$qY.ImaYBppt66qez6B31QO92jc5DYVRzo5NxM1ivItkW74WsSG6Ui',
-        'auth_key' => '08aff8636535eb934ae7aa205254ac6b',
+        'auth_key' => '39HU0m5lpjWtqstFVGFjj6lFb7UZDeRq',
         'auth_tf_key' => '',
         'auth_tf_enabled' => true,
         'auth_tf_type' => 'google-authenticator',
