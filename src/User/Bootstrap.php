@@ -154,6 +154,12 @@ class Bootstrap implements BootstrapInterface
                 $di->set(Search\RoleSearch::class);
             }
 
+            if (Yii::$app->getModule('user')->searchUsersInLdap) {
+                if (!class_exists('kartik\typeahead\Typeahead')) {
+                    throw new InvalidConfigException('The kartik-v/yii2-widget-typeahead library must be defined when searchUsersInLdap is true.');
+                }
+            }
+
             // Attach an event to check if the password has expired
             if (null !== Yii::$app->getModule('user')->maxPasswordAge) {
                 YiiEvent::on(SecurityController::class, FormEvent::EVENT_AFTER_LOGIN, function (FormEvent $event) {

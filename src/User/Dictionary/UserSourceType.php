@@ -6,8 +6,8 @@ use yii\helpers\ArrayHelper;
 
 class UserSourceType
 {
-    const LOCAL = 'LOCAL';
-    const LDAP = 'LDAP';
+    public const LOCAL = 'LOCAL';
+    public const LDAP = 'LDAP';
 
     /**
      * Returns an array that contains the codes for the dictionary and their common name. It's useful to be used for
@@ -17,7 +17,7 @@ class UserSourceType
     public static function all()
     {
         return [
-            static::LOCAL => \Yii::t('usuario',  'Local'),
+            static::LOCAL => \Yii::t('usuario', 'Local'),
             static::LDAP => \Yii::t('usuario', 'LDAP'),
         ];
     }

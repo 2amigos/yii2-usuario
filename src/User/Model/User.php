@@ -11,10 +11,14 @@
 
 namespace Da\User\Model;
 
+use Da\User\Dictionary\UserSourceType;
 use Da\User\Helper\SecurityHelper;
 use Da\User\Query\UserQuery;
+use Da\User\Service\InitLdapUserService;
 use Da\User\Traits\ContainerAwareTrait;
 use Da\User\Traits\ModuleAwareTrait;
+use lhs\Yii2SaveRelationsBehavior\SaveRelationsBehavior;
+use yetopen\usuarioLdap\UsuarioLdapComponent;
 use Yii;
 use yii\base\Exception;
 use yii\base\InvalidConfigException;
@@ -78,6 +82,10 @@ class User extends ActiveRecord implements IdentityInterface
      * @var array connected account list
      */
     protected $connectedAccounts;
+    /**
+     * @var \Adldap\Models\User|null
+     */
+    protected $ldapUser;
 
     /**
      * {@inheritdoc}
@@ -130,6 +138,22 @@ class User extends ActiveRecord implements IdentityInterface
     /**
      * {@inheritdoc}
      */
+    public function beforeValidate()
+    {
+        if ($this->module->searchUsersInLdap && $this->source == UserSourceType::LDAP) {
+            /** @var UsuarioLdapComponent $ldapComponent */
+            $ldapComponent = Yii::$app->usuarioLdap;
+            $this->ldapUser = $ldapComponent->findLdapUser($this->email);
+            if ($this->ldapUser !== null) {
+                $this->make(InitLdapUserService::class, [$this, $this->module->ldapUserAttributes, $this->ldapUser])->run();
+            }
+        }
+        return parent::beforeValidate();
+    }
+
+    /**
+     * {@inheritdoc}
+     */
     public function beforeSave($insert)
     {
         /** @var SecurityHelper $security */
@@ -163,6 +187,9 @@ class User extends ActiveRecord implements IdentityInterface
 
         if ($insert && $this->profile === null) {
             $profile = $this->make(Profile::class);
+            if ($this->ldapUser !== null) {
+                $this->make(InitLdapUserService::class, [$profile, $this->module->ldapProfileAttributes, $this->ldapUser])->run();
+            }
             $profile->link('user', $this);
         }
     }
@@ -183,6 +210,13 @@ class User extends ActiveRecord implements IdentityInterface
                 'updatedAtAttribute' => false
             ];
         }
+
+        $behaviors['saveRelations'] = [
+            'class' => SaveRelationsBehavior::class,
+            'relations' => [
+                'profile' => ['cascadeDelete' => true]
+            ]
+        ];
 
         return $behaviors;
     }
