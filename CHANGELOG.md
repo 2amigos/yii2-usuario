@@ -1,6 +1,6 @@
 # CHANGELOG
 
-## dev
+## 1.6.3 Mar 18th, 2024
 
 - Fix: Update last_login_at and last_login_ip on social networt authenticate (e.luhr)
 - Enh: Keycloak auth client (e.luhr)
@@ -9,6 +9,7 @@
 - Enh: Allow/suggest new v3 releases of 2amigos 2fa dependencies: 2fa-library, qrcode-library (TonisOrmisson) 
 - Enh: Added option to disable viewing any other user's profile for non-admin users (TonisOrmisson)
 - Ehn: updated Estonian (et) translation by (TonisOrmisson)
+- Ehn: use recaptcha.net instead of google.com (Eseperio)
 
 ## 1.6.2 Jan 4th, 2024
 
