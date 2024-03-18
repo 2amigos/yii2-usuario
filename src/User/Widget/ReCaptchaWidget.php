@@ -113,7 +113,7 @@ class ReCaptchaWidget extends InputWidget
         $view = $this->getView();
 
         $view->registerJsFile(
-            '//www.google.com/recaptcha/api.js?hl=' . $this->getLanguageCode(),
+            '//www.recaptcha.net/recaptcha/api.js?hl=' . $this->getLanguageCode(),
             [
                 'position' => View::POS_HEAD,
                 'async' => true,
