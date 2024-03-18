@@ -59,6 +59,7 @@ return [
     'Block' => '',
     'Block status' => '',
     'Blocked at {0, date, MMMM dd, YYYY HH:mm}' => '',
+    'Can\'t scan? Copy the code instead.' => '',
     'Cancel' => '',
     'Cannot assign role "{0}" as the AuthManager is not configured on your console application.' => '',
     'Change your avatar at Gravatar.com' => '',
