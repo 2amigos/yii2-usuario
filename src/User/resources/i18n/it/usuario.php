@@ -320,4 +320,5 @@ return [
     '{0} cannot be blank.' => '{0} non può essere vuoto.',
     'Filter as you type...' => 'Digita per filtrare...',
     'Invalid LDAP user' => 'Utente LDAP non valido',
+    'Search' => 'Cerca',
 ];
