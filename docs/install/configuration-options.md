@@ -18,13 +18,13 @@ Number of expired storing records `session history`, values:
 
 If this option is `true`, it will be possible to search users in LDAP.
 
-To use this option you need to install kartik typeahead:
+To use this option, you need to install [yetopen/yii2-usuario-ldap](https://github.com/YetOpen/yii2-usuario-ldap):
 
 ```shell
-composer require kartik-v/yii2-widget-typeahead "dev-master"
+composer require yetopen/yii2-usuario-ldap "*"
 ```
 
-#### ldapUserAttributes (Type: `array`)
+#### LDAPUserAttributes (Type: `array`)
 
 This array maps the user attributes to sync from ldap
 
@@ -36,7 +36,7 @@ Default to:
 ]
 ```
 
-#### ldapProfileAttributes (Type: `array`)
+#### LDAPProfileAttributes (Type: `array`)
 
 This array maps the profile attributes to sync from ldap
 

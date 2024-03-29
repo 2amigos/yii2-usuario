@@ -15,17 +15,16 @@
  */
 
 use Da\User\Dictionary\UserSourceType;
-use kartik\typeahead\Typeahead;
+use dosamigos\selectize\SelectizeTextInput;
 use yii\helpers\Html;
 use yii\helpers\Url;
 
 $source = Yii::$app->request->get('source') ?: $user->source;
-
-$emailInputId = Html::getInputId($user, 'email');
+$ldapUidId = Html::getInputId($user, 'ldapUid');
 $sourceId = Html::getInputId($user, 'source');
 $this->registerJs(<<<JS
-    function updateFromLdap(event, data) {
-          $("#$emailInputId").val(data.value).change();
+    function updateFromLdap(data) {
+        $("#$ldapUidId").val(data).change();
     }
     $('#$sourceId').change(function() {
         var source = $(this).val();
@@ -36,21 +35,25 @@ JS);
 if ($user->isNewRecord) {
     if (Yii::$app->getModule('user')->searchUsersInLdap && $source == UserSourceType::LDAP) {
         echo $form->field($user, 'source')->dropDownList(UserSourceType::all(), ['value' => $source]);
-        echo $form->field($user, 'email')->widget(Typeahead::class, [
-            'options' => ['placeholder' => Yii::t('usuario', 'Filter as you type...'), 'autocomplete' => 'off'],
-            'pluginOptions' => ['highlight' => true],
-            'dataset' => [
-                [
-                    'display' => 'value',
-                    'remote' => [
-                        'url' => Url::to(['/usuario-ldap/ldap/search']) . '?q=%QUERY', // You can add &limit to set a results limit, 20 to default
-                        'wildcard' => '%QUERY'
-                    ]
-                ]
+        echo $form->field($user, 'ldapUid')->widget(SelectizeTextInput::class, [
+            'loadUrl' => Url::to(['/usuario-ldap/ldap/search']),
+            'queryParam' => 'q',
+            'options' => [
+                'placeholder' => Yii::t('usuario', 'Filter as you type...'),
+                'autocomplete' => 'off',
             ],
-            // When the email is selected, get the username and change the source from local to ldap
-            'pluginEvents' => [
-                'typeahead:select' => 'updateFromLdap',
+            'clientOptions' => [
+                'valueField' => 'value',
+                'labelField' => 'label',
+                'searchField' => ['value', 'label', 'q'],
+                'create' => false,
+                'maxItems' => 1,
+                'onChange' => new \yii\web\JsExpression("
+                    function(value) {
+                    console.log(value);
+                        updateFromLdap(value);
+                    }
+                "),
             ],
         ]);
     } else {

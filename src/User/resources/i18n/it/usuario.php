@@ -319,4 +319,5 @@ return [
     '{0, date, MMMM dd, YYYY HH:mm}' => '{0, date, dd MMMM YYYY HH:mm}',
     '{0} cannot be blank.' => '{0} non può essere vuoto.',
     'Filter as you type...' => 'Digita per filtrare...',
+    'Invalid LDAP user' => 'Utente LDAP non valido',
 ];

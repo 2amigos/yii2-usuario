@@ -156,7 +156,7 @@ class Bootstrap implements BootstrapInterface
 
             if (Yii::$app->getModule('user')->searchUsersInLdap) {
                 if (!class_exists('kartik\typeahead\Typeahead')) {
-                    throw new InvalidConfigException('The kartik-v/yii2-widget-typeahead library must be defined when searchUsersInLdap is true.');
+                    throw new InvalidConfigException('The kartik-v/yii2-widget-typeahead library must be installed when searchUsersInLdap is true.');
                 }
             }
 
