@@ -39,14 +39,14 @@ class Module extends BaseModule
     /**
      * @var array user attributes to sync from ldap
      */
-    public $LDAPUserAttributes = [
+    public $ldapUserAttributes = [
         'email' => 'mail',
         'username' => 'samaccountname',
     ];
     /**
      * @var array profile attributes to sync from ldap
      */
-    public $LDAPProfileAttributes = [];
+    public $ldapProfileAttributes = [];
     /**
      * @var int|bool The time after which the expired 'session history' will be deleted
      *               if equals false records will not be deleted

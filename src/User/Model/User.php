@@ -159,7 +159,7 @@ class User extends ActiveRecord implements IdentityInterface
             $ldapComponent = Yii::$app->usuarioLdap;
             $this->ldapUser = $ldapComponent->findLdapUser($this->ldapUid);
             if ($this->ldapUser !== null) {
-                $this->make(InitLdapUserService::class, [$this, $this->module->LDAPUserAttributes, $this->ldapUser])->run();
+                $this->make(InitLdapUserService::class, [$this, $this->module->ldapUserAttributes, $this->ldapUser])->run();
             }
         }
         return parent::beforeValidate();
@@ -202,7 +202,7 @@ class User extends ActiveRecord implements IdentityInterface
         if ($insert && $this->profile === null) {
             $profile = $this->make(Profile::class);
             if ($this->ldapUser !== null) {
-                $this->make(InitLdapUserService::class, [$profile, $this->module->LDAPProfileAttributes, $this->ldapUser])->run();
+                $this->make(InitLdapUserService::class, [$profile, $this->module->ldapProfileAttributes, $this->ldapUser])->run();
             }
             $profile->link('user', $this);
         }

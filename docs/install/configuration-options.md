@@ -24,9 +24,9 @@ To use this option, you need to install [yetopen/yii2-usuario-ldap](https://gith
 composer require yetopen/yii2-usuario-ldap "*"
 ```
 
-#### LDAPUserAttributes (Type: `array`)
+#### ldapUserAttributes (Type: `array`)
 
-This array maps the user attributes to sync from ldap
+This array maps the user attributes to sync from LDAP
 
 Default to:
 ```php
@@ -36,9 +36,9 @@ Default to:
 ]
 ```
 
-#### LDAPProfileAttributes (Type: `array`)
+#### ldapProfileAttributes (Type: `array`)
 
-This array maps the profile attributes to sync from ldap
+This array maps the profile attributes to sync from LDAP
 
 #### timeoutSessionHistory (Type: `boolean, integer`, Default value: `false`)
 
