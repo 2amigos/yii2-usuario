@@ -25,7 +25,7 @@ use yii\helpers\Url;
 </p>
 
 <p style="font-family: 'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif; font-size: 14px; line-height: 1.6; font-weight: normal; margin: 0 0 10px; padding: 0;">
-    <?= Yii::t('usuario', 'Your account on {0} has been created', Yii::$app->name) ?>.
+    <?= Yii::t('usuario', 'Your account on {0} has been created', [Yii::$app->name]) ?>.
     <?php if ($showPassword || $module->generatePasswords): ?>
         <?= Yii::t('usuario', 'We have generated a password for you') ?>: <strong><?= Html::encode($user->password) ?></strong>
     <?php endif ?>

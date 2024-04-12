@@ -157,8 +157,9 @@ class Module extends BaseModule
      * @var bool whether user can remove his account
      */
     public $allowAccountDelete = false;
+
     /**
-     * @var string the class name of the strategy class to handle user's email change
+     * @var int the class name of the strategy class to handle user's email change
      */
     public $emailChangeStrategy = MailChangeStrategyInterface::TYPE_DEFAULT;
     /**
@@ -224,15 +225,19 @@ class Module extends BaseModule
     /**
      * @var string
      */
-    public $viewPath = '@Da/User/resources/views';
+    public $viewPath = '@Da/User/resources/views/bootstrap5';
+    /**
+     * @var string the mail views path is UI framework independent
+     */
+    public $mailViewPath = '@Da/User/resources/views/mail';
     /**
      * @var string the session key name to impersonate users. Please, modify it for security reasons!
      */
     public $switchIdentitySessionKey = 'yuik_usuario';
     /**
-     * @var integer If != NULL sets a max password age in days
+     * @var ?integer If != NULL sets a max password age in days
      */
-    public $maxPasswordAge;
+    public $maxPasswordAge = null;
     /**
      * @var boolean whether to restrict assignment of permissions to users
      */

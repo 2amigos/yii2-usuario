@@ -43,7 +43,7 @@ class PasswordController extends Controller
      */
     public function actionIndex($usernameOrEmail, $password)
     {
-        /** @var User $user */
+        /** @var ?User $user */
         $user = $this->userQuery->whereUsernameOrEmail($usernameOrEmail)->one();
 
         if ($user === null) {

@@ -14,17 +14,18 @@ namespace Da\User\Filter;
 use Da\User\Model\User;
 use Da\User\Module;
 use Da\User\Traits\AuthManagerAwareTrait;
+use Da\User\Traits\ModuleAwareTrait;
 use Yii;
 use yii\base\ActionFilter;
 
 class TwoFactorAuthenticationEnforceFilter extends ActionFilter
 {
     use AuthManagerAwareTrait;
+    use ModuleAwareTrait;
 
     public function beforeAction($action)
     {
-        /** @var Module $module */
-        $module = Yii::$app->getModule('user');
+        $module = $this->getModule();
 
         $enableTwoFactorAuthentication = $module->enableTwoFactorAuthentication;
         // If enableTwoFactorAuthentication is set to false do nothing
@@ -39,6 +40,7 @@ class TwoFactorAuthenticationEnforceFilter extends ActionFilter
 
         $permissions = $module->twoFactorAuthenticationForcedPermissions;
 
+        /** @var User $user */
         $user = Yii::$app->user->identity;
         $itemsByUser = array_keys($this->getAuthManager()->getItemsByUser($user->id));
         if (!empty(array_intersect($permissions, $itemsByUser)) && !$user->auth_tf_enabled) {

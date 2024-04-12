@@ -13,6 +13,7 @@ namespace Da\User\Service;
 
 use Da\User\Contracts\ServiceInterface;
 use Da\User\Model\User;
+use Da\User\Traits\ModuleAwareTrait;
 use yetopen\smssender\SmsSenderInterface;
 use Yii;
 use yii\di\Instance;
@@ -20,13 +21,15 @@ use yii\helpers\ArrayHelper;
 
 class TwoFactorSmsCodeGeneratorService implements ServiceInterface
 {
+    use ModuleAwareTrait;
+
     /**
      * @var User
      */
     protected $user;
 
     /**
-     * @var Type
+     * @var string $type
      */
     protected $type;
 
@@ -44,7 +47,7 @@ class TwoFactorSmsCodeGeneratorService implements ServiceInterface
     {
         $this->user = $user;
         $this->type = 'sms';
-        $module = Yii::$app->getModule('user');
+        $module = $this->getModule();
         $validators = $module->twoFactorAuthenticationValidators;
         $smsSender = ArrayHelper::getValue($validators, 'sms.smsSender');
         $this->smsSender = Instance::ensure($smsSender, SmsSenderInterface::class);
@@ -57,7 +60,7 @@ class TwoFactorSmsCodeGeneratorService implements ServiceInterface
     {
         // generate key
         $code = random_int(0, 999999);
-        $code = str_pad($code, 6, 0, STR_PAD_LEFT);
+        $code = str_pad((string)$code, 6, "0", STR_PAD_LEFT);
         // get the mobile phone of the user
         $user = $this->user;
         $mobilePhone = $user->getAuthTfMobilePhone();

@@ -21,6 +21,7 @@ use Da\User\Validator\AjaxRequestModelValidator;
 use Yii;
 use yii\filters\AccessControl;
 use yii\filters\VerbFilter;
+use yii\rbac\DbManager;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 
@@ -135,7 +136,9 @@ class RuleController extends Controller
         $rule = $this->findRule($name);
 
         $this->getAuthManager()->remove($rule);
-        $this->getAuthManager()->invalidateCache();
+        if($this->getAuthManager() instanceof DbManager) {
+            $this->getAuthManager()->invalidateCache();
+        }
 
         Yii::$app->getSession()->setFlash('success', Yii::t('usuario', 'Authorization rule has been removed.'));
         return $this->redirect(['index']);

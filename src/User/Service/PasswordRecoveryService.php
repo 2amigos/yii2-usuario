@@ -46,7 +46,7 @@ class PasswordRecoveryService implements ServiceInterface
                 Yii::t('usuario', 'An email with instructions to create a new password has been sent to {email} if it is associated with an {appName} account. Your existing password has not been changed.', ['email' => $this->email, 'appName' => Yii::$app->name])
             );
 
-            /** @var User $user */
+            /** @var ?User $user */
             $user = $this->query->whereEmail($this->email)->one();
 
             if ($user === null) {
@@ -54,10 +54,6 @@ class PasswordRecoveryService implements ServiceInterface
             }
 
             $token = TokenFactory::makeRecoveryToken($user->id);
-
-            if (!$token) {
-                return false;
-            }
 
             $this->mailService->setViewParam('user', $user);
             $this->mailService->setViewParam('token', $token);

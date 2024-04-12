@@ -36,6 +36,7 @@ use yii\filters\AccessControl;
 use yii\filters\VerbFilter;
 use yii\helpers\Url;
 use yii\web\Controller;
+use yii\web\NotFoundHttpException;
 
 class AdminController extends Controller
 {
@@ -140,7 +141,6 @@ class AdminController extends Controller
 
         /** @var UserEvent $event */
         $event = $this->make(UserEvent::class, [$user]);
-
         $this->make(AjaxRequestModelValidator::class, [$user])->validate();
 
         if ($user->load(Yii::$app->request->post()) && $user->validate()) {
@@ -161,7 +161,11 @@ class AdminController extends Controller
 
     public function actionUpdate($id)
     {
+        /** @var ?User $user */
         $user = $this->userQuery->where(['id' => $id])->one();
+        if($user === null) {
+            throw new NotFoundHttpException();
+        }
         $user->setScenario('update');
         /** @var UserEvent $event */
         $event = $this->make(UserEvent::class, [$user]);
@@ -187,9 +191,8 @@ class AdminController extends Controller
 
     public function actionUpdateProfile($id)
     {
-        /** @var User $user */
+        /** @var ?User $user */
         $user = $this->userQuery->where(['id' => $id])->one();
-        /** @var Profile $profile */
         $profile = $user->profile;
         if ($profile === null) {
             $profile = $this->make(Profile::class);

@@ -134,7 +134,7 @@ class RecoveryController extends Controller
         if (!$this->module->allowPasswordRecovery && !$this->module->allowAdminPasswordRecovery) {
             throw new NotFoundHttpException();
         }
-        /** @var Token $token */
+        /** @var ?Token $token */
         $token = $this->tokenQuery->whereUserId($id)->whereCode($code)->whereIsRecoveryType()->one();
         /** @var ResetPasswordEvent $event */
         $event = $this->make(ResetPasswordEvent::class, [$token]);

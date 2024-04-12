@@ -1,8 +1,9 @@
 parameters:
-    level: 1
+    level: 5
     paths:
         - src
     excludePaths:
-        - 'src/resources/i18n/*'
+        - 'src/User/resources/i18n/*'
+        - 'src/User/resources/views/bootstrap3/*'
     bootstrapFiles:
         - stan_autoload.php

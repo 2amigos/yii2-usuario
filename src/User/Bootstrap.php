@@ -15,10 +15,12 @@ use Da\User\Component\AuthDbManagerComponent;
 use Da\User\Contracts\AuthManagerInterface;
 use Da\User\Controller\SecurityController;
 use Da\User\Event\FormEvent;
+use Da\User\Form\LoginForm;
 use Da\User\Helper\ClassMapHelper;
 use Da\User\Model\SessionHistory;
 use Da\User\Model\User;
 use Da\User\Search\SessionHistorySearch;
+use Da\User\Traits\ModuleAwareTrait;
 use Yii;
 use yii\authclient\Collection;
 use yii\base\Application;
@@ -37,6 +39,8 @@ use yii\web\Application as WebApplication;
  */
 class Bootstrap implements BootstrapInterface
 {
+    use ModuleAwareTrait;
+
     /**
      * {@inheritdoc}
      *
@@ -57,7 +61,9 @@ class Bootstrap implements BootstrapInterface
                 $this->initAuthCollection($app);
                 $this->initAuthManager($app);
             } else {
-                /* @var $app ConsoleApplication */
+                if(!($app instanceof ConsoleApplication)) {
+                    throw new InvalidConfigException();
+                }
                 $this->initConsoleCommands($app);
                 $this->initAuthManager($app);
             }
@@ -155,10 +161,12 @@ class Bootstrap implements BootstrapInterface
             }
 
             // Attach an event to check if the password has expired
-            if (null !== Yii::$app->getModule('user')->maxPasswordAge) {
+            if (null !== $this->getModule()->maxPasswordAge) {
                 YiiEvent::on(SecurityController::class, FormEvent::EVENT_AFTER_LOGIN, function (FormEvent $event) {
-                    $user = $event->form->user;
-                    if ($user->password_age >= Yii::$app->getModule('user')->maxPasswordAge) {
+                    /** @var LoginForm $form */
+                    $form = $event->form;
+                    $user = $form->getUser();
+                    if ($user->password_age >= $this->getModule()->maxPasswordAge) {
                         // Force password change
                         Yii::$app->session->setFlash('warning', Yii::t('usuario', 'Your password has expired, you must change it now'));
                         Yii::$app->response->redirect(['/user/settings/account'])->send();
@@ -195,9 +203,9 @@ class Bootstrap implements BootstrapInterface
                     ]
                 ];
 
-            $app->getModule('user')->twoFactorAuthenticationValidators = ArrayHelper::merge(
+            $this->getModule()->twoFactorAuthenticationValidators = ArrayHelper::merge(
                 $defaultTwoFactorAuthenticationValidators,
-                $app->getModule('user')->twoFactorAuthenticationValidators
+                $this->getModule()->twoFactorAuthenticationValidators
             );
 
             if ($app instanceof WebApplication) {
@@ -205,7 +213,7 @@ class Bootstrap implements BootstrapInterface
                 $di->set(
                     'yii\web\User',
                     [
-                        'enableAutoLogin' => $app->getModule('user')->enableAutoLogin,
+                        'enableAutoLogin' => $this->getModule()->enableAutoLogin,
                         'loginUrl' => ['/user/security/login'],
                         'identityClass' => $di->get(ClassMapHelper::class)->get(User::class),
                     ]
@@ -262,8 +270,7 @@ class Bootstrap implements BootstrapInterface
      */
     protected function initUrlRoutes(WebApplication $app)
     {
-        /** @var $module Module */
-        $module = $app->getModule('user');
+        $module = $this->getModule();
         $config = [
             'class' => 'yii\web\GroupUrlRule',
             'prefix' => $module->prefix,
@@ -300,19 +307,16 @@ class Bootstrap implements BootstrapInterface
 
     /**
      * Ensures required mail parameters needed for the mail service.
-     *
-     * @param Application             $app
-     * @param Module|\yii\base\Module $module
      */
     protected function initMailServiceConfiguration(Application $app, Module $module)
     {
         $defaults = [
             'fromEmail' => 'no-reply@example.com',
-            'welcomeMailSubject' => Yii::t('usuario', 'Welcome to {0}', $app->name),
-            'confirmationMailSubject' => Yii::t('usuario', 'Confirm account on {0}', $app->name),
-            'reconfirmationMailSubject' => Yii::t('usuario', 'Confirm email change on {0}', $app->name),
-            'recoveryMailSubject' => Yii::t('usuario', 'Complete password reset on {0}', $app->name),
-            'twoFactorMailSubject' => Yii::t('usuario', 'Code for two factor authentication on {0}', $app->name),
+            'welcomeMailSubject' => Yii::t('usuario', 'Welcome to {0}', [$app->name]),
+            'confirmationMailSubject' => Yii::t('usuario', 'Confirm account on {0}', [$app->name]),
+            'reconfirmationMailSubject' => Yii::t('usuario', 'Confirm email change on {0}', [$app->name]),
+            'recoveryMailSubject' => Yii::t('usuario', 'Complete password reset on {0}', [$app->name]),
+            'twoFactorMailSubject' => Yii::t('usuario', 'Code for two factor authentication on {0}', [$app->name]),
         ];
 
         $module->mailParams = array_merge($defaults, $module->mailParams);
@@ -339,7 +343,7 @@ class Bootstrap implements BootstrapInterface
      */
     protected function initConsoleCommands(ConsoleApplication $app)
     {
-        $app->getModule('user')->controllerNamespace = $app->getModule('user')->consoleControllerNamespace;
+        $this->getModule()->controllerNamespace = $this->getModule()->consoleControllerNamespace;
     }
 
     /**
@@ -349,7 +353,6 @@ class Bootstrap implements BootstrapInterface
      */
     protected function initControllerNamespace(WebApplication $app)
     {
-        $app->getModule('user')->controllerNamespace = $app->getModule('user')->controllerNamespace;
         $app->getModule('user')->setViewPath($app->getModule('user')->viewPath);
     }
 

@@ -18,6 +18,7 @@ use yii\authclient\widgets\AuthChoiceAsset;
 use yii\base\InvalidParamException;
 use yii\helpers\Html;
 use yii\helpers\Url;
+use yii\web\View;
 
 class ConnectWidget extends AuthChoice
 {
@@ -31,9 +32,11 @@ class ConnectWidget extends AuthChoice
      */
     public function init()
     {
-        AuthChoiceAsset::register(Yii::$app->view);
+        /** @var View $view */
+        $view = Yii::$app->view;
+        AuthChoiceAsset::register($view);
         if ($this->popupMode) {
-            Yii::$app->view->registerJs("\$('#" . $this->getId() . "').authchoice();");
+            $view->registerJs("\$('#" . $this->getId() . "').authchoice();");
         }
         $this->options['id'] = $this->getId();
         echo Html::beginTag('div', $this->options);
