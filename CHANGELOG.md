@@ -1,5 +1,6 @@
 # CHANGELOG
-## 1.6.4 May 15th, 2024
+
+## dev
 
 - Enh: Changed exception thrown in PasswordRecoveryService from `RuntimeException` to `NotFoundException`. (eseperio)
 
