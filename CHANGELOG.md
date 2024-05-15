@@ -1,5 +1,9 @@
 # CHANGELOG
 
+## dev
+
+- Enh: Changed exception thrown in PasswordRecoveryService from `RuntimeException` to `NotFoundException`. (eseperio)
+
 ## 1.6.3 Mar 18th, 2024
 
 - Fix: Update last_login_at and last_login_ip on social networt authenticate (e.luhr)
