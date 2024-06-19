@@ -3,6 +3,7 @@
 ## dev
 
 - Enh: Changed exception thrown in PasswordRecoveryService from `RuntimeException` to `NotFoundException`. (eseperio)
+- New #553: created Da\User\AuthClient\Microsoft365 auth client (edegaudenzi)
 
 ## 1.6.3 Mar 18th, 2024
 
