@@ -161,7 +161,7 @@ class RegistrationController extends Controller
             throw new NotFoundHttpException();
         }
 
-        /** @var ?SocialNetworkAccount $account */
+        /** @var SocialNetworkAccount $account */
         $account = $this->socialNetworkAccountQuery->whereCode($code)->one();
         if ($account === null || $account->getIsConnected()) {
             throw new NotFoundHttpException();
