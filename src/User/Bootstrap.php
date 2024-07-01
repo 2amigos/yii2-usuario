@@ -417,6 +417,9 @@ class Bootstrap implements BootstrapInterface
             'Da\User\Service' => [
                 'MailService',
             ],
+            'Da\User\Helper' => [
+                'SecurityHelper',
+            ]
         ];
 
         $mapping = array_merge($defaults, $userClassMap);
