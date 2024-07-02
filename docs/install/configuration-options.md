@@ -313,6 +313,11 @@ Set to `true` to restrict user assignments to roles only.
 
 If `true` registration and last login IPs are not logged into users table, instead a dummy 127.0.0.1 is used
 
+
+#### disableProfileViewsForRegularUsers (type: `boolean`, default: `false`)
+
+If `true` only admin users have access to view any other user's profile. By default any user can see any other users public profile page.
+
 #### minPasswordRequirements (type: `array`, default: `['lower' => 1, 'digit' => 1, 'upper' => 1]`)
 
 Minimum requirements when a new password is automatically generated.

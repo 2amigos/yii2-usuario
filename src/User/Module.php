@@ -242,6 +242,10 @@ class Module extends BaseModule
      */
     public $disableIpLogging = false;
     /**
+     * @var boolean whether to disable viewing any user's profile for non-admin users
+     */
+    public $disableProfileViewsForRegularUsers = false;
+    /**
      * @var array Minimum requirements when a new password is automatically generated.
      *            Array structure: `requirement => minimum number characters`.
      *

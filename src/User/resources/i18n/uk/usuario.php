@@ -275,6 +275,7 @@ return [
     'According to the European General Data Protection Regulation (GDPR) we need your consent to work with your personal data.' => '',
     'Active' => '',
     'Application not configured for two factor authentication.' => '',
+    'Can\'t scan? Copy the code instead.' => '',
     'Code for two factor authentication on {0}' => '',
     'Current' => '',
     'Data privacy' => '',

@@ -262,6 +262,7 @@ return [
     'Application not configured for two factor authentication.' => '',
     'Awesome, almost there. Now you need to click the confirmation link sent to your new email address.' => '',
     'Awesome, almost there. Now you need to click the confirmation link sent to your old email address.' => '',
+    'Can\'t scan? Copy the code instead.' => '',
     'Children' => '',
     'Class' => '',
     'Code for two factor authentication on {0}' => '',
