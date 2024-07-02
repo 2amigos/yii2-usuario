@@ -2,7 +2,8 @@
 
 ## dev
 
-- Enh: Changed exception thrown in PasswordRecoveryService from `RuntimeException` to `NotFoundException`. (eseperio)
+- Enh: Changed exception thrown in PasswordRecoveryService from `RuntimeException` to `NotFoundException`. (eseperio) 
+- Ehh: Added SecurityHelper to the Bootstrap classMap
 
 ## 1.6.3 Mar 18th, 2024
 
@@ -10,7 +11,7 @@
 - Enh: Keycloak auth client (e.luhr)
 - Fix: Social Network Auth (eluhr)
 - Enh #532: /user/registration/register now shows form validation errors
-- Enh: Allow/suggest new v3 releases of 2amigos 2fa dependencies: 2fa-library, qrcode-library (TonisOrmisson) 
+- Enh: Allow/suggest new v3 releases of 2amigos 2fa dependencies: 2fa-library, qrcode-library (TonisOrmisson)
 - Enh: Added option to disable viewing any other user's profile for non-admin users (TonisOrmisson)
 - Ehn: updated Estonian (et) translation by (TonisOrmisson)
 - Ehn: use recaptcha.net instead of google.com (Eseperio)
