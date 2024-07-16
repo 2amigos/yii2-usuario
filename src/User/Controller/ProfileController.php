@@ -11,15 +11,20 @@
 
 namespace Da\User\Controller;
 
+use Da\User\Model\User;
 use Da\User\Query\ProfileQuery;
+use Da\User\Traits\ModuleAwareTrait;
 use Yii;
 use yii\base\Module;
 use yii\filters\AccessControl;
 use yii\web\Controller;
+use yii\web\ForbiddenHttpException;
 use yii\web\NotFoundHttpException;
 
 class ProfileController extends Controller
 {
+    use ModuleAwareTrait;
+
     protected $profileQuery;
 
     /**
@@ -67,6 +72,13 @@ class ProfileController extends Controller
 
     public function actionShow($id)
     {
+        $user = Yii::$app->user;
+        /** @var User $identity */
+        $identity = $user->getIdentity();
+        if($user->getId() != $id && $this->module->disableProfileViewsForRegularUsers && !$identity->getIsAdmin()) {
+            throw new ForbiddenHttpException();
+        }
+
         $profile = $this->profileQuery->whereUserId($id)->one();
 
         if ($profile === null) {

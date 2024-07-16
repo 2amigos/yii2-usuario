@@ -19,12 +19,15 @@ use Da\User\Model\SocialNetworkAccount;
 use Da\User\Model\User;
 use Da\User\Query\SocialNetworkAccountQuery;
 use Da\User\Query\UserQuery;
+use Da\User\Traits\ModuleAwareTrait;
 use Yii;
 use yii\authclient\AuthAction;
 use yii\helpers\Url;
 
 class SocialNetworkAuthenticateService implements ServiceInterface
 {
+    use ModuleAwareTrait;
+
     protected $controller;
     protected $authAction;
     protected $client;
@@ -50,7 +53,7 @@ class SocialNetworkAuthenticateService implements ServiceInterface
         $account = $this->socialNetworkAccountQuery->whereClient($this->client)->one();
         if (!$this->controller->module->enableSocialNetworkRegistration && ($account === null || $account->user === null)) {
             Yii::$app->session->setFlash('danger', Yii::t('usuario', 'Registration on this website is disabled'));
-            $this->authAction->setSuccessUrl(Url::to(['/user/security/login']));
+            $this->authAction->setSuccessUrl(Url::to(['/' . $this->getModule()->id . '/security/login']));
 
             return false;
         }
@@ -58,7 +61,7 @@ class SocialNetworkAuthenticateService implements ServiceInterface
             $account = $this->createAccount();
             if (!$account) {
                 Yii::$app->session->setFlash('danger', Yii::t('usuario', 'Unable to create an account.'));
-                $this->authAction->setSuccessUrl(Url::to(['/user/security/login']));
+                $this->authAction->setSuccessUrl(Url::to(['/' . $this->getModule()->id . '/security/login']));
 
                 return false;
             }
@@ -72,11 +75,16 @@ class SocialNetworkAuthenticateService implements ServiceInterface
         if ($account->user instanceof User) {
             if ($account->user->getIsBlocked()) {
                 Yii::$app->session->setFlash('danger', Yii::t('usuario', 'Your account has been blocked.'));
-                $this->authAction->setSuccessUrl(Url::to(['/user/security/login']));
+                $this->authAction->setSuccessUrl(Url::to(['/' . $this->getModule()->id . '/security/login']));
             } else {
-                Yii::$app->user->login($account->user, $this->controller->module->rememberLoginLifespan);
-                $this->authAction->setSuccessUrl(Yii::$app->getUser()->getReturnUrl());
-                $result = true;
+                $result = Yii::$app->user->login($account->user, $this->controller->module->rememberLoginLifespan);
+                if ($result) {
+                    $account->user->updateAttributes([
+                        'last_login_at' => time(),
+                        'last_login_ip' => $this->controller->module->disableIpLogging ? '127.0.0.1' : Yii::$app->request->getUserIP(),
+                    ]);
+                    $this->authAction->setSuccessUrl(Yii::$app->getUser()->getReturnUrl());
+                }
             }
         } else {
             $this->authAction->setSuccessUrl($account->getConnectionUrl());

@@ -288,6 +288,7 @@ return [
     '{0} cannot be blank.' => '{0} не может быть пустым.',
     'According to the European General Data Protection Regulation (GDPR) we need your consent to work with your personal data.' => '',
     'Application not configured for two factor authentication.' => '',
+    'Can\'t scan? Copy the code instead.' => '',
     'Code for two factor authentication on {0}' => '',
     'Data privacy' => '',
     'Error while enabling SMS two factor authentication. Please reload the page.' => '',
