@@ -416,6 +416,7 @@ class Bootstrap implements BootstrapInterface
             ],
             'Da\User\Service' => [
                 'MailService',
+                'UserBlockService',
             ],
         ];
 
