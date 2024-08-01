@@ -19,6 +19,7 @@ use Da\User\Traits\MailAwareTrait;
 use Da\User\Traits\ModuleAwareTrait;
 use Exception;
 use Yii;
+use yii\web\NotFoundHttpException;
 
 class PasswordRecoveryService implements ServiceInterface
 {
@@ -50,7 +51,7 @@ class PasswordRecoveryService implements ServiceInterface
             $user = $this->query->whereEmail($this->email)->one();
 
             if ($user === null) {
-                throw new \RuntimeException('User not found.');
+                throw new NotFoundHttpException(Yii::t('usuario', 'User not found'));
             }
 
             $token = TokenFactory::makeRecoveryToken($user->id);

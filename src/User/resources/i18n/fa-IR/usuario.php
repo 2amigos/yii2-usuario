@@ -170,6 +170,7 @@ return [
     'Awesome, almost there. Now you need to click the confirmation link sent to your new email address.' => '',
     'Awesome, almost there. Now you need to click the confirmation link sent to your old email address.' => '',
     'Back to privacy settings' => '',
+    'Can\'t scan? Copy the code instead.' => '',
     'Cancel' => '',
     'Cannot assign role "{0}" as the AuthManager is not configured on your console application.' => '',
     'Children' => '',
