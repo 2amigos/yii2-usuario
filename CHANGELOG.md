@@ -2,7 +2,8 @@
 
 ## dev
 
-- Enh: Changed exception thrown in PasswordRecoveryService from `RuntimeException` to `NotFoundException`. (eseperio) 
+- Enh: Changed exception thrown in PasswordRecoveryService from `RuntimeException` to `NotFoundException`. (eseperio)
+- New #553: created Da\User\AuthClient\Microsoft365 auth client (edegaudenzi)
 - Ehh: Added SecurityHelper to the Bootstrap classMap
 
 ## 1.6.3 Mar 18th, 2024
