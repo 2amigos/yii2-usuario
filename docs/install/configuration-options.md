@@ -14,6 +14,32 @@ Number of expired storing records `session history`, values:
 - `false` Store all records without deleting
 - `integer` Count of records for storing
 
+#### searchUsersInLdap (Type: `boolean, integer`, Default value: `false`)
+
+If this option is `true`, it will be possible to search users in LDAP.
+
+To use this option, you need to install [yetopen/yii2-usuario-ldap](https://github.com/YetOpen/yii2-usuario-ldap):
+
+```shell
+composer require yetopen/yii2-usuario-ldap "*"
+```
+
+#### ldapUserAttributes (Type: `array`)
+
+This array maps the user attributes to sync from LDAP
+
+Default to:
+```php
+[
+    'email' => 'mail',
+    'username' => 'samaccountname',
+]
+```
+
+#### ldapProfileAttributes (Type: `array`)
+
+This array maps the profile attributes to sync from LDAP
+
 #### timeoutSessionHistory (Type: `boolean, integer`, Default value: `false`)
 
 How long store `session history` after expiring, values:
