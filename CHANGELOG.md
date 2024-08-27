@@ -12,7 +12,7 @@
 - Fix: Social Network Auth (eluhr)
 - Enh #532: /user/registration/register now shows form validation errors
 - Enh: Allow/suggest new v3 releases of 2amigos 2fa dependencies: 2fa-library, qrcode-library (TonisOrmisson) 
-- Ehh: Added UserBlockService to Bootstrap classMap
+- Ehh: Added all the classes to the Bootstrap.php classMap
 - Enh: Added option to disable viewing any other user's profile for non-admin users (TonisOrmisson)
 - Ehn: updated Estonian (et) translation by (TonisOrmisson)
 - Ehn: use recaptcha.net instead of google.com (Eseperio)
