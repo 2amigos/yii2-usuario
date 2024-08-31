@@ -93,6 +93,6 @@ class SocialNetworkAccountConnectService implements ServiceInterface
             }
         }
 
-        return false;
+        return $account;
     }
 }

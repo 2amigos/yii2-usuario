@@ -3,6 +3,9 @@
 ## dev
 
 - Enh: Changed exception thrown in PasswordRecoveryService from `RuntimeException` to `NotFoundException`. (eseperio)
+- New #553: created Da\User\AuthClient\Microsoft365 auth client (edegaudenzi)
+- Ehh: Added SecurityHelper to the Bootstrap classMap
+- Fix #397: No more fatal Exceptions when connecting to already taken Social Network (edegaudenzi)
 
 ## 1.6.3 Mar 18th, 2024
 
@@ -10,7 +13,7 @@
 - Enh: Keycloak auth client (e.luhr)
 - Fix: Social Network Auth (eluhr)
 - Enh #532: /user/registration/register now shows form validation errors
-- Enh: Allow/suggest new v3 releases of 2amigos 2fa dependencies: 2fa-library, qrcode-library (TonisOrmisson) 
+- Enh: Allow/suggest new v3 releases of 2amigos 2fa dependencies: 2fa-library, qrcode-library (TonisOrmisson)
 - Enh: Added option to disable viewing any other user's profile for non-admin users (TonisOrmisson)
 - Ehn: updated Estonian (et) translation by (TonisOrmisson)
 - Ehn: use recaptcha.net instead of google.com (Eseperio)
