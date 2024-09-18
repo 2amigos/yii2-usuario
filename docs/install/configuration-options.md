@@ -241,6 +241,15 @@ simple backends with static administrators that won't change throughout time.
 
 Configures the permission name for `administrators`. See [AuthHelper](../../src/User/Helper/AuthHelper.php).
 
+#### profileVisibility (type: `integer`, default:`0` (ProfileController::PROFILE_VISIBILITY_OWNER))
+
+Configures to whom users 'profile/show' (public profile) page is shown. Constant values are defined in  
+[ProfileController](../../src/User/Controller/ProfileController.php) as constants. The visibility levels are:
+- `0` (ProfileController::PROFILE_VISIBILITY_OWNER): The users profile page is shown ONLY to user itself, the owner of the profile.
+- `1` (ProfileController::PROFILE_VISIBILITY_ADMIN): The users profile is shown ONLY to user itself (owner) AND users defined by module as admins.
+- `2` (ProfileController::PROFILE_VISIBILITY_USERS): Any users profile page is shown to any other non-guest user.
+- `3` (ProfileController::PROFILE_VISIBILITY_PUBLIC): Any user profile views are globally public and visible to anyone (including guests).
+
 #### prefix (type: `string`, default: `user`)
 
 Configures the URL prefix for the module.
@@ -312,11 +321,6 @@ Set to `true` to restrict user assignments to roles only.
 #### disableIpLogging (type: `boolean`, default: `false`)
 
 If `true` registration and last login IPs are not logged into users table, instead a dummy 127.0.0.1 is used
-
-
-#### disableProfileViewsForRegularUsers (type: `boolean`, default: `false`)
-
-If `true` only admin users have access to view any other user's profile. By default any user can see any other users public profile page.
 
 #### minPasswordRequirements (type: `array`, default: `['lower' => 1, 'digit' => 1, 'upper' => 1]`)
 
