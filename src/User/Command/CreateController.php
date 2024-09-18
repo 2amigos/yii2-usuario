@@ -61,6 +61,31 @@ class CreateController extends Controller
         }
     }
 
+    public function actionNoSendEmail($email, $username, $password = null, $role = null)
+    {
+        /** @var User $user */
+        $user = $this->make(
+            User::class,
+            [],
+            ['scenario' => 'create', 'email' => $email, 'username' => $username, 'password' => $password]
+        );
+
+        if ($this->make(UserCreateService::class, [$user, null])->run()) {
+            $this->stdout(Yii::t('usuario', 'User has been created') . "!\n", Console::FG_GREEN);
+
+            if (null !== $role) {
+                $this->assignRole($user, $role);
+            }
+        } else {
+            $this->stdout(Yii::t('usuario', 'Please fix following errors:') . "\n", Console::FG_RED);
+            foreach ($user->errors as $errors) {
+                foreach ($errors as $error) {
+                    $this->stdout(' - ' . $error . "\n", Console::FG_RED);
+                }
+            }
+        }
+    }
+
     protected function assignRole(User $user, $role)
     {
         $auth = Yii::$app->getAuthManager();
