@@ -89,14 +89,18 @@ class RecoveryController extends Controller
             throw new NotFoundHttpException();
         }
 
+        $request = Yii::$app->request;
+
         /** @var RecoveryForm $form */
         $form = $this->make(RecoveryForm::class, [], ['scenario' => RecoveryForm::SCENARIO_REQUEST]);
-
+        if(!$request->getIsPost() && !empty($request->get('email'))) {
+            $form->email = $request->get('email');
+        }
         $event = $this->make(FormEvent::class, [$form]);
 
         $this->make(AjaxRequestModelValidator::class, [$form])->validate();
 
-        if ($form->load(Yii::$app->request->post()) && $form->validate()) {
+        if ($form->load($request->post()) && $form->validate()) {
             $this->trigger(FormEvent::EVENT_BEFORE_REQUEST, $event);
 
             $mailService = MailFactory::makeRecoveryMailerService($form->email);
