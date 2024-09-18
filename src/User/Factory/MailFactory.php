@@ -47,12 +47,11 @@ class MailFactory
 
     /**
      * @param string $email
-     * @param Token  $token
      *
      * @throws InvalidConfigException
      * @return MailService
      */
-    public static function makeRecoveryMailerService($email, Token $token = null)
+    public static function makeRecoveryMailerService($email, ?Token $token = null)
     {
         /** @var Module $module */
         $module = Yii::$app->getModule('user');

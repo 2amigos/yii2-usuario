@@ -9,8 +9,6 @@
  * the LICENSE file that was distributed with this source code.
  */
 
-use yii\helpers\Html;
-
 /**
  * @var String  $code
  * @var \Da\User\Model\Token $token

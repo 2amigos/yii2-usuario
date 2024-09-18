@@ -12,7 +12,6 @@
 namespace Da\User\Helper;
 
 use Da\User\Model\AbstractAuthItem;
-use Da\User\Module;
 use Da\User\Traits\AuthManagerAwareTrait;
 use Da\User\Traits\ModuleAwareTrait;
 use Yii;

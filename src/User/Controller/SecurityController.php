@@ -21,8 +21,6 @@ use Da\User\Service\SocialNetworkAccountConnectService;
 use Da\User\Service\SocialNetworkAuthenticateService;
 use Da\User\Traits\ContainerAwareTrait;
 use Da\User\Traits\ModuleAwareTrait;
-use Da\User\Validator\TwoFactorEmailValidator;
-use Da\User\Validator\TwoFactorTextMessageValidator;
 use Yii;
 use yii\authclient\AuthAction;
 use yii\base\InvalidConfigException;

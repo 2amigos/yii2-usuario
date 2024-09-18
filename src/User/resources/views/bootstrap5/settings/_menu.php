@@ -10,7 +10,6 @@
  */
 
 use yii\helpers\Html;
-use yii\widgets\Menu;
 use Da\User\Module as UserModule;
 use Da\User\Model\User;
 
