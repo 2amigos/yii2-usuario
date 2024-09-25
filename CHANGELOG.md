@@ -8,6 +8,7 @@
 - Fix #546: The profile/show page must not be visible by default, implement configurable policy (TonisOrmisson)
 - Fix #397: No more fatal Exceptions when connecting to already taken Social Network (edegaudenzi)
 - Ehh: Added option to pre-fill recovery email via url parameter (TonisOrmisson)
+- Ehh: Added option for user to reset password right after confirmation (TonisOrmisson)
 
 ## 1.6.3 Mar 18th, 2024
 

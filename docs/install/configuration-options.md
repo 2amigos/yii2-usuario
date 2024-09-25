@@ -143,6 +143,14 @@ List of urls that does not require explicit data processing consent to be access
 Setting this attribute allows the registration process. If you set it to `false`, the module won't allow users to
 register by throwing a `NotFoundHttpException` if the `RegistrationController::actionRegister()` is accessed.
 
+#### offerPasswordChangeAfterConfirmation (type: `boolean`, default: `false`)
+
+Setting this `true` a user will get redirected to a password reset page right after clicking the confirmation url. 
+This option is useful if a user is created via admin processes and user should start from setting their password. 
+In this case system will generate a pseudo password for the user, which is not presented to user. Instead, after
+clicking the confirmation link, a password reset token is generated to user by system and user is redirected to the 
+password reset page with the flash message of successful confirmation. 
+
 #### enableSocialNetworkRegistration (type: `boolean`, default: `true`)
 
 Setting this attribute allows the registration process via social networks. If you set it to `false`, the module won't allow users to
