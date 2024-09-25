@@ -69,7 +69,7 @@ class Module extends BaseModule
         'profile.gravatar_email',
         'profile.location',
         'profile.website',
-        'profile.bio'
+        'profile.bio',
     ];
     /**
      * @var string prefix to be used as a replacement when user requests deletion of his data.
@@ -91,7 +91,7 @@ class Module extends BaseModule
      * @see AccessRuleFilter
      */
     public $gdprConsentExcludedUrls = [
-        'user/settings/*'
+        'user/settings/*',
     ];
     /**
      * @var bool whether to enable two factor authentication or not
@@ -118,6 +118,10 @@ class Module extends BaseModule
      * @var bool whether to allow registration process or not
      */
     public $enableRegistration = true;
+    /**
+     * @var bool whether user can (re)set password on confirmation. Useful in cases where user is created by admin, and we do not want to e-mail plain text passwords.
+     */
+    public $offerPasswordChangeAfterConfirmation = false;
     /**
      * @var bool whether to allow registration process for social network or not
      */
@@ -227,7 +231,7 @@ class Module extends BaseModule
         'confirm/<id:\d+>/<code:[A-Za-z0-9_-]+>' => 'registration/confirm',
         'forgot' => 'recovery/request',
         'forgot/<email:[a-zA-Z0-9_.±]+@[a-zA-Z0-9-]+.[a-zA-Z0-9-.]+>' => 'recovery/request',
-        'recover/<id:\d+>/<code:[A-Za-z0-9_-]+>' => 'recovery/reset'
+        'recover/<id:\d+>/<code:[A-Za-z0-9_-]+>' => 'recovery/reset',
     ];
     /**
      * @var string
@@ -331,5 +335,13 @@ class Module extends BaseModule
     public function hasTimeoutSessionHistory()
     {
         return $this->timeoutSessionHistory !== false && $this->timeoutSessionHistory > 0;
+    }
+
+    public function isPasswordRequiredOnRegistration() : bool
+    {
+        if($this->offerPasswordChangeAfterConfirmation) {
+            return false;
+        }
+        return !$this->generatePasswords;
     }
 }

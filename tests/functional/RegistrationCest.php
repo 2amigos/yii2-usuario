@@ -5,13 +5,14 @@ use Da\User\Model\Token;
 use Da\User\Model\User;
 use Da\User\Module;
 use tests\_fixtures\UserFixture;
+use tests\_fixtures\TokenFixture;
 use yii\helpers\Html;
 
 class RegistrationCest
 {
     public function _before(FunctionalTester $I)
     {
-        $I->haveFixtures(['user' => UserFixture::className()]);
+        $I->haveFixtures(['user' => UserFixture::class]);
     }
 
     public function _after(FunctionalTester $I)
@@ -47,7 +48,7 @@ class RegistrationCest
 
         $this->register($I, 'tester@example.com', 'tester', 'tester');
         $I->see('Your account has been created');
-        $user = $I->grabRecord(User::className(), ['email' => 'tester@example.com']);
+        $user = $I->grabRecord(User::class, ['email' => 'tester@example.com']);
         $I->assertTrue($user->isConfirmed);
 
         $I->amOnRoute('/user/security/login');
@@ -84,17 +85,51 @@ class RegistrationCest
      */
     public function testRegistrationWithoutPassword(FunctionalTester $I)
     {
-        Yii::$app->getModule('user')->enableEmailConfirmation = false;
-        Yii::$app->getModule('user')->generatePasswords = true;
+        /** @var Module $module */
+        $module = Yii::$app->getModule('user');
+        $module->enableEmailConfirmation = false;
+        $module->generatePasswords = true;
         $I->amOnRoute('/user/registration/register');
         $this->register($I, 'tester@example.com', 'tester');
         $I->see('Your account has been created');
-        $user = $I->grabRecord(User::className(), ['email' => 'tester@example.com']);
+        $user = $I->grabRecord(User::class, ['email' => 'tester@example.com']);
         $I->assertEquals('tester', $user->username);
         /** @var \yii\mail\MessageInterface $message */
         $message = $I->grabLastSentEmail();
         $I->assertArrayHasKey($user->email, $message->getTo());
         $I->assertStringContainsString('We have generated a password for you', utf8_encode(quoted_printable_decode($message->toString())));
+    }
+
+    /**
+     * Tests registration when user should set the password right after confirmation
+     *
+     * @param FunctionalTester $I
+     */
+    public function testRegistrationWithPasswordResetAfterConfirmation(FunctionalTester $I)
+    {
+        /** @var Module $module */
+        $module = Yii::$app->getModule('user');
+        $module->generatePasswords = false;
+        $module->offerPasswordChangeAfterConfirmation = true;
+        $I->amOnRoute('/user/registration/register');
+        $I->dontSee('Password');
+        $this->register($I, 'tester@example.com', 'tester');
+        $I->see('Your account has been created');
+        /** @var User $user */
+        $user = $I->grabRecord(User::class, ['email' => 'tester@example.com']);
+        $I->assertEquals('tester', $user->username);
+        /** @var \yii\mail\MessageInterface $message */
+        $message = $I->grabLastSentEmail();
+        $I->assertArrayHasKey($user->email, $message->getTo());
+        $I->assertStringNotContainsString('We have generated a password for you', utf8_encode(quoted_printable_decode($message->toString())));
+        /** @var \Da\User\Query\TokenQuery $tokenQuery */
+        $tokenQuery = Yii::createObject(\Da\User\Query\TokenQuery::class);
+        /** @var Token $confirmationToken */
+        $confirmationToken = $tokenQuery->whereUserId($user->primaryKey)->one();
+        $I->amOnPage($confirmationToken->getUrl());
+        $I->see("Thank you, registration is now complete.");
+        $I->see("Reset your password");
+
     }
 
     protected function register(FunctionalTester $I, $email, $username = null, $password = null) {

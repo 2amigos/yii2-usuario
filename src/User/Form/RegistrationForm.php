@@ -73,7 +73,7 @@ class RegistrationForm extends Model
                 'message' => Yii::t('usuario', 'This email address has already been taken'),
             ],
             // password rules
-            'passwordRequired' => ['password', 'required', 'skipOnEmpty' => $this->module->generatePasswords],
+            'passwordRequired' => ['password', 'required', 'skipOnEmpty' => !$this->module->isPasswordRequiredOnRegistration()],
             'passwordLength' => ['password', 'string', 'min' => 6, 'max' => 72],
             'gdprType' => ['gdpr_consent', 'boolean'],
             'gdprDefault' => ['gdpr_consent', 'default', 'value' => 0, 'skipOnEmpty' => false],

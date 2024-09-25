@@ -26,7 +26,7 @@ use yii\helpers\Url;
     <?= Yii::t('usuario', 'We have generated a password for you') ?>:
     <?= $user->password ?>
 <?php endif ?>
-<?php if ($module->allowPasswordRecovery): ?>
+<?php if ($module->allowPasswordRecovery && !$module->offerPasswordChangeAfterConfirmation): ?>
     <?= Yii::t('usuario', 'If you haven\'t received a password, you can reset it at') ?>:
     <?= Url::to(['/user/recovery/request'], true) ?>
 <?php endif ?>

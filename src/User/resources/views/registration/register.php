@@ -18,10 +18,13 @@ use yii\widgets\ActiveForm;
  * @var \Da\User\Model\User            $user
  * @var \Da\User\Module                $module
  */
-
 $this->title = Yii::t('usuario', 'Sign up');
 $this->params['breadcrumbs'][] = $this->title;
 ?>
+
+<?= $this->render('/shared/_alert', ['module' => Yii::$app->getModule('user')]) ?>
+
+
 <div class="row">
     <div class="col-md-4 col-md-offset-4 col-sm-6 col-sm-offset-3">
         <div class="panel panel-default">
@@ -41,7 +44,7 @@ $this->params['breadcrumbs'][] = $this->title;
 
                 <?= $form->field($model, 'username') ?>
 
-                <?php if ($module->generatePasswords === false): ?>
+                <?php if ($module->isPasswordRequiredOnRegistration()): ?>
                     <?= $form->field($model, 'password')->passwordInput() ?>
                 <?php endif ?>
 
