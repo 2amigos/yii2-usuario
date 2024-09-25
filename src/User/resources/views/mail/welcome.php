@@ -29,7 +29,7 @@ use yii\helpers\Url;
     <?php if ($showPassword || $module->generatePasswords): ?>
         <?= Yii::t('usuario', 'We have generated a password for you') ?>: <strong><?= Html::encode($user->password) ?></strong>
     <?php endif ?>
-    <?php if ($module->allowPasswordRecovery): ?>
+    <?php if ($module->allowPasswordRecovery && !$module->offerPasswordChangeAfterConfirmation): ?>
         <?= Yii::t('usuario', 'If you haven\'t received a password, you can reset it at') ?>: <strong><?= Html::a(Html::encode(Url::to(['/user/recovery/request'], true)), Url::to(['/user/recovery/request'], true)) ?></strong>
     <?php endif ?>
 

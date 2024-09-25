@@ -15,6 +15,7 @@ use Da\User\Event\FormEvent;
 use Da\User\Event\SocialNetworkConnectEvent;
 use Da\User\Event\UserEvent;
 use Da\User\Factory\MailFactory;
+use Da\User\Factory\TokenFactory;
 use Da\User\Form\RegistrationForm;
 use Da\User\Form\ResendForm;
 use Da\User\Helper\SecurityHelper;
@@ -23,6 +24,7 @@ use Da\User\Model\User;
 use Da\User\Query\SocialNetworkAccountQuery;
 use Da\User\Query\UserQuery;
 use Da\User\Service\AccountConfirmationService;
+use Da\User\Service\PasswordRecoveryService;
 use Da\User\Service\ResendConfirmationService;
 use Da\User\Service\UserConfirmationService;
 use Da\User\Service\UserCreateService;
@@ -223,10 +225,15 @@ class RegistrationController extends Controller
         $this->trigger(UserEvent::EVENT_BEFORE_CONFIRMATION, $event);
 
         if ($this->make(AccountConfirmationService::class, [$code, $user, $userConfirmationService])->run()) {
-            Yii::$app->user->login($user, $this->module->rememberLoginLifespan);
             Yii::$app->session->setFlash('success', Yii::t('usuario', 'Thank you, registration is now complete.'));
-
             $this->trigger(UserEvent::EVENT_AFTER_CONFIRMATION, $event);
+            if($this->module->offerPasswordChangeAfterConfirmation) {
+                $token = TokenFactory::makeRecoveryToken($user->id);
+                $url = $token->getUrl();
+                return $this->redirect($url);
+            } else {
+                Yii::$app->user->login($user, $this->module->rememberLoginLifespan);
+            }
         } else {
             Yii::$app->session->setFlash(
                 'danger',
