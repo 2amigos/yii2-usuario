@@ -18,7 +18,6 @@ use yii\widgets\ActiveForm;
  * @var \Da\User\Model\User            $user
  * @var \Da\User\Module                $module
  */
-var_dump(!$module->isPasswordRequiredOnRegistration());
 $this->title = Yii::t('usuario', 'Sign up');
 $this->params['breadcrumbs'][] = $this->title;
 ?>
