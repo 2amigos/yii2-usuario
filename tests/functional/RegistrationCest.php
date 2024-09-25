@@ -79,7 +79,7 @@ class RegistrationCest
     }
 
     /**
-     * Tests registration when user should set the password right after confirmation
+     * Tests registration when password is generated automatically and sent to user.
      *
      * @param FunctionalTester $I
      */
@@ -101,7 +101,7 @@ class RegistrationCest
     }
 
     /**
-     * Tests registration when password is generated automatically and sent to user.
+     * Tests registration when user should set the password right after confirmation
      *
      * @param FunctionalTester $I
      */
