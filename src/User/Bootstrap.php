@@ -30,6 +30,7 @@ use yii\console\Application as ConsoleApplication;
 use yii\helpers\ArrayHelper;
 use yii\i18n\PhpMessageSource;
 use yii\web\Application as WebApplication;
+use yii\web\UrlManager;
 
 /**
  * Bootstrap class of the yii2-usuario extension. Configures container services, initializes translations,
@@ -49,10 +50,10 @@ class Bootstrap implements BootstrapInterface
             $this->initTranslations($app);
             $this->initContainer($app, $map);
             $this->initMailServiceConfiguration($app, $app->getModule('user'));
+            $this->initUrlRoutes($app);
 
             if ($app instanceof WebApplication) {
                 $this->initControllerNamespace($app);
-                $this->initUrlRoutes($app);
                 $this->initUrlRestRoutes($app);
                 $this->initAuthCollection($app);
                 $this->initAuthManager($app);
@@ -256,11 +257,11 @@ class Bootstrap implements BootstrapInterface
     /**
      * Initializes web url routes (rules in Yii2).
      *
-     * @param WebApplication $app
+     * @param Application $app
      *
      * @throws InvalidConfigException
      */
-    protected function initUrlRoutes(WebApplication $app)
+    protected function initUrlRoutes(Application $app)
     {
         /** @var $module Module */
         $module = $app->getModule('user');
@@ -274,8 +275,13 @@ class Bootstrap implements BootstrapInterface
             $config['routePrefix'] = 'user';
         }
 
+        $urlManager = $app->getUrlManager();
+        if(!($urlManager instanceof UrlManager)) {
+            return;
+        }
+
         $rule = Yii::createObject($config);
-        $app->getUrlManager()->addRules([$rule], false);
+        $urlManager->addRules([$rule], false);
     }
 
     /**
