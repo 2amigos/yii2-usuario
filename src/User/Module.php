@@ -34,6 +34,21 @@ class Module extends BaseModule
      */
     public $numberSessionHistory = false;
     /**
+     * @var bool If this option is `true`, it will be possible to search users in LDAP
+     */
+    public $searchUsersInLdap = false;
+    /**
+     * @var array user attributes to sync from ldap
+     */
+    public $ldapUserAttributes = [
+        'email' => 'mail',
+        'username' => 'samaccountname',
+    ];
+    /**
+     * @var array profile attributes to sync from ldap
+     */
+    public $ldapProfileAttributes = [];
+    /**
      * @var int|bool The time after which the expired 'session history' will be deleted
      *               if equals false records will not be deleted
      */
