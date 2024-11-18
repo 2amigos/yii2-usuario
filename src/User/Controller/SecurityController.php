@@ -29,7 +29,6 @@ use yii\base\Module;
 use yii\filters\AccessControl;
 use yii\filters\VerbFilter;
 use yii\helpers\ArrayHelper;
-use yii\helpers\Url;
 use yii\web\Controller;
 use yii\web\Response;
 use yii\widgets\ActiveForm;
@@ -113,7 +112,7 @@ class SecurityController extends Controller
      * @throws InvalidParamException
      * @return array|string|Response
      */
-    public function actionLogin($redirect = null)
+    public function actionLogin()
     {
         if (!Yii::$app->user->getIsGuest()) {
             return $this->goHome();
@@ -159,7 +158,7 @@ class SecurityController extends Controller
 
                 $this->trigger(FormEvent::EVENT_AFTER_LOGIN, $event);
 
-                return $redirect ? $this->redirect(Url::to([$redirect])) : $this->goBack();
+                return $this->goBack();
             }
             $this->trigger(FormEvent::EVENT_FAILED_LOGIN, $event);
         }

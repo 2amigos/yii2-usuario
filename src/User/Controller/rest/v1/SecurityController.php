@@ -78,13 +78,12 @@ class SecurityController extends Controller
     }
 
     /**
-     * Controller action responsible for handling login page and actions.
-     *
-     * @return array
+     * Controller action responsible for handling login.
+     * @return array|User
      * @throws InvalidParamException
      * @throws InvalidConfigException
      */
-    public function actionLogin(): array
+    public function actionLogin()
     {
         if (!Yii::$app->user->getIsGuest()) {
             return [
@@ -103,8 +102,6 @@ class SecurityController extends Controller
          */
         $event = $this->make(FormEvent::class, [$form]);
 
-        $token = null;
-        $uid = null;
         if ($form->load(Yii::$app->request->post(), '')) {
             $form->validate();
             $this->trigger(FormEvent::EVENT_BEFORE_LOGIN, $event);
@@ -115,16 +112,10 @@ class SecurityController extends Controller
                 ]);
 
                 $this->trigger(FormEvent::EVENT_AFTER_LOGIN, $event);
-                $user = $form->getUser();
             }
             $this->trigger(FormEvent::EVENT_FAILED_LOGIN, $event);
         }
 
-        return array_merge(
-            User::findOne($user->id)->attributes,
-            [
-                'token' => (string)$user->getJwt(),
-            ]
-        );
+        return $form->getUser();
     }
 }
