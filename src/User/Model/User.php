@@ -15,6 +15,7 @@ use Da\User\Helper\SecurityHelper;
 use Da\User\Query\UserQuery;
 use Da\User\Traits\ContainerAwareTrait;
 use Da\User\Traits\ModuleAwareTrait;
+use sizeg\jwt\Jwt;
 use Yii;
 use yii\base\Exception;
 use yii\base\InvalidConfigException;
@@ -392,5 +393,25 @@ class User extends ActiveRecord implements IdentityInterface
     public function getAuthTfMobilePhone()
     {
         return $this->getAttribute('auth_tf_mobile_phone');
+    }
+
+    /**
+     * Generates a JWT (Json Web Token) for the logged user
+     * @return \Lcobucci\JWT\Token
+     */
+    public function getJwt()
+    {
+        /** @var Jwt $jwt */
+        $jwt = Yii::$app->jwt;
+        $signer = $jwt->getSigner('HS256');
+        $key = $jwt->getKey();
+        $time = time();
+
+        return $jwt->getBuilder()
+            ->identifiedBy(uniqid('jwt-'), true)
+            ->issuedAt($time)
+            ->expiresAt($time + Yii::$app->params['jwtMaxTokenLife'])
+            ->withClaim('uid', $this->id)
+            ->getToken($signer, $key);
     }
 }

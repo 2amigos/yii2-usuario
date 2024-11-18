@@ -15,7 +15,6 @@ use Da\User\Event\FormEvent;
 use Da\User\Form\LoginForm;
 use Da\User\Model\User;
 use Da\User\Traits\ContainerAwareTrait;
-use sizeg\jwt\Jwt;
 use sizeg\jwt\JwtHttpBearerAuth;
 use Yii;
 use yii\base\InvalidConfigException;
@@ -116,38 +115,16 @@ class SecurityController extends Controller
                 ]);
 
                 $this->trigger(FormEvent::EVENT_AFTER_LOGIN, $event);
-                $uid = $form->getUser()->id;
-                $token = $this->getJwt($uid);
+                $user = $form->getUser();
             }
             $this->trigger(FormEvent::EVENT_FAILED_LOGIN, $event);
         }
 
         return array_merge(
-            User::findOne($uid)->attributes,
+            User::findOne($user->id)->attributes,
             [
-                'token' => (string)$token,
+                'token' => (string)$user->getJwt(),
             ]
         );
-    }
-
-    /**
-     * Generates a JWT (Json Web Token) for the logged user
-     * @param int $uid User ID
-     * @return mixed
-     */
-    public function getJwt(int $uid)
-    {
-        /** @var Jwt $jwt */
-        $jwt = Yii::$app->jwt;
-        $signer = $jwt->getSigner('HS256');
-        $key = $jwt->getKey();
-        $time = time();
-
-        return $jwt->getBuilder()
-            ->identifiedBy(uniqid('jwt-'), true)
-            ->issuedAt($time)
-            ->expiresAt($time + Yii::$app->params['jwtMaxTokenLife'])
-            ->withClaim('uid', $uid)
-            ->getToken($signer, $key);
     }
 }
