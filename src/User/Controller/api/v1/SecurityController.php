@@ -14,6 +14,7 @@ namespace Da\User\Controller\api\v1;
 use Da\User\Controller\api\v1\models\ApiUser;
 use Da\User\Event\FormEvent;
 use Da\User\Form\LoginForm;
+use Da\User\Model\User;
 use Da\User\Traits\ContainerAwareTrait;
 use Yii;
 use yii\base\InvalidConfigException;
@@ -110,6 +111,6 @@ class SecurityController extends Controller
             $this->trigger(FormEvent::EVENT_FAILED_LOGIN, $event);
         }
 
-        return new ApiUser($form->getUser());
+        return User::findOne($form->getUser()->id);
     }
 }
