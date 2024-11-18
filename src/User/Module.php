@@ -292,6 +292,12 @@ class Module extends BaseModule
         'users/<id>' => 'admin/options',
         'users' => 'admin/options',
     ];
+    /**
+     * @var array Routes for REST controllers.
+     */
+    public $restRoutes = [
+        'POST login' => 'rest/v1/security/login',
+    ];
 
     /**
      * @return string with the hit to be used with the give consent checkbox

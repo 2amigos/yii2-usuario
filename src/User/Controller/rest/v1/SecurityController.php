@@ -9,13 +9,14 @@
  * the LICENSE file that was distributed with this source code.
  */
 
-namespace Da\User\Controller\api\v1;
+namespace Da\User\Controller\rest\v1;
 
-use Da\User\Controller\api\v1\models\ApiUser;
 use Da\User\Event\FormEvent;
 use Da\User\Form\LoginForm;
 use Da\User\Model\User;
 use Da\User\Traits\ContainerAwareTrait;
+use sizeg\jwt\Jwt;
+use sizeg\jwt\JwtHttpBearerAuth;
 use Yii;
 use yii\base\InvalidConfigException;
 use yii\base\InvalidParamException;
@@ -23,12 +24,9 @@ use yii\filters\Cors;
 use yii\rest\Controller;
 
 /**
- * Controller that provides REST APIs to manage users.
- * This controller is equivalent to `Da\User\Controller\AdminController`.
- *
- * TODO:
- * - `Info` and `SwitchIdentity` actions were not developed yet.
- * - `Assignments` action implements only GET method (POST method not developed yet).
+ * Controller that provides REST APIs to login via:
+ * - JWT (JSON Web Token)
+ * - login and password
  */
 class SecurityController extends Controller
 {
@@ -50,8 +48,14 @@ class SecurityController extends Controller
     public function behaviors(): array
     {
         $behaviors = parent::behaviors();
-        // Remove the (default) authentication filter
-        unset($behaviors['authenticator']);
+
+        // Set JWT authenticator
+        $behaviors['authenticator'] = [
+            'class' => JwtHttpBearerAuth::class,
+            'optional' => [
+                'login'
+            ],
+        ];
 
         // Cors filter
         $behaviors['corsFilter'] = [
@@ -77,14 +81,17 @@ class SecurityController extends Controller
     /**
      * Controller action responsible for handling login page and actions.
      *
-     * @return ApiUser
-     *@throws InvalidParamException
+     * @return array
+     * @throws InvalidParamException
      * @throws InvalidConfigException
      */
-    public function actionLogin()
+    public function actionLogin(): array
     {
         if (!Yii::$app->user->getIsGuest()) {
-            return [];
+            return [
+                'success' => false,
+                'message' => Yii::t('usuario', 'User is already logged in'),
+            ];
         }
 
         /**
@@ -97,6 +104,8 @@ class SecurityController extends Controller
          */
         $event = $this->make(FormEvent::class, [$form]);
 
+        $token = null;
+        $uid = null;
         if ($form->load(Yii::$app->request->post(), '')) {
             $form->validate();
             $this->trigger(FormEvent::EVENT_BEFORE_LOGIN, $event);
@@ -107,10 +116,38 @@ class SecurityController extends Controller
                 ]);
 
                 $this->trigger(FormEvent::EVENT_AFTER_LOGIN, $event);
+                $uid = $form->getUser()->id;
+                $token = $this->getJwt($uid);
             }
             $this->trigger(FormEvent::EVENT_FAILED_LOGIN, $event);
         }
 
-        return User::findOne($form->getUser()->id);
+        return array_merge(
+            User::findOne($uid)->attributes,
+            [
+                'token' => (string)$token,
+            ]
+        );
+    }
+
+    /**
+     * Generates a JWT (Json Web Token) for the logged user
+     * @param int $uid User ID
+     * @return mixed
+     */
+    public function getJwt(int $uid)
+    {
+        /** @var Jwt $jwt */
+        $jwt = Yii::$app->jwt;
+        $signer = $jwt->getSigner('HS256');
+        $key = $jwt->getKey();
+        $time = time();
+
+        return $jwt->getBuilder()
+            ->identifiedBy(uniqid('jwt-'), true)
+            ->issuedAt($time)
+            ->expiresAt($time + Yii::$app->params['jwtMaxTokenLife'])
+            ->withClaim('uid', $uid)
+            ->getToken($signer, $key);
     }
 }
