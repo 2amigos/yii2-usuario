@@ -297,6 +297,8 @@ class Module extends BaseModule
      */
     public $restRoutes = [
         'POST login' => 'rest/v1/security/login',
+        'GET roles' => 'api/v1/auth/roles',
+        'GET roles-by-user' => 'api/v1/auth/roles-by-user',
     ];
 
     /**
