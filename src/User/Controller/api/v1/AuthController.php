@@ -55,6 +55,15 @@ class AuthController extends RestController
     }
 
     /**
+     * Returns all the permissions.
+     * @return array
+     */
+    public function actionPermissions(): array
+    {
+        return Yii::$app->authManager->getPermissions();
+    }
+
+    /**
      * Returns all the roles for the current user.
      * @return array
      */
@@ -73,6 +82,17 @@ class AuthController extends RestController
         }
 
         return $allRoles;
+    }
+
+    /**
+     * Returns all the permissions for the current user.
+     * @return array
+     */
+    public function actionPermissionsByUser(): array
+    {
+        $authManager = Yii::$app->authManager;
+        $userId = Yii::$app->user->id;
+        return $authManager->getPermissionsByUser($userId);
     }
 
     /**
