@@ -5,7 +5,10 @@
 - Enh: Changed exception thrown in PasswordRecoveryService from `RuntimeException` to `NotFoundException`. (eseperio)
 - New #553: created Da\User\AuthClient\Microsoft365 auth client (edegaudenzi)
 - Ehh: Added SecurityHelper to the Bootstrap classMap
+- Fix #546: The profile/show page must not be visible by default, implement configurable policy (TonisOrmisson)
 - Fix #397: No more fatal Exceptions when connecting to already taken Social Network (edegaudenzi)
+- Ehh: Added option to pre-fill recovery email via url parameter (TonisOrmisson)
+- Ehh: Fixed pretty-url rules not initialized for console apps (TonisOrmisson)
 
 ## 1.6.3 Mar 18th, 2024
 

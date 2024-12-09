@@ -76,7 +76,7 @@ jobs:
               run:  vendor/bin/phpstan analyse
 
             - name: Archive failed tests artifacts - test output & log
-              uses: actions/upload-artifact@v2
+              uses: actions/upload-artifact@v4
               if: failure()
               with:
                   name: test-outputs-php-${{ matrix.php-versions }}
