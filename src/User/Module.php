@@ -12,6 +12,7 @@
 namespace Da\User;
 
 use Da\User\Contracts\MailChangeStrategyInterface;
+use Da\User\Controller\ProfileController;
 use Da\User\Filter\AccessRuleFilter;
 use Yii;
 use yii\base\Module as BaseModule;
@@ -182,6 +183,12 @@ class Module extends BaseModule
      */
     public $administratorPermissionName;
     /**
+     * @var int $profileVisibility Defines the level of user's profile page visibility.
+     *          Defaults to ProfileController::PROFILE_VISIBILITY_OWNER meaning no-one except the user itself can view
+     *          the profile. @see ProfileController constants for possible options
+     */
+    public $profileVisibility = ProfileController::PROFILE_VISIBILITY_OWNER;
+    /**
      * @var string the route prefix
      */
     public $prefix = 'user';
@@ -219,6 +226,7 @@ class Module extends BaseModule
         '<action:(register|resend)>' => 'registration/<action>',
         'confirm/<id:\d+>/<code:[A-Za-z0-9_-]+>' => 'registration/confirm',
         'forgot' => 'recovery/request',
+        'forgot/<email:[a-zA-Z0-9_.±]+@[a-zA-Z0-9-]+.[a-zA-Z0-9-.]+>' => 'recovery/request',
         'recover/<id:\d+>/<code:[A-Za-z0-9_-]+>' => 'recovery/reset'
     ];
     /**
@@ -241,10 +249,6 @@ class Module extends BaseModule
      * @var boolean whether to disable IP logging into user table
      */
     public $disableIpLogging = false;
-    /**
-     * @var boolean whether to disable viewing any user's profile for non-admin users
-     */
-    public $disableProfileViewsForRegularUsers = false;
     /**
      * @var array Minimum requirements when a new password is automatically generated.
      *            Array structure: `requirement => minimum number characters`.
