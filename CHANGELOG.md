@@ -5,6 +5,7 @@
 - Enh: Changed exception thrown in PasswordRecoveryService from `RuntimeException` to `NotFoundException`. (eseperio)
 - New #553: created Da\User\AuthClient\Microsoft365 auth client (edegaudenzi)
 - Ehh: Added SecurityHelper to the Bootstrap classMap
+- Fix #572: Correctly positioned the 'Disconnect' button in networks view 
 
 ## 1.6.3 Mar 18th, 2024
 
