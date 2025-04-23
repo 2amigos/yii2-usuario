@@ -144,7 +144,7 @@ class Profile extends ActiveRecord
      *
      * @return DateTime
      */
-    public function getLocalTimeZone(DateTime $dateTime = null)
+    public function getLocalTimeZone(?DateTime $dateTime = null)
     {
         return $dateTime === null ? new DateTime() : $dateTime->setTimezone($this->getTimeZone());
     }
