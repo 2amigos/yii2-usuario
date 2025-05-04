@@ -88,7 +88,7 @@ class UserRegisterService implements ServiceInterface
             return true;
         } catch (Exception $e) {
             $transaction->rollBack();
-            Yii::error($e->getMessage(), 'usuario');
+            Yii::error($e->getMessage(), __CLASS__);
 
             return false;
         }

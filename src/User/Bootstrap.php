@@ -293,7 +293,7 @@ class Bootstrap implements BootstrapInterface
     {
         /** @var Module $module */
         $module = $app->getModule('user');
-        $rules = $module->adminRestRoutes;
+        $rules = array_merge($module->adminRestRoutes, $module->restRoutes);
         $config = [
             'class' => 'yii\web\GroupUrlRule',
             'prefix' => $module->adminRestPrefix,
