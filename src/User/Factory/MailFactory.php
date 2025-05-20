@@ -52,7 +52,7 @@ class MailFactory
      * @throws InvalidConfigException
      * @return MailService
      */
-    public static function makeRecoveryMailerService($email, Token $token = null)
+    public static function makeRecoveryMailerService($email, ?Token $token = null)
     {
         /** @var Module $module */
         $module = Yii::$app->getModule('user');
@@ -74,7 +74,7 @@ class MailFactory
      * @throws InvalidConfigException
      * @return MailService
      */
-    public static function makeConfirmationMailerService(User $user, Token $token = null)
+    public static function makeConfirmationMailerService(User $user, ?Token $token = null)
     {
         /** @var Module $module */
         $module = Yii::$app->getModule('user');
