@@ -2,6 +2,8 @@
 
 ## dev
 
+- Enh: Improved error handling for user identity
+- Enh: Add new column `uuid` to user identity
 - Enh: Changed exception thrown in PasswordRecoveryService from `RuntimeException` to `NotFoundException`. (eseperio)
 - New #553: created Da\User\AuthClient\Microsoft365 auth client (edegaudenzi)
 - Ehh: Added SecurityHelper to the Bootstrap classMap
