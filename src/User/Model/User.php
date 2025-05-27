@@ -39,6 +39,7 @@ use yii\web\IdentityInterface;
  *
  * Database fields:
  * @property int $id
+ * @property string $uuid
  * @property string $username
  * @property string $email
  * @property string $unconfirmed_email
