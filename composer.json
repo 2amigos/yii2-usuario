@@ -46,7 +46,8 @@
         "yiisoft/yii2-httpclient": "^2.0",
         "yiisoft/yii2-bootstrap": "^2.0",
         "yetopen/yii2-sms-sender-interface": "^0.1.1",
-        "ramsey/uuid": "^4.7"
+        "ramsey/uuid": "^4.7",
+        "eluhr/yii2-uuid-attribute-behavior": "^1.0"
     },
     "suggest": {
         "yiisoft/yii2-symfonymailer": "A mailer driver is needed to send e-mails. Older versions use abandoned Swiftmailer which can be replaced with symfonymailer",
