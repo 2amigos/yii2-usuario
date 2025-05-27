@@ -11,10 +11,14 @@
 
 namespace Da\User\Model;
 
+use Da\User\Dictionary\UserSourceType;
 use Da\User\Helper\SecurityHelper;
 use Da\User\Query\UserQuery;
+use Da\User\Service\InitLdapUserService;
 use Da\User\Traits\ContainerAwareTrait;
 use Da\User\Traits\ModuleAwareTrait;
+use lhs\Yii2SaveRelationsBehavior\SaveRelationsBehavior;
+use yetopen\usuarioLdap\UsuarioLdapComponent;
 use Yii;
 use yii\base\Exception;
 use yii\base\InvalidConfigException;
@@ -57,6 +61,7 @@ use yii\web\IdentityInterface;
  * @property string                 $last_login_ip
  * @property int                    $password_changed_at
  * @property int                    $password_age
+ * @property int                    $ldap_uid
  *                                                         Defined relations:
  * @property SocialNetworkAccount[] $socialNetworkAccounts
  * @property Profile                $profile
@@ -70,14 +75,27 @@ class User extends ActiveRecord implements IdentityInterface
     public const OLD_EMAIL_CONFIRMED = 0b01;
     public const NEW_EMAIL_CONFIRMED = 0b10;
 
+    // ldap error
+    public const LDAP_INVALID_USER = -1;
+
     /**
      * @var string Plain password. Used for model validation
      */
     public $password;
+
+    /**
+     * @var string Stores LDAP uid of the user during creation.
+     */
+    public $ldapUid;
+
     /**
      * @var array connected account list
      */
     protected $connectedAccounts;
+    /**
+     * @var \Adldap\Models\User|null
+     */
+    protected $ldapUser;
 
     /**
      * {@inheritdoc}
@@ -130,6 +148,26 @@ class User extends ActiveRecord implements IdentityInterface
     /**
      * {@inheritdoc}
      */
+    public function beforeValidate()
+    {
+        if ($this->module->searchUsersInLdap && $this->source == UserSourceType::LDAP && $this->isNewRecord) {
+            if ($this->ldapUid == self::LDAP_INVALID_USER) {
+                $this->addError('ldapUid', Yii::t('usuario', 'Invalid LDAP user'));
+                return false;
+            }
+            /** @var UsuarioLdapComponent $ldapComponent */
+            $ldapComponent = Yii::$app->usuarioLdap;
+            $this->ldapUser = $ldapComponent->findLdapUser($this->ldapUid);
+            if ($this->ldapUser !== null) {
+                $this->make(InitLdapUserService::class, [$this, $this->module->ldapUserAttributes, $this->ldapUser])->run();
+            }
+        }
+        return parent::beforeValidate();
+    }
+
+    /**
+     * {@inheritdoc}
+     */
     public function beforeSave($insert)
     {
         /** @var SecurityHelper $security */
@@ -163,6 +201,9 @@ class User extends ActiveRecord implements IdentityInterface
 
         if ($insert && $this->profile === null) {
             $profile = $this->make(Profile::class);
+            if ($this->ldapUser !== null) {
+                $this->make(InitLdapUserService::class, [$profile, $this->module->ldapProfileAttributes, $this->ldapUser])->run();
+            }
             $profile->link('user', $this);
         }
     }
@@ -184,6 +225,13 @@ class User extends ActiveRecord implements IdentityInterface
             ];
         }
 
+        $behaviors['saveRelations'] = [
+            'class' => SaveRelationsBehavior::class,
+            'relations' => [
+                'profile' => ['cascadeDelete' => true]
+            ]
+        ];
+
         return $behaviors;
     }
 
@@ -204,6 +252,7 @@ class User extends ActiveRecord implements IdentityInterface
             'last_login_ip' => Yii::t('usuario', 'Last login IP'),
             'password_changed_at' => Yii::t('usuario', 'Last password change'),
             'password_age' => Yii::t('usuario', 'Password age'),
+            'ldapUid' => Yii::t('usuario', 'Search'),
         ];
     }
 
@@ -263,6 +312,10 @@ class User extends ActiveRecord implements IdentityInterface
             'twoFactorEnabledNumber' => ['auth_tf_enabled', 'boolean'],
             'twoFactorTypeLength' => ['auth_tf_type', 'string', 'max' => 20],
             'twoFactorMobilePhoneLength' => ['auth_tf_mobile_phone', 'string', 'max' => 20],
+
+            // ldapUid rules
+            'ldapUid' => ['ldapUid', 'string'],
+            'ldapUidRequired' => ['ldapUid', 'required', 'on' => $this->module->searchUsersInLdap],
         ];
     }
 

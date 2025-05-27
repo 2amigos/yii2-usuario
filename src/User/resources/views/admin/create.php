@@ -12,6 +12,7 @@
 use yii\bootstrap\ActiveForm;
 use yii\bootstrap\Nav;
 use yii\helpers\Html;
+use yii\widgets\Pjax;
 
 /**
  * @var yii\web\View        $this
@@ -83,7 +84,9 @@ $this->params['breadcrumbs'][] = $this->title;
                                         'A password will be generated automatically if not provided'
                                     ) ?>.
                                 </div>
-                                <?php $form = ActiveForm::begin(
+                                <?php
+                                Pjax::begin(['id' => 'pjax-user-create']);
+                                $form = ActiveForm::begin(
                                     [
                                         'layout' => 'horizontal',
                                         'enableAjaxValidation' => true,
@@ -107,7 +110,8 @@ $this->params['breadcrumbs'][] = $this->title;
                                     </div>
                                 </div>
 
-                                <?php ActiveForm::end(); ?>
+                                <?php ActiveForm::end();
+                                Pjax::end() ?>
                             </div>
                         </div>
                     </div>
