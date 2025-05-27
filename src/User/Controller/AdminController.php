@@ -36,6 +36,7 @@ use yii\filters\AccessControl;
 use yii\filters\VerbFilter;
 use yii\helpers\Url;
 use yii\web\Controller;
+use yii\web\NotFoundHttpException;
 
 class AdminController extends Controller
 {
@@ -161,7 +162,8 @@ class AdminController extends Controller
 
     public function actionUpdate($id)
     {
-        $user = $this->userQuery->where(['id' => $id])->one();
+        $user = $this->findUserModel($id);
+
         $user->setScenario('update');
         /** @var UserEvent $event */
         $event = $this->make(UserEvent::class, [$user]);
@@ -187,9 +189,8 @@ class AdminController extends Controller
 
     public function actionUpdateProfile($id)
     {
-        /** @var User $user */
-        $user = $this->userQuery->where(['id' => $id])->one();
-        /** @var Profile $profile */
+        $user = $this->findUserModel($id);
+
         $profile = $user->profile;
         if ($profile === null) {
             $profile = $this->make(Profile::class);
@@ -222,8 +223,7 @@ class AdminController extends Controller
 
     public function actionInfo($id)
     {
-        /** @var User $user */
-        $user = $this->userQuery->where(['id' => $id])->one();
+        $user = $this->findUserModel($id);
 
         return $this->render(
             '_info',
@@ -236,8 +236,7 @@ class AdminController extends Controller
 
     public function actionAssignments($id)
     {
-        /** @var User $user */
-        $user = $this->userQuery->where(['id' => $id])->one();
+        $user = $this->findUserModel($id);
 
         return $this->render(
             '_assignments',
@@ -251,8 +250,8 @@ class AdminController extends Controller
 
     public function actionConfirm($id)
     {
-        /** @var User $user */
-        $user = $this->userQuery->where(['id' => $id])->one();
+        $user = $this->findUserModel($id);
+
         /** @var UserEvent $event */
         $event = $this->make(UserEvent::class, [$user]);
 
@@ -276,8 +275,8 @@ class AdminController extends Controller
         if ((int)$id === Yii::$app->user->getId()) {
             Yii::$app->getSession()->setFlash('danger', Yii::t('usuario', 'You cannot remove your own account'));
         } else {
-            /** @var User $user */
-            $user = $this->userQuery->where(['id' => $id])->one();
+            $user = $this->findUserModel($id);
+
             /** @var UserEvent $event */
             $event = $this->make(UserEvent::class, [$user]);
             $this->trigger(ActiveRecord::EVENT_BEFORE_DELETE, $event);
@@ -301,8 +300,8 @@ class AdminController extends Controller
         if ((int)$id === Yii::$app->user->getId()) {
             Yii::$app->getSession()->setFlash('danger', Yii::t('usuario', 'You cannot remove your own account'));
         } else {
-            /** @var User $user */
-            $user = $this->userQuery->where(['id' => $id])->one();
+            $user = $this->findUserModel($id);
+
             /** @var UserEvent $event */
             $event = $this->make(UserEvent::class, [$user]);
 
@@ -331,8 +330,8 @@ class AdminController extends Controller
 
     public function actionPasswordReset($id)
     {
-        /** @var User $user */
-        $user = $this->userQuery->where(['id' => $id])->one();
+        $user = $this->findUserModel($id);
+
         $mailService = MailFactory::makeRecoveryMailerService($user->email);
         if ($this->make(PasswordRecoveryService::class, [$user->email, $mailService])->run()) {
             Yii::$app->getSession()->setFlash('success', Yii::t('usuario', 'Recovery message sent'));
@@ -352,8 +351,8 @@ class AdminController extends Controller
      */
     public function actionForcePasswordChange($id)
     {
-        /** @var User $user */
-        $user = $this->userQuery->where(['id' => $id])->one();
+        $user = $this->findUserModel($id);
+
         if ($this->make(PasswordExpireService::class, [$user])->run()) {
             Yii::$app->session->setFlash("success", Yii::t('usuario', 'User will be required to change password at next login'));
         } else {
@@ -371,9 +370,10 @@ class AdminController extends Controller
         $searchModel = new SessionHistorySearch([
             'user_id' => $id,
         ]);
+
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
-        $user = $this->userQuery->where(['id' => $id])->one();
+        $user = $this->findUserModel($id);
 
         return $this->render('_session-history', [
             'searchModel' => $searchModel,
@@ -392,5 +392,21 @@ class AdminController extends Controller
         $this->make(TerminateUserSessionsService::class, [$id])->run();
 
         return $this->redirect(Url::previous('actions-redirect'));
+    }
+
+    /**
+     * @param int $id
+     *
+     * @throws \yii\web\NotFoundHttpException If user does not exist
+     * @return User
+     */
+    protected function findUserModel($id)
+    {
+        /** @var User $user */
+        $user = $this->userQuery->where(['id' => $id])->one();
+        if (empty($user)) {
+            throw new NotFoundHttpException(Yii::t('usuario', 'User not found'));
+        }
+        return $user;
     }
 }
