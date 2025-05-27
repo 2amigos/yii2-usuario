@@ -19,6 +19,10 @@
 
 <table class="table">
     <tr>
+        <td><strong><?= Yii::t('usuario', 'UUID') ?>:</strong></td>
+        <td><?= $user->uuid ?></td>
+    </tr>
+    <tr>
         <td><strong><?= Yii::t('usuario', 'Registration time') ?>:</strong></td>
         <td><?= Yii::t('usuario', '{0, date, MMMM dd, YYYY HH:mm}', [$user->created_at]) ?></td>
     </tr>
