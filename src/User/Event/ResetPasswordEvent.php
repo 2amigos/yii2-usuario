@@ -29,7 +29,7 @@ final class ResetPasswordEvent extends Event
     protected $form;
     protected $token;
 
-    public function __construct(Token $token = null, RecoveryForm $form = null, array $config = [])
+    public function __construct(?Token $token = null, ?RecoveryForm $form = null, array $config = [])
     {
         $this->form = $form;
         $this->token = $token;
