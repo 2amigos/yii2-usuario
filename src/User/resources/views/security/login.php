@@ -9,6 +9,7 @@
  * the LICENSE file that was distributed with this source code.
  */
 
+use Da\User\resources\assets\PasskeyAsset;
 use Da\User\Widget\ConnectWidget;
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
@@ -21,6 +22,19 @@ use yii\widgets\ActiveForm;
 
 $this->title = Yii::t('usuario', 'Sign in');
 $this->params['breadcrumbs'][] = $this->title;
+
+// TODO: check if passkey is enabled
+PasskeyAsset::register($this);
+
+$homepageUrl = \yii\helpers\Url::current();
+$this->registerJs(<<<JS
+$('#passkey-login-btn').click(function(e) {
+    e.preventDefault();
+    $(this).loginWithPasskey();
+})
+
+JS
+)
 ?>
 
 <?= $this->render('/shared/_alert', ['module' => Yii::$app->getModule('user')]) ?>
@@ -74,6 +88,9 @@ $this->params['breadcrumbs'][] = $this->title;
                     ['class' => 'btn btn-primary btn-block', 'tabindex' => '3']
                 ) ?>
 
+                <?= Html::a('Passkey Login', ['/user-entity/login-passkey'], ['id' => 'passkey-login-btn', 'class' => 'btn btn-primary btn-block','tabindex' => '7']) ?>
+
+
                 <?php ActiveForm::end(); ?>
             </div>
         </div>
@@ -86,7 +103,7 @@ $this->params['breadcrumbs'][] = $this->title;
             </p>
         <?php endif ?>
         <?php if ($module->enableRegistration): ?>
-            <p class="text-center">
+            <p class="text-center mt-3">
                 <?= Html::a(Yii::t('usuario', 'Don\'t have an account? Sign up!'), ['/user/registration/register']) ?>
             </p>
         <?php endif ?>
@@ -96,4 +113,6 @@ $this->params['breadcrumbs'][] = $this->title;
             ]
         ) ?>
     </div>
+
 </div>
+

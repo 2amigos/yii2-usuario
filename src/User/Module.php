@@ -227,7 +227,8 @@ class Module extends BaseModule
         'confirm/<id:\d+>/<code:[A-Za-z0-9_-]+>' => 'registration/confirm',
         'forgot' => 'recovery/request',
         'forgot/<email:[a-zA-Z0-9_.±]+@[a-zA-Z0-9-]+.[a-zA-Z0-9-.]+>' => 'recovery/request',
-        'recover/<id:\d+>/<code:[A-Za-z0-9_-]+>' => 'recovery/reset'
+        'recover/<id:\d+>/<code:[A-Za-z0-9_-]+>' => 'recovery/reset',
+        
     ];
     /**
      * @var string
