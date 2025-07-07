@@ -57,7 +57,7 @@ $this->params['breadcrumbs'][] = $this->title;
                             <td style="vertical-align: middle">
                                 <strong><?= $client->getTitle() ?></strong>
                             </td>
-                            <td style="width: 120px">
+                            <td style="min-width: 120px; width: 120px">
                                 <?= $auth->isConnected($client) ?
                                     Html::a(
                                         Yii::t('usuario', 'Disconnect'),
