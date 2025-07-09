@@ -20,7 +20,9 @@ use Yii;
 use Ramsey\Uuid\Uuid;
 use yii\helpers\ArrayHelper;
 use yii\helpers\Json;
+use yii\helpers\Url;
 use yii\web\Controller;
+use yii\web\NotFoundHttpException;
 
 function utf8ize($data)
 {
@@ -82,7 +84,7 @@ class UserEntityController extends Controller
 
         $user = User::findOne($passkey->user_id);
         if (!$user) {
-            return ['success' => false, 'message' => 'Utente non trovato'];
+            return ['success' => false, 'message' => 'User not found'];
         }
 
         $userEntity = PublicKeyCredentialUserEntity::create($user->username, (string)$user->id, $user->username);
@@ -96,36 +98,107 @@ class UserEntityController extends Controller
         ];
     }
 
+    public function actionCreatePasskey(){
+        $model = new UserEntity();
+        return $this->render('create', ['model' => $model]);
+    }
+
+    public function actionUpdatePasskey($id)
+    {
+        $model = UserEntity::findOne($id);
+        if (!$model) {
+            throw new \yii\web\NotFoundHttpException("Passkey not found.");
+        }
+
+        if ($model->load(\Yii::$app->request->post())) {
+            if ($model->validate() && $model->save()) {
+                \Yii::$app->session->setFlash('success', 'Passkey updated successfully.');
+                return $this->redirect(['index-passkey']);
+            } else {
+                $errors = $model->getFirstErrors();
+                $errorMessage = reset($errors) ?: 'Unable to save changes.';
+                \Yii::$app->session->setFlash('error', $errorMessage);
+            }
+        }
+
+        return $this->render('update', [
+            'model' => $model,
+        ]);
+    }
+
+    public function actionDeletePasskey($id)
+    {
+        $model = UserEntity::findOne($id);
+        if (!$model) {
+            throw new \yii\web\NotFoundHttpException("Passkey not found.");
+        }
+
+        try {
+            if ($model->delete() !== false) {
+                \Yii::$app->session->setFlash('success', 'Passkey deleted successfully.');
+            } else {
+                \Yii::$app->session->setFlash('error', 'Unable to delete the passkey.');
+            }
+        } catch (\Exception $e) {
+            \Yii::$app->session->setFlash('error', 'Error occurred while deleting: ' . $e->getMessage());
+        }
+
+        return $this->redirect(['index-passkey']);
+    }
+
+    public function actionIndexPasskey()
+    {
+        $dataProvider = new \yii\data\ActiveDataProvider([
+            'query' => \Da\User\Model\UserEntity::find()->where(['user_id' => Yii::$app->user->id]),
+            'pagination' => [
+                'pageSize' => 10,
+            ],
+            'sort' => [
+                'defaultOrder' => [
+                    'created_at' => SORT_DESC,
+                ]
+            ],
+        ]);
+
+        return $this->render('index', [
+            'dataProvider' => $dataProvider,
+        ]);
+    }
+
+    public function actionPopupPasskey()
+    {
+        return $this->render('popup-passkey');
+    }
+
+
+
     public function actionStorePasskey()
     {
-        $model = new UserEntity();
 
+        $model = new UserEntity();
         if ($model->load(Yii::$app->request->post())) {
             $user = Yii::$app->user->identity;
-
+            $model->id = (int)$model->id;
             $model->user_id = $user->id;
             $model->type = 'public-key';
             $model->created_at = date('Y-m-d H:i:s');
             $model->credential_id = rtrim(strtr($model->credential_id, '+/', '-_'), '=');
 
-            // Gestione attestation_format: se è un array o stringa, normalizza in stringa separata da virgole
             if (isset($model->attestation_format)) {
                 if (is_array($model->attestation_format)) {
                     $formats = array_map('trim', $model->attestation_format);
                     $model->attestation_format = implode(',', $formats);
                 } else {
-                    // Pulizia base, rimuovi spazi inutili
                     $formats = array_map('trim', explode(',', $model->attestation_format));
                     $model->attestation_format = implode(',', $formats);
                 }
             } else {
-                // Se non è settato, salva null
                 $model->attestation_format = null;
             }
 
             if ($model->validate() && $model->save()) {
                 Yii::$app->session->setFlash('success', 'Passkey registrata con successo.');
-                return $this->redirect(['index']);
+                return $this->goHome();
             }
 
             Yii::error('Errore salvataggio passkey: ' . json_encode($model->getErrors()));
@@ -138,7 +211,6 @@ class UserEntityController extends Controller
     public function actionLoginPasskey()
     {
         $request = Yii::$app->request;
-
         if ($request->isPost) {
             $body = Json::decode($request->rawBody);
 

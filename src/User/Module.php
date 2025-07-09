@@ -228,7 +228,13 @@ class Module extends BaseModule
         'forgot' => 'recovery/request',
         'forgot/<email:[a-zA-Z0-9_.±]+@[a-zA-Z0-9-]+.[a-zA-Z0-9-.]+>' => 'recovery/request',
         'recover/<id:\d+>/<code:[A-Za-z0-9_-]+>' => 'recovery/reset',
-        
+        'passkey/create' => 'user-entity/create-passkey',
+        'passkey/store' => 'user-entity/store-passkey',
+        'passkey/index' => 'user-entity/index-passkey',
+        'passkey/update' => 'user-entity/update-passkey',
+        'passkey/delete' => 'user-entity/delete-passkey',
+        'passkey/pop-up' => 'user-entity/popup-passkey',
+
     ];
     /**
      * @var string
@@ -270,6 +276,7 @@ class Module extends BaseModule
      * @var boolean Whether to enable REST APIs.
      */
     public $enableRestApi = false;
+
     /**
      * @var string Which class to use as authenticator for REST API.
      *             Possible values: `HttpBasicAuth`, `HttpBearerAuth` or `QueryParamAuth`.
@@ -307,6 +314,36 @@ class Module extends BaseModule
         'GET roles-by-user' => 'api/v1/auth/roles-by-user',
         'GET permissions-by-user' => 'api/v1/auth/permissions-by-user',
     ];
+
+    /**
+     * @var boolean Whether to enable the login using passkeys.
+     */
+    public $enablePasskeyLogin = false;
+
+    /**
+     * @var boolean Whether to enable a modal that suggest the user to use a passkey.
+     * This pop-up will be shown if the user doesn't have any passkeys, if the passkey login is enabled
+     * and only after the login.
+     */
+    public $enablePasskeyPopUp = false;
+    /**
+     * @var boolean Whether to enable a modal that remembers the user that one (or more) of his
+     * passkeys are expiring. This message will be shown after the login.
+     */
+    public $enablePasskeyNotification = false;
+
+    /**
+     * @var integer Time before the passkey will be eliminated since the last use.
+     * Usally this time is set between 6 and 12 months.
+     * This variable counts how many months before this will happen.
+     */
+    public $ttlPasskey = 12;
+
+    /**
+     * @var integer The maximum number of passkey for user.
+     * Usally this value is set between 5 and 10 passkeys.
+     */
+    public $maxPasskeysForUser = 10;
 
     /**
      * @return string with the hit to be used with the give consent checkbox

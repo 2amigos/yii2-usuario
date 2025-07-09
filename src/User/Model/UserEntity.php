@@ -38,7 +38,7 @@ class UserEntity extends ActiveRecord
                 if ($this->$attribute === null) {
                     return;
                 }
-                $allowed = ['none', 'basic', 'attca', 'self', 'ecdaa', 'unknown', 'internal', 'hybrid'];
+                $allowed = ['none', 'basic', 'attca', 'self', 'ecdaa', 'unknown', 'internal', 'hybrid', 'direct'];
                 $values = array_map('trim', explode(',', $this->$attribute));
                 foreach ($values as $value) {
                     if (!in_array($value, $allowed)) {
@@ -47,7 +47,7 @@ class UserEntity extends ActiveRecord
                 }
             }],
             [['user_id'], 'integer'],
-            [['id'], 'string', 'max' => 36  ],
+            [['id'], 'integer'],
             [['sign_count'], 'integer'],
             [['public_key'], 'string'],
             [['created_at', 'last_used_at'], 'safe'],
@@ -56,6 +56,9 @@ class UserEntity extends ActiveRecord
             [['attestation_format'], 'string', 'max' =>64],
             [['device_id'], 'string', 'max' => 128],
             [['name'], 'string', 'max' => 128],
+            [['name'], 'string', 'min' => 4],
+            ['name', 'required'],
+            ['name', 'match', 'pattern' => '/^[a-zA-Z0-9 ]+$/', 'message' => 'The name can contain only letters, numbers, and spaces.'],
             [['credential_id'], 'unique'],
         ];
     }

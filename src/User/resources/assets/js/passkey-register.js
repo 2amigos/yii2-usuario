@@ -1,31 +1,26 @@
-function arrayBufferToBase64url(buffer) {
-    return btoa(String.fromCharCode(...new Uint8Array(buffer)))
-        .replace(/\+/g, '-').replace(/\//g, '_').replace(/=+$/, '');
-}
+jQuery(function ($) {
+    $.fn.registerWithPasskey = async function () {
 
-function generateUUIDv4() {
-    return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function(c) {
-        const r = crypto.getRandomValues(new Uint8Array(1))[0] & 15;
-        const v = c === 'x' ? r : (r & 0x3 | 0x8);
-        return v.toString(16);
-    });
-}
+        function arrayBufferToBase64url(buffer) {
+            return btoa(String.fromCharCode(...new Uint8Array(buffer)))
+                .replace(/\+/g, '-').replace(/\//g, '_').replace(/=+$/, '');
+        }
 
-document.addEventListener('DOMContentLoaded', function () {
-    const startButton = document.getElementById('start-passkey-btn');
-
-    if (!startButton) return;
-
-    startButton.addEventListener('click', async function () {
+        function generateUUIDv4() {
+            return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function (c) {
+                const r = crypto.getRandomValues(new Uint8Array(1))[0] & 15;
+                const v = c === 'x' ? r : (r & 0x3 | 0x8);
+                return v.toString(16);
+            });
+        }
         try {
-            document.getElementById('uuid_id').value = generateUUIDv4();
-
-            let challenge = new Uint8Array(32);
+            $('#uuid_id').val(generateUUIDv4());
+            const challenge = new Uint8Array(32);
             window.crypto.getRandomValues(challenge);
 
             const publicKey = {
                 challenge: challenge.buffer,
-                rp: { name: "TEST - Passkeys with Yii2-Usuario" },
+                rp: { name: "My passkey "+numberOfPasskeys },
                 user: {
                     id: new TextEncoder().encode(userId),
                     name: username,
@@ -44,19 +39,19 @@ document.addEventListener('DOMContentLoaded', function () {
 
             const credential = await navigator.credentials.create({ publicKey });
 
-            if (!credential || !credential.response) {
+            if (!credential?.response) {
                 throw new Error("Credential non valida.");
             }
 
-            document.getElementById('credential_id').value = arrayBufferToBase64url(credential.rawId);
-            document.getElementById('public_key').value = arrayBufferToBase64url(credential.response.attestationObject);
-            document.getElementById('sign_count').value = 0;
-            document.getElementById('attestation_format').value = 'direct';
-            document.getElementById('device_id').value = navigator.userAgent;
-
-            document.getElementById('submit-button').click();
-        } catch (error) {
-            alert('Errore durante la registrazione della passkey: ' + error.message);
+            $('#credential_id').val(arrayBufferToBase64url(credential.rawId));
+            $('#public_key').val(arrayBufferToBase64url(credential.response.attestationObject));
+            $('#sign_count').val(0);
+            $('#attestation_format').val('direct');
+            $('#device_id').val(navigator.userAgent);
+            $('#submit-button').click();
+        } catch (err) {
+            alert('Errore durante la registrazione della passkey: ' + err.message);
         }
-    });
+
+    };
 });

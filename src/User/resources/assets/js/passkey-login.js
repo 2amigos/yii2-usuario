@@ -38,7 +38,7 @@
                 );
             const initData = await resInit.json();
             if (!initData.success) {
-                alert('Errore: ' + (initData.message || 'Dati iniziali non validi'));
+                alert('Error: ' + (initData.message || 'Initial data isn\'t valid'));
                 return;
             }
             const publicKey = {
@@ -81,18 +81,17 @@
                 result = await res.json();
             } catch (e) {
                 const text = await res.text();
-                alert('Errore nel server: risposta non valida');
+                alert('Server error: invalid response');
                 return;
             }
 
             if (result.success) {
                 window.location.reload();
             } else {
-                alert('Autenticazione fallita: ' + (result.message || 'Errore sconosciuto'));
+                alert('Authentication failed: ' + (result.message || 'Unknown error'));
             }
         } catch (err) {
-            alert("Errore durante l'autenticazione con passkey.");
-            console.error(err);
+            alert("Error during the authentication with a passkey.");
         }
     }
 }));

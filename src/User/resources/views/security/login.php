@@ -23,9 +23,7 @@ use yii\widgets\ActiveForm;
 $this->title = Yii::t('usuario', 'Sign in');
 $this->params['breadcrumbs'][] = $this->title;
 
-// TODO: check if passkey is enabled
 PasskeyAsset::register($this);
-
 $homepageUrl = \yii\helpers\Url::current();
 $this->registerJs(<<<JS
 $('#passkey-login-btn').click(function(e) {
@@ -87,9 +85,9 @@ JS
                     Yii::t('usuario', 'Sign in'),
                     ['class' => 'btn btn-primary btn-block', 'tabindex' => '3']
                 ) ?>
-
-                <?= Html::a('Passkey Login', ['/user-entity/login-passkey'], ['id' => 'passkey-login-btn', 'class' => 'btn btn-primary btn-block','tabindex' => '7']) ?>
-
+                <?php if ($module->enablePasskeyLogin): ?>
+                <?= Html::a('Passkey Login', ['/user/user-entity/login-passkey'], ['id' => 'passkey-login-btn', 'class' => 'btn btn-primary btn-block','tabindex' => '7']) ?>
+                <?php endif ?>
 
                 <?php ActiveForm::end(); ?>
             </div>
@@ -107,12 +105,27 @@ JS
                 <?= Html::a(Yii::t('usuario', 'Don\'t have an account? Sign up!'), ['/user/registration/register']) ?>
             </p>
         <?php endif ?>
+
+
         <?= ConnectWidget::widget(
             [
                 'baseAuthUrl' => ['/user/security/auth'],
             ]
         ) ?>
     </div>
+
+    <?php  //TODO da sistemare il popup
+    $a=0;
+    if (
+        !Yii::$app->user->isGuest &&
+        isset($module->enablePasskeyLogin) &&
+        $module->enablePasskeyLogin &&
+        \Da\User\Model\UserEntity::find()->where(['user_id' => Yii::$app->user->id])->count() === 0
+    ) {
+        echo $this->render('/user-entity/pop-up');
+    }
+
+    ?>
 
 </div>
 
