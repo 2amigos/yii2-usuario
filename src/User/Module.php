@@ -337,7 +337,7 @@ class Module extends BaseModule
      * Usally this time is set between 6 and 12 months.
      * This variable counts how many months before this will happen.
      */
-    public $ttlPasskey = 12;
+    public $maxPasskeyAge = 12;
 
     /**
      * @var integer The maximum number of passkey for user.

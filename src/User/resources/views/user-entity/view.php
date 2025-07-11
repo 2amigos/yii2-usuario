@@ -23,6 +23,7 @@ use yii\helpers\Html;
             },
         ],
         'created_at',
+        'expires_on',
 
         [
             'class' => 'yii\grid\ActionColumn',

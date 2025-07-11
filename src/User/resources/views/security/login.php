@@ -114,12 +114,11 @@ JS
         ) ?>
     </div>
 
-    <?php  //TODO da sistemare il popup
-    $a=0;
+    <?php
+            //TODO sistemare popup
     if (
         !Yii::$app->user->isGuest &&
         isset($module->enablePasskeyLogin) &&
-        $module->enablePasskeyLogin &&
         \Da\User\Model\UserEntity::find()->where(['user_id' => Yii::$app->user->id])->count() === 0
     ) {
         echo $this->render('/user-entity/pop-up');

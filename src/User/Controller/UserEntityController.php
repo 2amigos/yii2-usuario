@@ -3,6 +3,7 @@
 namespace Da\User\Controller;
 
 use Da\User\Helper\UserEntityHelper;
+use Da\User\Module;
 use Nyholm\Psr7\Factory\Psr17Factory;
 use Nyholm\Psr7Server\ServerRequestCreator;
 use Webauthn\CeremonyStep\CeremonyStepManager;
@@ -150,8 +151,7 @@ class UserEntityController extends Controller
         return $this->redirect(['index-passkey']);
     }
 
-    public function actionIndexPasskey()
-    {
+    public function loadTableData(){
         $dataProvider = new \yii\data\ActiveDataProvider([
             'query' => \Da\User\Model\UserEntity::find()->where(['user_id' => Yii::$app->user->id]),
             'pagination' => [
@@ -163,7 +163,25 @@ class UserEntityController extends Controller
                 ]
             ],
         ]);
+        return $dataProvider;
+    }
 
+    //TODO finire auto eliminazione passkey vecchi, logica+popup
+    public function deleteExpiredPasskeys(){
+        /** @var Module $module */
+
+        $module = Yii::$app->getModule('user');
+        $data = $module->maxPasskeyAge;
+        $module = Yii::$app->getModule('user');
+        $userId = Yii::$app->user->id;
+        $maxMonths = $module->maxPasskeyAge ?? 12;
+        $models = UserEntity::find();
+        return $this->asJson(['success' => true]);
+    }
+
+    public function actionIndexPasskey()
+    {
+        $dataProvider = $this->loadTableData();
         return $this->render('index', [
             'dataProvider' => $dataProvider,
         ]);
@@ -203,7 +221,10 @@ class UserEntityController extends Controller
 
             if ($model->validate() && $model->save()) {
                 Yii::$app->session->setFlash('success', 'Passkey registered succesfully.');
-                return $this->goHome();
+                $dataProvider = $this->loadTableData();
+                return $this->render('index', [
+                    'dataProvider' => $dataProvider,
+                ]);
             }
 
             Yii::error('Error while saving the passkey: ' . json_encode($model->getErrors()));
@@ -312,8 +333,8 @@ class UserEntityController extends Controller
                 $credentialId,
                 $assertionResponse
             );
-
             $validator = $this->createAssertionValidator();
+
             $ceremonyFactory = new CeremonyStepManagerFactory();
             $ceremonyStepManager = $ceremonyFactory->requestCeremony();
             $repository = new MyPublicKeyCredentialSourceRepository();
@@ -327,7 +348,10 @@ class UserEntityController extends Controller
                     $psr17Factory
                 );
 
+
+
                 $serverRequest = $creator->fromGlobals();
+
 
                 $publicKeyCredentialSource = $repository->findOneByCredentialId($this->userEntityHelper->utf8ize($credentialIdB64)); //must use base64 format, this must match the credential_id row
                 if ($publicKeyCredentialSource === null) {
@@ -342,7 +366,7 @@ class UserEntityController extends Controller
                     $this->userEntityHelper->base64UrlDecode($challengeBase64),
                     $rpId,
                     [],
-                    'required',
+                    'preferred',
                     100,
                     null,
                 );
@@ -359,7 +383,7 @@ class UserEntityController extends Controller
                 $userHandle = $publicKeyCredentialSource->userHandle;
                 $user = User::findOne($userHandle);
                 if (!$user) {
-                    Yii::error('Utente non trovato per handle: ' . $publicKeyCredentialSource->getUserHandle(), __METHOD__);
+                    Yii::error('Utente non trovato per handle: ' . $publicKeyCredentialSource->userHandle, __METHOD__);
                     return $this->asJson([
                         'success' => false,
                         'message' => 'Utente non trovato'
@@ -388,9 +412,8 @@ class UserEntityController extends Controller
 
     function createAssertionValidator(): AuthenticatorAssertionResponseValidator
     {
-        //TODO mettere qua inidirizzo proprio server -> andare a creare variabile in Module.php
         $ceremonyStepManager = new CeremonyStepManager([
-            new CheckAllowedOrigins(['http://localhost'], false),
+            new CheckAllowedOrigins([Yii::$app->request->hostName], false),
         ]);
 
         return new AuthenticatorAssertionResponseValidator($ceremonyStepManager);

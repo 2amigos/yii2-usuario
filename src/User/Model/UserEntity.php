@@ -34,7 +34,7 @@ class UserEntity extends ActiveRecord
             [['user_id', 'credential_id', 'public_key', 'sign_count', 'type', 'attestation_format', 'id'], 'required'],
             ['attestation_format', 'string', 'max' => 64],
             ['attestation_format', 'default', 'value' => null],
-            ['attestation_format', 'in', 'range' => ['none', 'basic', 'attca', 'self', 'ecdaa', 'unknown', 'internal', 'hybrid', 'direct']],
+          /*  ['attestation_format', 'in', 'range' => ['none', 'basic', 'attca', 'self', 'ecdaa', 'unknown', 'internal', 'hybrid', 'direct']],*/
             [['user_id'], 'integer'],
             [['id'], 'integer'],
             [['sign_count'], 'integer'],
