@@ -30,22 +30,11 @@ class UserEntity extends ActiveRecord
     public function rules()
     {
         return [
-
+            [['sign_count'], 'default', 'value' => 0],
             [['user_id', 'credential_id', 'public_key', 'sign_count', 'type', 'attestation_format', 'id'], 'required'],
             ['attestation_format', 'string', 'max' => 64],
             ['attestation_format', 'default', 'value' => null],
-            ['attestation_format', function ($attribute) {
-                if ($this->$attribute === null) {
-                    return;
-                }
-                $allowed = ['none', 'basic', 'attca', 'self', 'ecdaa', 'unknown', 'internal', 'hybrid', 'direct'];
-                $values = array_map('trim', explode(',', $this->$attribute));
-                foreach ($values as $value) {
-                    if (!in_array($value, $allowed)) {
-                        $this->addError($attribute, "Invalid attestation format: $value");
-                    }
-                }
-            }],
+            ['attestation_format', 'in', 'range' => ['none', 'basic', 'attca', 'self', 'ecdaa', 'unknown', 'internal', 'hybrid', 'direct']],
             [['user_id'], 'integer'],
             [['id'], 'integer'],
             [['sign_count'], 'integer'],

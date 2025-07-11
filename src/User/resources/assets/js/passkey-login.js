@@ -41,6 +41,8 @@
                 alert('Error: ' + (initData.message || 'Initial data isn\'t valid'));
                 return;
             }
+
+
             const publicKey = {
                 challenge: base64UrlToUint8Array(initData.challenge),
                 timeout: 60000,

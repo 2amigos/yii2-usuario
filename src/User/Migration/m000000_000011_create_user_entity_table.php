@@ -23,16 +23,34 @@ class m000000_000011_create_user_entity_table extends Migration
      */
     public function safeUp()
     {
-        $this->addColumn('{{%user}}', 'auth_tf_type', $this->string(20)->after('auth_tf_enabled')->null());
-        $this->addColumn('{{%user}}', 'auth_tf_mobile_phone', $this->string(20)->after('auth_tf_type')->null());
+        $this->createTable('{{%user_passkeys}}', [
+            'id' => $this->primaryKey(),
+            'user_id' => $this->integer()->notNull(),
+            'credential_id' => $this->string()->notNull(),
+            'public_key' => $this->text()->notNull(),
+            'sign_count' => $this->bigInteger()->notNull()->defaultValue(0),
+            'type' => $this->string(32)->notNull(),
+            'attestation_format' => $this->string(64)->notNull(),
+            'device_id' => $this->string(128)->null(),
+            'created_at' => $this->timestamp()->defaultExpression('CURRENT_TIMESTAMP'),
+            'last_used_at' => $this->timestamp()->null(),
+            'name' => $this->string(128)->null(),
+        ]);
+
+        $this->addForeignKey(
+            'fk_user_passkeys_user',
+            '{{%user_passkeys}}',
+            'user_id',
+            '{{%user}}',
+            'id',
+            'CASCADE',
+            'RESTRICT'
+        );
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function safeDown()
     {
-        $this->dropColumn('{{%user}}', 'auth_tf_type');
-        $this->dropColumn('{{%user}}', 'auth_tf_mobile_phone');
+        $this->dropForeignKey('fk_user_passkeys_user', '{{%user_passkeys}}');
+        $this->dropTable('{{%user_passkeys}}');
     }
 }

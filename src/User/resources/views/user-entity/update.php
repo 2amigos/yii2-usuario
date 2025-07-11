@@ -38,6 +38,7 @@ $this->title = 'Update Passkey: ' . Html::encode($model->name);
     <div class="form-group">
         <?= Html::submitButton('Save Changes', ['class' => 'btn btn-primary']) ?>
         <?= Html::a('Cancel', ['index-passkey'], ['class' => 'btn btn-secondary']) ?>
+
     </div>
 
     <?php ActiveForm::end(); ?>
