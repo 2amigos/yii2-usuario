@@ -158,6 +158,14 @@ class SecurityController extends Controller
 
                 $this->trigger(FormEvent::EVENT_AFTER_LOGIN, $event);
 
+
+                if (!Yii::$app->user->isGuest &&
+                    isset($this->module->enablePasskeyLogin) &&
+                    \Da\User\Model\UserEntity::find()->where(['user_id' => Yii::$app->user->id])->count() === 0) {
+                    Yii::$app->session->set('passkey_pop-up', true);
+
+                }
+
                 return $this->goBack();
             }
             $this->trigger(FormEvent::EVENT_FAILED_LOGIN, $event);

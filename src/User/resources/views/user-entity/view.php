@@ -23,7 +23,23 @@ use yii\helpers\Html;
             },
         ],
         'created_at',
-        'expires_on',
+        [
+            'label' => 'Expiration date',
+            'value' => function ($model) {
+                $module = Yii::$app->getModule('user');
+                $maxAgeDays = $module->maxPasskeyAge;
+                if($model->last_used_at===null){
+                    $lastUsed = new \DateTime($model->created_at);
+                    $expirationDate = (clone $lastUsed)->modify("+{$maxAgeDays} days");
+                    return $expirationDate->format("Y-m-d");
+                }else{
+                    $lastUsed = new \DateTime($model->last_used_at);
+                    $expirationDate = (clone $lastUsed)->modify("+{$maxAgeDays} days");
+                    return $expirationDate->format("Y-m-d");
+                }
+
+            }
+        ],
 
         [
             'class' => 'yii\grid\ActionColumn',
@@ -58,4 +74,6 @@ use yii\helpers\Html;
         ],
     ],
 ]);
+
+
 ?>

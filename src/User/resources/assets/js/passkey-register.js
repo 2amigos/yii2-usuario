@@ -84,8 +84,16 @@ jQuery(function ($) {
 
             return true;
         } catch (err) {
-            alert('There was an error during the registration of the passkey: ' + err.message);
+            console.error(err);
+
+            if (err.name === 'AbortError') {
+            } else {
+                alert('There was an error during the registration of the passkey: ' + err.message);
+                location.reload();
+            }
+
             $(this).data('creating-credentials', undefined);
+
             return false;
         }
 

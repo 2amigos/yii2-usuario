@@ -3,6 +3,10 @@
 namespace Da\User\Helper;
 
 
+use Da\User\Model\UserEntity;
+use Da\User\Module;
+use Yii;
+
 class UserEntityHelper
 {
     public function base64UrlDecode(string $data): string

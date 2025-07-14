@@ -3,6 +3,7 @@
 namespace Da\User\Model;
 
 
+use Da\User\Query\UserEntityQuery;
 use Yii;
 use yii\db\ActiveRecord;
 
@@ -86,5 +87,13 @@ class UserEntity extends ActiveRecord
     public function getUser()
     {
         return $this->hasOne(User::class, ['id' => 'user_id']);
+    }
+
+    /**
+     * @return UserEntityQuery
+     */
+    public static function find()
+    {
+        return new UserEntityQuery(static::class);
     }
 }

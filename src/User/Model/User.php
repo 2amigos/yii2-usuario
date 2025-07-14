@@ -60,6 +60,7 @@ use yii\web\IdentityInterface;
  *                                                         Defined relations:
  * @property SocialNetworkAccount[] $socialNetworkAccounts
  * @property Profile                $profile
+ * @property UserEntity[]           $userEntities
  */
 class User extends ActiveRecord implements IdentityInterface
 {
@@ -336,6 +337,14 @@ class User extends ActiveRecord implements IdentityInterface
     public function getProfile()
     {
         return $this->hasOne($this->getClassMap()->get(Profile::class), ['user_id' => 'id']);
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getUserEntities()
+    {
+        return $this->hasMany(UserEntity::class, ['user_id' => 'id']);
     }
 
     /**

@@ -234,7 +234,6 @@ class Module extends BaseModule
         'passkey/update' => 'user-entity/update-passkey',
         'passkey/delete' => 'user-entity/delete-passkey',
         'passkey/pop-up' => 'user-entity/popup-passkey',
-
     ];
     /**
      * @var string
@@ -335,15 +334,17 @@ class Module extends BaseModule
     /**
      * @var integer Time before the passkey will be eliminated since the last use.
      * Usally this time is set between 6 and 12 months.
-     * This variable counts how many months before this will happen.
+     * This variable counts how many days before this will happen.
      */
-    public $maxPasskeyAge = 12;
+    public $maxPasskeyAge = 365;
 
     /**
      * @var integer The maximum number of passkey for user.
      * Usally this value is set between 5 and 10 passkeys.
      */
     public $maxPasskeysForUser = 10;
+
+    public $passkeyExpirationTimeLimit = 30;
 
     /**
      * @return string with the hit to be used with the give consent checkbox

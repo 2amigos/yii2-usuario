@@ -2,39 +2,26 @@
 
 namespace Da\User\Controller;
 
+use yii\helpers\FormatConverter;
 use Da\User\Helper\UserEntityHelper;
 use Da\User\Module;
-use Nyholm\Psr7\Factory\Psr17Factory;
-use Nyholm\Psr7Server\ServerRequestCreator;
 use Webauthn\CeremonyStep\CeremonyStepManager;
-use Webauthn\CeremonyStep\CeremonyStepManagerFactory;
-use Webauthn\CeremonyStep;
 use Webauthn\AuthenticatorAssertionResponseValidator;
 use Webauthn\CeremonyStep\CheckAllowedOrigins;
 use Webauthn\TrustPath\EmptyTrustPath;
-use app\helpers\RequestConverter;
 use Da\User\Model\UserEntity;
 use Da\User\Model\User;
 use Da\User\Repository\MyPublicKeyCredentialSourceRepository;
-use Symfony\Component\Uid\Uuid as SymfonyUuid;
-use Webauthn\AuthenticatorResponse;
 use Webauthn\CollectedClientData;
 use Webauthn\PublicKeyCredentialUserEntity;
 use Webauthn\PublicKeyCredentialRequestOptions;
 use Webauthn\AuthenticatorAssertionResponse;
-use Webauthn\PublicKeyCredentialDescriptor;
-use Webauthn\PublicKeyCredential;
 use Webauthn\AuthenticatorData;
 use Yii;
-use Ramsey\Uuid\Uuid;
 use yii\helpers\ArrayHelper;
 use yii\helpers\Html;
 use yii\helpers\Json;
-use yii\helpers\Url;
 use yii\web\Controller;
-use yii\web\NotFoundHttpException;
-
-
 
 class UserEntityController extends Controller
 {
@@ -166,7 +153,7 @@ class UserEntityController extends Controller
         return $dataProvider;
     }
 
-    //TODO finire auto eliminazione passkey vecchi, logica+popup
+
     public function deleteExpiredPasskeys(){
         /** @var Module $module */
 
@@ -191,8 +178,6 @@ class UserEntityController extends Controller
     {
         return $this->render('popup-passkey');
     }
-
-
 
     public function actionStorePasskey()
     {
@@ -235,6 +220,7 @@ class UserEntityController extends Controller
 
         return $this->render('create', ['model' => $model]);
     }
+
 
     public function actionLoginPasskey()
     {
@@ -299,8 +285,6 @@ class UserEntityController extends Controller
             $rpIdHash = substr($authenticatorDataBytes, 0, 32);  //this must match the first 32 byte of authenticatorDataBytes
             $flags = $authenticatorDataBytes[32]; //state of the authenticator device embedded at the 33th byte of authenticatorDataBytes
 
-
-
             if ($rpIdHash !== $expectedRpIdHash) {
                 throw new \RuntimeException('rpId hash mismatch!');
             }
@@ -318,8 +302,9 @@ class UserEntityController extends Controller
                 $clientDataJSON, //raw
                 $clientDataArray); //formatted
 
+            //finding the user using his credential id
             $model = UserEntity::findOne(['credential_id' => $credentialIdB64]);
-            $userHandle = (string) $model->user_id;
+            $userHandle = (string) $model->user_id; //and then the FK for the table user of usuario
 
             $assertionResponse = new AuthenticatorAssertionResponse(
                 $collectedClientData,
@@ -328,39 +313,17 @@ class UserEntityController extends Controller
                 $userHandle,
             );
 
-            $credential = new PublicKeyCredential(
-                PublicKeyCredentialDescriptor::CREDENTIAL_TYPE_PUBLIC_KEY,
-                $credentialId,
-                $assertionResponse
-            );
-            $validator = $this->createAssertionValidator();
-
-            $ceremonyFactory = new CeremonyStepManagerFactory();
-            $ceremonyStepManager = $ceremonyFactory->requestCeremony();
+            $validator = $this->createAssertionValidator(); //validation of the address (only in development)
             $repository = new MyPublicKeyCredentialSourceRepository();
 
             try {
-                $psr17Factory = new Psr17Factory();
-                $creator = new ServerRequestCreator(
-                    $psr17Factory,
-                    $psr17Factory,
-                    $psr17Factory,
-                    $psr17Factory
-                );
-
-
-
-                $serverRequest = $creator->fromGlobals();
-
-
                 $publicKeyCredentialSource = $repository->findOneByCredentialId($this->userEntityHelper->utf8ize($credentialIdB64)); //must use base64 format, this must match the credential_id row
                 if ($publicKeyCredentialSource === null) {
                     return $this->asJson([
                         'success' => false,
-                        'message' => 'Credenziale non trovata'
+                        'message' => 'Credential not found'
                     ]);
                 }
-
 
                 $requestOptions = new PublicKeyCredentialRequestOptions(
                     $this->userEntityHelper->base64UrlDecode($challengeBase64),
@@ -370,7 +333,6 @@ class UserEntityController extends Controller
                     100,
                     null,
                 );
-
 
                 $publicKeyCredentialSource = $validator->check(
                     $publicKeyCredentialSource,
@@ -383,10 +345,10 @@ class UserEntityController extends Controller
                 $userHandle = $publicKeyCredentialSource->userHandle;
                 $user = User::findOne($userHandle);
                 if (!$user) {
-                    Yii::error('Utente non trovato per handle: ' . $publicKeyCredentialSource->userHandle, __METHOD__);
+                    Yii::error('User not found for handle: ' . $publicKeyCredentialSource->userHandle, __METHOD__);
                     return $this->asJson([
                         'success' => false,
-                        'message' => 'Utente non trovato'
+                        'message' => 'User not found'
                     ]);
                 }
 
@@ -395,14 +357,13 @@ class UserEntityController extends Controller
                 $passkey->sign_count = $passkey->sign_count+1;
                 $passkey->last_used_at = date('Y-m-d H:i:s');
                 $passkey->save(false, ['sign_count', 'last_used_at']);
-
                 return $this->asJson(['success' => true]);
 
             } catch (\Throwable $e) {
                 Yii::error('Login passkey error: ' . $e->getMessage(), __METHOD__);
                 return $this->asJson([
                     'success' => false,
-                    'message' => 'Errore di verifica WebAuthn',
+                    'message' => 'Verification error of WebAuthn',
                     'error' => $e->getMessage()
                 ]);
             }
@@ -410,20 +371,23 @@ class UserEntityController extends Controller
         return $this->render('login-passkey');
     }
 
+    //this function is fundamental because while developing (unless you're working on an https application) you must validate your server
+    //adress to be trusted by the web-authn library
     function createAssertionValidator(): AuthenticatorAssertionResponseValidator
     {
         $ceremonyStepManager = new CeremonyStepManager([
             new CheckAllowedOrigins([Yii::$app->request->hostName], false),
         ]);
-
         return new AuthenticatorAssertionResponseValidator($ceremonyStepManager);
     }
 
+    //this function puts the challenge as a session variable
     private function storeChallenge(?string $challengeBase64): void
     {
         Yii::$app->session->set('webauthn_challenge', $challengeBase64);
     }
 
+    //this function is for retrive the challenge saved in the session
     protected function retrieveChallenge(): ?string
     {
         return Yii::$app->session->get('webauthn_challenge') ?: null;
