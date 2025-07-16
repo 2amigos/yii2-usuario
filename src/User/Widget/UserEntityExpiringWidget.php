@@ -18,7 +18,7 @@ class UserEntityExpiringWidget extends Widget
         /** @var User $user */
         $module = $this->getModule();
         $user = Yii::$app->user->identity;
-        if(!isset($user) || $module->enablePasskeyExpiringNotification){
+        if(!isset($user) || !$module->enablePasskeyExpiringNotification){
             return '';
         } else{
             $expiringPasskeys = $user->getUserEntities()->expiring()->all();
