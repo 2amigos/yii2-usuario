@@ -32,6 +32,8 @@ $this->registerCss(<<<CSS
 }
 CSS);
 
+$userId = Yii::$app->user->id ?? 'guest';
+
 $js = <<<JS
 function getCookie(name) {
     const value = "; " + document.cookie;
@@ -50,10 +52,11 @@ function setCookie(name, value, days) {
 }
 
 $(document).ready(function() {
-    if (!getCookie("hidePasskeyToast")) {
+    const cookieName = "hidePasskeyToast_{$userId}";
+
+    if (!getCookie(cookieName)) {
         $('#passkeyToast').fadeIn();
 
-        // Chiude automaticamente dopo 6 secondi
         setTimeout(function() {
             $('#passkeyToast').fadeOut();
         }, 6000);
@@ -61,7 +64,7 @@ $(document).ready(function() {
 
     $('#dontShowAgain').on('change', function() {
         if ($(this).is(':checked')) {
-            setCookie("hidePasskeyToast", "1", 365);
+            setCookie(cookieName, "1", 365);
         }
     });
 
@@ -74,21 +77,20 @@ JS;
 $this->registerJs($js);
 ?>
 
-<!-- Passkey Toast Notification -->
 <div id="passkeyToast">
     <div style="display: flex; justify-content: space-between; align-items: start;">
         <div style="flex-grow: 1;">
-            <strong>Use a Passkey</strong>
-            <p style="margin: 5px 0 10px;">Create a passkey for faster, safer login.</p>
-            <?= Html::a('Create now', ['/user/user-entity/create-passkey'], [
+            <strong><?=Yii::t('usuario','Use a Passkey')?></strong>
+            <p style="margin: 5px 0 10px;"><?=Yii::t('usuario','Create a passkey for a faster and safer login.')?></p>
+            <?= Html::a(Yii::t('usuario','Create now'), ['/user/user-entity/create-passkey'], [
                 'class' => 'btn btn-success btn-sm mb-2',
                 'style' => 'font-size: 13px;',
             ]) ?>
             <div class="form-check" style="font-size: 12px;">
                 <input type="checkbox" class="form-check-input" id="dontShowAgain">
-                <label class="form-check-label" for="dontShowAgain">Don't show this again</label>
+                <label class="form-check-label" for="dontShowAgain"><?=Yii::t('usuario','Don\'t show this again')?></label>
             </div>
         </div>
-        <button type="button" id="closePasskeyToast" aria-label="Close">&times;</button>
+        <button type="button" id="closePasskeyToast" aria-label=<?=Yii::t('usuario','Close')?>>&times;</button>
     </div>
 </div>

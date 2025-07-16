@@ -7,7 +7,6 @@ use Da\User\Traits\ModuleAwareTrait;
 use Yii;
 use yii\db\ActiveQuery;
 
-
 class UserEntityQuery extends ActiveQuery
 {
     use ModuleAwareTrait;

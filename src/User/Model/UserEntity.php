@@ -2,7 +2,6 @@
 
 namespace Da\User\Model;
 
-
 use Da\User\Query\UserEntityQuery;
 use Yii;
 use yii\db\ActiveRecord;
@@ -15,58 +14,54 @@ use yii\db\ActiveRecord;
  * @property string $credential_id
  * @property string $public_key
  * @property int $sign_count
- *  @property string $attestation_format
+ * @property string $attestation_format
  * @property string|null $device_id
  * @property string $created_at
  * @property string|null $last_used_at
  * @property string|null $name
+ * @property User $r_user
  */
 class UserEntity extends ActiveRecord
 {
     public static function tableName()
     {
-        return '{{%user_passkeys}}';
+        return '{{%user_entity}}';
     }
 
     public function rules()
     {
         return [
             [['sign_count'], 'default', 'value' => 0],
-            [['user_id', 'credential_id', 'public_key', 'sign_count', 'type', 'attestation_format', 'id'], 'required'],
-            ['attestation_format', 'string', 'max' => 64],
+            [['user_id', 'credential_id', 'public_key', 'sign_count', 'type', 'attestation_format', 'id', 'name'], 'required'],
             ['attestation_format', 'default', 'value' => null],
-          /*  ['attestation_format', 'in', 'range' => ['none', 'basic', 'attca', 'self', 'ecdaa', 'unknown', 'internal', 'hybrid', 'direct']],*/
-            [['user_id'], 'integer'],
-            [['id'], 'integer'],
-            [['sign_count'], 'integer'],
+            [['user_id','id','sign_count'], 'integer'],
             [['public_key'], 'string'],
             [['created_at', 'last_used_at'], 'safe'],
             [['credential_id'], 'string', 'max' => 255],
             [['type'], 'string', 'max' => 32],
             [['attestation_format'], 'string', 'max' =>64],
-            [['device_id'], 'string', 'max' => 128],
-            [['name'], 'string', 'max' => 128],
+            [['device_id', 'name'], 'string', 'max' => 128],
             [['name'], 'string', 'min' => 4],
-            ['name', 'required'],
-            ['name', 'match', 'pattern' => '/^[a-zA-Z0-9 ]+$/', 'message' => 'The name can contain only letters, numbers, and spaces.'],
-            [['credential_id'], 'unique'],
+            ['name', 'match', 'pattern' => '/^[a-zA-Z0-9 ]+$/', 'message' => Yii::t('usuario', 'The name can contain only letters, numbers, and spaces.')],
+            [['credential_id', 'id'], 'unique'],
+            ['attestation_format', 'in', 'range' => ['none', 'packed', 'android-key', 'tpm', 'direct', 'unknown'], 'message' => Yii::t('usuario', 'Your attestation format is invalid and is not supported.')],
         ];
     }
 
     public function attributeLabels()
     {
         return [
-            'id' => 'ID',
-            'user_id' => 'User ID',
-            'credential_id' => 'Credential ID',
-            'public_key' => 'Public Key',
-            'sign_count' => 'Sign Count',
-            'type' => 'Type',
-            'attestation_format' => 'Attestation Format',
-            'device_id' => 'Device ID',
-            'created_at' => 'Created At',
-            'last_used_at' => 'Last Used At',
-            'name' => 'Name',
+            'id' => Yii::t('usuario', 'ID'),
+            'user_id' => Yii::t('usuario', 'User ID'),
+            'credential_id' => Yii::t('usuario', 'Credential ID'),
+            'public_key' => Yii::t('usuario', 'Public Key'),
+            'sign_count' => Yii::t('usuario', 'Sign Count'),
+            'type' => Yii::t('usuario', 'Type'),
+            'attestation_format' => Yii::t('usuario', 'Attestation Format'),
+            'device_id' => Yii::t('usuario', 'Device ID'),
+            'created_at' => Yii::t('usuario', 'Created At'),
+            'last_used_at' => Yii::t('usuario', 'Last Used At'),
+            'name' => Yii::t('usuario', 'Name'),
         ];
     }
 
@@ -80,13 +75,6 @@ class UserEntity extends ActiveRecord
             return json_last_error() === JSON_ERROR_NONE ? $decoded : [];
         }
         return [];
-    }
-    /**
-     * Gets the user related to this credential.
-     */
-    public function getUser()
-    {
-        return $this->hasOne(User::class, ['id' => 'user_id']);
     }
 
     /**

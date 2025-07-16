@@ -2,12 +2,12 @@
 
 use Da\User\Module;
 use yii\helpers\Html;
-use yii\web\View;
 use yii\widgets\ActiveForm;
 use yii\helpers\Json;
 use Da\User\resources\assets\PasskeyAsset;
 use yii\helpers\Url;
-use CBOR\Decoder;
+use Da\User\Service\UserEntityTraductionService;
+
 
 
 /** @var yii\web\View $this */
@@ -15,10 +15,13 @@ use CBOR\Decoder;
 /** @var Da\User\Model\UserEntity $model */
 
 
+$jsTranslations = UserEntityTraductionService::translationPasskeyRegisterJs();
 
-
+//including the traductions for the asset passkey-register.js
+?><script>window.PasskeyRegisterMessages = <?= json_encode($jsTranslations, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES) ?>;</script>
+<?php
 $module = Yii::$app->getModule('user');
-$this->title = 'Create a new passkey';
+$this->title = Yii::t('usuario','Create a new passkey');
 
 
 $this->registerJsVar('userId', Json::htmlEncode((string)Yii::$app->user->id));
@@ -43,7 +46,7 @@ JS);
 
 <?php
 if($count == $module->maxPasskeysForUser){
-    ?> <p>Sorry, you are allowed to have a maximum of <?= Html::encode($module->maxPasskeysForUser) ?> passkeys.</p> <?php
+    ?> <p><?= Yii::t('usuario','Sorry, you are allowed to have a maximum of ') . Html::encode($module->maxPasskeysForUser) . Yii::t('usuario','passkeys')?> </p> <?php
 }else{
 ?>
 <div class="user-entity-form">
@@ -54,54 +57,17 @@ if($count == $module->maxPasskeysForUser){
         'method' => 'post',
     ]); ?>
 
-    <?=$form->field($model, 'name')->textInput(['maxlength' => true])->label('Name for passkey') ?>
+    <?=$form->field($model, 'name')->textInput(['maxlength' => true])->label(Yii::t('usuario','Name for passkey')); ?>
     <?= Html::activeHiddenInput($model, 'id', ['id' => 'uuid_id']) ?>
     <?= Html::activeHiddenInput($model, 'credential_id', ['id' => 'credential_id']) ?>
     <?= Html::activeHiddenInput($model, 'public_key', ['id' => 'public_key']) ?>
     <?= Html::activeHiddenInput($model, 'attestation_format', ['id' => 'attestation_format']) ?>
     <?= Html::activeHiddenInput($model, 'device_id', ['id' => 'device_id']) ?>
-
     <div class="form-group">
         <?= Html::submitButton('Register Passkey', ['class' => 'btn btn-success', 'id' => 'submit-button']) ?>
     </div>
-
-
     <?php ActiveForm::end();?>
-
 </div>
 
 <?php }
 ?>
-
-
-<?php
-/*
- *
- * TODO CBOR LATO CLIENT E SERVER
- *
- * function base64UrlDecode(string $data): string {
-    $remainder = strlen($data) % 4;
-    if ($remainder) {
-        $data .= str_repeat('=', 4 - $remainder);
-    }
-    return base64_decode(strtr($data, '-_', '+/'));
-}
-
-function getAttestationFormat(string $attestationObjectBase64Url): string {
-    $attestationObject = base64UrlDecode($attestationObjectBase64Url);
-
-    $decoder = new Decoder();
-    $decodedCbor = $decoder->decode($attestationObject);
-
-    $fmt = $decodedCbor->getNormalizedData()['fmt'] ?? null;
-
-    if (!$fmt) {
-        throw new Exception("Campo 'fmt' mancante nell'attestationObject.");
-    }
-
-    return $fmt;
-}*/
-
-
-
-

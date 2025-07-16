@@ -38,9 +38,11 @@
                 );
             const initData = await resInit.json();
             if (!initData.success) {
-                alert('Error: ' + (initData.message || 'Initial data isn\'t valid'));
+                const msg = initData.message || window.PasskeyLoginMessages.invalidData;
+                alert(window.PasskeyLoginMessages.errorMsg.replace('{msg}', msg));
                 return;
             }
+
 
 
             const publicKey = {
@@ -83,17 +85,18 @@
                 result = await res.json();
             } catch (e) {
                 const text = await res.text();
-                alert('Server error: invalid response');
+                alert(window.PasskeyLoginMessages.invalidRes);
                 return;
             }
 
             if (result.success) {
                 window.location.reload();
             } else {
-                alert('Authentication failed: ' + (result.message || 'Unknown error'));
+                const msg = result.message || window.PasskeyLoginMessages.failedAuthUnk;
+                alert(window.PasskeyLoginMessages.failedAuth.replace('{msg}', msg));
             }
         } catch (err) {
-            alert("Error during the authentication with a passkey.");
+            alert(window.PasskeyLoginMessages.errorGen);
         }
     }
 }));

@@ -329,7 +329,8 @@ class Module extends BaseModule
      * @var boolean Whether to enable a modal that remembers the user that one (or more) of his
      * passkeys are expiring. This message will be shown after the login.
      */
-    public $enablePasskeyNotification = false;
+    public $enablePasskeyExpiringNotification = false;
+
 
     /**
      * @var integer Time before the passkey will be eliminated since the last use.
@@ -344,6 +345,10 @@ class Module extends BaseModule
      */
     public $maxPasskeysForUser = 10;
 
+    /**
+     * @var integer The number of days before the user receives an alert saying that his passkey is expiring.
+     * Usually this value is set between 15 and 30 days.
+     */
     public $passkeyExpirationTimeLimit = 30;
 
     /**

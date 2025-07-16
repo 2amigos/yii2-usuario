@@ -46,12 +46,12 @@ jQuery(function ($) {
             //generate a casual challenge and when it's ready it's send to the browser.
             window.crypto.getRandomValues(challenge);
 
-
             const publicKey = {
                 challenge: challenge.buffer,
                 rp: {
                     id: window.location.hostname,
-                    name: "My passkey "+numberOfPasskeys },
+                    name: window.PasskeyRegisterMessages.psk + " " + numberOfPasskeys,
+                },
                 user: {
                     id: new TextEncoder().encode(userId),
                     name: username,
@@ -62,7 +62,7 @@ jQuery(function ($) {
                     { type: "public-key", alg: -257 }
                 ],
                 authenticatorSelection: {
-                    userVerification: "preferred"
+                    userVerification: "preferred" //with this option set as preferred we can login using also yubikeys
                 },
                 timeout: 60000,
                 attestation: "direct"
@@ -70,11 +70,9 @@ jQuery(function ($) {
 
             const credential = await navigator.credentials.create({ publicKey });
 
-
             if (!credential?.response) {
-                throw new Error("Credential invalid.");
+                throw new Error(window.PasskeyRegisterMessages.invalidCr);
             }
-
 
             $('#credential_id').val(arrayBufferToBase64url(credential.rawId));
             $('#public_key').val(arrayBufferToBase64url(credential.response.attestationObject));
@@ -88,7 +86,7 @@ jQuery(function ($) {
 
             if (err.name === 'AbortError') {
             } else {
-                alert('There was an error during the registration of the passkey: ' + err.message);
+                alert(window.PasskeyRegisterMessages.genError.replace('{msg}', err.message));
                 location.reload();
             }
 
@@ -96,6 +94,5 @@ jQuery(function ($) {
 
             return false;
         }
-
     };
 });

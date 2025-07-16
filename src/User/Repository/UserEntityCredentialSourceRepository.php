@@ -2,35 +2,22 @@
 
 namespace Da\User\Repository;
 
-
-use Da\User\Controller\UserEntityController;
 use Da\User\Helper\UserEntityHelper;
 use Da\User\Model\UserEntity;
 use Webauthn\AttestationStatement\AttestationObjectLoader;
 use Webauthn\AttestationStatement\AttestationStatementSupportManager;
-use Webauthn\AuthenticatorAttestationResponse;
 use Webauthn\AuthenticatorData;
 use Webauthn\Denormalizer\TrustPathDenormalizer;
 use Webauthn\PublicKeyCredentialSource;
 use Webauthn\AttestedCredentialData;
-use Webauthn\TrustPath\EmptyTrustPath;
-use Webauthn\TrustPath\TrustPath;
 use Symfony\Component\Uid\Uuid;
-use Webauthn\MetadataService\Statement\MetadataStatement;
-use Webauthn\MetadataService\Service\ChainedMetadataServices;
-use Webauthn\MetadataService\CertificateChain\PhpCertificateChainValidator;
-use Symfony\Component\Cache\Adapter\FilesystemAdapter;
 use Webauthn\AttestationStatement\PackedAttestationStatementSupport;
 use Cose\Algorithm;
 use Webauthn\AttestationStatement\NoneAttestationStatementSupport;
-use Webauthn\AttestationStatement\FidoU2fAttestationStatementSupport;
 use Webauthn\AttestationStatement\AndroidKeyAttestationStatementSupport;
 use Webauthn\AttestationStatement\TPMAttestationStatementSupport;
-use Webauthn\AttestationStatement\AppleAttestationStatementSupport;
-use Webauthn\MetadataService\MetadataStatementRepository;
 
-
-class MyPublicKeyCredentialSourceRepository
+class UserEntityCredentialSourceRepository
 {
     public $userEntityHelper;
 

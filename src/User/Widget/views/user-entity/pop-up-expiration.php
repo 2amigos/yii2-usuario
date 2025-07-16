@@ -78,10 +78,8 @@ JS
             continue;
         }
         $popupId = $passkey['id'];
-
         ?>
-
-        <div class="popup" data-popup-id="<?= Html::encode($popupId) ?>" style="top: <?= $i*120 ?>px; margin-top: -300px;">
+        <div class="popup" data-popup-id="<?= Html::encode($popupId) ?>" style="top: <?= 20 + $i * 140 ?>px;">
             <span class="close-btn">×</span>
             <strong>Passkey: <?= Html::encode($passkey['name']) ?></strong><br>
             Expires in <strong><?= Yii::$app->formatter->asDuration($passkey['daysLeft'] * 86400) ?></strong>

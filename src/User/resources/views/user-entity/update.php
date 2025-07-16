@@ -5,7 +5,7 @@ use yii\widgets\ActiveForm;
 /** @var yii\web\View $this */
 /** @var Da\User\Model\UserEntity $model */
 
-$this->title = 'Update Passkey: ' . Html::encode($model->name);
+$this->title = Yii::t('usuario','Update Passkey: ') . Html::encode($model->name);
 ?>
 
 <h1><?= Html::encode($this->title) ?></h1>
@@ -19,7 +19,6 @@ $this->title = 'Update Passkey: ' . Html::encode($model->name);
         <div class="alert alert-danger"><?= Yii::$app->session->getFlash('error') ?></div>
     <?php endif; ?>
 
-
     <table class="table table-bordered">
         <tbody>
         <tr><th>Device ID</th><td><?= Html::encode($model->device_id) ?></td></tr>
@@ -30,17 +29,12 @@ $this->title = 'Update Passkey: ' . Html::encode($model->name);
     </table>
 
     <?php $form = ActiveForm::begin(); ?>
-
-
-
     <?= $form->field($model, 'name')->textInput(['maxlength' => true]) ?>
-
     <div class="form-group">
-        <?= Html::submitButton('Save Changes', ['class' => 'btn btn-primary']) ?>
-        <?= Html::a('Cancel', ['index-passkey'], ['class' => 'btn btn-secondary']) ?>
+        <?= Html::submitButton(Yii::t('usuario','Save Changes') , ['class' => 'btn btn-primary']) ?>
+        <?= Html::a(Yii::t('usuario','Cancel') , ['index-passkey'], ['class' => 'btn btn-secondary']) ?>
 
     </div>
-
     <?php ActiveForm::end(); ?>
 
 </div>

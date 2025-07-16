@@ -10,6 +10,7 @@
  */
 
 use Da\User\resources\assets\PasskeyAsset;
+use Da\User\Service\UserEntityTraductionService;
 use Da\User\Widget\ConnectWidget;
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
@@ -20,6 +21,10 @@ use yii\widgets\ActiveForm;
  * @var \Da\User\Module         $module
  */
 
+$jsTranslations = UserEntityTraductionService::translationPasskeyLoginJs();
+//including the traductions for the asset passkey-login.js
+?><script>window.PasskeyLoginMessages = <?= json_encode($jsTranslations, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES) ?>;</script>
+<?php
 $this->title = Yii::t('usuario', 'Sign in');
 $this->params['breadcrumbs'][] = $this->title;
 
@@ -86,7 +91,7 @@ JS
                     ['class' => 'btn btn-primary btn-block', 'tabindex' => '3']
                 ) ?>
                 <?php if ($module->enablePasskeyLogin): ?>
-                <?= Html::a('Passkey Login', ['/user/user-entity/login-passkey'], ['id' => 'passkey-login-btn', 'class' => 'btn btn-primary btn-block','tabindex' => '7']) ?>
+                <?= Html::a(Yii::t('usuario','Passkey Login'), ['/user/user-entity/login-passkey'], ['id' => 'passkey-login-btn', 'class' => 'btn btn-primary btn-block','tabindex' => '7']) ?>
                 <?php endif ?>
 
                 <?php ActiveForm::end(); ?>

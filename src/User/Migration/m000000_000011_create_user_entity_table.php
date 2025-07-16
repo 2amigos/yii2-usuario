@@ -14,7 +14,7 @@ namespace Da\User\Migration;
 use yii\db\Migration;
 
 /**
- * Handles adding columns to table `{{%user}}`.
+ * Handles the creation of the table `{{%user_entity}}` that allows user to use passkeys for logging in.
  */
 class m000000_000011_create_user_entity_table extends Migration
 {
@@ -23,7 +23,7 @@ class m000000_000011_create_user_entity_table extends Migration
      */
     public function safeUp()
     {
-        $this->createTable('{{%user_passkeys}}', [
+        $this->createTable('{{%user_entity}}', [
             'id' => $this->primaryKey(),
             'user_id' => $this->integer()->notNull(),
             'credential_id' => $this->string()->notNull(),
@@ -38,8 +38,8 @@ class m000000_000011_create_user_entity_table extends Migration
         ]);
 
         $this->addForeignKey(
-            'fk_user_passkeys_user',
-            '{{%user_passkeys}}',
+            'fk_user_entity_user',
+            '{{%user_entity}}',
             'user_id',
             '{{%user}}',
             'id',
@@ -50,7 +50,7 @@ class m000000_000011_create_user_entity_table extends Migration
 
     public function safeDown()
     {
-        $this->dropForeignKey('fk_user_passkeys_user', '{{%user_passkeys}}');
-        $this->dropTable('{{%user_passkeys}}');
+        $this->dropForeignKey('fk_user_entity_user', '{{%user_entity}}');
+        $this->dropTable('{{%user_entity}}');
     }
 }

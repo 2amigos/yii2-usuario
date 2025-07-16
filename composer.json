@@ -40,7 +40,7 @@
     "minimum-stability": "dev",
     "prefer-stable": true,
     "require": {
-        "php": ">=8.0",
+        "php": ">=8.2",
         "ext-json": "*",
         "ext-gd": "*",
         "2amigos/yii2-selectize-widget": "^1.1",
@@ -61,7 +61,7 @@
         "2amigos/qrcode-library": "Needed if you want to enable 2FA with QR Code generation. Require version ^2 or ^3"
     },
     "require-dev": {
-        "php": ">=8.0",
+        "php": ">=8.2",
         "2amigos/2fa-library": "^2.0|^3.0",
         "2amigos/qrcode-library": "^2.0|^3.0",
         "friendsofphp/php-cs-fixer": "^3",
