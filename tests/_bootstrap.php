@@ -3,18 +3,27 @@
 define('YII_ENV', 'test');
 defined('YII_DEBUG') or define('YII_DEBUG', true);
 
-// Search for autoload, since performance is irrelevant and usability isn't!
-$dir = __DIR__ . '/..';
-while (!file_exists($dir . '/vendor/autoload.php')) {
-    if ($dir == dirname($dir)) {
-        throw new \Exception('Failed to locate autoload.php');
+// Percorsi per il vendor/autoload.php della tua estensione
+$paths = [
+    __DIR__ . '/vendor/autoload.php', // vendor della tua estensione (cartella corrente)
+    '/app/vendor/autoload.php',        // fallback globale Docker
+];
+
+$found = false;
+
+foreach ($paths as $autoloadPath) {
+    if (file_exists($autoloadPath)) {
+        require_once $autoloadPath;
+        define('VENDOR_DIR', dirname($autoloadPath));
+        $found = true;
+        break;
     }
-    $dir = dirname($dir);
 }
 
-$vendor = $dir . '/vendor';
+if (!$found) {
+    throw new \Exception('Failed to locate autoload.php');
+}
 
-define('VENDOR_DIR', $vendor);
-
-require_once $vendor . '/autoload.php';
-require $vendor . '/yiisoft/yii2/Yii.php';
+if (!class_exists('Yii')) {
+    require_once VENDOR_DIR . '/yiisoft/yii2/Yii.php';
+}

@@ -1,5 +1,6 @@
 <?php
 
+
 /*
  * This file is part of the 2amigos/yii2-usuario project.
  *
@@ -44,6 +45,10 @@ $networksVisible = count(Yii::$app->authClientCollection->clients) > 0;
                 'items' => [
                     ['label' => Yii::t('usuario', 'Profile'), 'url' => ['/user/settings/profile']],
                     ['label' => Yii::t('usuario', 'Account'), 'url' => ['/user/settings/account']],
+                    [
+                        'label' => Yii::t('usuario', 'Passkey'),
+                        'url' => ['/user/user-entity/index-passkey']],
+                        'visible' => $module->enablePasskeyLogin,
                     [
                         'label' => Yii::t('usuario', 'Session history'),
                         'url' => ['/user/settings/session-history'],
