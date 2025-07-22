@@ -47,8 +47,9 @@ $networksVisible = count(Yii::$app->authClientCollection->clients) > 0;
                     ['label' => Yii::t('usuario', 'Account'), 'url' => ['/user/settings/account']],
                     [
                         'label' => Yii::t('usuario', 'Passkey'),
-                        'url' => ['/user/user-entity/index-passkey']],
+                        'url' => ['/user/user-entity/index-passkey'],
                         'visible' => $module->enablePasskeyLogin,
+                    ],
                     [
                         'label' => Yii::t('usuario', 'Session history'),
                         'url' => ['/user/settings/session-history'],
