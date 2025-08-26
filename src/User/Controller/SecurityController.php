@@ -21,8 +21,6 @@ use Da\User\Service\SocialNetworkAccountConnectService;
 use Da\User\Service\SocialNetworkAuthenticateService;
 use Da\User\Traits\ContainerAwareTrait;
 use Da\User\Traits\ModuleAwareTrait;
-use Da\User\Validator\TwoFactorEmailValidator;
-use Da\User\Validator\TwoFactorTextMessageValidator;
 use Yii;
 use yii\authclient\AuthAction;
 use yii\base\InvalidConfigException;
@@ -159,6 +157,14 @@ class SecurityController extends Controller
                 ]);
 
                 $this->trigger(FormEvent::EVENT_AFTER_LOGIN, $event);
+
+
+                if (!Yii::$app->user->isGuest &&
+                    isset($this->module->enablePasskeyLogin) &&
+                    \Da\User\Model\UserEntity::find()->where(['user_id' => Yii::$app->user->id])->count() === 0) {
+                    Yii::$app->session->set('passkey_pop-up', true);
+
+                }
 
                 return $this->goBack();
             }

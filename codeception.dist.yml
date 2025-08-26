@@ -1,7 +1,8 @@
 actor: Tester
 paths:
     tests: tests
-    log: tests/_output
+    output: tests/_output
+    log: tests/_output/logs
     data: tests/_data
     helpers: tests/_support
 bootstrap: _bootstrap.php
@@ -11,9 +12,9 @@ settings:
 modules:
     config:
         Db:
-            dsn: 'mysql:host=127.0.0.1;dbname=yii2-usuario-test'
+            dsn: 'mysql:host=db;dbname=yii2-usuario-test'
             user: 'root'
-            password: 'password'
+            password: 'root'
             dump: tests/_data/schema.sql
         Yii2:
             configFile: 'tests/_app/config/test.php'

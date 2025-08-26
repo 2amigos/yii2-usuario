@@ -2,6 +2,7 @@
 
 ## dev
 
+- Enh: Added the possibility to create and login using passkeys. (Ettore)
 - Enh: Changed exception thrown in PasswordRecoveryService from `RuntimeException` to `NotFoundException`. (eseperio)
 - New #553: created Da\User\AuthClient\Microsoft365 auth client (edegaudenzi)
 - Ehh: Added SecurityHelper to the Bootstrap classMap

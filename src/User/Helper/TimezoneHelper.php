@@ -11,8 +11,10 @@
 
 namespace Da\User\Helper;
 
+use Da\User\Module;
 use DateTime;
 use DateTimeZone;
+use Yii;
 use yii\base\InvalidParamException;
 use yii\helpers\ArrayHelper;
 
@@ -40,9 +42,7 @@ class TimezoneHelper
                 'offset' => $offset * 100,
             ];
         }
-
         ArrayHelper::multisort($timeZones, 'offset', SORT_DESC, SORT_NUMERIC);
-
         return $timeZones;
     }
 }
