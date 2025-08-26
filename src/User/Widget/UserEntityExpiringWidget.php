@@ -43,11 +43,11 @@ class UserEntityExpiringWidget extends Widget
         $popupData = [];
 
         $maxAgeMonths = $this->module->maxPasskeyAge;
-
+        $daysTr = Yii::t('usuario','days');
         foreach ($expiringPasskeys as $passkey) {
             $lastUsedAt = $passkey->last_used_at ?: $passkey->created_at ?: date('Y-m-d');
             $createdAt = new \DateTime($lastUsedAt);
-            $expirationDate = (clone $createdAt)->modify("+$maxAgeMonths days");
+            $expirationDate = (clone $createdAt)->modify("+$maxAgeMonths . $daysTr");
             $now = new \DateTime();
             $daysLeft = $now->diff($expirationDate)->days;
             $popupData[] = [

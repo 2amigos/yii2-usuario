@@ -82,7 +82,8 @@ JS
         <div class="popup" data-popup-id="<?= Html::encode($popupId) ?>" style="top: <?= 20 + $i * 140 ?>px;">
             <span class="close-btn">×</span>
             <strong>Passkey: <?= Html::encode($passkey['name']) ?></strong><br>
-            Expires in <strong><?= Yii::$app->formatter->asDuration($passkey['daysLeft'] * 86400) ?></strong>
+            <?= Yii::t('usuario','expires in')?>
+            <strong><?= Yii::$app->formatter->asDuration($passkey['daysLeft'] * 86400) ?></strong>
             (<?= Yii::$app->formatter->asDate($passkey['expirationDate']) ?>)
             <?= Html::a('Manage your passkeys', \yii\helpers\Url::to(['/user/user-entity/index-passkey']))?>
         </div>

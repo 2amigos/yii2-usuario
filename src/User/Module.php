@@ -334,14 +334,14 @@ class Module extends BaseModule
 
     /**
      * @var integer Time before the passkey will be eliminated since the last use.
-     * Usally this time is set between 6 and 12 months.
+     * Usually this time is set between 6 and 12 months.
      * This variable counts how many days before this will happen.
      */
     public $maxPasskeyAge = 365;
 
     /**
      * @var integer The maximum number of passkey for user.
-     * Usally this value is set between 5 and 10 passkeys.
+     * Usually this value is set between 5 and 10 passkeys.
      */
     public $maxPasskeysForUser = 10;
 

@@ -64,7 +64,7 @@ if($count == $module->maxPasskeysForUser){
     <?= Html::activeHiddenInput($model, 'attestation_format', ['id' => 'attestation_format']) ?>
     <?= Html::activeHiddenInput($model, 'device_id', ['id' => 'device_id']) ?>
     <div class="form-group">
-        <?= Html::submitButton('Register Passkey', ['class' => 'btn btn-success', 'id' => 'submit-button']) ?>
+        <?= Html::submitButton(Yii::t('usuario','Register Passkey'), ['class' => 'btn btn-success', 'id' => 'submit-button']) ?>
     </div>
     <?php ActiveForm::end();?>
 </div>

@@ -7,20 +7,17 @@ use Da\User\Model\UserEntity;
 use yii\db\Expression;
 use Da\User\Module;
 
-class DeleteExpiredUserEntityController extends Controller
+class UserEntityController extends Controller
 {
-    public function actionRun()
+    public function actionDeleteExpiredPasskeys()
     {
         $fakeId=0;
         $module = new Module($fakeId);
-        $maxAgeMonths = $module->maxPasskeyAge;
-        $monthsBeforeDisplay = $module->passkeyExpirationTimeLimit;
-        $supposedCreation = date('Y-m-d', strtotime('-' . ($maxAgeMonths - $monthsBeforeDisplay) . ' days'));
-        $spanTime = date('Y-m-d', strtotime('-' . $maxAgeMonths . ' days'));
+        $maxDaysPasskey = $module->maxPasskeyAge;
+        $supposedCreation = date('Y-m-d', strtotime('-' . $maxDaysPasskey . ' days'));
         $dateField = new Expression('COALESCE(last_used_at, created_at)');
         $expired = UserEntity::find()
             ->andWhere(['<=', $dateField, $supposedCreation])
-            ->andWhere(['>=', $dateField, $spanTime])
             ->all();
 
         foreach ($expired as $passkey) {

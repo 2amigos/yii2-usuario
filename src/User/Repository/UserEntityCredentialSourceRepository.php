@@ -92,7 +92,7 @@ class UserEntityCredentialSourceRepository
 
         $trustPathRaw = $attestationObject->attStmt->trustPath ?? 'none';
 
-        //if doesn't exixst it creates an emptyTrustPath object that is 'none'
+        //if doesn't exist it creates an emptyTrustPath object that is 'none'
         //there are two types of trusthpaths that are different, if the trustpath is empty the type will be of an EmptyTrustPath otherwise
         //it'll be a TrustPath
         if ($trustPathRaw === null) {

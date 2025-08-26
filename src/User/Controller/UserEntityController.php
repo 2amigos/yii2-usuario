@@ -30,79 +30,15 @@ class UserEntityController extends Controller
     public UserEntityHelper $userEntityHelper;
 
 
-    public function __construct($id, $module, $config = [])
+    public function __construct($id, $module, UserEntityHelper $userEntityHelper, $config = [])
     {
         parent::__construct($id, $module, $config);
-        $this->userEntityHelper = new UserEntityHelper();
-    }
-
-    /**
-     * @throws RandomException
-     */
-    public function challengeGeneration(): array
-    {
-        $passkeys = UserEntity::find()->Andwhere(['type' => 'public-key'])->all();
-
-        if (empty($passkeys)) {
-            return ['success' => false, 'message' => Yii::t('usuario', 'No passkey registered.')];
-        }
-
-        $credentialDescriptors = array_map(fn($pk) => [
-            'type' => 'public-key',
-            'id' => $pk->credential_id,
-        ], $passkeys);
-
-        //effective generation of the challenge
-        $challengeRaw = random_bytes(32);
-        $challengeBase64 = rtrim(strtr($this->userEntityHelper->base64UrlEncode($challengeRaw), "+/", "-_"), "=");
-        $this->storeChallenge($challengeBase64);
-        Yii::$app->session->set('allow_credentials', $credentialDescriptors);
-
-        return [
-            'success' => true,
-            'challenge' => $challengeBase64,
-            'rpId' => Yii::$app->request->hostName,   //hostname of the app it will be useful later (like in the actionLoginPasskey)
-            'allowCredentials' => $credentialDescriptors
-        ];
-    }
-
-    public function challenge($credentialId): array
-    {
-        if ($credentialId === false) {
-            return ['success' => false, 'message' =>  Yii::t('usuario', 'Invalid credential ID format.')];
-        }
-        $credentialIdB64url = rtrim(strtr($this->userEntityHelper->base64UrlEncode($credentialId), '+/', '-_'), '=');
-        $passkey = UserEntity::find()->Andwhere(['credential_id' => $credentialIdB64url])->one();
-        if (!$passkey) {
-            Yii::error(Yii::t('usuario', 'Passkey not found for credential ID: ') . bin2hex($credentialId), __METHOD__);
-            return ['success' => false, 'message' => Yii::t('usuario', 'Passkey not found.')];
-        }
-        $user = User::findOne($passkey->user_id);
-        if (!$user) {
-            return ['success' => false, 'message' => Yii::t('usuario', 'User not found.')];
-        }
-        $userEntity = PublicKeyCredentialUserEntity::create($user->username, (string)$user->id, $user->username); //in the table user of usuario we don't have the real name of an account so we create PublicKeyCredentialUserEntity using the username two times
-        $challengeBase64 = $this->retrieveChallenge();
-        return [
-            $this->userEntityHelper->base64UrlDecode($challengeBase64),
-            $userEntity,
-            $passkey,
-        ];
-    }
-
-    //this function checks if the current can access the passkey pages
-    public function checkAccessConditions() : bool
-    {
-        $module = $this->getModule();
-        if(Yii::$app->user->isGuest||!$module->enablePasskeyLogin){
-            return false;
-        }
-        return true;
+        $this->userEntityHelper = $userEntityHelper;
     }
 
     public function actionCreatePasskey(){
         $model = new UserEntity();
-        if($this->checkAccessConditions()){
+        if($this->userEntityHelper->checkAccessConditions()){
             return $this->render('create', ['model' => $model]);
         }
         return $this->goBack();
@@ -126,7 +62,7 @@ class UserEntityController extends Controller
             }
         }
 
-        if($this->checkAccessConditions()){
+        if($this->userEntityHelper->checkAccessConditions()){
             return $this->render('update', [
                 'model' => $model,
             ]);
@@ -137,7 +73,7 @@ class UserEntityController extends Controller
 
     public function actionDeletePasskey($id)
     {
-        if(!$this->checkAccessConditions()){
+        if(!$this->userEntityHelper->checkAccessConditions()){
             return $this->goBack();
         }
 
@@ -159,27 +95,12 @@ class UserEntityController extends Controller
         return $this->redirect(['index-passkey']);
     }
 
-    public function loadTableData(){
-        $dataProvider = new \yii\data\ActiveDataProvider([
-            'query' => \Da\User\Model\UserEntity::find()->Andwhere(['user_id' => Yii::$app->user->id]),
-            'pagination' => [
-                'pageSize' => 10,
-            ],
-            'sort' => [
-                'defaultOrder' => [
-                    'created_at' => SORT_DESC,
-                ]
-            ],
-        ]);
-        return $dataProvider;
-    }
-
     public function actionIndexPasskey()
     {
-        if(!$this->checkAccessConditions()){
+        if(!$this->userEntityHelper->checkAccessConditions()){
             return $this->goBack();
         }
-        $dataProvider = $this->loadTableData();
+        $dataProvider = $this->userEntityHelper->loadTableData();
         return $this->render('index', [
             'dataProvider' => $dataProvider,
         ]);
@@ -206,10 +127,7 @@ class UserEntityController extends Controller
 
             if ($model->validate() && $model->save()) {
                 Yii::$app->session->setFlash('success', Yii::t('usuario', 'Passkey registered succesfully.'));
-                $dataProvider = $this->loadTableData();
-                return $this->render('index', [
-                    'dataProvider' => $dataProvider,
-                ]);
+                return $this->redirect(['index-passkey']);
             }
 
             Yii::error(Yii::t('usuario', 'Error while saving the passkey: ') . json_encode($model->getErrors()));
@@ -230,7 +148,7 @@ class UserEntityController extends Controller
             $response = ArrayHelper::getValue($body, 'response', []);
             // if id is missing -> return to the challenge
             if (!$credentialIdB64) {
-                return $this->asJson($this->userEntityHelper->utf8ize($this->challengeGeneration())); //generation of the challenge it returns an encoded array in Base64
+                return $this->asJson($this->userEntityHelper->utf8ize($this->userEntityHelper->challengeGeneration())); //generation of the challenge it returns an encoded array in Base64
             }
             // verify the response
             if (
@@ -242,7 +160,7 @@ class UserEntityController extends Controller
             }
 
             $credentialId = $this->userEntityHelper->base64UrlDecode($credentialIdB64);
-            [$challenge, $passkey] = $this->challenge($credentialId);
+            [$challenge, $passkey] = $this->userEntityHelper->challenge($credentialId);
             /*challenge for the user, it verifies that the user exists and retrieve the challenge. it returns ->
                     self::base64UrlDecode($challengeBase64), decoded challenge
                     $passkey, */
@@ -261,7 +179,7 @@ class UserEntityController extends Controller
 
             //we compare the client challenge with the one that we generated
             if (($clientDataArray['challenge'] ?? '') !== $challengeBase64) {
-                $this->storeChallenge(null);
+                $this->userEntityHelper->storeChallenge(null);
                 return $this->asJson(['success' => false, 'message' => Yii::t('usuario', 'Challenge mismatch')]);
             }
 
@@ -301,7 +219,7 @@ class UserEntityController extends Controller
                 $userHandle,
             );
 
-            $validator = $this->createAssertionValidator(); //validation of the address (only in development)
+            $validator = $this->userEntityHelper->createAssertionValidator(); //validation of the address (only in development)
             $repository = new UserEntityCredentialSourceRepository();
 
             try {
@@ -356,24 +274,5 @@ class UserEntityController extends Controller
             }
         }
         return $this->render('login-passkey');
-    }
-    //this function is fundamental because while developing (unless you're working on a https application) you must validate your server
-    //address to be trusted by the web-authn library
-    function createAssertionValidator(): AuthenticatorAssertionResponseValidator
-    {
-        $ceremonyStepManager = new CeremonyStepManager([
-            new CheckAllowedOrigins([Yii::$app->request->hostName], false),
-        ]);
-        return new AuthenticatorAssertionResponseValidator($ceremonyStepManager);
-    }
-    //this function puts the challenge as a session variable
-    private function storeChallenge(?string $challengeBase64): void
-    {
-        Yii::$app->session->set('webauthn_challenge', $challengeBase64);
-    }
-    //this function is for retrieve the challenge saved in the session
-    protected function retrieveChallenge(): ?string
-    {
-        return Yii::$app->session->get('webauthn_challenge') ?: null;
     }
 }

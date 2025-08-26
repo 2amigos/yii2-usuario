@@ -17,14 +17,14 @@ $this->title = Yii::t('usuario','Update Passkey: ') . Html::encode($model->name)
 
     <?php if (Yii::$app->session->hasFlash('error')): ?>
         <div class="alert alert-danger"><?= Yii::$app->session->getFlash('error') ?></div>
-    <?php endif; ?>
+    <?php endif;  ?>
 
     <table class="table table-bordered">
         <tbody>
-        <tr><th>Device ID</th><td><?= Html::encode($model->device_id) ?></td></tr>
-        <tr><th>Sign Count</th><td><?= Html::encode($model->sign_count) ?></td></tr>
-        <tr><th>Last Used At</th><td><?= $model->last_used_at ?: '-' ?></td></tr>
-        <tr><th>Created At</th><td><?= $model->created_at ?></td></tr>
+        <tr><th><?=(Yii::t('usuario','Device ID')) ?></th><td><?= Html::encode($model->device_id) ?></td></tr>
+        <tr><th><?=(Yii::t('usuario','Sign Count')) ?></th><td><?= Html::encode($model->sign_count) ?></td></tr>
+        <tr><th><?=(Yii::t('usuario','Last Used At')) ?></th><td><?= $model->last_used_at ?: '-' ?></td></tr>
+        <tr><th><?=(Yii::t('usuario','Created At')) ?></th><td><?= $model->created_at ?></td></tr>
         </tbody>
     </table>
 

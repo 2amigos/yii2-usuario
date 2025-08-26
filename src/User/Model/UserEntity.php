@@ -33,7 +33,7 @@ class UserEntity extends ActiveRecord
         return [
             [['sign_count'], 'default', 'value' => 0],
             [['user_id', 'credential_id', 'public_key', 'sign_count', 'type', 'attestation_format', 'id', 'name'], 'required'],
-            ['attestation_format', 'default', 'value' => null],
+            ['attestation_format', 'default', 'value' => 'none'],
             [['user_id','id','sign_count'], 'integer'],
             [['public_key'], 'string'],
             [['created_at', 'last_used_at'], 'safe'],
@@ -44,7 +44,7 @@ class UserEntity extends ActiveRecord
             [['name'], 'string', 'min' => 4],
             ['name', 'match', 'pattern' => '/^[a-zA-Z0-9 ]+$/', 'message' => Yii::t('usuario', 'The name can contain only letters, numbers, and spaces.')],
             [['credential_id', 'id'], 'unique'],
-            ['attestation_format', 'in', 'range' => ['none', 'packed', 'android-key', 'tpm', 'direct', 'unknown'], 'message' => Yii::t('usuario', 'Your attestation format is invalid and is not supported.')],
+            ['attestation_format', 'in', 'range' => ['none', 'packed', 'android-key', 'tpm', 'direct', 'unknown'], 'message' => Yii::t('usuario', 'Your attestation format is invalid and isn\'t supported.')],
         ];
     }
 

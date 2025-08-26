@@ -21,12 +21,33 @@ To enable passkey support in your application, follow these steps:
       ```
 after you set the `enablePasskeyLogin`, you'll be able to see the button `Passkey Login` in the login form of usuario. But it won't work if you don't have any passkey saved.
 
+<h3>Supported Passkey (Attestation Formats)</h3>
+
+- **None Attestation**
+    - No attestation is provided.
+    - Used when the authenticator does not supply evidence about its provenance.
+
+- **Packed Attestation**
+    - A commonly used attestation format.
+    - Supports multiple cryptographic algorithms for verifying device authenticity.
+
+- **Android Key Attestation**
+    - Specific to Android devices.
+    - Ensures that keys are securely generated and stored in Android Keystore.
+
+- **TPM Attestation**
+    - Uses Trusted Platform Module (TPM).
+    - Provides hardware-backed attestation for strong security guarantees.
+
+For example as passkey providers we can use bitwarden, yubikeys etc.
+
+
 <h3>Views Paths
 -------------------------------
 If you have followed all the steps above now you're able to use passkeys!
 So the paths to access the views are: 
 - `/user/user-entity/index-passkey` the index page of the passkeys. In this page the user will be able to see all of his passkeys and manage them (update/create/delete).
-- `user/user-entity/create-passkey` the page for creating a new passkey.
+- `/user/user-entity/create-passkey` the page for creating a new passkey.
 
 <h3>Extra Configurations
 -------------------------------
@@ -59,14 +80,15 @@ Let's see in detail what these do:
 - `passkeyExpirationTimeLimit` The number of days before the user receives an alert saying that his passkey is expiring.
  Usually this value is set between 15 and 30 days.
          
-Be aware that by default all the configurations are set to false. Only the 3 ones that are used to determine the age of the passkey are set by default with the values above. If you want to show the modals you need another extra step.
+Be aware that by default all the configurations are set to false. Only the 3 ones that are used to determine the age of the passkey are set by default with the values above.
 
+If you want to show the modals you need another extra step.
 <h3>Passkey Widgets
 -------------------------
 
 <h4>- UserEntityPasskeyWidget</h4>
 
-- **What it does**: Displays a pop-up immediately after a user logs in if they haven't registered any passkeys yet.
+- **What it does**: Displays a pop-up immediately after login if you haven't registered any passkeys yet.
 - **How to use it**: Just add this line in your view (e.g., layout or dashboard):
 
   ```php
