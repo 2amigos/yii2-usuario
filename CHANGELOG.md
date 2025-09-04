@@ -10,6 +10,7 @@
 - Ehh: Added option to pre-fill recovery email via url parameter (TonisOrmisson)
 - Ehh: Fixed pretty-url rules not initialized for console apps (TonisOrmisson)
 - Fix #572: Correctly positioned the 'Disconnect' button in networks view (edegaudenzi)
+- Ehh: updated Italian (it) translation (edegaudenzi)
 
 ## 1.6.3 Mar 18th, 2024
 
