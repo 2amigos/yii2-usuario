@@ -128,6 +128,14 @@ class User extends ActiveRecord implements IdentityInterface
     }
 
     /**
+     * @throws NotSupportedException
+     */
+    public function getAccessToken()
+    {
+        throw new NotSupportedException('Method "' . __CLASS__ . '::' . __METHOD__ . '" is not implemented.');
+    }
+
+    /**
      * {@inheritdoc}
      */
     public function beforeSave($insert)

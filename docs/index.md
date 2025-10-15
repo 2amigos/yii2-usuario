@@ -189,6 +189,7 @@ Helpful Guides
 - [Separate Frontend and Backend Sessions](guides/separate-frontend-and-backend-sessions.md)
 - [Social Network Authentication](guides/social-network-authentication.md)
 - [How to Enable session history](guides/how-to-use-session-history.md)
+- [Rest API](guides/rest-api.md)
 
 Contributing
 ------------
