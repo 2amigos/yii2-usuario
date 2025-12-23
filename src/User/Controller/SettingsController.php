@@ -225,7 +225,6 @@ class SettingsController extends Controller
             $this->trigger(GdprEvent::EVENT_BEFORE_DELETE, $event);
 
             if ($event->isValid) {
-                Yii::$app->user->logout();
                 //Disconnect social networks
                 $networks = $this->socialNetworkAccountQuery->where(['user_id' => $user->id])->all();
                 foreach ($networks as $network) {
@@ -255,6 +254,9 @@ class SettingsController extends Controller
                     'bio' => Yii::t('usuario', 'Deleted by GDPR request')
                     ]
                 );
+
+                //Now User has been GDPRred, log it out
+                Yii::$app->user->logout();
             }
             $this->trigger(GdprEvent::EVENT_AFTER_DELETE, $event);
 

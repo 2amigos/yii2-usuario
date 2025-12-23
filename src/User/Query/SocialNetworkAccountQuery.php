@@ -18,6 +18,18 @@ class SocialNetworkAccountQuery extends ActiveQuery
 {
     public function whereId($id)
     {
+        // If $this already contains a condition for 'id', remove it
+        // to avoid multiple ANDed 'id' conditions.
+        // @ref https://github.com/2amigos/yii2-usuario/issues/568
+        if (is_array($this->where)) {
+            foreach ($this->where as $idx => $arrCondition) {
+                if (isset($arrCondition['id'])) {
+                    array_splice($this->where, $idx, 1);
+                    break;
+                }
+            }
+        }
+
         return $this->andWhere(['id' => $id]);
     }
 
