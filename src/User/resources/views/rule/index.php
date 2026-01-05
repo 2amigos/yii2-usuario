@@ -36,9 +36,11 @@ $this->params['breadcrumbs'][] = $this->title;
                 'attribute' => 'className',
                 'label' => Yii::t('usuario', 'Class'),
                 'value' => function ($row) {
-                    $rule = unserialize($row['data']);
+                    if (!isset($row['data']) || ($data = @unserialize(is_resource($row['data']) ? stream_get_contents($row['data']) : $row['data'])) === false) {
+                        $data = null;
+                    }
 
-                    return get_class($rule);
+                    return get_class($data);
                 },
                 'options' => [
                     'style' => 'width: 20%'
