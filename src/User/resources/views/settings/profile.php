@@ -24,6 +24,40 @@ use yii\widgets\ActiveForm;
 $this->title = Yii::t('usuario', 'Profile settings');
 $this->params['breadcrumbs'][] = $this->title;
 $timezoneHelper = $model->make(TimezoneHelper::class);
+
+$this->registerCss(<<<CSS
+.profile-image-upload {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    margin-left: 222px;
+}
+
+.image-preview {
+    flex-shrink: 0;
+}
+
+.profile-avatar {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 3px solid #e0e0e0;
+}
+
+.profile-avatar-placeholder {
+    background-color: #f0f0f0;
+    color: #999;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.profile-avatar-placeholder svg {
+    width: 50%;
+    height: 50%;
+}
+CSS);
 ?>
 
 <div class="clearfix"></div>
@@ -53,6 +87,13 @@ $timezoneHelper = $model->make(TimezoneHelper::class);
                         'validateOnBlur' => false,
                     ]
                 ); ?>
+
+                <div class="profile-image-upload">
+                    <div class="image-preview">
+                        <img src="<?= $model->getImageUrl() ?>" alt="Profile Picture" class="profile-avatar">
+                    </div>
+                    <?= $form->field($model, 'imageUpload')->fileInput(['accept' => 'image/*']) ?>
+                </div>
 
                 <?= $form->field($model, 'name') ?>
 

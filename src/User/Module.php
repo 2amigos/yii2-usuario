@@ -298,6 +298,11 @@ class Module extends BaseModule
     ];
 
     /**
+     * @var int The maximum size of a profile image in bytes. Defaults to 16MB (MEDIUMBLOB limit).
+     */
+    public $maxProfileImageSize = 16 * 1024 * 1024;
+
+    /**
      * @return string with the hit to be used with the give consent checkbox
      */
     public function getConsentMessage()
