@@ -27,6 +27,8 @@ return [
         'it',
         'kk',
         'lt',
+        'nb-NO',
+        'nn-NO',
         'nl',
         'pl',
         'pt-BR',

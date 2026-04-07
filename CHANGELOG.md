@@ -11,6 +11,7 @@
 - Ehh: Fixed pretty-url rules not initialized for console apps (TonisOrmisson)
 - Fix #572: Correctly positioned the 'Disconnect' button in networks view (edegaudenzi)
 - Ehh: updated Italian (it) translation (edegaudenzi)
+- Enh: added Norwegian Bokmål (nb-NO) and Nynorsk (nn-NO) translations (sjenset)
 
 ## 1.6.3 Mar 18th, 2024
 
@@ -18,7 +19,7 @@
 - Enh: Keycloak auth client (e.luhr)
 - Fix: Social Network Auth (eluhr)
 - Enh #532: /user/registration/register now shows form validation errors
-- Enh: Allow/suggest new v3 releases of 2amigos 2fa dependencies: 2fa-library, qrcode-library (TonisOrmisson) 
+- Enh: Allow/suggest new v3 releases of 2amigos 2fa dependencies: 2fa-library, qrcode-library (TonisOrmisson)
 - Ehh: Added all the classes to the Bootstrap.php classMap
 - Enh: Added option to disable viewing any other user's profile for non-admin users (TonisOrmisson)
 - Ehn: updated Estonian (et) translation by (TonisOrmisson)
@@ -92,8 +93,8 @@ There's a change in flash messages handling, please see #391.
 - Fix #370: Extending view fix (effsoft)
 - Fix #306: Add event for failed login (ivan-cc)
 - Fix #347: Only pass fields known to User model in registrationControl->actionRegister() (BillHeaton)
-- Fix #346: Update ReCaptcha guide to not use AJAX  (BillHeaton)
-- Fix #345: Update ReCaptcha guide to add scenarios() in recoveryForm  (BillHeaton)
+- Fix #346: Update ReCaptcha guide to not use AJAX (BillHeaton)
+- Fix #345: Update ReCaptcha guide to add scenarios() in recoveryForm (BillHeaton)
 - Fix #307: Fix French translation (arollmann)
 - Fix #316: Fix new response from Google OAuth Api (Julian-B90)
 - Fix #321: Fix new response from LinkedIn OAuth Api (tonydspaniard)
@@ -156,7 +157,7 @@ There's a change in flash messages handling, please see #391.
 - Bug #102: Implemented password expiration feature (maxxer)
 - Enh #143: Introduced "conflict" configuration in composer.json (maxxer)
 - Enh #145: Allowed the `+` sign in username (maxxer)
-- Bug #9:   Documentation about migration from Dektrium tools (maxxer)
+- Bug #9: Documentation about migration from Dektrium tools (maxxer)
 - Bug #110: Honor `enableFlashMessages` in `PasswordRecoveryService` (maxxer)
 
 ## 1.1.1 - November 27, 2017
@@ -166,7 +167,7 @@ There's a change in flash messages handling, please see #391.
 - Enh #120: 2FA i18n russian translation (Dezinger)
 - Bug #111: Fix migration for PostgreSQL DBMS (MKiselev)
 - Bug #106: Correct exception value returned in `MailEvent::getException` (kartik-v)
-- Enh #99:  Added German translation (jkmssoft)
+- Enh #99: Added German translation (jkmssoft)
 - Enh #100: Added pt-BR translation (gugoan)
 - Enh #105: Consolidate 2fa messages (maxxer)
 - Fix #108: Use main logger app (tonydspaniard)
