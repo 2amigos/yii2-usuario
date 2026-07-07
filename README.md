@@ -20,6 +20,7 @@ module is built to work out of the box with some minor config tweaks and it come
 - Backend RBAC management 
 - Login via username/email + password process
 - Login via social network process
+- REST API login process (with access token generation)
 - Password recovery process
 - Two-Factor authentication process 
 - Google reCaptcha

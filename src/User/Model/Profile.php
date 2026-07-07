@@ -23,6 +23,7 @@ use Yii;
 use yii\base\InvalidConfigException;
 use yii\base\InvalidParamException;
 use yii\db\ActiveRecord;
+use yii\web\UploadedFile;
 
 /**
  * @property int    $user_id
@@ -33,6 +34,7 @@ use yii\db\ActiveRecord;
  * @property string $location
  * @property string $website
  * @property string $bio
+ * @property string $image
  * @property string $timezone
  * @property User   $user
  */
@@ -40,6 +42,20 @@ class Profile extends ActiveRecord
 {
     use ModuleAwareTrait;
     use ContainerAwareTrait;
+
+    /**
+     * @var UploadedFile
+     */
+    public $imageUpload;
+
+    /**
+     * {@inheritDoc}
+     */
+    public function beforeValidate()
+    {
+        $this->imageUpload = UploadedFile::getInstance($this, 'imageUpload');
+        return parent::beforeValidate();
+    }
 
     /**
      * {@inheritdoc}
@@ -54,6 +70,10 @@ class Profile extends ActiveRecord
                 'gravatar_id',
                 $this->make(GravatarHelper::class)->buildId(trim($this->getAttribute('gravatar_email')))
             );
+        }
+
+        if ($this->imageUpload instanceof UploadedFile) {
+            $this->image = file_get_contents($this->imageUpload->tempName);
         }
 
         return parent::beforeSave($insert);
@@ -92,6 +112,14 @@ class Profile extends ActiveRecord
             'gravatarEmailLength' => ['gravatar_email', 'string', 'max' => 255],
             'locationLength' => ['location', 'string', 'max' => 255],
             'websiteLength' => ['website', 'string', 'max' => 255],
+            'imageSafe' => ['image', 'safe'],
+            'imageFile' => [
+                'imageUpload', 'file',
+                'skipOnEmpty' => true,
+                'extensions' => ['png', 'jpg', 'jpeg'],
+                'checkExtensionByMimeType' => false,
+                'maxSize' => $this->module->maxProfileImageSize,
+            ],
         ];
     }
 
@@ -108,6 +136,8 @@ class Profile extends ActiveRecord
             'website' => Yii::t('usuario', 'Website'),
             'bio' => Yii::t('usuario', 'Bio'),
             'timezone' => Yii::t('usuario', 'Time zone'),
+            'image' => Yii::t('usuario', 'Image'),
+            'imageUpload' => Yii::t('usuario', 'Profile Image'),
         ];
     }
 
@@ -168,6 +198,18 @@ class Profile extends ActiveRecord
     {
         return $this->make(GravatarHelper::class)->getUrl($this->gravatar_id, $size);
     }
+
+    /**
+     * @return string|null
+     */
+    public function getImageUrl(): ?string
+    {
+        if ($this->image) {
+            return 'data:image/*;base64,' . base64_encode($this->image);
+        }
+        return null;
+    }
+
 
     /**
      * @return ProfileQuery

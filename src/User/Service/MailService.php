@@ -91,7 +91,7 @@ class MailService implements ServiceInterface
             ->send();
 
         if (!$result) {
-            Yii::error("Email sending failed to '{$this->to}'.", 'mailer');
+            Yii::error("Email sending failed to '{$this->to}'.", __CLASS__);
         }
         return $result;
     }
