@@ -54,7 +54,7 @@ class UserCreateService implements ServiceInterface
 
         $transaction = $model::getDb()->beginTransaction();
 
-        try {
+        // try {
             $model->confirmed_at = time();
             $model->password = !empty($model->password)
                 ? $model->password
@@ -93,11 +93,11 @@ class UserCreateService implements ServiceInterface
             }
             $transaction->commit();
             return true;
-        } catch (Exception $e) {
-            $transaction->rollBack();
-            Yii::error($e->getMessage(), 'usuario');
-
-            return false;
-        }
+        // } catch (Exception $e) {
+        //     $transaction->rollBack();
+        //     Yii::error($e->getMessage(), 'usuario');
+        //
+        //     return false;
+        // }
     }
 }
