@@ -202,7 +202,7 @@ return [
     'Rule name' => 'Nome regola',
     'Rule {0} does not exists' => 'La regola {0} non esiste',
     'Rule {0} not found.' => 'Regola {0} non trovata.',
-    'Rule' => 'ruolo',
+    'Rule' => 'Regola',
     'Rules' => 'Regole',
     'Save' => 'Salva',
     'Scan the QrCode with Google Authenticator App, then insert its temporary code on the box and submit.' => 'Scansiona il codice QR con l\'applicazione Google Authenticator, poi inserisci il codice temporaneo nel riquadro ed invia.',
